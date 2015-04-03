@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  track_type: 1
+  begin: 2015-03-23
+  during: 1
+
+two:
+  user_id: 1
+  track_type: 1
+  begin: 2015-03-23
+  during: 1

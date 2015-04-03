@@ -1,0 +1,37 @@
+﻿<dl class="xiangmu">
+  <dt>瑜珈</dt>
+  <dd><%= @latester.nil? ? '' : @latester.name %></dd>
+</dl>
+<div class="xmxx">
+  <ul>
+    <li>
+      <em>开课时间</em>
+      <i><%= @course.from.strftime('%Y-%m-%d') %></i>
+    </li>
+    <li>
+      <em>私教</em>
+      <i><%= @actor.name %></i>
+    </li>
+    <li>
+      <em>状态</em>
+      <i><%= '可报名' %></i>
+    </li>
+  </ul>
+  <ul>
+    <li>
+      <em>项目</em>
+      <i><%= @course.title %></i>
+    </li>
+    <li>
+      <em>课程类型</em>
+      <i><%= @course.sub_category %></i>
+    </li>
+    <li>
+      <em>地点</em>
+      <i><%= @course.location %></i>
+    </li>
+  </ul>
+</div>
+<div class="endtime">结束: <%= @course.to.strftime('%Y-%m-%d') %></div>
+<h1>课程简介</h1>
+<div class="conbox"><%= @course.feature %></div>

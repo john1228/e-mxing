@@ -1,0 +1,20 @@
+<div class="header">
+  <div class="logo"><a href="#">美型网</a></div>
+  <ul class="nav">
+    <li><%= link_to('首页', {controller: :home, action: :index}) %></li>
+    <li><%= link_to('关于美型', {controller: :home, action: :about}) %> <i></i></li>
+    <li><%= link_to('美型动态', {controller: :home, action: :dynamic}, class: 'cur') %> <i></i></li>
+    <li><%= link_to('联系我们', {controller: :home, action: :contact}) %><i></i></li>
+    <li><%= link_to('加入我们', {controller: :home, action: :join}) %> <i></i></li>
+  </ul>
+  <div class="clear"></div>
+</div>
+<div class="content ">
+  <div class="dongtai">
+    <h2 style=" text-align: center">敬请期待。。。</h2>
+  </div>
+  <div class="dt_list">
+    <dl class="no">
+    </dl>
+  </div>
+</div>

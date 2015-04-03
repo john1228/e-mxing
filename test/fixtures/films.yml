@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  icon: MyString
+  path: MyString
+  player: 1
+  liked: 1
+  commented: 1
+
+two:
+  title: MyString
+  icon: MyString
+  path: MyString
+  player: 1
+  liked: 1
+  commented: 1

@@ -1,0 +1,48 @@
+<div class="header">
+  <div class="logo"><a href="#">美型网</a></div>
+  <ul class="nav">
+    <li><%= link_to('首页', {controller: :home, action: :index}) %></li>
+    <li><%= link_to('关于美型', {controller: :home, action: :about}) %> <i></i></li>
+    <li><%= link_to('美型动态', {controller: :home, action: :dynamic}) %> <i></i></li>
+    <li><%= link_to('联系我们', {controller: :home, action: :contact}, class: 'cur') %><i></i></li>
+    <li><%= link_to('加入我们', {controller: :home, action: :join}) %> <i></i></li>
+  </ul>
+  <div class="clear"></div>
+</div>
+<div class="content ">
+  <div class="map">
+    <%= image_tag('web/map.jpg') %>
+  </div>
+  <div class="contact">
+    <div class="left">
+      <h3>联络我们</h3>
+      <dl>
+        <dt>姓名</dt>
+        <dd><input type="text" class="inp"></dd>
+      </dl>
+      <dl>
+        <dt>您的E-mail</dt>
+        <dd><input type="text" class="inp"></dd>
+      </dl>
+      <dl>
+        <dt>输入内容</dt>
+        <dd><textarea></textarea></dd>
+      </dl>
+      <dl>
+        <dt>&nbsp;</dt>
+        <dd><input type="button" class="but" value="发送信息"></dd>
+      </dl>
+    </div>
+    <div class="right">
+      <h3>办公室</h3>
+      <dl>
+        <dt>联系方式</dt>
+        <dd>上海市中山西路933号</dd>
+      </dl>
+      <dl>
+        <dt>工作时间</dt>
+        <dd>周一至周五 9:00-18:00<br>周六至周日</dd>
+      </dl>
+    </div>
+  </div>
+</div>

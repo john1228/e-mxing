@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="Rails mxing: development" uuid="17388e69-f202-4d47-aa29-cd908d2e2342">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+  <data-source name="Rails mxing: test" uuid="36b0d628-00ac-4ea0-892c-5fe149ce3716">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+  <data-source name="Rails mxing: production" uuid="f6c2f984-ca65-4ad7-93bb-6803393415fe">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+</component>

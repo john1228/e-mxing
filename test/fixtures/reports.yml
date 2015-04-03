@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  report_type: 1
+  reported_id: 1
+  user_id: MyString
+  integer: MyString
+  message: MyString
+
+two:
+  report_type: 1
+  reported_id: 1
+  user_id: MyString
+  integer: MyString
+  message: MyString

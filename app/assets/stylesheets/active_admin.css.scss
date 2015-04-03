@@ -1,0 +1,74 @@
+// SASS variable overrides must be declared before loading up Active Admin's styles.
+//
+// To view the variables that Active Admin provides, take a look at
+// `app/assets/stylesheets/active_admin/mixins/_variables.css.scss` in the
+// Active Admin source.
+//
+// For example, to change the sidebar width:
+// $sidebar-width: 242px;
+// Active Admin's got SASS!
+$skinActiveColor: orange;
+$skinHeaderBck: green;
+$panelHeaderBck: #00c1eb;
+@import "active_admin/mixins";
+@import "active_admin/base";
+@import "active_skin";
+@import "fancybox";
+
+//= require jquery-ui
+
+// Overriding any non-variable SASS must be done after the fact.
+// For example, to change the default status-tag color:
+//
+//   .status_tag { background: #6090DB; }
+
+.slide {
+  width: 710px;
+  height: 350px;
+  overflow: hidden;
+  position: relative;
+  color: midnightblue;
+}
+
+.slide-ul {
+  position: relative;
+  width: 8640px;
+  margin: 0 0 0 -5px;
+}
+
+.slide-ul li {
+  display: inline;
+  float: left;
+  width: 230px;
+  height: 350px;
+  padding: 0 5px;
+  overflow: hidden;
+}
+
+.slide-ul a {
+  display: block;
+  width: 230px;
+  height: 350px;
+  overflow: hidden;
+  color: #fff;
+}
+
+.slide-ul a:hover .pic-txt {
+  color: #fff;
+}
+
+.slide-ul .pic-txt {
+  display: block;
+  bottom: -30px;
+  position: relative;
+  width: 220px;
+  height: 30px;
+  margin: -30px 0 0;
+  padding: 0 5px;
+  font: 14px/30px Microsoft YaHei;
+  text-align: center;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.5);
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=1, startColorstr=#80000000, endColorstr=#80000000);
+  cursor: pointer;
+}

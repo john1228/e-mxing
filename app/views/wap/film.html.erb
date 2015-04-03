@@ -1,0 +1,8 @@
+﻿<div class="video">
+  <%= video_tag(@film.path.url, controls: true,
+                width: '100%', height: 422, poster: @film.icon.url,
+                background: '#000000') %>
+</div>
+<h1>视频简介</h1>
+
+<div class="conbox" style="text-align: center"><%= @film.dynamic.feature %></div>

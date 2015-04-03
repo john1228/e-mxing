@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  from: 2014-11-25
+  to: 2014-11-25
+  category: MyString
+  title: MyString
+  target: MyString
+  sub_category: MyString
+  location: MyString
+  feature: MyText
+
+two:
+  user_id: 1
+  from: 2014-11-25
+  to: 2014-11-25
+  category: MyString
+  title: MyString
+  target: MyString
+  sub_category: MyString
+  location: MyString
+  feature: MyText

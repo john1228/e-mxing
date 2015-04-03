@@ -1,0 +1,41 @@
+<div class="header">
+  <div class="logo"><a href="#">美型网</a></div>
+  <ul class="nav">
+    <li><%= link_to('首页', {controller: :home, action: :index}, class: 'cur') %></li>
+    <li><%= link_to('关于美型', {controller: :home, action: :about}) %> <i></i></li>
+    <li><%= link_to('美型动态', {controller: :home, action: :dynamic}) %> <i></i></li>
+    <li><%= link_to('联系我们', {controller: :home, action: :contact}) %><i></i></li>
+    <li><%= link_to('加入我们', {controller: :home, action: :join}) %> <i></i></li>
+  </ul>
+  <div class="clear"></div>
+</div>
+<div class="banner">
+  <div class="main_visual">
+    <div class="visual">
+      <div class="flicking_con">
+        <div class="flicking_inner">
+          <a href="javascript:void(0)">1</a>
+          <a href="javascript:void(0)">2</a>
+          <a href="javascript:void(0)">3</a>
+        </div>
+      </div>
+      <div class="main_image">
+        <ul>
+          <li class="image_fst"></li>
+          <li class="image_mid"></li>
+          <li class="image_lst"></li>
+        </ul>
+        <a href="javascript:" id="btn_prev"></a>
+        <a href="javascript:" id="btn_next"></a>
+      </div>
+    </div>
+    <div class="code"><%= image_tag('web/code.jpg') %><br>手机扫描直接下载</div>
+    <div class="dow"><a id="mm_downloads_rightnow" href="#mm_downloads">立即下载</a></div>
+  </div>
+</div>
+<div class="download_text" id="mm_downloads">根据你的手机，选择下载</div>
+<ul class="download">
+  <li><a href="#"><i class="ico1"></i><br>iphone</a></li>
+  <li><a href="#"><i class="ico2"></i><br>android</a></li>
+  <li class="code"><%= image_tag('web/code.jpg') %></li>
+</ul>
