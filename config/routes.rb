@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount Ckeditor::Engine => '/ckeditor'
   resources :reports
 
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -55,7 +56,7 @@ Rails.application.routes.draw do
   get 'home/dynamic' => 'home#dynamic'
   get 'home/contact' => 'home#contact'
   get 'home/join' => 'home#join'
-  get 'wap/index' => 'wap#index'
+  get 'wap' => 'wap#index'
   get 'wap/film' => 'wap#film'
   get 'wap/course' => 'wap#course'
   root 'home#index'

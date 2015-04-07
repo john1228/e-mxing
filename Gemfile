@@ -21,7 +21,7 @@ gem 'devise'
 gem 'puma'
 
 gem 'faraday'
-gem 'rmagick'
+gem 'mini_magick'
 gem 'streamio-ffmpeg'
 gem 'sidekiq'
 gem 'geokit-rails'
@@ -30,6 +30,7 @@ gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'polyamorous', github: 'activerecord-hackery/polyamorous'
 gem 'ransack', github: 'activerecord-hackery/ransack'
 gem 'formtastic', github: 'justinfrench/formtastic'
+gem 'ckeditor', github: 'galetahub/ckeditor'
 
 
 gem 'pg', '0.18.1'
@@ -40,3 +41,7 @@ gem 'fancybox2-rails', '~> 0.2.8'
 gem 'active_skin'
 gem 'capistrano'
 
+group :development do
+  gem 'capistrano-rails'
+  gem 'capistrano3-puma'
+end

@@ -1,20 +1,13 @@
 class FriendsController < InheritedResources::Base
 
   def index
+    ids = params[:mxids].split(',').collect { |mxid| mxid - 10000 }
     render json: {
                code: 1,
-               message: 'success',
-               data: User.where(id: JSON(params[:ids])).collect { |user|
-                 profile = user.profile
-                 {
-                     no: user.id,
-                     username: user.id.to_s,
-                     name: profile.name,
-                     thumb: url_for($host+ profile.icon.url(:thumb)),
-                     original: url_for($host+ profile.icon.url),
-                     gender: profile.gender,
-                     signature: profile.signature
-                 }
+               data: {
+                   profiles: Profile.where(id: ids).collect { |profile|
+                     profile.as_json
+                   }
                }
            }
   end
@@ -22,33 +15,21 @@ class FriendsController < InheritedResources::Base
   def create
     friend = @user.friends.new(friend_id: params[:friend_id])
     if friend.save
-      render json: {
-                 code: 1,
-                 message: 'success'
-             }
+      render json: {code: 1}
     else
       render json: {
                  code: 0,
-                 message: friend.errors
+                 message: '添加好友失败'
              }
     end
   end
 
   def find
-    profiles = Profile.where("name like ? or id like ?", "%#{params[:keyword]}%", "#{params[:keyword]}")
+    profiles = Profile.where("'name like ? or id like ?", "%#{params[:keyword]}%", "#{params[:keyword]}'")
     render json: {
                code: 1,
-               message: 'success',
                data: profiles.collect { |profile|
-                 {
-                     no: profile.user_id,
-                     username: profile.user_id.to_s,
-                     name: profile.name,
-                     thumb: profile.icon.start_with?('http')||profile.icon.blank? ? profile.icon : url_for("#{$img_host}/profile/avatar/130x130/#{profile.icon}"),
-                     original: profile.icon.start_with?('http')||profile.icon.blank? ? profile.icon : url_for("#{$img_host}/profile/avatar/#{profile.icon}"),
-                     gender: profile.gender,
-                     signature: profile.signature
-                 }
+                 profile.as_json
                }
            }
   end

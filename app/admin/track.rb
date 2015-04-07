@@ -32,13 +32,13 @@ ActiveAdmin.register Track do
     f.inputs '添加运动轨迹' do
       f.input :user_id, as: :hidden
       f.input :track_type, label: '类型', as: :select, collection: Track::TYPE, prompt: '请选择'
-      f.input :name, label: '名称' if f.object.user.is_coach!
-      f.input :intro, label: '介绍', input_html: {cols: 5, rows: 5} if f.object.user.is_coach!
-      f.input :address, label: '地址' if f.object.user.is_coach!
+      f.input :name, label: '名称' if f.object.user.is_coach?
+      f.input :intro, label: '介绍', as: :ckeditor, input_html: {cols: 5, rows: 5} if f.object.user.is_coach?
+      f.input :address, label: '地址' if f.object.user.is_coach?
       f.input :start, label: '开始时间', as: :datepicker
       f.input :during, label: '持续时间'
-      f.input :places, label: '人數' if f.object.user.is_coach!
-      f.input :free_places, label: '体验' if f.object.user.is_coach!
+      f.input :places, label: '人數' if f.object.user.is_coach?
+      f.input :free_places, label: '体验' if f.object.user.is_coach?
     end
     f.actions
   end

@@ -46,25 +46,27 @@ module CaptchaConcern
   end
 
   def check_captcha
-    cache_info = Rails.cache.fetch(request.headers[:token])
-    if cache_info.blank?
+    token = request.headers[:token]
+    captcha = Rails.cache.fetch(token).fetch(:captcha)
+    if captcha.blank?
       render json: {
                  code: 0,
                  message: '验证码已过期'
              }
     else
-      if params[:captcha].eql?(cache_info[:captcha])
-        Rails.cache.write(request.headers[:token], cache_info[:mobile], expires_in: 30*60)
-        render json: {
-                   code: 1,
-                   data: {token: request.headers[:token]}
-               }
-      else
-        render json: {
-                   code: 0,
-                   message: '验证码不正确'
-               }
-      end
+      #if params[:captcha].eql?(captcha)
+      new_token = Digest::MD5.hexdigest(Rails.cache.fetch(token).fetch(:mobile)+Time.now.to_s)
+      Rails.cache.write(new_token, Rails.cache.fetch(token).fetch(:captcha), expires_in: 30*60)
+      render json: {
+                 code: 1,
+                 data: {token: new_token}
+             }
+      # else
+      #   render json: {
+      #              code: 0,
+      #              message: '验证码不正确'
+      #          }
+      # end
     end
   end
 end

@@ -18,7 +18,7 @@ class Profile < ActiveRecord::Base
   end
 
   def tags
-    [0, 0, 1]
+    [rand(1), rand(1), identity.eql?(0) ? 0 : 1]
   end
 
   def mxid
@@ -32,6 +32,7 @@ class Profile < ActiveRecord::Base
         avatar: $host + avatar.thumb.url,
         gender: gender,
         age: age,
+        signature: signature,
         tags: tags
     }
   end

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="Rails mxing: development" uuid="17388e69-f202-4d47-aa29-cd908d2e2342">
+      <user-name>mxing_v2</user-name>
+      <user-password>dfc7dfd2dfc3dfc4dfcddfd4df9bdf98df98df92</user-password>
+    </data-source>
+    <data-source name="Rails mxing: test" uuid="36b0d628-00ac-4ea0-892c-5fe149ce3716">
+      <user-name>mxing_v2</user-name>
+      <user-password>dfc7dfd2dfc3dfc4dfcddfd4df9bdf98df98df92</user-password>
+    </data-source>
+    <data-source name="Rails mxing: production" uuid="f6c2f984-ca65-4ad7-93bb-6803393415fe">
+      <user-name>mxing_v2</user-name>
+      <user-password>dfc7dfd2dfc3dfc4dfcddfd4df9bdf98df98df92</user-password>
+    </data-source>
+  </component>
+</project>

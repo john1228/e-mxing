@@ -1,8 +1,7 @@
 # encoding: utf-8
 
 class ActivityCoverUploader < CarrierWave::Uploader::Base
-
-  include CarrierWave::RMagick
+  include CarrierWave::MiniMagick
   storage :file
 
   def store_dir

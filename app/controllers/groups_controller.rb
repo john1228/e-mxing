@@ -34,6 +34,10 @@ class GroupsController < ApplicationController
     end
   end
 
+  def update
+
+  end
+
   def join
     group = Group.find_by(id: params[:id])
     if group.nil?
@@ -42,17 +46,20 @@ class GroupsController < ApplicationController
                  message: '您加入到群不存在'
              }
     else
-      member = group.group_members.new(user: @user)
-      if member.save
-        render json: {
-                   code: 1
-               }
+      member = group.group_members.find_by(user: @user)
+      if member.tag.eql?(GroupMember::ADMIN)
+        params[:mxids].split(',').map { |mxid|
+          group.group_members.create(user: Profile.find_by_mxid(mxid).user)
+        }
+        render json: {code: 1 }
       else
         render json: {
                    code: 0,
-                   message: '加入群组失败'
+                   message: '您不是群管理员，不能添加成员'
                }
       end
+
+
     end
   end
 

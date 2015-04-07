@@ -6,6 +6,7 @@ class CreateActivities < ActiveRecord::Migration
       t.string :address
       t.string :time
       t.string :url
+      t.integer :group_id
 
       t.timestamps null: false
     end

@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 class FilmUploader < CarrierWave::Uploader::Base
+
   storage :file
   after :store, :slice
 

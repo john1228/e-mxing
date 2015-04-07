@@ -2,7 +2,7 @@
 lock '3.4.0'
 
 set :application, 'e-mxing'
-set :repo_url, 'https://github.com/capistrano/rails3-bootstrap-devise-cancan'
+set :repo_url, 'https://github.com/john1228/e-mxing.git'
 
 set :linked_files, %w{config/database.yml} #需要做链接的文件，一般database.yml和部分配置文件
 set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
