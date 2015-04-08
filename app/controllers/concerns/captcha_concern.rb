@@ -54,13 +54,28 @@ module CaptchaConcern
                  message: '验证码已过期'
              }
     else
+      logger.info token
       #if params[:captcha].eql?(captcha)
-      new_token = Digest::MD5.hexdigest(Rails.cache.fetch(token).fetch(:mobile)+Time.now.to_s)
-      Rails.cache.write(new_token, Rails.cache.fetch(token).fetch(:captcha), expires_in: 30*60)
-      render json: {
-                 code: 1,
-                 data: {token: new_token}
-             }
+      if params[:password].blank?
+        new_token = Digest::MD5.hexdigest(Rails.cache.fetch(token).fetch(:mobile)+Time.now.to_s)
+        Rails.cache.write(new_token, Rails.cache.fetch(token).fetch(:mobile), expires_in: 30*60)
+        render json: {
+                   code: 1,
+                   data: {token: new_token}
+               }
+      else
+        user = User.find_by(username: Rails.cache.fetch(token).fetch(:mobile))
+        if user.blank?
+          render json: {
+                     code: 0,
+                     message: '修改密码失败'
+                 }
+        else
+          user.update(password: params[:password])
+          Rails.cache.write(user.token, user)
+          render json: {code: 1}
+        end
+      end
       # else
       #   render json: {
       #              code: 0,

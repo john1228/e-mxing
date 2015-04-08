@@ -13,11 +13,16 @@ class User < ActiveRecord::Base
   has_many :tracks, dependent: :destroy
   has_many :group_members, dependent: :destroy
   has_many :appointments, dependent: :destroy
+  has_many :service_members
   has_one :place
 
   TYPE=[['健身爱好者', 0], ['私教', 1], ['商家', 2]]
   attr_accessor :remote_avatar_url
   attr_accessor :name
+  attr_accessor :gender
+  attr_accessor :birthday
+  attr_accessor :avatar
+  attr_accessor :identity
 
   before_create :build_default_profile
   before_save :encrypted_password
@@ -49,7 +54,11 @@ class User < ActiveRecord::Base
 
   private
   def build_default_profile
-    build_profile(name: name)
+    if avatar.blank?
+      build_profile(name: name, remote_avatar_url: remote_avatar_url, gender: gender, birthday: birthday.blank? ? Date.today.prev_year(15) : birthday, identity: identity.to_i)
+    else
+      build_profile(name: name, avatar: avatar, gender: gender, birthday: birthday.blank? ? Date.today.prev_year(15) : birthday, identity: identity.to_i)
+    end
     true
   end
 

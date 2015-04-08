@@ -31,7 +31,7 @@ class ProfileController < ApplicationController
   end
 
   def update
-    profile_params[:icon] = params[:File] unless params[:File].blank?
+    #profile_params[:icon] = params[:File] unless params[:File].blank?
     if @user.profile.update(profile_params)
       update_nickname(@user.username, profile_params[:name]) unless profile_params[:name].blank?
       Rails.cache.write(@user.token, @user)

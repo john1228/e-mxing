@@ -2,7 +2,8 @@ ActiveAdmin.register User do
   menu label: '用户'
 
   filter :profile_name, label: '昵称', as: :string
-  actions :index, :show, :edit
+  permit_params :identity, :name, :username, :password, :avatar
+  #actions :index, :show, :edit, :new, :show, :create
   scope '1-爱好者', :fan, default: :true
   scope '2-私教', :coach
   scope '3-商家', :service
@@ -50,5 +51,16 @@ ActiveAdmin.register User do
       row('性别') { |profile| profile.gender }
       row('生日') { |profile| profile.birthday.strftime('%Y-%m-%d') }
     end
+  end
+
+  form html: {enctype: 'multipart/form-data'} do |f|
+    f.inputs '添加服务号' do
+      f.input :identity, as: :hidden, input_html: {value: 2}
+      f.input :username, label: '用户名'
+      f.input :password, label: '密码'
+      f.input :name, label: '昵称'
+      f.input :avatar, label: '头像', as: :file
+    end
+    f.actions
   end
 end

@@ -12,14 +12,13 @@ Rails.application.routes.draw do
   post 'captcha/change' => 'captcha#change'
   post 'captcha/check' => 'captcha#check'
   #用户登录和注册
-  put 'users' => 'users#update'
   post 'users/login' => 'users#login'
   post 'users/sns' => 'users#sns'
   delete 'users' => "users#logout"
-  post 'users/complete' => 'users#complete'
   #个人资料
   get 'profile' => 'profile#index'
-  put 'profile' => 'profile#update'
+  put 'profile' => 'profile#complete'
+  post 'profile' => 'profile#update'
   #运动轨迹
   get 'tracks' => 'tracks#index'
   get 'tracks/show' => 'tracks#show'

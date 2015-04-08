@@ -28,7 +28,7 @@ class Profile < ActiveRecord::Base
   def summary_json
     {
         mxid: mxid,
-        name: name,
+        name: name||'',
         avatar: $host + avatar.thumb.url,
         gender: gender,
         age: age,
@@ -42,10 +42,7 @@ class Profile < ActiveRecord::Base
     {
         mxid: mxid,
         name: name,
-        avatar: {
-            thumb: $host + avatar.thumb.url,
-            original: $host + avatar.url
-        },
+        avatar: $host + avatar.thumb.url,
         signature: signature,
         gender: gender,
         identity: identity,

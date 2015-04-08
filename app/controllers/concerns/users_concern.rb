@@ -12,7 +12,7 @@ module UsersConcern
     if @user.nil?
       render json: {
                  code: 0,
-                 message: ['您还未登录！']
+                 message: '您还未登录'
              }
     end
   end
@@ -39,14 +39,19 @@ module UsersConcern
   end
 
   def verify_sns
-    @user = User.find_or_create_by(username: "#{params[:sns_name]}_#{params[:sns_id]}")
-    if @user.profile.nil?
-      regist_single(@user.id, @user.password, params[:name]||'')
+    @user = User.find_by(username: "#{params[:sns_name]}_#{params[:sns_id]}")
+    if @user.nil?
       if params[:sns_name].eql?('weixin')
-        icon_array = params[:icon].split('/')
-        icon_array.last
+        avatar_array = params[:avatar].split('/')
+        avatar_array.last
       end
-      @user.create_profile(name: params[:name], gender: params[:gender], remote_avatar_url: params[:avatar], birthday: params[:birthday])
+      @user = User.create(
+          username: "#{params[:sns_name]}_#{params[:sns_id]}",
+          name: params[:name],
+          remote_avatar_url: params[:avatar],
+          gender: params[:gender],
+          birthday: params[:birthday]
+      )
     end
     Rails.cache.write(@user.token, @user)
   end
