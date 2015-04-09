@@ -16,6 +16,14 @@ class Track < ActiveRecord::Base
   alias_attribute :avail, :places
   alias_attribute :free, :free_places
 
+  def track_type_value
+    type_array = TYPE.select { |type|
+      type[1].eql?(track_type)
+    }
+    type_array[0][0]
+  end
+
+
   def type_name
     for type in TYPE
       return type[0] if track_type.eql?(type[1])

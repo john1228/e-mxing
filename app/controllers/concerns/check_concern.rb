@@ -3,7 +3,7 @@ module CheckConcern
 
   included do
     before_action :find_user, only: :index
-    before_action :need_user, only: [:create, :update, :destroy, :appoint, :latest, :upload, :list]
+    before_action :need_user, only: [:create, :update, :destroy, :appoint, :latest, :upload]
     before_action :fetch_mobile, only: :complete
   end
 

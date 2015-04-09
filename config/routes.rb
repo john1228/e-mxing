@@ -5,8 +5,6 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
-  #视频首页
-  get 'groups' => 'groups#index'
   #验证码
   post 'captcha/regist' => 'captcha#regist'
   post 'captcha/change' => 'captcha#change'
@@ -45,8 +43,10 @@ Rails.application.routes.draw do
   get 'comments' => 'comments#show'
   post 'comments' => 'comments#create'
   #发现
-  get 'find/:type' => 'find#list'
+  get 'find' => 'find#list'
   post 'find' => 'find#upload'
+  #创建群组
+  post 'groups' => 'groups#create'
 
 
   #web路由

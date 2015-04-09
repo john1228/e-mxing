@@ -170,6 +170,7 @@ ActiveRecord::Schema.define(version: 20150407091139) do
     t.text     "intro"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "easemob_id"
   end
 
   create_table "likes", force: :cascade do |t|

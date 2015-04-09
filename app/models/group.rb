@@ -1,10 +1,6 @@
 class Group < ActiveRecord::Base
+  include GroupConcern
   scope :recommend, ->() {}
-
-  has_many :group_photos
-  has_many :group_members
-
-  has_one :group_place
 
   def as_json
     {

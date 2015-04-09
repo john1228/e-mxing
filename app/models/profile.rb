@@ -1,16 +1,17 @@
 class Profile < ActiveRecord::Base
   belongs_to :user
+  has_one :place, foreign_key: :user_id
+
 
   TAGS = ['会员', '认证', '私教']
   BASE_NO = 10000
+  mount_uploader :avatar, ProfileUploader
 
   class << self
     def find_by_mxid(mxid)
       find_by(id: mxid.to_i - BASE_NO)
     end
   end
-
-  mount_uploader :avatar, ProfileUploader
 
   def age
     years = Date.today.year - birthday.year

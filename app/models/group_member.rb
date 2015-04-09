@@ -1,10 +1,4 @@
 class GroupMember < ActiveRecord::Base
-  belongs_to :group
-  belongs_to :user
-
+  include GroupMemberConcern
   ADMIN = 0
-
-  def as_json
-    user.summary_json
-  end
 end

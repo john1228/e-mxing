@@ -10,11 +10,10 @@ namespace :find do
 
   desc '发现'
   task :index, [:type, :page, :lng, :lat] do |t, args|
-    args.with_defaults(:type => 'dynamics', :page => 1, :lng => '-122.0', :lat => 70.0)
-    host = 'http://localhost'
+    args.with_defaults(:type => 'persons', :page => 121, :lng => '-122.0', :lat => 71.0)
+    host = 'http://192.168.0.111'
     conn = Faraday.new(:url => host)
-    conn.headers['token'] = 'a87ff679a2f3e71d9181a67b7542122c'
-    response = conn.get "find/#{args[:type]}", page: "#{args[:page]}", lng: "#{args[:lng]}", lat: "#{args[:lat]}"
+    response = conn.get "find", type: "#{args[:type]}", page: "#{args[:page]}", lng: "#{args[:lng]}", lat: "#{args[:lat]}"
     puts response.body
   end
 end

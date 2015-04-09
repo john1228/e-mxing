@@ -21,8 +21,8 @@ class DynamicImagesUploader < CarrierWave::Uploader::Base
   private
   def store_dimensions
     if file && model
-      img = ::Magick::Image::read(file.file).first
-      model.width, model.height = img.columns, img.rows
+      img = MiniMagick::Image::new(file.file)
+      model.width, model.height = img.width, img.height
     end
   end
 

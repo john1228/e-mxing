@@ -1,6 +1,5 @@
 class ProfileController < ApplicationController
   include CheckConcern
-  include Easemob
 
   def index
     render json: {
@@ -12,9 +11,8 @@ class ProfileController < ApplicationController
   end
 
   def complete
-    user = User.new(username: @mobile, password: params[:password], name: params[:name])
+    user = User.new(username: @mobile, password: params[:password], name: params[:name], mobile: @mobile)
     if user.save
-      regist_single(user.mxid, params[:name])
       Rails.cache.write(user.token, user)
       render json: {
                  code: 1,
@@ -33,7 +31,6 @@ class ProfileController < ApplicationController
   def update
     #profile_params[:icon] = params[:File] unless params[:File].blank?
     if @user.profile.update(profile_params)
-      update_nickname(@user.username, profile_params[:name]) unless profile_params[:name].blank?
       Rails.cache.write(@user.token, @user)
       render json: {
                  code: 1,

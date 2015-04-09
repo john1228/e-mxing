@@ -9,7 +9,9 @@ class News < ActiveRecord::Base
     {
         title: title,
         cover: $host + cover.thumb.url,
-        url: url
+        width: 690,
+        height: 790,
+        url: $host+'/html/news/'+url
     }
   end
 

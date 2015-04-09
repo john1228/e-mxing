@@ -32,7 +32,7 @@ module UsersConcern
       else
         render json: {
                    code: 0,
-                   message: '您输入到密码不正确'
+                   message: '您输入的密码不正确'
                }
       end
     end

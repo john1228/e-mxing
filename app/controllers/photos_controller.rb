@@ -17,6 +17,7 @@ class PhotosController < ApplicationController
     if photo.save
       render json: {code: 1}
     else
+      logger.info photo.errors.messages
       render json: {
                  code: 0,
                  message: '上传照片失败'

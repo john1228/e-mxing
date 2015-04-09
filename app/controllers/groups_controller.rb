@@ -1,5 +1,6 @@
 class GroupsController < ApplicationController
   include CheckConcern
+  include EasemobGroup
 
   def show
     group = Group.find_by(id: params[:id])
@@ -18,11 +19,9 @@ class GroupsController < ApplicationController
 
   def create
     group = Group.new(name: params[:name], interests: params[:interests], intro: params[:intro])
+    group.build_owner(user_id: @user.id, tag: GroupMember::ADMIN, tag_name: '群主')
     if group.save
-      (0...10).each { |photo_index|
-        group.group_photos.create(photo: params["#{photo_index}"]) if params["#{photo_index}"].present?
-      }
-      group.group_members.create(user: @user, tag: GroupMember::ADMIN, tag_name: '群主')
+      (0...10).each { |photo_index| group.group_photos.create(photo: params["#{photo_index}"]) if params["#{photo_index}"].present? }
       render json: {
                  code: 1
              }
@@ -51,7 +50,7 @@ class GroupsController < ApplicationController
         params[:mxids].split(',').map { |mxid|
           group.group_members.create(user: Profile.find_by_mxid(mxid).user)
         }
-        render json: {code: 1 }
+        render json: {code: 1}
       else
         render json: {
                    code: 0,

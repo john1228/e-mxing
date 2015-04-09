@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   include UsersConcern
-  include Easemob
 
   def login
     render json: {

@@ -1,10 +1,10 @@
 ActiveAdmin.register ServiceMember, :name_space => :user do
-  menu label: '私教'
+  menu label: '私教', if: proc { user.is_service? }
   config.filters = false
 
   belongs_to :user
   navigation_menu :user
-  
+
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #

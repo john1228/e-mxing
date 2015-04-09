@@ -4,6 +4,7 @@ class CreateGroups < ActiveRecord::Migration
       t.string :name
       t.string :interests
       t.text :intro
+      t.string :easemob_id
 
       t.timestamps null: false
     end

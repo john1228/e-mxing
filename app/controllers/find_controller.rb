@@ -14,13 +14,6 @@ class FindController < ApplicationController
   end
 
   def list
-    place = @user.place
-    if place.nil?
-      @user.create_place(lonlat: "POINT(#{params[:lng]} #{params[:lat]})")
-    else
-      @user.place.update(lonlat: "POINT(#{params[:lng]} #{params[:lat]})")
-    end
-
     case params[:type]
       when 'dynamics'
         data = {dynamics: dynamics}
