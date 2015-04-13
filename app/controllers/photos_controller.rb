@@ -1,5 +1,5 @@
 class PhotosController < ApplicationController
-  include CheckConcern
+  include LoginManager
 
   def index
     render json: {
@@ -13,11 +13,10 @@ class PhotosController < ApplicationController
   end
 
   def create
-    photo = @user.photos.new(photo: params[:photo], loc: params[:loc]||0)
+    photo = @user.photos.new(photo: params[:photo])
     if photo.save
       render json: {code: 1}
     else
-      logger.info photo.errors.messages
       render json: {
                  code: 0,
                  message: '上传照片失败'
@@ -26,7 +25,7 @@ class PhotosController < ApplicationController
   end
 
   def update
-    photo = @user.photos.find_by(loc: params[:loc])
+    photo = @user.photos.find_by(id: params[:loc])
     if photo.update(photo: params[:photo])
       render json: {code: 1}
     else
@@ -38,7 +37,7 @@ class PhotosController < ApplicationController
   end
 
   def destroy
-    photo = @user.photos.find_by(loc: params[:loc])
+    photo = @user.photos.find_by(id: params[:loc])
     if photo.nil?
       render json: {
                  code: 0,

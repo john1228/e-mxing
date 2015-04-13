@@ -1,95 +1,47 @@
 class GroupsController < ApplicationController
-  include CheckConcern
-  include EasemobGroup
+  include LoginManager
 
   def show
     group = Group.find_by(id: params[:id])
-    if group.present?
-
-      render json: {
-                 code: 1,
-                 data: {
-                     group: group.as_json
-                 }
-             }
+    if group.blank?
+      render json: {code: 1, data: {group: group.as_json}}
     else
-
+      render json: {code: 0, message: '您查看到群已解散'}
     end
   end
 
   def create
-    group = Group.new(name: params[:name], interests: params[:interests], intro: params[:intro])
-    group.build_owner(user_id: @user.id, tag: GroupMember::ADMIN, tag_name: '群主')
+    group = Group.new(name: params[:name], interests: params[:interests], intro: params[:intro], owner: @user.mxid)
     if group.save
       (0...10).each { |photo_index| group.group_photos.create(photo: params["#{photo_index}"]) if params["#{photo_index}"].present? }
-      render json: {
-                 code: 1
-             }
+      render json: {code: 1}
     else
-      render json: {
-                 code: 0,
-                 message: '创建群组失败'
-             }
+      render json: {code: 0, message: '创建群组失败'}
     end
   end
 
   def update
-
-  end
-
-  def join
     group = Group.find_by(id: params[:id])
-    if group.nil?
-      render json: {
-                 code: 0,
-                 message: '您加入到群不存在'
-             }
-    else
-      member = group.group_members.find_by(user: @user)
-      if member.tag.eql?(GroupMember::ADMIN)
-        params[:mxids].split(',').map { |mxid|
-          group.group_members.create(user: Profile.find_by_mxid(mxid).user)
-        }
+    if group.owner.eql?(@user.id)
+      if group.update(params.slice(:name, :interests, :intro))
         render json: {code: 1}
       else
-        render json: {
-                   code: 0,
-                   message: '您不是群管理员，不能添加成员'
-               }
+        render json: {code: 0, message: '修改群信息失败'}
       end
-
-
+    else
+      render json: {code: 0, message: '您不是群主,不能更新群信息'}
     end
-  end
-
-
-  def members
-    group = Group.find_by(id: params[:id])
-    render json: {
-               code: 1,
-               data: group.group_members.page(params[:page]||1).collect { |group_member|
-                 group_member.as_json
-               }
-           }
   end
 
   def destroy
     group = Group.find_by(id: params[:id])
     if group.nil?
-      render json: {
-                 code: 0,
-                 message: '您的群组已解散'
-             }
+      render json: {code: 0, message: '您的群组已解散'}
     else
       if group.destroy
-        render json: {
-                   code: 1
-               }
+        render json: {code: 1}
       else
-        render json: {
-                   code: 0,
-                   message: '删除群组失败'
-               }
+        render json: {code: 0, message: '删除群组失败'}
       end
     end
   end

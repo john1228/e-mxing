@@ -1,6 +1,5 @@
 ActiveAdmin.register Banner do
-
-  menu label: '广告'
+  menu label: '广告',parent: '配置'
   permit_params :id, :image, :url, :start_date, :end_date
 
 

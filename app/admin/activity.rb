@@ -1,5 +1,5 @@
 ActiveAdmin.register Activity do
-  menu label: '活动'
+  menu label: '活动',parent: '配置'
   filter :title, label: '标题'
   permit_params :id, :title, :cover, :address, :time, :url
 

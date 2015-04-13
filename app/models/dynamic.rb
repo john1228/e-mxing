@@ -1,9 +1,11 @@
 class Dynamic < ActiveRecord::Base
   scope :latest, -> { order(id: :desc).first }
   belongs_to :user
+
+
   has_many :dynamic_images, dependent: :destroy
   has_one :dynamic_film, dependent: :destroy
-  has_many :dynamic_comments
+  has_many :dynamic_comments, dependent: :destroy
   has_many :likes, -> { where('1=1') }, foreign_key: :liked_id
 
   accepts_nested_attributes_for :dynamic_images

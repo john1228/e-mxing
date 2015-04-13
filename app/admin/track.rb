@@ -2,6 +2,8 @@ ActiveAdmin.register Track do
   menu label: '运动轨迹'
   belongs_to :user
   navigation_menu :user
+
+
   permit_params :user_id, :track_type, :name, :intro, :address, :start, :during, :places, :free_places
 
   filter :begin, label: '开始时间'

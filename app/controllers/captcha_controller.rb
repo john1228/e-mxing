@@ -1,5 +1,5 @@
 class CaptchaController < ApplicationController
-  include CaptchaConcern
+  include CaptchaManager
 
   def regist
     profile = Profile.find_by(mobile: params[:mobile])
@@ -34,6 +34,19 @@ class CaptchaController < ApplicationController
              }
     end
   end
+
+
+  def binding
+    profile = Profile.find_by(mobile: params[:mobile])
+    if profile.nil?
+      render json: {code: 0, message: '该号码已绑定'}
+    else
+      captcha = Captcha.create(mobile: params[:mobile])
+      send_sms(params[:mobile], captcha.captcha)
+      render json: {code: 1, data: {token: Digest::MD5.hexdigest(params[:mobile])}}
+    end
+  end
+
 
   def check
   end

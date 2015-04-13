@@ -1,7 +1,10 @@
 class Profile < ActiveRecord::Base
   belongs_to :user
   has_one :place, foreign_key: :user_id
-
+  alias_attribute :often, :often_stadium
+  scope :enthusiasts, -> { where(identity: 0) }
+  scope :coach, -> { where(identity: 1) }
+  scope :service, -> { where(identity: 2) }
 
   TAGS = ['会员', '认证', '私教']
   BASE_NO = 10000
@@ -14,8 +17,9 @@ class Profile < ActiveRecord::Base
   end
 
   def age
-    years = Date.today.year - birthday.year
-    years + (Date.today < birthday + years.year ? -1 : 0)
+    birth = birthday||Date.today.prev_year(15)
+    years = Date.today.year - birth.year
+    years + (Date.today < birth + years.year ? -1 : 0)
   end
 
   def tags
@@ -34,7 +38,8 @@ class Profile < ActiveRecord::Base
         gender: gender,
         age: age,
         signature: signature,
-        tags: tags
+        tags: tags,
+        identity: identity
     }
   end
 

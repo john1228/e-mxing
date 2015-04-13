@@ -45,9 +45,17 @@ Rails.application.routes.draw do
   #发现
   get 'find' => 'find#list'
   post 'find' => 'find#upload'
-  #创建群组
+  #群组
   post 'groups' => 'groups#create'
-
+  put 'groups' => 'groups#update'
+  delete 'groups/:id' => 'groups#destroy'
+  #群組相冊
+  get 'group_photos' => 'group_photos#index'
+  post 'group_photos' => 'group_photos#create'
+  delete 'group_photos/:group_id/:id' => 'group_photos#destroy'
+  #获取用户信息
+  get 'friends' => 'friends#index'
+  get 'friends/search' => 'friends#find'
 
   #web路由
   get 'home/index' => 'home#index'

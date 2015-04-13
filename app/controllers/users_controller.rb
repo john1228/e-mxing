@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  include UsersConcern
+  include ValidateManager
+  include LoginManager
 
   def login
     render json: {

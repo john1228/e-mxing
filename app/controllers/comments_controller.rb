@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  include CheckConcern
+  include LoginManager
 
   def show
     render json: {

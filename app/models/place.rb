@@ -1,6 +1,6 @@
 class Place < ActiveRecord::Base
-  scope :nearby, ->(lng, lat, page=1) { find_by_sql("select profiles.*,st_distance(places.lonlat, 'POINT(#{lng} #{lat})') as distance from profiles,places where  st_dwithin(places.lonlat, 'POINT(#{lng} #{lat})',150000) and profiles.user_id=places.user_id order by distance asc limit 5 offset (#{page}-1)*5") }
-  scope :nearby_services, ->(lng, lat, page=1) { find_by_sql("select profiles.*,st_distance(places.lonlat, 'POINT(#{lng} #{lat})') as distance from profiles,places where profiles.identity=2 and st_dwithin(places.lonlat, 'POINT(#{lng} #{lat})',150000) and profiles.user_id=places.user_id order by distance asc limit 5 offset (#{page}-1)*5") }
+  scope :nearby, ->(lng, lat, page=1) { find_by_sql("select profiles.*,st_distance(places.lonlat, 'POINT(#{lng} #{lat})') as distance from profiles,places where  st_dwithin(places.lonlat, 'POINT(#{lng} #{lat})',15000000) and profiles.user_id=places.user_id order by distance asc limit 5 offset (#{page}-1)*5") }
+  scope :nearby_services, ->(lng, lat, page=1) { find_by_sql("select profiles.*,st_distance(places.lonlat, 'POINT(#{lng} #{lat})') as distance from profiles,places where profiles.identity=2 and st_dwithin(places.lonlat, 'POINT(#{lng} #{lat})',15000000) and profiles.user_id=places.user_id order by distance asc limit 5 offset (#{page}-1)*5") }
 
   belongs_to :user
   set_rgeo_factory_for_column(:lonlat, RGeo::Geographic.spherical_factory(:srid => 4326))

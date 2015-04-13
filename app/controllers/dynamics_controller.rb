@@ -1,5 +1,5 @@
 class DynamicsController < ApplicationController
-  include CheckConcern
+  include LoginManager
 
   def index
     render json: {

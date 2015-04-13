@@ -1,5 +1,5 @@
 class ShowtimeController < ApplicationController
-  include CheckConcern
+  include LoginManager
 
   def index
     showtime = @user.dynamics.top

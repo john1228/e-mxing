@@ -1,6 +1,6 @@
 class FindController < ApplicationController
-  include CheckConcern
-  include FindConcern
+  include LoginManager
+  include FindManager
 
   def upload
     if @user.place.present?

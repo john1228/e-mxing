@@ -1,28 +1,19 @@
 ActiveAdmin.register User do
-  menu label: '用户'
+  menu label: '用户', priority: 4
   filter :profile_name, label: '昵称', as: :string
-  permit_params :identity, :name, :username, :password, :avatar
-  scope '1-爱好者', :fan, default: :true
-  scope '2-私教', :coach
-  scope '3-商家', :service
+  actions :index, :show, :destroy
   index do
     column '美型号' do |user|
-      link_to("#{user.profile.mxid}", admin_user_path(user))
+      link_to("#{user.profile_mxid}", admin_user_path(user))
     end
     column '昵称' do |user|
-      link_to("#{user.profile.name}", admin_user_path(user))
+      link_to("#{user.profile_name}", admin_user_path(user))
     end
     column '头像' do |user|
-      link_to(image_tag(user.profile.avatar.thumb.url, height: 70), admin_user_path(user))
+      link_to(image_tag(user.profile_avatar.thumb.url, height: 70), admin_user_path(user))
     end
-    column '身份' do |user|
-      if user.is_coach?
-        status_tag('私教', :warn)
-      elsif user.is_service?
-        status_tag('服务号', :error)
-      else
-        status_tag('愛好者')
-      end
+    column '签名' do |user|
+      truncate(user.profile_signature)
     end
     actions
   end
@@ -32,9 +23,8 @@ ActiveAdmin.register User do
       table style: 'width: 100%' do
         tr do
           td link_to('照片墙', admin_user_photos_path(user), class: :button)
-          td link_to('动  态', admin_user_tracks_path(user), class: :button)
+          td link_to('动  态', admin_user_dynamics_path(user), class: :button)
           td link_to('运动轨迹', admin_user_tracks_path(user), class: :button)
-          td link_to('私  教', admin_user_tracks_path(user), class: :button) if user.is_service?
         end
       end
     end

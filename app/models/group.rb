@@ -1,21 +1,19 @@
 class Group < ActiveRecord::Base
-  include GroupConcern
+  include GroupAble
   scope :recommend, ->() {}
 
   def as_json
     {
         no: id,
+        easemob_id: easemob_id,
         name: name,
         photos: group_photos.collect { |photo|
           {
               thumb: $host + photo.photo.thumb.url,
-              original: $hos + photo.photo.url
+              original: $host + photo.photo.url
           }
         },
-        members: {
-            count: group_members.count,
-            item: group_members.page(1).collect { |member| member.as_json }
-        },
+        owner: owner,
         interests: interests,
         intro: intro
     }
@@ -25,10 +23,10 @@ class Group < ActiveRecord::Base
   def summary_json
     {
         no: id,
+        easemob_id: easemob_id,
         name: name,
         avatar: group_photos.first.present? ? group_photos.first.photo.url : '',
-        intro: intro[0, 25],
-        members: group_members.count
+        intro: intro[0, 25]
     }
   end
 end

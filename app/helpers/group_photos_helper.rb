@@ -1,0 +1,2 @@
+module GroupPhotosHelper
+end

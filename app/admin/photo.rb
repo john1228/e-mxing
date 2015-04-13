@@ -5,6 +5,7 @@ ActiveAdmin.register Photo do
   belongs_to :user
   navigation_menu :user
 
+
   permit_params :user_id, :photo
 
   index title: '照片墙', as: :grid, columns: 5 do |photo|

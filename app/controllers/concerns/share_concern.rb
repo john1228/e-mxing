@@ -1,7 +1,7 @@
 module ShareConcern
   extend ActiveSupport::Concern
 
-  def share(sns, dynamic)
+  def share(sns)
     case sns
       when 'sina'
         faraday = Faraday.new(url: 'http://api.t.sina.com.cn)')

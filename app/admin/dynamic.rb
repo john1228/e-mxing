@@ -4,6 +4,7 @@ ActiveAdmin.register Dynamic do
   belongs_to :user
   navigation_menu :user
 
+
   permit_params :user_id, :content,
                 dynamic_images_attributes: [:id, :image],
                 dynamic_film_attributes: [:id, :cover, :film]

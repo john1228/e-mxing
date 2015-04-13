@@ -5,6 +5,7 @@ class CreateGroups < ActiveRecord::Migration
       t.string :interests
       t.text :intro
       t.string :easemob_id
+      t.integer :owner #群主
 
       t.timestamps null: false
     end
