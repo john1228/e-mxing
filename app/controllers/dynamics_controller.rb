@@ -11,7 +11,7 @@ class DynamicsController < ApplicationController
   end
 
   def latest
-    latest = @user.dynamics.latest.summary_json
+    latest = @user.dynamics.latest
     if latest.nil?
       render json: {
                  code: 0,

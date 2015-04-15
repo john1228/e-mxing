@@ -2,8 +2,8 @@ module LoginManager
   extend ActiveSupport::Concern
 
   included do
-    before_action :find_user, only: :index
-    before_action :need_user, only: [:create, :update, :destroy, :appoint, :latest, :upload]
+    before_action :find_user, only: [:index, :latest]
+    before_action :need_user, only: [:create, :update, :destroy, :appoint, :upload]
     before_action :fetch_mobile, only: :complete
   end
 
@@ -21,6 +21,7 @@ module LoginManager
   end
 
   def need_user
+    logger.info request.headers[:token]
     @user = Rails.cache.fetch(request.headers[:token])
     render json: {
                code: 0,

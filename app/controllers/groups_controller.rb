@@ -11,7 +11,7 @@ class GroupsController < ApplicationController
   end
 
   def create
-    group = Group.new(name: params[:name], interests: params[:interests], intro: params[:intro], owner: @user.mxid)
+    group = Group.new(name: params[:name], interests: params[:interests], intro: params[:intro], owner: @user.profile_mxid)
     if group.save
       (0...10).each { |photo_index| group.group_photos.create(photo: params["#{photo_index}"]) if params["#{photo_index}"].present? }
       render json: {code: 1}
@@ -22,8 +22,8 @@ class GroupsController < ApplicationController
 
   def update
     group = Group.find_by(id: params[:id])
-    if group.owner.eql?(@user.id)
-      if group.update(params.slice(:name, :interests, :intro))
+    if group.owner.eql?(@user.profile_mxid)
+      if group.update(update_params)
         render json: {code: 1}
       else
         render json: {code: 0, message: '修改群信息失败'}

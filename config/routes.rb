@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   #验证码
   post 'captcha/regist' => 'captcha#regist'
   post 'captcha/change' => 'captcha#change'
+  post 'captcha/binding' => 'captcha#binding'
   post 'captcha/check' => 'captcha#check'
   #用户登录和注册
   post 'users/login' => 'users#login'
@@ -38,13 +39,13 @@ Rails.application.routes.draw do
   post 'dynamics' => 'dynamics#create'
   delete 'dynamics/:id' => 'dynamics#destroy'
   #赞
-  post 'like/dynamic' => 'like#dynamic'
+  post 'likes/dynamic' => 'like#create'
   #评论
   get 'comments' => 'comments#show'
   post 'comments' => 'comments#create'
   #发现
   get 'find' => 'find#list'
-  post 'find' => 'find#upload'
+  put 'find/upload' => 'find#upload'
   #群组
   post 'groups' => 'groups#create'
   put 'groups' => 'groups#update'
@@ -56,6 +57,11 @@ Rails.application.routes.draw do
   #获取用户信息
   get 'friends' => 'friends#index'
   get 'friends/search' => 'friends#find'
+  #服务号
+  get 'services/coaches' => 'services#coaches'
+
+  #陪组文件
+  get 'deploy/icon' => 'deploy#icon'
 
   #web路由
   get 'home/index' => 'home#index'

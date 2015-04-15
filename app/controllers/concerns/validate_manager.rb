@@ -47,7 +47,7 @@ module ValidateManager
       @user = User.create(
           username: "#{params[:sns_name]}_#{params[:sns_id]}",
           name: params[:name],
-          remote_avatar_url: params[:avatar],
+          avatar: params[:avatar],
           gender: params[:gender],
           birthday: params[:birthday]
       )

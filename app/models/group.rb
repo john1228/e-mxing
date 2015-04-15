@@ -13,7 +13,7 @@ class Group < ActiveRecord::Base
               original: $host + photo.photo.url
           }
         },
-        owner: owner,
+        owner: User.find_by_mxid(owner).profile.summary_json,
         interests: interests,
         intro: intro
     }

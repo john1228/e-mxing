@@ -6,9 +6,11 @@ class CaptchaController < ApplicationController
     if profile.nil?
       captcha = Captcha.create(mobile: params[:mobile])
       send_sms(params[:mobile], captcha.captcha)
+      mobile_token = Digest::MD5.hexdigest(params[:mobile])
+      Rails.cache.write(mobile_token, {action: 'regist', mobile: mobile, captcha: captcha}, expires_in: 30*60)
       render json: {
                  code: 1,
-                 data: {token: Digest::MD5.hexdigest(params[:mobile])}
+                 data: {token: mobile_token}
              }
     else
       render json: {
@@ -28,9 +30,11 @@ class CaptchaController < ApplicationController
     else
       captcha = Captcha.create(mobile: params[:mobile])
       send_sms(params[:mobile], captcha.captcha)
+      mobile_token = Digest::MD5.hexdigest(params[:mobile])
+      Rails.cache.write(mobile_token, {action: 'change', mobile: mobile, captcha: captcha}, expires_in: 30*60)
       render json: {
                  code: 1,
-                 data: {token: Digest::MD5.hexdigest(params[:mobile])}
+                 data: {token: mobile_token}
              }
     end
   end
@@ -43,7 +47,8 @@ class CaptchaController < ApplicationController
     else
       captcha = Captcha.create(mobile: params[:mobile])
       send_sms(params[:mobile], captcha.captcha)
-      render json: {code: 1, data: {token: Digest::MD5.hexdigest(params[:mobile])}}
+      Rails.cache.write("#{@user.id}_binding", {action: 'binding', mobile: params[:mobile], captcha: captcha.captcha}, expires_in: 30*60)
+      render json: {code: 1}
     end
   end
 

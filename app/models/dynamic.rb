@@ -1,8 +1,5 @@
 class Dynamic < ActiveRecord::Base
-  scope :latest, -> { order(id: :desc).first }
   belongs_to :user
-
-
   has_many :dynamic_images, dependent: :destroy
   has_one :dynamic_film, dependent: :destroy
   has_many :dynamic_comments, dependent: :destroy
@@ -14,6 +11,10 @@ class Dynamic < ActiveRecord::Base
   TOP = 1
 
   class<<self
+    def latest
+      order(id: :desc).first
+    end
+
     def top
       where(top: 1).order(id: :desc).first
     end
@@ -72,7 +73,7 @@ class Dynamic < ActiveRecord::Base
 
 
   def summary_json
-    image = dynamic_images.first
+    image = dynamic_images.first.image rescue nil
     image = dynamic_film.cover if image.blank? && dynamic_film.present?
     {
         content: content,

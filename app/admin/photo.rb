@@ -2,8 +2,8 @@ ActiveAdmin.register Photo do
   menu label: '照片墙'
   config.filters = false
 
-  belongs_to :user
-  navigation_menu :user
+  belongs_to :enthusiast
+  navigation_menu :enthusiast
 
 
   permit_params :user_id, :photo

@@ -36,6 +36,7 @@ class TracksController < ApplicationController
                  code: 1
              }
     else
+      logger.info track.errors.messages
       render json: {
                  code: 0,
                  message: '发布运动轨迹失败'

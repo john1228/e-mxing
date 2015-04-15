@@ -1,5 +1,5 @@
 ActiveAdmin.register AdminUser do
-  menu false
+  menu label: '管理员'
   config.per_page = 10
   permit_params :email, :password, :password_confirmation
 
@@ -7,9 +7,13 @@ ActiveAdmin.register AdminUser do
     selectable_column
     id_column
     column :email
-    column :current_sign_in_at
+    column :current_sign_in_at do
+
+    end
     column :sign_in_count
-    column :created_at
+    column :created_at do
+      
+    end
     actions
   end
 

@@ -1,8 +1,8 @@
 ActiveAdmin.register Dynamic do
   menu label: '型秀'
 
-  belongs_to :user
-  navigation_menu :user
+  belongs_to :enthusiast
+  navigation_menu :enthusiast
 
 
   permit_params :user_id, :content,

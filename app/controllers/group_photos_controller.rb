@@ -2,10 +2,18 @@ class GroupPhotosController < ApplicationController
   include GroupManager
 
   def index
-    render json: {
-               code: 1,
-               data: {photos: @group.group_photos.collect { |group_photo| group_photo.as_json }}
-           }
+    group = Group.find_by(id: params[:group_id])
+    if group.blank?
+      render json: {
+                 code: 0,
+                 message: '您查看到群不存在'
+             }
+    else
+      render json: {
+                 code: 1,
+                 data: {photos: group.group_photos.collect { |group_photo| group_photo.as_json }}
+             }
+    end
   end
 
   def create

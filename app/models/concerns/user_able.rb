@@ -20,10 +20,32 @@ module UserAble
 
   private
   def build_default_profile
-    if avatar.blank?
-      build_profile(name: name, remote_avatar_url: remote_avatar_url, gender: gender, birthday: birthday.blank? ? Date.today.prev_year(15) : birthday, identity: identity.to_i, mobile: mobile)
+    if avatar.is_a?(String)
+      build_profile(name: name,
+                    remote_avatar_url: avatar,
+                    gender: gender,
+                    signature: signature||'这家伙很懒,什么也没留下',
+                    identity: identity||0,
+                    birthday: birthday.blank? ? Date.today.prev_year(15) : birthday,
+                    address: address||'',
+                    target: target||'',
+                    skill: skill||'',
+                    often: often||'',
+                    interests: interests||'',
+                    mobile: mobile||'')
     else
-      build_profile(name: name, avatar: avatar, gender: gender, birthday: birthday.blank? ? Date.today.prev_year(15) : birthday, identity: identity.to_i, mobile: mobile)
+      build_profile(name: name,
+                    avatar: avatar,
+                    gender: gender,
+                    signature: signature||'这家伙很懒,什么也没留下',
+                    identity: identity||0,
+                    birthday: birthday.blank? ? Date.today.prev_year(15) : birthday,
+                    address: address||'',
+                    target: target||'',
+                    skill: skill||'',
+                    often: often||'',
+                    interests: interests||'',
+                    mobile: mobile||'')
     end
     true
   end
@@ -36,12 +58,13 @@ module UserAble
 
   def regist_to_easemob
     easemob_token = Rails.cache.fetch(:easemob_token)||init_easemob_token
-    Faraday.post do |req|
+    result =Faraday.post do |req|
       req.url 'https://a1.easemob.com/jsnetwork/mxing/users'
       req.headers['Content-Type'] = 'application/json'
       req.headers['Authorization'] = "Bearer #{easemob_token}"
-      req.body = "{\"username\": \"#{username}\", \"password\": \"123456\", \"nickname\": \"#{profile.name}\"}"
+      req.body = "{\"username\": \"#{profile_mxid}\", \"password\": \"123456\", \"nickname\": \"#{profile_name}\"}"
     end
+    puts result.body
   end
 
   def init_easemob_token
@@ -51,7 +74,7 @@ module UserAble
       req.body = "{\"grant_type\": \"client_credentials\", \"client_id\": \"YXA6HPZzIHIkEeSy6P9lvafoPA\", \"client_secret\": \"YXA6GQOgkrCoDL61TY9IPzRcto4mJn4\"}"
     end
     easemob_body = JSON.parse(token_response.body)
-    Rails.cache.write('easemob', easemob_body['access_token'], expires_in: 24*7*60*60)
+    Rails.cache.write('easemob', easemob_body['access_token'], expires_in: 24*5*60*60)
     easemob_body['access_token']
   end
 end

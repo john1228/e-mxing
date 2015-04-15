@@ -1,0 +1,1 @@
+INTERESTS = YAML.load_file("#{Rails.root}/config/deploy_config/interests.yml")

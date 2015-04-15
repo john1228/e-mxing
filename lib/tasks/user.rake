@@ -58,9 +58,11 @@ namespace :users do
     puts response.body
   end
 
-  desc 'login'
-  task :login => :environment do
-
+  desc '注册到环信'
+  task :regist_to_easemob => :environment do
+    User.all.map { |user|
+      user.regist_to_easemob
+    }
   end
 
 end

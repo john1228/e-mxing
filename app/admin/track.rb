@@ -1,7 +1,7 @@
 ActiveAdmin.register Track do
   menu label: '运动轨迹'
-  belongs_to :user
-  navigation_menu :user
+  belongs_to :enthusiast
+  navigation_menu :enthusiast
 
 
   permit_params :user_id, :track_type, :name, :intro, :address, :start, :during, :places, :free_places

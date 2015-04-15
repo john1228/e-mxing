@@ -259,6 +259,9 @@
     <orderEntry type="library" scope="PROVIDED" name="capistrano3-puma (v0.9.0, RVM: ruby-2.1.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="carrierwave (v0.10.0, RVM: ruby-2.1.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="celluloid (v0.16.0, RVM: ruby-2.1.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="ckeditor (v4.1.1@0efddf, RVM: ruby-2.1.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="climate_control (v0.0.3, RVM: ruby-2.1.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="cocaine (v0.5.7, RVM: ruby-2.1.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="coffee-rails (v4.0.1, RVM: ruby-2.1.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="coffee-script (v2.3.0, RVM: ruby-2.1.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="coffee-script-source (v1.9.1, RVM: ruby-2.1.4) [gem]" level="application" />
