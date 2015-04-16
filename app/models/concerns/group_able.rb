@@ -3,6 +3,7 @@ module GroupAble
   included do
     after_create :regist_to_easemob
     before_destroy :delete_group
+    before_create :build_default_place
 
     has_many :group_photos, dependent: :destroy
     has_many :group_members, dependent: :destroy
@@ -31,22 +32,6 @@ module GroupAble
     end
   end
 
-  def add_member(group_id, mxid)
-    easemob_token = Rails.cache.fetch('easemob')||init_easemob_token
-    Faraday.post do |req|
-      req.url "https://a1.easemob.com/jsnetwork/mxing/chatgroups/#{group_id}/users/#{mxid}"
-      req.headers['Authorization'] = "Bearer #{easemob_token}"
-    end
-  end
-
-  def remove_member(group_id, mxid)
-    easemob_token = Rails.cache.fetch('easemob')||init_easemob_token
-    Faraday.delete do |req|
-      req.url "https://a1.easemob.com/jsnetwork/mxing/chatgroups/#{group_id}/users/#{mxid}"
-      req.headers['Authorization'] = "Bearer #{easemob_token}"
-    end
-  end
-
   def init_easemob_token
     token_response = Faraday.post do |req|
       req.url 'https://a1.easemob.com/jsnetwork/mxing/token'
@@ -56,5 +41,10 @@ module GroupAble
     easemob_body = JSON.parse(token_response.body)
     Rails.cache.write('easemob', easemob_body['access_token'], expires_in: 24*7*60*60)
     easemob_body['access_token']
+  end
+
+  def build_default_place
+    build_group_place(lonlat: "POINT(#{params[:lng]} #{params[:lat]})")
+    true
   end
 end

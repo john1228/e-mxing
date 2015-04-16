@@ -26,6 +26,7 @@ ActiveAdmin.register ServiceMember, :name_space => :user do
   end
 
   form html: {enctype: 'multipart/form-data'} do |f|
+    f.semantic_errors
     f.inputs '登录信息' do
       f.input :member_username, label: '登录名', input_html: {value: f.object.coach.nil? ? '' : f.object.coach.username}
       f.input :member_password, label: '密码', as: :password

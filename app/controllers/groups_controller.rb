@@ -11,7 +11,7 @@ class GroupsController < ApplicationController
   end
 
   def create
-    group = Group.new(name: params[:name], interests: params[:interests], intro: params[:intro], owner: @user.profile_mxid)
+    group = Group.new(name: params[:name], interests: params[:interests], intro: params[:intro], owner: @user.profile_mxid, lat: params[:lat], lng: params[:lng])
     if group.save
       (0...10).each { |photo_index| group.group_photos.create(photo: params["#{photo_index}"]) if params["#{photo_index}"].present? }
       render json: {code: 1}
