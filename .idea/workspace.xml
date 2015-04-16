@@ -2,43 +2,132 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f75bf04f-a2fb-45db-a107-604099c0492b" name="Default" comment="mxing v 1.0">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/icons/1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/icons/10.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/icons/11.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/icons/12.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/icons/13.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/icons/14.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/icons/15.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/icons/16.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/icons/17.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/icons/18.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/icons/19.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/icons/2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/icons/20.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/icons/21.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/icons/22.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/icons/23.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/icons/24.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/icons/25.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/icons/26.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/icons/27.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/icons/28.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/icons/29.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/icons/3.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/icons/4.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/icons/5.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/icons/6.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/icons/7.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/icons/8.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/icons/9.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ckeditor/config.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/ckeditor/content.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/config/initializers/load_config.rb" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/admin/user.rb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/group_members.js.coffee" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/group_photos.js.coffee" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/group_members.css.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/group_photos.css.scss" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/group_photo/2015/04/16/1dfb06f9-095f-4148-ab05-762dd82500a5.jpeg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/group_photo/thumb_2015/04/16/1dfb06f9-095f-4148-ab05-762dd82500a5.jpeg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/group_photo/2015/04/16/292e87f1-5581-417e-bd95-fac1d0cd1d78.jpeg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/group_photo/thumb_2015/04/16/292e87f1-5581-417e-bd95-fac1d0cd1d78.jpeg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/group_photo/2015/04/16/645a653e-7ae2-4b2c-878f-77a87707eca8.jpeg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/group_photo/thumb_2015/04/16/645a653e-7ae2-4b2c-878f-77a87707eca8.jpeg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/group_photo/2015/04/16/6cbb51c8-dcc4-40e5-87a6-1bc9341b0e20.jpeg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/group_photo/thumb_2015/04/16/6cbb51c8-dcc4-40e5-87a6-1bc9341b0e20.jpeg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/group_photo/2015/04/16/ab1a51e3-9e81-4082-b9b3-e5be34a9777f.jpeg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/group_photo/thumb_2015/04/16/ab1a51e3-9e81-4082-b9b3-e5be34a9777f.jpeg" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/136/Yoga@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/136/run@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/136/举重-1@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/136/举重@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/136/乒乓@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/136/仰卧起坐@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/136/体操@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/136/保龄球@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/136/俯卧撑@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/136/剑术@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/136/力量@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/136/单杠@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/136/卧举@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/136/台球@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/136/拳击@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/136/有氧操@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/136/游泳@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/136/滑冰@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/136/滑板@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/136/登山@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/136/篮球@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/136/综合训练@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/136/羽毛球@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/136/足球@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/136/跆拳道@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/136/跳绳@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/136/钓鱼@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/136/骑行@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/136/高尔夫@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/50/blq@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/50/dg1@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/50/dg@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/50/dy@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/50/fwc@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/50/gef@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/50/h8@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/50/hb@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/50/js@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/50/jz1@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/50/jz@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/50/lb@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/50/ll@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/50/lq@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/50/pb@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/50/ppq@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/50/qj@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/50/qx@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/50/tc@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/50/tqd@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/50/ts@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/50/wj@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/50/yj@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/50/ymq@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/50/ywqz@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/50/yy@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/50/yyc@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/50/zh@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/50/zq@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/76/Yoga@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/76/run@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/76/举重-1@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/76/举重@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/76/乒乓@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/76/仰卧起坐@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/76/体操@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/76/保龄球@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/76/俯卧撑@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/76/剑术@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/76/力量@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/76/单杠@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/76/卧举@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/76/台球@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/76/拳击@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/76/有氧操@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/76/游泳@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/76/滑冰@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/76/滑板@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/76/登山@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/76/篮球@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/76/综合训练@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/76/羽毛球@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/76/足球@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/76/跆拳道@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/76/跳绳@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/76/钓鱼@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/76/骑行@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/76/高尔夫@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/90/组 35@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/90/组 36@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/90/组 37@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/90/组 38@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/90/组 39@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/90/组 40@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/90/组 41@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/90/组 42@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/90/组 43@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/90/组 44@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/90/组 45@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/90/组 46@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/90/组 47@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/90/组 48@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/90/组 49@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/90/组 50@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/90/组 51@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/90/组 52@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/90/组 53@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/90/组 54@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/90/组 55@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/90/组 56@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/90/组 57@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/90/组 58@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/90/组 59@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/90/组 60@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/90/组 61@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/90/组 62@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/90/组 63@2x.png" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/photo/2015/03/20/73653b6b-443e-4fe7-a458-41b0485cff48.jpg" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/photo/2015/04/02/79f12c9d-ab11-4ffe-af81-75d75a021b37.jpg" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/photo/2015/04/03/27ed0a4a-f31f-4d48-95b7-9912c82ca0b4.jpg" afterPath="" />
@@ -59,43 +148,9 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/profile/2015/04/13/bd9aae27-06f0-46ac-93c0-004ff0b0900d.jpg" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/profile/thumb_2015/04/13/69a967d4-9c11-4da6-8b6b-17be3c731773.jpg" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/profile/thumb_2015/04/13/bd9aae27-06f0-46ac-93c0-004ff0b0900d.jpg" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/.rakeTasks" afterPath="$PROJECT_DIR$/.idea/.rakeTasks" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/active_admin.js.coffee" afterPath="$PROJECT_DIR$/app/assets/javascripts/active_admin.js.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/initializers/active_admin.rb" afterPath="$PROJECT_DIR$/config/initializers/active_admin.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/admin/admin_user.rb" afterPath="$PROJECT_DIR$/app/admin/admin_user.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/application_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/application_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/initializers/assets.rb" afterPath="$PROJECT_DIR$/config/initializers/assets.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/captcha_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/captcha_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/concerns/captcha_manager.rb" afterPath="$PROJECT_DIR$/app/controllers/concerns/captcha_manager.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/comments_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/comments_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/admin/dynamic.rb" afterPath="$PROJECT_DIR$/app/admin/dynamic.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/dynamic.rb" afterPath="$PROJECT_DIR$/app/models/dynamic.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/dynamic_film.rb" afterPath="$PROJECT_DIR$/app/models/dynamic_film.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/dynamics_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/dynamics_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/friends_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/friends_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/group.rb" afterPath="$PROJECT_DIR$/app/models/group.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/group_photos_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/group_photos_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/groups_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/groups_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/like_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/like_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/concerns/login_manager.rb" afterPath="$PROJECT_DIR$/app/controllers/concerns/login_manager.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/mxing.iml" afterPath="$PROJECT_DIR$/.idea/mxing.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/admin/news.rb" afterPath="$PROJECT_DIR$/app/admin/news.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/news.rb" afterPath="$PROJECT_DIR$/app/models/news.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/admin/photo.rb" afterPath="$PROJECT_DIR$/app/admin/photo.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/place.rb" afterPath="$PROJECT_DIR$/app/models/place.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/profile.rb" afterPath="$PROJECT_DIR$/app/models/profile.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/profile_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/profile_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="$PROJECT_DIR$/db/schema.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/admin/service.rb" afterPath="$PROJECT_DIR$/app/admin/service.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/admin/service_member.rb" afterPath="$PROJECT_DIR$/app/admin/service_member.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/service_member.rb" afterPath="$PROJECT_DIR$/app/models/service_member.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/admin/track.rb" afterPath="$PROJECT_DIR$/app/admin/track.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/tracks_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/tracks_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/tasks/user.rake" afterPath="$PROJECT_DIR$/lib/tasks/user.rake" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/user.rb" afterPath="$PROJECT_DIR$/app/models/user.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/concerns/user_able.rb" afterPath="$PROJECT_DIR$/app/models/concerns/user_able.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/concerns/validate_manager.rb" afterPath="$PROJECT_DIR$/app/controllers/concerns/validate_manager.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="mxing.iws" />
@@ -143,11 +198,61 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="deploy_controller.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="deploy_controller.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/deploy_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.27419356" vertical-offset="0" max-vertical-offset="682">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
               <caret line="11" column="5" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="admin_user.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/admin/admin_user.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="680">
+              <caret line="13" column="16" selection-start-line="13" selection-start-column="16" selection-end-line="13" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="routes.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/routes.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="1428">
+              <caret line="49" column="26" selection-start-line="49" selection-start-column="26" selection-end-line="49" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="news.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/admin/news.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="96" max-vertical-offset="765">
+              <caret line="34" column="117" selection-start-line="34" selection-start-column="117" selection-end-line="34" selection-end-column="117" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="group.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/admin/group.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="714">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="groups_controller.rb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/controllers/groups_controller.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.2032885" vertical-offset="0" max-vertical-offset="1003">
+              <caret line="8" column="58" selection-start-line="8" selection-start-column="58" selection-end-line="8" selection-end-column="58" />
               <folding />
             </state>
           </provider>
@@ -179,14 +284,12 @@
         <option value="$PROJECT_DIR$/app/admin/enthusiast.rb" />
         <option value="$PROJECT_DIR$/app/controllers/dynamics_controller.rb" />
         <option value="$PROJECT_DIR$/app/models/service_member.rb" />
-        <option value="$PROJECT_DIR$/app/admin/admin_user.rb" />
         <option value="$PROJECT_DIR$/app/controllers/concerns/login_manager.rb" />
         <option value="$PROJECT_DIR$/app/admin/service_member.rb" />
         <option value="$PROJECT_DIR$/app/controllers/profile_controller.rb" />
         <option value="$PROJECT_DIR$/app/uploaders/ckeditor_picture_uploader.rb" />
         <option value="$PROJECT_DIR$/app/models/service.rb" />
         <option value="$PROJECT_DIR$/app/admin/service.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/groups_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/concerns/group_manager.rb" />
         <option value="$PROJECT_DIR$/app/controllers/group_photos_controller.rb" />
         <option value="$PROJECT_DIR$/app/models/dynamic_film.rb" />
@@ -206,7 +309,6 @@
         <option value="$PROJECT_DIR$/app/assets/javascripts/active_admin.js.coffee" />
         <option value="$PROJECT_DIR$/app/controllers/captcha_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/concerns/captcha_manager.rb" />
-        <option value="$PROJECT_DIR$/config/routes.rb" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/ckeditor/config.js" />
         <option value="$PROJECT_DIR$/app/admin/news.rb" />
         <option value="$PROJECT_DIR$/app/controllers/concerns/validate_manager.rb" />
@@ -215,6 +317,9 @@
         <option value="$PROJECT_DIR$/lib/tasks/user.rake" />
         <option value="$PROJECT_DIR$/app/models/concerns/user_able.rb" />
         <option value="$PROJECT_DIR$/app/controllers/deploy_controller.rb" />
+        <option value="$PROJECT_DIR$/app/admin/admin_user.rb" />
+        <option value="$PROJECT_DIR$/config/routes.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/groups_controller.rb" />
       </list>
     </option>
   </component>
@@ -336,20 +441,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mxing" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mxing" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -426,7 +517,43 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="controllers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mxing" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mxing" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mxing" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mxing" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1906,7 +2033,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-2" y="25" width="1604" height="854" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32909605" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23965763" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
@@ -1920,7 +2047,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32768363" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28141025" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28141025" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34039548" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -2081,14 +2208,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/groups_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="918">
-          <caret line="6" column="52" selection-start-line="6" selection-start-column="52" selection-end-line="6" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../local/rvm/gems/ruby-2.1.4/gems/activesupport-4.2.1/lib/active_support/core_ext/object/json.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="538" max-vertical-offset="3451">
@@ -2193,14 +2312,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/routes.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="1411">
-          <caret line="47" column="18" selection-start-line="47" selection-start-column="18" selection-end-line="47" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/wap/index.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="682">
@@ -2231,14 +2342,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1303" max-vertical-offset="3298">
           <caret line="102" column="10" selection-start-line="102" selection-start-column="10" selection-end-line="102" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/admin/news.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="96" max-vertical-offset="765">
-          <caret line="34" column="117" selection-start-line="34" selection-start-column="117" selection-end-line="34" selection-end-column="117" />
           <folding />
         </state>
       </provider>
@@ -2329,8 +2432,48 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/deploy_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.27419356" vertical-offset="0" max-vertical-offset="682">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
           <caret line="11" column="5" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/admin/admin_user.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="680">
+          <caret line="13" column="16" selection-start-line="13" selection-start-column="16" selection-end-line="13" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/admin/news.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="96" max-vertical-offset="765">
+          <caret line="34" column="117" selection-start-line="34" selection-start-column="117" selection-end-line="34" selection-end-column="117" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/admin/group.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="714">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/routes.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="1428">
+          <caret line="49" column="26" selection-start-line="49" selection-start-column="26" selection-end-line="49" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/groups_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2032885" vertical-offset="0" max-vertical-offset="1003">
+          <caret line="8" column="58" selection-start-line="8" selection-start-column="58" selection-end-line="8" selection-end-column="58" />
           <folding />
         </state>
       </provider>

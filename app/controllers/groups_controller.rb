@@ -2,11 +2,11 @@ class GroupsController < ApplicationController
   include LoginManager
 
   def show
-    group = Group.find_by(id: params[:id])
+    group = Group.find_by(easemob_id: params[:id])
     if group.blank?
-      render json: {code: 1, data: {group: group.as_json}}
-    else
       render json: {code: 0, message: '您查看到群已解散'}
+    else
+      render json: {code: 1, data: {group: group.as_json}}
     end
   end
 
@@ -44,5 +44,10 @@ class GroupsController < ApplicationController
         render json: {code: 0, message: '删除群组失败'}
       end
     end
+  end
+
+  private
+  def update_params
+    params.permit(:name, :interests, :intro)
   end
 end

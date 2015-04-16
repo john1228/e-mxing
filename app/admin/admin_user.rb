@@ -6,13 +6,13 @@ ActiveAdmin.register AdminUser do
   index do
     selectable_column
     id_column
-    column :email
-    column :current_sign_in_at do
-
+    column '邮箱', :email
+    column '最后一次登录时间' do |admin_user|
+      admin_user.current_sign_in_at.strftime('%Y-%m-%d %H:%M:%S')
     end
-    column :sign_in_count
-    column :created_at do
-      
+    column '登录次数',:sign_in_count
+    column '创建时间' do |admin_user|
+      admin_user.created_at.strftime('%Y-%m-%d %H:%M:%S')
     end
     actions
   end

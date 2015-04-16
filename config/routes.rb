@@ -47,6 +47,7 @@ Rails.application.routes.draw do
   get 'find' => 'find#list'
   put 'find/upload' => 'find#upload'
   #群组
+  get 'groups' => 'groups#show'
   post 'groups' => 'groups#create'
   put 'groups' => 'groups#update'
   delete 'groups/:id' => 'groups#destroy'
