@@ -3,7 +3,8 @@ ActiveAdmin.register ServiceMember, :name_space => :user do
   config.filters = false
   belongs_to :service
   navigation_menu :service
-  permit_params :member_username, :member_password, :member_name, :member_avatar, :member_gender, :member_signature, :member_birthday
+  permit_params :member_username, :member_password, :member_name, :member_avatar, :member_gender, :member_signature, :member_birthday,
+                :member_address, :member_target, :member_skill, :member_stadium, :member_interests, :member_identity
   index title: '旗下私教' do
     selectable_column
     column '昵称' do |member|

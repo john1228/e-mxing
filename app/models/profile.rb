@@ -1,10 +1,12 @@
 class Profile < ActiveRecord::Base
-  belongs_to :user
-  has_one :place, foreign_key: :user_id
-  alias_attribute :often, :often_stadium
+  include ProfileAble
   scope :enthusiasts, -> { where(identity: 0) }
   scope :coach, -> { where(identity: 1) }
   scope :service, -> { where(identity: 2) }
+
+  belongs_to :user
+  has_one :place, through: :user
+  alias_attribute :often, :often_stadium
 
   TAGS = ['会员', '认证', '私教']
   BASE_NO = 10000
@@ -61,4 +63,5 @@ class Profile < ActiveRecord::Base
         interests: interests
     }
   end
+
 end

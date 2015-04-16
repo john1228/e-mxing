@@ -3,6 +3,8 @@ class ServiceMember < ActiveRecord::Base
   belongs_to :service
   belongs_to :coach, foreign_key: :user_id
   delegate :name, :avatar, :signature, to: :coach, allow_nil: false
+  validates_presence_of :user_id,message: '私教创建失败'
+
 
   attr_accessor :member_username
   attr_accessor :member_password

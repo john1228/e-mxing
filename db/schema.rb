@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150414022318) do
+ActiveRecord::Schema.define(version: 20150407091139) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -244,7 +244,6 @@ ActiveRecord::Schema.define(version: 20150414022318) do
     t.integer  "user_id"
     t.integer  "track_type"
     t.datetime "start"
-    t.string   "during"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
@@ -252,6 +251,8 @@ ActiveRecord::Schema.define(version: 20150414022318) do
     t.string   "address"
     t.integer  "places"
     t.integer  "free_places", default: 0
+    t.integer  "coach_id"
+    t.integer  "during",      default: 60
   end
 
   create_table "users", force: :cascade do |t|

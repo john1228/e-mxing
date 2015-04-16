@@ -35,7 +35,8 @@ ActiveAdmin.register ServiceTrack do
 
   form do |f|
     f.inputs '团操' do
-      f.input :track_type, label: '类型', as: :select, collection: Track::TYPE, prompt: '请选择'
+      f.input :track_type, label: '类型', as: :select, collection: INTERESTS['items'].map { |item| [item['name'], item['id']] }, prompt: '请选择类型'
+      f.input :coach_id, label: '教练', as: :select, collection: service.coaches.map { |coach| [coach.profile_name, coach.id] }, prompt: '请选择教练'
       f.input :name, label: '名称'
       f.input :intro, label: '介绍', input_html: {cols: 5, rows: 5}
       f.input :address, label: '地址'

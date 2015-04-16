@@ -23,27 +23,22 @@ ActiveAdmin.register Track do
   show title: '轨迹详情' do
     attributes_table do
       row('类型') { |track| track.track_type_value }
-      row('名称') { |track| track.name } if user.is_coach?||user.is_service?
-      row('介绍') { |track| track.intro } if user.is_coach?||user.is_service?
-      row('地址') { |track| track.address } if user.is_coach?||user.is_service?
+      row('名称') { |track| track.name }
+      row('介绍') { |track| track.intro }
+      row('地址') { |track| track.address }
       row('开始时间') { |track| track.start.strftime('%Y-%m-%d %H:%M') }
       row('持续时间') { |track| track.during }
-      row('人數') { |track| track.places } if user.is_coach?||user.is_service?
-      row('体验') { |track| track.free_places } if user.is_coach?||user.is_service?
+      row('人數') { |track| track.places }
+      row('体验') { |track| track.free_places }
     end
   end
 
   form do |f|
     f.inputs '添加运动轨迹' do
       f.input :user_id, as: :hidden
-      f.input :track_type, label: '类型', as: :select, collection: Track::TYPE, prompt: '请选择'
-      f.input :name, label: '名称' if f.object.user.is_coach?||f.object.user.is_service?
-      f.input :intro, label: '介绍', input_html: {cols: 5, rows: 5} if f.object.user.is_coach?||f.object.user.is_service?
-      f.input :address, label: '地址' if f.object.user.is_coach?||f.object.user.is_service?
+      f.input :track_type, label: '类型', as: :select, collection: INTERESTS['items'].map { |item| [item['name'], item['id']] }, prompt: '请选择'
       f.input :start, label: '开始时间', as: :string
       f.input :during, label: '持续时间'
-      f.input :places, label: '人數' if f.object.user.is_coach?||f.object.user.is_service?
-      f.input :free_places, label: '体验' if f.object.user.is_coach?||f.object.user.is_service?
     end
     f.actions
   end

@@ -14,6 +14,7 @@ class Place < ActiveRecord::Base
         age: (user_age rescue 15),
         signature: signature,
         tags: user_tags,
+        identity: identity,
         distance: distance
     }
   end
