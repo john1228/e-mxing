@@ -11,13 +11,16 @@ module FindManager
   end
 
   def persons
-    Place.nearby(params[:lng], params[:lat], params[:page]||1).collect { |place| place.nearby_user_json }
+    filters = "1=1"
+    filters << " and profiles.gender=#{params[:gender]}" unless params[:gender].blank?||params[:gender].eql?("-1")
+    filters << " and profiles.identity=#{params[:identity]}" unless params[:identity].blank?||params[:identity].eql?("-1")
+    Place.nearby(params[:lng], params[:lat], filters, params[:page]||1).collect { |place| place.nearby_user_json }
   end
 
   def groups
     {
         recommend: Group.recommend.collect { |group| group.as_json },
-        nearby: GroupPlace.close_to(params[:lng], params[:lat]).page(params[:page]).collect { |group_place|
+        nearby: GroupPlace.nearby(params[:lng], params[:lat]).page(params[:page]).collect { |group_place|
           group_place.group.as_json.merge(distance: group_place.distance.to_i)
         }
     }

@@ -4,19 +4,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :username, message: '用戶已注册'
 
   TYPE=[['健身爱好者', 0], ['私教', 1], ['商家', 2]]
-  attr_accessor :name
-  attr_accessor :avatar
-  attr_accessor :gender
-  attr_accessor :signature
-  attr_accessor :identity
-  attr_accessor :birthday
-  attr_accessor :address
 
-  attr_accessor :target
-  attr_accessor :skill
-  attr_accessor :often
-  attr_accessor :interests
-  attr_accessor :mobile
 
   class<<self
     def find_by_mxid(mxid)

@@ -60,7 +60,9 @@ class Profile < ActiveRecord::Base
         target: target,
         skill: skill,
         often: often_stadium,
-        interests: interests
+        interests: interests,
+
+        tags: tags
     }
   end
 

@@ -2,14 +2,12 @@
 
 one:
   report_type: 1
-  reported_id: 1
-  user_id: MyString
-  integer: MyString
-  message: MyString
+  content: MyText
+  user_id: 1
+  report_id: 1
 
 two:
   report_type: 1
-  reported_id: 1
-  user_id: MyString
-  integer: MyString
-  message: MyString
+  content: MyText
+  user_id: 1
+  report_id: 1

@@ -6,4 +6,5 @@ class Service<User
   has_many :service_dynamics, foreign_key: :user_id
 
   has_many :coaches, through: :service_members
+  alias_attribute :hobby, :interests
 end

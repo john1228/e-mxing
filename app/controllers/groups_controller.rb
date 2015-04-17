@@ -1,6 +1,16 @@
 class GroupsController < ApplicationController
   include LoginManager
 
+  def mine
+    groups = Group.where(easemob_id: params[:ids].split(','))
+    render json: {
+               code: 1,
+               data: {
+                   groups: groups.collect { |group| group.summary_json }
+               }
+           }
+  end
+
   def show
     group = Group.find_by(easemob_id: params[:id])
     if group.blank?

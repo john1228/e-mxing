@@ -40,7 +40,7 @@ ActiveAdmin.register ServiceTrack do
       f.input :name, label: '名称'
       f.input :intro, label: '介绍', input_html: {cols: 5, rows: 5}
       f.input :address, label: '地址'
-      f.input :start, label: '开始时间', as: :string
+      f.input :start, label: '开始时间', as: :time_select
       f.input :during, label: '持续时间'
       f.input :places, label: '人數'
       f.input :free_places, label: '体验'

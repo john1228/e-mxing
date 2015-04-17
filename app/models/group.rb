@@ -19,4 +19,15 @@ class Group < ActiveRecord::Base
         intro: intro
     }
   end
+
+  def summary_json
+    {
+        no: id,
+        easemob_id: easemob_id,
+        name: name,
+        avatar: group_photos.first.present? ? "#{$host}#{group_photos.first.photo.url}" : '',
+        owner: User.find_by_mxid(owner).profile.summary_json,
+        interests: interests
+    }
+  end
 end

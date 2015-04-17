@@ -46,7 +46,9 @@ Rails.application.routes.draw do
   #发现
   get 'find' => 'find#list'
   put 'find/upload' => 'find#upload'
+  get 'find/tips' => 'find#tips'
   #群组
+  get 'groups/mine' => 'groups#mine'
   get 'groups' => 'groups#show'
   post 'groups' => 'groups#create'
   put 'groups' => 'groups#update'
@@ -60,10 +62,11 @@ Rails.application.routes.draw do
   get 'friends/search' => 'friends#find'
   #服务号
   get 'services/coaches' => 'services#coaches'
-
   #陪组文件
   get 'deploy/icon' => 'deploy#icon'
-
+  #系统接口
+  post 'feedback' => 'system#feedback'
+  post 'report' => 'system#report'
   #web路由
   get 'home/index' => 'home#index'
   get 'home/about' => 'home#about'

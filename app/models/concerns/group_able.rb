@@ -44,7 +44,7 @@ module GroupAble
   end
 
   def build_default_place
-    build_group_place(lonlat: "POINT(#{params[:lng]} #{params[:lat]})")
+    build_group_place(lonlat: "POINT(#{lng} #{lat})")
     true
   end
 end

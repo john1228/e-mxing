@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <title>活动</title>
+    <script type=text/javascript>
+        //显示隐藏
+        function toggle(targetid) {
+            if (document.getElementById) {
+                target = document.getElementById(targetid);
+                if (target.style.display == "block") {
+                    target.style.display = "none";
+                } else {
+                    target.style.display = "block";
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<section class="acti" style="background:url(images/ssqbg.jpg) no-repeat; background-size:cover;">
+    <dl class="actitop">
+        <dt>
+        <h4>【双色球领取竞猜】双色球第2015035 期</h4>
+
+        <p><i class="ico1"></i>第2015035期<span class="bule">(已开奖）</span></p>
+
+        <p><i class="ico2"></i>开奖日期：2015-03-29 (周日)</p>
+
+        <p><i class="ico3"></i>斯巴鲁抽奖</p>
+        </dt>
+        <dd><img src="images/ssqtu.jpg"></dd>
+    </dl>
+    <dl class="actibut">
+        <dt>
+        <p>领取59人</p>
+
+        <p>中奖3人</p></dt>
+        <dd>
+            <button class="end">已领取</button>
+            <button onclick="toggle('result')">中奖结果</button>
+        </dd>
+    </dl>
+</section>
+<section class="actizt">
+    <dl>
+        <dt>我的双色球</dt>
+        <dd>未领取</dd>
+    </dl>
+</section>
+<section class="actilist">
+    <dl>
+        <dt><img src="images/mingxing.jpg"></dt>
+        <dd>
+            <h3>Lucy</h3><span>6.5km</span>
+
+            <p><i class="man">33</i><i class="ico1">V</i><i class="ico2">官</i><i class="ico3">证</i><i class="ico4">教</i><i
+                    class="ico5">力</i></p>
+
+            <div class="ssq"><em>01</em><em>02</em><em>03</em><em>04</em><em>05</em><em>06</em><em class="bule">07</em>
+            </div>
+        </dd>
+    </dl>
+    <dl>
+        <dt><img src="images/mingxing.jpg"></dt>
+        <dd>
+            <h3>Lucy</h3><span>6.5km</span>
+
+            <p><i class="woman">33</i><i class="ico1">V</i><i class="ico2">官</i><i class="ico3">证</i><i
+                    class="ico4">教</i><i class="ico5">力</i></p>
+
+            <div class="ssq"><em>01</em><em>02</em><em>03</em><em>04</em><em>05</em><em>06</em><em class="bule">07</em>
+            </div>
+        </dd>
+    </dl>
+    <dl>
+        <dt><img src="images/mingxing.jpg"></dt>
+        <dd>
+            <h3 class="bule">Lucy</h3><span>6.5km</span>
+
+            <p><i class="man">33</i><i class="ico1">V</i><i class="ico2">官</i><i class="ico3">证</i></p>
+
+            <div class="ssq"><em>01</em><em>02</em><em>03</em><em>04</em><em>05</em><em>06</em><em class="bule">07</em>
+            </div>
+        </dd>
+    </dl>
+    <dl>
+        <dt><img src="images/mingxing.jpg"></dt>
+        <dd>
+            <h3 class="red">Lucy</h3><span>6.5km</span>
+
+            <p><i class="man">33</i><i class="ico1">V</i><i class="ico2">官</i><i class="ico3">证</i><i class="ico4">教</i><i
+                    class="ico5">力</i></p>
+
+            <div class="ssq"><em>01</em><em>02</em><em>03</em><em>04</em><em>05</em><em>06</em><em class="bule">07</em>
+            </div>
+        </dd>
+    </dl>
+</section>
+
+<section class="result" id="result">
+    <div class="resultcon answer">
+        <h3>【双色球领取竞猜】双色球第2015035期</h3>
+
+        <div class="res-text">
+            <p>第2015035期</p>
+
+            <p>开奖日期：2015-03-29 (周日)</p>
+
+            <p>斯巴鲁抽奖</p>
+        </div>
+        <div class="ssq"><em>01</em><em>02</em><em>03</em><em>04</em><em>05</em><em>06</em><em class="bule">07</em>
+        </div>
+        <div class="res-text">
+            <p>本期一等奖： 5注，奖品：斯巴鲁汽车3年使用权</p>
+
+            <p>本期二等奖： 10注，奖品：三亚6月豪华旅游</p>
+        </div>
+        <button onclick="result.style.display='none'">关闭</button>
+    </div>
+</section>
+</body>
+</html>

@@ -26,9 +26,9 @@ ActiveAdmin.register ServiceMember, :name_space => :user do
   end
 
   form html: {enctype: 'multipart/form-data'} do |f|
-    f.semantic_errors
+    f.semantic_errors *f.object.errors.keys
     f.inputs '登录信息' do
-      f.input :member_username, label: '登录名', input_html: {value: f.object.coach.nil? ? '' : f.object.coach.username}
+      f.input :member_username, label: '登录名', as: :phone, input_html: {value: f.object.coach.nil? ? '' : f.object.coach.username}, hint: content_tag(:span, '手机号码', style: 'color:red')
       f.input :member_password, label: '密码', as: :password
     end
     f.inputs '资料' do
@@ -40,7 +40,7 @@ ActiveAdmin.register ServiceMember, :name_space => :user do
       f.input :member_target, label: '健身目标', input_html: {value: f.object.coach.nil? ? '' : f.object.coach.profile_target}
       f.input :member_skill, label: '擅长领域', input_html: {value: f.object.coach.nil? ? '' : f.object.coach.profile_skill}
       f.input :member_stadium, label: '常去场馆', input_html: {value: f.object.coach.nil? ? '' : f.object.coach.profile_often}
-      f.input :member_interests, label: '健身兴趣', input_html: {value: f.object.coach.nil? ? '' : f.object.coach.profile_interests}
+      f.input :member_interests, label: '健身兴趣', as: :check_boxes, multiple: true, collection: INTERESTS['items'].map { |item| [item['name'], item['id']] }
       f.input :member_identity, as: :hidden, input_html: {value: 1}
     end
 

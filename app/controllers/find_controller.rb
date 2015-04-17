@@ -13,6 +13,18 @@ class FindController < ApplicationController
            }
   end
 
+  def tips
+    render json: {
+               code: 1,
+               data: {
+                   group: '找到一起健身到小伙伴',
+                   service: '健身房开通啦,快快来关注',
+                   news: News.last.title||'还没有新闻',
+                   activity: Activity.last.title||'还没有活动'
+               }
+           }
+  end
+
   def list
     case params[:type]
       when 'dynamics'
