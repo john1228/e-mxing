@@ -1,7 +1,6 @@
-source 'http://ruby.taobao.org/'
+source 'https://ruby.taobao.org/'
 
 gem 'rails', '4.2.1'
-#gem 'mysql2'
 
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'

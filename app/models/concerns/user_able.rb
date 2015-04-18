@@ -15,7 +15,6 @@ module UserAble
     has_many :group_members, dependent: :destroy
     has_many :appointments, dependent: :destroy
     has_one :place, dependent: :destroy
-    has_many :service_members, dependent: :destroy
 
     attr_accessor :name, :avatar, :gender, :signature, :identity, :birthday, :address, :target, :skill, :often, :interests, :mobile
   end

@@ -1,14 +1,14 @@
 ActiveAdmin.register Service do
   menu label: '服务号', priority: 2
 
-  permit_params :identity, :name, :username, :password, :avatar, :signature, :address, :hobby # => []
+  permit_params :identity, :name, :username, :password, :avatar, :signature, :address, :interests => []
   filter :profile_name, label: '昵称', as: :string
   before_action :adjust, only: [:create, :update]
 
   controller do
     def adjust
-      params[:service][:hobby].reject! { | |}
-      params[:service][:hobby] = params[:service][:hobby].join(',')
+      params[:service][:interests].reject! { |item| item.blank? }
+      params[:service][:interests] = params[:service][:hobby].join(',')
     end
   end
 
@@ -59,7 +59,7 @@ ActiveAdmin.register Service do
       f.input :signature, label: '简介', input_html: {value: (f.object.profile_signature rescue '')}
       f.input :address, label: '地址', input_html: {value: (f.object.profile_address rescue '')}
 
-      f.input :hobby, label: '健身服务', as: :check_boxes, collection: INTERESTS['items'].map { |item| [item['name'], item['id']] }
+      f.input :interests, label: '健身服务', as: :check_boxes, collection: INTERESTS['items'].map { |item| [item['name'], item['id']] }
       f.input :identity, as: :hidden, input_html: {value: 2}
     end
     f.actions

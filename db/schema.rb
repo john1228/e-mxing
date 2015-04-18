@@ -242,7 +242,7 @@ ActiveRecord::Schema.define(version: 20150417055441) do
 
   create_table "service_members", force: :cascade do |t|
     t.integer  "service_id"
-    t.integer  "user_id"
+    t.integer  "coach_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

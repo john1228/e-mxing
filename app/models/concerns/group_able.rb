@@ -17,7 +17,7 @@ module GroupAble
     result = Faraday.post { |req|
       req.url "https://a1.easemob.com/jsnetwork/mxing/chatgroups"
       req.headers['Authorization'] = "Bearer #{easemob_token}"
-      req.body = {groupname: name, desc: intro, public: true, maxusers: 100, approval: true, owner: owner}.to_json.to_s
+      req.body = {groupname: name, desc: intro, public: true, maxusers: 100, approval: true, owner: "#{owner}"}.to_json.to_s
     }
     puts result.body
     self.easemob_id = JSON.parse(result.body).fetch('data').fetch('groupid')
