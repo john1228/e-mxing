@@ -2,7 +2,7 @@ class ShowtimeController < ApplicationController
   include LoginManager
 
   def index
-    showtime = @user.dynamics.top
+    showtime = @user.showtime
     if showtime.nil?
       render json: {
                  code: 0,
@@ -19,7 +19,7 @@ class ShowtimeController < ApplicationController
   end
 
   def update
-    if @user.dynamics.create_showtime(showtime_params)
+    if @user.build_showtime(showtime_params)
       render json: {code: 1}
     else
       render json: {

@@ -3,7 +3,7 @@ module LoginManager
 
   included do
     before_action :find_user, only: [:index, :latest]
-    before_action :need_user, only: [:create, :update, :destroy, :appoint, :upload]
+    before_action :need_user, only: [:create, :update, :destroy, :appoint, :upload, :dynamic, :showtime]
     before_action :fetch_mobile, only: :complete
   end
 
