@@ -15,7 +15,7 @@ class Place < ActiveRecord::Base
         signature: signature,
         tags: user_tags,
         identity: identity,
-        distance: distance
+        distance: distance.to_i
     }
   end
 

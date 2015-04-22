@@ -9,15 +9,11 @@ module LoginManager
 
   private
   def find_user
-    profile = Profile.find_by_mxid(params[:mxid])
-    if profile.nil?
-      render json: {
-                 code: 0,
-                 message: '没有该用户',
-             }
-    else
-      @user = profile.user
-    end
+    @user = User.find_by_mxid(params[:mxid])
+    render json: {
+               code: 0,
+               message: '没有该用户',
+           } if @user.nil?
   end
 
   def need_user
@@ -36,4 +32,5 @@ module LoginManager
                message: '您到注册信息已过期,请重新注册'
            } if @mobile.nil?
   end
+
 end
