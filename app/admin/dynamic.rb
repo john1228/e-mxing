@@ -5,9 +5,9 @@ ActiveAdmin.register Dynamic do
   navigation_menu :enthusiast
 
 
-  permit_params :user_id, :content,
+  permit_params :top, :content,
                 dynamic_images_attributes: [:id, :image],
-                dynamic_film_attributes: [:id, :cover, :film]
+                dynamic_film_attributes: [:id, :title, :cover, :film]
 
   filter :content, label: '内容'
 

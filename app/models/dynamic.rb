@@ -34,7 +34,7 @@ class Dynamic < ActiveRecord::Base
         title: dynamic_film.title,
         film: {
             cover: $host + dynamic_film.cover.thumb.url,
-            film: dynamic_film.film.hls_url
+            film: dynamic_film.film.hls
         },
         likes: likes.count,
         comments: dynamic_comments.count
@@ -65,7 +65,7 @@ class Dynamic < ActiveRecord::Base
     json_hash = json_hash.merge({
                                     film: {
                                         cover: $host + dynamic_film.cover.thumb.url,
-                                        film: dynamic_film.film.hls_url
+                                        film: dynamic_film.film.hls
                                     }
                                 }) unless dynamic_film.blank?
     json_hash

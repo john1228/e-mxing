@@ -9,12 +9,8 @@ class FilmUploader < CarrierWave::Uploader::Base
     "videos/#{model.class.to_s.underscore}"
   end
 
-  def hls_url
-    if file.extension.blank?
-      to_s.end_with?('.') ? ($hls_host + to_s.gsub("/#{store_dir}", '') + 'm3u8') : ($hls_host + to_s.gsub("/#{store_dir}", '') + '.' + 'm3u8')
-    else
-      $hls_host + to_s.gsub("/#{store_dir}", '').gsub(file.extension, 'm3u8')
-    end
+  def hls
+    $hls_host + url.gsub("/#{store_dir}", '').gsub(file.extension, 'm3u8')
   end
 
 
@@ -24,9 +20,7 @@ class FilmUploader < CarrierWave::Uploader::Base
 
   private
   def slice(args)
-    film = FFMPEG::Movie.new(file.file)
-    #model.length = film.duration
-    #FilmWorker.perform_async(store_dir, self.to_s, file.extension) if file.present?
+    VideoProcessJob.perform_later(file.path)
   end
 
   protected

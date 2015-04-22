@@ -2,9 +2,9 @@ ActiveAdmin.register ServiceDynamic do
   menu label: '动态'
   belongs_to :service
   navigation_menu :service
-  permit_params :content,
+  permit_params :top, :content,
                 dynamic_images_attributes: [:id, :image],
-                dynamic_film_attributes: [:id, :cover, :film]
+                dynamic_film_attributes: [:id, :title, :cover, :film]
 
   filter :content, label: '内容'
 
