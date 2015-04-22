@@ -22,7 +22,7 @@ ActiveAdmin.register News do
       attributes_table_for news do
         row('标题') { news.title }
         row('封面') { image_tag(news.cover.thumb.url, width: 69*2) }
-        row('链接') { news.url }
+        row('链接') { link_to('详情', news_detail_path(news)) }
       end
     end
   end
