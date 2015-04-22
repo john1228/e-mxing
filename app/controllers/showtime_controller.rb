@@ -19,7 +19,7 @@ class ShowtimeController < ApplicationController
   end
 
   def update
-    if @user.create(showtime_params)
+    if @user.create_showtime(showtime_params)
       render json: {code: 1}
     else
       render json: {
