@@ -4,7 +4,7 @@ class VideoProcessJob < ActiveJob::Base
     retry_job wait: 5.minutes, queue: :low_priority
   end
 
-  def perform(file_path, file_extension)
+  def perform(file_path, store_path, file_extension)
     file_name = file_path.gsub("#{Rails.root}/public/videos/dynamic_film/", "")
     video_hls_name = file_name.gsub(store_path, "").gsub(file_extension, 'm3u8')
     video_hls_path = "#{Rails.root}/public/videos/hls"
