@@ -9,7 +9,7 @@ module LoginManager
 
   private
   def find_user
-    @user = User.find_by_mxid(params[:mxid])
+    @user = User.find_by_mxid(params[:mxid].to_i)
     render json: {
                code: 0,
                message: '没有该用户',
