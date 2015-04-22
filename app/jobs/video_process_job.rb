@@ -14,7 +14,7 @@ class VideoProcessJob < ActiveJob::Base
     video_hls_path = "#{Rails.root}/public/videos/hls"
     FileUtils.mkdir_p File.dirname(video_hls_path + video_hls_name) unless File.exists?(video_hls_path + video_hls_name)
     split_command = "ffmpeg -v 9 -re -i #{Rails.root + '/' + file_path} -acodec libmp3lame -c:v libx264 -flags -global_header -map 0 -f segment -segment_time 10 -segment_list #{video_hls_path + video_hls_name} -segment_format mpegts #{video_hls_path + '/' + video_hls_name}%04d.ts"
-    puts split_command
+    logger.info split_command
     system(split_command)
   end
 end
