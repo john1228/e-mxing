@@ -20,7 +20,7 @@ class FilmUploader < CarrierWave::Uploader::Base
 
   private
   def slice(args)
-    VideoProcessJob.perform_later(file.path)
+    VideoProcessJob.perform_later(file.path, file.extension)
   end
 
   protected
