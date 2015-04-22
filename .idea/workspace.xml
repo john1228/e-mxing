@@ -254,8 +254,8 @@
       <file leaf-file-name="video_process_job.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/jobs/video_process_job.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.27952167" vertical-offset="0" max-vertical-offset="669">
-              <caret line="11" column="177" selection-start-line="11" selection-start-column="177" selection-end-line="11" selection-end-column="177" />
+            <state vertical-scroll-proportion="0.2541106" vertical-offset="0" max-vertical-offset="669">
+              <caret line="10" column="107" selection-start-line="10" selection-start-column="107" selection-end-line="10" selection-end-column="107" />
               <folding />
             </state>
           </provider>
@@ -2599,8 +2599,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/jobs/video_process_job.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.27952167" vertical-offset="0" max-vertical-offset="669">
-          <caret line="11" column="177" selection-start-line="11" selection-start-column="177" selection-end-line="11" selection-end-column="177" />
+        <state vertical-scroll-proportion="0.2541106" vertical-offset="0" max-vertical-offset="669">
+          <caret line="10" column="107" selection-start-line="10" selection-start-column="107" selection-end-line="10" selection-end-column="107" />
           <folding />
         </state>
       </provider>
