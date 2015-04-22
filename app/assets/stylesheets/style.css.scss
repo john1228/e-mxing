@@ -1,0 +1,973 @@
+@charset "UTF-8";
+/* CSS Document */
+html {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "微软雅黑", Microsoft Yahei, Hiragino Sans GB;
+  font-size: 18px;
+  color: #333;
+  line-height: 28px;
+  background: #f9f9fb
+}
+
+section, div, ul, li, p, dl, dt, dd, h1, h2, h3, h4 {
+  margin: 0 auto;
+  padding: 0;
+  list-style-type: none;
+  font-weight: normal
+}
+
+a {
+  color: #333;
+  text-decoration: none
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a, button, input, i {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -moz-tap-highlight-color: rgba(0, 0, 0, 0);
+  -ms-tap-highlight-color: rgba(0, 0, 0, 0);
+  tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.mint10 {
+  margin-top: 10px;
+}
+
+.mint20 {
+  margin-top: 20px;
+}
+
+.mint30 {
+  margin-top: 30px;
+}
+
+.mint40 {
+  margin-top: 40px;
+}
+
+.line-t {
+  border-top: #c8c7cc 1px solid
+}
+
+.line-b {
+  border-bottom: #c8c7cc 1px solid
+}
+
+.bule {
+  color: #00c1eb
+}
+
+.bule a {
+  color: #00c1eb
+}
+
+.red {
+  color: #ff3b30
+}
+
+.red a {
+  color: #ff3b30
+}
+
+section {
+  width: 750px;
+  background: #fff;
+  position: relative
+}
+
+section img {
+  width: 100%;
+  display: block
+}
+
+.bgtu img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: 100%;
+  -webkit-filter: blur(10px);
+  filter: blur(10px);
+}
+
+.bgtu i {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5)
+}
+
+.acti {
+  overflow: hidden
+}
+
+.actitop {
+  width: 92%;
+  overflow: hidden;
+  padding: 10px 0;
+  color: #ccc;
+  position: relative;
+  z-index: 99
+}
+
+.actitop dt {
+  float: left;
+  width: 70%;
+  font-size: 22px;
+}
+
+.actitop dt h4 {
+  font-size: 24px;
+  color: #fff;
+  padding-bottom: 10px;
+  line-height: 36px;
+}
+
+.actitop dt p {
+  position: relative;
+  padding-left: 24px;
+  padding-bottom: 5px;
+}
+
+.actitop dt i {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  left: 0;
+  top: 2px;
+  background: asset_data_url("activity/ico1.png") no-repeat;
+  background-size: cover
+}
+
+.actitop dt i.ico2 {
+  background: url('activity/ico2.png') no-repeat;
+  background-size: cover
+}
+
+.actitop dt i.ico3 {
+  background: url('activity/ico3.png') no-repeat;
+  background-size: cover
+}
+
+.actitop dd {
+  width: 28%;
+  float: right;
+}
+
+.actibut {
+  width: 92%;
+  overflow: hidden;
+  border-top: #674e13 1px solid;
+  padding: 10px 0;
+  color: #fff;
+  position: relative;
+  z-index: 99
+}
+
+.actibut dt {
+  float: left;
+  width: 20%;
+}
+
+.actibut dd {
+  float: left;
+  width: 80%;
+}
+
+.actibut dd button {
+  float: left;
+  width: 44%;
+  margin-left: 6%;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  background: none;
+  color: #fff;
+  padding: 3% 0;
+  border: #fff 1px solid;
+  font-size: 22px;
+  cursor: pointer;
+  outline: none
+}
+
+.actibut dd button.end {
+  color: #b3b3b3;
+  border: #b3b3b3 1px solid;
+}
+
+.actibut dd button.bule {
+  color: #00c1eb;
+  border: #00c1eb 1px solid;
+}
+
+.actibut dd button.red {
+  color: #ff3b30;
+  border: #ff3b30 1px solid;
+}
+
+.actizt .ztcon {
+  width: 94%;
+  background: #f9f9fb;
+  padding: 3%
+}
+
+.actizt dl {
+  width: 94%;
+  background: #f9f9fb;
+  overflow: hidden;
+  padding: 3%
+}
+
+.actizt dl.bgf {
+  background: #fff;
+}
+
+.actizt dl dt {
+  float: left;
+  width: 30%;
+}
+
+.actizt dl dd {
+  float: right;
+  width: 68%;
+  text-align: right
+}
+
+.actilist dl {
+  width: 94%;
+  padding: 3%;
+  border-bottom: #e5e5e5 1px solid;
+  overflow: hidden
+}
+
+.actilist dl dt {
+  float: left;
+  width: 22%;
+}
+
+.actilist dl dt img {
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+}
+
+.actilist dl dd {
+  float: right;
+  width: 74%;
+  position: relative;
+}
+
+.actilist dl dd h3 {
+  font-size: 24px;
+  padding-bottom: 10px;
+}
+
+.actilist dl dd span {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: #b3b3b3
+}
+
+.actilist dl dd p {
+  overflow: hidden;
+  padding: 10px 0
+}
+
+.actilist dl dd p i {
+  display: block;
+  float: left;
+  overflow: hidden;
+  width: 24px;
+  height: 24px;
+  text-indent: -9999px;
+  line-height: 24px;
+  color: #fff;
+  background: url("activity/ico.png") no-repeat;
+  margin-right: 4px;
+  font-style: normal;
+}
+
+.actilist dl dd p i.ico1 {
+  background-position: -114px 0
+}
+
+.actilist dl dd p i.ico2 {
+  background-position: -142px 0
+}
+
+.actilist dl dd p i.ico3 {
+  background-position: -170px 0
+}
+
+.actilist dl dd p i.ico4 {
+  background-position: -198px 0
+}
+
+.actilist dl dd p i.ico5 {
+  background-position: -226px 0
+}
+
+.actilist dl dd p i.man {
+  width: 54px;
+  text-indent: 26px;
+  background-position: -0px 0
+}
+
+.actilist dl dd p i.woman {
+  width: 54px;
+  text-indent: 26px;
+  background-position: -56px 0
+}
+
+.actilist dl dd .text {
+  color: #999;
+  padding-top: 5px;
+}
+
+.actilist dl dd button {
+  padding: 2% 3%;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  color: #30cdef;
+  border: #c8c7cc 1px solid;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  background: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  outline: none
+}
+
+.ssq {
+  overflow: hidden;
+  padding: 10px 0
+}
+
+.ssq em {
+  float: left;
+  border: #ff3b30 1px solid;
+  border-radius: 50%;
+  padding: 0 4px;
+  margin-right: 10px;
+  color: #ff3b30;
+  font-style: normal;
+}
+
+.ssq em.bule {
+  border: #00c1eb 1px solid;
+  color: #00c1eb;
+}
+
+.actizt dl dd .ssq {
+  float: right;
+  padding: 0
+}
+
+.actizt dl dd .ssq em {
+  margin-right: 0;
+  margin-left: 10px;
+}
+
+.hdcon {
+  width: 94%;
+  padding: 10px 0;
+  color: #999;
+  border-top: #e5e5e5 1px solid
+}
+
+.morebox {
+  border-top: #e5e5e5 1px solid;
+  text-align: center;
+  padding: 20px 0;
+}
+
+.morebox a {
+  color: #999;
+  display: inline-block;
+  font-size: 22px;
+}
+
+.morebox a i {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+  margin-bottom: -3px;
+  margin-left: 10px;
+  background: asset_data_url("activity/more.png") no-repeat
+}
+
+.hotlist {
+  margin-top: 20px;
+}
+
+.hotlist dl {
+  width: 94%;
+  padding: 3%;
+  border-bottom: #c8c7cc 1px solid;
+  overflow: hidden
+}
+
+.hotlist dl dt {
+  float: left;
+  width: 22%;
+}
+
+.hotlist dl dt img {
+  border-radius: 14%;
+  -webkit-border-radius: 14%;
+}
+
+.hotlist dl dd {
+  float: right;
+  width: 70%;
+  position: relative;
+  padding-right: 4%;
+}
+
+.hotlist dl dd h3 {
+  font-size: 22px;
+  padding-bottom: 5px;
+}
+
+.hotlist dl dd p {
+  overflow: hidden;
+  padding: 5px 0;
+  color: #999
+}
+
+.hotlist dl dd i {
+  display: block;
+  width: 26px;
+  height: 26px;
+  position: absolute;
+  top: 45%;
+  right: 0;
+  background: asset_data_url("activity/more.png") no-repeat right
+}
+
+.hotlist dl dd .szxx {
+  margin-top: 10px;
+  color: #999;
+}
+
+.hotlist dl dd .szxx em {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+  text-align: center;
+  color: #fff;
+  margin-right: 5px;
+  font-style: normal;
+  background: asset_data_url("activity/icobg.png") no-repeat;
+  background-size: cover
+}
+
+.result {
+  display: none;
+  margin-left: -375px;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  background: rgba(0, 0, 0, 0.5)
+}
+
+.result .resultcon {
+  width: 94%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: #fff;
+  padding: 5% 3%;
+}
+
+.result .resultcon h3 {
+  font-size: 18px;
+}
+
+.result .resultcon .res-text {
+  padding: 5px 0;
+  color: #999
+}
+
+.result .resultcon button {
+  display: block;
+  margin-top: 5px;
+  width: 100%;
+  padding: 4% 0;
+  color: #999;
+  border: #c8c7cc 1px solid;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  background: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  outline: none
+}
+
+.answer {
+  opacity: 1;
+  animation: answer 1s infinite;
+  -webkit-animation: answer 1s infinite;
+  animation-iteration-count: 1;
+  -webkit-animation-iteration-count: 1;
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0)
+}
+
+.article .artzt {
+  width: 94%;
+  border-bottom: #e5e5e5 1px solid;
+  padding: 3% 0
+}
+
+.article .artzt h1 {
+  font-size: 24px;
+  margin-bottom: 2%;
+  line-height: 30px;
+}
+
+.article .artzt em {
+  color: #999;
+  font-style: normal
+}
+
+.article .artcon {
+  width: 94%;
+  padding: 2% 0;
+  color: #4c4c4c
+}
+
+.article .artcon p {
+  padding: 1% 0
+}
+
+.yqyes {
+  padding: 30px;
+  background: rgba(0, 0, 0, 0.5);
+  padding-right: 8%;
+  position: fixed;
+  z-index: 10px;
+  top: 45%;
+  left: 45%;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  color: #fff;
+}
+
+.yqyes i {
+  display: block;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 35%;
+  right: 6%;
+  background: asset_data_url("activity/yes.png") no-repeat;
+  background-size: cover
+}
+
+@-webkit-keyframes answer {
+  0% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 150%, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes answer {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 150%, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0)
+  }
+}
+
+@media (min-width: 569px) and (max-width: 749px) {
+  section {
+    width: 100%;
+  }
+  .result {
+    margin: 0;
+    left: 0;
+  }
+  .yqyes {
+    padding-right: 10%
+  }
+}
+
+@media (min-width: 415px) and (max-width: 568px) {
+  body {
+    line-height: 28px;
+    font-size: 16px;
+  }
+  section {
+    width: 100%;
+  }
+  .actitop dt h4 {
+    font-size: 16px;
+    padding-bottom: 5px;
+    line-height: 30px;
+  }
+  .actitop dt {
+    font-size: 14px;
+  }
+  .actibut {
+    padding: 5px 0;
+    bottom: 5%;
+  }
+  .actibut dd {
+    padding-top: 10px;
+  }
+  .actibut dd button {
+    float: left;
+    font-size: 14px;
+  }
+  .actilist dl dd h3 {
+    font-size: 18px;
+    padding-bottom: 5px;
+  }
+  .actilist dl dd p {
+    padding: 5px 0
+  }
+  .actilist dl dd button {
+    font-size: 16px;
+  }
+  .ssq {
+    padding: 5px 0
+  }
+  .morebox a {
+    font-size: 18px;
+  }
+  .morebox a i {
+    width: 20px;
+    height: 20px;
+    background-size: cover
+  }
+  .result {
+    margin: 0;
+    left: 0;
+  }
+  .yqyes {
+    padding: 20px;
+    padding-right: 10%
+  }
+  .yqyes i {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+@media (min-width: 321px) and (max-width: 414px) {
+  body {
+    line-height: 24px;
+    font-size: 14px;
+  }
+  section {
+    width: 100%;
+  }
+  .actitop {
+    top: 2px;
+    padding: 10px 0;
+  }
+  .actitop dt h4 {
+    font-size: 16px;
+    padding: 0;
+    line-height: 24px;
+  }
+  .actitop dt p {
+    padding-bottom: 3px;
+  }
+  .actitop dt {
+    font-size: 14px;
+  }
+  .actibut {
+    padding: 5px 0;
+    bottom: 4%;
+  }
+  .actibut dd {
+    padding-top: 5px;
+  }
+  .actibut dd button {
+    float: left;
+    padding: 3% 0;
+    font-size: 14px;
+  }
+  .actilist dl dd h3 {
+    font-size: 18px;
+    padding-bottom: 5px;
+  }
+  .actilist dl dd p {
+    padding: 2px 0
+  }
+  .actilist dl dd button {
+    font-size: 14px;
+  }
+  .ssq {
+    padding: 2px 0
+  }
+  .ssq em {
+    margin-right: 6px;
+  }
+  .actizt dl dd .ssq em {
+    margin-right: 0;
+    margin-left: 6px;
+  }
+  .actilist dl dd p i {
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    background: asset_data_url('activity/ico.png') no-repeat;
+    font-style: normal;
+    background-size: cover
+  }
+  .actilist dl dd p i.ico1 {
+    background-position: -95px 0
+  }
+  .actilist dl dd p i.ico2 {
+    background-position: -118px 0
+  }
+  .actilist dl dd p i.ico3 {
+    background-position: -142px 0
+  }
+  .actilist dl dd p i.ico4 {
+    background-position: -165px 0
+  }
+  .actilist dl dd p i.ico5 {
+    background-position: -188px 0
+  }
+  .actilist dl dd p i.man {
+    width: 46px;
+    text-indent: 22px;
+    background-position: -0px 0
+  }
+  .actilist dl dd p i.woman {
+    width: 46px;
+    text-indent: 22px;
+    background-position: -46px 0
+  }
+  .morebox {
+    padding: 15px 0
+  }
+  .morebox a {
+    font-size: 16px;
+  }
+  .morebox a i {
+    width: 18px;
+    height: 18px;
+    background-size: cover
+  }
+  .hotlist dl dd h3 {
+    font-size: 16px;
+  }
+  .hotlist dl dd i {
+    width: 20px;
+    height: 20px;
+    background-size: cover
+  }
+  .hotlist dl dd p {
+    padding: 2px 0
+  }
+  .hotlist dl dd .szxx {
+    margin-top: 5px
+  }
+  .hotlist dl dd .szxx em {
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+  }
+  .result {
+    margin: 0;
+    left: 0;
+  }
+  .result .resultcon h3 {
+    font-size: 16px;
+  }
+  .result .resultcon button {
+    font-size: 16px;
+  }
+  .article .artzt h1 {
+    font-size: 20px;
+    line-height: 26px;
+  }
+  .yqyes {
+    padding: 20px;
+    left: 36%;
+    padding-right: 10%
+  }
+  .yqyes i {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 320px) {
+  body {
+    line-height: 22px;
+    font-size: 12px;
+  }
+  section {
+    width: 100%;
+    padding: 0;
+  }
+  .actitop {
+    top: 2px;
+    padding: 10px 0;
+  }
+  .actitop dt h4 {
+    font-size: 14px;
+    line-height: 22px;
+    padding-bottom: 8px;
+  }
+  .actitop dt p {
+    padding-bottom: 2px;
+  }
+  .actitop dt {
+    font-size: 12px;
+  }
+  .actibut {
+    padding: 5px 0;
+    bottom: 5px;
+  }
+  .actibut dt {
+    line-height: 20px;
+  }
+  .actibut dd {
+    padding-top: 10px;
+  }
+  .actibut dd button {
+    float: left;
+    padding: 2% 0;
+    font-size: 12px;
+  }
+  .actilist dl dd h3 {
+    font-size: 14px;
+    padding-bottom: 2px;
+  }
+  .actilist dl dd p {
+    padding: 2px 0
+  }
+  .actilist dl dd button {
+    font-size: 12px;
+  }
+  .ssq {
+    padding: 2px 0
+  }
+  .ssq em {
+    margin-right: 4px;
+  }
+  .actizt dl dd .ssq em {
+    margin-right: 0;
+    margin-left: 4px;
+  }
+  .actilist dl dd p i {
+    width: 16px;
+    height: 16px;
+    line-height: 20px;
+    background: asset_data_url("activity/ico.png") no-repeat;
+    font-style: normal;
+    background-size: cover
+  }
+  .actilist dl dd p i.ico1 {
+    background-position: -76px 0
+  }
+  .actilist dl dd p i.ico2 {
+    background-position: -95px 0
+  }
+  .actilist dl dd p i.ico3 {
+    background-position: -114px 0
+  }
+  .actilist dl dd p i.ico4 {
+    background-position: -132px 0
+  }
+  .actilist dl dd p i.ico5 {
+    background-position: -151px 0
+  }
+  .actilist dl dd p i.man {
+    width: 37px;
+    text-indent: 16px;
+    line-height: 16px;
+    background-position: -0px 0
+  }
+  .actilist dl dd p i.woman {
+    width: 37px;
+    text-indent: 16px;
+    line-height: 16px;
+    background-position: -37px 0
+  }
+  .morebox {
+    padding: 10px 0
+  }
+  .morebox a {
+    font-size: 14px;
+  }
+  .morebox a i {
+    width: 16px;
+    height: 16px;
+    margin-left: 5px;
+    background-size: cover
+  }
+  .hotlist dl dd h3 {
+    font-size: 14px;
+    padding-bottom: 2px;
+  }
+  .hotlist dl dd i {
+    width: 16px;
+    height: 16px;
+    background-size: cover
+  }
+  .hotlist dl dd p {
+    padding: 0
+  }
+  .hotlist dl dd .szxx {
+    margin-top: 2px
+  }
+  .hotlist dl dd .szxx em {
+    width: 18px;
+    height: 18px;
+    line-height: 18px
+  }
+  .result {
+    margin: 0;
+    left: 0;
+  }
+  .result .resultcon h3 {
+    font-size: 14px;
+  }
+  .result .resultcon button {
+    font-size: 14px;
+  }
+  .article .artzt h1 {
+    font-size: 16px;
+    line-height: 22px;
+  }
+  .yqyes {
+    padding: 15px;
+    left: 40%;
+    padding-right: 10%
+  }
+  .yqyes i {
+    width: 15px;
+    height: 15px;
+    top: 40%
+  }
+
+}

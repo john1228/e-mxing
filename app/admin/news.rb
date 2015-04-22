@@ -12,7 +12,7 @@ ActiveAdmin.register News do
       image_tag(news.cover.thumb.url, width: 69)
     end
     column '链接地址' do |news|
-      link_to('详情', "/html/news/#{news.url}", popup: true)
+      link_to('详情', news_detail_path(news))
     end
     actions
   end

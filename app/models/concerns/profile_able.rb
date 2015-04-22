@@ -3,7 +3,7 @@ module ProfileAble
   included do
     after_create :regist_to_easemob
   end
-  private
+  #private
   def regist_to_easemob
     easemob_token = Rails.cache.fetch(:easemob_token)||init_easemob_token
     result =Faraday.post do |req|

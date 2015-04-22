@@ -19,7 +19,7 @@ ActiveAdmin.register ServiceTrack do
     column('体验', :free_places)
     actions
   end
-  
+
 
   show do
     tabs do
@@ -35,9 +35,7 @@ ActiveAdmin.register ServiceTrack do
         end
       end
       tab '1-添加报名' do
-        form_for(service_track.appointments.new) do
-
-        end
+       
       end
     end
   end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150417055441) do
+ActiveRecord::Schema.define(version: 20150421062118) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,11 +36,14 @@ ActiveRecord::Schema.define(version: 20150417055441) do
     t.string   "title"
     t.string   "cover"
     t.string   "address"
-    t.string   "time"
-    t.string   "url"
     t.integer  "group_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.text     "content"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.integer  "activity_type"
+    t.integer  "theme"
   end
 
   create_table "admin_users", force: :cascade do |t|
@@ -66,6 +69,13 @@ ActiveRecord::Schema.define(version: 20150417055441) do
     t.string "url",       limit: 255
     t.date   "from_date"
     t.date   "end_date"
+  end
+
+  create_table "applies", force: :cascade do |t|
+    t.integer  "activity_id"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "appointments", force: :cascade do |t|
@@ -193,9 +203,11 @@ ActiveRecord::Schema.define(version: 20150417055441) do
   create_table "news", force: :cascade do |t|
     t.string   "title"
     t.string   "cover"
-    t.string   "url"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.text     "content"
+    t.integer  "cover_width"
+    t.integer  "cover_height"
   end
 
   create_table "photos", force: :cascade do |t|
@@ -276,7 +288,6 @@ ActiveRecord::Schema.define(version: 20150417055441) do
     t.string   "username",   limit: 255
     t.string   "password",   limit: 255
     t.string   "salt",       limit: 255
-    t.string   "token",      limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end

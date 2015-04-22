@@ -1,0 +1,24 @@
+﻿<section class="actizt">
+  <dl class="bgf">
+    <dt>主办方</dt>
+    <dd><%= @group.name %></dd>
+  </dl>
+</section>
+<section class="line-b">
+  <div class="hdcon">
+    <%= sanitize @activity.content %>
+  </div>
+  <div class="morebox"><a href="#">查看更多<i></i></a></div>
+</section>
+<section class="hotlist line-t">
+  <dl>
+    <dt><%= image_tag(@activity.cover.thumb.url) %></dt>
+    <dd>
+      <h3><%= @group.name %></h3><i></i>
+
+      <p><%= @group.intro %></p>
+
+      <div class="szxx"><em>7</em>86/100</div>
+    </dd>
+  </dl>
+</section>

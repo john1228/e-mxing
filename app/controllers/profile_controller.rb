@@ -8,7 +8,7 @@ class ProfileController < ApplicationController
   def complete
     user = User.new(username: @mobile, password: params[:password], name: params[:name], mobile: @mobile)
     if user.save
-      Rails.cache.write(user.token,)
+      Rails.cache.write(user.token, user)
       render json: {code: 1, data: {user: user.summary_json}}
     else
       render json: {code: 0, message: '创建用户失败'}

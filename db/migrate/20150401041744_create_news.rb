@@ -4,6 +4,9 @@ class CreateNews < ActiveRecord::Migration
       t.string :title
       t.string :cover
       t.string :url
+      t.text :content
+      t.integer :cover_width
+      t.integer :cover_height
 
       t.timestamps null: false
     end

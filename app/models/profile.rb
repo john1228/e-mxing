@@ -9,7 +9,7 @@ class Profile < ActiveRecord::Base
   alias_attribute :often, :often_stadium
 
   TAGS = ['会员', '认证', '私教']
-  BASE_NO = 10000
+  BASE_NO = 10
   mount_uploader :avatar, ProfileUploader
 
   class << self
@@ -22,6 +22,12 @@ class Profile < ActiveRecord::Base
     birth = birthday||Date.today.prev_year(15)
     years = Date.today.year - birth.year
     years + (Date.today < birth + years.year ? -1 : 0)
+  end
+
+  def interests_string
+    interests_ary = interests.split(',')
+    choose_interests = INTERESTS['items'].select { |item| interests_ary.include?(item['id'].to_s) }
+    choose_interests.collect { |choose| choose['name'] }.join(',')
   end
 
   def tags

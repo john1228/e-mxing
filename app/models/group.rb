@@ -8,7 +8,7 @@ class Group < ActiveRecord::Base
         no: id,
         easemob_id: easemob_id,
         name: name,
-        avatar: group_photos.first.present? ? "#{$host}#{group_photos.first.photo.url}" : '',
+        avatar: group_photos.first.present? ? "#{$host}#{group_photos.first.photo.thumb.url}" : '',
         photos: group_photos.collect { |photo| {
             no: photo.id,
             thumb: $host + photo.photo.thumb.url,
@@ -25,7 +25,7 @@ class Group < ActiveRecord::Base
         no: id,
         easemob_id: easemob_id,
         name: name,
-        avatar: group_photos.first.present? ? "#{$host}#{group_photos.first.photo.url}" : '',
+        avatar: group_photos.first.present? ? "#{$host}#{group_photos.first.photo.thumb.url}" : '',
         owner: User.find_by_mxid(owner).profile.summary_json,
         interests: interests
     }

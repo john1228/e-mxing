@@ -61,7 +61,7 @@ namespace :users do
   desc '注册到环信'
   task :regist_to_easemob => :environment do
     User.all.map { |user|
-      user.regist_to_easemob
+      user.profile.regist_to_easemob
     }
   end
 

@@ -150,7 +150,7 @@ ActiveAdmin.setup do |config|
   # resources or you can disable them globally from here.
   #
   # config.breadcrumb = false
-
+  config.register_javascript 'ckeditor/init.js'
   # == Register Stylesheets & Javascripts
   #
   # We recommend using the built in Active Admin layout and loading

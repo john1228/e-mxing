@@ -77,6 +77,10 @@ Rails.application.routes.draw do
   get 'wap' => 'wap#index'
   get 'wap/film' => 'wap#film'
   get 'wap/course' => 'wap#course'
+
+  get 'news/:id' => 'news#show', as: :news_detail
+  get 'activities/:id' => 'activities#show', as: :activity_detail
+
   root 'home#index'
 end
 
