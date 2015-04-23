@@ -20,12 +20,12 @@
 <div class="yqyes" id="groupWin" style="display: none">请求发送成功<br>等待群主审核</div>
 <div class="yqyes" id="joinWin" style="display: none">请求发送成功</div>
 <script>
-    $("#btnJoinInAct").bind('click', function (event) {
+    $("#joinInAct").bind('click', function (event) {
         $.ajax({
-            type: "POST",
-            url: 'activities/<%=@activity.id%>',
+            type: "PUT",
+            url: window.location.pathname,
             header: {
-                token: <%=@token%>
+                token: "<%=@token%>"
             },
             data: {},
             success: function (result) {
@@ -36,10 +36,10 @@
             }
         });
     })
-    $("#btnJoinInGroup").bind('click', function (event) {
+    $("#joinInGroup").bind('click', function (event) {
         $.ajax({
             type: "POST",
-            url: window.location.pathname,
+            url: window.location.pathname + "/group",
             data: {},
             success: function (result) {
                 $("#groupWin").show();

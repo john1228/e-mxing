@@ -12,8 +12,8 @@ namespace :users do
 
   desc '用户登录 '
   task :login do
-    conn = Faraday.new(url: 'http://localhost')
-    response = conn.post '/users/login', {username: '18516691251', password: '123456'}
+    conn = Faraday.new(url: 'http://192.168.0.111:81')
+    response = conn.post '/users/login', {username: 'b4163b23-9a32-47cb-a608-c0bff2f8e229', password: '123456'}
     puts response.body
   end
 

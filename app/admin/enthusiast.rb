@@ -7,7 +7,7 @@ ActiveAdmin.register Enthusiast do
       link_to("#{enthusiast.profile_mxid}", admin_enthusiast_path(enthusiast))
     end
     column '昵称' do |enthusiast|
-      link_to("#{enthusiast.profile_name}", admin_enthusiast_path(enthusiast))
+      link_to(truncate("#{enthusiast.profile_name}"), admin_enthusiast_path(enthusiast))
     end
     column '头像' do |enthusiast|
       link_to(image_tag(enthusiast.profile_avatar.thumb.url, height: 70), admin_enthusiast_path(enthusiast))
@@ -36,19 +36,7 @@ ActiveAdmin.register Enthusiast do
       row('头像') { |profile| image_tag(profile.avatar.thumb.url) }
       row('签名') { |profile| profile.signature }
       row('性别') { |profile| profile.gender }
-      row('生日') { |profile| profile.birthday.strftime('%Y-%m-%d') }
+      row('生日') { |profile| profile.birthday.strftime('%Y-%m-%d') rescue Date.today.prev_year(15) }
     end
   end
-
-  # form html: {enctype: 'multipart/form-data'} do |f|
-  #   f.inputs '添加服务号' do
-  #     f.input :identity, as: :hidden, input_html: {value: 2}
-  #     f.input :username, label: '用户名'
-  #     f.input :password, label: '密码'
-  #     f.input :name, label: '昵称'
-  #     f.input :avatar, label: '头像', as: :file
-  #   end
-  #   f.actions
-  # end
-
 end

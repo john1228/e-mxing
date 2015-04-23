@@ -1,6 +1,5 @@
 ActiveAdmin.register_page "Dashboard" do
-  menu false
-  menu priority: 1, label: proc { I18n.t("active_admin.dashboard") }
+  menu priority: 1, label: '首页'
 
   content title: proc { I18n.t("active_admin.dashboard") } do
     columns do

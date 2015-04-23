@@ -39,7 +39,7 @@ Rails.application.routes.draw do
   post 'dynamics' => 'dynamics#create'
   delete 'dynamics/:id' => 'dynamics#destroy'
   #赞
-  post 'likes/dynamic' => 'like#create'
+  post 'likes/dynamic' => 'like#dynamic'
   post 'likes/showtime' => 'like#showtime'
   #评论
   get 'comments' => 'comments#show'
@@ -80,6 +80,9 @@ Rails.application.routes.draw do
 
   get 'news/:id' => 'news#show', as: :news_detail
   get 'activities/:id' => 'activities#show', as: :activity_detail
+  put 'activities/:id' => 'activities#apply', as: :apply_activity
+  post 'activities/:id' => 'activities#group', as: :join_in_group_of_activity
+
 
   root 'home#index'
 end

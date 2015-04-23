@@ -9,7 +9,7 @@ class Place < ActiveRecord::Base
     {
         mxid: 10000 + id,
         name: name||'',
-        avatar: $img_host+ '/' + (avatar.blank? ? "/default/user.jpg" : "profile/#{avatar}"),
+        avatar: $img_host+ '/' + (avatar.blank? ? "/default/user.jpg" : "profile/thumb_#{avatar}"),
         gender: gender||1,
         age: (user_age rescue 15),
         signature: signature,

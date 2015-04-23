@@ -31,6 +31,7 @@ gem 'ransack', github: 'activerecord-hackery/ransack'
 gem 'formtastic', github: 'justinfrench/formtastic'
 gem 'ckeditor', github: 'galetahub/ckeditor'
 
+gem 'cancan'
 
 gem 'pg', '0.18.1'
 gem 'rgeo'
