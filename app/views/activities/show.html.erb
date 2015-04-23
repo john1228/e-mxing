@@ -1,4 +1,5 @@
 ﻿<section class="acti" style="background:url(<%=@activity.cover.url%>) no-repeat; background-size:cover;">
+  <div class="bgtu"><%= image_tag(@activity.cover.url) %><i></i></div>
   <dl class="actitop">
     <dt>
     <h4><%= @activity.title %></h4>
@@ -22,8 +23,8 @@
 
         <p>群組10人</p></dt>
         <dd>
-          <button>报名参加</button>
-          <button>加群讨论</button>
+          <button id="btnJoinInAct">报名参加</button>
+          <button id="btnJoinInGroup">加群讨论</button>
         </dd>
       </dl>
   <% else %>

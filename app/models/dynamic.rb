@@ -14,32 +14,8 @@ class Dynamic < ActiveRecord::Base
     def latest
       order(id: :desc).first
     end
-
-    def top
-      where(top: 1).order(id: :desc).first
-    end
-
-    def create_showtime(showtime_params)
-      dynamic = new(content: showtime_params[:content], top: TOP)
-      if dynamic.save
-        dynamic.create_dynamic_film(title: showtime_params[:title], cover: showtime_params[:cover], film: showtime_params[:film])
-      else
-        false
-      end
-    end
   end
 
-  def showtime_json
-    {
-        title: dynamic_film.title,
-        film: {
-            cover: $host + dynamic_film.cover.thumb.url,
-            film: dynamic_film.film.hls
-        },
-        likes: likes.count,
-        comments: dynamic_comments.count
-    }
-  end
 
   def as_json
     json_hash = {

@@ -12,7 +12,7 @@ class ShowtimeController < ApplicationController
       render json: {
                  code: 1,
                  data: {
-                     showtime: showtime.showtime_json
+                     showtime: showtime.as_json
                  }
              }
     end

@@ -5,6 +5,20 @@ class Showtime<Dynamic
   attr_accessor :title
   attr_accessor :cover
   attr_accessor :film
+
+  def as_json
+    {
+        no: id,
+        title: title||'',
+        film: {
+            cover: $host + dynamic_film.cover.thumb.url,
+            film: dynamic_film.film.hls
+        },
+        likes: likes.count,
+        comments: dynamic_comments.count
+    }
+  end
+
   private
   def build_film
     build_dynamic_film(title: title, cover: cover, film: film)

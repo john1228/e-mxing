@@ -17,3 +17,36 @@
       </dl>
   <% end %>
 </section>
+<div class="yqyes" id="groupWin" style="display: none">请求发送成功<br>等待群主审核</div>
+<div class="yqyes" id="joinWin" style="display: none">请求发送成功</div>
+<script>
+    $("#btnJoinInAct").bind('click', function (event) {
+        $.ajax({
+            type: "POST",
+            url: 'activities/<%=@activity.id%>',
+            header: {
+                token: <%=@token%>
+            },
+            data: {},
+            success: function (result) {
+                $("#joinWin").show();
+                setTimeout(function () {
+                    $("#joinWin").fadeOut();
+                }, 3000)
+            }
+        });
+    })
+    $("#btnJoinInGroup").bind('click', function (event) {
+        $.ajax({
+            type: "POST",
+            url: window.location.pathname,
+            data: {},
+            success: function (result) {
+                $("#groupWin").show();
+                setTimeout(function () {
+                    $("#groupWin").fadeOut();
+                }, 3000)
+            }
+        });
+    })
+</script>
