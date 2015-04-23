@@ -65,6 +65,7 @@ Rails.application.routes.draw do
   get 'services/coaches' => 'services#coaches'
   #陪组文件
   get 'deploy/icon' => 'deploy#icon'
+  get 'deploy/banner' => 'deploy#banner'
   #系统接口
   post 'feedback' => 'system#feedback'
   post 'report' => 'system#report'

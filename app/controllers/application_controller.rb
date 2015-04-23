@@ -10,6 +10,10 @@ class ApplicationController < ActionController::Base
 
 
   def after_sign_in_path_for(resource_or_scope)
-    admin_custom_dashboards_path
+    if current_admin_user.is_service?
+      admin_service_path(current_admin_user.service)
+    else
+      admin_dashboard_path
+    end
   end
 end

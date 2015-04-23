@@ -8,6 +8,12 @@ class AdminUser < ActiveRecord::Base
   devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  belongs_to :service
+
   SUPER = 0
   SERVICE = 1
+
+  def is_service?
+    role.eql?(1)
+  end
 end

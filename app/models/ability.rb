@@ -7,12 +7,12 @@ class Ability
         can :manage, :all
       when AdminUser::SERVICE
         can [:read, :update, :destroy], Service, id: user.service_id
-        can [:index, :read, :create, :update, :destroy], :ServiceDynamic, service_id: user.service_id
-        can [:index, :read, :create, :update, :destroy], :ServiceMember, service_id: user.service_id
-        can [:index, :read, :create, :update, :destroy], :ServicePhoto, service_id: user.service_id
-        can [:index, :read, :create, :update, :destroy], :ServiceTrack, service_id: user.service_id
+        can :manage, ServiceDynamic, service: user.service
+        can :manage, ServiceMember, service: user.service
+        can :manage, ServicePhoto, service: user.service
+        can :manage, ServiceTrack, service: user.service
       else
-        can :manage, :Service
+        cannot :manage, :all
     end
   end
 end

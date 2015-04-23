@@ -10,4 +10,13 @@ class DeployController < ApplicationController
                }
            }
   end
+
+  def banner
+    render json: {
+               code: 1,
+               data: {
+                   banners: Banner.valid.collect { |banner| banner.as_json }
+               }
+           }
+  end
 end

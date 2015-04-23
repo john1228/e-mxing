@@ -11,10 +11,9 @@ class Service<User
 
   private
   def location
-
-    if often.present?
+    if address.present?
       conn = Faraday.new(:url => 'http://api.map.baidu.com')
-      result = conn.get '/geocoder/v2/', address: profile_often, output: 'json', ak: '61Vl2dO7CKCt0rvLKQiePGT5'
+      result = conn.get '/geocoder/v2/', address: address, output: 'json', ak: '61Vl2dO7CKCt0rvLKQiePGT5'
       json_string = JSON.parse(result.body)
       if place.nil?
         create_place(lonlat: "POINT(#{json_string['result']['location']['lng']} #{json_string['result']['location']['lat']})")
