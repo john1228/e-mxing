@@ -27,7 +27,7 @@ module UserAble
     if avatar.is_a?(String)
       build_profile(name: name,
                     remote_avatar_url: avatar,
-                    gender: gender,
+                    gender: gender||1,
                     signature: signature||'这家伙很懒,什么也没留下',
                     identity: identity||0,
                     birthday: birthday.blank? ? Date.today.prev_year(15) : birthday,
@@ -40,7 +40,7 @@ module UserAble
     else
       build_profile(name: name,
                     avatar: avatar,
-                    gender: gender,
+                    gender: gender||1,
                     signature: signature||'这家伙很懒,什么也没留下',
                     identity: identity||0,
                     birthday: birthday.blank? ? Date.today.prev_year(15) : birthday,
