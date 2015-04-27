@@ -8,7 +8,7 @@
             <label class="col-sm-2 control-label" for="service_name">登录名</label>
 
             <div class="col-sm-10">
-              <%= coach.text_field :username, class: 'form-control', placeholder: "请輸入您到服务号名称", value: coach.object.username %>
+              <%= coach.text_field :username, class: 'form-control', placeholder: "请输入登录用户名,请使用手机号", value: (coach.object.username rescue '') %>
             </div>
           </div>
           <div class="form-group form-group-sm">
@@ -22,21 +22,28 @@
             <label class="col-sm-2 control-label" for="service_signature">昵称</label>
 
             <div class="col-sm-10">
-              <%= coach.text_field :name, class: 'form-control', placeholder: "教练昵称", value: coach.object.profile_signature %>
+              <%= coach.text_field :name, class: 'form-control', placeholder: "教练昵称", value: (coach.object.profile_signature rescue '') %>
+            </div>
+          </div>
+          <div class="form-group form-group-sm">
+            <label class="col-sm-2 control-label" for="service_signature">头像</label>
+
+            <div class="col-sm-10">
+              <%= coach.file_field :avatar, value: (coach.object.profile_avatar rescue '') %>
             </div>
           </div>
           <div class="form-group form-group-sm">
             <label class="col-sm-2 control-label" for="service_address">生日</label>
 
             <div class="col-sm-10">
-              <%= coach.text_field :avatar, class: 'form-control', placeholder: "请输入教练生日", value: coach.object.profile_birthday %>
+              <%= coach.date_field :birthday, class: 'form-control', placeholder: "请输入教练生日", value: (coach.object.profile_birthday rescue '') %>
             </div>
           </div>
           <div class="form-group form-group-sm">
             <label class="col-sm-2 control-label" for="service_address">性别</label>
 
             <div class="col-sm-10">
-              <%= coach.select :gender, [['男', 0], ['女', 1]], class: 'form-control' %>
+              <%= coach.select :gender, [['男', 0], ['女', 1]], {selected: (coach.object.gender rescue 1)} %>
             </div>
           </div>
 
@@ -44,7 +51,7 @@
             <label class="col-sm-2 control-label" for="service_address">地址</label>
 
             <div class="col-sm-10">
-              <%= coach.text_field :address, class: 'form-control', placeholder: "请输入教练地址", value: coach.object.profile_address %>
+              <%= coach.text_field :address, class: 'form-control', placeholder: "请输入教练地址", value: (coach.object.profile_address rescue '') %>
             </div>
           </div>
 
@@ -52,7 +59,7 @@
             <label class="col-sm-2 control-label" for="service_address">健身目标</label>
 
             <div class="col-sm-10">
-              <%= coach.text_field :target, class: 'form-control', placeholder: "请输入健身目标", value: coach.object.profile_target %>
+              <%= coach.text_field :target, class: 'form-control', placeholder: "请输入健身目标", value: (coach.object.profile_target rescue '') %>
             </div>
           </div>
 
@@ -60,7 +67,7 @@
             <label class="col-sm-2 control-label" for="service_address">擅长领域</label>
 
             <div class="col-sm-10">
-              <%= coach.text_field :skill, class: 'form-control', placeholder: "请输入擅长领域", value: coach.object.profile_skill %>
+              <%= coach.text_field :skill, class: 'form-control', placeholder: "请输入擅长领域", value: (coach.object.profile_skill rescue '') %>
             </div>
           </div>
 
@@ -68,7 +75,7 @@
             <label class="col-sm-2 control-label" for="service_address">常去场馆</label>
 
             <div class="col-sm-10">
-              <%= coach.text_field :often, class: 'form-control', placeholder: "请输入常去场馆", value: coach.object.profile_often %>
+              <%= coach.text_field :often, class: 'form-control', placeholder: "请输入常去场馆", value: (coach.object.profile_often rescue '') %>
             </div>
           </div>
 
@@ -76,7 +83,7 @@
             <label class="col-sm-2 control-label" for="service_interests">健身服务</label>
 
             <div class="col-sm-10">
-              <%= coach.select(:hobby, INTERESTS['items'].map { |item| [item['name'], item['id']] }, {}, {multiple: true}) %>
+              <%= coach.select(:hobby, INTERESTS['items'].map { |item| [item['name'], item['id']] }, {selected: (coach.object.profile_interests.split(',') rescue []), include_blank: false}, {multiple: true}) %>
             </div>
           </div>
       <% end %>

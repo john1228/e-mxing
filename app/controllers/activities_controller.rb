@@ -1,4 +1,6 @@
 class ActivitiesController < ApplicationController
+  before_action :need_user, only: :mine
+
   def show
     @activity = Activity.find_by(id: params[:id])
     @group = Group.find_by(id: @activity.group_id)
@@ -18,6 +20,22 @@ class ActivitiesController < ApplicationController
   end
 
   def mine
+    render json: {
+               code: 1,
+               date: {
+                   activities: @user.applies.collect { |apply|
+                     apply.activity.as_json
+                   }
+               }
+           }
+  end
 
+  private
+  def need_user
+    @user = Rails.cache.fetch(request.headers[:token])
+    render json: {
+               code: 0,
+               message: '您还未登录'
+           } if @user.nil?
   end
 end

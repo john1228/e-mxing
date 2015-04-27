@@ -6,7 +6,7 @@ module UserAble
     after_update :update_profile
 
     has_one :profile, dependent: :destroy
-    delegate :mxid, :name, :avatar, :signature, :gender, :birthday, :address, :target, :skill, :often, :interests, :interests_string, to: :profile, prefix: true, allow_nil: false
+    delegate :mxid, :name, :avatar, :age, :tags, :signature, :gender, :birthday, :address, :target, :skill, :often, :interests, :interests_string, to: :profile, prefix: true, allow_nil: false
 
     has_many :photos, dependent: :destroy
     has_many :dynamics, dependent: :destroy
