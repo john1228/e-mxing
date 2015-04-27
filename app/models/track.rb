@@ -27,21 +27,7 @@ class Track < ActiveRecord::Base
       return type[0] if track_type.eql?(type[1])
     end
   end
-
-  def as_json
-    {
-        no: id,
-        track_type: type,
-        name: name,
-        intro: intro,
-        address: address,
-        start: start.strftime('%Y-%m-%d %H:%M'),
-        during: during,
-        avail: places-appointments.count,
-        free: free
-    }
-  end
-
+  
   def summary_json
     {
         no: id,
