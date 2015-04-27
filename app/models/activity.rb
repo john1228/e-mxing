@@ -39,7 +39,8 @@ class Activity < ActiveRecord::Base
         cover: $host + cover.thumb.url,
         address: address,
         time: "#{start_date}~#{end_date}",
-        url: $host + "/activities/#{id}"
+        url: $host + "/activities/#{id}",
+        applies: applies.count
     }
   end
 end
