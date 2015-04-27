@@ -1,6 +1,6 @@
 ActiveAdmin.register ServicePhoto do
   menu label: '照片牆'
-
+  config.filters = false
   belongs_to :service
   navigation_menu :service
 

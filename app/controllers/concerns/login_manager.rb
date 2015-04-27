@@ -9,7 +9,7 @@ module LoginManager
 
   private
   def find_user
-    @user = User.find_by_mxid(params[:mxid].to_i)
+    @user = Service.find_by_mxid(params[:mxid].to_i) ||User.find_by_mxid(params[:mxid].to_i)
     render json: {
                code: 0,
                message: '没有该用户',
@@ -17,7 +17,6 @@ module LoginManager
   end
 
   def need_user
-    logger.info request.headers[:token]
     @user = Rails.cache.fetch(request.headers[:token])
     render json: {
                code: 0,

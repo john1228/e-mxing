@@ -15,6 +15,9 @@ class ActivitiesController < ApplicationController
     else
       render json: {code: 0}
     end
+  end
+
+  def mine
 
   end
 end

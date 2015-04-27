@@ -32,6 +32,8 @@ gem 'formtastic', github: 'justinfrench/formtastic'
 gem 'ckeditor', github: 'galetahub/ckeditor'
 
 gem 'cancan'
+gem 'bootstrap-sass'
+gem 'bootstrap-multiselect-rails'
 
 gem 'pg', '0.18.1'
 gem 'rgeo'

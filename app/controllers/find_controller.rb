@@ -17,10 +17,10 @@ class FindController < ApplicationController
     render json: {
                code: 1,
                data: {
-                   group: '找到一起健身到小伙伴',
-                   service: '健身房开通啦,快快来关注',
-                   news: News.last.title||'还没有新闻',
-                   activity: Activity.last.title||'还没有活动'
+                   group: '海纳百川,',
+                   service: '一键关注，轻松掌握最新动态',
+                   news: '正确运动,健康饮食,告别亚健康',
+                   activity: '正确运动,健康饮食,告别亚健康'
                }
            }
   end

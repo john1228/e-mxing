@@ -7,13 +7,16 @@
 // For example, to change the sidebar width:
 // $sidebar-width: 242px;
 // Active Admin's got SASS!
-$skinActiveColor: orange;
-$skinHeaderBck: green;
-$panelHeaderBck: #00c1eb;
+$skinActiveColor: orangered;
+$skinHeaderBck: black;
+$panelHeaderBck: orangered;
 @import "active_admin/mixins";
 @import "active_admin/base";
 @import "active_skin";
 @import "fancybox";
+@import "bootstrap";
+@import "bootstrap-multiselect";
+
 //= require jquery-ui
 // Overriding any non-variable SASS must be done after the fact.
 // For example, to change the default status-tag color:
@@ -77,3 +80,4 @@ $panelHeaderBck: #00c1eb;
   filter: progid:DXImageTransform.Microsoft.gradient(GradientType=1, startColorstr=#80000000, endColorstr=#80000000);
   cursor: pointer;
 }
+

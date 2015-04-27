@@ -38,8 +38,8 @@ class Activity < ActiveRecord::Base
         title: title,
         cover: $host + cover.thumb.url,
         address: address,
-        time: time,
-        url: url
+        time: "#{start_date}~#{end_date}",
+        url: $host + "/activities/#{id}"
     }
   end
 end

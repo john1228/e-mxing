@@ -4,7 +4,7 @@ ActiveAdmin.register ServiceTrack do
   belongs_to :service
   navigation_menu :service
 
-  permit_params :track_type, :name, :intro, :address, :start, :during, :places, :free_places
+  permit_params :id, :track_type, :name, :intro, :address, :start, :during, :places, :free_places
 
   filter :begin, label: '开始时间'
   filter :track_type, label: '类型', as: :select, collection: Track::TYPE
@@ -35,7 +35,7 @@ ActiveAdmin.register ServiceTrack do
         end
       end
       tab '1-添加报名' do
-       
+
       end
     end
   end
@@ -53,18 +53,20 @@ ActiveAdmin.register ServiceTrack do
     end
   end
 
-  form do |f|
-    f.inputs '团操' do
-      f.input :track_type, label: '类型', as: :select, collection: INTERESTS['items'].map { |item| [item['name'], item['id']] }, prompt: '请选择类型'
-      f.input :coach_id, label: '教练', as: :select, collection: service.coaches.map { |coach| [coach.profile_name, coach.id] }, prompt: '请选择教练'
-      f.input :name, label: '名称'
-      f.input :intro, label: '介绍', input_html: {cols: 5, rows: 5}
-      f.input :address, label: '地址'
-      f.input :start, label: '开始时间', as: :string, input_html: {class: "hasDatetimePicker"}
-      f.input :during, label: '持续时间'
-      f.input :places, label: '人數'
-      f.input :free_places, label: '体验'
-    end
-    f.actions
-  end
+  form partial: 'form'
+
+  # form do |f|
+  #   f.inputs '团操' do
+  #     f.input :track_type, label: '类型', as: :select, collection: INTERESTS['items'].map { |item| [item['name'], item['id']] }, prompt: '请选择类型'
+  #     f.input :coach_id, label: '教练', as: :select, collection: service.coaches.map { |coach| [coach.profile_name, coach.id] }, prompt: '请选择教练'
+  #     f.input :name, label: '名称'
+  #     f.input :intro, label: '介绍', input_html: {cols: 5, rows: 5}
+  #     f.input :address, label: '地址'
+  #     f.input :start, label: '开始时间', as: :string, input_html: {class: "hasDatetimePicker"}
+  #     f.input :during, label: '持续时间'
+  #     f.input :places, label: '人數'
+  #     f.input :free_places, label: '体验'
+  #   end
+  #   f.actions
+  # end
 end

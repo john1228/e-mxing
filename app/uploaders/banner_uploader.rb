@@ -9,7 +9,7 @@ class BannerUploader < CarrierWave::Uploader::Base
   end
 
   version :thumb do
-    process :resize_to_fit => [750, 750]
+    process :resize_to_fit => [1038, 180]
   end
 
   def filename

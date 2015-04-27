@@ -61,6 +61,7 @@ class Profile < ActiveRecord::Base
         gender: gender||1,
         identity: identity,
         age: age,
+        birthday: birthday,
         address: address,
 
         target: target,

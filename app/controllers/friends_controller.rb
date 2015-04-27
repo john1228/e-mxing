@@ -13,7 +13,7 @@ class FriendsController < InheritedResources::Base
   end
 
   def find
-    profiles = Profile.where('name  ~* ? or id = ?', params[:keyword], params[:keyword].to_i)
+    profiles = Profile.where('name  ~* ? or id = ?', params[:keyword], "#{params[:keyword].to_i-10000}")
     render json: {
                code: 1,
                data: profiles.collect { |profile| profile.summary_json }
