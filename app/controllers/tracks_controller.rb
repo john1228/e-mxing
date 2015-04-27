@@ -14,7 +14,7 @@ class TracksController < ApplicationController
   end
 
   def show
-    track = Track.find_by(id: params[:id])
+    track = ServiceTrack.find_by(id: params[:id])
     if track.nil?
       render json: {
                  code: 0,
