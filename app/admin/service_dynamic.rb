@@ -37,31 +37,34 @@ ActiveAdmin.register ServiceDynamic do
   sidebar '评论 ', only: :show do
   end
 
-  form html: {enctype: 'multipart/form-data'} do |f|
-    tabs do
-      tab '0-文本' do
-        f.inputs '发表动态' do
-          f.input :top, label: '置顶为视频秀', as: :check_boxes, collection: [['', 1]]
-          f.input :content, label: '内容', input_html: {cols: 5, rows: 5}
-        end
-      end
-      tab '1-图片' do
-        f.inputs '图片' do
-          f.has_many :dynamic_images, heading: false do |dynamic_image|
-            dynamic_image.input :image, label: '照片', as: :file
-          end
-        end
-      end
-      tab '2-视频' do
-        f.inputs '视频', for: [:dynamic_film, f.object.dynamic_film||DynamicFilm.new] do |dynamic_film|
-          dynamic_film.input :title, label: '标题'
-          dynamic_film.input :cover, label: '封面', as: :file
-          dynamic_film.input :film, label: '视频', as: :file
-        end
-      end
-    end
-    f.actions
-  end
+  form partial: 'form'
+
+  #
+  # form html: {enctype: 'multipart/form-data'} do |f|
+  #   tabs do
+  #     tab '0-文本' do
+  #       f.inputs '发表动态' do
+  #         f.input :top, label: '置顶为视频秀', as: :check_boxes, collection: [['', 1]]
+  #         f.input :content, label: '内容', input_html: {cols: 5, rows: 5}
+  #       end
+  #     end
+  #     tab '1-图片' do
+  #       f.inputs '图片' do
+  #         f.has_many :dynamic_images, heading: false do |dynamic_image|
+  #           dynamic_image.input :image, label: '照片', as: :file
+  #         end
+  #       end
+  #     end
+  #     tab '2-视频' do
+  #       f.inputs '视频', for: [:dynamic_film, f.object.dynamic_film||DynamicFilm.new] do |dynamic_film|
+  #         dynamic_film.input :title, label: '标题'
+  #         dynamic_film.input :cover, label: '封面', as: :file
+  #         dynamic_film.input :film, label: '视频', as: :file
+  #       end
+  #     end
+  #   end
+  #   f.actions
+  # end
 
 
 end

@@ -84,8 +84,7 @@ Rails.application.routes.draw do
   get 'activities/:id' => 'activities#show', as: :activity_detail
   put 'activities/:id' => 'activities#apply', as: :apply_activity
   post 'activities/:id' => 'activities#group', as: :join_in_group_of_activity
-
-  get 'activities/mine' => 'activities#mine'
+  get 'activities' => 'activities#mine'
 
 
   root 'home#index'

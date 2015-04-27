@@ -1,5 +1,5 @@
 class ActivitiesController < ApplicationController
-  before_action :need_user, only: :mine
+  before_action :need_user, only: [:apply, :mine]
 
   def show
     @activity = Activity.find_by(id: params[:id])
@@ -9,9 +9,8 @@ class ActivitiesController < ApplicationController
   end
 
   def apply
-    user = User.first
     activity = Activity.find_by(id: params[:id])
-    apply = activity.applies.new(user_id: user.id)
+    apply = activity.applies.new(user_id: @user.id)
     if apply.save
       render json: {code: 1}
     else
