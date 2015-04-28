@@ -14,8 +14,8 @@ ActiveAdmin.register Dynamic do
   index title: '动态' do
     selectable_column
     column('内容') { |dynamic| dynamic.content }
-    column('图片') { |dynamic| image_tag(dynamic.dynamic_images.first.image.thumb.url) unless dynamic.dynamic_images.blank? }
-    column('视频') { |dynamic| video_tag(dynamic.dynamic_film.film.url, poster: dynamic.dynamic_film.cover.thumb.url) unless dynamic.dynamic_film.blank? }
+    column('图片') { |dynamic| image_tag(dynamic.dynamic_images.first.image.thumb.url, height: 70) unless dynamic.dynamic_images.blank? }
+    column('视频') { |dynamic| video_tag(dynamic.dynamic_film.film.url, poster: dynamic.dynamic_film.cover.thumb.url, controls: true, height: 70) unless dynamic.dynamic_film.blank? }
     actions
   end
 

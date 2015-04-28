@@ -19,7 +19,7 @@ module FindManager
 
   def groups
     {
-        recommend: Group.recommend.collect { |group| group.as_json },
+        recommend: Group.recommend.limit(2).collect { |group| group.as_json },
         nearby: GroupPlace.nearby(params[:lng], params[:lat]).page(params[:page]).collect { |group_place|
           group_place.group.as_json.merge(distance: group_place.distance.to_i)
         }

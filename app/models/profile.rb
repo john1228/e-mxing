@@ -31,7 +31,7 @@ class Profile < ActiveRecord::Base
   end
 
   def tags
-    [0, 0, identity.eql?(0) ? 0 : 1]
+    [0, identity.eql?(2) ? 1 : 0, identity.eql?(1) ? 1 : 0]
   end
 
   def mxid

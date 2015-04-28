@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   #用户登录和注册
   post 'users/login' => 'users#login'
   post 'users/sns' => 'users#sns'
+  put 'users' => 'users#update'
   delete 'users' => "users#logout"
   #个人资料
   get 'profile' => 'profile#index'

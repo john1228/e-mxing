@@ -20,20 +20,17 @@ class UsersController < ApplicationController
   def update
     if params[:password].present?
       if @user.password.eql?(Digest::MD5.hexdigest("#{password}--#{@user.salt}"))
-        @user.update(password: params[:new_password])
+        if @user.update(password: params[:new_password])
+          render json: {code: 1}
+        else
+          render json: {code: 0, message: '更新密码失败'}
+        end
       else
-        render json: {
-                   code: 0,
-                   message: '您输入到原密码错误'
-               }
+        render json: {code: 0, message: '您输入到原密码错误'}
       end
     else
-      @user.update(password: params[:new_password])
+      render json: {code: 0, message: '请输入原密码'}
     end
-    render json: {
-               code: 1,
-               message: "success"
-           }
   end
 
   def feedback

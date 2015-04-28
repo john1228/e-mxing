@@ -24,7 +24,7 @@
         $.ajax({
             type: "PUT",
             url: window.location.pathname,
-            header: {
+            headers: {
                 token: "<%=@token%>"
             },
             data: {},

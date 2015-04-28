@@ -21,7 +21,7 @@ class ActivitiesController < ApplicationController
   def mine
     render json: {
                code: 1,
-               date: {
+               data: {
                    activities: @user.applies.collect { |apply|
                      apply.activity.as_json
                    }
