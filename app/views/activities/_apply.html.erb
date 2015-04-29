@@ -19,22 +19,29 @@
 </section>
 <div class="yqyes" id="groupWin" style="display: none">请求发送成功<br>等待群主审核</div>
 <div class="yqyes" id="joinWin" style="display: none">请求发送成功</div>
+<div class="yqyes" id="authWin" style="display: none">您还未登录,请登录后重试</div>
 <script>
     $("#joinInAct").bind('click', function (event) {
-        $.ajax({
-            type: "PUT",
-            url: window.location.pathname,
-            headers: {
-                token: "<%=@token%>"
-            },
-            data: {},
-            success: function (result) {
-                $("#joinWin").show();
-                setTimeout(function () {
-                    $("#joinWin").fadeOut();
-                }, 3000)
-            }
-        });
+        token = "<%=@token%>";
+        if (token == "") {
+            $("#authWin").show();
+            setTimeout(function () {
+                $("#authWin").fadeOut();
+            }, 3000);
+        } else {
+            $.ajax({
+                type: "PUT",
+                url: window.location.pathname,
+                headers: {token: token},
+                data: {},
+                success: function (result) {
+                    $("#joinWin").show();
+                    setTimeout(function () {
+                        $("#joinWin").fadeOut();
+                    }, 3000)
+                }
+            });
+        }
     })
     $("#joinInGroup").bind('click', function (event) {
         $.ajax({

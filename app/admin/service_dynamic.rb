@@ -3,7 +3,7 @@ ActiveAdmin.register ServiceDynamic do
   belongs_to :service
   navigation_menu :service
   permit_params :top, :content,
-                dynamic_images_attributes: [:id, :image],
+                dynamic_image: [:id, :image],
                 dynamic_film_attributes: [:id, :title, :cover, :film]
 
   filter :content, label: '内容'

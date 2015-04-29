@@ -39,6 +39,8 @@ class GroupsController < ApplicationController
     group = Group.find_by(id: params[:id])
     if group.owner.eql?(@user.profile_mxid)
       if group.update(update_params)
+        @group.where(id: params[:del].split(',')).delete_all
+        (0...10).each { |photo_index| group.group_photos.create(photo: params["#{photo_index}"]) if params["#{photo_index}"].present? }
         render json: {code: 1}
       else
         render json: {code: 0, message: '修改群信息失败'}

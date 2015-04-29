@@ -28,7 +28,7 @@ ActiveAdmin.register Group do
   form do |f|
     f.inputs '添加群组' do
       f.input :name, label: '群名'
-      f.input :interests, label: '兴趣', as: :select, collection: Track::TYPE, multiple: true
+      f.input :interests, label: '兴趣', as: :select, collection: INTERESTS['items'].map { |item| [item['name'], item['id']] }, multiple: true
       f.input :intro, label: '介绍'
     end
     f.submit('确定')

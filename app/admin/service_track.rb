@@ -7,7 +7,7 @@ ActiveAdmin.register ServiceTrack do
   permit_params :id, :track_type, :name, :intro, :address, :start, :during, :places, :free_places
 
   filter :begin, label: '开始时间'
-  filter :track_type, label: '类型', as: :select, collection: Track::TYPE
+  filter :track_type, label: '类型', as: :select, collection: INTERESTS['items'].map { |item| [item['name'], item['id']] }
   index title: '轨迹列表' do
     selectable_column
     column('类型') { |track| track.type_name }

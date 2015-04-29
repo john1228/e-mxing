@@ -19,7 +19,7 @@ class GroupPhotosController < ApplicationController
   def create
     group_photo = @group.group_photos.new(photo: params[:photo])
     if group_photo.save
-      render json: {code: 1}
+      render json: {code: 1, data: {photo: group_photo.as_json}}
     else
       render json: {code: 0, message: '添加群相册失败'}
     end
