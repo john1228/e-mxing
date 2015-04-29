@@ -11,7 +11,7 @@ class Track < ActiveRecord::Base
   alias_attribute :free, :free_places
 
   def type_name
-    INTERESTS['items'].select { |item| interests_ary.include?(item['id'].to_s) }.join(',')
+    INTERESTS['items'].select { |item| type.eql?(item['id']) }.first['name']
   end
 
   def summary_json
