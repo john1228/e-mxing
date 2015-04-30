@@ -29,6 +29,12 @@ ActiveAdmin.register Service do
     actions
   end
 
+  controller do
+    def chat
+      @service = Service.find_by(id: params[:id])
+      render layout: false
+    end
+  end
 
   show do
     div do
@@ -39,12 +45,10 @@ ActiveAdmin.register Service do
             td link_to('动  态', admin_service_service_dynamics_path(service), class: :button)
             td link_to('团操', admin_service_service_tracks_path(service), class: :button)
             td link_to('旗下私教', admin_service_service_members_path(service), class: :button)
+            td link_to('聊天', chat_with_service_path(service), class: :button)
           end
         end
       end
-    end
-    panel '聊天' do
-      render partial: 'chat'
     end
   end
 

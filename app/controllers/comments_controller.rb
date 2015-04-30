@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
     render json: {
                code: 1,
                data: {
-                   comments: DynamicComment.where(dynamic_id: params[:no]).page(params[:page]||1).collect { |comment| comment.as_json }
+                   comments: DynamicComment.where(dynamic_id: params[:no]).order(id: :desc).page(params[:page]||1).collect { |comment| comment.as_json }
                }
            }
   end

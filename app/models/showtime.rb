@@ -9,7 +9,7 @@ class Showtime<Dynamic
   def as_json
     {
         no: id,
-        title: title||'',
+        title: dynamic_film.title,
         film: {
             cover: $host + dynamic_film.cover.thumb.url,
             film: dynamic_film.film.hls

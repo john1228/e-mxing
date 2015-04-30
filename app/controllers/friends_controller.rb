@@ -13,10 +13,21 @@ class FriendsController < InheritedResources::Base
   end
 
   def find
-    profiles = Profile.where('name  ~* ? or id = ?', params[:keyword], "#{params[:keyword].to_i-10000}")
+    case params[:type]
+      when 'person'
+        result = User.includes(:profile).where('profiles.name  ~* ?', params[:keyword])
+      when 'service'
+        result = Service.includes(:profile).where('profiles.name  ~* ?', params[:keyword])
+      when 'group'
+        result = Group.where('groups.name  ~* ?', params[:keyword])
+      else
+        result = []
+    end
     render json: {
                code: 1,
-               data: profiles.collect { |profile| profile.summary_json }
+               data: {
+                   "#{params[:type]}s" => result.collect { |item| item.summary_json }
+               }
            }
   end
 end

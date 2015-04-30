@@ -26,6 +26,6 @@ class Place < ActiveRecord::Base
   end
 
   def user_tags
-    [rand(1), rand(1), identity.eql?(0) ? 0 : 1]
+    [0, identity.eql?(2) ? 1 : 0, identity.eql?(1) ? 1 : 0]
   end
 end
