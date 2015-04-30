@@ -4,7 +4,7 @@ ActiveAdmin.register_page "Dashboard" do
   content title: proc { I18n.t("active_admin.dashboard") } do
     columns do
       column do
-        paginated_collection(User.order(id: :desc).page(params[:user_page]), param_name: :user_page) do
+        paginated_collection(User.order(id: :desc).page(params[:user_page]).per(5), param_name: :user_page) do
           table_for(collection, class: 'index_table') do
             column('美型号') { |user| user.profile.mxid }
             column('昵称') { |user| user.profile.name }

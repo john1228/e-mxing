@@ -3,6 +3,13 @@ class Group < ActiveRecord::Base
   scope :recommend, ->() {}
   attr_accessor :lng, :lat
 
+
+  def interests_string
+    interests_ary = interests.split(',')
+    choose_interests = INTERESTS['items'].select { |item| interests_ary.include?(item['id'].to_s) }
+    choose_interests.collect { |choose| choose['name'] }.join(',')
+  end
+
   def as_json
     {
         no: id,
@@ -27,7 +34,8 @@ class Group < ActiveRecord::Base
         name: name,
         avatar: group_photos.first.present? ? "#{$host}#{group_photos.first.photo.thumb.url}" : '',
         owner: User.find_by_mxid(owner).profile.summary_json,
-        interests: interests
+        interests: interests,
+        intro: intro
     }
   end
 end

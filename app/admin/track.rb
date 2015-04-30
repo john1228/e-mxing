@@ -24,13 +24,15 @@ ActiveAdmin.register Track do
     end
   end
 
-  form do |f|
-    f.inputs '添加运动轨迹' do
-      f.input :user_id, as: :hidden
-      f.input :track_type, label: '类型', as: :select, collection: INTERESTS['items'].map { |item| [item['name'], item['id']] }, prompt: '请选择'
-      f.input :start, label: '开始时间', as: :string, hint: content_tag(:span, "请按照以下格式输入: #{Time.now.strftime("%Y-%m-%d %H:%M")}", style: 'color:red')
-      f.input :during, label: '持续时间'
-    end
-    f.actions
-  end
+
+  form partial: 'form'
+  # form do |f|
+  #   f.inputs '添加运动轨迹' do
+  #     f.input :user_id, as: :hidden
+  #     f.input :track_type, label: '类型', as: :select, collection: INTERESTS['items'].map { |item| [item['name'], item['id']] }, prompt: '请选择'
+  #     f.input :start, label: '开始时间', as: :string, hint: content_tag(:span, "请按照以下格式输入: #{Time.now.strftime("%Y-%m-%d %H:%M")}", style: 'color:red')
+  #     f.input :during, label: '持续时间'
+  #   end
+  #   f.actions
+  # end
 end

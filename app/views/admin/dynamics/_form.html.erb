@@ -7,7 +7,7 @@
   </ul>
   <div id="myTabContent" class="tab-content">
     <div class="tab-pane fade in active" id='normal'>
-      <%= semantic_form_for([:admin, @service, @service_dynamic], html: {class: "form-horizontal"}) do |f| %>
+      <%= semantic_form_for([:admin, @enthusiast, @dynamic], html: {class: "form-horizontal"}) do |f| %>
           <fieldset class="inputs">
             <legend><span>文本动态</span></legend>
             <%= f.hidden_field :top, value: 0 %>
@@ -23,12 +23,12 @@
       <% end %>
     </div>
     <div class="tab-pane fade" id="image">
-      <%= semantic_form_for([:admin, @service, @service_dynamic], html: {class: "form-horizontal"}) do |f| %>
+      <%= semantic_form_for([:admin, @enthusiast, @dynamic], html: {class: "form-horizontal"}) do |f| %>
           <fieldset class="inputs">
             <legend><span>图片动态</span></legend>
             <%= f.hidden_field :top, value: 0 %>
             <div class="form-group form-group-sm">
-              <label class="col-sm-2 control-label" for="service_dynamic_content">动态内容</label>
+              <label class="col-sm-2 control-label" for="dynamic_content">动态内容</label>
 
               <div class="col-sm-10">
                 <%= f.text_area :content, class: 'form-control', placeholder: "请输入动态内容" %>
@@ -95,7 +95,7 @@
       <% end %>
     </div>
     <div class="tab-pane fade" id="film">
-      <%= semantic_form_for([:admin, @service, @service_dynamic], html: {class: "form-horizontal"}) do |f| %>
+      <%= semantic_form_for([:admin, @enthusiast, @dynamic], html: {class: "form-horizontal"}) do |f| %>
           <fieldset class="inputs">
             <legend><span>视频</span></legend>
             <%= f.hidden_field :top, value: 0 %>
@@ -127,7 +127,7 @@
       <% end %>
     </div>
     <div class="tab-pane fade" id="showtime">
-      <%= semantic_form_for([:admin, @service, @service_dynamic], html: {class: "form-horizontal"}) do |f| %>
+      <%= semantic_form_for([:admin, @enthusiast, @dynamic], html: {class: "form-horizontal"}) do |f| %>
           <fieldset class="inputs">
             <legend><span>視頻秀</span></legend>
             <%= f.hidden_field :top, value: 1 %>

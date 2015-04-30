@@ -87,6 +87,7 @@ Rails.application.routes.draw do
   post 'activities/:id' => 'activities#group', as: :join_in_group_of_activity
   get 'activities' => 'activities#mine'
 
+  get 'webchat' => 'webchat#index'
 
   root 'home#index'
 end

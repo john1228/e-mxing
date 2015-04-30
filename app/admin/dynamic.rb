@@ -55,26 +55,5 @@ ActiveAdmin.register Dynamic do
     end
   end
 
-  form html: {enctype: 'multipart/form-data'} do |f|
-    f.inputs '发表动态' do
-      f.input :user_id, as: :hidden
-      f.input :top, label: '置顶为视频秀', as: :check_boxes, collection: [['', 1]]
-      f.input :content, label: '内容', input_html: {cols: 5, rows: 5}
-      f.has_many :dynamic_images, heading: false do |dynamic_image|
-        dynamic_image.input :image, label: '照片', as: :file
-      end
-    end
-    f.inputs '图片' do
-      f.has_many :dynamic_images, heading: false do |dynamic_image|
-        dynamic_image.input :image, label: '图片', as: :file
-      end
-    end
-    f.inputs '视频', for: [:dynamic_film, f.object.dynamic_film||DynamicFilm.new] do |dynamic_film|
-      dynamic_film.input :title, label: '标题'
-      dynamic_film.input :cover, label: '封面', as: :file
-      dynamic_film.input :film, label: '视频', as: :file
-    end
-
-    f.actions
-  end
+  form partial: 'form'
 end

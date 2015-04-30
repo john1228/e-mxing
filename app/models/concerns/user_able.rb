@@ -12,7 +12,6 @@ module UserAble
     has_many :dynamics, dependent: :destroy
     has_many :dynamic_comments, dependent: :destroy
     has_many :tracks, dependent: :destroy
-    has_many :group_members, dependent: :destroy
     has_many :appointments, dependent: :destroy
     has_one :place, dependent: :destroy
     has_one :showtime

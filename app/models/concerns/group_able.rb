@@ -44,7 +44,13 @@ module GroupAble
   end
 
   def build_default_place
-    build_group_place(lonlat: "POINT(#{lng} #{lat})")
+    if lng.blank? || lat.blank?
+      owner_place = User.find_by_mxid(owner)
+      place = owner_place.lonlat
+    else
+      place = "POINT(#{lng} #{lat})"
+    end
+    build_group_place(lonlat: place)
     true
   end
 end

@@ -43,12 +43,12 @@ class CaptchaController < ApplicationController
   def binding
     profile = Profile.find_by(mobile: params[:mobile])
     if profile.nil?
-      render json: {code: 0, message: '该号码已绑定'}
-    else
       captcha = Captcha.create(mobile: params[:mobile])
       send_sms(params[:mobile], captcha.captcha)
       Rails.cache.write("#{@user.id}_binding", {action: 'binding', mobile: params[:mobile], captcha: captcha.captcha}, expires_in: 30*60)
       render json: {code: 1}
+    else
+      render json: {code: 0, message: '该号码已绑定'}
     end
   end
 

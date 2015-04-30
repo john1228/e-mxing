@@ -8,6 +8,7 @@ class Profile < ActiveRecord::Base
   has_one :place, through: :user
   alias_attribute :often, :often_stadium
 
+
   TAGS = ['会员', '认证', '私教']
   BASE_NO = 10000
   mount_uploader :avatar, ProfileUploader

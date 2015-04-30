@@ -1,5 +1,7 @@
 class Dynamic < ActiveRecord::Base
   belongs_to :user
+  after_save :check_images
+
   has_many :dynamic_images, dependent: :destroy
   has_one :dynamic_film, dependent: :destroy
   has_many :dynamic_comments, dependent: :destroy
@@ -8,6 +10,9 @@ class Dynamic < ActiveRecord::Base
   accepts_nested_attributes_for :dynamic_images
   accepts_nested_attributes_for :dynamic_film
 
+  attr_accessor :img_1, :img_2, :img_3, :img_4, :img_5, :img_6, :img_7, :img_8
+
+
   TOP = 1
 
   class<<self
@@ -15,7 +20,6 @@ class Dynamic < ActiveRecord::Base
       order(id: :desc).first
     end
   end
-
 
   def as_json
     json_hash = {
@@ -55,5 +59,17 @@ class Dynamic < ActiveRecord::Base
         content: content,
         image: image.present? ? $host + image.thumb.url : ''
     }
+  end
+
+  private
+  def check_images
+    dynamic_images.create(image: img_1) unless img_1.blank?
+    dynamic_images.create(image: img_2) unless img_2.blank?
+    dynamic_images.create(image: img_3) unless img_3.blank?
+    dynamic_images.create(image: img_4) unless img_4.blank?
+    dynamic_images.create(image: img_5) unless img_5.blank?
+    dynamic_images.create(image: img_6) unless img_6.blank?
+    dynamic_images.create(image: img_7) unless img_7.blank?
+    dynamic_images.create(image: img_8) unless img_8.blank?
   end
 end

@@ -6,9 +6,9 @@ ActiveAdmin.register Group do
   filter :name, label: '群名称'
   index do
     selectable_column
-    column '群名', :name
-    column '兴趣', :interests
-    column '介绍', :intro
+    column('群名', :name)
+    column('兴趣') { |group| group.interests_string }
+    column('介绍', :intro)
     actions
   end
 
@@ -25,12 +25,6 @@ ActiveAdmin.register Group do
       row('介绍') { group.intro }
     end
   end
-  form do |f|
-    f.inputs '添加群组' do
-      f.input :name, label: '群名'
-      f.input :interests, label: '兴趣', as: :select, collection: INTERESTS['items'].map { |item| [item['name'], item['id']] }, multiple: true
-      f.input :intro, label: '介绍'
-    end
-    f.submit('确定')
-  end
+
+  form partial: 'form'
 end

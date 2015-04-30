@@ -31,13 +31,20 @@ ActiveAdmin.register Service do
 
 
   show do
-    table style: 'width: 100%' do
-      tr do
-        td link_to('照片墙', admin_service_service_photos_path(service), class: :button)
-        td link_to('动  态', admin_service_service_dynamics_path(service), class: :button)
-        td link_to('团操', admin_service_service_tracks_path(service), class: :button)
-        td link_to('旗下私教', admin_service_service_members_path(service), class: :button)
+    div do
+      panel '资源' do
+        table style: 'width: 100%' do
+          tr do
+            td link_to('照片墙', admin_service_service_photos_path(service), class: :button)
+            td link_to('动  态', admin_service_service_dynamics_path(service), class: :button)
+            td link_to('团操', admin_service_service_tracks_path(service), class: :button)
+            td link_to('旗下私教', admin_service_service_members_path(service), class: :button)
+          end
+        end
       end
+    end
+    panel '聊天' do
+      render partial: 'chat'
     end
   end
 
@@ -53,18 +60,4 @@ ActiveAdmin.register Service do
   end
 
   form partial: 'form'
-  # form html: {enctype: 'multipart/form-data'} do |f|
-  #   f.inputs '资料' do
-  #     f.input :username, as: :hidden, input_html: {value: SecureRandom.uuid}
-  #     f.input :name, label: '昵称', input_html: {value: (f.object.profile_name rescue '')}
-  #     f.input :avatar, label: '头像', as: :file
-  #     f.input :signature, label: '简介', input_html: {value: (f.object.profile_signature rescue '')}
-  #     f.input :address, label: '地址', as: :select, collection: option_groups_from_collection_for_select(CITIES, 'id', 'name', 'id', 'name')
-  #
-  #     f.input :hobby, label: '健身服务', as: :check_boxes, collection: INTERESTS['items'].map { |item| [item['name'], item['id']] }
-  #     f.input :identity, as: :hidden, input_html: {value: 2}
-  #   end
-  #   f.actions
-  # end
-
 end
