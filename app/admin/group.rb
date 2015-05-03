@@ -1,7 +1,7 @@
 ActiveAdmin.register Group do
   menu label: '群组', priority: 3
 
-  permit_params :id, :name, :interests, :intro
+  permit_params :id, :name, :interests, :intro, :owner
 
   filter :name, label: '群名称'
   index do

@@ -45,8 +45,7 @@ module GroupAble
 
   def build_default_place
     if lng.blank? || lat.blank?
-      owner_place = User.find_by_mxid(owner).place
-      place = (owner_place.lonlat rescue nil)
+      place = (User.find_by_mxid(owner).place.lonlat rescue nil)
     else
       place = "POINT(#{lng} #{lat})"
     end
