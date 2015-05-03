@@ -1,8 +1,5 @@
 class User < ActiveRecord::Base
   include UserAble
-  validates_presence_of :username, message: '用户名不能为空'
-  validates_uniqueness_of :username, message: '用戶已注册'
-
   TYPE=[['健身爱好者', 0], ['私教', 1], ['商家', 2]]
 
 
@@ -19,7 +16,11 @@ class User < ActiveRecord::Base
 
   def summary_json
     profile.summary_json.merge(token: token)
-    profile.summary_json.merge(mobile: (mobile[0, 3]+"****"+ mobile[7, 4] rescue ''))
+    if mobile.start_with?("1")
+      profile.summary_json.merge(mobile: (mobile[0, 3]+"****"+ mobile[7, 4] rescue ''))
+    else
+      profile.summary_json.merge(mobile: '')
+    end
   end
 
 end
