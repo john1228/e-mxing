@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   end
 
   def summary_json
-    if mobile.start_with?("1")
+    if mobile.present? && mobile.start_with?("1")
       profile.summary_json.merge(mobile: (mobile[0, 3]+"****"+ mobile[7, 4] rescue ''), token: token)
     else
       profile.summary_json.merge(mobile: '', token: token)
