@@ -52,9 +52,11 @@ module UserAble
   end
 
   def encrypted_password
-    salt_arr = %w"a b c d e f g h i j k l m n o p q r s t u v w x y z 0 1 2 3 4 5 6 7 8 9"
-    self.salt = salt_arr.sample(18).join
-    self.password = Digest::MD5.hexdigest("#{password}|#{self.salt}")
+    unless password.length==32
+      salt_arr = %w"a b c d e f g h i j k l m n o p q r s t u v w x y z 0 1 2 3 4 5 6 7 8 9"
+      self.salt = salt_arr.sample(18).join
+      self.password = Digest::MD5.hexdigest("#{password}|#{self.salt}")
+    end
   end
 
   def update_profile
