@@ -1,7 +1,15 @@
 ActiveAdmin.register Group do
   menu label: '群组', priority: 3
 
-  permit_params :id, :name, :interests, :intro, :owner
+  permit_params :id, :name, :hobby, :intro, :owner
+  before_filter :adjust, only: [:create, :update]
+
+  controller do
+    def adjust
+      params[:group][:hobby].reject! { |item| item.blank? }
+      params[:group][:hobby] = params[:group][:hobby].join(',')
+    end
+  end
 
   filter :name, label: '群名称'
   index do

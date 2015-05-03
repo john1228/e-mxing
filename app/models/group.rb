@@ -2,6 +2,7 @@ class Group < ActiveRecord::Base
   include GroupAble
   scope :recommend, ->() {}
   attr_accessor :lng, :lat
+  alias_attribute :hobby, :interests
 
 
   def interests_string
