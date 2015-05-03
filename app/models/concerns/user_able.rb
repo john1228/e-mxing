@@ -60,17 +60,16 @@ module UserAble
   end
 
   def update_profile
-    profile.update(name: name,
-                   avatar: avatar,
-                   gender: gender,
+    profile.update(name: name||profile_name,
+                   avatar: avatar||profile_avatar,
+                   gender: gender||profile_gender,
                    signature: signature||'这家伙很懒,什么也没留下',
-                   identity: identity||0,
+                   identity: identity||profile_gender,
                    birthday: birthday.blank? ? Date.today.prev_year(15) : birthday,
-                   address: address||'',
-                   target: target||'',
-                   skill: skill||'',
-                   often: often||'',
-                   interests: interests||'',
-                   mobile: mobile||'')
+                   address: address||profile_address,
+                   target: target||profile_target,
+                   skill: skill||profile_skill,
+                   often: often||profile_often,
+                   interests: interests||profile_interests)
   end
 end
