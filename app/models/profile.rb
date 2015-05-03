@@ -70,7 +70,8 @@ class Profile < ActiveRecord::Base
         often: often_stadium,
         interests: interests,
 
-        tags: tags
+        tags: tags,
+        mobile: mobile
     }
   end
 

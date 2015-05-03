@@ -96,6 +96,8 @@ a:hover {
   border: 1px #666666 solid;
   height: auto;
   margin: 0 auto;
+  margin-top: 80px;
+  margin-left: 120px;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
@@ -465,7 +467,7 @@ label.online {
 }
 
 label.offline {
-  background: asset_data_url('webchat/status.gif') no-repeat 0 -11px;
+  background: url('webchat/status.gif') no-repeat 0 -11px;
   bottom: 4px;
   _top: 25px;
   align: center

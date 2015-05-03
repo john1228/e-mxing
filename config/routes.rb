@@ -89,6 +89,8 @@ Rails.application.routes.draw do
 
   get '/admin/services/:id/chat' => 'admin/services#chat', as: :chat_with_service
 
+  get 'webchat' => 'webchat#index'
+
   root 'home#index'
 end
 
