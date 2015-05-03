@@ -41,8 +41,8 @@ class CaptchaController < ApplicationController
 
 
   def binding
-    profile = Profile.find_by(mobile: params[:mobile])
-    if profile.nil?
+    user = User.find_by(mobile: params[:mobile])
+    if user.nil?
       captcha = Captcha.create(mobile: params[:mobile])
       send_sms(params[:mobile], captcha.captcha)
       Rails.cache.write("#{@user.id}_binding", {action: 'binding', mobile: params[:mobile], captcha: captcha.captcha}, expires_in: 30*60)
