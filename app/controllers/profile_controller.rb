@@ -6,7 +6,7 @@ class ProfileController < ApplicationController
   end
 
   def complete
-    user = User.new(username: @mobile, password: params[:password], name: params[:name], mobile: @mobile)
+    user = User.new(mobile: @mobile, password: params[:password], name: params[:name])
     if user.save
       Rails.cache.write(user.token, user)
       render json: {code: 1, data: {user: user.summary_json}}

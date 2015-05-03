@@ -48,7 +48,7 @@ class Profile < ActiveRecord::Base
         age: age,
         signature: signature,
         tags: tags,
-        identity: identity
+        identity: identity,
     }
   end
 
@@ -70,8 +70,7 @@ class Profile < ActiveRecord::Base
         often: often_stadium,
         interests: interests,
 
-        tags: tags,
-        mobile: mobile
+        tags: tags
     }
   end
 

@@ -53,9 +53,8 @@ module CaptchaManager
           Rails.cache.write(new_token, mobile)
           render json: {code: 1, data: {token: new_token}}
         elsif action.eql?('change')
-          user = Profile.find_by(mobile: mobile).user rescue nil
+          user = User.find_by(mobile: mobile)
           update_result = user.update(password: params[:password]) rescue false
-
           if update_result
             Rails.cache.write(user.token, user)
             render json: {code: 1, data: {user: user.summary_json}}
@@ -63,7 +62,7 @@ module CaptchaManager
             render json: {code: 0, message: '修改密码失败'}
           end
         elsif action.eql?('binding')
-          bind_result = binding_user.profile.update(mobile: mobile) rescue false
+          bind_result = binding_user.update(mobile: mobile) rescue false
           if bind_result
             render json: {code: 1}
           else

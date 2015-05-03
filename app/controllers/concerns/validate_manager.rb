@@ -17,7 +17,7 @@ module ValidateManager
   end
 
   def verify_password
-    user = User.find_by(username: params[:username])
+    user = User.find_by(mobile: params[:username])
     if user.nil?
       render json: {
                  code: 0,
@@ -38,14 +38,14 @@ module ValidateManager
   end
 
   def verify_sns
-    @user = User.find_by(username: "#{params[:sns_name]}_#{params[:sns_id]}")
+    @user = User.find_by(sns: "#{params[:sns_name]}_#{params[:sns_id]}")
     if @user.nil?
       if params[:sns_name].eql?('weixin')
         avatar_array = params[:avatar].split('/')
         avatar_array.last
       end
       @user = User.create(
-          username: "#{params[:sns_name]}_#{params[:sns_id]}",
+          sns: "#{params[:sns_name]}_#{params[:sns_id]}",
           name: params[:name],
           avatar: params[:avatar],
           gender: params[:gender],

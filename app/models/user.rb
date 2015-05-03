@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
 
   def summary_json
     profile.summary_json.merge(token: token)
+    profile.summary_json.merge(mobile: (mobile[0, 3]+"****"+ mobile[7, 4] rescue ''))
   end
 
 end

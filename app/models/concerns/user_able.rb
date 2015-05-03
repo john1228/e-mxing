@@ -16,7 +16,7 @@ module UserAble
     has_one :place, dependent: :destroy
     has_one :showtime
     has_many :applies
-    attr_accessor :name, :avatar, :gender, :signature, :identity, :birthday, :address, :target, :skill, :often, :interests, :mobile
+    attr_accessor :name, :avatar, :gender, :signature, :identity, :birthday, :address, :target, :skill, :often, :interests
 
     alias_attribute :hobby, :interests
   end
@@ -34,8 +34,7 @@ module UserAble
                     target: target||'',
                     skill: skill||'',
                     often: often||'',
-                    interests: interests||'',
-                    mobile: mobile||'')
+                    interests: interests||'')
     else
       build_profile(name: name,
                     avatar: avatar,
@@ -47,8 +46,7 @@ module UserAble
                     target: target||'',
                     skill: skill||'',
                     often: often||'',
-                    interests: interests||'',
-                    mobile: mobile||'')
+                    interests: interests||'')
     end
     true
   end
