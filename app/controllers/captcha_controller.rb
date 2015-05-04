@@ -21,8 +21,8 @@ class CaptchaController < ApplicationController
   end
 
   def change
-    profile = Profile.find_by(mobile: params[:mobile])
-    if profile.nil?
+    user = User.find_by(mobile: params[:mobile])
+    if user.nil?
       render json: {
                  code: 0,
                  message: '该号码还未注册'
