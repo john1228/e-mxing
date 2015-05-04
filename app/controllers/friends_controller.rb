@@ -15,11 +15,11 @@ class FriendsController < InheritedResources::Base
   def find
     case params[:type]
       when 'person'
-        result = User.includes(:profile).where('profiles.name  ~* ?', params[:keyword])
+        result = User.joins(:profile).where('profiles.name  ~* ? or profiles.id=?', params[:keyword], (params[:keyword].to_i-Profile::BASE_NO))
       when 'service'
-        result = Service.includes(:profile).where('profiles.name  ~* ?', params[:keyword])
+        result = Service.joins(:profile).where('profiles.name  ~* ? or profiles.id=?', params[:keyword], (params[:keyword].to_i-Profile::BASE_NO))
       when 'group'
-        result = Group.where('groups.name  ~* ?', params[:keyword])
+        result = Group.where('groups.name  ~* ? or groups.id = ?', params[:keyword], params[:keyword].to_i)
       else
         result = []
     end

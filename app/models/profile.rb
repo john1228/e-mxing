@@ -73,5 +73,4 @@ class Profile < ActiveRecord::Base
         tags: tags
     }
   end
-
 end
