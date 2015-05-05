@@ -44,14 +44,7 @@ class FindController < ApplicationController
       when 'shows'
         data = {shows: shows}
       when 'ranks'
-        data = {
-            ranks: ranks.collect { |rank|
-              {
-                  user: User.find_by(id: rank[0]).summary_json,
-                  likes: rank[1]
-              }
-            }
-        }
+        data = {ranks: ranks}
       else
         data = {}
     end

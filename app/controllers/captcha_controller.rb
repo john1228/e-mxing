@@ -7,7 +7,7 @@ class CaptchaController < ApplicationController
       captcha = generate_captcha
       send_sms(params[:mobile], captcha)
       mobile_token = Digest::MD5.hexdigest(params[:mobile])
-      Rails.cache.write(mobile_token, {action: 'regist', mobile: params[:mobile], captcha: captcha}, expires_in: 30*60)
+      Rails.cache.write(mobile_token, {action: 'regist', mobile: params[:mobile], captcha: captcha}, expires_in: 30.minutes)
       render json: {
                  code: 1,
                  data: {token: mobile_token}
@@ -31,7 +31,7 @@ class CaptchaController < ApplicationController
       captcha = generate_captcha
       send_sms(params[:mobile], captcha)
       mobile_token = Digest::MD5.hexdigest(params[:mobile])
-      Rails.cache.write(mobile_token, {action: 'change', mobile: params[:mobile], captcha: captcha}, expires_in: 30*60)
+      Rails.cache.write(mobile_token, {action: 'change', mobile: params[:mobile], captcha: captcha}, expires_in: 30.minutes)
       render json: {
                  code: 1,
                  data: {token: mobile_token}
@@ -45,7 +45,7 @@ class CaptchaController < ApplicationController
     if user.nil?
       captcha = generate_captcha
       send_sms(params[:mobile], captcha)
-      Rails.cache.write("#{@user.id}_binding", {action: 'binding', mobile: params[:mobile], captcha: captcha}, expires_in: 30*60)
+      Rails.cache.write("#{@user.id}_binding", {action: 'binding', mobile: params[:mobile], captcha: captcha}, expires_in: 30.minutes)
       render json: {code: 1}
     else
       render json: {code: 0, message: '该号码已绑定'}
