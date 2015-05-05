@@ -1,0 +1,5 @@
+﻿<div class="artzt">
+  <h1><%= @show.title %></h1>
+  <em>美型新闻 <%= @show.created_at.strftime('%m-%d %H:%M') %></em>
+</div>
+<div class="artcon"><%= sanitize @show.content %></div>

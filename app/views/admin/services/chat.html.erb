@@ -50,7 +50,7 @@
               "display": "block"
           });
           var login_userEle = document.getElementById("login_user").children[0];
-          login_userEle.innerHTML = <%=@service.profile_name%> +"(" + <%=@service.profile_mxid%> +")";
+          login_userEle.innerHTML = curUserId;
           login_userEle.setAttribute("title", curUserId);
       };
       //登录之前不显示web对话框
@@ -416,8 +416,6 @@
 
       //登录系统时的操作方法
       var login = function () {
-
-
           var user = $("#username").val();
           var pass = $("#password").val();
           if (user == '' || pass == '') {
@@ -500,8 +498,6 @@
               if (userName in cache) {
                   continue;
               }
-              var user = '<%= User.find_by_mxid("'+ username +'")%>';
-
               cache[userName] = true;
               var lielem = $('<li>').attr({
                   'id': userName,
@@ -512,7 +508,7 @@
               }).click(function () {
                   chooseContactDivClick(this);
               });
-              $('<img>').attr("src", <%=image_url('webchat/head/contact_normal.png')%>).appendTo(
+              $('<img>').attr("src", "img/head/contact_normal.png").appendTo(
                       lielem);
               $('<span>').html(userName).appendTo(lielem);
               $('#contactlistUL').append(lielem);
@@ -548,7 +544,7 @@
                   chooseContactDivClick(this);
               });
               $('<img>').attr({
-                  'src': <%=image_url('webchat/head/group_normal.png')%>
+                  'src': 'img/head/group_normal.png'
               }).appendTo(lielem);
               $('<span>').html(roomsName).appendTo(lielem);
               $('#contactgrouplistUL').append(lielem);
@@ -1595,9 +1591,9 @@
     <table>
       <tr>
         <td width="65%"><label for="username">用户名:</label> <input
-        type="text" name="username" id="username" tabindex="1" value="<%= @service.profile_mxid %>"/>
-          <label for="password">密码:</label> <input type="password"
-                                                   name="password" id="password" tabindex="2" value="123456"/></td>
+        type="text" name="username" value="<%= @service.profile_mxid %>" id="username" tabindex="1"/>
+          <label for="password">密码:</label> <input type="password" value="123456"
+                                                   name="password" id="password" tabindex="2"/></td>
       </tr>
     </table>
   </div>
@@ -1643,8 +1639,8 @@
 <div class="content" id="content" style="display: none">
   <div class="leftcontact" id="leftcontact">
     <div id="headerimg" class="leftheader">
-      <span><%= image_tag(@service.profile_avatar.thumb.url, alt: 'logo', class: 'img-circle', width: '60px', height: '60px', style: "margin-top: -40px; margin-left: 20px") %> </span>
-      <span id="login_user" class="login_user_title" title="<%= @service.profile_name %>(#{<%= @service.profile_mxid %>})"> <a class="leftheader-font" href="#"></a></span>
+      <span><%= image_tag('webchat/head/header2.jpg', alt: 'logo', class: 'img-circle', width: '60px', height: '60px', style: "margin-top: -40px; margin-left: 20px") %> </span>
+      <span id="login_user" class="login_user_title"> <a class="leftheader-font" href="#"></a></span>
       <span>
         <div class="btn-group" style="margin-left: 5px;">
           <button class="btn btn-inverse dropdown-toggle" data-toggle="dropdown">

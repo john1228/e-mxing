@@ -27,13 +27,14 @@ ActiveAdmin.register News do
     end
   end
 
+  form partial: 'form'
 
-  form html: {enctype: 'multipart/form-data'} do |f|
-    f.inputs '发布新闻' do
-      f.input :title, label: '标题'
-      f.input :cover, label: '封面', as: :file, hint: f.object.cover.present? ? image_tag(f.object.cover.url(:thumb), width: 69) : content_tag(:span, '未上传照片')
-      f.input :content, label: '内容', as: :ckeditor, hint: content_tag(:span, '内容插入图片时,请将图片到宽度设置到100%', style: 'color:red')
-    end
-    f.actions
-  end
+  # form html: {enctype: 'multipart/form-data'} do |f|
+  #   f.inputs '发布新闻' do
+  #     f.input :title, label: '标题'
+  #     f.input :cover, label: '封面', as: :file, hint: f.object.cover.present? ? image_tag(f.object.cover.url(:thumb), width: 69) : content_tag(:span, '未上传照片')
+  #     f.input :content, label: '内容', as: :ckeditor, hint: content_tag(:span, '内容插入图片时,请将图片到宽度设置到100%', style: 'color:red')
+  #   end
+  #   f.actions
+  # end
 end

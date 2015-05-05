@@ -31,10 +31,24 @@ module FindManager
   end
 
   def news
-    News.page(params[:page]).collect { |news| news.as_json }
+    News.page(params[:page]||1).collect { |news| news.as_json }
   end
 
   def activities
-    Activity.page(params[:page]).collect { |activity| activity.as_json }
+    Activity.page(params[:page]||1).collect { |activity| activity.as_json }
+  end
+
+  def shows
+    TypeShow.page(params[:page]||1).collect { |show| show.as_json }
+  end
+
+  def ranks
+    report_date = Date.today.at_beginning_of_week.prev_week.prev_week
+    ranks = Rails.cache.fetch(report_date)
+    if ranks.nil?
+      ranks = Like.where(like_type: Like::PERSON, created_at: report_date.prev_week..report_date).group(:liked_id).limit(50).order('count_id desc').count(:id)
+      Rails.cache.write(report_date, ranks)
+    end
+    ranks
   end
 end

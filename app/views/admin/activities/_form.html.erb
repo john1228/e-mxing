@@ -1,0 +1,64 @@
+﻿<%= form_for([:admin, @activity], html: {class: "form-horizontal"}) do |f| %>
+    <fieldset class="inputs">
+      <legend><span>添加活动</span></legend>
+      <div class="form-group form-group-sm">
+        <label class="col-sm-2 control-label" for="service_interests">活动类型</label>
+
+        <div class="col-sm-10">
+          <%= f.select(:activity_type, [['报名活动', 0], ['抽奖活动', 1]]) %>
+        </div>
+      </div>
+
+      <div class="form-group form-group-sm">
+        <label class="col-sm-2 control-label" for="service_interests">主办群</label>
+
+        <div class="col-sm-10">
+          <%= f.select(:group_id, Group.pluck(:name, :id)) %>
+        </div>
+      </div>
+      <div class="form-group form-group-sm">
+        <label class="col-sm-2 control-label" for="service_interests">标题</label>
+
+        <div class="col-sm-10">
+          <%= f.text_field(:title, class: 'form-control', placeholder: '请输入活动标题') %>
+        </div>
+      </div>
+      <div class="form-group form-group-sm">
+        <label class="col-sm-2 control-label" for="service_interests">封面</label>
+
+        <div class="col-sm-10">
+          <%= f.file_field(:cover) %>
+        </div>
+      </div>
+      <div class="form-group form-group-sm">
+        <label class="col-sm-2 control-label" for="service_interests">地址</label>
+
+        <div class="col-sm-10">
+          <%= f.text_field(:address, class: 'form-control', placeholder: '请输入活动地址') %>
+        </div>
+      </div>
+      <div class="form-group form-group-sm">
+        <label class="col-sm-2 control-label" for="service_interests">开始时间</label>
+
+        <div class="col-sm-10">
+          <%= f.text_field(:start_date, class: 'form-control', placeholder: "请输入活动开始时间,格式为: #{Time.now.strftime('%Y-%m-%d %H:%M')}") %>
+        </div>
+      </div>
+      <div class="form-group form-group-sm">
+        <label class="col-sm-2 control-label" for="service_interests">结束时间</label>
+
+        <div class="col-sm-10">
+          <%= f.text_field(:end_date, class: 'form-control', placeholder: "请输入活动结束时间,格式为: #{Time.now.strftime('%Y-%m-%d %H:%M')}") %>
+        </div>
+      </div>
+
+      <div class="form-group form-group-sm">
+        <label class="col-sm-2 control-label" for="service_interests">介绍</label>
+
+        <div class="col-sm-10">
+          <%= f.cktext_area(:content, placeholder: '请输入活动介绍') %>
+        </div>
+      </div>
+    </fieldset>
+    <%= f.submit('提交') %>
+<% end %>

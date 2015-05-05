@@ -20,7 +20,9 @@ class FindController < ApplicationController
                    group: '海纳百川,各路豪杰',
                    service: '一键关注，轻松掌握最新动态',
                    news: '正确运动,健康饮食,告别亚健康',
-                   activity: '各类户外活动,找寻属于你的~'
+                   activity: '各类户外活动,找寻属于你的~',
+                   show: '争相斗艳,你型你SHOW',
+                   rank: '各路达人，看谁笑傲榜首'
                }
            }
   end
@@ -39,6 +41,17 @@ class FindController < ApplicationController
         data = {news: news}
       when 'activities'
         data = {activities: activities}
+      when 'shows'
+        data = {shows: shows}
+      when 'ranks'
+        data = {
+            ranks: ranks.collect { |rank|
+              {
+                  user: User.find_by(id: rank[0]).summary_json,
+                  likes: rank[1]
+              }
+            }
+        }
       else
         data = {}
     end

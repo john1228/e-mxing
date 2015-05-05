@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150503082253) do
+ActiveRecord::Schema.define(version: 20150505024030) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -284,6 +284,15 @@ ActiveRecord::Schema.define(version: 20150503082253) do
     t.integer  "free_places", default: 0
     t.integer  "coach_id"
     t.integer  "during",      default: 60
+  end
+
+  create_table "type_shows", force: :cascade do |t|
+    t.string   "title"
+    t.string   "cover"
+    t.string   "url"
+    t.text     "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

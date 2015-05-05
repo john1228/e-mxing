@@ -82,6 +82,7 @@ Rails.application.routes.draw do
   get 'wap/course' => 'wap#course'
 
   get 'news/:id' => 'news#show', as: :news_detail
+  get 'type_shows/:id' => 'type_shows#show', as: :type_show_detail
   get 'activities/:id' => 'activities#show', as: :activity_detail
   put 'activities/:id' => 'activities#apply', as: :apply_activity
   post 'activities/:id' => 'activities#group', as: :join_in_group_of_activity
