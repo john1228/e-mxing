@@ -9,7 +9,7 @@ class ProfileUploader < CarrierWave::Uploader::Base
   end
 
   def default_url
-    "/images/default/user.jpg"
+    "/images/default/user.png"
   end
 
   version :thumb do

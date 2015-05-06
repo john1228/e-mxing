@@ -14,7 +14,7 @@ class LikeController < ApplicationController
   end
 
   def person
-    user = User.find_by_mxid(params[:mxid])
+    user = User.find_by_mxid(params[:mxid].to_i)
     begin
       user.likes.create(user_id: @user.id)
       render json: {code: 1}
