@@ -68,7 +68,7 @@ module FindManager
     end
     month_rank = ranks.map { |rank| {user: User.find_by(id: rank[0]).summary_json, likes: rank[1]} }
     info = {items: month_rank}
-    Rails.cache.write("#{report_date}|month", info, expires_in: 1.days)
+    Rails.cache.write("#{month_date}|month", info, expires_in: 1.days)
     info
   end
 end
