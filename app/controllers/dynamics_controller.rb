@@ -33,7 +33,10 @@ class DynamicsController < ApplicationController
       (0...10).each { |image_index| dynamic.dynamic_images.create(image: params["#{image_index}"]) if params["#{image_index}"].present? }
       dynamic.create_dynamic_film(cover: params[:cover], film: params[:film]) if params[:film].present?&&params[:cover].present?
       render json: {
-                 code: 1
+                 code: 1,
+                 data: {
+                     dynamic: dynamic.as_json
+                 }
              }
     else
       render json: {
