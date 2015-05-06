@@ -43,27 +43,32 @@ module FindManager
   end
 
   def ranks
-    ranks_hash = {}
-    week_date = Date.today.at_beginning_of_week
-    week_rank = Rails.cache.fetch("#{week_date}_w")
-    if week_rank.nil?
-      ranks = Like.where(like_type: Like::PERSON, created_at: week_date.prev_week..week_date).group(:liked_id).limit(50).order('count_id desc').count(:id)
-      week_rank = ranks.map { |rank| {user: User.find_by(id: rank[0]).summary_json, likes: rank[1]} }
-      Rails.cache.write("#{week_date}_w", week_rank, 7.days)
-    end
-    ranks_hash = ranks_hash.merge(week: {week: (week_date.strftime("%U").to_i -1), items: week_rank})
+    {
+        week: Rails.cache.fetch("#{Date.today.at_beginning_of_week}|week")||get_week_rank,
+        month: Rails.cache.fetch("#{Date.today}|month")
+    }
+  end
 
+  private
+  def get_week_rank
+    week_date = Date.today.at_beginning_of_week
+    ranks = Like.where(like_type: Like::PERSON, created_at: week_date.prev_week..week_date).group(:liked_id).limit(50).order('count_id desc').count(:id)
+    week_rank = ranks.map { |rank| {user: User.find_by(id: rank[0]).summary_json, likes: rank[1]} }
+    info = {week: (week_date.strftime("%U").to_i -1), items: week_rank}
+    Rails.cache.write("#{week_date}|week", info, expires_in: 7.days)
+    info
+  end
+
+  def get_month_week
     month_date = Date.today
-    month_rank = Rails.cache.fetch("#{month_date}_m")
-    if month_rank.nil?
-      if month_date==month_date.at_beginning_of_month
-        ranks = Like.where(like_type: Like::PERSON, created_at: month_date.yesterday.at_beginning_of_month..month_date).group(:liked_id).limit(50).order('count_id desc').count(:id)
-      else
-        ranks = Like.where(like_type: Like::PERSON, created_at: month_date.at_beginning_of_month..month_date).group(:liked_id).limit(50).order('count_id desc').count(:id)
-      end
-      month_rank = ranks.map { |rank| {user: User.find_by(id: rank[0]).summary_json, likes: rank[1]} }
-      Rails.cache.write("#{report_date}_m", month_rank, 1.days)
+    if month_date==month_date.at_beginning_of_month
+      ranks = Like.where(like_type: Like::PERSON, created_at: month_date.yesterday.at_beginning_of_month..month_date).group(:liked_id).limit(50).order('count_id desc').count(:id)
+    else
+      ranks = Like.where(like_type: Like::PERSON, created_at: month_date.at_beginning_of_month..month_date).group(:liked_id).limit(50).order('count_id desc').count(:id)
     end
-    ranks_hash.merge(month: {items: month_rank})
+    month_rank = ranks.map { |rank| {user: User.find_by(id: rank[0]).summary_json, likes: rank[1]} }
+    info = {items: month_rank}
+    Rails.cache.write("#{report_date}|month", info, expires_in: 1.days)
+    info
   end
 end
