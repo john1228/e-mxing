@@ -42,6 +42,7 @@ Rails.application.routes.draw do
   #赞
   post 'likes/dynamic' => 'like#dynamic'
   post 'likes/person' => 'like#person'
+  get 'likes' => 'like#count'
   #评论
   get 'comments' => 'comments#show'
   post 'comments' => 'comments#create'

@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   TYPE=[['健身爱好者', 0], ['私教', 1], ['商家', 2]]
   class<<self
     def find_by_mxid(mxid)
-      includes(:profile).where("profiles.id" => ((mxid - 10000) rescue 0)).first
+      includes(:profile).where("profiles.id" => ((mxid.to_i - 10000))).first
     end
   end
 
