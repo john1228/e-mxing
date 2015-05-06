@@ -19,7 +19,7 @@ class UsersController < ApplicationController
 
   def update
     if params[:password].present?
-      if @user.password.eql?(Digest::MD5.hexdigest("#{params[:password]}--#{@user.salt}"))
+      if @user.password.eql?(Digest::MD5.hexdigest("#{params[:password]}|#{@user.salt}"))
         if @user.update(password: params[:new_password])
           render json: {code: 1}
         else
