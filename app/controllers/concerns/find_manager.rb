@@ -45,7 +45,7 @@ module FindManager
   def ranks
     {
         week: Rails.cache.fetch("#{Date.today.at_beginning_of_week}|week")||get_week_rank,
-        month: Rails.cache.fetch("#{Date.today}|month")
+        month: Rails.cache.fetch("#{Date.today}|month")||get_month_week
     }
   end
 

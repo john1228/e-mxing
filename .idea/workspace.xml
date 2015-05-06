@@ -234,8 +234,8 @@
       <file leaf-file-name="find_manager.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/concerns/find_manager.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.39013454" vertical-offset="691" max-vertical-offset="1360">
-              <caret line="56" column="18" selection-start-line="56" selection-start-column="18" selection-end-line="56" selection-end-column="18" />
+            <state vertical-scroll-proportion="0.16143498" vertical-offset="691" max-vertical-offset="1360">
+              <caret line="47" column="71" selection-start-line="47" selection-start-column="71" selection-end-line="47" selection-end-column="71" />
               <folding />
             </state>
           </provider>
@@ -2485,8 +2485,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/concerns/find_manager.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39013454" vertical-offset="691" max-vertical-offset="1360">
-          <caret line="56" column="18" selection-start-line="56" selection-start-column="18" selection-end-line="56" selection-end-column="18" />
+        <state vertical-scroll-proportion="0.16143498" vertical-offset="691" max-vertical-offset="1360">
+          <caret line="47" column="71" selection-start-line="47" selection-start-column="71" selection-end-line="47" selection-end-column="71" />
           <folding />
         </state>
       </provider>
