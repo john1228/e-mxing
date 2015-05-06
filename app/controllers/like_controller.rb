@@ -15,7 +15,7 @@ class LikeController < ApplicationController
 
   def person
     user = User.find_by_mxid(params[:mxid])
-    like = Like.new(user_id: @user.id, liked_id: user.showtime.id, like_type: Like::PERSON)
+    like = Like.new(user_id: @user.id, liked_id: user.id, like_type: Like::PERSON)
     if like.save
       render json: {code: 1}
     else
