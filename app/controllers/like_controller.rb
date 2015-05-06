@@ -15,14 +15,11 @@ class LikeController < ApplicationController
 
   def person
     user = User.find_by_mxid(params[:mxid])
-    like = Like.new(user_id: @user.id, liked_id: user.id, like_type: Like::PERSON)
-    if like.save
+    begin
+      user.likes.create(user_id: @user.id)
       render json: {code: 1}
-    else
-      render json: {
-                 code: 0,
-                 message: '赞失败'
-             }
+    rescue
+      render json: {code: 0, message: '赞失败'}
     end
   end
 end

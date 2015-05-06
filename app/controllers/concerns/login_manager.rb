@@ -17,6 +17,7 @@ module LoginManager
   end
 
   def need_user
+    logger.info "用户token#{request.headers[:token]}"
     @user = Rails.cache.fetch(request.headers[:token])
     render json: {
                code: 0,
