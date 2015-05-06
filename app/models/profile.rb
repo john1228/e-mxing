@@ -56,7 +56,7 @@ class Profile < ActiveRecord::Base
   def as_json
     {
         mxid: mxid,
-        name: name,
+        name: name||'',
         avatar: $host + avatar.thumb.url,
         signature: signature,
         gender: gender||1,

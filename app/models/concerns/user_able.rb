@@ -4,21 +4,6 @@ module UserAble
     before_create :build_default_profile
     before_save :encrypted_password
     after_update :update_profile
-
-    has_one :profile, dependent: :destroy
-    delegate :mxid, :name, :avatar, :age, :tags, :signature, :gender, :birthday, :address, :target, :skill, :often, :interests, :interests_string, to: :profile, prefix: true, allow_nil: false
-
-    has_many :photos, dependent: :destroy
-    has_many :dynamics, dependent: :destroy
-    has_many :dynamic_comments, dependent: :destroy
-    has_many :tracks, dependent: :destroy
-    has_many :appointments, dependent: :destroy
-    has_one :place, dependent: :destroy
-    has_one :showtime
-    has_many :applies
-    attr_accessor :name, :avatar, :gender, :signature, :identity, :birthday, :address, :target, :skill, :often, :interests
-
-    alias_attribute :hobby, :interests
   end
 
   private

@@ -41,7 +41,7 @@ Rails.application.routes.draw do
   delete 'dynamics/:id' => 'dynamics#destroy'
   #赞
   post 'likes/dynamic' => 'like#dynamic'
-  post 'likes/showtime' => 'like#showtime'
+  post 'likes/person' => 'like#person'
   #评论
   get 'comments' => 'comments#show'
   post 'comments' => 'comments#create'

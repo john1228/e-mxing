@@ -2,7 +2,7 @@ class ProfileController < ApplicationController
   include LoginManager
 
   def index
-    render json: {code: 1, data: {profile: @user.profile.as_json}}
+    render json: {code: 1, data: {profile: @user.as_json}}
   end
 
   def complete
