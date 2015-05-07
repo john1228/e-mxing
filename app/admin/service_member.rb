@@ -3,7 +3,7 @@ ActiveAdmin.register ServiceMember do
   config.filters = false
   belongs_to :service
   navigation_menu :service
-  permit_params :service_id, coach_attributes: [:id, :username, :password, :identity,
+  permit_params :service_id, coach_attributes: [:id, :mobile, :password, :identity,
                                                 :name, :avatar, :gender, :identity, :birthday,
                                                 :address, :target, :skill, :often, :hobby]
 
