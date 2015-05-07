@@ -50,7 +50,6 @@ module UserAble
                    avatar: avatar||profile_avatar,
                    gender: gender||profile_gender,
                    signature: signature||'这家伙很懒,什么也没留下',
-                   identity: identity||profile_identity,
                    birthday: birthday.blank? ? Date.today.prev_year(15) : birthday,
                    address: address||profile_address,
                    target: target||profile_target,
