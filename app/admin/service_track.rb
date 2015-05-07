@@ -42,7 +42,7 @@ ActiveAdmin.register ServiceTrack do
 
   sidebar '轨迹详情', only: :show do
     attributes_table_for service_track do
-      row('类型') { service_track.track_type_value }
+      row('类型') { service_track.type_name }
       row('名称') { service_track.name }
       row('介绍') { service_track.intro }
       row('地址') { service_track.address }

@@ -4,7 +4,6 @@ class Group < ActiveRecord::Base
   attr_accessor :lng, :lat
   alias_attribute :hobby, :interests
 
-
   def interests_string
     interests_ary = interests.split(',')
     choose_interests = INTERESTS['items'].select { |item| interests_ary.include?(item['id'].to_s) }

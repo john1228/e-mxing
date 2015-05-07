@@ -4,7 +4,7 @@ class CreateDynamicFilms < ActiveRecord::Migration
       t.integer :dynamic_id
       t.string :cover
       t.string :film
-
+      t.string :title
       t.timestamps
     end
   end

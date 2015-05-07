@@ -5,6 +5,7 @@ class ServiceTrack<Track
 
   attr_accessor :dummy_start
 
+
   def as_json
     {
         no: id,
