@@ -22,7 +22,7 @@
       <dl class="xinxi">
         <dt>
         <div class="tx">
-          <%= image_tag(@actor.icon.url(:thumb), alt: '用户头像 ', width: 130, height: 130) %>
+          <%= image_tag(@actor.avatar.thumb.url, alt: '用户头像 ', width: 130, height: 130) %>
         </div>
         <div class="xm">
           <em><%= @actor.name %></em>
