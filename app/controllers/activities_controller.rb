@@ -33,7 +33,7 @@ class ActivitiesController < ApplicationController
   def need_user
     @user = Rails.cache.fetch(request.headers[:token])
     render json: {
-               code: 0,
+               code: -1,
                message: '您还未登录'
            } if @user.nil?
   end

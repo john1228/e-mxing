@@ -20,7 +20,7 @@ module LoginManager
     logger.info "用户token#{request.headers[:token]}"
     @user = Rails.cache.fetch(request.headers[:token])
     render json: {
-               code: 0,
+               code: -1,
                message: '您还未登录'
            } if @user.nil?
   end
