@@ -33,7 +33,7 @@ ActiveAdmin.register ServiceMember do
     coach = service_member.coach
     panel '私教信息' do
       attributes_table_for coach do
-        row('登录名') { coach.username }
+        row('登录名') { coach.mobile }
         row('昵称') { coach.profile_name }
         row('头像') { image_tag(coach.profile_avatar.thumb.url, height: 70) }
         row('生日') { coach.profile_birthday.strftime('%Y-%m-%d') }
