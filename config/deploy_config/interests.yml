@@ -109,10 +109,14 @@ items:
     hight: EC5B9F
     light: FAE5EF
   - id: 28
-    name: '剑术'
+    name: '剑道'
     hight: EC5B9F
     light: FAE5EF
   - id: 29
     name: '钓鱼'
     hight: EC5B9F
     light: FAE5EF
+  - id: 30
+    name: '其它'
+    hight: 00C1EB
+    light: C7EEF6
