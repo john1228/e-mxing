@@ -31,11 +31,11 @@ module FindManager
   end
 
   def news
-    News.page(params[:page]||1).collect { |news| news.as_json }
+    News.order(id: :desc).page(params[:page]||1).collect { |news| news.as_json }
   end
 
   def activities
-    Activity.page(params[:page]||1).collect { |activity| activity.as_json }
+    Activity.order(id: :desc).page(params[:page]||1).collect { |activity| activity.as_json }
   end
 
   def shows

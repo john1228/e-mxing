@@ -21,5 +21,6 @@ class Service<User
         place.update(lonlat: "POINT(#{json_string['result']['location']['lng']} #{json_string['result']['location']['lat']})")
       end
     end
+
   end
 end
