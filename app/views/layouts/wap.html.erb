@@ -4,7 +4,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
   <%= stylesheet_link_tag 'wap/wap', media: 'all', 'data-turbolinks-track' => true %>
-  <title>健身手机版</title>
+  <title><%= @dynamic.nil? ? "健身手机版" : @dynamic.dynamic_film.title %></title>
 </head>
 <% if @actor.nil? %>
     <body class="bg">
@@ -32,7 +32,7 @@
         <dd><a href="#"><%= image_tag('wap/dynamic.png') %></a></dd>
       </dl>
       <%= yield %>
-      <div class="dowapp"><a href="http://www.e-mxing.com">下载客户端查看更多</a></div>
+      <div class="dowapp"><a href="http://www.emxing.sinaapp.com">下载客户端查看更多</a></div>
     </div>
     </body>
 <% end %>
