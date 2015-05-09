@@ -6,6 +6,48 @@
   <%= javascript_include_tag 'home/jquery-1.7.1.min' %>
   <title>活动</title>
 </head>
-<body style="display: inline"><%= yield %>
+<body style="display: inline">
+<section class="acti" style="background:url(<%=@activity.cover.url%>) no-repeat; background-size:cover;">
+  <div class="bgtu"><%= image_tag(@activity.cover.url) %><i></i></div>
+  <dl class="actitop">
+    <dt>
+    <h4><%= @activity.title %></h4>
+
+    <p><i class="ico1"></i><%= @activity.address %></p>
+
+    <p><i class="ico2"></i><%= @activity.start_date %> ~ <%= @activity.end_date %></p>
+
+    <p><i class="ico3"></i><%= @activity.theme_name %></p>
+    </dt>
+  </dl>
+  <% if @activity.stage.eql?(1) %>
+      <dl class="actibut">
+        <dt>主办方</dt>
+        <dd><%= @activity.group.name %></dd>
+      </dl>
+  <% elsif @activity.stage.eql?(2) %>
+      <dl class="actibut">
+        <dt>
+        <p>报名2人</p>
+
+        <p>群組10人</p></dt>
+        <dd>
+          <button id="joinInAct">报名参加</button>
+          <button id="joinInGroup">加群讨论</button>
+        </dd>
+      </dl>
+  <% else %>
+  <% end %>
+</section>
+<% if @activity.stage.eql?(1) %>
+    <%= render partial: 'intro' %>
+<% elsif @activity.stage.eql?(2) %>
+    <section class="actizt">
+      <div class="ztcon">报名后出现在此，有机会被邀请同去</div>
+    </section>
+    <%= render partial: 'apply' %>
+<% else %>
+    <%= render partial: 'result' %>
+<% end %>
 </body>
 </html>
