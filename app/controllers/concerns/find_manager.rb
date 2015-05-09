@@ -35,7 +35,7 @@ module FindManager
   end
 
   def activities
-    Activity.order(id: :desc).page(params[:page]||1).collect { |activity| activity.as_json }
+    Activity..page(params[:page]||1).collect { |activity| activity.as_json }
   end
 
   def shows
@@ -44,8 +44,8 @@ module FindManager
 
   def ranks
     {
-        week: Rails.cache.fetch("#{Date.today.at_beginning_of_week}|week")||get_week_rank,
-        month: Rails.cache.fetch("#{Date.today}|month")||get_month_week
+        week: get_week_rank,
+        month: get_month_rank
     }
   end
 
@@ -53,22 +53,17 @@ module FindManager
   def get_week_rank
     week_date = Date.today.at_beginning_of_week
     ranks = Like.where(like_type: Like::PERSON, created_at: week_date.prev_week..week_date).group(:liked_id).limit(50).order('count_id desc').count(:id)
-    week_rank = ranks.map { |rank| {user: User.find_by(id: rank[0]).summary_json, likes: rank[1]} }
-    info = {week: week_date.strftime("%U").to_i, items: week_rank}
-    Rails.cache.write("#{week_date}|week", info, expires_in: 7.days)
-    info
+    ranks.map { |rank| {user: User.find_by(id: rank[0]).summary_json, likes: rank[1]} }
   end
 
-  def get_month_week
+  def get_month_rank
     month_date = Date.today
     if month_date==month_date.at_beginning_of_month
       ranks = Like.where(like_type: Like::PERSON, created_at: month_date.yesterday.at_beginning_of_month..month_date).group(:liked_id).limit(50).order('count_id desc').count(:id)
     else
       ranks = Like.where(like_type: Like::PERSON, created_at: month_date.at_beginning_of_month..month_date).group(:liked_id).limit(50).order('count_id desc').count(:id)
     end
-    month_rank = ranks.map { |rank| {user: User.find_by(id: rank[0]).summary_json, likes: rank[1]} }
-    info = {items: month_rank}
-    Rails.cache.write("#{month_date}|month", info, expires_in: 1.days)
-    info
+    ranks.map { |rank| {user: User.find_by(id: rank[0]).summary_json, likes: rank[1]} }
   end
+
 end
