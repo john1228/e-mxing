@@ -1,0 +1,17 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+  <%= stylesheet_link_tag 'style', media: 'all', 'data-turbolinks-track' => true %>
+  <title>资讯</title>
+</head>
+<body>
+<section class="article">
+  <div class="artzt">
+    <h1><%= @show.title %></h1>
+    <em>美型新闻 <%= @show.created_at.strftime('%m-%d %H:%M') %></em>
+  </div>
+  <div class="artcon"><%= sanitize @show.content %></div>
+</section>
+</body>
+</html>
