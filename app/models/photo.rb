@@ -6,7 +6,7 @@ class Photo < ActiveRecord::Base
     {
         no: id,
         thumb: $host + photo.thumb.url,
-        original: $host + photo.url
+        original: $host + photo.large.url
     }
   end
 end

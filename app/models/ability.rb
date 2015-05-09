@@ -11,6 +11,10 @@ class Ability
         can :manage, ServiceMember, service: user.service
         can :manage, ServicePhoto, service: user.service
         can :manage, ServiceTrack, service: user.service
+      when AdminUser::CMS
+        can :manage, TypeShow
+        can :manage, Activity
+        can :manage, News
       else
         cannot :manage, :all
     end

@@ -36,7 +36,7 @@ class Dynamic < ActiveRecord::Base
                                     images: dynamic_images.collect { |dynamic_image|
                                       {
                                           thumb: $host + dynamic_image.image.thumb.url,
-                                          original: $host + dynamic_image.image.url,
+                                          original: $host + dynamic_image.image.large.url,
                                           width: dynamic_image.width,
                                           height: dynamic_image.height
                                       }

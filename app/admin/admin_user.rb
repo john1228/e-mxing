@@ -33,7 +33,7 @@ ActiveAdmin.register AdminUser do
       f.input :email, label: '用户名'
       f.input :password, label: '设置密码'
       f.input :password_confirmation, label: '确认密码'
-      f.input :role, label: '角色', as: :select, collection: [['超级管理员', 0], ['服务号管理员', 1]], prompt: '请选择角色'
+      f.input :role, label: '角色', as: :select, collection: [['超级管理员', 0], ['服务号管理员', 1], ['内容管理员', 2]], prompt: '请选择角色'
       f.input :service_id, label: '服务号', as: :select, collection: Service.includes(:profile).pluck('profiles.name', :id), prompt: '请选择服务号'
     end
     f.actions
