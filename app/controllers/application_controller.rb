@@ -10,12 +10,6 @@ class ApplicationController < ActionController::Base
 
 
   def after_sign_in_path_for(resource_or_scope)
-    if current_admin_user.is_service?
-      admin_service_path(current_admin_user.service)
-    elsif current_admin_user.is_cms?
-      admin_news_shows_path
-    else
-      admin_dashboard_path
-    end
+    admin_dashboard_path
   end
 end

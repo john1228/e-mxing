@@ -1,7 +1,7 @@
 ActiveAdmin.register AdminUser do
   menu label: '管理员'
   config.per_page = 10
-  permit_params :email, :password, :password_confirmation
+  permit_params :email, :password, :password_confirmation, :role, :service_id
 
   index do
     selectable_column

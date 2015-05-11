@@ -2,17 +2,9 @@ ActiveAdmin.register_page "Dashboard" do
   menu priority: 1, label: '首页'
 
   content title: proc { I18n.t("active_admin.dashboard") } do
-    columns do
-      column do
-        paginated_collection(User.order(id: :desc).page(params[:user_page]).per(5), param_name: :user_page) do
-          table_for(collection, class: 'index_table') do
-            column('美型号') { |user| user.profile.mxid }
-            column('昵称') { |user| user.profile.name }
-            column('头像') { |user| image_tag(user.profile.avatar.thumb.url, height: 70) }
-            column('性别') { |user| user.profile.gender.eql?(1) ? '女' : '男' }
-            column('签名') { |user| truncate(user.profile.signature) }
-          end
-        end
+    div class: "blank_slate_container" do
+      span class: 'blank_slate' do
+        h3 '欢迎来到美型管理平台'
       end
     end
   end
