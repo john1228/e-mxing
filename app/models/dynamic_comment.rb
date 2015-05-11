@@ -5,7 +5,7 @@ class DynamicComment < ActiveRecord::Base
   def as_json
     {
         content: content,
-        created: created_at.to_i,
+        created: created_at.to_i*1000,
         user: user.summary_json
     }
   end

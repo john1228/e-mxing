@@ -25,7 +25,7 @@ class Dynamic < ActiveRecord::Base
     json_hash = {
         no: id,
         content: content || '',
-        created: created_at.to_i,
+        created: created_at.to_i*1000,
         likes: likes.count,
         comments: {
             count: dynamic_comments.count,
