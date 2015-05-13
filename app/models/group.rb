@@ -19,7 +19,7 @@ class Group < ActiveRecord::Base
         photos: group_photos.collect { |photo| {
             no: photo.id,
             thumb: $host + photo.photo.thumb.url,
-            original: $host + photo.photo.large.url}
+            original: $host + photo.photo.url}
         },
         owner: User.find_by_mxid(owner).profile.summary_json,
         interests: interests,
