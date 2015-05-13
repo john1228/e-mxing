@@ -13,9 +13,6 @@ class ProfileUploader < CarrierWave::Uploader::Base
     "/images/default/user.png"
   end
 
-  version :large do
-    process :resize_to_fit => [2208, 2208]
-  end
 
 
   version :thumb do

@@ -13,9 +13,6 @@ class CkeditorPictureUploader < CarrierWave::Uploader::Base
     "#{Time.now.strftime('%Y/%m/%d')}/#{secure_token}.#{file.extension}" if original_filename
   end
 
-  version :thumb do
-    process :resize_to_fit => [118, 100]
-  end
 
   version :content do
     process :resize_to_limit => [800, 800]

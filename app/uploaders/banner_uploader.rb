@@ -9,9 +9,6 @@ class BannerUploader < CarrierWave::Uploader::Base
   end
 
 
-  version :large do
-    process :resize_to_fit => [2208, 2208]
-  end
 
   version :thumb do
     process :resize_to_fit => [1038, 180]

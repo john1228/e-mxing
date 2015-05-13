@@ -12,10 +12,6 @@ class ShowUploader < CarrierWave::Uploader::Base
     "/images/default/user.jpg"
   end
 
-  version :large do
-    process :resize_to_fit => [2208, 2208]
-  end
-
   version :thumb do
     process :resize_to_fit => [710, 330]
   end

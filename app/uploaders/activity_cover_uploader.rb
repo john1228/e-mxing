@@ -8,9 +8,6 @@ class ActivityCoverUploader < CarrierWave::Uploader::Base
     "images/#{model.class.to_s.underscore}"
   end
 
-  version :large do
-    process :resize_to_fit => [2208, 2208]
-  end
 
   version :thumb do
     process :resize_to_fit => [150, 210]
