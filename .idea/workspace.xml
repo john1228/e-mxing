@@ -186,7 +186,7 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/profile/thumb_2015/04/07/682650a1-53d7-4ca2-982f-a181eb18b1ee.jpg" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/profile/thumb_2015/04/13/69a967d4-9c11-4da6-8b6b-17be3c731773.jpg" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/profile/thumb_2015/04/13/bd9aae27-06f0-46ac-93c0-004ff0b0900d.jpg" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/uploaders/dynamic_images_uploader.rb" afterPath="$PROJECT_DIR$/app/uploaders/dynamic_images_uploader.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/uploaders/photo_uploader.rb" afterPath="$PROJECT_DIR$/app/uploaders/photo_uploader.rb" />
     </list>
     <ignored path="mxing.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -253,20 +253,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="photo_uploader.rb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="photo_uploader.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/uploaders/photo_uploader.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="595">
-              <caret line="10" column="2" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="2" />
+            <state vertical-scroll-proportion="0.07533235" vertical-offset="0" max-vertical-offset="677">
+              <caret line="3" column="33" selection-start-line="3" selection-start-column="33" selection-end-line="3" selection-end-column="33" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dynamic_images_uploader.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="dynamic_images_uploader.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/uploaders/dynamic_images_uploader.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.29689807" vertical-offset="20" max-vertical-offset="697">
+            <state vertical-scroll-proportion="0.0" vertical-offset="20" max-vertical-offset="697">
               <caret line="13" column="39" selection-start-line="13" selection-start-column="39" selection-end-line="13" selection-end-column="39" />
               <folding />
             </state>
@@ -350,8 +350,8 @@
         <option value="$PROJECT_DIR$/app/views/admin/services/chat.html.erb" />
         <option value="$PROJECT_DIR$/app/jobs/video_process_job.rb" />
         <option value="$PROJECT_DIR$/Gemfile" />
-        <option value="$PROJECT_DIR$/app/uploaders/photo_uploader.rb" />
         <option value="$PROJECT_DIR$/app/uploaders/dynamic_images_uploader.rb" />
+        <option value="$PROJECT_DIR$/app/uploaders/photo_uploader.rb" />
       </list>
     </option>
   </component>
@@ -2662,18 +2662,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/uploaders/photo_uploader.rb">
+    <entry file="file://$PROJECT_DIR$/app/uploaders/dynamic_images_uploader.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="595">
-          <caret line="10" column="2" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="2" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="20" max-vertical-offset="697">
+          <caret line="13" column="39" selection-start-line="13" selection-start-column="39" selection-end-line="13" selection-end-column="39" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/uploaders/dynamic_images_uploader.rb">
+    <entry file="file://$PROJECT_DIR$/app/uploaders/photo_uploader.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.29689807" vertical-offset="20" max-vertical-offset="697">
-          <caret line="13" column="39" selection-start-line="13" selection-start-column="39" selection-end-line="13" selection-end-column="39" />
+        <state vertical-scroll-proportion="0.07533235" vertical-offset="0" max-vertical-offset="677">
+          <caret line="3" column="33" selection-start-line="3" selection-start-column="33" selection-end-line="3" selection-end-column="33" />
           <folding />
         </state>
       </provider>

@@ -2,13 +2,12 @@
 
 class PhotoUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
-  include Piet::CarrierWaveExtension
   storage :file
 
   def store_dir
     "images/#{model.class.to_s.underscore}"
   end
-  
+
   version :thumb do
     process :resize_to_fit => [300, nil]
   end
