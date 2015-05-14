@@ -1,9 +1,6 @@
 class VideoProcessJob < ActiveJob::Base
   queue_as :default
-  rescue_from Exception do
-    retry_job wait: 5.minutes, queue: :low_priority
-  end
-
+  
   def perform(file_path, store_path, file_extension)
     file_name = file_path.gsub("#{Rails.root}/public/videos/dynamic_film/", '')
 
