@@ -5,7 +5,7 @@ class VideoProcessJob < ActiveJob::Base
     file_name = file_path.gsub("#{Rails.root}/public/videos/dynamic_film/", '')
 
     transcode_path = "#{file_path.gsub(".#{file_extension}", '')}_1.mp4"
-    transcode_command = "ffmpeg -i #{file_path}  -vcodec libx264 -maxrate 500k -bufsize 1000k -vf scale=640:-1 -threads 0 -f mp4 #{transcode_path}"
+    transcode_command = "ffmpeg -i #{file_path}  -vcodec libx264 -maxrate 500k -bufsize 1000k -vf scale=640:-2 -threads 0 -f mp4 #{transcode_path}"
     system(transcode_command)
 
     hls_name = "#{Rails.root}/public/videos/hls/#{file_name.gsub(store_path, "").gsub(file_extension, 'm3u8')}"
