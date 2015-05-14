@@ -237,7 +237,7 @@
         <entry file="file://$PROJECT_DIR$/app/jobs/video_process_job.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.17921686" vertical-offset="0" max-vertical-offset="664">
-              <caret line="7" column="110" selection-start-line="7" selection-start-column="110" selection-end-line="7" selection-end-column="110" />
+              <caret line="7" column="107" selection-start-line="7" selection-start-column="107" selection-end-line="7" selection-end-column="107" />
               <folding />
             </state>
           </provider>
@@ -2634,7 +2634,7 @@
     <entry file="file://$PROJECT_DIR$/app/jobs/video_process_job.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.17921686" vertical-offset="0" max-vertical-offset="664">
-          <caret line="7" column="110" selection-start-line="7" selection-start-column="110" selection-end-line="7" selection-end-column="110" />
+          <caret line="7" column="107" selection-start-line="7" selection-start-column="107" selection-end-line="7" selection-end-column="107" />
           <folding />
         </state>
       </provider>
