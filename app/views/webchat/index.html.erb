@@ -22,7 +22,7 @@
       var groupFlagMark = "group--";
       var groupQuering = false;
       var textSending = false;
-      var appkey = "jsnetwork#mxing";
+      var appkey = "jsnetwork#mxingsijiao";
       var time = 0;
 
       window.URL = window.URL || window.webkitURL || window.mozURL
@@ -285,6 +285,7 @@
               }
               var subscribeMessage = e.from + "请求加你为好友。\n验证消息：" + e.status;
               showNewNotice(subscribeMessage);
+              alert('1');
               $('#confirm-block-footer-confirmButton').click(function () {
                   //同意好友请求
                   agreeAddFriend(e.from);//e.from用户名
