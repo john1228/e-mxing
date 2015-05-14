@@ -1581,7 +1581,7 @@
       }
   </script>
 </head>
-<body>
+<body onload="login()">
 <div id="loginmodal" class="modal hide fade in" role="dialog"
      aria-hidden="true" data-backdrop="static">
   <div class="modal-header">
@@ -1591,7 +1591,7 @@
     <table>
       <tr>
         <td width="65%"><label for="username">用户名:</label> <input
-        type="text" name="username" value="10009" id="username" tabindex="1"/>
+        type="text" name="username" value="<%= @service.profile_mxid %>" id="username" tabindex="1"/>
           <label for="password">密码:</label> <input type="password" value="123456"
                                                    name="password" id="password" tabindex="2"/></td>
       </tr>
