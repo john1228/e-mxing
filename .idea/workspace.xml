@@ -233,24 +233,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="video_process_job.rb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="video_process_job.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/jobs/video_process_job.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="374">
-              <caret line="2" column="2" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="2" />
+            <state vertical-scroll-proportion="0.17921686" vertical-offset="0" max-vertical-offset="664">
+              <caret line="7" column="110" selection-start-line="7" selection-start-column="110" selection-end-line="7" selection-end-column="110" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="chat.html.erb" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/views/admin/services/chat.html.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.52037615" vertical-offset="26749" max-vertical-offset="31569">
-              <caret line="1593" column="68" selection-start-line="1593" selection-start-column="68" selection-end-line="1593" selection-end-column="68" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -315,8 +303,8 @@
         <option value="$PROJECT_DIR$/db/migrate/20150514030058_create_coach_docs.rb" />
         <option value="$PROJECT_DIR$/app/admin/coach.rb" />
         <option value="$PROJECT_DIR$/app/views/webchat/index.html.erb" />
-        <option value="$PROJECT_DIR$/app/jobs/video_process_job.rb" />
         <option value="$PROJECT_DIR$/app/views/admin/services/chat.html.erb" />
+        <option value="$PROJECT_DIR$/app/jobs/video_process_job.rb" />
       </list>
     </option>
   </component>
@@ -2633,14 +2621,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/jobs/video_process_job.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="374">
-          <caret line="2" column="2" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/admin/services/chat.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.52037615" vertical-offset="26749" max-vertical-offset="31569">
@@ -2648,6 +2628,14 @@
           <folding>
             <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/jobs/video_process_job.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.17921686" vertical-offset="0" max-vertical-offset="664">
+          <caret line="7" column="110" selection-start-line="7" selection-start-column="110" selection-end-line="7" selection-end-column="110" />
+          <folding />
         </state>
       </provider>
     </entry>
