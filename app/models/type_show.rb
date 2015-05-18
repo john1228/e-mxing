@@ -5,7 +5,8 @@ class TypeShow < ActiveRecord::Base
     {
         title: title,
         cover: $host + cover.thumb.url,
-        url: $host + "/type_shows/#{id}"
+        url: $host + "/type_shows/#{id}",
+        created_at: created_at.to_i
     }
   end
 end
