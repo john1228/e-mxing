@@ -35,11 +35,11 @@ module FindManager
   end
 
   def activities
-    Activity..page(params[:page]||1).collect { |activity| activity.as_json }
+    Activity.order(id: :desc).page(params[:page]||1).collect { |activity| activity.as_json }
   end
 
   def shows
-    TypeShow.page(params[:page]||1).collect { |show| show.as_json }
+    TypeShow.order(id: :desc).page(params[:page]||1).collect { |show| show.as_json }
   end
 
   def ranks
