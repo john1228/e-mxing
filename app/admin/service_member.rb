@@ -24,7 +24,7 @@ ActiveAdmin.register ServiceMember do
       image_tag("#{member.coach.profile_avatar.thumb.url}", height: 70)
     end
     column '签名' do |member|
-      truncate(member.coach.profile_interests)
+      truncate(member.coach.profile_interests_str)
     end
     actions
   end

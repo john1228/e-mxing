@@ -1,12 +1,10 @@
-class ServiceTrack<Track
-  belongs_to :service, foreign_key: :user_id
+class CoachTrack<Track
+  belongs_to :coach, foreign_key: :user_id
   has_many :appointments, foreign_key: :track_id, dependent: :destroy
-
   attr_accessor :dummy_start
 
 
   def as_json
-    coach = Coach.find_by(id: coach_id)
     {
         no: id,
         track_type: type,
@@ -17,7 +15,7 @@ class ServiceTrack<Track
         during: during,
         avail: places-appointments.count,
         free: free,
-        coach: coach.nil? ? {} : {
+        coach: {
             mxid: coach.profile_mxid,
             name: coach.profile_name,
             tags: coach.profile_tags

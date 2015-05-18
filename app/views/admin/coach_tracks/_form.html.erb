@@ -1,0 +1,70 @@
+﻿<%= semantic_form_for([:admin, @coach, @coach_track], html: {class: "form-horizontal"}) do |f| %>
+    <%= f.hidden_field(:identity, value: 1) %>
+    <fieldset class="inputs">
+      <legend><span>添加团操</span></legend>
+      <div class="form-group form-group-sm">
+        <label class="col-sm-2 control-label" for="service_signature">类型</label>
+
+        <div class="col-sm-10">
+          <%= f.select(:track_type, INTERESTS['items'].map { |item| [item['name'], item['id']] }, class: 'form-control', selected: f.object.track_type) %>
+        </div>
+      </div>
+      <div class="form-group form-group-sm">
+        <label class="col-sm-2 control-label" for="service_signature">教练</label>
+
+        <div class="col-sm-10">
+          <%= f.hidden_field(:coach_id, value: f.object.user_id) %>
+        </div>
+      </div>
+      <div class="form-group form-group-sm">
+        <label class="col-sm-2 control-label" for="service_signature">名称</label>
+
+        <div class="col-sm-10">
+          <%= f.text_field :name, class: 'form-control', placeholder: "请输入团操名称", value: f.object.name %>
+        </div>
+      </div>
+      <div class="form-group form-group-sm">
+        <label class="col-sm-2 control-label" for="service_signature">介绍</label>
+
+        <div class="col-sm-10">
+          <%= f.text_field :intro, class: 'form-control', placeholder: "请输入团操介绍", value: f.object.intro %>
+        </div>
+      </div>
+      <div class="form-group form-group-sm">
+        <label class="col-sm-2 control-label" for="service_signature">地址</label>
+
+        <div class="col-sm-10">
+          <%= f.text_field :address, class: 'form-control', placeholder: "请输入团操地址", value: f.object.address %>
+        </div>
+      </div>
+      <div class="form-group form-group-sm">
+        <label class="col-sm-2 control-label" for="service_signature">开始时间</label>
+
+        <div class="col-sm-10">
+          <%= f.text_field :start, class: 'form-control', placeholder: "请输入开始时间,格式为:#{Time.now.strftime("%Y-%m-%d %H:%M")}", value: f.object.start %>
+        </div>
+      </div>
+      <div class="form-group form-group-sm">
+        <label class="col-sm-2 control-label" for="service_signature">持续时间</label>
+
+        <div class="col-sm-10">
+          <%= f.text_field :during, class: 'form-control', placeholder: "请输入团操持续时间(分钟)", value: f.object.during %>
+        </div>
+      </div>
+      <div class="form-group form-group-sm">
+        <label class="col-sm-2 control-label" for="service_signature">人數</label>
+
+        <div class="col-sm-10">
+          <%= f.text_field :places, class: 'form-control', placeholder: "请输入该团操名额", value: f.object.places %>
+        </div>
+      </div>
+      <div class="form-group form-group-sm">
+        <label class="col-sm-2 control-label" for="service_signature">体验</label>
+
+        <div class="col-sm-10">
+          <%= f.text_field :free_places, class: 'form-control', placeholder: "请输入该团操免费名额", value: f.object.free_places %>
+        </div>
+      </div>
+    </fieldset>
+    <%= f.submit('提交') %>
+<% end %>

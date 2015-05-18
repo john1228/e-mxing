@@ -1,7 +1,7 @@
-ActiveAdmin.register ServiceDynamic do
+ActiveAdmin.register CoachDynamic do
   menu label: '动态'
-  belongs_to :service
-  navigation_menu :service
+  belongs_to :coach
+  navigation_menu :coach
   permit_params :top, :content,
                 dynamic_image: [:id, :image],
                 dynamic_film_attributes: [:id, :title, :cover, :film]
@@ -38,4 +38,5 @@ ActiveAdmin.register ServiceDynamic do
   end
 
   form partial: 'form'
+
 end

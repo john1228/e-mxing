@@ -1,0 +1,162 @@
+﻿<div class="span12">
+  <ul id="myTab" class="nav nav-tabs">
+    <li class="active"><a href="#normal" data-toggle="tab">普通动态</a></li>
+    <li><a href="#image" data-toggle="tab">图片</a></li>
+    <li><a href="#film" data-toggle="tab">视频</a></li>
+    <li><a href="#showtime" data-toggle="tab">视频秀</a></li>
+  </ul>
+  <div id="myTabContent" class="tab-content">
+    <div class="tab-pane fade in active" id='normal'>
+      <%= semantic_form_for([:admin, @coach, @coach_dynamic], html: {class: "form-horizontal"}) do |f| %>
+          <fieldset class="inputs">
+            <legend><span>文本动态</span></legend>
+            <%= f.hidden_field :top, value: 0 %>
+            <div class="form-group form-group-sm">
+              <label class="col-sm-2 control-label" for="service_dynamic_content">内容</label>
+
+              <div class="col-sm-10">
+                <%= f.text_area :content, class: 'form-control', placeholder: "请输入动态内容" %>
+              </div>
+            </div>
+          </fieldset>
+          <%= f.submit('提交') %>
+      <% end %>
+    </div>
+    <div class="tab-pane fade" id="image">
+      <%= semantic_form_for([:admin, @coach, @coach_dynamic], html: {class: "form-horizontal"}) do |f| %>
+          <fieldset class="inputs">
+            <legend><span>图片动态</span></legend>
+            <%= f.hidden_field :top, value: 0 %>
+            <div class="form-group form-group-sm">
+              <label class="col-sm-2 control-label" for="service_dynamic_content">动态内容</label>
+
+              <div class="col-sm-10">
+                <%= f.text_area :content, class: 'form-control', placeholder: "请输入动态内容" %>
+              </div>
+            </div>
+            <div class="form-group form-group-sm">
+              <label class="col-sm-2 control-label" for="dynamic_img_1">图片1</label>
+
+              <div class="col-sm-10">
+                <%= f.file_field :img_1 %>
+              </div>
+            </div>
+            <div class="form-group form-group-sm">
+              <label class="col-sm-2 control-label" for="dynamic_img_1">图片2</label>
+
+              <div class="col-sm-10">
+                <%= f.file_field :img_2 %>
+              </div>
+            </div>
+            <div class="form-group form-group-sm">
+              <label class="col-sm-2 control-label" for="dynamic_img_1">图片3</label>
+
+              <div class="col-sm-10">
+                <%= f.file_field :img_3 %>
+              </div>
+            </div>
+            <div class="form-group form-group-sm">
+              <label class="col-sm-2 control-label" for="dynamic_img_1">图片4</label>
+
+              <div class="col-sm-10">
+                <%= f.file_field :img_4 %>
+              </div>
+            </div>
+            <div class="form-group form-group-sm">
+              <label class="col-sm-2 control-label" for="dynamic_img_1">图片5</label>
+
+              <div class="col-sm-10">
+                <%= f.file_field :img_5 %>
+              </div>
+            </div>
+            <div class="form-group form-group-sm">
+              <label class="col-sm-2 control-label" for="dynamic_img_1">图片6</label>
+
+              <div class="col-sm-10">
+                <%= f.file_field :img_6 %>
+              </div>
+            </div>
+            <div class="form-group form-group-sm">
+              <label class="col-sm-2 control-label" for="dynamic_img_1">图片7</label>
+
+              <div class="col-sm-10">
+                <%= f.file_field :img_7 %>
+              </div>
+            </div>
+            <div class="form-group form-group-sm">
+              <label class="col-sm-2 control-label" for="dynamic_img_1">图片8</label>
+
+              <div class="col-sm-10">
+                <%= f.file_field :img_8 %>
+              </div>
+            </div>
+          </fieldset>
+          <%= f.submit('提交') %>
+      <% end %>
+    </div>
+    <div class="tab-pane fade" id="film">
+      <%= semantic_form_for([:admin, @coach, @coach_dynamic], html: {class: "form-horizontal"}) do |f| %>
+          <fieldset class="inputs">
+            <legend><span>视频</span></legend>
+            <%= f.hidden_field :top, value: 0 %>
+            <div class="form-group form-group-sm">
+              <label class="col-sm-2 control-label" for="service_name">内容</label>
+
+              <div class="col-sm-10">
+                <%= f.text_field :content, class: 'form-control', placeholder: "请输入动态内容" %>
+              </div>
+            </div>
+            <%= f.semantic_fields_for :dynamic_film, f.object.dynamic_film||DynamicFilm.new do |dynamic_film| %>
+                <div class="form-group form-group-sm">
+                  <label class="col-sm-2 control-label" for="service_name">封面</label>
+
+                  <div class="col-sm-10">
+                    <%= dynamic_film.file_field :cover %>
+                  </div>
+                </div>
+                <div class="form-group form-group-sm">
+                  <label class="col-sm-2 control-label" for="service_name">文件</label>
+
+                  <div class="col-sm-10">
+                    <%= dynamic_film.file_field :film %>
+                  </div>
+                </div>
+            <% end %>
+          </fieldset>
+          <%= f.submit('提交') %>
+      <% end %>
+    </div>
+    <div class="tab-pane fade" id="showtime">
+      <%= semantic_form_for([:admin, @coach, @coach_dynamic], html: {class: "form-horizontal"}) do |f| %>
+          <fieldset class="inputs">
+            <legend><span>視頻秀</span></legend>
+            <%= f.hidden_field :top, value: 1 %>
+            <%= f.semantic_fields_for :dynamic_film, f.object.dynamic_film||DynamicFilm.new do |dynamic_film| %>
+                <div class="form-group form-group-sm">
+                  <label class="col-sm-2 control-label" for="service_name">标题</label>
+
+                  <div class="col-sm-10">
+                    <%= dynamic_film.text_field :title, class: 'form-control', placeholder: "请输入输入标题" %>
+                  </div>
+                </div>
+                <div class="form-group form-group-sm">
+                  <label class="col-sm-2 control-label" for="service_name">封面</label>
+
+                  <div class="col-sm-10">
+                    <%= dynamic_film.file_field :cover %>
+                  </div>
+                </div>
+                <div class="form-group form-group-sm">
+                  <label class="col-sm-2 control-label" for="service_name">視頻</label>
+
+                  <div class="col-sm-10">
+                    <%= dynamic_film.file_field :film %>
+                  </div>
+                </div>
+            <% end %>
+          </fieldset>
+          <%= f.submit('提交') %>
+      <% end %>
+    </div>
+  </div>
+</div>

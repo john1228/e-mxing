@@ -1,8 +1,7 @@
-ActiveAdmin.register ServiceTrack do
-  menu label: '团操'
-
-  belongs_to :service
-  navigation_menu :service
+ActiveAdmin.register CoachTrack do
+  menu label: '轨迹'
+  belongs_to :coach
+  navigation_menu :coach
 
   permit_params :id, :coach_id, :track_type, :name, :intro, :address, :start, :during, :places, :free_places
 
@@ -24,7 +23,7 @@ ActiveAdmin.register ServiceTrack do
   show do
     tabs do
       tab '0-报名列表' do
-        paginated_collection(service_track.appointments.includes(:user).page(params[:track_page]), param_name: :track_page) do
+        paginated_collection(coach_track.appointments.includes(:user).page(params[:track_page]), param_name: :track_page) do
           table_for(collection, class: 'index_table') do
             column('美型号') { |appointment| appointment.user.profile_mxid }
             column('昵称') { |appointment| appointment.user.profile_name }
@@ -41,18 +40,17 @@ ActiveAdmin.register ServiceTrack do
   end
 
   sidebar '轨迹详情', only: :show do
-    attributes_table_for service_track do
-      row('类型') { service_track.type_name }
-      row('名称') { service_track.name }
-      row('介绍') { service_track.intro }
-      row('地址') { service_track.address }
-      row('开始时间') { service_track.start.strftime('%Y-%m-%d %H:%M') }
-      row('持续时间') { service_track.during }
-      row('人數') { service_track.places }
-      row('体验') { service_track.free_places }
+    attributes_table_for coach_track do
+      row('类型') { coach_track.type_name }
+      row('名称') { coach_track.name }
+      row('介绍') { coach_track.intro }
+      row('地址') { coach_track.address }
+      row('开始时间') { coach_track.start.strftime('%Y-%m-%d %H:%M') }
+      row('持续时间') { coach_track.during }
+      row('人數') { coach_track.places }
+      row('体验') { coach_track.free_places }
     end
   end
 
   form partial: 'form'
-
 end

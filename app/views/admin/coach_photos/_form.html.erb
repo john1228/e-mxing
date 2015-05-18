@@ -1,0 +1,13 @@
+﻿<%= form_for([:admin, @coach, @coach_photo], html: {class: "form-horizontal"}) do |f| %>
+    <fieldset class="inputs">
+      <legend><span>添加照片</span></legend>
+      <div class="form-group form-group-sm">
+        <label class="col-sm-2 control-label" for="service_name">照片</label>
+
+        <div class="col-sm-10">
+          <%= f.file_field :cover %>
+        </div>
+      </div>
+    </fieldset>
+    <%= f.submit('提交') %>
+<% end %>
