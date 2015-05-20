@@ -62,6 +62,7 @@ Rails.application.routes.draw do
   delete 'group_photos/:group_id/:id' => 'group_photos#destroy'
   #获取用户信息
   get 'friends' => 'friends#index'
+  post 'friends' => 'friends#create'
   get 'friends/search' => 'friends#find'
   #服务号
   get 'services/coaches' => 'services#coaches'
