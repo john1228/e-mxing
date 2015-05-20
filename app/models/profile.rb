@@ -43,7 +43,7 @@ class Profile < ActiveRecord::Base
     {
         mxid: mxid,
         name: name||'',
-        avatar: $host + avatar.thumb.url,
+        avatar: avatar.thumb.url,
         gender: gender||1,
         age: age,
         signature: signature,
@@ -57,7 +57,7 @@ class Profile < ActiveRecord::Base
     {
         mxid: mxid,
         name: name||'',
-        avatar: $host + avatar.thumb.url,
+        avatar: avatar.thumb.url,
         signature: signature,
         gender: gender||1,
         identity: identity,

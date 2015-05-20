@@ -35,8 +35,8 @@ class Dynamic < ActiveRecord::Base
     json_hash = json_hash.merge({
                                     images: dynamic_images.collect { |dynamic_image|
                                       {
-                                          thumb: $host + dynamic_image.image.thumb.url,
-                                          original: $host + dynamic_image.image.url,
+                                          thumb: dynamic_image.image.thumb.url,
+                                          original: dynamic_image.image.url,
                                           width: dynamic_image.width,
                                           height: dynamic_image.height
                                       }
@@ -44,7 +44,7 @@ class Dynamic < ActiveRecord::Base
                                 }) unless dynamic_images.blank?
     json_hash = json_hash.merge({
                                     film: {
-                                        cover: $host + dynamic_film.cover.thumb.url,
+                                        cover: dynamic_film.cover.thumb.url,
                                         film: dynamic_film.film.hls
                                     }
                                 }) unless dynamic_film.blank?

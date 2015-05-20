@@ -5,8 +5,8 @@ class Photo < ActiveRecord::Base
   def as_json
     {
         no: id,
-        thumb: $host + photo.thumb.url,
-        original: $host + photo.url
+        thumb: photo.thumb.url,
+        original: photo.url
     }
   end
 end

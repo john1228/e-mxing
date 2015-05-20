@@ -4,7 +4,7 @@ class Banner < ActiveRecord::Base
 
   def as_json
     {
-        image: $host + image.thumb.url,
+        image: image.thumb.url,
         url: url
     }
   end

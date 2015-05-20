@@ -11,7 +11,7 @@ class Showtime<Dynamic
         no: id,
         title: dynamic_film.title,
         film: {
-            cover: $host + dynamic_film.cover.thumb.url,
+            cover: dynamic_film.cover.thumb.url,
             film: dynamic_film.film.hls
         },
         likes: likes.count,

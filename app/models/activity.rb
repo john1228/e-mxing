@@ -36,7 +36,7 @@ class Activity < ActiveRecord::Base
   def as_json
     {
         title: title,
-        cover: $host + cover.thumb.url,
+        cover: cover.thumb.url,
         address: address,
         time: "#{start_date}~#{end_date}",
         url: $host + "/activities/#{id}",

@@ -4,7 +4,7 @@ class News < ActiveRecord::Base
   def as_json
     {
         title: title,
-        cover: $host + cover.thumb.url,
+        cover: cover.thumb.url,
         width: cover_width,
         height: cover_height,
         url: $host + "/news/#{id}"

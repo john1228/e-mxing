@@ -5,8 +5,8 @@ class GroupPhoto < ActiveRecord::Base
   def as_json
     {
         no: id,
-        thumb: $host + photo.thumb.url,
-        original: $host + photo.large.url
+        thumb: photo.thumb.url,
+        original: photo.large.url
     }
   end
 end
