@@ -170,13 +170,15 @@
 <% else %>
     <%= render partial: 'result' %>
 <% end %>
-<div class="bottomSection J_bottomSection" style="">
-  <div class="bottomSectionWrap bottomView1">
-    <a class="dl clkstat" id="dl2" href="http://www.e-mxing.com/wap" objtype="h5_22">
-      <b class="bottomSectionClose J_bottomSectionClose clkstat" objtype="h5_24" onclick="closePopAdSection(event)"></b>
-      <i class="iopen">立即下载</i><i class="adLogo"><%= image_tag('logo.png') %></i>
-      <span class="fnt"><span class="tit">美于身 健于型</span><span class="char">立即下载美型客户端&gt;</span></span></a>
-  </div>
-</div>
+<% unless @cc.eql?('app') %>
+    <div class="bottomSection J_bottomSection" style="">
+      <div class="bottomSectionWrap bottomView1">
+        <a class="dl clkstat" id="dl2" href="http://www.e-mxing.com/download" objtype="h5_22">
+          <b class="bottomSectionClose J_bottomSectionClose clkstat" objtype="h5_24" onclick="closePopAdSection(event)"></b>
+          <i class="iopen">立即下载</i><i class="adLogo"><%= image_tag('logo.png') %></i>
+          <span class="fnt"><span class="tit">美于身 健于型</span><span class="char">立即下载美型客户端&gt;</span></span></a>
+      </div>
+    </div>
+<% end %>
 </body>
 </html>

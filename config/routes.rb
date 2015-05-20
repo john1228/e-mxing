@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   post 'users/login' => 'users#login'
   post 'users/sns' => 'users#sns'
   put 'users' => 'users#update'
-  delete 'users' => "users#logout"
+  delete 'users' => 'users#logout'
   #个人资料
   get 'profile' => 'profile#index'
   put 'profile' => 'profile#complete'
@@ -88,8 +88,9 @@ Rails.application.routes.draw do
   put 'activities/:id' => 'activities#apply', as: :apply_activity
   post 'activities/:id' => 'activities#group', as: :join_in_group_of_activity
   get 'activities' => 'activities#mine'
-
   get '/admin/services/:id/chat' => 'admin/services#chat', as: :chat_with_service
+
+  get 'download' => 'download#index'
 
   get 'webchat' => 'webchat#index'
 
