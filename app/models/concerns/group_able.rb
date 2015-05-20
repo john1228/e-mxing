@@ -16,6 +16,7 @@ module GroupAble
     easemob_token = Rails.cache.fetch('easemob')||init_easemob_token
     result = Faraday.post { |req|
       req.url "https://a1.easemob.com/jsnetwork/mxing/chatgroups"
+      req.headers['Content-Type'] = 'application/json'
       req.headers['Authorization'] = "Bearer #{easemob_token}"
       req.body = {groupname: name, desc: intro, public: true, maxusers: 100, approval: true, owner: "#{owner}"}.to_json.to_s
     }

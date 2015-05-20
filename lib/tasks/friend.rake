@@ -14,8 +14,7 @@ namespace :friends do
   task :create do
     host = "http://localhost:3000"
     conn = Faraday.new(:url => host)
-    conn.headers['token'] = 'b487beb255dbbb9243d03c8b53c2ab5a'
-    response = conn.post '/users/friends'
+    response = conn.post 'friends'
     json_obj = JSON.parse(response.body)
     puts json_obj
   end
