@@ -5,7 +5,6 @@ class Course < ActiveRecord::Base
   has_many :comments, dependent: :destroy
 
   def as_json
-    cover = course_photos.first.blank? ? '' : course_photos.first.photo.thumb.url
     {
         id: id,
         name: name,
@@ -17,7 +16,8 @@ class Course < ActiveRecord::Base
         exp: exp,
         proposal: proposal,
         intro: intro,
-        address: school_addresses
+        address: school_addresses,
+        images: course_photos.collect { |course_photo| course_photo.thumb.url }
     }
   end
 

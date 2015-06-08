@@ -33,13 +33,17 @@ namespace :business do
   end
 
   task :course_create do
-    conn = Faraday.new(:url => host)
+    conn = Faraday.new(:url => host) do |faraday|
+      faraday.request :multipart
+      faraday.adapter :net_http
+    end
     conn.headers[:token] = '3c59dc048e8850243be8079a5c74d079'
-    response = conn.post '/business/courses', name: '健身課程', type: 1, during: 60, style: '1v1', price: 500, exp: 6, proposal: 8,
-                         intro: '这是一个测试课程', address: 2, customized: 0,
-                         '0' => Faraday::UploadIO.new('/root/images/1.jpg', 'image/jpeg'),
-                         '1' => Faraday::UploadIO.new('/root/images/2.jpg', 'image/jpeg'),
-                         '2' => Faraday::UploadIO.new('/root/images/3.jpg', 'image/jpeg')
+    payload = {name: '健身課程', type: 1, during: 60, style: '1v1', price: 500, exp: 6, proposal: 8,
+               intro: '这是一个测试课程', address: 2, customized: 0,
+               '0' => Faraday::UploadIO.new('/root/images/1.jpg', 'image/jpeg'),
+               '1' => Faraday::UploadIO.new('/root/images/2.jpg', 'image/jpeg'),
+               '2' => Faraday::UploadIO.new('/root/images/3.jpg', 'image/jpeg')}
+    response = conn.post '/business/courses', payload
     puts response.body
   end
 
