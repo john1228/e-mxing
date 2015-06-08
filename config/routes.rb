@@ -110,6 +110,8 @@ Rails.application.routes.draw do
 
 
   namespace :business do
+    #登录
+    post 'login' => 'login#mobile'
     #设置
     post 'settings' => 'appointment_settings#create'
     #地址管理

@@ -1,21 +1,23 @@
 namespace :business do
+  host = 'http://stage.e-mxing.com'
+
   desc '登录'
   task :login do
-    conn = Faraday.new(:url => 'http://192.168.0.126')
-    response = conn.post '/business/login', username: '', password: ''
+    conn = Faraday.new(:url => host)
+    response = conn.post '/business/login', username: 18221058659, password: 12345678
     puts response.body
   end
 
   desc ''
   task :addresses do
-    conn = Faraday.new(:url => 'http://192.168.0.126')
+    conn = Faraday.new(:url => host)
     conn.headers[:token] = '65b9eea6e1cc6bb9f0cd2a47751a186f'
     response = conn.get '/business/addresses'
     puts response.body
   end
 
   task :address_create do
-    conn = Faraday.new(:url => 'http://192.168.0.126')
+    conn = Faraday.new(:url => host)
     conn.headers[:token] = '65b9eea6e1cc6bb9f0cd2a47751a186f'
     response = conn.post '/business/addresses', venues: '美型健身房', city: '上海', address: '中山西路933号1206-1208室'
     puts response.body
@@ -24,14 +26,14 @@ namespace :business do
 
   desc ''
   task :courses do
-    conn = Faraday.new(:url => 'http://192.168.0.126')
+    conn = Faraday.new(:url => host)
     conn.headers[:token] = '65b9eea6e1cc6bb9f0cd2a47751a186f'
     response = conn.get '/business/courses'
     puts response.body
   end
 
   task :course_create do
-    conn = Faraday.new(:url => 'http://192.168.0.126')
+    conn = Faraday.new(:url => host)
     conn.headers[:token] = '65b9eea6e1cc6bb9f0cd2a47751a186f'
     response = conn.post '/business/courses', name: '健身課程', type: 1, during: 60, style: '1v1', price: 500, exp: 6, proposal: 8,
                          intro: '这是一个测试课程', address: 2, customized: 0
@@ -69,5 +71,10 @@ namespace :business do
     conn.headers[:token] = '65b9eea6e1cc6bb9f0cd2a47751a186f'
     response = conn.post '/business/appointments', course: 1, date: Date.today, start: '13:00', classes: 2, address: 1, online: '10053'
     puts response.body
+  end
+
+  desc ''
+  task :test do
+    puts host
   end
 end
