@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+<link type="text/css" rel="stylesheet" href="css/style.css">
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/public.js"></script>
+<title>美型网</title>
+</head>
+<body>
+<header>
+    <a class="return">返回</a>
+    <h3>课表详情</h3>
+    <div class="toptext"><div class="con">请选择课程</div><em></em></div>
+    <dl>
+    	<dt><i></i>1对1</dt>
+       	<dd>未约满</dd>
+    </dl>
+    <a class="dele">删除</a>
+</header>
+<section class="tb_bor listbox">
+	<dl>
+    	<dt>预约时间</dt>
+       	<dd>09：00<em></em></dd>
+   	</dl>
+	<dl>
+    	<dt>单课时</dt>
+       	<dd>90分钟</dd>
+   	</dl>
+	<dl>
+    	<dt>预约课数（节）</dt>
+       	<dd><div class="yyks"><button>-</button><input type="text" value="2"><button>+</button></div></dd>
+   	</dl>
+	<dl class="add">
+    	<dt>上课场馆</dt>
+       	<dd>一兆韦德<em></em><p>上海市逸仙路499弄江湾大厦12楼201室</p></dd>
+   	</dl>
+</section>
+<section class="tb_bor listbox">
+	<dl>
+    	<dt>已约学员(0/30)</dt>
+       	<dd><a href="#">查看全部<em></em></a></dd>
+   	</dl>
+   	<ul class="userlist">
+   		<li onclick="toggle('mb');(ts).className='zjts dowtop';"><img src="images/jiaico.png"></li>
+   	</ul>
+</section>
+<div class="ht50"></div>
+<div class="footbut">
+	<a href="#" class="qrks">确认课时</a>
+</div>
+<!--提示-->
+<div id="mb" class="mask"></div>
+<div id="ts" class="zjts">
+	<p>
+    	<a href="#">美型好友</a>
+       	<a href="#">线下好友</a>
+    </p>
+	<a onclick="toggle('mb');(ts).className='zjts topdow';" class="close">取消</a>
+</div>
+
+</body>
+</html>

@@ -1,7 +1,8 @@
 ActiveAdmin.register Enthusiast do
   menu label: '用户', priority: 4
   filter :profile_name, label: '昵称', as: :string
-  actions :index, :show, :destroy
+  actions :index, :show, :edit, :update, :destroy
+  permit_params :identity
   index do
     column '美型号' do |enthusiast|
       link_to("#{enthusiast.profile_mxid}", admin_enthusiast_path(enthusiast))
@@ -15,7 +16,28 @@ ActiveAdmin.register Enthusiast do
     column '签名' do |enthusiast|
       truncate(enthusiast.profile_signature)
     end
-    actions
+    actions do |enthusiast|
+      link_to '成为私教', pre_transfer_path(enthusiast), class: 'fancybox', data: {'fancybox-type' => 'ajax'}
+    end
+  end
+
+  controller do
+    def transfer
+      @enthusiast = Enthusiast.find_by(id: params[:id])
+      render layout: false
+    end
+
+    def transfer_result
+      begin
+        enthusiast = Enthusiast.find_by(id: params[:id])
+        enthusiast.tracks.destroy_all
+        enthusiast.profile.update(identity: 1)
+        ServiceMember.create(service_id: params[:service_id], coach_id: enthusiast.id)
+      rescue
+        @errors = '转换失败'
+      end
+      render layout: false
+    end
   end
 
   show title: proc { |enthusiast| "#{enthusiast.profile_name}详情" } do
@@ -39,4 +61,6 @@ ActiveAdmin.register Enthusiast do
       row('生日') { |profile| profile.birthday.strftime('%Y-%m-%d') rescue Date.today.prev_year(15) }
     end
   end
+
+  form partial: 'form'
 end

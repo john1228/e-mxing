@@ -13,12 +13,17 @@ class AdminUser < ActiveRecord::Base
   SUPER = 0
   SERVICE = 1
   CMS = 2
+  MARKET = 3
 
   def is_service?
-    role.eql?(1)
+    role.eql?(SERVICE)
   end
 
   def is_cms?
-    role.eql?(2)
+    role.eql?(CMS)
+  end
+
+  def is_market?
+    role.eql?(MARKET)
   end
 end

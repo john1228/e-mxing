@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150514030058) do
+ActiveRecord::Schema.define(version: 20150605080941) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,15 @@ ActiveRecord::Schema.define(version: 20150514030058) do
     t.date     "end_date"
     t.integer  "activity_type"
     t.integer  "theme"
+  end
+
+  create_table "addresses", force: :cascade do |t|
+    t.integer  "coach_id"
+    t.string   "venues"
+    t.string   "city"
+    t.string   "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "admin_users", force: :cascade do |t|
@@ -80,11 +89,33 @@ ActiveRecord::Schema.define(version: 20150514030058) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "appointment_settings", force: :cascade do |t|
+    t.integer  "coach_id"
+    t.date     "start_date"
+    t.string   "start_time"
+    t.string   "end_time"
+    t.integer  "address_id"
+    t.boolean  "repeat"
+    t.string   "course_name"
+    t.string   "course_type"
+    t.integer  "place"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "appointments", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "track_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.integer "coach_id"
+    t.integer "course_id"
+    t.string  "course_name"
+    t.string  "course_during"
+    t.date    "date"
+    t.string  "start_time"
+    t.string  "venues"
+    t.string  "address"
+    t.string  "online"
+    t.string  "offline"
+    t.integer "classes"
   end
 
   create_table "banners", force: :cascade do |t|
@@ -122,6 +153,62 @@ ActiveRecord::Schema.define(version: 20150514030058) do
     t.string  "image"
   end
 
+  create_table "comment_images", force: :cascade do |t|
+    t.integer  "comment_id"
+    t.string   "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "course_id"
+    t.string   "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "coupons", force: :cascade do |t|
+    t.string   "no"
+    t.string   "name"
+    t.decimal  "discount"
+    t.text     "info"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.string   "limit_category"
+    t.string   "limit_ext"
+    t.string   "min"
+    t.boolean  "active"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  create_table "course_photos", force: :cascade do |t|
+    t.integer  "course_id"
+    t.string   "photo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "courses", force: :cascade do |t|
+    t.integer  "coach_id"
+    t.string   "name"
+    t.integer  "type"
+    t.string   "style"
+    t.integer  "during"
+    t.integer  "price"
+    t.string   "exp"
+    t.integer  "proposal"
+    t.text     "intro"
+    t.string   "address"
+    t.boolean  "customized"
+    t.string   "custom_mxid"
+    t.string   "custom_mobile"
+    t.boolean  "top"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
   create_table "dynamic_comments", force: :cascade do |t|
     t.integer  "dynamic_id"
     t.integer  "user_id"
@@ -154,6 +241,13 @@ ActiveRecord::Schema.define(version: 20150514030058) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "top",        default: 0
+  end
+
+  create_table "expiries", force: :cascade do |t|
+    t.integer  "coach_id"
+    t.date     "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "feedbacks", force: :cascade do |t|
@@ -215,6 +309,34 @@ ActiveRecord::Schema.define(version: 20150514030058) do
     t.text     "content"
     t.integer  "cover_width"
     t.integer  "cover_height"
+  end
+
+  create_table "order_items", force: :cascade do |t|
+    t.integer  "order_id"
+    t.integer  "course_id"
+    t.string   "name"
+    t.string   "cover"
+    t.string   "price"
+    t.integer  "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "order_items", ["order_id"], name: "index_order_items_on_order_id", using: :btree
+
+  create_table "orders", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "no"
+    t.string   "coupons"
+    t.string   "bea"
+    t.string   "contact_name"
+    t.string   "contact_phone"
+    t.string   "pay_type"
+    t.decimal  "total"
+    t.decimal  "pay_amount",    default: 0.0
+    t.string   "status"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "photos", force: :cascade do |t|
@@ -296,6 +418,13 @@ ActiveRecord::Schema.define(version: 20150514030058) do
     t.string   "cover"
     t.string   "url"
     t.text     "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_coupons", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "coupon_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

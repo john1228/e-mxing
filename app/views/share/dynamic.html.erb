@@ -1,0 +1,82 @@
+<div class="mxlogo"><%= image_tag('share/header.jpg') %></div>
+<section class="mincon">
+  <dl>
+    <dt>
+    <div style="width: 100%;height: 0;padding-bottom: 100%; background: url(<%=@user.profile.avatar.thumb.url%>);background-size: cover;"></div>
+    </dt>
+    <dd>
+      <h3><%= @user.profile.name %></h3><span><%= @created_string %></span>
+
+      <p>
+        <% if @user.profile.identity.eql?(2) %>
+            <i class="ico3 ">证</i>
+        <% elsif @user.profile.identity.eql?(1) %>
+            <i class="ico4 ">教</i>
+        <% end %>
+      </p>
+
+      <div class="text "><%= @dynamic.content %></div>
+      <% if @dynamic_images.count>1 %>
+          <ul class="imglist ">
+            <% @dynamic_images.map { |image| %>
+                <li>
+                  <div style="width: 100%;height: 0;padding-bottom: 100%; background: url(<%=image.image.thumb.url%>);background-size: cover;"></div>
+                </li>
+            <% } %>
+          </ul>
+      <% elsif @dynamic_images.count==1 %>
+          <div class="mximgcon"><%= image_tag(@dynamic_images.first.image.thumb.url, width: 327) %></div>
+      <% end %>
+      <% if @dynamic_film.present? %>
+          <div class="video"><%= video_tag(@dynamic_film.film.url, controls: true, poster: @dynamic_film.image.thumb.url) %></div>
+      <% end %>
+    </dd>
+  </dl>
+</section>
+<ul class="pllist ">
+  <% @comments.map { |comment|
+    comment_user = comment.user %>
+      <li>
+        <div class="imgbox "><%= image_tag(comment_user.profile.avatar.thumb.url) %></div>
+        <div class="con "><i></i>
+          <h5><%= comment_user.profile.name %></h5><em><%= comment.show_time_string %></em>
+
+          <p><%= comment.content %></p>
+        </div>
+      </li>
+  <% } %>
+</ul>
+<section class="mxfot ">
+  <div class="mxfotcon ">
+    <p class="logo "><%= image_tag('share/middle.png') %></p>
+
+    <p>来美型，总有一课适合你</p>
+    <span>www.e-mxing.com</span>
+  </div>
+  <ul class="tjlist ">
+    <li>
+      <a class="imgbox "><%= image_tag('share/icon_01.png') %></a>
+
+      <p>相约型男美女</p>
+    </li>
+    <li>
+      <a class="imgbox "><%= image_tag('share/icon_02.png') %></a>
+
+      <p>找课约课运动轨迹</p>
+    </li>
+    <li>
+      <a class="imgbox "><%= image_tag('share/icon_03.png') %></a>
+
+      <p>360°个人秀场</p>
+    </li>
+  </ul>
+</section>
+<div class="ht70 "></div>
+<div class="footbut">
+  <dl>
+    <dt><%= image_tag('share/footer.png') %></dt>
+    <dd>
+      <button onclick="window.location.href='http://www.e-mxing.com/download'">立即下载</button>
+    </dd>
+  </dl>
+</div>

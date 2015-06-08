@@ -55,6 +55,7 @@ module UserAble
                    target: target||profile_target,
                    skill: skill||profile_skill,
                    often: often||profile_often,
+                   identity: identity||profile_identity,
                    interests: interests||profile_interests)
   end
 end

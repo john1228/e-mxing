@@ -1,0 +1,210 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+<link type="text/css" rel="stylesheet" href="css/style.css">
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/public.js"></script>
+<title>美型网</title>
+</head>
+<body>
+<header class="hdcon">
+    <a class="return">返回</a>
+    <h3>设置课表</h3>
+</header>
+<ul class="kstab">
+	<li class="cur"><span>1对1</span></li>
+    <li><span>团操</span></li>
+</ul>
+<section class="tb_bor listbox">
+	<dl>
+    	<dt>上课日期</dt>
+       	<dd><span>请选择</span><em></em></dd>
+   	</dl>
+	<dl>
+    	<dt>上课地址</dt>
+       	<dd><span>请选择</span><em></em></dd>
+   	</dl>
+</section>
+<div class="szkbzt"><span>课程1</span></div>
+<section class="tb_bor listbox">
+	<dl>
+    	<dt>开始时间</dt>
+       	<dd><span>请选择</span><em></em></dd>
+   	</dl>
+	<dl>
+    	<dt>结束时间</dt>
+       	<dd><span>请选择</span><em></em></dd>
+   	</dl>
+</section>
+<section class="tb_bor listbox">
+	<div class="tjksbut" onclick="toggle('mb');(ts).className='timebox dowtop';"><i></i>添加课时</div>
+</section>
+<section class="tb_bor listbox">
+	<dl>
+    	<dt>重复使用此课表</dt>
+       	<dd>
+        	<div class="binbox">
+        		<p class="btn on" id="btn_time"><span></span></p>
+           </div>
+       </dd>
+   	</dl>
+    <div class="remarks">
+    	<textarea placeholder="备注"></textarea>
+    </div>
+</section>
+<div class="footbut footbot_r">
+	<a href="#" class="qrks">发布课表</a>
+</div>
+
+<!--提示-->
+<div id="mb" class="mask"></div>
+<div id="ts" class="timebox">
+	<div class="timezt">选择上课日期
+    	<a class="fl" onclick="toggle('mb');(ts).className='timebox topdow';">取消</a>
+    	<a class="fr">确定</a>	
+    </div>
+    <div class="time_con" id="time_bath">
+        <p class="tit"><span>年</span><span>月</span><span>日</span></p>
+        <p class="bg"></p>
+        <div class="box col1">
+            <ol class="hour"></ol>
+            <ol class="minute"></ol>
+            <ol class="second"></ol>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+$(".btn").on("click",function(e){
+	if($(this).attr("class").indexOf("on") >= 0){
+		$(this).attr("class","btn off");
+	}
+	else{
+		$(this).attr("class","btn on");
+	}
+});
+
+$("#btn_time").on("click",function(e){
+	if($(this).attr("class").indexOf("on") >= 0){
+		$(".remarks").fadeIn(400);
+	}
+	else{
+		$(".remarks").fadeOut(400);
+	}
+});
+
+//////设置时间
+
+function time_control(obj,times,viewobj){
+	var htmls = {};
+	htmls.hour = "";
+	htmls.minute = "";
+	htmls.second = "";
+	var onindex = {};
+	onindex.hour = 0;
+	onindex.minute = 0;
+	onindex.second = 0;
+	var idx = 0;
+	var tops = {};
+	tops.hour = 0;
+	tops.minute = 0;
+	tops.second = 0;
+	var line_height = 0;
+	
+	function gethtml(name){
+		idx = 0;
+		for(i = times[name+"_min"]; i <= times[name+"_max"]; i += times[name+"_step"]){
+			idx += 1;
+			if(i ==  times[name+"_default"]){
+				htmls[name] += "<li class='on'>" + i + "</li>";
+				onindex[name] = idx;
+			}
+			else{
+				htmls[name] += "<li>" + i + "</li>";
+			}
+		}
+		$(obj).find("."+name).html(htmls[name]);
+		line_height = parseInt($(obj).find("."+name).find("li").height());
+		tops[name] = (2 - onindex[name]) * line_height; 
+		$(obj).find("."+name).css("top",tops[name]+"px");
+	}
+	if(times.hour_max > 0)gethtml("hour");
+	if(times.minute_max > 0)gethtml("minute");
+	if(times.second_max > 0)gethtml("second");
+	
+	var start_y,end_y;
+	var canmove = false;
+	var touch_obj;
+	var box_height;
+	var list_height;
+	function touchStart(event){
+		canmove = true;
+        if (!event.touches.length) return;
+    	var touch = event.touches[0];
+    	start_y = touch.pageY;
+		touch_obj = event.srcElement.parentNode;
+		list_height = parseInt($(touch_obj).height());
+		box_height = parseInt($(touch_obj).parent().height());
+	}
+	 
+	function touchMove(event){
+		if(canmove){
+			event.preventDefault();
+			if (!event.touches.length) return;
+			var touch = event.touches[0];
+			end_y = touch.pageY;
+			var move_top = parseInt($(touch_obj).css("top")) + (end_y - start_y) / 16;
+			move_top = move_top > line_height ? line_height : move_top < box_height - list_height - line_height ? box_height - list_height - line_height : move_top;
+			var sel_idx = Math.round(move_top / line_height) > 0 ? Math.round(move_top / line_height) - 1 : Math.abs(Math.round(move_top / line_height)) + 1;
+			sel_idx = sel_idx < 0 ? 0 : sel_idx > $(touch_obj).find("li").length - 1 ? $(touch_obj).find("li").length - 1 : sel_idx;
+			$(touch_obj).css("top", move_top + "px");
+			$(touch_obj).find("li").attr("class","");
+			$($(touch_obj).find("li")[sel_idx]).attr("class","on");
+			var return_time = {}
+			return_time.hour = $(touch_obj).parent().find(".hour").find(".on").html();
+			return_time.minute = $(touch_obj).parent().find(".minute").find(".on").html();
+			return_time.second = $(touch_obj).parent().find(".second").find(".on").html();
+			var t_html = "";
+			t_html += return_time.hour >= 0 ? return_time.hour : "";
+			t_html += return_time.minute > 10 ? ":"+return_time.minute :  return_time.minute >= 0 ? ":0"+return_time.minute : "";
+			t_html += return_time.second > 10 ? ":"+return_time.second :  return_time.second >= 0 ? ":0"+return_time.second : "";
+			$(viewobj).html(t_html);
+		}
+	}
+	function touchEnd(event){
+		if(canmove){
+			var tops = Math.round(parseInt($(touch_obj).css("top")) / line_height);
+			$(touch_obj).css("top",(tops * line_height) + "px");
+			
+		}
+		canmove = false;
+	}
+	if($(obj).find(".hour").length > 0)$(obj).find(".hour").get(0).addEventListener("touchstart",touchStart,false);
+	if($(obj).find(".minute").length > 0)$(obj).find(".minute").get(0).addEventListener("touchstart",touchStart,false);
+	if($(obj).find(".second").length > 0)$(obj).find(".second").get(0).addEventListener("touchstart",touchStart,false);
+	$(document.body).get(0).addEventListener("touchmove",touchMove,false);
+	$(document.body).get(0).addEventListener("touchend",touchEnd,false);
+}
+
+var time1 = {};
+time1.hour_min = 2012;
+time1.hour_max = 2020;
+time1.hour_step = 1;
+time1.hour_default = 2015;
+time1.minute_min = 1;
+time1.minute_max = 12;
+time1.minute_step = 1;
+time1.minute_default = 10;
+time1.second_min = 1;
+time1.second_max = 31;
+time1.second_step = 1;
+time1.second_default = 20;
+time_control($("#time_bath"),time1,$(".t_bath"));
+
+
+</script>
+</body>
+</html>

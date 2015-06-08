@@ -24,9 +24,8 @@ ActiveAdmin.register ServiceMember do
       image_tag("#{member.coach.profile_avatar.thumb.url}", height: 70)
     end
     column '签名' do |member|
-      truncate(member.coach.profile_interests_str)
+      truncate(member.coach.profile.interests_string)
     end
-    actions
   end
 
   show title: "私教" do

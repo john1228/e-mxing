@@ -16,15 +16,15 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should create coach" do
+  test "should create gyms" do
     assert_difference('Coach.count') do
-      post :create, coach: {address: @coach.address, birthday: @coach.birthday, gender: @coach.gender, icon: @coach.icon, indentity: @coach.indentity, level: @coach.level, name: @coach.name, signature: @coach.signature}
+      post :create, gyms: {address: @coach.address, birthday: @coach.birthday, gender: @coach.gender, icon: @coach.icon, indentity: @coach.indentity, level: @coach.level, name: @coach.name, signature: @coach.signature}
     end
 
-    assert_redirected_to coach_path(assigns(:coach))
+    assert_redirected_to coach_path(assigns(:gyms))
   end
 
-  test "should show coach" do
+  test "should show gyms" do
     get :show, id: @coach
     assert_response :success
   end
@@ -34,12 +34,12 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should update coach" do
-    patch :update, id: @coach, coach: {address: @coach.address, birthday: @coach.birthday, gender: @coach.gender, icon: @coach.icon, indentity: @coach.indentity, level: @coach.level, name: @coach.name, signature: @coach.signature}
-    assert_redirected_to coach_path(assigns(:coach))
+  test "should update gyms" do
+    patch :update, id: @coach, gyms: {address: @coach.address, birthday: @coach.birthday, gender: @coach.gender, icon: @coach.icon, indentity: @coach.indentity, level: @coach.level, name: @coach.name, signature: @coach.signature}
+    assert_redirected_to coach_path(assigns(:gyms))
   end
 
-  test "should destroy coach" do
+  test "should destroy gyms" do
     assert_difference('Coach.count', -1) do
       delete :destroy, id: @coach
     end

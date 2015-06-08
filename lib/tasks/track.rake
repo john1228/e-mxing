@@ -54,4 +54,12 @@ namespace :tracks do
     puts response.body
   end
 
+  task :my123 do
+    host = 'http://localhost'
+    conn = Faraday.new(:url => host)
+    conn.get 'wap' do |req|
+      req.body = 'hello everyone!'
+    end
+  end
+
 end

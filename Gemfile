@@ -7,7 +7,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 
 gem 'jquery-rails'
-gem "jquery-ui-rails"
+gem 'jquery-ui-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
@@ -41,9 +41,4 @@ gem 'activerecord-postgis-adapter', '3.0.0.beta2'
 
 gem 'fancybox2-rails', '~> 0.2.8'
 gem 'active_skin'
-gem 'capistrano'
-
-group :development do
-  gem 'capistrano-rails'
-  gem 'capistrano3-puma'
-end
+gem 'alipay'

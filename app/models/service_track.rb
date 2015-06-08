@@ -17,7 +17,7 @@ class ServiceTrack<Track
         during: during,
         avail: places-appointments.count,
         free: free,
-        coach: coach.nil? ? {} : {
+        gyms: coach.nil? ? {} : {
             mxid: coach.profile_mxid,
             name: coach.profile_name,
             tags: coach.profile_tags

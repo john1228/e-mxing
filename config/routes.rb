@@ -91,10 +91,48 @@ Rails.application.routes.draw do
   get 'activities' => 'activities#mine'
   get '/admin/services/:id/chat' => 'admin/services#chat', as: :chat_with_service
 
+  get '/admin/enthusiasts/:id/transfer' => 'admin/enthusiasts#transfer', as: :pre_transfer
+  post '/admin/enthusiasts/:id/transfer' => 'admin/enthusiasts#transfer_result', as: :summit_transfer, defaults: {format: 'js'}
+
   get 'download' => 'download#index'
+
+  get 'orders/pay' => 'orders#pay'
 
   get 'webchat' => 'webchat#index'
 
+  get 'share/:id/dynamic' => 'share#dynamic'
+  get 'share/service' => 'share#service'
+
   root 'home#index'
+
+  get 'appointments' => 'appointments#index'
+  get 'appointments/day' => 'appointments#day'
+
+
+  namespace :business do
+    #设置
+    post 'settings' => 'appointment_settings#create'
+    #地址管理
+    get 'addresses' => 'addresses#index'
+    post 'addresses' => 'addresses#create'
+    #课程
+    get 'courses' => 'courses#index'
+    post 'courses' => 'courses#create'
+    #设置
+    post 'settings/one' => 'appointment_settings#one_to_one'
+    post 'settings/many' => 'appointment_settings#one_to_many'
+    #预约
+    get 'appointments' => 'appointments#index'
+    post 'appointments' => 'appointments#create'
+  end
+
+  namespace :gyms do
+    #查看课程和购买
+    get 'courses' => 'courses#index'
+    post 'courses' => 'courses#buy'
+    #查看预约和预约团课
+    get 'appointments' => 'appointments#index'
+    post 'appointments' => 'appointments#create'
+  end
 end
 

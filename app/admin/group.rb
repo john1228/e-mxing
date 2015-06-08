@@ -31,6 +31,7 @@ ActiveAdmin.register Group do
       row('群名') { group.name }
       row('兴趣') { group.interests }
       row('介绍') { group.intro }
+      row('群主美型号') { group.owner}
     end
   end
 

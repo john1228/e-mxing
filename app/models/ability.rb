@@ -11,12 +11,20 @@ class Ability
         can :manage, ServiceMember, service: user.service
         can :manage, ServicePhoto, service: user.service
         can :manage, ServiceTrack, service: user.service
-        can :read, ActiveAdmin::Page, :name => "Dashboard"
+        can :read, ActiveAdmin::Page, :name => 'Dashboard'
       when AdminUser::CMS
         can :manage, TypeShow
         can :manage, Activity
         can :manage, News
-        can :read, ActiveAdmin::Page, :name => "Dashboard"
+        can :read, ActiveAdmin::Page, :name => 'Dashboard'
+      when AdminUser::MARKET
+        can [:read, :create, :update], Service
+        can :manage, ServiceDynamic
+        can :manage, ServiceMember
+        can :manage, ServicePhoto
+        can :manage, ServiceTrack
+        can :manage, AdminUser
+        can :read, ActiveAdmin::Page, :name => 'Dashboard'
       else
         cannot :manage, :all
     end

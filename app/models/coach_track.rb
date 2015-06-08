@@ -15,7 +15,7 @@ class CoachTrack<Track
         during: during,
         avail: places-appointments.count,
         free: free,
-        coach: {
+        gyms: {
             mxid: coach.profile_mxid,
             name: coach.profile_name,
             tags: coach.profile_tags

@@ -1,0 +1,380 @@
+@charset "UTF-8";
+/* CSS Document */
+html {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  height: 100%;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+  outline: 0;
+}
+
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td {
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline
+}
+
+img {
+  border: 0 none;
+  vertical-align: top
+}
+
+i, em {
+  font-style: normal
+}
+
+ol, ul {
+  list-style: none
+}
+
+input, select, button, h1, h2, h3, h4, h5, h6 {
+  font-size: 100%;
+  font-family: inherit
+}
+
+a, a:visited {
+  text-decoration: none;
+  color: #333
+}
+
+body {
+  margin: 0 auto;
+  min-width: 320px;
+  max-width: 640px;
+  height: 100%;
+  background: #e8e8e8;
+  font-size: 14px;
+  font-family: Helvetica, STHeiti STXihei, Microsoft JhengHei, Microsoft YaHei, Arial;
+  line-height: 1.5;
+  color: #000;
+  -webkit-text-size-adjust: 100% !important;
+  -webkit-user-select: none;
+  user-select: none;
+  position: relative;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  border: none;
+  interpolation-mode: bicubic;
+}
+
+.txt-center {
+  text-align: center;
+}
+
+.txt-justify {
+  text-align: justify;
+  text-justify: inter-ideograph;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, div, p, ul, dl {
+  display: block;
+  padding: 0px;
+  margin: 0px auto;
+  border: none;
+}
+
+a, button, input, i {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -moz-tap-highlight-color: rgba(0, 0, 0, 0);
+  -ms-tap-highlight-color: rgba(0, 0, 0, 0);
+  tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.mxlogo {
+  padding: 15px;
+  background: #fff;
+  border-bottom: #c8c7cc 1px solid
+}
+
+.mxlogo img {
+  width: 60%;
+}
+
+.mincon {
+  width: 100%;
+  margin-top: 10px;
+  background: #fff;
+  border-bottom: #c8c7cc 1px solid;
+  border-top: #c8c7cc 1px solid;
+  overflow: hidden
+}
+
+.mincon dl {
+  width: 94%;
+  padding: 3%;
+  overflow: hidden
+}
+
+.mincon dl dt {
+  float: left;
+  width: 18%;
+}
+
+.mincon dl dt div {
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+}
+
+.mincon dl dd {
+  float: right;
+  width: 80%;
+  position: relative;
+}
+
+.mincon dl dd h3 {
+  font-size: 18px;
+  padding-bottom: 2px;
+  padding-right: 50px;
+  color: #00c1eb
+}
+
+.mincon dl dd span {
+  position: absolute;
+  top: 3px;
+  right: 0;
+  color: #b3b3b3
+}
+
+.mincon dl dd p {
+  overflow: hidden;
+  padding: 5px 0
+}
+
+.mincon dl dd p i {
+  display: block;
+  float: left;
+  overflow: hidden;
+  width: 20px;
+  height: 20px;
+  text-indent: -9999px;
+  line-height: 20px;
+  color: #fff;
+  background: asset_data_url('share/icos.png') no-repeat;
+  margin-right: 4px;
+  font-style: normal;
+  background-size: cover
+}
+
+.mincon dl dd p i.ico1 {
+  background-position: -95px 0
+}
+
+.mincon dl dd p i.ico2 {
+  background-position: -118px 0
+}
+
+.mincon dl dd p i.ico3 {
+  background-position: -142px 0
+}
+
+.mincon dl dd p i.ico4 {
+  background-position: -165px 0
+}
+
+.mincon dl dd p i.ico5 {
+  background-position: -188px 0
+}
+
+.mincon dl dd p i.man {
+  width: 54px;
+  text-indent: 26px;
+  background-position: -0px 0
+}
+
+.mincon dl dd p i.woman {
+  width: 54px;
+  text-indent: 26px;
+  background-position: -56px 0
+}
+
+.mincon dl dd .text {
+  padding-top: 5px;
+}
+
+.mincon dl dd .text img {
+  margin-left: 5px;
+  width: 26px;
+}
+
+.imglist {
+  width: 100%;
+  padding-top: 5px;
+  overflow: hidden;
+}
+
+.imglist li {
+  float: left;
+  width: 26%;
+  padding: 1px;
+}
+
+.video {
+  padding-top: 10px;
+}
+
+.mximgcon {
+  padding-top: 10px;
+}
+
+.pllist {
+  width: 92%;
+  margin-top: 10px;
+}
+
+.pllist li {
+  padding: 6px 0 6px 90px;
+  position: relative;
+  min-height: 70px;
+  overflow: hidden
+}
+
+.pllist li .imgbox {
+  position: absolute;
+  left: 0;
+  width: 70px;
+}
+
+.pllist li .imgbox img {
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+}
+
+.pllist li .con {
+  position: relative;
+  border: #d9d9d9 1px solid;
+  padding: 10px 16px;
+  position: relative;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.pllist li .con i {
+  display: block;
+  width: 12px;
+  height: 16px;
+  position: absolute;
+  top: 20px;
+  left: -12px;
+  background: asset_data_url('share/fxico1.png') no-repeat
+}
+
+.pllist li .con h5 {
+  font-weight: normal;
+  font-size: 12px;
+  color: #b3b3b3;
+}
+
+.pllist li .con em {
+  top: 10px;
+  font-size: 12px;
+  right: 16px;
+  position: absolute;
+  color: #b3b3b3;
+}
+
+.pllist li .con p {
+  padding: 3px 0;
+}
+
+.pllist li .con span {
+  color: #b3b3b3;
+}
+
+.mxfot {
+  background: #fff;
+  padding: 20px 0;
+  margin-top: 10px;
+}
+
+.mxfot .mxfotcon {
+  width: 90%;
+  text-align: center
+}
+
+.mxfot .mxfotcon .logo {
+  width: 30%;
+  padding: 10px 0
+}
+
+.mxfot .mxfotcon span {
+  font-size: 12px;
+}
+
+.mxfot .tjlist {
+  width: 92%;
+  overflow: hidden;
+  padding: 20px 0 10px 0
+}
+
+.mxfot .tjlist li {
+  float: left;
+  width: 33%;
+  text-align: center
+}
+
+.mxfot .tjlist li .imgbox {
+  display: inline-block;
+  margin-bottom: 5px;
+  width: 70%;
+  overflow: hidden;
+}
+
+.mxfot .tjlist li .imgbox img {
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+}
+
+.footbut {
+  position: fixed;
+  width: 640px;
+  height: 70px;
+  background: #2e2e2e;
+  bottom: -1px;
+  z-index: 9999
+}
+
+.footbut dl {
+  width: 90%;
+  padding: 15px 0
+}
+
+.footbut dl dt {
+  float: left;
+  width: 160px;
+}
+
+.footbut dl dd {
+  float: right;
+}
+
+.footbut dl dd button {
+  padding: 10px;
+  background: #00c1ea;
+  color: #fff;
+  border: 0;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.ht70 {
+  height: 70px;
+}
+
+@media (max-width: 320px) {
+  .footbut dl dt {
+    float: left;
+    width: 140px;
+  }
+}
+
+@media (max-width: 640px) {
+  .footbut {
+    width: 100%;
+  }
+}

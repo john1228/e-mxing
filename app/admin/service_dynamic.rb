@@ -2,8 +2,7 @@ ActiveAdmin.register ServiceDynamic do
   menu label: '动态'
   belongs_to :service
   navigation_menu :service
-  permit_params :top, :content,
-                dynamic_image: [:id, :image],
+  permit_params :top, :content, images: [],
                 dynamic_film_attributes: [:id, :title, :cover, :film]
 
   filter :content, label: '内容'
@@ -23,7 +22,9 @@ ActiveAdmin.register ServiceDynamic do
         table do
           tr do
             for dynamic_image in service_dynamic.dynamic_images
-              image_tag(dynamic_image.image.thumb.url)
+              td do
+                image_tag(dynamic_image.image.thumb.url)
+              end
             end
           end
         end

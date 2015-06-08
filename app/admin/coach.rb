@@ -22,6 +22,7 @@ ActiveAdmin.register Coach do
     panel '用戶信息' do
       table style: 'width: 100%' do
         tr do
+          td link_to('课程', admin_coach_courses_path(coach), class: :button)
           td link_to('照片墙', admin_coach_coach_photos_path(coach), class: :button)
           td link_to('动  态', admin_coach_coach_dynamics_path(coach), class: :button)
           td link_to('运动轨迹', admin_coach_coach_tracks_path(coach), class: :button)

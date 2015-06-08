@@ -29,9 +29,9 @@ class DynamicsController < ApplicationController
 
   def create
     dynamic = @user.dynamics.new(content: params[:content])
+    (0...10).each { |image_index| dynamic.dynamic_images.build(image: params["#{image_index}"]) if params["#{image_index}"].present? }
+    dynamic.build_dynamic_film(cover: params[:cover], film: params[:film]) if params[:film].present?&&params[:cover].present?
     if dynamic.save
-      (0...10).each { |image_index| dynamic.dynamic_images.create(image: params["#{image_index}"]) if params["#{image_index}"].present? }
-      dynamic.create_dynamic_film(cover: params[:cover], film: params[:film]) if params[:film].present?&&params[:cover].present?
       render json: {
                  code: 1,
                  data: {

@@ -57,7 +57,7 @@ class Dynamic < ActiveRecord::Base
     image = dynamic_film.cover if image.blank? && dynamic_film.present?
     {
         content: content,
-        image: image.present? ? $host + image.thumb.url : ''
+        image: image.present? ? image.thumb.url : ''
     }
   end
 

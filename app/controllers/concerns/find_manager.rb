@@ -54,7 +54,7 @@ module FindManager
     week_date = Date.today.at_beginning_of_week
     ranks = Like.where(like_type: Like::PERSON, created_at: week_date.prev_week..week_date).group(:liked_id).limit(50).order('count_id desc').count(:id)
     {
-        week: week_date.strftime("%U").to_i,
+        week: week_date.strftime('%U').to_i,
         items: ranks.map { |rank| {user: User.find_by(id: rank[0]).summary_json, likes: rank[1]} }
     }
   end

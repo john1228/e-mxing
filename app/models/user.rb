@@ -10,9 +10,15 @@ class User < ActiveRecord::Base
   has_one :showtime
   has_many :applies
   attr_accessor :name, :avatar, :gender, :signature, :identity, :birthday, :address, :target, :skill, :often, :interests
-  delegate :mxid, :name, :avatar, :age, :tags, :signature, :gender, :birthday, :address, :target, :skill, :often, :interests, :interests_string, to: :profile, prefix: true, allow_nil: false
+  delegate :mxid, :name, :avatar, :age, :tags, :signature, :gender, :birthday, :identity, :address, :target, :skill, :often, :interests, :interests_string, to: :profile, prefix: true, allow_nil: false
   alias_attribute :hobby, :interests
   has_many :likes, -> { where(like_type: Like::PERSON) }, foreign_key: :liked_id, dependent: :destroy
+  #v3
+  has_many :user_coupons, dependent: :destroy
+  has_many :orders, dependent: :destroy
+
+  validates_uniqueness_of :sns, conditions: -> { where.not(sns: nil) }
+  validates_uniqueness_of :mobile, conditions: -> { where.not(mobile: nil) }
 
 
   TYPE=[['健身爱好者', 0], ['私教', 1], ['商家', 2]]
@@ -38,4 +44,5 @@ class User < ActiveRecord::Base
   def as_json
     profile.as_json.merge(likes: likes.count)
   end
+
 end
