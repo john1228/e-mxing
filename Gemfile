@@ -41,4 +41,3 @@ gem 'activerecord-postgis-adapter', '3.0.0.beta2'
 
 gem 'fancybox2-rails', '~> 0.2.8'
 gem 'active_skin'
-gem 'alipay'
