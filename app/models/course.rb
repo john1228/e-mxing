@@ -8,7 +8,6 @@ class Course < ActiveRecord::Base
     {
         id: id,
         name: name,
-        cover: cover,
         type: type,
         style: style,
         during: during,
