@@ -7,7 +7,7 @@ class ServicesController < ApplicationController
       render json: {
                  code: 1,
                  data: {
-                     coaches: service.service_members.includes(:gyms).collect { |member|
+                     coaches: service.service_members.includes(:coach).collect { |member|
                        member.coach.profile.summary_json
                      }
                  }
