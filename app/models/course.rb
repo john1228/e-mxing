@@ -16,7 +16,7 @@ class Course < ActiveRecord::Base
         proposal: proposal,
         intro: intro,
         address: school_addresses,
-        images: course_photos.collect { |course_photo| course_photo.thumb.url }
+        images: course_photos.collect { |course_photo| course_photo.photo.thumb.url }
     }
   end
 
