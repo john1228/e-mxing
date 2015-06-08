@@ -5,9 +5,11 @@ class Course < ActiveRecord::Base
   has_many :comments, dependent: :destroy
 
   def as_json
+    cover = course_photos.first.blank? ? '' : course_photos.first.photo.thumb.url
     {
         id: id,
         name: name,
+        cover: cover,
         type: type,
         style: style,
         during: during,
