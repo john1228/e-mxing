@@ -7,7 +7,7 @@ module Business
     def create
       begin
         course = @coach.courses.new(course_params)
-        (0..6).each { |index| course.coach_photos.new(photo: params[index.to_s.to_sym]) if params[index.to_s.to_sym].present? }
+        (0..6).each { |index| course.course_photos.new(photo: params[index.to_s.to_sym]) if params[index.to_s.to_sym].present? }
         if course.save
           render json: {code: 1}
         else
