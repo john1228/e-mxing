@@ -1,5 +1,5 @@
 class DynamicImage < ActiveRecord::Base
   belongs_to :dynamic
 
-  mount_uploader :image, DynamicImagesUploader
+  mount_uploader :image, ImagesUploader
 end

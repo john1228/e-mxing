@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   #v3
   has_many :user_coupons, dependent: :destroy
   has_many :orders, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   validates_uniqueness_of :sns, conditions: -> { where.not(sns: nil) }
   validates_uniqueness_of :mobile, conditions: -> { where.not(mobile: nil) }

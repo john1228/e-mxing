@@ -1,6 +1,5 @@
 # encoding: utf-8
-
-class DynamicImagesUploader < CarrierWave::Uploader::Base
+class ImagesUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
   storage :file
   process :store_dimensions

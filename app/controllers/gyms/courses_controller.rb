@@ -1,6 +1,6 @@
 module Gyms
   class CoursesController < BaseController
-    before_action :fetch_course, only: :coach
+    before_action :fetch_course, only: [:coach, :comments]
     before_action :verify_auth_token, only: :buy
 
     def index
@@ -21,6 +21,10 @@ module Gyms
 
     def coach
       render json: {code: 1, data: {coach: @course.coach.summary_json}}
+    end
+
+    def comments
+      render json: {code: 1, data: {comments: @course.comments.page(params[:page]||1).collect { |comment| comment.as_json }}}
     end
 
     private
