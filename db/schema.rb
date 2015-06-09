@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150605080941) do
+ActiveRecord::Schema.define(version: 20150608081116) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,8 +92,7 @@ ActiveRecord::Schema.define(version: 20150605080941) do
   create_table "appointment_settings", force: :cascade do |t|
     t.integer  "coach_id"
     t.date     "start_date"
-    t.string   "start_time"
-    t.string   "end_time"
+    t.string   "time"
     t.integer  "address_id"
     t.boolean  "repeat"
     t.string   "course_name"
@@ -109,13 +108,13 @@ ActiveRecord::Schema.define(version: 20150605080941) do
     t.integer "course_id"
     t.string  "course_name"
     t.string  "course_during"
+    t.integer "classes"
     t.date    "date"
     t.string  "start_time"
     t.string  "venues"
     t.string  "address"
     t.string  "online"
     t.string  "offline"
-    t.integer "classes"
   end
 
   create_table "banners", force: :cascade do |t|
@@ -154,10 +153,8 @@ ActiveRecord::Schema.define(version: 20150605080941) do
   end
 
   create_table "comment_images", force: :cascade do |t|
-    t.integer  "comment_id"
-    t.string   "image"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer "comment_id"
+    t.string  "image"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -422,13 +419,6 @@ ActiveRecord::Schema.define(version: 20150605080941) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "user_coupons", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "coupon_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string   "mobile",     limit: 255
     t.string   "password",   limit: 255
@@ -436,6 +426,13 @@ ActiveRecord::Schema.define(version: 20150605080941) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "sns"
+  end
+
+  create_table "wallets", force: :cascade do |t|
+    t.integer "user_id"
+    t.decimal "balance", default: 0.0
+    t.string  "coupons", default: ""
+    t.integer "bean",    default: 0
   end
 
 end

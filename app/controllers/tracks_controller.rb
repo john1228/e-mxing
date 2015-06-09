@@ -59,9 +59,7 @@ class TracksController < ApplicationController
   end
 
   def destroy
-
   end
-
 
   def appoint
     appointment = @user.appointments.new(track_id: params[:id])

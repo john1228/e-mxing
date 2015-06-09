@@ -1,19 +1,14 @@
 class UsersController < ApplicationController
   include ValidateManager
-  include LoginManager
+  before_action :verify_password, only: :login
+  before_action :verify_sns, only: :sns
 
   def login
-    render json: {
-               code: 1,
-               data: {user: @user.summary_json}
-           }
+    render json: {code: 1, data: {user: @user.summary_json}}
   end
 
   def sns
-    render json: {
-               code: 1,
-               data: {user: @user.summary_json}
-           }
+    render json: {code: 1, data: {user: @user.summary_json}}
   end
 
 
@@ -34,23 +29,14 @@ class UsersController < ApplicationController
   end
 
   def feedback
-    render json: {
-               code: 1,
-               message: 'success'
-           }
+    render json: {code: 1, message: 'success'}
   end
 
   def logout
     if Rails.cache.delete(@user.token)
-      render json: {
-                 code: 1,
-                 message: 'success'
-             }
+      render json: {code: 1, message: 'success'}
     else
-      render json: {
-                 code: 0,
-                 message: 'success'
-             }
+      render json: {code: 0, message: 'success'}
     end
   end
 

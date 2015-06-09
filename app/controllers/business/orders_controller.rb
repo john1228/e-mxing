@@ -1,7 +1,7 @@
 module Business
   class OrdersController < BaseController
     def index
-      render json: {code: 1, data: {orders: @coach.orders}}
+      render json: Success.new({orsers: @coach.orders})
     end
   end
 end

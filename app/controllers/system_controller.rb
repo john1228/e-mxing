@@ -1,5 +1,5 @@
-class SystemController < ApplicationController
-  before_action :find_user
+class SystemController < ApiController
+  before_action :verify_auth_token
 
   def feedback
     Feedback.create(user_id: @user.id, content: params[:content], contact: params[:contact])
@@ -12,7 +12,7 @@ class SystemController < ApplicationController
   end
 
   private
-  def find_user
+  def verify_auth_token
     @user = Rails.cache.fetch(request.headers[:token])
     render json: {code: 0, message: '您还未登录'} if @user.blank?
   end

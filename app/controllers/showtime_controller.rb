@@ -1,31 +1,18 @@
-class ShowtimeController < ApplicationController
-  include LoginManager
-
+class ShowtimeController < ApiController
   def index
     showtime = @user.showtime
     if showtime.nil?
-      render json: {
-                 code: 0,
-                 message: '未设置视频秀!'
-             }
+      render json: Failure.new('未设置视频秀')
     else
-      render json: {
-                 code: 1,
-                 data: {
-                     showtime: showtime.as_json
-                 }
-             }
+      render json: Success.new({showtime: showtime})
     end
   end
 
   def update
     if @user.create_showtime(showtime_params)
-      render json: {code: 1}
+      render json: Success.new(showtime: showtime)
     else
-      render json: {
-                 code: 0,
-                 message: '发布视频秀失败!'
-             }
+      render json: Failure.new('发布视频秀失败')
     end
   end
 

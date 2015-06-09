@@ -1,5 +1,5 @@
-class ActivitiesController < ApplicationController
-  before_action :need_user, only: [:apply, :mine]
+class ActivitiesController < ApiController
+  before_action :verify_auth_token, only: [:apply, :mine]
 
   def show
     @activity = Activity.find_by(id: params[:id])
@@ -31,11 +31,8 @@ class ActivitiesController < ApplicationController
   end
 
   private
-  def need_user
+  def verify_auth_token
     @user = Rails.cache.fetch(request.headers[:token])
-    render json: {
-               code: -1,
-               message: '您还未登录'
-           } if @user.nil?
+    render json: {code: -1, message: '您还未登录'} if @user.nil?
   end
 end

@@ -1,21 +1,6 @@
 module ValidateManager
   extend ActiveSupport::Concern
 
-  included do
-    before_action :verify_password, only: :login
-    before_action :verify_sns, only: :sns
-  end
-
-  def check_user
-    @user = Rails.cache.read(request.headers[:token])
-    if @user.nil?
-      render json: {
-                 code: 0,
-                 message: '您还未登录'
-             }
-    end
-  end
-
   def verify_password
     user = User.find_by(mobile: params[:username])
     if user.nil?

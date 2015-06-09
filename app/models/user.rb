@@ -9,14 +9,17 @@ class User < ActiveRecord::Base
   has_one :place, dependent: :destroy
   has_one :showtime
   has_many :applies
+  has_many :likes, -> { where(like_type: Like::PERSON) }, foreign_key: :liked_id, dependent: :destroy
+
   attr_accessor :name, :avatar, :gender, :signature, :identity, :birthday, :address, :target, :skill, :often, :interests
   delegate :mxid, :name, :avatar, :age, :tags, :signature, :gender, :birthday, :identity, :address, :target, :skill, :often, :interests, :interests_string, to: :profile, prefix: true, allow_nil: false
   alias_attribute :hobby, :interests
-  has_many :likes, -> { where(like_type: Like::PERSON) }, foreign_key: :liked_id, dependent: :destroy
+
   #v3
-  has_many :user_coupons, dependent: :destroy
+  has_one :wallet, dependent: :destroy
   has_many :orders, dependent: :destroy
   has_many :comments, dependent: :destroy
+
 
   validates_uniqueness_of :sns, conditions: -> { where.not(sns: nil) }
   validates_uniqueness_of :mobile, conditions: -> { where.not(mobile: nil) }
@@ -35,11 +38,14 @@ class User < ActiveRecord::Base
   end
 
   def summary_json
-    if mobile.present? && mobile.start_with?("1")
-      profile.summary_json.merge(mobile: (mobile[0, 3]+"****"+ mobile[7, 4] rescue ''), token: token)
+    regular = /^1[3|4|5|7|8][0-9]\d{4,8}$/
+    if regular.match(mobile).blank?
+      login_info = profile.summary_json.merge(mobile: '', token: token)
     else
-      profile.summary_json.merge(mobile: '', token: token)
+      login_info = profile.summary_json.merge(mobile: mobile[0, 3]+'****'+ mobile[7, 4], token: token)
     end
+    create_wallet if wallet.nil?
+    login_info.merge(wallet: wallet.as_json)
   end
 
   def as_json

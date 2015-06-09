@@ -2,12 +2,11 @@ module Business
   class AppointmentSettingsController<BaseController
     #1v1课程设置
     def one_to_one
-      logger.info one_params
       setting = @coach.appointment_settings.new(one_params)
       if setting.save
-        render json: {code: 1}
+        render json: Success.new({})
       else
-        render json: {code: 0, message: '设置失败'}
+        render json: Failure.new('设置失败')
       end
     end
 
@@ -15,9 +14,9 @@ module Business
     def one_to_many
       setting = @coach.appointment_settings.new(many_params)
       if setting.save
-        render json: {code: 1}
+        render json: Success.new({})
       else
-        render json: {code: 0, message: '设置失败'}
+        render json: Failure.new('设置失败')
       end
     end
 
@@ -25,8 +24,7 @@ module Business
     def one_params
       {
           start_date: params[:date],
-          start_time: params[:start],
-          end_time: params[:end],
+          time: params[:time],
           repeat: params[:repeat],
           address_id: @coach.addresses.find_by(id: params[:address]).id
       }
@@ -37,8 +35,7 @@ module Business
           course_name: params[:name],
           course_type: params[:type],
           start_date: params[:date],
-          start_time: params[:start],
-          end_time: params[:end],
+          time: "#{params[:start]}|#{params[:end]}",
           place: params[:place],
           address_id: @coach.addresses.find_by(id: params[:address]).id
       }

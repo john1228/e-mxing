@@ -1,5 +1,5 @@
-class DynamicsController < ApplicationController
-  include LoginManager
+class DynamicsController < ApiController
+  before_action :find_user, only: [:index, :latest]
 
   def index
     render json: {
@@ -13,17 +13,9 @@ class DynamicsController < ApplicationController
   def latest
     latest = @user.dynamics.latest
     if latest.nil?
-      render json: {
-                 code: 0,
-                 message: '还未发布动态'
-             }
+      render json: {code: 0, message: '还未发布动态'}
     else
-      render json: {
-                 code: 1,
-                 data: {
-                     dynamic: @user.dynamics.latest.summary_json
-                 }
-             }
+      render json: {code: 1, data: {dynamic: @user.dynamics.latest.summary_json}}
     end
   end
 
@@ -32,28 +24,16 @@ class DynamicsController < ApplicationController
     (0...10).each { |image_index| dynamic.dynamic_images.build(image: params["#{image_index}"]) if params["#{image_index}"].present? }
     dynamic.build_dynamic_film(cover: params[:cover], film: params[:film]) if params[:film].present?&&params[:cover].present?
     if dynamic.save
-      render json: {
-                 code: 1,
-                 data: {
-                     dynamic: dynamic.as_json
-                 }
-             }
+      render json: {code: 1, data: {dynamic: dynamic.as_json}}
     else
-      render json: {
-                 code: 0,
-                 message: '发布动态失败'
-             }
+      render json: {code: 0, message: '发布动态失败'}
     end
   end
-
 
   def destroy
     dynamic = @user.dynamics.find_by(id: params[:id])
     if dynamic.nil?
-      render json: {
-                 code: 0,
-                 message: '该动态已经被删除'
-             }
+      render json: {code: 0, message: '该动态已经被删除'}
     else
       if dynamic.destroy
         render json: {code: 1}
@@ -63,5 +43,10 @@ class DynamicsController < ApplicationController
     end
   end
 
+  private
+  def find_user
+    @user = User.find_by_mxid(params[:mxid])
+    render json: {code: 0, message: '用户不存在'} if @user.blank?
+  end
 end
 

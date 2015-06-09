@@ -1,9 +1,7 @@
 class DynamicComment < ActiveRecord::Base
+  default_scope { where('1=1').order(id: :desc) }
   belongs_to :dynamic
   belongs_to :user
-
-
-
 
   def as_json
     {

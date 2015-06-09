@@ -1,5 +1,4 @@
-class FindController < ApplicationController
-  include LoginManager
+class FindController < ApiController
   include FindManager
 
   def upload
@@ -8,9 +7,7 @@ class FindController < ApplicationController
     else
       @user.create_place(lonlat: "POINT(#{params[:lng]} #{params[:lat]})")
     end
-    render json: {
-               code: 1
-           }
+    render json: {code: 1}
   end
 
   def tips

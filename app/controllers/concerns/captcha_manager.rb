@@ -1,17 +1,6 @@
 module CaptchaManager
   extend ActiveSupport::Concern
-
-  included do
-    before_action :need_user, only: :binding
-    before_action :check_captcha, only: :check
-  end
-
-  def need_user
-    logger.info request.headers[:token]
-    @user = Rails.cache.fetch(request.headers[:token])
-    render json: {code: 0, message: '您还未登录'} if @user.nil?
-  end
-
+  #发送验证码
   def send_sms(mobile, captcha)
     conn = Faraday.new(url: 'https://sandboxapp.cloopen.com:8883')
     timestamp = Time.now.strftime("%Y%m%d%H%M%S")
@@ -29,8 +18,7 @@ module CaptchaManager
     params = {to: "#{mobile}", appId: appid, templateId: templateid, datas: ["#{captcha}", '30'], data: ''}
     conn.post "/2013-12-26/Accounts/#{account}/SMS/TemplateSMS?sig=#{sig}", params.to_json
   end
-
-
+  #验证码验证
   def check_captcha
     token = request.headers[:token]
     cache_info = Rails.cache.fetch(token)

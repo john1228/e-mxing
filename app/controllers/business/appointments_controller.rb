@@ -1,21 +1,15 @@
 module Business
   class AppointmentsController < BaseController
     def index
-      render json: {
-                 code: 1,
-                 data: {
-                     #设置
-                     setting: @coach.appointment_settings.effect(params[:date]||Date.today),
-                     #已约
-                     appointment: @coach.appointments.where(date: params[:date]||Date.today)}.collect { |appointment| appointment.as_json
-                 }
-             }
+      render json: Success.new({
+                                   setting: @coach.appointment_settings.effect(params[:date]||Date.today),
+                                   appointment: @coach.appointments.where(date: params[:date]||Date.today).collect { |appointment| appointment.as_json }
+                               })
     end
 
     def create
       #预约的课程
       begin
-        logger.info appointment_params
         @coach.appointments.create(appointment_params)
         render json: {code: 1}
       rescue Exception => e

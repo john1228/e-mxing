@@ -1,15 +1,9 @@
-class FriendsController < InheritedResources::Base
-  before_action :verify_auth_token, only: :create
-
+class FriendsController < ApiController
   def index
     ids = params[:mxids].split(',').collect { |mxid| mxid.to_i - 10000 }
     render json: {
                code: 1,
-               data: {
-                   profiles: Profile.where(id: ids).collect { |profile|
-                     profile.as_json
-                   }
-               }
+               data: {profiles: Profile.where(id: ids).collect { |profile| profile.as_json }}
            }
   end
 

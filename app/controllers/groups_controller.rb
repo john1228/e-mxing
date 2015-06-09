@@ -1,6 +1,4 @@
-class GroupsController < ApplicationController
-  include LoginManager
-
+class GroupsController < ApiController
   def mine
     groups = Group.where(easemob_id: params[:ids].split(','))
     render json: {

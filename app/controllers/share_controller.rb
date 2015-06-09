@@ -24,7 +24,6 @@ class ShareController < ApplicationController
     render layout: 'share'
   end
 
-
   def service
     @service = Service.first
     render layout: false

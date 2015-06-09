@@ -1,11 +1,9 @@
 class PhotosController < ApplicationController
-  include LoginManager
-
   def index
     render json: {
                code: 1,
                data: {
-                   photos: @user.is_a?(Service) ? @user.service_photos(params[:page]||1).collect { |photo| photo.as_json } : @user.photos.page(params[:page]||1).collect { |photo| photo.as_json }
+                   photos: @user.photos.page(params[:page]||1).collect { |photo| photo.as_json }
                }
            }
   end

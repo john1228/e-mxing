@@ -6,24 +6,32 @@ class AppointmentSetting < ActiveRecord::Base
       one_to_one = (where(start_date: date, course_name: nil)||where('start_date< and repeat=? and course_name=?', date, true, nil)).first
       one_to_many = where.not(course_name: nil).where(start_date: date)
       {
-          one: one_to_one.blank? ? {start: '9:00', end: '21:00'} : {start: one_to_one.start_time, end: one_to_one.end_time},
+          one: one_to_one.blank? ? {address: '', time: [{start: '9:00', end: '21:00'}]} : {
+              address: one_to_one.school_address, time: one_to_one.time.split(',').collect { |item|
+                time_ary = item.split('|')
+                {
+                    start: time_ary[0],
+                    end: time_ary[1]
+                }
+              }},
           many: one_to_many.collect { |many|
+            time = many.time.split('|')
             {
                 course: {
                     name: many.course_name,
                     type: many.course_type
                 },
-                start: many.start_time,
-                end: many.end_time,
+                start: time[0],
+                end: time[1],
                 place: many.place,
-                address: many.school_address_of_setting
+                address: many.school_address
             }
           }
       }
     end
   end
 
-  def school_address_of_setting
+  def school_address
     coach.addresses.find_by(id: address).as_json
   end
 end

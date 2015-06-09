@@ -4,8 +4,7 @@ class CreateAppointmentSettings < ActiveRecord::Migration
       #团操和1v1共有属性
       t.references :coach
       t.date :start_date
-      t.string :start_time
-      t.string :end_time
+      t.string :time#开始结束时间,eg: 开始时间|结束时间,开始时间|结束时间
       t.references :address
       #1v1特有属性
       t.boolean :repeat
@@ -13,7 +12,6 @@ class CreateAppointmentSettings < ActiveRecord::Migration
       t.string :course_name
       t.string :course_type
       t.integer :place
-
       t.timestamps null: false
     end
   end

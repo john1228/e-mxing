@@ -1,5 +1,7 @@
-class CaptchaController < ApplicationController
+class CaptchaController < ApiController
   include CaptchaManager
+  before_action :verify_auth_token, only: :binding
+  before_action :check_captcha, only: :check
 
   def regist
     user = User.find_by(mobile: params[:mobile])
@@ -8,15 +10,9 @@ class CaptchaController < ApplicationController
       send_sms(params[:mobile], captcha)
       mobile_token = Digest::MD5.hexdigest(params[:mobile])
       Rails.cache.write(mobile_token, {action: 'regist', mobile: params[:mobile], captcha: captcha}, expires_in: 30.minutes)
-      render json: {
-                 code: 1,
-                 data: {token: mobile_token}
-             }
+      render json: Success.new({token: mobile_token})
     else
-      render json: {
-                 code: 0,
-                 message: '该号码已注册或已绑定'
-             }
+      render json: Failure.new('该号码已注册或已绑定')
     end
   end
 
@@ -60,5 +56,10 @@ class CaptchaController < ApplicationController
   def generate_captcha
     sample_str = %w"0 1 2 3 4 5 6 7 8 9"
     sample_str.sample(6).join('')
+  end
+
+  def verify_auth_token
+    @user = Rails.cache.fetch(request.headers[:token])
+    render json: {code: -1, message: '您还未登录'} if @user.nil?
   end
 end

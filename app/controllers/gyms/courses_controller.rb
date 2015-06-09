@@ -4,23 +4,20 @@ module Gyms
     before_action :verify_auth_token, only: :buy
 
     def index
-      render json: {
-                 code: 1,
-                 data: {courses: @coach.courses.page(params[:page]||1).collect { |course| course.as_json }}
-             }
+      render json: Success.new({courses: @coach.courses.page(params[:page]||1)})
     end
 
     def buy
       order = @user.orders.new(order_params)
       if order.save
-        render json: {code: 1}
+        render json: Success.new({})
       else
-        render json: {code: 0, message: '购买课程失败'}
+        render json: Failure.new('购买课程失败')
       end
     end
 
     def coach
-      render json: {code: 1, data: {coach: @course.coach.summary_json}}
+      render json: Success.new({coach: @course.coach.summary_json})
     end
 
     def comments
