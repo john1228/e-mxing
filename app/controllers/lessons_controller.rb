@@ -9,7 +9,6 @@ class LessonsController < ApiController
                        course: {
                            name: appointment.course_name,
                            type: appointment.course.type,
-                           price: appointment.course.price,
                            during: appointment.course_during
                        },
                        appointment: {
@@ -28,10 +27,10 @@ class LessonsController < ApiController
                          course: {
                              name: lesson.course.name,
                              type: appointment.course.type,
-                             price: appointment.course.price,
                              during: appointment.course_during,
                          },
-                         available: (lesson.available-lesson.used)
+                         available: (lesson.available-lesson.used),
+                         exp: exp
                      }
                    }
                )
@@ -45,7 +44,8 @@ class LessonsController < ApiController
                              price: appointment.course.price,
                              during: appointment.course_during,
                          },
-                         available: (lesson.available-lesson.used)
+                         available: (lesson.available-lesson.used),
+                         exp: exp
                      }
                    }
                )

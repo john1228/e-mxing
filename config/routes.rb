@@ -138,5 +138,11 @@ Rails.application.routes.draw do
     get 'appointments' => 'appointments#index'
     post 'appointments' => 'appointments#create'
   end
+  #课时
+  get 'lessons' => 'lessons#index'
+  #订单
+  get 'orders' => 'orders#index'
+  get 'orders/show' => 'orders#show'
+  post 'orders' => 'orders#create'
 end
 
