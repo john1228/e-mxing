@@ -1,11 +1,13 @@
 class PhotosController < ApplicationController
   def index
-    render json: {
-               code: 1,
-               data: {
-                   photos: @user.photos.page(params[:page]||1).collect { |photo| photo.as_json }
-               }
-           }
+    user = User.find_by_mxid(params[:mxid])
+    if user.blank?
+      render json: Failure.new('您查看到用户不存在')
+    else
+      render json: Success.new(
+                 photos: user.photos.page(params[:page]||1)
+             )
+    end
   end
 
   def create
