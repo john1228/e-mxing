@@ -7,22 +7,6 @@ class Order < ActiveRecord::Base
   STATUS = {unpay: 1, pay: 2}
   attr_accessor :item
 
-  def as_json
-    {
-        no: no,
-        contact_name: contact_name,
-        contact_phone: contact_phone,
-        items: order_items.collect { |item|
-          item.as_json
-        },
-        coupons: '',
-        bea: '',
-        pay: pay_amount,
-        created: created_at.to_i
-    }
-  end
-
-
   private
   def setting_default_values
     self.no = "#{Time.now.to_i}#{user_id}#{%w'0 1 2 3 4 5 6 7 8 9'.sample(3).join('')}"

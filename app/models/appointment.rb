@@ -1,5 +1,6 @@
 class Appointment < ActiveRecord::Base
   belongs_to :coach
+  belongs_to :course
 
   def as_json
     {

@@ -297,6 +297,7 @@ ActiveRecord::Schema.define(version: 20150610024814) do
     t.integer "course_id"
     t.integer "available"
     t.integer "used"
+    t.date    "exp"
   end
 
   create_table "likes", force: :cascade do |t|
