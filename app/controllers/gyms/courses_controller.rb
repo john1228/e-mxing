@@ -8,7 +8,8 @@ module Gyms
     end
 
     def show
-
+      course = Course.find_by()
+      render json: Success.new(course: course)
     end
 
     def buy
