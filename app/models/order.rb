@@ -1,8 +1,9 @@
 class Order < ActiveRecord::Base
   before_create :setting_default_values
-  attr_accessor :item #只能购买单产品
   belongs_to :user
+  belongs_to :coach
   has_many :order_items, dependent: :destroy
+  has_many :lessons, dependent: :destroy
   STATUS = {unpay: 1, pay: 2}
   attr_accessor :item
 

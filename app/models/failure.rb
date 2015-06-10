@@ -3,7 +3,7 @@ class Failure
     @message = message
   end
 
-  def as_json(options)
+  def as_json(options={})
     {
         code: 0,
         message: @message

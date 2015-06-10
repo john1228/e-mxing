@@ -2,6 +2,7 @@ class CreateOrders < ActiveRecord::Migration
   def change
     create_table :orders do |t|
       t.references :user
+      t.references :coach
       t.string :no #订单编号
       t.string :coupons #优惠券编号
       t.string :bea

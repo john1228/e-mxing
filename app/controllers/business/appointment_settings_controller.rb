@@ -4,7 +4,7 @@ module Business
     def one_to_one
       setting = @coach.appointment_settings.new(one_params)
       if setting.save
-        render json: Success.new({})
+        render json: Success.new
       else
         render json: Failure.new('设置失败')
       end
@@ -14,7 +14,7 @@ module Business
     def one_to_many
       setting = @coach.appointment_settings.new(many_params)
       if setting.save
-        render json: Success.new({})
+        render json: Success.new
       else
         render json: Failure.new('设置失败')
       end

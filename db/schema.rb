@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150608081116) do
+ActiveRecord::Schema.define(version: 20150610024814) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -290,6 +290,15 @@ ActiveRecord::Schema.define(version: 20150608081116) do
     t.integer  "owner"
   end
 
+  create_table "lessons", force: :cascade do |t|
+    t.integer "order_id"
+    t.integer "coach_id"
+    t.integer "user_id"
+    t.integer "course_id"
+    t.integer "available"
+    t.integer "used"
+  end
+
   create_table "likes", force: :cascade do |t|
     t.integer  "like_type"
     t.integer  "user_id"
@@ -323,6 +332,7 @@ ActiveRecord::Schema.define(version: 20150608081116) do
 
   create_table "orders", force: :cascade do |t|
     t.integer  "user_id"
+    t.integer  "coach_id"
     t.string   "no"
     t.string   "coupons"
     t.string   "bea"

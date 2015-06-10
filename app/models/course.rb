@@ -3,6 +3,7 @@ class Course < ActiveRecord::Base
   belongs_to :coach
   has_many :course_photos, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :lessons, dependent: :destroy
 
   def as_json
     {

@@ -3,7 +3,7 @@ class Success
     @data = data
   end
 
-  def as_json(options)
+  def as_json(options={})
     {
         code: 1,
         data: @data

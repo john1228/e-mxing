@@ -1,10 +1,10 @@
 module Business
   class AppointmentsController < BaseController
     def index
-      render json: Success.new({
-                                   setting: @coach.appointment_settings.effect(params[:date]||Date.today),
-                                   appointment: @coach.appointments.where(date: params[:date]||Date.today).collect { |appointment| appointment.as_json }
-                               })
+      render json: Success.new(
+                 setting: @coach.appointment_settings.effect(params[:date]||Date.today),
+                 appointment: @coach.appointments.where(date: params[:date]||Date.today).collect { |appointment| appointment.as_json }
+             )
     end
 
     def create

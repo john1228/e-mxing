@@ -4,7 +4,7 @@ module Business
       coach = Coach.find_by(sns: "#{params[:sns_name]}_#{params[:sns_id]}")
       if coach.present?
         Rails.cache.write(coach.token, coach)
-        render json: Success.new({coach: coach.summary_json})
+        render json: Success.new(coach: coach.summary_json)
       else
         render json: Failure.new('您还未注册为私教')
       end
