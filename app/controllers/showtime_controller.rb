@@ -1,10 +1,14 @@
 class ShowtimeController < ApiController
   def index
-    showtime = @user.showtime
-    if showtime.nil?
-      render json: Failure.new('未设置视频秀')
+    user = User.find_by_mxid(params[:mxid])
+    if user.blank?
+      render json: Failure.new('您查看到用户不存在')
     else
-      render json: Success.new({showtime: showtime})
+      if user.showtime.blank?
+        render json: Failure.new('未发布视频秀')
+      else
+        render json: Success.new(showtime: showtime)
+      end
     end
   end
 

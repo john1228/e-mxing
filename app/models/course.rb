@@ -4,6 +4,7 @@ class Course < ActiveRecord::Base
   has_many :course_photos, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :lessons, dependent: :destroy
+  has_many :concerned, class: Concerned, dependent: :destroy
 
   def as_json
     {
@@ -17,7 +18,9 @@ class Course < ActiveRecord::Base
         proposal: proposal,
         intro: intro,
         address: school_addresses,
-        images: course_photos.collect { |course_photo| course_photo.photo.thumb.url }
+        images: course_photos.collect { |course_photo| course_photo.photo.thumb.url },
+        concerned: concerned.count,
+        Purchased: OrderItem.where(course_id: id).count
     }
   end
 

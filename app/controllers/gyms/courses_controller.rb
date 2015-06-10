@@ -1,18 +1,31 @@
 module Gyms
   class CoursesController < BaseController
-    before_action :fetch_course, only: [:coach, :comments]
-    before_action :verify_auth_token, only: :buy
+    before_action :fetch_course, only: [:coach, :comments, :concern]
+    before_action :verify_auth_token, only: [:buy, :concern]
 
     def index
       render json: Success.new({courses: @coach.courses.page(params[:page]||1)})
     end
 
+    def show
+
+    end
+
     def buy
       order = @user.orders.new(order_params)
       if order.save
-        render json: Success.new({})
+        render json: Success.new
       else
         render json: Failure.new('购买课程失败')
+      end
+    end
+
+    def concern
+      concerned = @course.concerned.new(user: @user)
+      if concerned.save
+        render json: Success.new
+      else
+        render json: Failure.new('关注课程失败')
       end
     end
 
