@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
   has_one :wallet, dependent: :destroy
   has_many :orders, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :lessons, dependent: :destroy
 
 
   validates_uniqueness_of :sns, conditions: -> { where.not(sns: nil) }

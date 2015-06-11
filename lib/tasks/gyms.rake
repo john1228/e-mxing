@@ -23,8 +23,15 @@ namespace :gyms do
     conn.headers[:token] = token
     response = conn.get 'orders'
     puts response.body
-
   end
+
+  task :lessons do
+    conn = Faraday.new(:url => host)
+    conn.headers[:token] = token
+    response = conn.get 'lessons'
+    puts response.body
+  end
+
 
   #预约团操
 end

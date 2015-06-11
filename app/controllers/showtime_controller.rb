@@ -7,7 +7,7 @@ class ShowtimeController < ApiController
       if user.showtime.blank?
         render json: Failure.new('未发布视频秀')
       else
-        render json: Success.new(showtime: showtime)
+        render json: Success.new(showtime: user.showtime)
       end
     end
   end
