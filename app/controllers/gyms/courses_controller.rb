@@ -26,7 +26,7 @@ module Gyms
                                      concerned: course.concerned.find_by(user: @user).blank? ? 0 : 1,
                                      comments: {
                                          count: course.comments.count,
-                                         lastest: course.comments.first.as_json
+                                         latest: course.comments.first.as_json
                                      }
                                  ))
       end
@@ -61,7 +61,7 @@ module Gyms
                                      items: @course.comments.page(params[:page])
                                  })
       else
-        render json: Success.new(comments: {count: ""})
+        render json: Success.new(comments: {items: @course.comments.page(params[:page])})
       end
     end
 
