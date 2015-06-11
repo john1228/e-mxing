@@ -45,8 +45,7 @@ class User < ActiveRecord::Base
     else
       login_info = profile.summary_json.merge(mobile: mobile[0, 3]+'****'+ mobile[7, 4], token: token)
     end
-    create_wallet if wallet.nil?
-    login_info.merge(wallet: wallet.as_json)
+    login_info
   end
 
   def as_json

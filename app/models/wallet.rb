@@ -4,7 +4,7 @@ class Wallet < ActiveRecord::Base
   def as_json
     {
         balance: balance.to_f,
-        coupons: Coupon.where(id: coupons.split(',')).collect { |coupon| coupon.as_json },
+        coupons: coupons.split(',').size,
         bean: bean
     }
   end
