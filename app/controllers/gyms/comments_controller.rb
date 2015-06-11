@@ -7,7 +7,7 @@ module Gyms
       render json: Success.new(
                  comments: []
              )
-    end 
+    end
     #发表私教评论
     def create
 
