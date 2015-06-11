@@ -2,6 +2,7 @@ class WalletController < ApplicationController
   before_action :verify_auth_token
 
   def index
+    @user.create_wallet if @user.wallet.blank?
     render json: Success.new(wallet: @user.wallet)
   end
 
