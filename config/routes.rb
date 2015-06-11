@@ -145,5 +145,8 @@ Rails.application.routes.draw do
   get 'orders' => 'orders#index'
   get 'orders/show' => 'orders#show'
   post 'orders' => 'orders#create'
+  #钱包
+  get 'wallet' => 'wallet#index'
+  get 'wallet/coupons' => 'wallet#coupons'
 end
 
