@@ -8,7 +8,7 @@ module Gyms
                  courses: @coach.courses.joins('LEFT JOIN concerneds on concerneds.course_id=courses.id').page(params[:page]||1).collect { |course| {
                      id: course.id,
                      name: course.name,
-                     cover: (course.course_photos.first.thumb.url rescue ''),
+                     cover: course.course_photos.first.present? ? course.course_photos.first.photo.thumb.url : '',
                      price: course.price,
                      during: course.during,
                      type: course.type,
