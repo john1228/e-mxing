@@ -47,6 +47,7 @@ class Order < ActiveRecord::Base
       }
     end
     #TODO:美型豆使用
+    self.coach = course.coach
     self.pay_amount = total_price
     self.status = STATUS[:unpay]
   end
