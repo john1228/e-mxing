@@ -1,10 +1,10 @@
 namespace :gyms do
-  host = 'http://localhost'
+  host = 'http://stage.e-mxing.com'
 
   desc '课程情况'
   task :courses do
     conn = Faraday.new(:url => host)
-    response = conn.get '/gyms/courses', mxid: 10099
+    response = conn.get '/gyms/courses', mxid: 10081
     puts response.body
   end
 

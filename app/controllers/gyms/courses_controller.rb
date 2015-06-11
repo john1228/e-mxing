@@ -5,7 +5,7 @@ module Gyms
 
     def index
       render json: Success.new(
-                 courses: @coach.courses.joins(:concerned).page(params[:page]||1).collect { |course| {
+                 courses: @coach.courses.joins('LEFT JOIN concerneds on concerneds.course_id=courses.id').page(params[:page]||1).collect { |course| {
                      id: course.id,
                      name: course.name,
                      cover: (course.course_image.first.thumb.url rescue ''),
