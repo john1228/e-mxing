@@ -130,6 +130,7 @@ Rails.application.routes.draw do
   namespace :gyms do
     #查看课程和购买
     get 'courses' => 'courses#index'
+    get 'courses/show' => 'courses#show'
     get 'courses/coach' => 'courses#coach'
     get 'courses/comments' => 'courses#comments'
     post 'courses' => 'courses#buy'
