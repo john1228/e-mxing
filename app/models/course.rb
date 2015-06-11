@@ -19,8 +19,7 @@ class Course < ActiveRecord::Base
         intro: intro,
         address: school_addresses,
         images: course_photos.collect { |course_photo| course_photo.photo.thumb.url },
-        concerned: concerned.count,
-        Purchased: OrderItem.where(course_id: id).count
+        purchased: OrderItem.where(course_id: id).count
     }
   end
 

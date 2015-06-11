@@ -1,5 +1,7 @@
 class Order < ActiveRecord::Base
   before_create :setting_default_values
+  after_update :build_lessons #当订单完成支付时，生成课表
+
   belongs_to :user
   belongs_to :coach
   has_many :order_items, dependent: :destroy
@@ -47,5 +49,11 @@ class Order < ActiveRecord::Base
     #TODO:美型豆使用
     self.pay_amount = total_price
     self.status = STATUS[:unpay]
+  end
+
+  def build_lessons
+    order_items.each { |item|
+      lessons.create(coach: coach, user: user, course: item.course, available: item.amount, used: 0, exp: Date.today.next_day(item.course.exp))
+    } if status.eql?(STATUS[:pay])
   end
 end

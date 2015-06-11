@@ -1,15 +1,35 @@
 module Gyms
   class CoursesController < BaseController
     before_action :fetch_course, only: [:coach, :comments, :concern]
-    before_action :verify_auth_token, only: [:buy, :concern]
+    before_action :verify_auth_token, only: [:buy, :concern, :show]
 
     def index
-      render json: Success.new({courses: @coach.courses.page(params[:page]||1)})
+      render json: Success.new(
+                 courses: @coach.courses.joins(:concerned).page(params[:page]||1).collect { |course| {
+                     id: course.id,
+                     name: course.name,
+                     cover: (course.course_image.first.thumb.url rescue ''),
+                     price: course.price,
+                     during: course.during,
+                     type: course.type,
+                     concerned: course.concerned.count,
+                     top: course.top||0
+                 } })
     end
 
     def show
-      course = Course.find_by()
-      render json: Success.new(course: course)
+      course = Course.find_by(id: params[:id])
+      if course.blank?
+        render json: Failure.new('您查看到课程不存在')
+      else
+        render json: Success.new(course: course.as_json.merge(
+                                     concerned: course.concerned.find_by(user: @user).blank? ? 0 : 1,
+                                     comments: {
+                                         count: course.comments.count,
+                                         lastest: course.comments.first.as_json
+                                     }
+                                 ))
+      end
     end
 
     def buy
@@ -35,7 +55,14 @@ module Gyms
     end
 
     def comments
-      render json: {code: 1, data: {comments: @course.comments.page(params[:page]||1).collect { |comment| comment.as_json }}}
+      if params[:page].eql?('1')
+        render json: Success.new(comments: {
+                                     count: @course.comments.count,
+                                     items: @course.comments.page(params[:page])
+                                 })
+      else
+        render json: Success.new(comments: {count: ""})
+      end
     end
 
     private
