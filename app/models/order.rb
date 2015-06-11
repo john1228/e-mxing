@@ -54,7 +54,7 @@ class Order < ActiveRecord::Base
 
   def build_lessons
     order_items.each { |item|
-      lessons.create(coach: coach, user: user, course: item.course, available: item.amount, used: 0, exp: Date.today.next_day(item.course.exp))
+      lessons.create(coach: coach, user: user, course: item.course, available: item.amount, used: 0, exp: Date.today.next_day(item.course.exp.to_i))
     } if status.eql?("#{STATUS[:pay]}")
   end
 end
