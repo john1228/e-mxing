@@ -43,33 +43,7 @@ class OrdersController < ApplicationController
       render json: Failure.new('您查看到订单不存在')
     end
   end
-
-  def create
-    order = @user.orders.new(order_params)
-    if order.save
-      render json: Success.new(
-                 order: {
-                     no: order.no,
-                     coach: order.coach.profile.summary_json,
-                     items: order.order_items.collect { |item|
-                       item.as_json
-                     },
-                     contact: {
-                         name: order.contact_name,
-                         phone: order.contact_phone
-                     },
-                     coupons: 0,
-                     bean: order.bean,
-                     pay_type: order.pay_type,
-                     pay_amount: order.pay_amount,
-                     status: order.status,
-                 }
-             )
-    else
-      render json: Failure.new('创建订单失败')
-    end
-  end
-
+  
   def callback
   end
 

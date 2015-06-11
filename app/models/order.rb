@@ -13,7 +13,7 @@ class Order < ActiveRecord::Base
   def setting_default_values
     self.no = "#{Time.now.to_i}#{user_id}#{%w'0 1 2 3 4 5 6 7 8 9'.sample(3).join('')}"
     #单产品购买
-    item_info = item.split(':')
+    item_info = item.split('|')
     course_id, course_count = item_info[0], item_info[1]
     course = Course.find_by(id: course_id)
     order_items.build(course_id: course.id, name: course.name,

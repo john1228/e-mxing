@@ -1,0 +1,157 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+  <title>美型网</title>
+  <%= stylesheet_link_tag 'share/style' %>
+  <%= javascript_include_tag 'share/jquery-ui-1.10.3.min', 'share/jquery.fullPage.min', 'share/jquery.js', 'share/load', 'share/player' %>
+  <script>
+      $(document).ready(function () {
+          $.fn.fullpage({});
+      });
+  </script>
+</head>
+<body>
+<div class="load">
+  <div class="loader">
+    <div class="loaderlogo"><%= image_tag('share/service/logo.png') %></div>
+    <div class="loadercon">
+      <div class="progress-bar"></div>
+    </div>
+  </div>
+</div>
+<section class="page page1">
+  <div class="tx"><%= image_tag('share/service/touxiang.jpg') %></div>
+  <div class="pgbox01">
+    <div class="mxzt">
+      <h3>中国NBA培训</h3>
+      <i><%= image_tag('share/service/vitu.jpg') %></i>
+
+      <p>斗牛三对三，你行你来吧！</p>
+    </div>
+    <div class="ico1"><%= image_tag('share/service/ico1.jpg') %></div>
+  </div>
+  <div class="pgbox02">
+    <div class="text">威康健身管理咨询（上海）有限公司（以下简称威尔士）成立于2007年，至今在全国范围内已拥有超过40家直，我们立足于健康产业，不仅仅秉承健身这一简单理念，而是力求将健康生活方式带到中国，将健康理念渗透到您的中。</div>
+    <div class="add">场馆地址：上海市中山西路933号虹桥银城12楼1206-1208室</div>
+    <div class="tel"><a href="#"><i></i>021-65873433</a></div>
+  </div>
+  <div class="pages"></div>
+</section>
+
+<section class="page page2">
+  <p class="tx1"><%= image_tag('share/service/touxiang.jpg') %></p>
+
+  <p class="tx2"><%= image_tag('share/service/touxiang.jpg') %></p>
+
+  <p class="tx3"><%= image_tag('share/service/touxiang.jpg') %></p>
+
+  <p class="tx4"><%= image_tag('share/service/touxiang.jpg') %></p>
+
+  <p class="tx5"><%= image_tag('share/service/touxiang.jpg') %></p>
+
+  <p class="tx6"><%= image_tag('share/service/touxiang.jpg') %></p>
+
+  <p class="tx7"><%= image_tag('share/service/touxiang.jpg') %></p>
+
+  <p class="tx8"><%= image_tag('share/service/touxiang.jpg') %></p>
+
+  <div class="pages"></div>
+</section>
+<section class="page page3">
+  <p class="pic1"><%= image_tag('share/pic/tu01.jpg') %></p>
+
+  <p class="pic2"><%= image_tag('share/pic/tu02.jpg') %></p>
+
+  <p class="pic3"><%= image_tag('share/pic/tu03.jpg') %></p>
+
+  <p class="pic4"><%= image_tag('share/pic/tu04.jpg') %></p>
+
+  <p class="pic5"><%= image_tag('share/pic/tu05.jpg') %></p>
+
+  <p class="pic6"><%= image_tag('share/pic/tu06.jpg') %></p>
+
+  <p class="pic7"><%= image_tag('share/pic/tu07.jpg') %></p>
+
+  <p class="pic8"><%= image_tag('share/pic/tu08.jpg') %></p>
+
+  <div class="pages"></div>
+</section>
+<section class="page page4">
+  <div class="con con_a">
+    <h3>零基础综合</h3>
+
+    <p>教学方式：1对30</p><i></i><em></em>
+    <%= image_tag('share/service/kcico1.png') %>
+  </div>
+  <div class="con con_b">
+    <h3>有氧运动</h3>
+
+    <p>教学方式：1对30</p><i></i><em></em>
+    <%= image_tag('share/service/kcico2.png') %>
+  </div>
+  <div class="con con_c">
+    <h3>无氧机械训练</h3>
+
+    <p>教学方式：1对1</p><i></i><em></em>
+    <%= image_tag('share/service/kcico3.png') %>
+  </div>
+  <div class="con con_d">
+    <h3>滑板有氧</h3>
+
+    <p>教学方式：1对30</p><i></i><em></em>
+    <%= image_tag('share/service/kcico4.png') %>
+  </div>
+  <div class="pages"></div>
+</section>
+<section class="page page5">
+  <div class="logo"><%= image_tag('share/service/logo.png') %></div>
+  <div class="mys"><%= image_tag('share/service/jmtext.png', alt: '美于身 健于型') %></div>
+  <div class="code"><%= image_tag('share/service/code.jpg') %></div>
+  <div class="codetext">扫一扫，下载美型</div>
+  <ul class="tjlist">
+    <li class="li01">
+      <a class="imgbox"><%= image_tag('share/service/fottu1.png') %></a>
+
+      <p>相约型男美女</p>
+    </li>
+    <li class="li02">
+      <a class="imgbox"><%= image_tag('share/service/fottu2.png') %></a>
+
+      <p>找课约课运动轨迹</p>
+    </li>
+    <li class="li03">
+      <a class="imgbox"><%= image_tag('share/service/fottu3.png') %></a>
+
+      <p>360°个人秀场</p>
+    </li>
+  </ul>
+  <div class="footbut">
+    <p class="fotlogo"><%= image_tag('share/service/logo.png') %></p>
+
+    <p class="mys2"><%= image_tag('share/service/jmtext2.png', alt: '美于身 健于型') %></p>
+
+    <p class="dowtext">立即下载美型客户端&gt;</p>
+    <button>立即下载</button>
+  </div>
+</section>
+<script type="text/javascript">
+    global_swipe_lock = 0;
+    var config = {
+        enable_music: 1,
+        swipeCur: 0
+    }
+</script>
+
+<div id="swipe">
+  <ul>
+    <li>
+      <div class="li_bg"></div>
+    </li>
+  </ul>
+</div>
+<div id="musicWrap" class="music">
+  <span class="text move hide"> </span><i id="audioBtn" data-src="music/music.mp3" class="btn_music on"></i></div>
+</body>
+</html>
