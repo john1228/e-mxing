@@ -5,7 +5,7 @@ class LessonsController < ApiController
     case params[:type] #0-预约课时 1-未约课时 2-过期课时
       when '0'
         render json: Success.new(
-                   lessons: @user.appointments.joins(:course).page(params[:page]||1).collect { |appointment| {
+                   lessons: @user.appointments.joins('LEFT JOIN courses on courses.id=appointments.course_id').page(params[:page]||1).collect { |appointment| {
                        course: {
                            name: appointment.course_name,
                            type: appointment.course.type,
@@ -24,13 +24,13 @@ class LessonsController < ApiController
                )
       when '1'
         render json: Success.new(
-                   lessons: @user.lessons.joins(:course).available.page(params[:page]||1).collect { |lesson|
+                   lessons: @user.lessons.joins('LEFT JOIN courses on courses.id=lessons.course_id').available.page(params[:page]||1).collect { |lesson|
                      {
                          course: {
                              name: lesson.course.name,
                              type: lesson.course.type,
                              during: lesson.course.during,
-                             style: appointment.course.style
+                             style: lesson.course.style
                          },
                          coach: lesson.course.coach.profile.summary_json,
                          available: (lesson.available-lesson.used),
@@ -40,13 +40,13 @@ class LessonsController < ApiController
                )
       when '2'
         render json: Success.new(
-                   lessons: @user.lessons.joins(:course).exp.page(params[:page]||1).collect { |lesson|
+                   lessons: @user.lessons.joins('LEFT JOIN courses on courses.id=lessons.course_id').exp.page(params[:page]||1).collect { |lesson|
                      {
                          course: {
                              name: lesson.course.name,
-                             type: appointment.course.type,
-                             during: appointment.course.during,
-                             style: appointment.course.style
+                             type: lesson.course.type,
+                             during: lesson.course.during,
+                             style: lesson.course.style
                          },
                          coach: lesson.course.coach.profile.summary_json,
                          available: (lesson.available-lesson.used),
