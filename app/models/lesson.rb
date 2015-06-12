@@ -5,5 +5,5 @@ class Lesson < ActiveRecord::Base
   belongs_to :order
   has_many :appointments
   scope :available, -> { where('available > used') }
-  scope :exp, -> { where('exp<?', Date.today) }
+  scope :expired, -> { where('exp<?', Date.today) }
 end

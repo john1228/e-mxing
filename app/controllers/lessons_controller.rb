@@ -40,7 +40,7 @@ class LessonsController < ApiController
                )
       when '2'
         render json: Success.new(
-                   lessons: @user.lessons.joins('LEFT JOIN courses on courses.id=lessons.course_id').exp.page(params[:page]||1).collect { |lesson|
+                   lessons: @user.lessons.joins('LEFT JOIN courses on courses.id=lessons.course_id').expired.page(params[:page]||1).collect { |lesson|
                      {
                          course: {
                              name: lesson.course.name,
