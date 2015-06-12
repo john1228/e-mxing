@@ -52,16 +52,6 @@ class LessonsController < ApiController
       else
         render json: Failure.new('未知到数据类型')
     end
-
-
-    render json: Success.new(
-               lessons: @user.lessons.join(:course, :coach).collect { |lesson|
-                 {
-                     course: lesson.course.as_json,
-                     coach: lesson.course.profile.summary_json
-                 }
-               }
-           )
   end
 
   private
