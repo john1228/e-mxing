@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150611021609) do
+ActiveRecord::Schema.define(version: 20150612031900) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -340,6 +340,7 @@ ActiveRecord::Schema.define(version: 20150611021609) do
     t.integer  "amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "during"
   end
 
   add_index "order_items", ["order_id"], name: "index_order_items_on_order_id", using: :btree
@@ -450,6 +451,16 @@ ActiveRecord::Schema.define(version: 20150611021609) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "sns"
+  end
+
+  create_table "wallet_logs", force: :cascade do |t|
+    t.integer  "wallet_id"
+    t.integer  "action"
+    t.integer  "balance"
+    t.string   "coupons"
+    t.integer  "bean"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "wallets", force: :cascade do |t|

@@ -143,10 +143,13 @@ Rails.application.routes.draw do
   get 'lessons' => 'lessons#index'
   #订单
   get 'orders' => 'orders#index'
+  get 'orders#unprocessed' => 'orders#unprocessed'
   get 'orders/show' => 'orders#show'
   post 'orders' => 'orders#create'
   #钱包
   get 'wallet' => 'wallet#index'
   get 'wallet/coupons' => 'wallet#coupons'
+  #签到
+  post 'sign' => 'system#sign'
 end
 

@@ -43,7 +43,11 @@ class OrdersController < ApplicationController
       render json: Failure.new('您查看到订单不存在')
     end
   end
-  
+
+  def unprocessed
+    render json: Success.new(unprocessed: @user.orders.where(status: Order::STATUS[:unpay]).count)
+  end
+
   def callback
   end
 
