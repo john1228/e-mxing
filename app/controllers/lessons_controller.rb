@@ -22,7 +22,7 @@ class LessonsController < ApiController
                )
       when '1'
         render json: Success.new(
-                   lessons: @user.lessons.joins(:course).available(params[:page]||1).collect { |lesson|
+                   lessons: @user.lessons.joins(:course).available.page(params[:page]||1).collect { |lesson|
                      {
                          course: {
                              name: lesson.course.name,
@@ -36,7 +36,7 @@ class LessonsController < ApiController
                )
       when '2'
         render json: Success.new(
-                   lessons: @user.lessons.joins(:course).exp(params[:page]||1).collect { |lesson|
+                   lessons: @user.lessons.joins(:course).exp.page(params[:page]||1).collect { |lesson|
                      {
                          course: {
                              name: lesson.course.name,
