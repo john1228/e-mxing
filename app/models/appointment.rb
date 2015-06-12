@@ -2,7 +2,10 @@ class Appointment < ActiveRecord::Base
   after_create :build_track
   belongs_to :coach
   belongs_to :course
-
+  belongs_to :lesson
+  #0-取消的预约 1-等待上课|正在上课|等待确认 2-用户完成确认，等待评价 3-完成评价
+  STATUS = {cancel: 0, waiting: 1, done: 2, complete: 3}
+  after_update :payment
 
   def as_json
     {
@@ -19,5 +22,9 @@ class Appointment < ActiveRecord::Base
   #预约完成后为用户创建运动轨迹
   def build_track
     Track.create(user_id: user_id, track_type: course.type, start: "#{date} #{start_time}", during: course_during*classes)
+  end
+
+  def payment
+     lesson.update(used: (lesson.used + 1)) if status.eql?(STATUS[:done])
   end
 end

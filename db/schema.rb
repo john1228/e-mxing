@@ -116,6 +116,7 @@ ActiveRecord::Schema.define(version: 20150612031900) do
     t.string  "online"
     t.string  "offline"
     t.integer "status"
+    t.integer "lesson_id"
   end
 
   create_table "banners", force: :cascade do |t|

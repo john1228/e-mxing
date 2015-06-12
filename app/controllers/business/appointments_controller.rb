@@ -17,6 +17,10 @@ module Business
       end
     end
 
+    def show
+      
+    end
+
     private
     def appointment_params
       permit_params = params.permit(:date, :classes, :online, :offline)

@@ -7,9 +7,7 @@ class OrdersController < ApplicationController
                  {
                      no: order.no,
                      coach: order.coach.profile.summary_json,
-                     items: order.order_items.collect { |item|
-                       item.as_json
-                     },
+                     items: order.order_items.collect { |item| item.as_json },
                      pay_type: order.pay_type,
                      pay_amount: order.pay_amount,
                      status: order.status,

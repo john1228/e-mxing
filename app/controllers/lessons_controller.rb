@@ -27,7 +27,7 @@ class LessonsController < ApiController
                          course: {
                              name: lesson.course.name,
                              type: lesson.course.type,
-                             during: lesson.course_during,
+                             during: lesson.course.during,
                          },
                          available: (lesson.available-lesson.used),
                          exp: exp

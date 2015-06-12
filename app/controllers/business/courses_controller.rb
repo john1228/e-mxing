@@ -27,6 +27,10 @@ module Business
       end
     end
 
+    def destroy
+
+    end
+
     private
     def course_params
       permit_params = params.permit(:name, :type, :style, :during, :price, :exp, :proposal, :intro,
