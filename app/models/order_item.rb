@@ -7,6 +7,7 @@ class OrderItem < ActiveRecord::Base
         name: name,
         cover: cover,
         price: price,
+        during: during,
         amount: amount
     }
   end
