@@ -9,8 +9,10 @@ class LessonsController < ApiController
                        course: {
                            name: appointment.course_name,
                            type: appointment.course.type,
-                           during: appointment.course_during
+                           during: appointment.course.during,
+                           style: appointment.course.style
                        },
+                       coach: appointment.course.coach.profile.summary_json,
                        appointment: {
                            id: appointment.id,
                            date: appointment.date,
@@ -28,7 +30,9 @@ class LessonsController < ApiController
                              name: lesson.course.name,
                              type: lesson.course.type,
                              during: lesson.course.during,
+                             style: appointment.course.style
                          },
+                         coach: lesson.course.coach.profile.summary_json,
                          available: (lesson.available-lesson.used),
                          exp: lesson.exp
                      }
@@ -41,9 +45,10 @@ class LessonsController < ApiController
                          course: {
                              name: lesson.course.name,
                              type: appointment.course.type,
-                             price: appointment.course.price,
                              during: appointment.course.during,
+                             style: appointment.course.style
                          },
+                         coach: lesson.course.coach.profile.summary_json,
                          available: (lesson.available-lesson.used),
                          exp: lesson.exp
                      }
