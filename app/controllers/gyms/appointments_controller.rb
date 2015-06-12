@@ -12,5 +12,14 @@ module Gyms
       end
 
     end
+
+
+    def confirm
+
+    end
+
+    def comment
+
+    end
   end
 end

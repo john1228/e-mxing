@@ -1,5 +1,6 @@
 class CreateWalletLogs < ActiveRecord::Migration
   def change
+    add_column :appointments, :status, :integer
     create_table :wallet_logs do |t|
       t.references :wallet
       t.integer :action #动作
