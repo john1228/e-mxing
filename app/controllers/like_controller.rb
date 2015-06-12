@@ -1,4 +1,4 @@
-class LikeController < ApplicationController
+class LikeController < ApiController
   def create
     case params[:type]
       when 'dynamic'
