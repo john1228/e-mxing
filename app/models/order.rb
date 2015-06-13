@@ -18,7 +18,7 @@ class Order < ActiveRecord::Base
     item_info = item.split('|')
     course_id, course_count = item_info[0], item_info[1]
     course = Course.find_by(id: course_id)
-    order_items.build(course_id: course.id, name: course.name, type: course.type,
+    order_items.build(course_id: course.id, name: course.name, type: course.type, during: course.during,
                       cover: (course.course_photos.first.blank? ? '' : course.course_photos.first.photo),
                       price: course.price, amount: course_count)
     total_price = course.price*course_count.to_i
