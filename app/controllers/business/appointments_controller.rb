@@ -3,7 +3,7 @@ module Business
     def index
       render json: Success.new(
                  setting: @coach.appointment_settings.effect(params[:date]||Date.today),
-                 appointment: @coach.appointments.where(date: params[:date]||Date.today).collect { |appointment| appointment.as_json }
+                 appointment: @coach.appointments.where(date: params[:date]||Date.today)
              )
     end
 
@@ -17,9 +17,7 @@ module Business
       end
     end
 
-    def show
-      
-    end
+
 
     private
     def appointment_params
@@ -27,6 +25,7 @@ module Business
       course = @coach.courses.find_by(id: params[:course])
       address = @coach.addresses.find_by(id: params[:address])
       permit_params.merge({
+                              lesson_id: @coach.lessons.find_by(course: course).id,
                               start_time: params[:start],
                               course_id: course.id,
                               course_name: course.name,

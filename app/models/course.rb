@@ -1,10 +1,12 @@
 class Course < ActiveRecord::Base
   self.inheritance_column = nil
+  default_scope { joins('LEFT JOIN course_photos ON  course_photos.course_id = courses.id ').where(status: 1) }
   belongs_to :coach
   has_many :course_photos, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :lessons, dependent: :destroy
   has_many :concerned, class: Concerned, dependent: :destroy
+  DELETE = 0
 
   def as_json
     {
@@ -22,6 +24,7 @@ class Course < ActiveRecord::Base
         purchased: OrderItem.where(course_id: id).count
     }
   end
+
 
   def school_addresses
     coach.addresses.where(id: address.split(',').map { |id| id.to_i }).map { |address|

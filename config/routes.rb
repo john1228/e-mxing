@@ -134,10 +134,11 @@ Rails.application.routes.draw do
     get 'courses/coach' => 'courses#coach'
     get 'courses/comments' => 'courses#comments'
     post 'courses' => 'courses#buy'
-
+    post 'courses/concern' => 'course#concern'
     #查看预约和预约团课
     get 'appointments' => 'appointments#index'
     post 'appointments' => 'appointments#create'
+
   end
   #课时
   get 'lessons' => 'lessons#index'

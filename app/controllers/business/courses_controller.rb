@@ -28,7 +28,12 @@ module Business
     end
 
     def destroy
-
+      course = @coach.courses.find_by(id: params[:id])
+      if course.update(status: Course::DELETE)
+        render json: Success.new
+      else
+        render json: Failure.new('删除课程失败')
+      end
     end
 
     private

@@ -9,13 +9,15 @@ class CreateCourses < ActiveRecord::Migration
       t.integer :price #单课时价格
       t.string :exp #有效期
       t.integer :proposal #建议课时
+      t.integer :guarantee #是否担保
       t.text :intro #课程介绍
       t.string :address #课程地址
 
       t.boolean :customized #是否定制课程
       t.string :custom_mxid #定制用户美型ID
       t.string :custom_mobile #定制用户手机号
-      t.boolean :top #是否设置为推荐课程
+      t.integer :top #是否设置为推荐课程
+      t.integer :status, default: 0
       t.timestamps null: false
     end
   end
