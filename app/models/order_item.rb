@@ -1,4 +1,5 @@
 class OrderItem < ActiveRecord::Base
+  self.inheritance_column = nil
   belongs_to :order
   belongs_to :course
 
