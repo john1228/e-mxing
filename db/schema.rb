@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150612031900) do
+ActiveRecord::Schema.define(version: 20150613071733) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,13 @@ ActiveRecord::Schema.define(version: 20150612031900) do
     t.integer  "activity_type"
     t.integer  "theme"
   end
+
+  create_table "address_coordinates", force: :cascade do |t|
+    t.integer   "address_id"
+    t.geography "lonlat",     limit: {:srid=>4326, :type=>"point", :geographic=>true}
+  end
+
+  add_index "address_coordinates", ["lonlat"], name: "index_address_coordinates_on_lonlat", using: :gist
 
   create_table "addresses", force: :cascade do |t|
     t.integer  "coach_id"

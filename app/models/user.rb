@@ -20,6 +20,7 @@ class User < ActiveRecord::Base
   has_many :orders, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :lessons, dependent: :destroy
+  has_many :concerneds, dependent: :destroy
 
 
   validates_uniqueness_of :sns, conditions: -> { where.not(sns: nil) }
@@ -29,7 +30,7 @@ class User < ActiveRecord::Base
   TYPE=[['健身爱好者', 0], ['私教', 1], ['商家', 2]]
   class<<self
     def find_by_mxid(mxid)
-      includes(:profile).where("profiles.id" => ((mxid.to_i - 10000))).first
+      includes(:profile).where('profiles.id' => ((mxid.to_i - 10000))).first
     end
   end
 

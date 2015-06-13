@@ -1,6 +1,6 @@
 module Business
   class BaseController<ApplicationController
-    before_action :verify_auth_token
+    before_action :verify_auth_token, except: :mobile
     private
     def verify_auth_token
       logger.info "私教TOKEN#{request.headers[:token]}"

@@ -49,6 +49,10 @@ module FindManager
     }
   end
 
+  def courses
+    AddressCoordinate.nearby(params[:lng], params[:lat], params[:page]||1).collect { |place| place.nearby_user_json }
+  end
+
   private
   def get_week_rank
     week_date = Date.today.at_beginning_of_week

@@ -134,7 +134,8 @@ Rails.application.routes.draw do
     get 'courses/coach' => 'courses#coach'
     get 'courses/comments' => 'courses#comments'
     post 'courses' => 'courses#buy'
-    post 'courses/concern' => 'course#concern'
+    post 'courses/concern' => 'courses#concern'
+    get 'courses/concerned' => 'courses#concerned'
     #查看预约和预约团课
     get 'appointments' => 'appointments#index'
     post 'appointments' => 'appointments#create'
@@ -144,9 +145,12 @@ Rails.application.routes.draw do
   get 'lessons' => 'lessons#index'
   #订单
   get 'orders' => 'orders#index'
-  get 'orders#unprocessed' => 'orders#unprocessed'
+  get 'orders/unprocessed' => 'orders#unprocessed'
   get 'orders/show' => 'orders#show'
   post 'orders' => 'orders#create'
+  delete 'orders/:no/cancel' => 'orders#cancel'
+  delete 'orders/:no/delete' => 'orders#delete'
+
   #钱包
   get 'wallet' => 'wallet#index'
   get 'wallet/coupons' => 'wallet#coupons'

@@ -1,7 +1,7 @@
 module Gyms
   class CoursesController < BaseController
     before_action :fetch_course, only: [:coach, :comments, :concern]
-    before_action :verify_auth_token, only: [:buy, :concern, :show]
+    before_action :verify_auth_token, only: [:buy, :concern, :show, :concerned]
 
     def index
       render json: Success.new(
@@ -48,6 +48,22 @@ module Gyms
       else
         render json: Failure.new('关注课程失败')
       end
+    end
+
+    def concerned
+      concerned_courses = @user.concerneds.includes(:course).where(courses: {status: 1}).page(params[:page]||1)
+      render json: Success.new(
+                 concerned: concerned_courses.map { |course| {
+                     id: course.id,
+                     name: course.name,
+                     cover: course.course_photos.first.present? ? course.course_photos.first.photo.thumb.url : '',
+                     price: course.price,
+                     during: course.during,
+                     type: course.type,
+                     concerned: course.concerned.count,
+                     top: course.top||0
+                 } }
+             )
     end
 
     def coach

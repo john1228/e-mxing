@@ -1,12 +1,18 @@
 module Business
-  class LoginController < ApplicationController
-    def sns
-      coach = Coach.find_by(sns: "#{params[:sns_name]}_#{params[:sns_id]}")
-      if coach.present?
-        Rails.cache.write(coach.token, coach)
-        render json: Success.new(coach: coach.summary_json)
+  class LoginController < BaseController
+    def update
+      if params[:password].present?
+        if @coach.password.eql?(Digest::MD5.hexdigest("#{params[:password]}|#{@coach.salt}"))
+          if @coach.update(password: params[:new_password])
+            render json: {code: 1}
+          else
+            render json: {code: 0, message: '更新密码失败'}
+          end
+        else
+          render json: {code: 0, message: '您输入到原密码错误'}
+        end
       else
-        render json: Failure.new('您还未注册为私教')
+        render json: {code: 0, message: '请输入原密码'}
       end
     end
 

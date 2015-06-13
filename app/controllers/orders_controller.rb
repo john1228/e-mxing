@@ -56,6 +56,24 @@ class OrdersController < ApplicationController
     render json: Success.new(unprocessed: @user.orders.where(status: Order::STATUS[:unpay]).count)
   end
 
+  def cancel
+    order = Order.find_by(no: params[:no])
+    if order.status.eql?(Order::STATUS[:unpay])
+      render json: Success.new
+    else
+      render json: Failure.new('不是未付款订单，不能取消')
+    end
+  end
+
+  def delete
+    order = Order.find_by(no: params[:no])
+    if order.status.eql?(Order::STATUS[:cancel]||order.status.eql?(:complete))
+      render json: Success.new
+    else
+      render json: Failure.new('该订单还未完成处理，不能删除')
+    end
+  end
+
   def callback
   end
 
