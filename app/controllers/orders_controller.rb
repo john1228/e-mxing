@@ -2,8 +2,18 @@ class OrdersController < ApplicationController
   before_action :verify_auth_token, only: :index
 
   def index
+    case params[:status]
+      when '0'
+        order = @user.orders.page(params[:page]||1)
+      when '1'
+        order = @user.orders.unpay.page(params[:page]||1)
+      when '2'
+        order = @user.orders.pay.page(params[:page]||1)
+      else
+        order = []
+    end
     render json: Success.new(
-               orders: @user.orders.page(params[:page]||1).collect { |order|
+               orders: order.collect { |order|
                  {
                      no: order.no,
                      coach: order.coach.profile.summary_json,

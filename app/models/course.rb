@@ -1,6 +1,5 @@
 class Course < ActiveRecord::Base
   self.inheritance_column = nil
-  default_scope { joins('LEFT JOIN course_photos ON  course_photos.course_id = courses.id ').where(status: 1) }
   belongs_to :coach
   has_many :course_photos, dependent: :destroy
   has_many :comments, dependent: :destroy

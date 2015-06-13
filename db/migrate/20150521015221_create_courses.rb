@@ -9,7 +9,7 @@ class CreateCourses < ActiveRecord::Migration
       t.integer :price #单课时价格
       t.string :exp #有效期
       t.integer :proposal #建议课时
-      t.integer :guarantee #是否担保
+      t.integer :guarantee, default: 0 #是否担保
       t.text :intro #课程介绍
       t.string :address #课程地址
 

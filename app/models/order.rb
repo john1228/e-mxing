@@ -2,13 +2,15 @@ class Order < ActiveRecord::Base
   before_create :setting_default_values
   after_update :build_lessons #当订单完成支付时，生成课表
 
+  scope :unpay, -> { where(status: STATUS[:unpay]) }
+  scope :pay, -> { where(status: STATUS[:pay]) }
+
   belongs_to :user
   belongs_to :coach
   has_many :order_items, dependent: :destroy
   has_many :lessons, dependent: :destroy
-  STATUS = {unpay: 1, pay: 2}
   attr_accessor :item
-
+  STATUS = {unpay: 1, pay: 2}
   private
   def setting_default_values
     self.no = "#{Time.now.to_i}#{user_id}#{%w'0 1 2 3 4 5 6 7 8 9'.sample(3).join('')}"
@@ -16,7 +18,7 @@ class Order < ActiveRecord::Base
     item_info = item.split('|')
     course_id, course_count = item_info[0], item_info[1]
     course = Course.find_by(id: course_id)
-    order_items.build(course_id: course.id, name: course.name,
+    order_items.build(course_id: course.id, name: course.name, type: course.type,
                       cover: (course.course_photos.first.blank? ? '' : course.course_photos.first.photo),
                       price: course.price, amount: course_count)
     total_price = course.price*course_count.to_i

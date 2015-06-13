@@ -17,6 +17,9 @@ module Business
       end
     end
 
+    def destroy
+
+    end
 
 
     private

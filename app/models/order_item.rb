@@ -6,6 +6,7 @@ class OrderItem < ActiveRecord::Base
     {
         name: name,
         cover: cover,
+        type: course.type,
         price: price,
         during: during,
         amount: amount
