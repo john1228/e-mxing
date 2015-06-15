@@ -53,16 +53,18 @@ module Gyms
     def concerned
       concerned_courses = @user.concerneds.includes(:course).where(courses: {status: 1}).page(params[:page]||1)
       render json: Success.new(
-                 concerned: concerned_courses.map { |course| {
-                     id: course.id,
-                     name: course.name,
-                     cover: course.course_photos.first.present? ? course.course_photos.first.photo.thumb.url : '',
-                     price: course.price,
-                     during: course.during,
-                     type: course.type,
-                     concerned: course.concerned.count,
-                     top: course.top||0
-                 } }
+                 concerned: concerned_courses.map { |concerned_course|
+                   course = concerned_course.course
+                   {
+                       id: course.id,
+                       name: course,
+                       cover: course.course_photos.first.present? ? course.course_photos.first.photo.thumb.url : '',
+                       price: course.price,
+                       during: course.during,
+                       type: course.type,
+                       concerned: course.concerned.count,
+                       top: course.top||0
+                   } }
              )
     end
 

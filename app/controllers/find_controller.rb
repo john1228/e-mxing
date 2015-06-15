@@ -42,19 +42,15 @@ class FindController < ApiController
         data = {shows: shows}
       when 'ranks'
         data = {ranks: ranks}
+      when 'courses'
+        data = {}
       else
         data = {}
     end
     if data.blank?
-      render json: {
-                 code: 0,
-                 message: '未知类型'
-             }
+      render json: Failure.new('未知类型')
     else
-      render json: {
-                 code: 1,
-                 data: data
-             }
+      render json: Success.new(data)
     end
 
   end
