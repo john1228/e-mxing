@@ -60,7 +60,11 @@ class OrdersController < ApplicationController
   def cancel
     order = @user.orders.find_by(no: params[:no])
     if order.status.eql?(Order::STATUS[:unpay])
-      render json: Success.new
+      if order.update(status: Order::STATUS[:cancel])
+        render json: Success.new
+      else
+        render json: Failure.new('取消订单失败')
+      end
     else
       render json: Failure.new('不是未付款订单，不能取消')
     end
@@ -69,7 +73,12 @@ class OrdersController < ApplicationController
   def delete
     order = @user.orders.find_by(no: params[:no])
     if order.status.eql?(Order::STATUS[:cancel]||order.status.eql?(:complete))
-      render json: Success.new
+      if order.update(status: Order::STATUS[:delete])
+        render json: Success.new
+      else
+        render json: Failure.new('删除订单失败')
+      end
+
     else
       render json: Failure.new('该订单还未完成处理，不能删除')
     end
