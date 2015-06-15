@@ -39,6 +39,7 @@ module Gyms
         comment = Comment.new(comment_params.merge(course_id: appointment.course_id))
         (0..8).map { |index| comment.comment_images.build(image: params[index.to_s.to_sym]) unless params[index.to_s.to_sym].blank? }
         if comment.save
+          appointment.update(status: Appointment::STATUS[:complete])
           render json: Success.new
         else
           render json: Failure.new('评论失败')
