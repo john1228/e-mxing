@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :verify_auth_token, only: :index
+  before_action :verify_auth_token, only: [:index, :show]
 
   def index
     case params[:status]
@@ -27,8 +27,10 @@ class OrdersController < ApplicationController
   end
 
   def show
-    order = Order.find_by(no: params[:no])
+    order = @user.orders.find_by(no: params[:no])
     if order.blank?
+      render json: Failure.new('您查看到订单不存在')
+    else
       render json: Success.new(
                  order: {
                      no: order.no,
@@ -47,8 +49,7 @@ class OrdersController < ApplicationController
                      status: order.status,
                  }
              )
-    else
-      render json: Failure.new('您查看到订单不存在')
+
     end
   end
 

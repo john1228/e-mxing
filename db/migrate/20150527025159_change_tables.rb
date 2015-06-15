@@ -17,5 +17,6 @@ class ChangeTables < ActiveRecord::Migration
     add_column :appointments, :online, :string #在线预约者(以逗号分开)
     add_column :appointments, :offline, :string #线下预约者
     add_column :appointments, :status, :string
+    add_column :appointments, :lesson_id, :string
   end
 end

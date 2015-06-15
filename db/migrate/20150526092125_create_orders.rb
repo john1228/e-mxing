@@ -5,7 +5,7 @@ class CreateOrders < ActiveRecord::Migration
       t.references :coach
       t.string :no #订单编号
       t.string :coupons #优惠券编号
-      t.string :bea
+      t.integer :bean #美豆
       t.string :contact_name #联系人
       t.string :contact_phone #联系电话
       t.string :pay_type #支付类型

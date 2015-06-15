@@ -43,7 +43,7 @@ class FindController < ApiController
       when 'ranks'
         data = {ranks: ranks}
       when 'courses'
-        data = {}
+        data = {courses: courses}
       else
         data = {}
     end

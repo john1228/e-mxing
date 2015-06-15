@@ -111,7 +111,6 @@ ActiveRecord::Schema.define(version: 20150613071733) do
 
   create_table "appointments", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "lesson_id"
     t.integer "coach_id"
     t.integer "course_id"
     t.string  "course_name"
@@ -124,6 +123,7 @@ ActiveRecord::Schema.define(version: 20150613071733) do
     t.string  "online"
     t.string  "offline"
     t.string  "status"
+    t.string  "lesson_id"
   end
 
   create_table "banners", force: :cascade do |t|
@@ -345,6 +345,7 @@ ActiveRecord::Schema.define(version: 20150613071733) do
     t.integer  "order_id"
     t.integer  "course_id"
     t.string   "name"
+    t.integer  "type"
     t.string   "cover"
     t.string   "price"
     t.integer  "amount"
@@ -360,7 +361,7 @@ ActiveRecord::Schema.define(version: 20150613071733) do
     t.integer  "coach_id"
     t.string   "no"
     t.string   "coupons"
-    t.string   "bea"
+    t.integer  "bean"
     t.string   "contact_name"
     t.string   "contact_phone"
     t.string   "pay_type"
