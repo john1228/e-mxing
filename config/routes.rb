@@ -139,7 +139,7 @@ Rails.application.routes.draw do
     #查看预约和预约团课
     get 'appointments' => 'appointments#index'
     post 'appointments' => 'appointments#create'
-
+    post 'appointments/comment' => 'appointments#comment'
   end
   #课时
   get 'lessons' => 'lessons#index'
