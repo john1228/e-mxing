@@ -10,9 +10,17 @@ module Gyms
                                      appointment: @coach.appointments.where(date: params[:date]||Date.today).collect { |appointment| appointment.as_json }
                                  })
       end
-
     end
 
+    def show
+      course = params[:course]
+      render json: {
+             }
+    end
+
+    def create
+
+    end
 
     def confirm
       appointment = Appointment.find_by(id: params[:id])

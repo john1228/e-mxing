@@ -11,7 +11,7 @@ class CreateOrders < ActiveRecord::Migration
       t.string :pay_type #支付类型
       t.decimal :total #总价
       t.decimal :pay_amount, default: 0 #已支付
-      t.string :status #订单状态
+      t.integer :status #订单状态
 
       t.timestamps null: false
     end

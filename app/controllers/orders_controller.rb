@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :verify_auth_token, only: [:index, :show]
+  before_action :verify_auth_token, only: [:index, :show, :unprocessed, :cancel, :delete]
 
   def index
     case params[:status]
@@ -58,7 +58,7 @@ class OrdersController < ApplicationController
   end
 
   def cancel
-    order = Order.find_by(no: params[:no])
+    order = @user.orders.find_by(no: params[:no])
     if order.status.eql?(Order::STATUS[:unpay])
       render json: Success.new
     else
@@ -67,7 +67,7 @@ class OrdersController < ApplicationController
   end
 
   def delete
-    order = Order.find_by(no: params[:no])
+    order = @user.orders.find_by(no: params[:no])
     if order.status.eql?(Order::STATUS[:cancel]||order.status.eql?(:complete))
       render json: Success.new
     else
