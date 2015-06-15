@@ -5,7 +5,7 @@ class LessonsController < ApiController
     case params[:type] #0-预约课时 1-未约课时 2-过期课时
       when '0'
         render json: Success.new(
-                   lessons: @user.appointments.joins('LEFT JOIN courses on courses.id=appointments.course_id').page(params[:page]||1).collect { |appointment| {
+                   lessons: @user.appointments.joins('LEFT JOIN courses on courses.id = appointments.course_id').page(params[:page]||1).collect { |appointment| {
                        course: {
                            name: appointment.course_name,
                            type: appointment.course.type,

@@ -9,7 +9,7 @@ module Business
       if address.save
         render json: Success.new
       else
-        render json: Failure.new('添加地址失败')
+        render json: Failure.new('添加地址失败,非有效地址，无法进行定位')
       end
     end
 
