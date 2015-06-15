@@ -4,11 +4,11 @@ class OrdersController < ApplicationController
   def index
     case params[:status]
       when '0'
-        order = @user.orders.page(params[:page]||1)
+        order = @user.orders.where.not(status: Order::STATUS[:delete]).page(params[:page]||1)
       when '1'
-        order = @user.orders.unpay.page(params[:page]||1)
+        order = @user.orders.where(status: Order::STATUS[:unpay]).page(params[:page]||1)
       when '2'
-        order = @user.orders.pay.page(params[:page]||1)
+        order = @user.orders.where(status: Order::STATUS[:pay]).page(params[:page]||1)
       else
         order = []
     end
