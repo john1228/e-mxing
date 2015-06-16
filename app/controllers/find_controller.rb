@@ -43,7 +43,7 @@ class FindController < ApiController
       when 'ranks'
         data = {ranks: ranks}
       when 'courses'
-        data = {courses: courses(params[:type], params[:coach], params[:price], params[:sort])}
+        data = {courses: courses}
       else
         data = {}
     end

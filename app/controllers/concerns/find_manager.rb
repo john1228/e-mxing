@@ -49,22 +49,28 @@ module FindManager
     }
   end
 
-  def courses(type, coach, price, sort)
+  def courses
     filter = '1=1'
     filter<< " and courses.type = #{params[:type]}" if params[:type].present?
-    filter<< " and courses.type = #{params[:type]}" if params[:coach].present?
-    filter<< " and courses.type = #{params[:type]}" if params[:price].present?
-
-    select = 'select courses.id course_id,courses.name as course_name,courses.price course_price,courses.during course_during,courses.guarantee course_gu'
-
-    case sort
-      when 'price'
-        sql = 'select courses.id course'
-      when 'distance'
-      when 'sale'
+    filter << " and (profiles.identity=1 and profile.gender=#{params[:gender]}) and courses.user_id=profiles.user_id" if params[:gender].present?
+    if params[:price].present?
+      price_range = params[:price].split('~')
+      filter << " and courses.price between #{price_range[0]} and #{price_range[1]}"
     end
 
-    AddressCoordinate.nearby(params[:lng], params[:lat], params[:page]||1).collect { |item|
+    select_field = 'courses.id course_id,courses.name as course_name,courses.price course_price,courses.during course_during,courses.guarantee course_guarantee'
+    sort_info = params[:sort].split('_')
+    case sort_info[0]
+      when 'price'
+        sql = "select #{select_field} from courses,profiles where #{filter} order by courses.price #{sort_info[1]} limit 25 offset #{((params[:page]||1).to_i - 1)}"
+      when 'distance'
+        sql = "select #{select_field}, st_distance(address_coordinates.lonlat, 'POINT(#{lng} #{lat})') distance from address_coordinates. courses,profiles where #{filter} and st_dwithin(places.lonlat, 'POINT(#{lng} #{lat})',150000) order by distance asc limit 25 offset #{((params[:page]||1).to_i - 1)}"
+      when 'sale'
+        sql = "select #{select_field} from courses,profiles where #{filter}  "
+    end
+
+    result = Course.find_by_sql(sql)
+    result.collect { |item|
       course_photo = CoursePhoto.find_by(course_id: item.course_id)
       {
           id: item.course_id,
