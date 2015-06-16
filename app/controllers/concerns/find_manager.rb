@@ -50,16 +50,19 @@ module FindManager
   end
 
   def courses(type, coach, price, sort)
-    # filter = '1=1'
-    # filter<< " and courses.type = #{params[:type]}" if params[:type].present?
-    # filter<< " and courses.type = #{params[:type]}" if params[:coach].present?
-    # filter<< " and courses.type = #{params[:type]}" if params[:price].present?
-    #
-    # case sort
-    #   when 'price'
-    #   when 'distance'
-    #   when 'sale'
-    # end
+    filter = '1=1'
+    filter<< " and courses.type = #{params[:type]}" if params[:type].present?
+    filter<< " and courses.type = #{params[:type]}" if params[:coach].present?
+    filter<< " and courses.type = #{params[:type]}" if params[:price].present?
+
+    select = 'select courses.id course_id,courses.name as course_name,courses.price course_price,courses.during course_during'
+
+    case sort
+      when 'price'
+        sql = 'select courses.id course'
+      when 'distance'
+      when 'sale'
+    end
 
     AddressCoordinate.nearby(params[:lng], params[:lat], params[:page]||1).collect { |item|
       course_photo = CoursePhoto.find_by(course_id: item.course_id)
