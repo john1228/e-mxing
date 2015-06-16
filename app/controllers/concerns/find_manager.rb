@@ -62,7 +62,7 @@ module FindManager
     sort_info = (params[:sort]||'distance').split('-')
     case sort_info[0]
       when 'price'
-        sql =
+        sql = ''
       when 'distance'
         sql = AddressCoordinate.nearby(params[:lnt], params[:lat], (params[:page]||1))
       when 'sale'
