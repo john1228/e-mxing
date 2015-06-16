@@ -59,7 +59,7 @@ module FindManager
     end
 
     select_field = 'courses.id course_id,courses.name as course_name,courses.price course_price,courses.during course_during,courses.guarantee course_guarantee'
-    sort_info = params[:sort].split('_')
+    sort_info = (params[:sort]||'distance').split('-')
     case sort_info[0]
       when 'price'
         sql = "select #{select_field} from courses,profiles where #{filter} order by courses.price #{sort_info[1]} limit 25 offset #{((params[:page]||1).to_i - 1)}"
