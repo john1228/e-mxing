@@ -130,8 +130,8 @@ Rails.application.routes.draw do
     get 'orders/show' => 'orders#show'
     #钱包
     get 'wallet' => 'wallet#index'
-    get 'wallet#coupons' => 'wallet#coupons'
-    get 'wallet#detail' => 'wallet#detail'
+    get 'wallet/coupons' => 'wallet#coupons'
+    get 'wallet/detail' => 'wallet#detail'
   end
 
   namespace :gyms do
