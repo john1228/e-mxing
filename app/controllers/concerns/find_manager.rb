@@ -64,7 +64,7 @@ module FindManager
       when 'price'
         sql = "select #{select_field} from courses,profiles where #{filter} order by courses.price #{sort_info[1]} limit 25 offset #{((params[:page]||1).to_i - 1)}"
       when 'distance'
-        sql = "select #{select_field}, st_distance(address_coordinates.lonlat, 'POINT(#{params[:lng]} #{params[:lat]})') distance from address_coordinates. courses,profiles where #{filter} and st_dwithin(places.lonlat, 'POINT(#{lng} #{lat})',150000) order by distance asc limit 25 offset #{((params[:page]||1).to_i - 1)}"
+        sql = "select #{select_field}, st_distance(address_coordinates.lonlat, 'POINT(#{params[:lng]} #{params[:lat]})') distance from address_coordinates. courses,profiles where #{filter} and st_dwithin(places.lonlat, 'POINT(#{params[:lng]} #{params[:lat]})',150000) order by distance asc limit 25 offset #{((params[:page]||1).to_i - 1)}"
       when 'sale'
         sql = "select #{select_field} from courses,profiles where #{filter}  "
     end
