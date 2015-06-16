@@ -22,7 +22,7 @@ class Appointment < ActiveRecord::Base
   private
   #预约完成后为用户创建运动轨迹
   def build_track
-    Track.create(user_id: user_id, track_type: course.type, start: "#{date} #{start_time}", during: course_during*classes)
+    Track.create(user_id: user_id, track_type: course.type, start: "#{date} #{start_time}", during: course_during.to_i*classes.to_i)
   end
 
   def payment
