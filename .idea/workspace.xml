@@ -238,7 +238,7 @@
         <entry file="file://$PROJECT_DIR$/app/controllers/concerns/find_manager.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.30551416" vertical-offset="875" max-vertical-offset="2106">
-              <caret line="60" column="95" selection-start-line="60" selection-start-column="95" selection-end-line="60" selection-end-column="95" />
+              <caret line="60" column="94" selection-start-line="60" selection-start-column="94" selection-end-line="60" selection-end-column="94" />
               <folding />
             </state>
           </provider>
@@ -2754,7 +2754,7 @@
     <entry file="file://$PROJECT_DIR$/app/controllers/concerns/find_manager.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.30551416" vertical-offset="875" max-vertical-offset="2106">
-          <caret line="60" column="95" selection-start-line="60" selection-start-column="95" selection-end-line="60" selection-end-column="95" />
+          <caret line="60" column="94" selection-start-line="60" selection-start-column="94" selection-end-line="60" selection-end-column="94" />
           <folding />
         </state>
       </provider>

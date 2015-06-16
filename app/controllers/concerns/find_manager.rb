@@ -58,7 +58,7 @@ module FindManager
       filter << " and courses.price between #{price_range[0]} and #{price_range[1]}"
     end
 
-    select_field = 'courses.id course_id,courses.name as course_name,courses.type course_type, courses.price course_price,courses.during course_during,courses.guarantee course_guarantee'
+    select_field = 'courses.id course_id,courses.name as course_name,courses.type course_type,courses.style course_style,courses.price course_price,courses.during course_during,courses.guarantee course_guarantee'
     sort_info = (params[:sort]||'distance').split('-')
     case sort_info[0]
       when 'price'
