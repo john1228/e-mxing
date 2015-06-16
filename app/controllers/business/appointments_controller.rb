@@ -9,12 +9,12 @@ module Business
 
     def create
       #预约的课程
-      begin
-        @coach.appointments.create(appointment_params)
-        render json: {code: 1}
-      rescue Exception => e
-        render json: {code: 0, message: e.message}
-      end
+      #begin
+      @coach.appointments.create(appointment_params)
+      render json: {code: 1}
+      #rescue Exception => e
+      #  render json: {code: 0, message: e.message}
+      #end
     end
 
     def destroy

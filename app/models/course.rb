@@ -5,6 +5,8 @@ class Course < ActiveRecord::Base
   has_many :comments, dependent: :destroy
   has_many :lessons, dependent: :destroy
   has_many :concerned, class: Concerned, dependent: :destroy
+  has_many :course_addresses, dependent: :destroy
+  attr_accessor :address
   DELETE = 0
 
   def as_json
@@ -26,7 +28,7 @@ class Course < ActiveRecord::Base
 
 
   def school_addresses
-    coach.addresses.where(id: address).map { |address|
+    coach.addresses.where(id: course_addresses.pluck(:address_id)).map { |address|
       {
           venus: address.venues,
           address: address.city + address.address

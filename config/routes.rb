@@ -128,6 +128,9 @@ Rails.application.routes.draw do
     #订单
     get 'orders' => 'orders#index'
     get 'orders/show' => 'orders#show'
+    #钱包
+    get 'wallet' => 'wallet#index'
+    get 'wallet#coupons' => 'wallet#coupons'
   end
 
   namespace :gyms do

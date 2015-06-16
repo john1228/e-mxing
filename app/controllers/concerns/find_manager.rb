@@ -62,9 +62,9 @@ module FindManager
     sort_info = (params[:sort]||'distance').split('-')
     case sort_info[0]
       when 'price'
-        sql = "select #{select_field} from courses,profiles where #{filter} order by courses.price #{sort_info[1]} limit 25 offset #{((params[:page]||1).to_i - 1)}"
+        sql =
       when 'distance'
-        sql = "select #{select_field}, st_distance(address_coordinates.lonlat, 'POINT(#{params[:lng]} #{params[:lat]})') distance from address_coordinates,courses,profiles where #{filter} and st_dwithin(address_coordinates.lonlat, 'POINT(#{params[:lng]} #{params[:lat]})',150000) and  address_coordinates.address_id = ANY(courses.address) order by distance asc limit 25 offset #{((params[:page]||1).to_i - 1)}"
+        sql = AddressCoordinate.nearby(params[:lnt], params[:lat], (params[:page]||1))
       when 'sale'
         sql = "select #{select_field} from courses,profiles where #{filter}  "
     end

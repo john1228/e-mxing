@@ -1,5 +1,6 @@
 class AddressCoordinate < ActiveRecord::Base
+  has_many :course_addresses, foreign_key: :address_id
   scope :nearby, ->(lng, lat, page=1) {
-    find_by_sql("select st_distance(address_coordinates.lonlat, 'POINT(#{lng} #{lat})')  distance,courses.id course_id,courses.name course_name,courses.during course_during,courses.price course_price,courses.type course_type,courses.style course_style,courses.guarantee course_guarantee from address_coordinates,courses where st_dwithin(address_coordinates.lonlat, 'POINT(#{lng} #{lat})',150000) and address_coordinates.address_id = ANY(courses.address) order by distance asc limit 25 offset (#{page}-1)*25")
+    select("st_distance(address_coordinates.lonlat, 'POINT(#{lng} #{lat})') distance").joins(:course_addresses).where("st_dwithin(address_coordinates.lonlat, 'POINT(#{lng} #{lat})', 150000) and course_addresses.address_id=address_coordinates.address_id").page(page)
   }
 end
