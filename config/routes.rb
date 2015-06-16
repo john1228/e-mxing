@@ -127,7 +127,7 @@ Rails.application.routes.draw do
     post 'appointments' => 'appointments#create'
     #订单
     get 'orders' => 'orders#index'
-    get 'orders' => 'orders#show'
+    get 'orders/show' => 'orders#show'
   end
 
   namespace :gyms do
