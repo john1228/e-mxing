@@ -10,7 +10,21 @@ module Business
     def create
       #预约的课程
       #begin
-      @coach.appointments.create(appointment_params)
+      base_params = appointment_params
+      course = @coach.courses.find_by(id: params[:course])
+      address = @coach.addresses.find_by(id: params[:address])
+      base_params = base_params.merge({
+                                          lesson_id: @coach.lessons.find_by(course: course).id,
+                                          start_time: params[:start],
+                                          course_id: course.id,
+                                          course_name: course.name,
+                                          course_during: course.during,
+                                          venues: address.venues,
+                                          address: address.city + address.address
+                                      })
+      params[:online].split(',').map { |user|
+        @coach.appointments.create(base_params.merge(user_id: user))
+      }
       render json: {code: 1}
       #rescue Exception => e
       #  render json: {code: 0, message: e.message}
@@ -24,19 +38,7 @@ module Business
 
     private
     def appointment_params
-      permit_params = params.permit(:date, :classes, :online, :offline)
-      course = @coach.courses.find_by(id: params[:course])
-      address = @coach.addresses.find_by(id: params[:address])
-      permit_params.merge({
-                              lesson_id: @coach.lessons.find_by(course: course).id,
-                              start_time: params[:start],
-                              course_id: course.id,
-                              course_name: course.name,
-                              course_during: course.during,
-                              venues: address.venues,
-                              address: address.city + address.address
-                          })
-
+      params.permit(:date, :classes, :offline)
     end
   end
 end

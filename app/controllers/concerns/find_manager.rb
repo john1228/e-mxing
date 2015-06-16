@@ -52,17 +52,17 @@ module FindManager
   def courses
     filter = '1=1'
     filter<< " and courses.type = #{params[:course]}" if params[:course].present?
-    filter << " and (profiles.identity=1 and profile.gender=#{params[:gender]}) and courses.user_id=profiles.user_id" if params[:gender].present?
+    filter << " and profiles.gender=#{params[:gender]} and courses.user_id=profiles.user_id" if params[:gender].present?
     if params[:price].present?
       price_range = params[:price].split('~')
       filter << " and courses.price between #{price_range[0]} and #{price_range[1]}"
     end
-
-    select_field = 'courses.id course_id,courses.name as course_name,courses.type course_type,courses.style course_style,courses.price course_price,courses.during course_during,courses.guarantee course_guarantee'
     sort_info = (params[:sort]||'distance').split('-')
     case sort_info[0]
       when 'price'
-        sql = ''
+        courses =
+            sql = "select courses.id course_id,courses.name as course_name,courses.type course_type,courses.style course_style,courses.price course_price,courses.during course_during,courses.guarantee course_guarantee
+form courses,profiles where #{filter} order by course_price #{sort_info[1]}"
       when 'distance'
         sql = AddressCoordinate.nearby(params[:lnt], params[:lat], (params[:page]||1))
       when 'sale'
