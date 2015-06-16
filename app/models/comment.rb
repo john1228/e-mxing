@@ -9,7 +9,8 @@ class Comment < ActiveRecord::Base
         images: comment_images.collect { |comment_image|
           comment_image.image.thumb.url
         },
-        user: user.profile.summary_json
+        user: user.profile.summary_json,
+        created: created_at.to_i
     }
   end
 end
