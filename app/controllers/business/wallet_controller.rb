@@ -15,7 +15,7 @@ module Business
                                      id: log.id,
                                      action: log.action,
                                      balance: log.balance,
-                                     created: created_at.to_i
+                                     created: log.created_at.to_i
                                  }
                                })
     end
