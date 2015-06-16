@@ -51,7 +51,7 @@ module FindManager
 
   def courses
     filter = '1=1'
-    filter<< " and courses.type = #{params[:type]}" if params[:type].present?
+    filter<< " and courses.type = #{params[:course]}" if params[:course].present?
     filter << " and (profiles.identity=1 and profile.gender=#{params[:gender]}) and courses.user_id=profiles.user_id" if params[:gender].present?
     if params[:price].present?
       price_range = params[:price].split('~')
