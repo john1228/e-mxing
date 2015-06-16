@@ -81,7 +81,8 @@ module FindManager
           guarantee: item.course_guarantee,
           type: item.course_type,
           style: item.course_style,
-          concerned: Concerned.where(course_id: item.course_id).count
+          concerned: Concerned.where(course_id: item.course_id).count,
+          distance: item.distance
       }
     }
   end
