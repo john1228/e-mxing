@@ -1,5 +1,6 @@
 class CreateCourseAddresses < ActiveRecord::Migration
   def change
+    remove_column :courses, :address
     create_table :course_addresses do |t|
       t.references :course
       t.references :address
