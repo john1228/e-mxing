@@ -7,7 +7,7 @@ class Comment < ActiveRecord::Base
     {
         content: content,
         images: comment_images.collect { |comment_image|
-          comment_image.thumb.url
+          comment_image.image.thumb.url
         },
         user: user.profile.summary_json
     }

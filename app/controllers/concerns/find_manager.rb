@@ -55,7 +55,7 @@ module FindManager
     filter<< " and courses.type = #{params[:type]}" if params[:coach].present?
     filter<< " and courses.type = #{params[:type]}" if params[:price].present?
 
-    select = 'select courses.id course_id,courses.name as course_name,courses.price course_price,courses.during course_during'
+    select = 'select courses.id course_id,courses.name as course_name,courses.price course_price,courses.during course_during,courses.guarantee course_gu'
 
     case sort
       when 'price'
