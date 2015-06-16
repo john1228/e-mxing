@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150613071733) do
+ActiveRecord::Schema.define(version: 20150615090338) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -219,14 +219,15 @@ ActiveRecord::Schema.define(version: 20150613071733) do
     t.string   "exp"
     t.integer  "proposal"
     t.text     "intro"
-    t.string   "address"
     t.boolean  "customized"
     t.string   "custom_mxid"
     t.string   "custom_mobile"
     t.integer  "top"
     t.integer  "status",        default: 0
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "address",       default: [],              array: true
+    t.integer  "guarantee",     default: 0
   end
 
   create_table "dynamic_comments", force: :cascade do |t|

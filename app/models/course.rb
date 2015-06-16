@@ -26,7 +26,7 @@ class Course < ActiveRecord::Base
 
 
   def school_addresses
-    coach.addresses.where(id: address.split(',').map { |id| id.to_i }).map { |address|
+    coach.addresses.where(id: address).map { |address|
       {
           venus: address.venues,
           address: address.city + address.address

@@ -12,11 +12,6 @@ module Gyms
       end
     end
 
-    def show
-      course = params[:course]
-      render json: {
-             }
-    end
 
     def create
 
@@ -32,19 +27,20 @@ module Gyms
     end
 
     def comment
-      appointment = Appointment.find_by(id: params[:id], status: Appointment::STATUS[:done])
-      if appointment.blank?
-        render json: Failure.new('未完成到课时，不能评论')
+      # appointment = Appointment.find_by(id: params[:id], status: Appointment::STATUS[:done])
+      # if appointment.blank?
+      #   render json: Failure.new('未完成到课时，不能评论')
+      # else
+      course = Course.first
+      comment = Comment.new(comment_params.merge(course_id: course.id))
+      (0..8).map { |index| comment.comment_images.build(image: params[index.to_s.to_sym]) unless params[index.to_s.to_sym].blank? }
+      if comment.save
+        appointment.update(status: Appointment::STATUS[:complete])
+        render json: Success.new
       else
-        comment = Comment.new(comment_params.merge(course_id: appointment.course_id))
-        (0..8).map { |index| comment.comment_images.build(image: params[index.to_s.to_sym]) unless params[index.to_s.to_sym].blank? }
-        if comment.save
-          appointment.update(status: Appointment::STATUS[:complete])
-          render json: Success.new
-        else
-          render json: Failure.new('评论失败')
-        end
+        render json: Failure.new('评论失败')
       end
+      #end
     end
 
     private

@@ -57,7 +57,7 @@ module Gyms
                    course = concerned_course.course
                    {
                        id: course.id,
-                       name: course,
+                       name: course.name,
                        cover: course.course_photos.first.present? ? course.course_photos.first.photo.thumb.url : '',
                        price: course.price,
                        during: course.during,

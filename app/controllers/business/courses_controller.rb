@@ -39,8 +39,9 @@ module Business
     private
     def course_params
       permit_params = params.permit(:name, :type, :style, :during, :price, :exp, :proposal, :intro,
-                                    :address, :customized, :top)
-      permit_params.merge(custom_mxid: params[:mxid], custom_mobile: params[:mobile])
+                                    :customized, :top)
+      permit_params = permit_params.merge(custom_mxid: params[:mxid], custom_mobile: params[:mobile])
+      permit_params.merge(address: params[:address].split(',').map { |item| item.to_i })
     end
   end
 end

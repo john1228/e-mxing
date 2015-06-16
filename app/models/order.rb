@@ -10,7 +10,7 @@ class Order < ActiveRecord::Base
   has_many :order_items, dependent: :destroy
   has_many :lessons, dependent: :destroy
   attr_accessor :item
-  STATUS = {cancel: 0, unpay: 1, pay: 2, complete: 4}
+  STATUS = {delete: -1, cancel: 0, unpay: 1, pay: 2, complete: 4}
   private
   def setting_default_values
     self.no = "#{Time.now.to_i}#{user_id}#{%w'0 1 2 3 4 5 6 7 8 9'.sample(3).join('')}"

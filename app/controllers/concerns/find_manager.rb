@@ -49,8 +49,32 @@ module FindManager
     }
   end
 
-  def courses
-    AddressCoordinate.nearby(params[:lng], params[:lat], params[:page]||1).collect { |place| place.nearby_user_json }
+  def courses(type, coach, price, sort)
+    # filter = '1=1'
+    # filter<< " and courses.type = #{params[:type]}" if params[:type].present?
+    # filter<< " and courses.type = #{params[:type]}" if params[:coach].present?
+    # filter<< " and courses.type = #{params[:type]}" if params[:price].present?
+    #
+    # case sort
+    #   when 'price'
+    #   when 'distance'
+    #   when 'sale'
+    # end
+
+    AddressCoordinate.nearby(params[:lng], params[:lat], params[:page]||1).collect { |item|
+      course_photo = CoursePhoto.find_by(course_id: item.course_id)
+      {
+          id: item.course_id,
+          name: item.course_name,
+          cover: course_photo.present? ? course_photo.photo.thumb.url : '',
+          price: item.course_price,
+          during: item.course_during,
+          guarantee: item.course_guarantee,
+          type: item.course_type,
+          style: item.course_style,
+          concerned: course.concerned.count
+      }
+    }
   end
 
   private
