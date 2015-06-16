@@ -125,6 +125,9 @@ Rails.application.routes.draw do
     #预约
     get 'appointments' => 'appointments#index'
     post 'appointments' => 'appointments#create'
+    #订单
+    get 'orders' => 'orders#index'
+    get 'orders' => 'orders#show'
   end
 
   namespace :gyms do

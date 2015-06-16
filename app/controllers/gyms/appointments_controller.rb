@@ -1,5 +1,6 @@
 module Gyms
   class AppointmentsController < BaseController
+    before_action :verify_auth_token, only: [:confirm, :comment]
     #预约概况
     def index
       if params[:date].blank?
@@ -18,7 +19,7 @@ module Gyms
     end
 
     def confirm
-      appointment = Appointment.find_by(id: params[:id])
+      appointment = @user.appointments.find_by(id: params[:id])
       if appointment.update(status: Appointment::STATUS[:done])
         render json: Success.new
       else
@@ -32,7 +33,7 @@ module Gyms
       #   render json: Failure.new('未完成到课时，不能评论')
       # else
       course = Course.first
-      comment = Comment.new(comment_params.merge(course_id: course.id))
+      comment = Comment.new(comment_params.merge(course: course, user: @user))
       (0..8).map { |index| comment.comment_images.build(image: params[index.to_s.to_sym]) unless params[index.to_s.to_sym].blank? }
       if comment.save
         #appointment.update(status: Appointment::STATUS[:complete])
@@ -46,6 +47,11 @@ module Gyms
     private
     def comment_params
       params.permit(:content, :prof, :comm, :punc, :space)
+    end
+
+    def verify_auth_token
+      @user = Rails.cache.read(request.headers[:token])
+      render json: {code: -1, message: '您还没有登录'} if @user.blank?
     end
   end
 end
