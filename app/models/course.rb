@@ -5,7 +5,7 @@ class Course < ActiveRecord::Base
   has_many :comments, dependent: :destroy
   has_many :lessons, dependent: :destroy
   has_many :concerned, class: Concerned, dependent: :destroy
-  has_many :course_addresses, dependent: :destroy
+  has_many :course_abstracts, dependent: :destroy
   attr_accessor :address
   STATUS = {delete: 0, online: 1}
   after_save :update_course_abstract
@@ -41,7 +41,7 @@ class Course < ActiveRecord::Base
   def update_course_abstract
     CourseAbstract.delete_all(course_id: id)
     address.each { |address_id|
-      CourseAbstract.create(course_id: id, address_id: address_id, coach: coach.id,
+      CourseAbstract.create(course_id: id, address_id: address_id, coach_id: coach.id,
                             coach_gender: coach.profile.gender, course_price: price, course_type: type,
                             coordinate: AddressCoordinate.find_by(address_id: address_id).lonlat)
     }
