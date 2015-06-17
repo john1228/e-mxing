@@ -1,7 +1,22 @@
 module Business
   class CoursesController < BaseController
     def index
-      render json: Success.new(courses: @coach.courses)
+      render json: Success.new(courses: @coach.courses.page(params[:page]||1).collect { |item|
+                                 {
+                                     id: item.id,
+                                     name: item.name,
+                                     type: item.type,
+                                     style: item.style,
+                                     during: item.during,
+                                     price: item.price,
+                                     exp: item.exp,
+                                     proposal: item.proposal,
+                                     intro: item.intro,
+                                     address: item.school_addresses,
+                                     guarantee: item.guarantee,
+                                     images: item.course_photos.collect { |course_photo| course_photo.photo.thumb.url },
+                                 }
+                               })
     end
 
     def create
@@ -20,7 +35,7 @@ module Business
 
     def update
       course = @coach.courses.find_by(id: params[:id])
-      if course.save
+      if course.update(update_params)
         render json: Success.new
       else
         render json: Failure.new('更新课程失败')
