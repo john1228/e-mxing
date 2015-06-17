@@ -26,7 +26,7 @@ class Order < ActiveRecord::Base
     if coupons.present?
       #检验优惠券的是否有效
       user_coupons = user.wallet.coupons
-      coupons.split(',').map { |coupon| return false unless user_coupons.include?(coupon.to_i) }
+      coupons.split(',').map { |coupon| return false unless user_coupons.include?(coupon) }
       Coupon.where(id: coupons.split(',')).map { |coupon|
         #优惠券不在有效期内
         return false if (coupon.start_date> Date.today) || (coupon.end_date< Date.today)
