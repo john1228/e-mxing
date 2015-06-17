@@ -26,12 +26,14 @@ class Order < ActiveRecord::Base
     if coupons.present?
       #检验优惠券的是否有效
       user_coupons = user.wallet.coupons
-      coupons.split(',').map { |coupon| return false unless user_coupons.include?(coupon) }
+      coupons.split(',').map { |coupon|
+        return false unless user_coupons.include?(coupon)
+      }
       Coupon.where(id: coupons.split(',')).map { |coupon|
         #优惠券不在有效期内
         return false if (coupon.start_date> Date.today) || (coupon.end_date< Date.today)
         #种类是否满足要求
-        case coupon.limit_category
+        case coupon.limit_category.to_i
           when Coupon::TYPE[:general]
           when Coupon::TYPE[:gyms]
             return false unless coupon.limit_ext.eql?(course.coach.id)
@@ -44,7 +46,7 @@ class Order < ActiveRecord::Base
             return false
         end
         #判断金额是否满足
-        return false if coupon.min > total_price
+        return false if coupon.min >= total_price
         total_price -= coupon.discount
       }
     end
