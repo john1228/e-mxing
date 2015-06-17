@@ -23,7 +23,8 @@ module Business
                                           address: address.city + address.address
                                       })
       params[:online].split(',').map { |user|
-        @coach.appointments.create(base_params.merge(user_id: user))
+        user = User.find_by_mxid(user)
+        @coach.appointments.create(base_params.merge(user_id: user.id))
       }
       render json: {code: 1}
       #rescue Exception => e

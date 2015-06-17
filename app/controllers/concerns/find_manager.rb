@@ -50,6 +50,9 @@ module FindManager
   end
 
   def courses
+    conn =
+
+
     filter = '1=1'
     filter<< " and courses.type = #{params[:course]}" if params[:course].present?
     filter << " and profiles.gender=#{params[:gender]} and courses.user_id=profiles.user_id" if params[:gender].present?
@@ -69,6 +72,7 @@ form courses,profiles where #{filter} order by course_price #{sort_info[1]}"
         sql = "select #{select_field} from courses,profiles where #{filter}  "
     end
 
+    Course.
     result = Course.find_by_sql(sql)
     result.collect { |item|
       course_photo = CoursePhoto.find_by(course_id: item.course_id)
