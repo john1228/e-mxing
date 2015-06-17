@@ -36,6 +36,8 @@ module Gyms
           else
             course_name = setting.course_name
             course = coach.courses.find_by(name: course_name)
+
+
             if @user.lessons.is_valid?(course)
               # base_params = {date: params[:date]}
               # classes

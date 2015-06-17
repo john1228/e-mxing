@@ -27,10 +27,10 @@ module Business
                    user = lesson.user
                    {
                        user: user.profile.summary_json,
-                       courses: user.lessons.select('distinct lessons.course_id,courses.name,courses.type').joins(:course) { |lessons|
-                         course = lesson.course
+                       courses: user.lessons.select('distinct lessons.course_id,courses.name,courses.type').join(:course).map { |user_lesson|
+                         course = user_lesson.course
                          {
-                             id: lessons.course_id,
+                             id: course.id,
                              name: course.name,
                              type: course.type
                          }
