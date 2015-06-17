@@ -1,6 +1,6 @@
 class Check < ActiveRecord::Base
   belongs_to :user
-  validate :has_not_signed, message: '您今日已签到'
+  validate :has_not_signed
   after_create :polite
 
   def has_not_signed
