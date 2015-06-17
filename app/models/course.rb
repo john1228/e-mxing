@@ -29,7 +29,7 @@ class Course < ActiveRecord::Base
 
 
   def school_addresses
-    coach.addresses.where(id: course_addresses.pluck(:address_id)).map { |address|
+    coach.addresses.where(id: CourseAbstract.pluck(:address_id)).map { |address|
       {
           venus: address.venues,
           address: address.city + address.address
