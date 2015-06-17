@@ -32,6 +32,10 @@ module Business
       #end
     end
 
+    def show
+      
+    end
+
     def destroy
 
     end

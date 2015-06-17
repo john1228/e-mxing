@@ -7,7 +7,8 @@ class Course < ActiveRecord::Base
   has_many :concerned, class: Concerned, dependent: :destroy
   has_many :course_addresses, dependent: :destroy
   attr_accessor :address
-  DELETE = 0
+  STATUS = {delete: 0, online: 1}
+  after_save :update_course_abstract
 
   def as_json
     {
@@ -33,6 +34,17 @@ class Course < ActiveRecord::Base
           venus: address.venues,
           address: address.city + address.address
       }
+    }
+  end
+
+  private
+  def update_course_abstract
+    CourseAbstract.delete_all(course: id)
+    address.each { |address_id|
+      CourseAbstract.create(course_id: id, address_id: address_id, coach: coach.id,
+                            coach_gender: coach.profile.gender, course_price: course.price,
+                            course_type: course.type,
+                            coordinate: AddressCoordinate.find_by(address_id: address_id).lonlat)
     }
   end
 end

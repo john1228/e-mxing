@@ -33,5 +33,13 @@ namespace :gyms do
   end
 
 
+  task :detail do
+    conn = Faraday.new(:url => host)
+    conn.headers[:token] = '33e75ff09dd601bbe69f351039152189'
+    response = conn.get 'wallet/detail'
+    puts response.body
+  end
+
+
   #预约团操
 end

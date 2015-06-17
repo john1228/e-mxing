@@ -119,6 +119,8 @@ Rails.application.routes.draw do
     #课程
     get 'courses' => 'courses#index'
     post 'courses' => 'courses#create'
+    put 'courses' => 'courses#update'
+    delete 'courses/:id' => 'courses#destroy'
     #设置
     post 'settings/one' => 'appointment_settings#one_to_one'
     post 'settings/many' => 'appointment_settings#one_to_many'
@@ -132,6 +134,9 @@ Rails.application.routes.draw do
     get 'wallet' => 'wallet#index'
     get 'wallet/coupons' => 'wallet#coupons'
     get 'wallet/detail' => 'wallet#detail'
+    #学员
+    get 'students' => 'student#index'
+    get 'students/course' => 'students#course'
   end
 
   namespace :gyms do

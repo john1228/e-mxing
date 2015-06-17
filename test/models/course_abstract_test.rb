@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class AdsTest < ActiveSupport::TestCase
+class CourseAbstractTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

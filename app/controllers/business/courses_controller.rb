@@ -6,7 +6,7 @@ module Business
 
     def create
       begin
-        course = @coach.courses.new(course_params)
+        course = @coach.courses.new(new_params)
         (0..8).each { |index| course.course_photos.build(photo: params[index.to_s.to_sym]) if params[index.to_s.to_sym].present? }
         if course.save
           render json: Success.new
@@ -29,7 +29,7 @@ module Business
 
     def destroy
       course = @coach.courses.find_by(id: params[:id])
-      if course.update(status: Course::DELETE)
+      if course.update(status: Course::STATUS[:delete])
         render json: Success.new
       else
         render json: Failure.new('删除课程失败')
@@ -37,10 +37,15 @@ module Business
     end
 
     private
-    def course_params
+    def new_params
       permit_params = params.permit(:name, :type, :style, :during, :price, :exp, :proposal, :intro,
                                     :customized, :top)
       permit_params = permit_params.merge(custom_mxid: params[:mxid], custom_mobile: params[:mobile])
+      permit_params.merge(address: params[:address].split(',').map { |item| item.to_i })
+    end
+
+    def update_params
+      permit_params = params.permit(:price, :exp, :proposal, :intro)
       permit_params.merge(address: params[:address].split(',').map { |item| item.to_i })
     end
   end

@@ -7,7 +7,6 @@ class WalletController < ApplicationController
   end
 
   def coupons
-    logger.info Coupon.where(id: @user.wallet.coupons.split(',')).first.as_json
     render json: Success.new(coupons: Coupon.where(id: @user.wallet.coupons.split(',')))
   end
 
@@ -25,6 +24,7 @@ class WalletController < ApplicationController
   private
   def verify_auth_token
     @user = Rails.cache.fetch(request.headers[:token])
-    render json: Failure.new('还没有登录') if @user.nil?
+    logger.info request.headers[:token]
+    render json: Failure.new('还没有登录') if @user.blank?
   end
 end

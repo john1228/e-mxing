@@ -20,7 +20,7 @@ module Business
              )
     end
 
-    #获取线上需要列表
+    #获取线上学员列表
     def index
       render json: Success.new(
                  students: @coach.lessons.select('distinct lessons.user_id').joins(:user).map { |lesson|

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150616074322) do
+ActiveRecord::Schema.define(version: 20150617055907) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -201,6 +201,18 @@ ActiveRecord::Schema.define(version: 20150616074322) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
+
+  create_table "course_abstracts", force: :cascade do |t|
+    t.integer   "course_id"
+    t.integer   "address_id"
+    t.integer   "coach_id"
+    t.integer   "coach_gender"
+    t.integer   "course_price"
+    t.integer   "course_type"
+    t.geography "coordinate",   limit: {:srid=>4326, :type=>"point", :geographic=>true}
+  end
+
+  add_index "course_abstracts", ["coordinate"], name: "index_course_abstracts_on_coordinate", using: :gist
 
   create_table "course_addresses", force: :cascade do |t|
     t.integer  "course_id"

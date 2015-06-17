@@ -50,45 +50,8 @@ module FindManager
   end
 
   def courses
-    conn =
-
-
-    filter = '1=1'
-    filter<< " and courses.type = #{params[:course]}" if params[:course].present?
-    filter << " and profiles.gender=#{params[:gender]} and courses.user_id=profiles.user_id" if params[:gender].present?
-    if params[:price].present?
-      price_range = params[:price].split('~')
-      filter << " and courses.price between #{price_range[0].to_i} and #{price_range[1].to_i}"
-    end
-    sort_info = (params[:sort]||'distance').split('-')
-    case sort_info[0]
-      when 'price'
-        courses =
-            sql = "select courses.id course_id,courses.name as course_name,courses.type course_type,courses.style course_style,courses.price course_price,courses.during course_during,courses.guarantee course_guarantee
-form courses,profiles where #{filter} order by course_price #{sort_info[1]}"
-      when 'distance'
-        sql = AddressCoordinate.nearby(params[:lnt], params[:lat], (params[:page]||1))
-      when 'sale'
-        sql = "select #{select_field} from courses,profiles where #{filter}  "
-    end
-
-    Course.
-    result = Course.find_by_sql(sql)
-    result.collect { |item|
-      course_photo = CoursePhoto.find_by(course_id: item.course_id)
-      {
-          id: item.course_id,
-          name: item.course_name,
-          cover: course_photo.present? ? course_photo.photo.thumb.url : '',
-          price: item.course_price,
-          during: item.course_during,
-          guarantee: item.course_guarantee,
-          type: item.course_type,
-          style: item.course_style,
-          concerned: Concerned.where(course_id: item.course_id).count,
-          distance: item.distance
-      }
-    }
+    CourseAbstract.select("st_distance(places.lonlat, 'POINT(#{params[:lng]} #{params[:lat]})') distance,course_id").
+        where("'st_dwithin(places.lonlat, 'POINT(#{params[:lng]} #{params[:lat]})',150000)'")
   end
 
   private
