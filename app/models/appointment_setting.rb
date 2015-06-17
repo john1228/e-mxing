@@ -29,6 +29,10 @@ class AppointmentSetting < ActiveRecord::Base
           }
       }
     end
+
+    def set_of_many(date, time)
+      where.not(course_name: nil).where('start_date=? and time ~* ?', date, "^#{time}").take
+    end
   end
 
   def school_address

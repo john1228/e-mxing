@@ -33,7 +33,7 @@ class Order < ActiveRecord::Base
         #优惠券不在有效期内
         return false if (coupon.start_date> Date.today) || (coupon.end_date< Date.today)
         #种类是否满足要求
-        case coupon.limit_category.to_i
+        case coupon.limit_category
           when Coupon::TYPE[:general]
           when Coupon::TYPE[:gyms]
             return false unless coupon.limit_ext.eql?(course.coach.id)

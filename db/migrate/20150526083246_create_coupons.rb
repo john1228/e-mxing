@@ -8,11 +8,13 @@ class CreateCoupons < ActiveRecord::Migration
       t.date :start_date #開始時間
       t.date :end_date #结束时间
 
-      t.string :limit_category,defu #优惠范围(通用,限制私教,限制产品,限制服务号),
-      t.string :limit_ext #优惠范围对应到ID
-      t.string :min #限制订单
+      t.integer :limit_category, default: 1 #优惠范围(通用,限制私教,限制产品,限制服务号),
+      t.integer :limit_ext, default: 0 #优惠范围对应到ID
+      t.integer :min, default: 0 #限制订单
       t.boolean :active #是否启用
       t.timestamps null: false
+
+      change_column :coupons,:limit_category,:integer
     end
   end
 end

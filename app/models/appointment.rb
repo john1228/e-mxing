@@ -9,6 +9,7 @@ class Appointment < ActiveRecord::Base
 
   def as_json
     {
+
         course: course.name,
         start: start_time,
         classes: classes,

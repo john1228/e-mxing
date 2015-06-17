@@ -14,6 +14,7 @@ module Business
                                      intro: item.intro,
                                      address: item.school_addresses,
                                      guarantee: item.guarantee,
+                                     top: item.top,
                                      images: item.course_photos.collect { |course_photo| course_photo.photo.thumb.url },
                                  }
                                })
