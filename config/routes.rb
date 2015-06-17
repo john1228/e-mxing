@@ -135,7 +135,7 @@ Rails.application.routes.draw do
     get 'wallet/coupons' => 'wallet#coupons'
     get 'wallet/detail' => 'wallet#detail'
     #学员
-    get 'students' => 'student#index'
+    get 'students' => 'students#index'
     get 'students/course' => 'students#course'
   end
 
