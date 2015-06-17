@@ -25,13 +25,4 @@ class SystemController < ApiController
     @user = Rails.cache.fetch(request.headers[:token])
     render json: {code: 0, message: '您还未登录'} if @user.blank?
   end
-
-  def check(user)
-    now = Time.now
-    check_log = where(user: user, created_at: now.beginning_of_day..now.end_of_day).first
-    if check_log.blank?
-    else
-
-    end
-  end
 end

@@ -3,7 +3,7 @@
   has_many :wallet_logs
   attr_accessor :action
   after_update :create_wallet_log
-
+  #action 以1开头为增加 以2开头的为减少
 
   def as_json
     {
