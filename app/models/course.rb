@@ -39,7 +39,7 @@ class Course < ActiveRecord::Base
 
   private
   def update_course_abstract
-    CourseAbstract.delete_all(course: id)
+    CourseAbstract.delete_all(course_id: id)
     address.each { |address_id|
       CourseAbstract.create(course_id: id, address_id: address_id, coach: coach.id,
                             coach_gender: coach.profile.gender, course_price: course.price,
