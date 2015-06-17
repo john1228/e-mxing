@@ -1,4 +1,4 @@
-class Wallet < ActiveRecord::Base
+  class Wallet < ActiveRecord::Base
   belongs_to :user
   has_many :wallet_logs
   attr_accessor :action

@@ -16,7 +16,7 @@ class LessonsController < ApiController
                        appointment: {
                            id: appointment.id,
                            date: appointment.date,
-                           start: appointment.start,
+                           start: appointment.start_time,
                            classes: appointment.classes,
                            address: appointment.address
                        }
