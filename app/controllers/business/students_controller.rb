@@ -23,7 +23,7 @@ module Business
     #获取线上学员列表
     def index
       render json: Success.new(
-                 students: @coach.lessons.select('distinct user_id').where('available > used and exp', Date.today).map { |lesson|
+                 students: @coach.lessons.select('distinct user_id').where('available > used and exp > ?', Date.today).map { |lesson|
                    user = lesson.user
                    {
                        user: user.profile.summary_json,
