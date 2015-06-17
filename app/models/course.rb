@@ -42,8 +42,7 @@ class Course < ActiveRecord::Base
     CourseAbstract.delete_all(course_id: id)
     address.each { |address_id|
       CourseAbstract.create(course_id: id, address_id: address_id, coach: coach.id,
-                            coach_gender: coach.profile.gender, course_price: course.price,
-                            course_type: course.type,
+                            coach_gender: coach.profile.gender, course_price: price, course_type: type,
                             coordinate: AddressCoordinate.find_by(address_id: address_id).lonlat)
     }
   end
