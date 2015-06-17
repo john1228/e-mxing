@@ -3,6 +3,16 @@ class Coupon < ActiveRecord::Base
   TYPE = {general: 1, gyms: 2, course: 3, service: 4}
 
   def as_json
-    super.as_json(only: [:no, :name, :discount, :info, :start_date, :end_date, :limit_category, :limit_ext, :min])
+    {
+        no: no,
+        name: name,
+        discount: discount,
+        info: info,
+        start_date: start_date,
+        end_date: end_date,
+        limit_category: limit_category,
+        limit_ext: limit_ext,
+        min: min
+    }
   end
 end
