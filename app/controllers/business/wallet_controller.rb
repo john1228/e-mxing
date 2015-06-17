@@ -14,7 +14,7 @@ module Business
                                  {
                                      id: log.id,
                                      action: log.action,
-                                     balance: log.balance,
+                                     balance: log.balance.abs,
                                      created: log.created_at.to_i
                                  }
                                })

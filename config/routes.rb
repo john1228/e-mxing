@@ -157,10 +157,10 @@ Rails.application.routes.draw do
   post 'orders' => 'orders#create'
   delete 'orders/:no/cancel' => 'orders#cancel'
   delete 'orders/:no/delete' => 'orders#delete'
-
   #钱包
   get 'wallet' => 'wallet#index'
   get 'wallet/coupons' => 'wallet#coupons'
+  get 'wallet/detail' => 'wallet#detail'
   #签到
   post 'sign' => 'system#sign'
 end

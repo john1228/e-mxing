@@ -55,7 +55,7 @@ module FindManager
     filter << " and profiles.gender=#{params[:gender]} and courses.user_id=profiles.user_id" if params[:gender].present?
     if params[:price].present?
       price_range = params[:price].split('~')
-      filter << " and courses.price between #{price_range[0]} and #{price_range[1]}"
+      filter << " and courses.price between #{price_range[0].to_i} and #{price_range[1].to_i}"
     end
     sort_info = (params[:sort]||'distance').split('-')
     case sort_info[0]
