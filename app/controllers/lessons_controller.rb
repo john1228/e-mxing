@@ -8,6 +8,7 @@ class LessonsController < ApiController
                    lessons: @user.appointments.joins('LEFT JOIN courses on courses.id = appointments.course_id').page(params[:page]||1).collect { |appointment| {
                        course: {
                            name: appointment.course_name,
+                           cover: appointment.course.course_photos.first.present? ? appointment.course.course_photos.first.photo.thumb.url : '',
                            type: appointment.course.type,
                            during: appointment.course.during,
                            style: appointment.course.style
@@ -18,7 +19,8 @@ class LessonsController < ApiController
                            date: appointment.date,
                            start: appointment.start_time,
                            classes: appointment.classes,
-                           address: appointment.address
+                           address: appointment.address,
+                           status: appointment.status_tag
                        }
                    } }
                )

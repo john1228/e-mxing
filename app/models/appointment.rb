@@ -19,6 +19,32 @@ class Appointment < ActiveRecord::Base
     }
   end
 
+  def status_tag
+    #1-等待上课 10-正在上课 11-等待确认上课
+    if status.eql?(STATUS[:waiting])
+      if date>Date.today
+        status_tag = status
+      elsif date<Date.today
+        status_tag = 11
+      else
+        now = Time.now
+        start_t = Time.parse(start_time)
+        total_during = course.during.to_i*classes.to_i
+        end_t = start_t + total_during.minutes
+        if start_t>now
+          status_tag = status
+        elsif start_t<=now && now<=end_t
+          status_tag = 10
+        else
+          status_tag = 11
+        end
+      end
+    else
+      status_tag = status
+    end
+    status_tag
+  end
+
   private
   #预约完成后为用户创建运动轨迹
   def build_track
