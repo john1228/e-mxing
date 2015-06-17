@@ -7,6 +7,7 @@ class WalletController < ApplicationController
   end
 
   def coupons
+    logger.info Coupon.where(id: @user.wallet.coupons.split(',')).first.as_json
     render json: Success.new(coupons: Coupon.where(id: @user.wallet.coupons.split(',')))
   end
 
