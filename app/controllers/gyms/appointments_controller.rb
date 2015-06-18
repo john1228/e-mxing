@@ -26,35 +26,56 @@ module Gyms
 
     #团操预约
     def appoint
-      # begin
-      coach = Coach.find_by_mxid(params[:mxid])
-      setting = coach.appointment_settings.set_of_many(params[:date], params[:time])
-      if setting.blank?
-        render json: Failure.new('教练还未设置该时间段预约')
-      else
-        course_name = setting.course_name
-        course = coach.courses.find_by(name: course_name)
-        user_lesson = @user.lessons.where('available > used and exp< ? and course_id=?', Date.today, course.id).take
-        if user_lesson.present?
-          address = setting.address
-          @user.appointments.create(
-              coach_id: coach.id,
-              date: params[:date],
-              classes: 1,
-              start_time: params[:time],
-              course_id: course.id,
-              course_name: course.name,
-              course_during: course.during,
-              venues: address.venues,
-              address: address.city + address.address
-          )
+      begin
+        coach = Coach.find_by_mxid(params[:mxid])
+        setting = coach.appointment_settings.set_of_many(params[:date], params[:time])
+        if setting.blank?
+          render json: Failure.new('教练还未设置该时间段预约')
         else
-          render json: Failure.new('您还没有购买该课程或者您购买到课程已过期')
+          course_name = setting.course_name
+          course = coach.courses.find_by(name: course_name)
+          user_lesson = @user.lessons.where('available > used and exp< ? and course_id=?', Date.today, course.id).take
+          if user_lesson.present?
+            address = setting.address
+            @user.appointments.create(
+                coach_id: coach.id,
+                date: params[:date],
+                classes: 1,
+                start_time: params[:time],
+                course_id: course.id,
+                course_name: course.name,
+                course_during: course.during,
+                venues: address.venues,
+                address: address.city + address.address
+            )
+          else
+            render json: Failure.new('01', '您还没有购买该课程或者您购买到课程已过期')
+          end
         end
+      rescue Exception => e
+        render json: Failure.new(e.message)
       end
-      # rescue Exception => e
-      #   render json: Failure.new(e.message)
-      # end
+    end
+
+    def show
+      begin
+        coach = Coach.find_by_mxid(params[:mxid])
+        appointments = coach.appointments.where(date: params[:date], start_time: params[:time])
+        appointment_info = appointments.first
+        render json: Success.new(
+                   appointment: {
+                       start: appointment_info.start_time,
+                       course: appointment_info.course_name,
+                       classes: appointment_info.classes,
+                       during: appointment_info.course_during,
+                       venues: appointment_info.venues,
+                       address: appointment_info.address,
+                       booked: User.where(id: appointments.pluck(:user_id)).map { |user| user.profile.summary_json }
+                   }
+               )
+      rescue Exception => e
+        render json: Failure.new(e.message)
+      end
     end
 
     def confirm
