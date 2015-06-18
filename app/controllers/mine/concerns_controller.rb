@@ -14,7 +14,8 @@ module Mine
                        type: course.type,
                        concerned: course.concerned.count,
                        top: course.top||0,
-                       status: course.status
+                       status: course.status,
+                       coach: course.coach.profile.summary_json
                    } }
              )
     end
