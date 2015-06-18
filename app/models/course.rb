@@ -31,7 +31,7 @@ class Course < ActiveRecord::Base
     if course_photos.blank?
       ''
     else
-      course_photos.first.thumb.url
+      course_photos.first.photo.thumb.url
     end
   end
 
