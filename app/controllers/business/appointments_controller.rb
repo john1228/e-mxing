@@ -3,7 +3,7 @@ module Business
     def index
       render json: Success.new(
                  setting: @coach.appointment_settings.effect(params[:date]||Date.today),
-                 appointment: @coach.appointments.where(date: params[:date]||Date.today).group(:start_time).count.each { |k, v|
+                 appointment: @coach.appointments.where(date: params[:date]||Date.today).group(:start_time).count.map { |k, v|
                    appointed = @coach.appointments.find_by(date: params[:date]||Date.today, start_time: k)
                    {
                        start: k,

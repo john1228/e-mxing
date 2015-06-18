@@ -67,7 +67,7 @@ namespace :business do
   desc ''
   task :appointment do
     conn = Faraday.new(:url => host)
-    conn.headers[:token] = token
+    conn.headers[:token] = '3c59dc048e8850243be8079a5c74d079'
     response = conn.get '/business/appointments'
     puts response.body
   end
