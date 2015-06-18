@@ -48,6 +48,7 @@ module Gyms
                 venues: address.venues,
                 address: address.city + address.address
             )
+            render json: Success.new
           else
             render json: Failure.new('01', '您还没有购买该课程或者您购买到课程已过期')
           end
