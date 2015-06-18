@@ -35,7 +35,7 @@ module Mine
     end
 
     def destroy
-      concerned = @user.concerneds.find_by(course_d: params[:course])
+      concerned = @user.concerneds.find_by(course_id: params[:course])
       if concerned.destroy
         render json: Success.new
       else
