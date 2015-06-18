@@ -171,7 +171,7 @@ Rails.application.routes.draw do
     #课时
     get 'lessons' => 'lessons#index'
     put 'lessons' => 'lessons#confirm'
-    post 'lessons.comment' => 'lessons#comment'
+    post 'lessons/comment' => 'lessons#comment'
     #钱包
     get 'wallet' => 'wallet#index'
     get 'wallet/coupons' => 'wallet#coupons'

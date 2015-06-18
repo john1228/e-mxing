@@ -7,7 +7,7 @@ module Mine
                      lessons: @user.appointments.joins('LEFT JOIN courses on courses.id = appointments.course_id').page(params[:page]||1).collect { |appointment| {
                          course: {
                              name: appointment.course_name,
-                             cover: appointment.course.course_photos.first.present? ? appointment.course.course_photos.first.photo.thumb.url : '',
+                             cover: appointment.course.cover,
                              type: appointment.course.type,
                              during: appointment.course.during,
                              style: appointment.course.style
@@ -30,6 +30,7 @@ module Mine
                            course: {
                                name: lesson.course.name,
                                type: lesson.course.type,
+                               cover: lesson.course.cover,
                                during: lesson.course.during,
                                style: lesson.course.style
                            },
@@ -46,6 +47,7 @@ module Mine
                            course: {
                                name: lesson.course.name,
                                type: lesson.course.type,
+                               cover: lesson.course.cover,
                                during: lesson.course.during,
                                style: lesson.course.style
                            },

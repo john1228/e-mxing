@@ -27,6 +27,13 @@ class Course < ActiveRecord::Base
     }
   end
 
+  def cover
+    if course_photos.blank?
+      ''
+    else
+      course_photos.first.thumb.url
+    end
+  end
 
   def school_addresses
     course_abstracts.map { |course_abstract|
