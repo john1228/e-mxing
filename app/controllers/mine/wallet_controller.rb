@@ -1,5 +1,5 @@
 module Mine
-  class WalletController < ApplicationController
+  class WalletController < BaseController
     def index
       @user.create_wallet if @user.wallet.blank?
       render json: Success.new(wallet: @user.wallet)
