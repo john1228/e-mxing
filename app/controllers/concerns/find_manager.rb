@@ -64,7 +64,21 @@ module FindManager
         filter << " and course_price between #{price_range[0]} and #{price_range[1]}"
       end
     end
-    results = CourseAbstract.select("st_distance(course_abstracts.coordinate, 'POINT(121 31)') distance,course_id").where("st_dwithin(course_abstracts.coordinate, 'POINT(121 31)',150000) and #{filter}").page(params[:page]||1)
+
+    case params[:sort]
+      when 'price_asc'
+        results = CourseAbstract.where(filter).order(course_price: :asc)
+      when 'price_desc'
+        results = CourseAbstract.where(filter).order(course_price: :desc)
+      when 'distance_asc'
+        results = CourseAbstract.select("st_distance(course_abstracts.coordinate, 'POINT(121 31)') distance,course_id").where("st_dwithin(course_abstracts.coordinate, 'POINT(121 31)',150000) and #{filter}").order('distance asc').page(params[:page]||1)
+      when 'sale_desc'
+        results = CourseAbstract.all
+      else
+        results = []
+    end
+
+
     results.map { |course_abstract|
       course = course_abstract.course
       {
@@ -74,6 +88,7 @@ module FindManager
           price: course.price,
           during: course.during,
           type: course.type,
+          style: course.style,
           concerned: course.concerned.count,
       }
     }
