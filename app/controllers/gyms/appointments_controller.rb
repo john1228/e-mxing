@@ -6,21 +6,21 @@ module Gyms
       if params[:date].blank?
         render json: Success.new({full: @coach.expiries.where(date: Date.today..Date.today.next_month(1)).pluck(:date)})
       else
-        render json: Success.new({
-                                     setting: @coach.appointment_settings.effect(params[:date]||Date.today),
-                                     appointment: @coach.appointments.where(date: params[:date]||Date.today).group(:start_time).count.each { |k, v|
-                                       appointed = @coach.appointments.find_by(date: params[:date]||Date.today, start_time: k)
-                                       {
-                                           start: k,
-                                           course: appointed.course_name,
-                                           classes: appointed.classes,
-                                           during: appointed.course_during,
-                                           venues: appointed.venues,
-                                           address: appointed.address,
-                                           booked: v
-                                       }
-                                     }
-                                 })
+        render json: Success.new(
+                   setting: @coach.appointment_settings.effect(params[:date]||Date.today),
+                   appointment: @coach.appointments.where(date: params[:date]||Date.today).group(:start_time).count.each { |k, v|
+                     appointed = @coach.appointments.find_by(date: params[:date]||Date.today, start_time: k)
+                     {
+                         start: k,
+                         course: appointed.course_name,
+                         classes: appointed.classes,
+                         during: appointed.course_during,
+                         venues: appointed.venues,
+                         address: appointed.address,
+                         booked: v
+                     }
+                   }
+               )
       end
     end
 
