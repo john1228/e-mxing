@@ -52,8 +52,8 @@ module FindManager
   def courses
     filter = '1=1'
     filter << " and course_type=#{params[:course].to_i}" if params[:course].present?
-    if params[:gender].eql?('male')||params[:gender].eql?('female')
-      gender = params[:gender].eql?('male') ? 0 : 1
+    if params[:coach].eql?('male')||params[:coach].eql?('female')
+      gender = params[:coach].eql?('male') ? 0 : 1
       filter << " and coach_gender=#{gender}"
     end
     if params[:price].present?
