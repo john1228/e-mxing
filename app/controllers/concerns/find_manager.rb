@@ -50,8 +50,29 @@ module FindManager
   end
 
   def courses
-    CourseAbstract.select("st_distance(places.lonlat, 'POINT(#{params[:lng]} #{params[:lat]})') distance,course_id").
-        where("'st_dwithin(places.lonlat, 'POINT(#{params[:lng]} #{params[:lat]})',150000)'")
+    filter = '1=1'
+    filter << " and course_type=#{params[:type].to_i}" if params[:type].present?
+    if params[:gender].eql?('male')||params[:gender].eql?('female')
+      gender = params[:gender].eql?('male') ? 0 : 1
+      filter << " and coach_gender=#{gender}"
+    end
+    if params[:price].present?
+      price_range = params[:price].split('~')
+      filter << " and course_price between #{price_range[0]} and #{price_range[1]}"
+    end
+    results = CourseAbstract.select("st_distance(course_abstracts.coordinate, 'POINT(121 31)') distance,course_id").where("st_dwithin(course_abstracts.coordinate, 'POINT(121 31)',150000) and #{filter}").page(params[:page]||1)
+    results.map { |course_abstract|
+      course = course_abstract.course
+      {
+          id: course.id,
+          name: course.name,
+          cover: course.course_photos.first.present? ? course.course_photos.first.photo.thumb.url : '',
+          price: course.price,
+          during: course.during,
+          type: course.type,
+          concerned: course.concerned.count,
+      }
+    }
   end
 
   private
