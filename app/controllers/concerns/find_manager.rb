@@ -57,11 +57,11 @@ module FindManager
       filter << " and coach_gender=#{gender}"
     end
     if params[:price].present?
-      price_range = params[:price].split('~').map { |item| item.to_i }
-      if price_range[1].eql?(0)
-        filter << " and course_price > #{price_range[0]}"
+      price_range = params[:price].split('~')
+      if price_range[1].blank?
+        filter << " and course_price > #{price_range[0].to_i}"
       else
-        filter << " and course_price between #{price_range[0]} and #{price_range[1]}"
+        filter << " and course_price between #{price_range[0].to_i} and #{price_range[1].to_i}"
       end
     end
 
