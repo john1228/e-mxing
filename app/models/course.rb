@@ -29,8 +29,10 @@ class Course < ActiveRecord::Base
 
 
   def school_addresses
-    coach.addresses.where(id: CourseAbstract.pluck(:address_id)).map { |address|
+    course_abstracts.map { |course_abstract|
+      address = course_abstract.address
       {
+          id: address.id,
           venues: address.venues,
           address: address.city + address.address
       }

@@ -32,7 +32,10 @@ module Business
                          {
                              id: course.id,
                              name: course.name,
-                             type: course.type
+                             during: course.during,
+                             type: course.type,
+                             available: user_lesson.available - user_lesson.used,
+                             address: course.school_addresses
                          }
                        }
                    }
