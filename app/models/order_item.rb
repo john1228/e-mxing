@@ -10,7 +10,8 @@ class OrderItem < ActiveRecord::Base
         type: type,
         price: price,
         during: during,
-        amount: amount
+        amount: amount,
+        guarantee: course.guarantee
     }
   end
 end

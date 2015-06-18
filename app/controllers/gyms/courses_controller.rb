@@ -12,6 +12,7 @@ module Gyms
                      price: course.price,
                      during: course.during,
                      type: course.type,
+                     guarantee: course.guarantee,
                      concerned: course.concerned.count,
                      top: course.top||0
                  } })
@@ -41,32 +42,6 @@ module Gyms
       end
     end
 
-    def concern
-      concerned = @course.concerned.new(user: @user)
-      if concerned.save
-        render json: Success.new
-      else
-        render json: Failure.new('关注课程失败')
-      end
-    end
-
-    def concerned
-      concerned_courses = @user.concerneds.includes(:course).where(courses: {status: 1}).page(params[:page]||1)
-      render json: Success.new(
-                 concerned: concerned_courses.map { |concerned_course|
-                   course = concerned_course.course
-                   {
-                       id: course.id,
-                       name: course.name,
-                       cover: course.course_photos.first.present? ? course.course_photos.first.photo.thumb.url : '',
-                       price: course.price,
-                       during: course.during,
-                       type: course.type,
-                       concerned: course.concerned.count,
-                       top: course.top||0
-                   } }
-             )
-    end
 
     def coach
       render json: Success.new({coach: @course.coach.summary_json})

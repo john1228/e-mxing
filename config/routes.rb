@@ -155,19 +155,30 @@ Rails.application.routes.draw do
     post 'appointments' => 'appointments#appoint'
     post 'appointments/comment' => 'appointments#comment'
   end
-  #课时
-  get 'lessons' => 'lessons#index'
-  #订单
-  get 'orders' => 'orders#index'
-  get 'orders/unprocessed' => 'orders#unprocessed'
-  get 'orders/show' => 'orders#show'
-  post 'orders' => 'orders#create'
-  delete 'orders/:no/cancel' => 'orders#cancel'
-  delete 'orders/:no/delete' => 'orders#delete'
-  #钱包
-  get 'wallet' => 'wallet#index'
-  get 'wallet/coupons' => 'wallet#coupons'
-  get 'wallet/detail' => 'wallet#detail'
+
+  namespace :mine do
+    #关注
+    get 'concerns' => 'concerns#index'
+    post 'concerns' => 'concerns#create'
+    delete 'concerns/:course' => 'concerns#destroy'
+    #订单
+    get 'orders' => 'orders#index'
+    get 'orders/unprocessed' => 'orders#unprocessed'
+    get 'orders/show' => 'orders#show'
+    post 'orders' => 'orders#create'
+    delete 'orders/:no/cancel' => 'orders#cancel'
+    delete 'orders/:no/delete' => 'orders#delete'
+    #课时
+    get 'lessons' => 'lessons#index'
+    put 'lessons' => 'lessons#confirm'
+    post 'lessons.comment' => 'lessons#comment'
+    #钱包
+    get 'wallet' => 'wallet#index'
+    get 'wallet/coupons' => 'wallet#coupons'
+    get 'wallet/detail' => 'wallet#detail'
+    put 'wallet' => 'wallet#update'
+  end
+
   #签到
   post 'sign' => 'system#sign'
 end
