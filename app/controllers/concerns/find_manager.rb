@@ -57,8 +57,12 @@ module FindManager
       filter << " and coach_gender=#{gender}"
     end
     if params[:price].present?
-      price_range = params[:price].split('~')
-      filter << " and course_price between #{price_range[0]} and #{price_range[1]}"
+      price_range = params[:price].split('~').map { |item| item.to_i }
+      if price_range[1].eql?(0)
+        filter << " and course_price > #{price_range[0]}"
+      else
+        filter << " and course_price between #{price_range[0]} and #{price_range[1]}"
+      end
     end
     results = CourseAbstract.select("st_distance(course_abstracts.coordinate, 'POINT(121 31)') distance,course_id").where("st_dwithin(course_abstracts.coordinate, 'POINT(121 31)',150000) and #{filter}").page(params[:page]||1)
     results.map { |course_abstract|
