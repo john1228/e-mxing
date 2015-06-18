@@ -1,10 +1,10 @@
 module Mine
   class ConcernsController < BaseController
     def index
-      concerned_courses = @user.concerneds.includes(:course).where(courses: {status: 1}).page(params[:page]||1)
+      concerns = @user.concerneds.page(params[:page]||1)
       render json: Success.new(
-                 concerned: concerned_courses.map { |concerned_course|
-                   course = concerned_course.course
+                 concerned: concerns.map { |concern|
+                   course = concern.course
                    {
                        id: course.id,
                        name: course.name,
@@ -13,7 +13,8 @@ module Mine
                        during: course.during,
                        type: course.type,
                        concerned: course.concerned.count,
-                       top: course.top||0
+                       top: course.top||0,
+                       status: course.status
                    } }
              )
     end

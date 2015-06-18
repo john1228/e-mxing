@@ -36,6 +36,9 @@ module Business
       begin
         appointments = @coach.appointments.where(date: params[:date], start_time: params[:time])
         appointment_info = appointments.first
+        if appointment_info.blank?
+          ap
+        end
         render json: Success.new(
                    appointment: {
                        start: appointment_info.start_time,
