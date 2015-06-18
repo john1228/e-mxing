@@ -27,7 +27,7 @@ module Business
                    user = lesson.user
                    {
                        user: user.profile.summary_json,
-                       courses: user.lessons.select('distinct course_id').map { |user_lesson|
+                       courses: user.lessons.select('distinct course_id,available,used').map { |user_lesson|
                          course = user_lesson.course
                          {
                              id: course.id,
