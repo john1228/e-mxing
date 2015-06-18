@@ -61,23 +61,17 @@ module Gyms
       begin
         coach = Coach.find_by_mxid(params[:mxid])
         appointments = coach.appointments.where(date: params[:date], start_time: params[:time])
-        appointment_info = appointments.first
-        render json: Success.new(
-                   appointment: {
-                       start: appointment_info.start_time,
-                       course: appointment_info.course_name,
-                       classes: appointment_info.classes,
-                       during: appointment_info.course_during,
-                       venues: appointment_info.venues,
-                       address: appointment_info.address,
-                       booked: User.where(id: appointments.pluck(:user_id)).map { |user| user.profile.summary_json }
-                   }
-               )
+        if appointments.blank?
+          render json: Success.new(booked: [])
+        else
+          render json: Success.new(
+                     booked: User.where(id: appointments.pluck(:user_id)).map { |user| user.profile.summary_json }
+                 )
+        end
       rescue Exception => e
         render json: Failure.new(e.message)
       end
     end
-
 
 
     private
