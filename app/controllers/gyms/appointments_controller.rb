@@ -9,7 +9,7 @@ module Gyms
         render json: Success.new({
                                      setting: @coach.appointment_settings.effect(params[:date]||Date.today),
                                      appointment: @coach.appointments.where(date: params[:date]||Date.today).group(:start_time).count.each { |k, v|
-                                       appointed = @coach.appointments.find_by(date: params[:date]||Date.today, time: k)
+                                       appointed = @coach.appointments.find_by(date: params[:date]||Date.today, start_time: k)
                                        {
                                            start: k,
                                            course: appointed.course_name,
