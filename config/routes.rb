@@ -126,7 +126,7 @@ Rails.application.routes.draw do
     post 'settings/many' => 'appointment_settings#one_to_many'
     #预约
     get 'appointments' => 'appointments#index'
-    post 'appointments' => 'appointments#create'
+    post 'appointments' => 'appointments#appoint'
     #订单
     get 'orders' => 'orders#index'
     get 'orders/show' => 'orders#show'
