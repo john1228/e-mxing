@@ -66,13 +66,13 @@ module FindManager
     end
 
     case params[:sort]
-      when 'price_asc'
+      when 'price-asc'
         results = CourseAbstract.where(filter).order(course_price: :asc)
-      when 'price_desc'
+      when 'price-desc'
         results = CourseAbstract.where(filter).order(course_price: :desc)
-      when 'distance_asc'
+      when 'distance-asc'
         results = CourseAbstract.select("st_distance(course_abstracts.coordinate, 'POINT(121 31)') distance,course_id").where("st_dwithin(course_abstracts.coordinate, 'POINT(121 31)',150000) and #{filter}").order('distance asc').page(params[:page]||1)
-      when 'sale_desc'
+      when 'sale-desc'
         results = CourseAbstract.all
       else
         results = []
