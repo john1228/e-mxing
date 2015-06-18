@@ -34,7 +34,7 @@ module Gyms
       else
         course_name = setting.course_name
         course = coach.courses.find_by(name: course_name)
-        user_lesson = @user.lessons.where('available > used and exp< ? and course_id', Date.today, course.id).take
+        user_lesson = @user.lessons.where('available > used and exp< ? and course_id=?', Date.today, course.id).take
         if user_lesson.present?
           address = setting.address
           @user.appointments.create(
