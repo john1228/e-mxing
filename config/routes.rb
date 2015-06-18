@@ -126,7 +126,7 @@ Rails.application.routes.draw do
     post 'settings/many' => 'appointment_settings#one_to_many'
     #预约
     get 'appointments' => 'appointments#index'
-    post 'appointments' => 'appointments#appoint'
+    post 'appointments' => 'appointments#create'
     #订单
     get 'orders' => 'orders#index'
     get 'orders/show' => 'orders#show'
@@ -150,7 +150,7 @@ Rails.application.routes.draw do
     get 'courses/concerned' => 'courses#concerned'
     #查看预约和预约团课
     get 'appointments' => 'appointments#index'
-    post 'appointments' => 'appointments#create'
+    post 'appointments' => 'appointments#appoint'
     post 'appointments/comment' => 'appointments#comment'
   end
   #课时
