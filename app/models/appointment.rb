@@ -4,7 +4,7 @@ class Appointment < ActiveRecord::Base
   belongs_to :lesson
   after_create :build_track
   #-1-休息時間 0-取消的预约 1-等待上课|正在上课|等待确认 2-用户完成确认，等待评价 3-完成评价
-  STATUS = {delete: -1, cancel: 0, waiting: 1, done: 2, complete: 3}
+  STATUS = {rest: -1, cancel: 0, waiting: 1, done: 2, complete: 3}
   after_update :payment
 
   def as_json

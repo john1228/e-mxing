@@ -1,5 +1,5 @@
 module Callback
-  class AlipayController < BaseController
+  class JdController < BaseController
     def callback
       params.map { |k, v|
         logger.info "#{k}<<<#{v}"

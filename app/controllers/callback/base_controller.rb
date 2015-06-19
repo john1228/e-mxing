@@ -3,7 +3,7 @@ module Callback
     before_action :logging
     private
     def logging
-      logger.info params[:controller]
+      controller_info = params[:controller].split('/')
     end
   end
 end
