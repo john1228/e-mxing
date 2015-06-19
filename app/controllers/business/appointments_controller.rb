@@ -103,6 +103,7 @@ module Business
             classes: 1,
             course_during: (Time.parse(params[:end], Date.parse(params[:date]))-Time.parse(params[:end], Date.parse(params[:date])))
         )
+        render json: Success.new
       end
     end
 
@@ -110,6 +111,7 @@ module Business
       appointment = @coach.appointments.find_by(date: params[:date], start_time: params[:start])
       if appointment.present?
         appointment.update(status: Appointment::STATUS[:waiting])
+        render json: Success.new
       else
         render json: Failure.new('该时间段你还没有休息，无须取消')
       end
