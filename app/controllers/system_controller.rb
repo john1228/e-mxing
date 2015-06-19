@@ -12,7 +12,7 @@ class SystemController < ApiController
   end
 
   def sign
-    check = Check.new(user: @user)
+    check = Check.new(user: @user, date: Date.today)
     if check.save
       render json: Success.new
     else
