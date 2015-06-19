@@ -474,6 +474,7 @@ ActiveRecord::Schema.define(version: 20150619084656) do
     t.string   "no"
     t.string   "order_no"
     t.string   "source"
+    t.string   "buyer"
     t.decimal  "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
