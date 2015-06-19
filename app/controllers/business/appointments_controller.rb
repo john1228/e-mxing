@@ -99,9 +99,19 @@ module Business
       else
         @coach.appointments.create(
             date: params[:date],
+            start_time: param[:start],
             classes: 1,
             course_during: (Time.parse(params[:end],Date.parse(params[:date]))-Time.parse(params[:end],Date.parse(params[:date])))
         )
+      end
+    end
+
+    def cancel_rest
+      appointment = @coach.appointments.find_by(date: params[:date], start_time: params[:start])
+      if appointment.present?
+        appointment.update(status: Appointment::STATUS[:waiting])
+      else
+        render json: Failure.new('该时间段你还没有休息，无须取消')
       end
     end
 

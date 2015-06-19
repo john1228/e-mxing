@@ -129,6 +129,10 @@ Rails.application.routes.draw do
     get 'appointments' => 'appointments#index'
     get 'appointments/show' => 'appointments#show'
     post 'appointments' => 'appointments#create'
+    put 'appointments' => 'appointments#cancel'
+    post 'appointments/to_rest' => 'appointments#rest'
+    post 'appointments/to_class' => 'appointments#cancel_rest'
+
     #订单
     get 'orders' => 'orders#index'
     get 'orders/show' => 'orders#show'
