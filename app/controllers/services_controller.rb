@@ -1,4 +1,4 @@
-class ServicesController < ApiController
+class ServicesController < ApplicationController
   def coaches
     service = Service.find_by_mxid(params[:mxid].to_i)
     if service.nil?

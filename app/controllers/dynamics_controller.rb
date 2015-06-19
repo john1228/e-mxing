@@ -1,6 +1,4 @@
 class DynamicsController < ApiController
-  before_action :find_user, only: [:index, :latest]
-
   def index
     render json: {
                code: 1,
@@ -41,12 +39,6 @@ class DynamicsController < ApiController
         render json: {code: 0, message: '删除动态失败'}
       end
     end
-  end
-
-  private
-  def find_user
-    @user = User.find_by_mxid(params[:mxid])
-    render json: {code: 0, message: '用户不存在'} if @user.blank?
   end
 end
 

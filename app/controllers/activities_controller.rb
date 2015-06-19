@@ -1,4 +1,4 @@
-class ActivitiesController < ApiController
+class ActivitiesController < ApplicationController
   before_action :verify_auth_token, only: [:apply, :mine]
 
   def show

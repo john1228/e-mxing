@@ -1,4 +1,4 @@
-class FriendsController < ApiController
+class FriendsController < ApplicationController
   def index
     ids = params[:mxids].split(',').collect { |mxid| mxid.to_i - 10000 }
     render json: {

@@ -1,13 +1,8 @@
-class PhotosController < ApplicationController
+class PhotosController < ApiController
   def index
-    user = User.find_by_mxid(params[:mxid])
-    if user.blank?
-      render json: Failure.new('您查看到用户不存在')
-    else
-      render json: Success.new(
-                 photos: user.photos.page(params[:page]||1)
-             )
-    end
+    render json: Success.new(
+               photos: @user.photos.page(params[:page]||1)
+           )
   end
 
   def create

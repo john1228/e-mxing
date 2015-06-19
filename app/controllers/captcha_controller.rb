@@ -1,4 +1,4 @@
-class CaptchaController < ApiController
+class CaptchaController < ApplicationController
   include CaptchaManager
   before_action :verify_auth_token, only: :binding
   before_action :check_captcha, only: :check

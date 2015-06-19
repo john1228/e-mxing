@@ -1,6 +1,4 @@
-class TracksController < ApplicationController
-  include LoginManager
-
+class TracksController < ApiController
   def index
     require_date = Date.parse(params[:date]) rescue Date.today
     render json: {

@@ -1,7 +1,5 @@
-class UsersController < ApplicationController
+class UsersController < ApiController
   include ValidateManager
-  before_action :verify_password, only: :login
-  before_action :verify_sns, only: :sns
 
   def login
     render json: {code: 1, data: {user: @user.summary_json}}
