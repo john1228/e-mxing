@@ -56,7 +56,7 @@ module Business
       begin
         appointments = @coach.appointments.where(date: params[:date], start_time: params[:time])
         if appointments.blank?
-          render json: Success.new(booked: [])
+          render json: Success.new(booked: {online: [], offline: []})
         else
           render json: Success.new(
                      booked: {
