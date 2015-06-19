@@ -17,6 +17,7 @@ module Gyms
                          during: appointed.course_during,
                          venues: appointed.venues,
                          address: appointed.address,
+                         status: appointed.status,
                          booked: v
                      }
                    }

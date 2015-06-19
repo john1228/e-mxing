@@ -2,9 +2,9 @@ module Business
   class AppointmentsController < BaseController
     def index
       render json: Success.new(
-                 setting: @coach.appointment_settings.effect(params[:date]||Date.today),
-                 appointment: @coach.appointments.where(date: params[:date]||Date.today).group(:start_time).count.map { |k, v|
-                   appointed = @coach.appointments.find_by(date: params[:date]||Date.today, start_time: k)
+                 setting: @coach.appointment_settings.effect(params[:date]),
+                 appointment: @coach.appointments.where(date: params[:date]).group(:start_time).count.map { |k, v|
+                   appointed = @coach.appointments.find_by(date: params[:date], start_time: k)
                    {
                        start: k,
                        course: appointed.course_name,
@@ -12,6 +12,7 @@ module Business
                        during: appointed.course_during,
                        venues: appointed.venues,
                        address: appointed.address,
+                       status: appointed.status,
                        booked: v
                    }
                  }
@@ -96,6 +97,11 @@ module Business
       if appointment.present?
         render json: Failure.new('用户已经预约,不能休息')
       else
+        @coach.appointments.create(
+            date: params[:date],
+            classes: 1,
+            course_during: (Time.parse(params[:end],Date.parse(params[:date]))-Time.parse(params[:end],Date.parse(params[:date])))
+        )
       end
     end
 
