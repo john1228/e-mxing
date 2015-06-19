@@ -185,7 +185,7 @@ Rails.application.routes.draw do
   end
 
   namespace :callback do
-    get 'alipay' => 'alipay#callback'
+    post 'alipay' => 'alipay#callback'
     get 'jd' => 'jd#callback'
     get 'webchat' => 'webchat#callback'
   end
