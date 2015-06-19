@@ -14,4 +14,8 @@ class Coach<User
   has_many :lessons, dependent: :destroy
 
   validates_uniqueness_of :mobile, message: '该手机号已经注册'
+
+  def score
+    
+  end
 end

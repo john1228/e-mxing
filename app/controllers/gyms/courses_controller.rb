@@ -44,7 +44,10 @@ module Gyms
 
 
     def coach
-      render json: Success.new({coach: @course.coach.summary_json.merge()})
+      coach = @course.coach
+      json = coach.summary_json
+      json = json.merge(score: coach.score)
+      render json: Success.new({coach: json})
     end
 
     def comments

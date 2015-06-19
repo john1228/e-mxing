@@ -1,7 +1,16 @@
 module Business
   class CoursesController < BaseController
     def index
-      render json: Success.new(courses: @coach.courses.page(params[:page]||1).collect { |item|
+      type = params[:type]
+      case type
+        when 'one'
+          courses = @coach.courses.where(style: Course::STYLE[:one])
+        when 'many'
+          courses = @coach.courses.where(style: Course::STYLE[:many])
+        else
+          courses = @coach.courses.page(params[:page]||1)
+      end
+      render json: Success.new(courses: courses.collect { |item|
                                  {
                                      id: item.id,
                                      name: item.name,
@@ -19,6 +28,7 @@ module Business
                                  }
                                })
     end
+
 
     def create
       begin

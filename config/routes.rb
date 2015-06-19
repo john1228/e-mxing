@@ -118,6 +118,7 @@ Rails.application.routes.draw do
     post 'addresses' => 'addresses#create'
     #课程
     get 'courses' => 'courses#index'
+    get 'courses/:type' => 'courses#index'
     post 'courses' => 'courses#create'
     put 'courses' => 'courses#update'
     delete 'courses/:id' => 'courses#destroy'

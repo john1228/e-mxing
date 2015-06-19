@@ -8,6 +8,8 @@ class Course < ActiveRecord::Base
   has_many :course_abstracts, dependent: :destroy
   attr_accessor :address
   STATUS = {delete: 0, online: 1}
+  STYLE = {many: '团操', one: '1v1'}
+
   after_save :update_course_abstract
 
   def as_json

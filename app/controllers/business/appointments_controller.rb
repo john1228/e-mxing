@@ -25,7 +25,6 @@ module Business
         course = @coach.courses.find_by(id: params[:course])
         address = @coach.addresses.find_by(id: params[:address])
         base_params = base_params.merge({
-                                            lesson_id: @coach.lessons.find_by(course: course).id,
                                             start_time: params[:start],
                                             course_id: course.id,
                                             course_name: course.name,
@@ -33,11 +32,21 @@ module Business
                                             venues: address.venues,
                                             address: address.city + address.address
                                         })
-        params[:online].split(',').map { |user|
-          user = User.find_by_mxid(user)
-          @coach.appointments.create(base_params.merge(user_id: user.id))
-        }
-        render json: {code: 1}
+        if params[:online].present?
+          params[:online].split(',').map { |user|
+            user = User.find_by_mxid(user)
+            lesson = @coach.lessons.find_by(course: course, user: user)
+            @coach.appointments.create(base_params.merge(user_id: user.id, lesson_id: lesson.id))
+          }
+          render json: {code: 1}
+        else
+          if params[:offline].present?
+            @coach.appointments.create(base_params.merge(offline: params[:offline]))
+            render json: {code: 1}
+          else
+            render json: Failure.new('您还未选择学员')
+          end
+        end
       rescue Exception => e
         render json: {code: 0, message: e.message}
       end
@@ -50,7 +59,16 @@ module Business
           render json: Success.new(booked: [])
         else
           render json: Success.new(
-                     booked: User.where(id: appointments.pluck(:user_id)).map { |user| user.profile.summary_json }
+                     booked: {
+                         online: User.where(id: appointments.pluck(:user_id)).map { |user| user.profile.summary_json },
+                         offline: appointments.where.not(offline: nil).pluck(:offline).join(',').split(',').map { |item|
+                           offline_info = item.split('|')
+                           {
+                               name: offline_info[0],
+                               phone: offline_info[1]
+                           }
+                         }
+                     }
                  )
         end
       rescue Exception => e
@@ -86,7 +104,6 @@ module Business
 
       end
     end
-
 
     private
     def appointment_params
