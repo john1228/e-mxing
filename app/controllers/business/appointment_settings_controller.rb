@@ -12,11 +12,16 @@ module Business
 
     #团操课程设置
     def one_to_many
-      setting = @coach.appointment_settings.new(many_params)
-      if setting.save
-        render json: Success.new
+      appointment = @coach.appointments.find_by(date: params[:date], start_time: params[:start])
+      if appointment.present?
+        render json: Failure.new('该时间段已预约')
       else
-        render json: Failure.new('设置失败')
+        setting = @coach.appointment_settings.new(many_params)
+        if setting.save
+          render json: Success.new
+        else
+          render json: Failure.new('设置失败')
+        end
       end
     end
 
