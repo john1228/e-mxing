@@ -1,5 +1,6 @@
 class UsersController < ApiController
-  include ValidateManager
+  before_action :verify_password, only: :login
+  before_action :verify_password, only: :sns
 
   def login
     render json: {code: 1, data: {user: @user.summary_json}}
@@ -44,5 +45,32 @@ class UsersController < ApiController
   private
   def user_params
     params.permit(:name, :password)
+  end
+
+  def verify_password
+    @user = User.find_by(mobile: params[:username])
+    if @user.nil?
+      render json: Failure.new('该用户还未注册')
+    else
+      my_password = Digest::MD5.hexdigest("#{params[:password]}|#{@user.salt}")
+      if @user.password.eql?(my_password)
+        Rails.cache.write(user.token, user)
+      else
+        render json: Failure.new('您输入的密码不正确')
+      end
+    end
+  end
+
+  def verify_sns
+    @user = User.find_by(sns: "#{params[:sns_name]}_#{params[:sns_id]}")
+    if @user.nil?
+      if params[:sns_name].eql?('weixin')
+        avatar_array = params[:avatar].split('/')
+        avatar_array.last
+      end
+      @user = User.create(sns: "#{params[:sns_name]}_#{params[:sns_id]}", name: params[:name],
+                          avatar: params[:avatar], gender: params[:gender], birthday: params[:birthday])
+    end
+    Rails.cache.write(@user.token, @user)
   end
 end

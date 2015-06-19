@@ -76,38 +76,71 @@ module Business
       end
     end
 
-    def destroy
-      setting = @coach.appointment_setting.where(start_date: params[:date])
-      if setting.blank?
-        #当天未设置，查找之前1v1設置
-        setting = @coach.appointment_setting.where.not(course_name: nil).where('start_date < ?', params[:date])
-        if setting.blank?
-          @coach.appointment_setting.create(start_date: params[:date], time: "9:00|#{params[:start]},#{params[:end]}|21:00", repeat: 0)
-        else
-          now_setting_times = setting.time.split(',')
-          new_setting_times = now_setting_times
-          delete_start = Time.parse(params[:start], Date.parse(params[:date]))
-          delete_end = Time.parse(params[:end], Date.parse(params[:date]))
-          now_setting_times.map { |item|
-            setting_time = item.split('|')
-            start_hour, end_hour = setting_time[0], setting_time[1]
-            start_time, end_time = Time.parse(start_hour, Date.parse(params[:date])), Time.parse(end_hour, Date.parse(params[:date]))
-            if start_time<delete_start&&delete_end<end_time
-              new_setting_times.delete(item)
-              new_setting_times<<"#{start_hour}|#{delete_start}"<<"#{delete_end}|#{end_hour}"
-            end
-          }
-          @coach.appointment_setting.create(start_date: params[:date], time: new_setting_times.join(','), repeat: 0)
-        end
-      else
-        #当天已设置
 
+    def cancel
+      appointment = @coach.appointments.find_by(date: params[:date], start_time: params[:start])
+      if appointment.blank?
+        render json: Failure.new('该时间段还没有预约，无须取消')
+      else
+        if appointment.course.style.eql?(Course::STYLE[:many])
+          render json: Failure.new('已约团操，不能取消')
+        else
+          appointment.destroy
+          render json: Success.new
+        end
+      end
+    end
+
+    def rest
+      appointment = @coach.appointments.find_by(date: params[:date], start_time: params[:start])
+      if appointment.present?
+        render json: Failure.new('用户已经预约,不能休息')
+      else
       end
     end
 
     private
     def appointment_params
       params.permit(:date, :classes, :offline)
+    end
+
+    def verify_password
+      user = User.find_by(mobile: params[:username])
+      if user.nil?
+        render json: {
+                   code: 0,
+                   message: '该用户还未注册'
+               }
+      else
+        my_password = Digest::MD5.hexdigest("#{params[:password]}|#{user.salt}")
+        if user.password.eql?(my_password)
+          Rails.cache.write(user.token, user)
+          @user = user
+        else
+          render json: {
+                     code: 0,
+                     message: '您输入的密码不正确'
+                 }
+        end
+      end
+    end
+
+    def verify_sns
+      @user = User.find_by(sns: "#{params[:sns_name]}_#{params[:sns_id]}")
+      if @user.nil?
+        if params[:sns_name].eql?('weixin')
+          avatar_array = params[:avatar].split('/')
+          avatar_array.last
+        end
+        @user = User.create(
+            sns: "#{params[:sns_name]}_#{params[:sns_id]}",
+            name: params[:name],
+            avatar: params[:avatar],
+            gender: params[:gender],
+            birthday: params[:birthday]
+        )
+      end
+      Rails.cache.write(@user.token, @user)
     end
   end
 end
