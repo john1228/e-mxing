@@ -101,7 +101,7 @@ module Business
             date: params[:date],
             start_time: params[:start],
             classes: 1,
-            course_during: (Time.parse(params[:end], Date.parse(params[:date]))-Time.parse(params[:end], Date.parse(params[:date])))
+            course_during: ((Time.parse(params[:end], Date.parse(params[:date]))-Time.parse(params[:start], Date.parse(params[:date])))/60).to_s
         )
         render json: Success.new
       end
