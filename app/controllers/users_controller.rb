@@ -1,13 +1,33 @@
 class UsersController < ApiController
-  before_action :verify_password, only: :login
-  before_action :verify_password, only: :sns
 
   def login
-    render json: Success.new(user: @user.summary_json)
+    login_user = User.find_by(mobile: params[:username])
+    if login_user.nil?
+      render json: Failure.new('该用户还未注册')
+    else
+      my_password = Digest::MD5.hexdigest("#{params[:password]}|#{login_user.salt}")
+      if login_user.password.eql?(my_password)
+        Rails.cache.write(login_user.token, login_user)
+        render json: Success.new(user: login_user.summary_json)
+      else
+        render json: Failure.new('您输入的密码不正确')
+      end
+    end
+
   end
 
   def sns
-    render json: Success.new(user: @user.summary_json)
+    login_user = User.find_by(sns: "#{params[:sns_name]}_#{params[:sns_id]}")
+    if login_user.nil?
+      if params[:sns_name].eql?('weixin')
+        avatar_array = params[:avatar].split('/')
+        avatar_array.last
+      end
+      login_user = User.create(sns: "#{params[:sns_name]}_#{params[:sns_id]}", name: params[:name],
+                               avatar: params[:avatar], gender: params[:gender], birthday: params[:birthday])
+    end
+    Rails.cache.write(login_user.token, login_user)
+    render json: Success.new(user: login_user.summary_json)
   end
 
 
@@ -45,33 +65,5 @@ class UsersController < ApiController
   private
   def user_params
     params.permit(:name, :password)
-  end
-
-  def verify_password
-    @user = User.find_by(mobile: params[:username])
-    if @user.nil?
-      render json: Failure.new('该用户还未注册')
-    else
-      my_password = Digest::MD5.hexdigest("#{params[:password]}|#{@user.salt}")
-      if @user.password.eql?(my_password)
-        logger.info '登录成功'
-        Rails.cache.write(@user.token, @user)
-      else
-        render json: Failure.new('您输入的密码不正确')
-      end
-    end
-  end
-
-  def verify_sns
-    @user = User.find_by(sns: "#{params[:sns_name]}_#{params[:sns_id]}")
-    if @user.nil?
-      if params[:sns_name].eql?('weixin')
-        avatar_array = params[:avatar].split('/')
-        avatar_array.last
-      end
-      @user = User.create(sns: "#{params[:sns_name]}_#{params[:sns_id]}", name: params[:name],
-                          avatar: params[:avatar], gender: params[:gender], birthday: params[:birthday])
-    end
-    Rails.cache.write(@user.token, @user)
   end
 end
