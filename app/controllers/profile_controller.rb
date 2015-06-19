@@ -1,5 +1,6 @@
 class ProfileController < ApplicationController
-  include LoginManager
+  before_action :verify_auth_token, only: :update
+
 
   def index
     render json: {code: 1, data: {profile: @user.as_json}}
@@ -23,8 +24,12 @@ class ProfileController < ApplicationController
     end
   end
 
-
   private
+  def verify_auth_token
+    @user = Rails.cache.read(request.headers[:token])
+    render json: Failure.new(-1, '您还没有登录') if @user.nil?
+  end
+
   def profile_params
     params.permit(:name, :birthday, :avatar, :signature, :gender, :birthday, :address, :interests, :target, :skill, :often)
   end
