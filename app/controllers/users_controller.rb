@@ -3,11 +3,11 @@ class UsersController < ApiController
   before_action :verify_password, only: :sns
 
   def login
-    render json: {code: 1, data: {user: @user.summary_json}}
+    render json: Success.new(user: @user.summary_json)
   end
 
   def sns
-    render json: {code: 1, data: {user: @user.summary_json}}
+    render json: Success.new(user: @user.summary_json)
   end
 
 
@@ -54,7 +54,8 @@ class UsersController < ApiController
     else
       my_password = Digest::MD5.hexdigest("#{params[:password]}|#{@user.salt}")
       if @user.password.eql?(my_password)
-        Rails.cache.write(user.token, user)
+        logger.info '登录成功'
+        Rails.cache.write(@user.token, @user)
       else
         render json: Failure.new('您输入的密码不正确')
       end
