@@ -99,9 +99,9 @@ module Business
       else
         @coach.appointments.create(
             date: params[:date],
-            start_time: param[:start],
+            start_time: params[:start],
             classes: 1,
-            course_during: (Time.parse(params[:end],Date.parse(params[:date]))-Time.parse(params[:end],Date.parse(params[:date])))
+            course_during: (Time.parse(params[:end], Date.parse(params[:date]))-Time.parse(params[:end], Date.parse(params[:date])))
         )
       end
     end

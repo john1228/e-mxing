@@ -184,6 +184,10 @@ Rails.application.routes.draw do
     put 'wallet' => 'wallet#update'
   end
 
+  namespace :callback do
+    get 'alipay' => 'alipay#callback'
+    get 'jd' => 'alipay#callback'
+  end
   #签到
   post 'sign' => 'system#sign'
 end
