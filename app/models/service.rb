@@ -15,12 +15,21 @@ class Service<User
       conn = Faraday.new(:url => 'http://api.map.baidu.com')
       result = conn.get '/geocoder/v2/', address: address, output: 'json', ak: '61Vl2dO7CKCt0rvLKQiePGT5'
       json_string = JSON.parse(result.body)
+      bd_lng = json_string['result']['location']['lng']
+      bd_lat = json_string['result']['location']['lat']
+
       if place.nil?
-        create_place(lonlat: "POINT(#{json_string['result']['location']['lng']} #{json_string['result']['location']['lat']})")
+        create_place(lonlat: gcj_02(bd_lng, bd_lat))
       else
-        place.update(lonlat: "POINT(#{json_string['result']['location']['lng']} #{json_string['result']['location']['lat']})")
+        place.update(lonlat: gcj_02(bd_lng, bd_lat))
       end
     end
+  end
 
+  def gcj_02(bd_lng, bd_lat)
+    x, y = bd_lng - 0.0065, bd_lat - 0.006
+    z = sqrt(x * x + y * y) - 0.00002 * sin(y * Math::PI)
+    theta = atan2(y, x) - 0.000003 * cos(x * Math::PI)
+    "POINT(#{z * cos(theta)} #{z * sin(theta)})"
   end
 end

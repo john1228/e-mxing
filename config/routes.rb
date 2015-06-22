@@ -189,6 +189,12 @@ Rails.application.routes.draw do
     get 'jd' => 'jd#callback'
     get 'webchat' => 'webchat#callback'
   end
+  #B端网页版
+  namespace :hb do
+    get 'login' => 'login#new'
+    post 'login' => 'login#mobile'
+  end
+
   #签到
   post 'sign' => 'system#sign'
 end

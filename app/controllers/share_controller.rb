@@ -26,6 +26,9 @@ class ShareController < ApplicationController
 
   def service
     @service = Service.first
+    @coaches = @service.coaches.take(8)
+    @photos = @service.photos.take(8)
+    @courses = Course.where(coach_id: @service.coaches.pluck(:id))
     render layout: false
   end
 end

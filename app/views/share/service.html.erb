@@ -5,71 +5,7 @@
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
   <title>美型网</title>
   <%= stylesheet_link_tag 'share/style' %>
-  <%= javascript_include_tag 'share/jquery-ui-1.10.3.min', 'share/jquery.fullPage.min', 'share/jquery.js', 'share/player' %>
-  <script>
-      var demoImgArray = [
-          <%=image_path('share.page01,jpg')%>,
-          <%=image_path('share.page02,jpg')%>,
-          <%=image_path('share.page03,jpg')%>,
-          <%=image_path('share.page04,jpg')%>,
-          <%=image_path('share.s-up,png')%>,
-          <%=image_path('share.ico1,png')%>,
-          <%=image_path('share.code,jpg')%>,
-          <%=image_path('share.jmtext,png')%>,
-          <%=image_path('share.jmtext2,png')%>,
-          <%=image_path('share.kcico1,png')%>,
-          <%=image_path('share.kcico3,png')%>,
-          <%=image_path('share.kcico4,png')%>,
-          <%=image_path('share.music,png')%>,
-          <%=image_path('share.telico,png')%>,
-          <%=image_path('share.vitu,png')%>,
-          <%=image_path('share.logo,png')%>,
-          <%=image_path('share.fottu1,png')%>,
-          <%=image_path('share.fottu2,png')%>,
-          <%=image_path('share.fottu3,png')%>];
-      var stripesAnim;
-      var calcPercent;
-      $progress = $('.progress-bar');
-      $percent = $('.percentage');
-      $stripes = $('.progress-stripes');
-      $ycnone = $('.load');
-      $('.skin').click(function () {
-          var whichColor = $(this).attr('id');
-          setSkin(whichColor);
-      });
-      preload(demoImgArray);
-      stripesAnimate();
-      $(window).load(function () {
-          loaded = true;
-          $progress.animate({width: "100%"}, 100, function () {
-              $percent.text('100%');
-              $ycnone.addClass('ycnone');
-              clearInterval(calcPercent);
-              clearInterval(stripesAnim)
-          })
-      });
-      function preload(imgArray) {
-          var increment = Math.floor(100 / imgArray.length);
-          $(imgArray).each(function () {
-              $('<img>').attr("src", this).load(function () {
-                  $progress.animate({width: "+=" + increment + "%"}, 100)
-              })
-          });
-          calcPercent = setInterval(function () {
-              $percent.text(Math.floor(($progress.width() / $('.loader').width()) * 100) + '%')
-          })
-      }
-      function stripesAnimate() {
-          animating();
-          stripesAnim = setInterval(animating, 2500)
-      }
-      function animating() {
-          $stripes.animate({marginLeft: "-=30px"}, 2500, "linear").append('/')
-      }
-      $(document).ready(function () {
-          $.fn.fullpage({});
-      });
-  </script>
+  <%= javascript_include_tag 'share/jquery.js', 'share/jquery-ui-1.10.3.min', 'share/jquery.fullPage.min', 'share/player' %>
 </head>
 <body>
 <input type="hidden" value="<%= asset_path('share/service/code.jpg') %>" id="images">
@@ -82,11 +18,75 @@
     </div>
   </div>
 </div>
+<script>
+    var demoImgArray = [
+        "<%=image_path('share/page01.jpg')%>",
+        "<%=image_path('share/page02.jpg')%>",
+        "<%=image_path('share/page03.jpg')%>",
+        "<%=image_path('share/page04.jpg')%>",
+        "<%=image_path('share/s-up.png')%>",
+        "<%=image_path('share/ico1.png')%>",
+        "<%=image_path('share/code.jpg')%>",
+        "<%=image_path('share/jmtext.png')%>",
+        "<%=image_path('share/jmtext2.png')%>",
+        "<%=image_path('share/kcico1.png')%>",
+        "<%=image_path('share/kcico3.png')%>",
+        "<%=image_path('share/kcico4.png')%>",
+        "<%=image_path('share/music.png')%>",
+        "<%=image_path('share/telico.png')%>",
+        "<%=image_path('share/vitu.png')%>",
+        "<%=image_path('share/logo.png')%>",
+        "<%=image_path('share/fottu1.png')%>",
+        "<%=image_path('share/fottu2.png')%>",
+        "<%=image_path('share/fottu3.png')%>"];
+    var stripesAnim;
+    var calcPercent;
+    $progress = $('.progress-bar');
+    $percent = $('.percentage');
+    $stripes = $('.progress-stripes');
+    $ycnone = $('.load');
+    $('.skin').click(function () {
+        var whichColor = $(this).attr('id');
+        setSkin(whichColor);
+    });
+    preload(demoImgArray);
+    stripesAnimate();
+    $(window).load(function () {
+        loaded = true;
+        $progress.animate({width: "100%"}, 100, function () {
+            $percent.text('100%');
+            $ycnone.addClass('ycnone');
+            clearInterval(calcPercent);
+            clearInterval(stripesAnim)
+        })
+    });
+    function preload(imgArray) {
+        var increment = Math.floor(100 / imgArray.length);
+        $(imgArray).each(function () {
+            $('<img>').attr("src", this).load(function () {
+                $progress.animate({width: "+=" + increment + "%"}, 100)
+            })
+        });
+        calcPercent = setInterval(function () {
+            $percent.text(Math.floor(($progress.width() / $('.loader').width()) * 100) + '%')
+        })
+    }
+    function stripesAnimate() {
+        animating();
+        stripesAnim = setInterval(animating, 2500)
+    }
+    function animating() {
+        $stripes.animate({marginLeft: "-=30px"}, 2500, "linear").append('/')
+    }
+    $(document).ready(function () {
+        $.fn.fullpage({});
+    });
+</script>
 <section class="page page1">
-  <div class="tx"><%= image_tag('share/service/touxiang.jpg') %></div>
+  <div class="tx"><%= image_tag(@service.profile_avatar.thumb.url) %></div>
   <div class="pgbox01">
     <div class="mxzt">
-      <h3>中国NBA培训</h3>
+      <h3><%= @service.profile_name %></h3>
       <i><%= image_tag('share/service/vitu.png') %></i>
 
       <p>斗牛三对三，你行你来吧！</p>
@@ -94,76 +94,49 @@
     <div class="ico1"><%= image_tag('share/service/ico1.png') %></div>
   </div>
   <div class="pgbox02">
-    <div class="text">威康健身管理咨询（上海）有限公司（以下简称威尔士）成立于2007年，至今在全国范围内已拥有超过40家直，我们立足于健康产业，不仅仅秉承健身这一简单理念，而是力求将健康生活方式带到中国，将健康理念渗透到您的中。</div>
-    <div class="add">场馆地址：上海市中山西路933号虹桥银城12楼1206-1208室</div>
+    <div class="text"><%= @service.profile_signature %></div>
+    <div class="add"><%= @service.profile_address %></div>
     <div class="tel"><a href="#"><i></i>021-65873433</a></div>
   </div>
   <div class="pages"></div>
 </section>
 
 <section class="page page2">
-  <p class="tx1"><%= image_tag('share/service/touxiang.jpg') %></p>
-
-  <p class="tx2"><%= image_tag('share/service/touxiang.jpg') %></p>
-
-  <p class="tx3"><%= image_tag('share/service/touxiang.jpg') %></p>
-
-  <p class="tx4"><%= image_tag('share/service/touxiang.jpg') %></p>
-
-  <p class="tx5"><%= image_tag('share/service/touxiang.jpg') %></p>
-
-  <p class="tx6"><%= image_tag('share/service/touxiang.jpg') %></p>
-
-  <p class="tx7"><%= image_tag('share/service/touxiang.jpg') %></p>
-
-  <p class="tx8"><%= image_tag('share/service/touxiang.jpg') %></p>
-
+  <%
+     (0..7).map do |index|
+       coach = @coaches[index]
+       if coach.present?
+  %>
+          <p class="tx<%= (index+1) %>"><%= image_tag(coach.profile_avatar.thumb.url) %></p>
+      <% else %>
+          <p class="tx<%= (index+1) %>"><%= image_tag('share/service/touxiang.jpg') %></p>
+      <% end %>
+  <% end %>
   <div class="pages"></div>
 </section>
 <section class="page page3">
-  <p class="pic1"><%= image_tag('share/pic/tu01.jpg') %></p>
-
-  <p class="pic2"><%= image_tag('share/pic/tu02.jpg') %></p>
-
-  <p class="pic3"><%= image_tag('share/pic/tu03.jpg') %></p>
-
-  <p class="pic4"><%= image_tag('share/pic/tu04.jpg') %></p>
-
-  <p class="pic5"><%= image_tag('share/pic/tu05.jpg') %></p>
-
-  <p class="pic6"><%= image_tag('share/pic/tu06.jpg') %></p>
-
-  <p class="pic7"><%= image_tag('share/pic/tu07.jpg') %></p>
-
-  <p class="pic8"><%= image_tag('share/pic/tu08.jpg') %></p>
+  <%
+     (0..7).map do |index|
+       photo = @photos[index]
+       if photo.present?
+  %>
+          <p class="pic<%= (index+1) %>"><%= image_tag(photo.photo.thumb.url) %></p>
+      <% else %>
+          <p class="pic<%= (index+1) %>"><%= image_tag("share/pic/tu0#{(index+1)}.jpg") %></p>
+      <% end %>
+  <% end %>
 
   <div class="pages"></div>
 </section>
 <section class="page page4">
-  <div class="con con_a">
-    <h3>零基础综合</h3>
+  <% @courses.map do |course| %>
+      <div class="con con_a">
+        <h3><%= course.name %></h3>
 
-    <p>教学方式：1对30</p><i></i><em></em>
-    <%= image_tag('share/service/kcico1.png') %>
-  </div>
-  <div class="con con_b">
-    <h3>有氧运动</h3>
-
-    <p>教学方式：1对30</p><i></i><em></em>
-    <%= image_tag('share/service/kcico2.png') %>
-  </div>
-  <div class="con con_c">
-    <h3>无氧机械训练</h3>
-
-    <p>教学方式：1对1</p><i></i><em></em>
-    <%= image_tag('share/service/kcico3.png') %>
-  </div>
-  <div class="con con_d">
-    <h3>滑板有氧</h3>
-
-    <p>教学方式：1对30</p><i></i><em></em>
-    <%= image_tag('share/service/kcico4.png') %>
-  </div>
+        <p><%= course.style %></p><i></i><em></em>
+        <%= image_tag('share/service/kcico1.png') %>
+      </div>
+  <% end %>
   <div class="pages"></div>
 </section>
 <section class="page page5">
