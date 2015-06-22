@@ -27,7 +27,7 @@ module Gyms
                                      concerned: course.concerned.find_by(user: @user).blank? ? 0 : 1,
                                      comments: {
                                          count: course.comments.count,
-                                         latest: course.comments.first.as_json
+                                         latest: course.comments.first.blank? ? {} : course.comments.first.as_json
                                      }
                                  ))
       end

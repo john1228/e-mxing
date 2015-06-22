@@ -16,6 +16,11 @@ class Coach<User
   validates_uniqueness_of :mobile, message: '该手机号已经注册'
 
   def score
-    
+    {
+        prof: 5,
+        comm: 5,
+        punc: 5,
+        space: 5
+    }
   end
 end

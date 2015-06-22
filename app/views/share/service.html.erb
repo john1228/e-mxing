@@ -115,6 +115,7 @@
   <div class="pages"></div>
 </section>
 <section class="page page3">
+  <p class="pic<%= (index+1) %>" style="background-image: url(<%=photo.photo.thumb.url %>)"></p>
   <%
      (0..7).map do |index|
        photo = @photos[index]
