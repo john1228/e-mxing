@@ -186,7 +186,6 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/profile/thumb_2015/04/07/682650a1-53d7-4ca2-982f-a181eb18b1ee.jpg" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/profile/thumb_2015/04/13/69a967d4-9c11-4da6-8b6b-17be3c731773.jpg" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/profile/thumb_2015/04/13/bd9aae27-06f0-46ac-93c0-004ff0b0900d.jpg" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/course.rb" afterPath="$PROJECT_DIR$/app/models/course.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/.idea/photo.iml" afterPath="$PROJECT_DIR$/../photo/.idea/photo.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/share/service.html.erb" afterPath="$PROJECT_DIR$/app/views/share/service.html.erb" />
     </list>
@@ -235,12 +234,22 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="appointment_setting.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/appointment_setting.rb">
+      <file leaf-file-name="service.html.erb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/share/service.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="175" max-vertical-offset="846">
-              <caret line="30" column="7" selection-start-line="30" selection-start-column="7" selection-end-line="30" selection-end-column="7" />
-              <folding />
+            <state vertical-scroll-proportion="0.35714287" vertical-offset="1912" max-vertical-offset="4104">
+              <caret line="119" column="0" selection-start-line="119" selection-start-column="0" selection-end-line="119" selection-end-column="0" />
+              <folding>
+                <element signature="n#style#0;n#p#0;n#section#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#section#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#2;n#section#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#4;n#section#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#6;n#section#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#8;n#section#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#10;n#section#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#12;n#section#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#14;n#section#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -248,82 +257,10 @@
       <file leaf-file-name="dynamic.html.erb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/share/dynamic.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-14.666667" vertical-offset="0" max-vertical-offset="1566">
-              <caret line="22" column="149" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="149" />
+            <state vertical-scroll-proportion="-4.6666665" vertical-offset="270" max-vertical-offset="1566">
+              <caret line="22" column="141" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="141" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#li#0;n#ul#0;n#dd#0;n#dl#0;n#section#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="style.css.scss" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/share/style.css.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-17.25926" vertical-offset="8336" max-vertical-offset="30258">
-              <caret line="489" column="1" selection-start-line="489" selection-start-column="1" selection-end-line="491" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="courses_controller.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/gyms/courses_controller.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1530">
-              <caret line="25" column="53" selection-start-line="25" selection-start-column="53" selection-end-line="25" selection-end-column="53" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="profile.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/profile.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1458">
-              <caret line="43" column="23" selection-start-line="43" selection-start-column="23" selection-end-line="43" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="coach.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/coach.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="558">
-              <caret line="22" column="16" selection-start-line="19" selection-start-column="8" selection-end-line="22" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="course.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/course.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1242">
-              <caret line="25" column="29" selection-start-line="25" selection-start-column="29" selection-end-line="25" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="comments_controller.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/comments_controller.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="450">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="service.html.erb" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/views/share/service.html.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.59665143" vertical-offset="2362" max-vertical-offset="4050">
-              <caret line="153" column="36" selection-start-line="153" selection-start-column="36" selection-end-line="153" selection-end-column="36" />
-              <folding>
-                <element signature="n#style#0;n#p#12;n#section#2;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -2741,16 +2678,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/share/dynamic.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.666667" vertical-offset="0" max-vertical-offset="1566">
-          <caret line="22" column="149" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="149" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#li#0;n#ul#0;n#dd#0;n#dl#0;n#section#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../local/rvm/gems/ruby-2.1.4/gems/activesupport-4.2.1/lib/active_support/core_ext/object/json.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33333334" vertical-offset="582" max-vertical-offset="3654">
@@ -2775,12 +2702,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/share/dynamic.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.6666665" vertical-offset="270" max-vertical-offset="1566">
+          <caret line="22" column="141" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="141" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#li#0;n#ul#0;n#dd#0;n#dl#0;n#section#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/share/service.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.59665143" vertical-offset="2362" max-vertical-offset="4050">
-          <caret line="153" column="36" selection-start-line="153" selection-start-column="36" selection-end-line="153" selection-end-column="36" />
+        <state vertical-scroll-proportion="0.35714287" vertical-offset="1912" max-vertical-offset="4104">
+          <caret line="119" column="0" selection-start-line="119" selection-start-column="0" selection-end-line="119" selection-end-column="0" />
           <folding>
+            <element signature="n#style#0;n#p#0;n#section#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#section#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#2;n#section#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#4;n#section#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#6;n#section#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#8;n#section#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#10;n#section#2;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#p#12;n#section#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#14;n#section#2;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
