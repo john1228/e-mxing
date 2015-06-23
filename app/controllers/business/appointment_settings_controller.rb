@@ -6,7 +6,7 @@ module Business
       if setting.save
         render json: Success.new
       else
-        render json: Failure.new('设置失败')
+        render json: Failure.new('设置失败，该时间段已设置')
       end
     end
 
@@ -20,7 +20,7 @@ module Business
         if setting.save
           render json: Success.new
         else
-          render json: Failure.new('设置失败')
+          render json: Failure.new('设置失败，该时间段已设置')
         end
       end
     end

@@ -26,6 +26,7 @@ ActiveAdmin.register ServiceMember do
     column '签名' do |member|
       truncate(member.coach.profile.interests_string)
     end
+    actions
   end
 
   show title: "私教" do

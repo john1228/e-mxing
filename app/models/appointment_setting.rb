@@ -1,6 +1,7 @@
 class AppointmentSetting < ActiveRecord::Base
   belongs_to :coach
   belongs_to :address
+  validates_uniqueness_of :start_date, scope: :time
   class<<self
     def effect(date)
       one_to_one = (where(start_date: date, course_name: nil)||where('start_date< and repeat=? and course_name=?', date, true, nil)).first

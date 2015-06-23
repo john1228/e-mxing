@@ -34,16 +34,26 @@ module Business
                                             address: address.city + address.address
                                         })
         if params[:online].present?
+          appointment_result = true
           params[:online].split(',').map { |user|
             user = User.find_by_mxid(user)
             lesson = @coach.lessons.find_by(course: course, user: user)
-            @coach.appointments.create(base_params.merge(user_id: user.id, lesson_id: lesson.id))
+            appointment = @coach.appointments.create(base_params.merge(user_id: user.id, lesson_id: lesson.id))
+            appointment_result = false unless appointment.save
           }
-          render json: {code: 1}
+          if appointment_result
+            render json: Success.new
+          else
+            render json: Failure.new('该时间已经被预约')
+          end
         else
           if params[:offline].present?
-            @coach.appointments.create(base_params.merge(offline: params[:offline]))
-            render json: {code: 1}
+            appointment = @coach.appointments.new(base_params.merge(offline: params[:offline]))
+            if appointment.save
+              render json: Success.new
+            else
+              render json: Failure.new('该时间已经被预约')
+            end
           else
             render json: Failure.new('您还未选择学员')
           end
