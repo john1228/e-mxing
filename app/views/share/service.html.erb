@@ -115,18 +115,46 @@
   <div class="pages"></div>
 </section>
 <section class="page page3">
-  <p class="pic<%= (index+1) %>" style="background-image: url(<%=photo.photo.thumb.url %>)"></p>
-  <%
-     (0..7).map do |index|
-       photo = @photos[index]
-       if photo.present?
-  %>
-          <p class="pic<%= (index+1) %>" style="background-image: url(<%=photo.photo.thumb.url %>)"></p>
-      <% else %>
-          <p class="pic<%= (index+1) %>"><%= image_tag("share/pic/tu0#{(index+1)}.jpg") %></p>
-      <% end %>
+  <% if @photos[0].present? %>
+      <p style="width: 31%;top: 5%;left: 20%; background: url(<%=@photos[0].photo.thumb.url%>);background-size: cover;"></p>
+  <% else %>
+      <p class="pic1"><%= image_tag('share/pic/tu01.jpg') %></p>
   <% end %>
-
+  <% if @photos[1].present? %>
+      <p style="width: 22%;top: 10%;left: 65%; background: url(<%=@photos[1].photo.thumb.url%>);background-size: cover;"></p>
+  <% else %>
+      <p class="pic2"><%= image_tag('share/pic/tu03.jpg') %></p>
+  <% end %>
+  <% if @photos[2].present? %>
+      <p style="width: 18%;top: 28%;left: 5%; background: url(<%=@photos[2].photo.thumb.url%>);background-size: cover;"></p>
+  <% else %>
+      <p class="pic3"><%= image_tag('share/pic/tu03.jpg') %></p>
+  <% end %>
+  <% if @photos[3].present? %>
+      <p style="width: 32%;top: 30%;left: 30%; background: url(<%=@photos[3].photo.thumb.url%>);background-size: cover;"></p>
+  <% else %>
+      <p class="pic4"><%= image_tag('share/pic/tu04.jpg') %></p>
+  <% end %>
+  <% if @photos[4].present? %>
+      <p style="width: 22%;top: 28%;left: 70%;background: url(<%=@photos[4].photo.thumb.url%>);background-size: cover;"></p>
+  <% else %>
+      <p class="pic5"><%= image_tag('share/pic/tu05.jpg') %></p>
+  <% end %>
+  <% if @photos[5].present? %>
+      <p style="width: 32%;top: 57%;left: 7%; background: url(<%=@photos[5].photo.thumb.url%>);background-size: cover;"></p>
+  <% else %>
+      <p class="pic6"><%= image_tag('share/pic/tu06.jpg') %></p>
+  <% end %>
+  <% if @photos[6].present? %>
+      <p style="width: 24%;top: 54%;left: 54%; background: url(<%=@photos[6].photo.thumb.url%>);background-size: cover;"></p>
+  <% else %>
+      <p class="pic7"><%= image_tag('share/pic/tu07.jpg') %></p>
+  <% end %>
+  <% if @photos[7].present? %>
+      <p style="width: 22%;top: 76%;left: 68%; background: url(<%=@photos[7].photo.thumb.url%>);background-size: cover;"></p>
+  <% else %>
+      <p class="pic8"><%= image_tag('share/pic/tu08.jpg') %></p>
+  <% end %>
   <div class="pages"></div>
 </section>
 <section class="page page4">

@@ -23,6 +23,7 @@ class Course < ActiveRecord::Base
         exp: exp,
         proposal: proposal,
         intro: intro,
+        guarantee: guarantee,
         address: school_addresses,
         images: course_photos.collect { |course_photo| course_photo.photo.thumb.url },
         purchased: OrderItem.where(course_id: id).count
