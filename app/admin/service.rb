@@ -63,7 +63,9 @@ ActiveAdmin.register Service do
 
 
   sidebar '钱包', only: :show do
-    attributes_table_for service do
+    wallet = service.wallet
+    service.create_wallet if wallet.blank?
+    attributes_table_for wallet do
       row('余额') { service.wallet.balance }
       row('优惠券') { service.wallet.coupons }
       row('美豆') { image_tag(service.wallet.bean) }

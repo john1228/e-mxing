@@ -19,5 +19,18 @@ module Business
                                  }
                                })
     end
+
+    def withdraw
+      if @coach.wallet.balance >= params[:amount]
+        withdraw_request = Withdraw.new(coach: @coach, account: params[:account], name: params[:name], amount: params[:amount])
+        if withdraw_request.save
+          render json: Success.new
+        else
+          render json: Failure.new('申请提现请求处理失败')
+        end
+      else
+        render json: Failure.new('余额不足，不能提现')
+      end
+    end
   end
 end

@@ -140,6 +140,7 @@ Rails.application.routes.draw do
     get 'wallet' => 'wallet#index'
     get 'wallet/coupons' => 'wallet#coupons'
     get 'wallet/detail' => 'wallet#detail'
+    post 'wallet' => 'wallet#withdraw'
     #学员
     get 'students' => 'students#index'
     get 'students/course' => 'students#course'
