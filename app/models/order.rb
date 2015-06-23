@@ -1,7 +1,7 @@
 class Order < ActiveRecord::Base
   before_create :setting_default_values
   after_update :build_lessons #当订单完成支付时，生成课表
-
+  default_scope { where('1=1').order(id: :desc) }
   scope :unpay, -> { where(status: STATUS[:unpay]) }
   scope :pay, -> { where(status: STATUS[:pay]) }
 
