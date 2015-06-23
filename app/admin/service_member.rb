@@ -3,15 +3,33 @@ ActiveAdmin.register ServiceMember do
   config.filters = false
   belongs_to :service
   navigation_menu :service
-  permit_params :service_id, coach_attributes: [:id, :mobile, :password, :identity,
-                                                :name, :avatar, :gender, :identity, :birthday,
-                                                :address, :target, :skill, :often, :hobby]
-
-  before_filter :adjust, only: [:create, :update]
+  permit_params :service_id,
+                coach_attributes: [:id, :mobile, :password, :signature, :name, :avatar, :gender, :identity, :birthday,
+                                   :address, :target, :skill, :often, :hobby]
+  before_filter :adjust, only: :create
+  before_filter :update_coach, only: :update
   controller do
     def adjust
       params[:service_member][:coach_attributes][:hobby].reject! { |item| item.blank? }
       params[:service_member][:coach_attributes][:hobby] = params[:service_member][:coach_attributes][:hobby].join(',')
+    end
+
+    def update_coach
+      params[:service_member][:coach_attributes][:hobby].reject! { |item| item.blank? }
+      avatar = params[:service_member][:coach_attributes][:avatar]
+      member = ServiceMember.find_by(id: params[:id])
+      coach = member.coach
+      update_params = {
+          name: params[:service_member][:coach_attributes][:name],
+          birthday: params[:service_member][:coach_attributes][:birthday],
+          address: params[:service_member][:coach_attributes][:address],
+          target: params[:service_member][:coach_attributes][:target],
+          skill: params[:service_member][:coach_attributes][:target],
+          often: params[:service_member][:coach_attributes][:target],
+          hobby: params[:service_member][:coach_attributes][:hobby].join(',')
+      }
+      update_params = update_params.merge(avatar: avatar) unless avatar.blank?
+      coach.update(update_params)
     end
   end
 
@@ -24,25 +42,24 @@ ActiveAdmin.register ServiceMember do
       image_tag("#{member.coach.profile_avatar.thumb.url}", height: 70)
     end
     column '签名' do |member|
-      truncate(member.coach.profile.interests_string)
+      truncate(member.coach.profile.signature)
     end
     actions
   end
 
-  show title: "私教" do
-    coach = service_member.coach
+  show title: '私教' do
     panel '私教信息' do
-      attributes_table_for coach do
-        row('登录名') { coach.mobile }
-        row('昵称') { coach.profile_name }
-        row('头像') { image_tag(coach.profile_avatar.thumb.url, height: 70) }
-        row('生日') { coach.profile_birthday.strftime('%Y-%m-%d') }
-        row('性别') { coach.profile_gender.eql?(1) ? '女' : '男' }
-        row('地址') { coach.profile_address }
-        row('健身目标') { coach.profile_target }
-        row('擅长领域') { coach.profile_skill }
-        row('常去场馆') { coach.profile_often }
-        row('健身兴趣') { coach.profile_interests_string }
+      attributes_table_for service_member do
+        row('登录名') { service_member.coach.mobile }
+        row('昵称') { service_member.coach.profile_name }
+        row('头像') { image_tag(service_member.coach.profile_avatar.thumb.url, height: 70) }
+        row('生日') { service_member.coach.profile_birthday.strftime('%Y-%m-%d') }
+        row('性别') { service_member.coach.profile_gender.eql?(1) ? '女' : '男' }
+        row('地址') { service_member.coach.profile_address }
+        row('健身目标') { service_member.coach.profile_target }
+        row('擅长领域') { service_member.coach.profile_skill }
+        row('常去场馆') { service_member.coach.profile_often }
+        row('健身兴趣') { service_member.coach.profile_interests_string }
       end
     end
   end
