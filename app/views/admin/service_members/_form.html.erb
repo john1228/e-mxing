@@ -2,7 +2,7 @@
     <%= f.hidden_field(:identity, value: 1) %>
     <fieldset class="inputs">
       <legend><span>添加教练</span></legend>
-      <%= f.semantic_fields_for :gyms, f.object.coach||Coach.new do |coach| %>
+      <%= f.semantic_fields_for :coach, f.object.coach||Coach.new do |coach| %>
           <% if f.object.coach.present? %>
               <div class="alert alert-danger" role="alert">
                 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>

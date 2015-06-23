@@ -43,7 +43,6 @@ ActiveAdmin.register Service do
           tr do
             td link_to('照片墙', admin_service_service_photos_path(service), class: :button)
             td link_to('动  态', admin_service_service_dynamics_path(service), class: :button)
-            td link_to('团操', admin_service_service_tracks_path(service), class: :button)
             td link_to('旗下私教', admin_service_service_members_path(service), class: :button)
             td link_to('聊天', chat_with_service_path(service), class: :button)
           end
@@ -56,10 +55,18 @@ ActiveAdmin.register Service do
     attributes_table_for service do
       row('美型号') { service.profile_mxid }
       row('昵称') { service.profile_name }
-      row('头像') { image_tag(service.profile_avatar.thumb.url) }
+      row('头像') { image_tag(service.profile_avatar.thumb.url, height: 70) }
       row('签名') { service.profile_signature }
       row('服务') { service.profile_interests_string }
+    end
+  end
 
+
+  sidebar '钱包', only: :show do
+    attributes_table_for service do
+      row('余额') { service.wallet.balance }
+      row('优惠券') { service.wallet.coupons }
+      row('美豆') { image_tag(service.wallet.bean) }
     end
   end
 
