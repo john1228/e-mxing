@@ -20,8 +20,8 @@ module Mine
                                })
     end
 
-    def update
-      render json: Success.new
+    def exchange
+      render json: Success.new(coupons: Coupon.all)
     end
   end
 end
