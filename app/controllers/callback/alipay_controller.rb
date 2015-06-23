@@ -9,7 +9,7 @@ module Callback
       buyer_id = params[:buyer_id]
       buyer_email = params[:buyer_email]
       pay_amount = params[:price]
-      order = Order.find_by(no: trade_no)
+      order = Order.find_by(no: order_no)
       order.update(status: Order::STATUS[:pay]) #if order.pay_amount.eql?(pay_amount.to_d)
       Transaction.create(no: trade_no, order_no: order_no, buyer_id: buyer_id, buyer_email: buyer_email, source: Transaction::SOURCE[:alipay], price: pay_amount)
       render text: 'success'
