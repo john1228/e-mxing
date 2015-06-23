@@ -4,7 +4,9 @@ class AppointmentSetting < ActiveRecord::Base
   validates_uniqueness_of :start_date, scope: :time
   class<<self
     def effect(date)
-      one_to_one = (where(start_date: date, course_name: nil)||where('start_date< and repeat=? and course_name=?', date, true, nil)).first
+      one_to_one = (where(start_date: date, course_name: nil).order(id: :desc)||where('start_date< and repeat=? and course_name=?', date, true, nil)).first
+
+
       one_to_many = where.not(course_name: nil).where(start_date: date)
       {
           one: one_to_one.blank? ? {address: {}, time: [{start: '9:00', end: '21:00'}]} : {
