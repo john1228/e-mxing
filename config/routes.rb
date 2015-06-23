@@ -180,7 +180,7 @@ Rails.application.routes.draw do
     get 'wallet' => 'wallet#index'
     get 'wallet/coupons' => 'wallet#coupons'
     get 'wallet/detail' => 'wallet#detail'
-    put 'wallet' => 'wallet#update'
+    put 'wallet' => 'wallet#exchange'
   end
 
   namespace :callback do
