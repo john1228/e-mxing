@@ -1,7 +1,7 @@
 module Gyms
   class CoursesController < BaseController
-    before_action :fetch_course, only: [:coach, :comments, :concern]
-    before_action :verify_auth_token, only: [:buy, :concern, :show, :concerned]
+    before_action :fetch_course, only: [:coach, :comments]
+    before_action :verify_auth_token, only: :buy
 
     def index
       render json: Success.new(
@@ -23,8 +23,9 @@ module Gyms
       if course.blank?
         render json: Failure.new('您查看到课程不存在')
       else
+        user = Rails.cache.fetch(request.headers[:token])
         render json: Success.new(course: course.as_json.merge(
-                                     concerned: course.concerned.find_by(user: @user).blank? ? 0 : 1,
+                                     concerned: course.concerned.find_by(user: user).blank? ? 0 : 1,
                                      comments: {
                                          count: course.comments.count,
                                          latest: course.comments.first.blank? ? {} : course.comments.first.as_json

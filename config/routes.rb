@@ -152,8 +152,6 @@ Rails.application.routes.draw do
     get 'courses/coach' => 'courses#coach'
     get 'courses/comments' => 'courses#comments'
     post 'courses' => 'courses#buy'
-    post 'courses/concern' => 'courses#concern'
-    get 'courses/concerned' => 'courses#concerned'
     #查看预约和预约团课
     get 'appointments' => 'appointments#index'
     get 'appointments/show' => 'appointments#show'
