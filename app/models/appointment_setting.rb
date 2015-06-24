@@ -44,8 +44,22 @@ class AppointmentSetting < ActiveRecord::Base
 
   private
   def validate_time
+    #校验数据正确性
+    time.split(',').map { |item|
+      time_ary = item.split('|')
+      start_time, end_time = Time.parse(time_ary[0], Date.today), Time.parse(time_ary[1], Date.today)
+      return false if (end_time-start_time) < 1800
+    }
+    #如果是团操课
     unless course_name.blank?
-      where.not(course_name: nil).where(start_date: start_date)
+      settings = where.not(course_name: nil).where(start_date: start_date)
+      setting_time_ary = time.split('|')
+      setting_start, setting_end = Time.parse(setting_time_ary[0], Date.today), Time.parse(setting_time_ary[1], Date.today)
+      settings.map { |setting|
+        time_ary = setting.time.split('|')
+        start_time, end_time = Time.parse(time_ary[0], Date.today), Time.parse(time_ary[1], Date.today)
+        return false if (start_time< setting_start && setting_start < end_time) ||(start_time< setting_end && setting_end < end_time)
+      }
     end
   end
 end

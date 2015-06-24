@@ -44,7 +44,7 @@ module Business
           if appointment_result
             render json: Success.new
           else
-            render json: Failure.new('该时间已经被预约')
+            render json: Failure.new('您添加到时间不对或者该时间已经被预约')
           end
         else
           if params[:offline].present?
@@ -52,7 +52,7 @@ module Business
             if appointment.save
               render json: Success.new
             else
-              render json: Failure.new('该时间已经被预约')
+              render json: Failure.new('您添加到时间不对或者该时间已经被预约')
             end
           else
             render json: Failure.new('您还未选择学员')
