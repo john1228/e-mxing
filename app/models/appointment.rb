@@ -22,7 +22,7 @@ class Appointment < ActiveRecord::Base
 
   def status_tag
     #1-等待上课 10-正在上课 11-等待确认上课
-    if status.eql?(STATUS[:waiting])
+    if status.eql?(STATUS[:waiting])||status.eql?(STATUS[:waiting].to_s)
       if date>Date.today
         status_tag = status
       elsif date<Date.today
@@ -30,7 +30,7 @@ class Appointment < ActiveRecord::Base
       else
         now = Time.now
         start_t = Time.parse(start_time)
-        total_during = course.during.to_i*classes.to_i
+        total_during = course_during.to_i*classes.to_i
         end_t = start_t + total_during.minutes
         if start_t>now
           status_tag = status

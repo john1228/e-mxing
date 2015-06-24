@@ -2,9 +2,10 @@ class AppointmentSetting < ActiveRecord::Base
   belongs_to :coach
   belongs_to :address
   validates_uniqueness_of :start_date, scope: :time
+  before_save :validate_time
   class<<self
     def effect(date)
-      one_to_one = (where(start_date: date, course_name: nil).order(id: :desc)||where('start_date< and repeat=? and course_name=?', date, true, nil)).first
+      one_to_one = (where(start_date: date, course_name: nil).order(id: :desc)||where('start_date< and repeat=? and course_name=?', date, true, nil)).order(start_date: :desc).first
       one_to_many = where.not(course_name: nil).where(start_date: date)
       {
           one: one_to_one.blank? ? {address: {}, time: [{start: '9:00', end: '21:00'}]} : {
@@ -39,5 +40,12 @@ class AppointmentSetting < ActiveRecord::Base
 
   def school_address
     coach.addresses.find_by(id: address).as_json
+  end
+
+  private
+  def validate_time
+    unless course_name.blank?
+      where.not(course_name: nil).where(start_date: start_date)
+    end
   end
 end

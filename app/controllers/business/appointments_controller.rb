@@ -38,7 +38,7 @@ module Business
           params[:online].split(',').map { |user|
             user = User.find_by_mxid(user)
             lesson = @coach.lessons.find_by(course: course, user: user)
-            appointment = @coach.appointments.create(base_params.merge(user_id: user.id, lesson_id: lesson.id))
+            appointment = @coach.appointments.create(base_params.merge(user_id: user.id, lesson_id: lesson.id, status: Appointment::STATUS[:waiting]))
             appointment_result = false unless appointment.save
           }
           if appointment_result
@@ -48,7 +48,7 @@ module Business
           end
         else
           if params[:offline].present?
-            appointment = @coach.appointments.new(base_params.merge(offline: params[:offline]))
+            appointment = @coach.appointments.new(base_params.merge(offline: params[:offline], status: Appointment::STATUS[:waiting]))
             if appointment.save
               render json: Success.new
             else

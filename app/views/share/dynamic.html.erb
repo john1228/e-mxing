@@ -37,7 +37,7 @@
   <% @comments.map { |comment|
     comment_user = comment.user %>
       <li>
-        <div class="imgbox "><%= image_tag(comment_user.profile.avatar.thumb.url) %></div>
+        <div class="imgbox"><%= image_tag(comment_user.profile.avatar.thumb.url) %></div>
         <div class="con "><i></i>
           <h5><%= comment_user.profile.name %></h5><em><%= comment.show_time_string %></em>
 
