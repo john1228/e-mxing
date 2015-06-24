@@ -22,7 +22,7 @@ module Business
 
     def withdraw
       if @coach.wallet.balance >= BigDecimal(params[:amount])
-        withdraw_request = Withdraw.new(coach: @coach, account: params[:account], name: params[:name], amount: params[:amount])
+        withdraw_request = Withdraw.new(coach_id: @coach.id, account: params[:account], name: params[:name], amount: params[:amount])
         if withdraw_request.save
           render json: Success.new
         else
