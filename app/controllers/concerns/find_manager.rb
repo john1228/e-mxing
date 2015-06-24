@@ -90,6 +90,7 @@ module FindManager
           type: course.type,
           style: course.style,
           top: course.top,
+          guarantee: course.guarantee,
           concerned: course.concerned.count,
       }
     }
