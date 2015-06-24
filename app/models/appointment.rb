@@ -2,7 +2,7 @@ class Appointment < ActiveRecord::Base
   belongs_to :coach
   belongs_to :course
   belongs_to :lesson
-  validates_uniqueness_of :start_time, scope: :date
+  before_save :validate_time
   after_create :build_track
   #-1-休息時間 0-取消的预约 1-等待上课|正在上课|等待确认 2-用户完成确认，等待评价 3-完成评价
   STATUS = {rest: -1, cancel: 0, waiting: 1, done: 2, complete: 3}
@@ -54,5 +54,11 @@ class Appointment < ActiveRecord::Base
 
   def payment
     lesson.update(used: (lesson.used + 1)) if status.eql?(STATUS[:done])
+  end
+
+  def validate_time
+    appointments = coach.appointments.where(start_time: start_time, date: date)
+    return false if appointments.present?
+    return false if Time.now > Time.parse(start_time, date)
   end
 end
