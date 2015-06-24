@@ -56,7 +56,7 @@ class AppointmentSetting < ActiveRecord::Base
     }
     #如果是团操课
     unless course_name.blank?
-      settings = where.not(course_name: nil).where(start_date: start_date)
+      settings = AppointmentSetting.where.not(course_name: nil).where(start_date: start_date, coach_id: coach_id)
       setting_time_ary = time.split('|')
       setting_start, setting_end = Time.parse(setting_time_ary[0], Date.today), Time.parse(setting_time_ary[1], Date.today)
       settings.map { |setting|
