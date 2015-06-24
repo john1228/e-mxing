@@ -18,17 +18,21 @@ class AppointmentSetting < ActiveRecord::Base
                 }
               }},
           many: one_to_many.collect { |many|
-            time = many.time.split('|')
-            {
-                course: {
-                    name: many.course_name,
-                    type: many.course_type
-                },
-                start: time[0],
-                end: time[1],
-                place: many.place,
-                address: many.school_address
-            }
+            course = Course.find_by(name: course_name)
+            if course.present?
+              time = many.time.split('|')
+              {
+                  course: {
+                      id: course.id,
+                      name: many.course_name,
+                      type: many.course_type
+                  },
+                  start: time[0],
+                  end: time[1],
+                  place: many.place,
+                  address: many.school_address
+              }
+            end
           }
       }
     end
