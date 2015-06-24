@@ -9,7 +9,7 @@ class ShowtimeController < ApiController
 
   def update
     if @user.create_showtime(showtime_params)
-      render json: Success.new(showtime: showtime)
+      render json: Success.new(showtime: @user.showtime)
     else
       render json: Failure.new('发布视频秀失败')
     end
