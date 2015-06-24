@@ -18,7 +18,7 @@ class AppointmentSetting < ActiveRecord::Base
                 }
               }},
           many: one_to_many.collect { |many|
-            course = Course.find_by(name: course_name)
+            course = Course.find_by(name: many.course_name)
             if course.present?
               time = many.time.split('|')
               {
