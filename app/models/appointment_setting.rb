@@ -10,7 +10,8 @@ class AppointmentSetting < ActiveRecord::Base
       one_to_many = where.not(course_name: nil).where(start_date: date)
       {
           one: one_to_one.blank? ? {address: {}, time: [{start: '9:00', end: '21:00'}]} : {
-              address: one_to_one.school_address, time: one_to_one.time.split(',').collect { |item|
+              address: one_to_one.school_address,
+              time: one_to_one.time.split(',').collect { |item|
                 time_ary = item.split('|')
                 {
                     start: time_ary[0],

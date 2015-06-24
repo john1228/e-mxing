@@ -33,7 +33,6 @@ module Mine
       else
         render json: Failure.new('课程不存在')
       end
-
     end
 
     def destroy

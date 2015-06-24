@@ -89,6 +89,7 @@ module FindManager
           during: course.during,
           type: course.type,
           style: course.style,
+          top: course.top,
           concerned: course.concerned.count,
       }
     }
