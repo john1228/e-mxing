@@ -47,13 +47,14 @@ module Gyms
     def coach
       coach = @course.coach
       render json: Success.new({coach: {
-                                   mxid: coach.mxid,
+                                   mxid: coach.profile.mxid,
                                    name: coach.profile.name||'',
                                    avatar: coach.profile.avatar.thumb.url,
                                    gender: coach.profile.gender||1,
                                    age: coach.profile.age,
                                    signature: coach.profile.signature,
                                    tags: coach.profile.tags,
+                                   mobile: coach.mobile,
                                    score: coach.score
                                }})
     end
