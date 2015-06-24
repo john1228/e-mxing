@@ -12,6 +12,7 @@ module Mine
                        price: course.price,
                        during: course.during,
                        type: course.type,
+                       style: course.style,
                        concerned: course.concerned.count,
                        top: course.top||0,
                        status: course.status,
