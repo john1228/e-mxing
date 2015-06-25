@@ -6,7 +6,7 @@ module Mine
     end
 
     def coupons
-      render json: Success.new(coupons: Coupon.where(id: @user.wallet.coupons.split(',')))
+      render json: Success.new(coupons: Coupon.where(id: @user.wallet.coupons))
     end
 
     def detail

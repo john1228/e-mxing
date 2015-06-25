@@ -1,6 +1,6 @@
 class Order < ActiveRecord::Base
-  before_create :setting_default_values
-  after_update :build_lessons #当订单完成支付时，生成课表
+  before_create :detect_params
+  after_save :backend_task #当订单完成支付时，生成课表
   default_scope { where('1=1').order(id: :desc) }
   scope :unpay, -> { where(status: STATUS[:unpay]) }
   scope :pay, -> { where(status: STATUS[:pay]) }
@@ -12,7 +12,7 @@ class Order < ActiveRecord::Base
   attr_accessor :item
   STATUS = {delete: -1, cancel: 0, unpay: 1, pay: 2, complete: 4}
   private
-  def setting_default_values
+  def detect_params
     self.no = "#{Time.now.to_i}#{user_id}#{%w'0 1 2 3 4 5 6 7 8 9'.sample(3).join('')}"
     #单产品购买
     item_info = item.split('|')
@@ -26,9 +26,9 @@ class Order < ActiveRecord::Base
     if coupons.present?
       #检验优惠券的是否有效
       user_coupons = user.wallet.coupons
-      coupons.split(',').map { |coupon|
-        return false unless user_coupons.include?(coupon)
-      }
+      use_coupons = coupons.split(',')
+      #判断使用的优惠券是否是用户拥有的优惠券
+      return false unless (use_coupons - user_coupons).blank?
       Coupon.where(id: coupons.split(',')).map { |coupon|
         #优惠券不在有效期内
         return false if (coupon.start_date> Date.today) || (coupon.end_date< Date.today)
@@ -58,11 +58,13 @@ class Order < ActiveRecord::Base
     else
       self.status = STATUS[:pay]
     end
+    user.wallet.update(coupons: user_coupons.split(','), action: Wallet::ACTIONS[:pay_course])
   end
 
-  def build_lessons
+  def backend_task
     order_items.each { |item|
       lessons.create(coach: coach, user: user, course: item.course, available: item.amount, used: 0, exp: Date.today.next_day(item.course.exp.to_i))
     } if status.eql?(STATUS[:pay])
+    user.wallet.update(coupons: (user.wallet.coupons + coupons), bean: (user.wallet.bean + bean), action: Wallet::ACTIONS[:order_cancel]) if status.eql?(STATUS[:cancel])
   end
 end

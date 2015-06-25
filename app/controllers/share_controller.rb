@@ -21,7 +21,7 @@ class ShareController < ApplicationController
     @dynamic_film = @dynamic.dynamic_film
     @dynamic_images = @dynamic.dynamic_images
     @comments = @dynamic.dynamic_comments
-    render layout: 'share'
+    render layout: false
   end
 
   def service

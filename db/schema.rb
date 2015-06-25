@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150623093558) do
+ActiveRecord::Schema.define(version: 20150625081830) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -511,8 +511,8 @@ ActiveRecord::Schema.define(version: 20150623093558) do
   create_table "wallets", force: :cascade do |t|
     t.integer "user_id"
     t.decimal "balance", default: 0.0
-    t.string  "coupons", default: ""
     t.integer "bean",    default: 0
+    t.integer "coupons", default: [],  array: true
   end
 
   create_table "withdraws", force: :cascade do |t|

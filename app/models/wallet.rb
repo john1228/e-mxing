@@ -4,12 +4,12 @@ class Wallet < ActiveRecord::Base
   attr_accessor :action
   after_update :create_wallet_log
   #action 以1开头为增加 以2开头的为减少
-  ACTIONS = {buy_course: 1, check: 10}
+  ACTIONS = {buy_course: 1, check: 10, order_cancel: 11, pay_course: 2}
 
   def as_json
     {
         balance: balance.to_f,
-        coupons: coupons.split(',').size,
+        coupons: coupons.size,
         bean: bean
     }
   end
@@ -17,12 +17,11 @@ class Wallet < ActiveRecord::Base
   private
   def create_wallet_log
     coupons_change
-    if coupons.split(',').size > coupons_was.split(',').size
-      coupons_change = coupons.split(',') - coupons_was.split(',') #增加优惠券
+    if coupons.size > coupons_was.size
+      coupons_change = coupons - coupons_was #增加优惠券
     else
-      coupons_change = "-#{(coupons_was.split(',') - coupons.split(',')).join(',')}" #减少优惠券
+      coupons_change = coupons_was- coupons #减少优惠券
     end
-
     wallet_logs.create(
         action: action,
         balance: (balance-balance_was),

@@ -9,15 +9,18 @@ Rails.application.config.assets.precompile += %w(service.css
  wap/wap.css
  web/web.css
  home/home.js
+ style.css
+ share.css
+ share/style.css
+ share/mini.css
+
  home/jquery.touchSlider.js
  home/jquery-1.7.1.min.js
- style.css
  webchat/bootstrap.js
  webchat/easemob.im-1.0.5.js
  webchat/jquery-1.11.1.js
  webchat/json2.js
  webchat/strophe-custom-2.0.0.js
- share.css
- share/style.css
  share/*
+ hls.min.js
  )
