@@ -9,6 +9,7 @@ class Course < ActiveRecord::Base
   attr_accessor :address
   STATUS = {delete: 0, online: 1}
   STYLE = {many: '团操', one: '1v1'}
+  GUARANTEE = 1
 
   after_save :update_course_abstract
 

@@ -91,7 +91,8 @@ module Gyms
     def wx_pre_pay
       appid = ''
       mch_id = 1238187802 #商户号
-      nonce_str = %w'0 1 2'
+      nonce_str = (('a'..'z').to_a + ('A'..'Z').to_a + ('0'..'9').to_a).sample(32).join
+      sign = ''
     end
   end
 end
