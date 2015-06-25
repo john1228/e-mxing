@@ -40,7 +40,6 @@ module Gyms
         #TODO: 微信支付，需要预支付
         render json: Success.new(order: {no: order.no})
       else
-        logger.info order.errors.to_json
         render json: Failure.new('购买课程失败')
       end
     end

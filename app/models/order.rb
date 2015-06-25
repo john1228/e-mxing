@@ -52,8 +52,12 @@ class Order < ActiveRecord::Base
     end
     #TODO:美型豆使用
     self.coach = course.coach
-    self.pay_amount = total_price
-    self.status = STATUS[:unpay]
+    self.pay_amount = total_price >0 ? total_price : 0
+    if pay_amount>0
+      self.status = STATUS[:unpay]
+    else
+      self.status = STATUS[:pay]
+    end
   end
 
   def build_lessons
