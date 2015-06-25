@@ -37,8 +37,7 @@ module Gyms
     def buy
       order = @user.orders.new(order_params)
       if order.save
-        #TODO: 微信支付，需要预支付
-        render json: Success.new(order: {no: order.no})
+        render json: Success.new(order: {no: order.no, status: order.status})
       else
         render json: Failure.new('购买课程失败')
       end

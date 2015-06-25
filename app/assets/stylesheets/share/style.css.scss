@@ -437,59 +437,69 @@ a, button, input, i {
   background-size: 100%;
 }
 
-.page3 .div {
+.page3 .p {
   border-radius: 10px;
   border: #fff 5px solid;
   position: absolute;
   overflow: hidden;
 }
 
-.page3 div.pic1 {
+.page3 p.pic1 {
   width: 31%;
   top: 5%;
   left: 20%;
 }
 
-.page3 div.pic2 {
+.page3 p.pic2 {
   width: 22%;
   top: 10%;
   left: 65%;
 }
 
-.page3 div.pic3 {
+.page3 p.pic3 {
   width: 18%;
   top: 28%;
   left: 5%;
 }
 
-.page3 div.pic4 {
+.page3 p.pic4 {
   width: 32%;
   top: 30%;
   left: 30%;
 }
 
-.page3 div.pic5 {
+.page3 p.pic5 {
   width: 22%;
   top: 28%;
   left: 70%;
 }
 
-.page3 div.pic6 {
+.page3 p.pic6 {
   width: 32%;
   top: 57%;
   left: 7%;
 }
 
-.page3 div.pic7 {
+.page3 p.pic7 {
   width: 24%;
   top: 54%;
   left: 54%;
 }
 
-.page3 div.pic8 {
+.page3 p.pic8 {
   width: 22%;
   top: 76%;
   left: 68%;
+}
+
+.page p img {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  /* 保持纵横比例 */
+  min-width: 100%;
+  min-height: 100%;
 }
 
 .active p.pic1 {
