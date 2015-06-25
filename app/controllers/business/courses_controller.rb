@@ -4,11 +4,11 @@ module Business
       type = params[:type]
       case type
         when 'one'
-          courses = @coach.courses.where(style: Course::STYLE[:one])
+          courses = @coach.courses.where(style: Course::STYLE[:one], status: Course::STATUS[:online])
         when 'many'
-          courses = @coach.courses.where(style: Course::STYLE[:many])
+          courses = @coach.courses.where(style: Course::STYLE[:many], status: Course::STATUS[:online])
         else
-          courses = @coach.courses.page(params[:page]||1)
+          courses = @coach.courses.where(status: Course::STATUS[:online]).page(params[:page]||1)
       end
       render json: Success.new(courses: courses.collect { |item|
                                  {

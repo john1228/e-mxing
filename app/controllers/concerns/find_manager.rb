@@ -43,9 +43,16 @@ module FindManager
   end
 
   def ranks
+    week_rank = Rails.cache.fetch('week')||{}
+    month_rank = Rails.cache.fetch('month')||{}
     {
-        week: get_week_rank,
-        month: get_month_rank
+        week: {
+            week: Date.today.strftime('%U').to_i,
+            items: week_rank.map { |k, v| {user: User.find_by(id: k).summary_json, likes: v} }
+        },
+        month: {
+            items: month_rank.map { |k, v| {user: User.find_by(id: k).summary_json, likes: v} }
+        }
     }
   end
 
