@@ -38,10 +38,9 @@ module Gyms
       order = @user.orders.new(order_params)
       if order.save
         #TODO: 微信支付，需要预支付
-
-
         render json: Success.new(order: {no: order.no})
       else
+        logger.info order.errors.to_json
         render json: Failure.new('购买课程失败')
       end
     end
@@ -86,13 +85,6 @@ module Gyms
 
     def order_params
       params.permit(:contact_name, :contact_phone, :coupons, :bea, :pay_type, :item)
-    end
-
-    def wx_pre_pay
-      appid = ''
-      mch_id = 1238187802 #商户号
-      nonce_str = (('a'..'z').to_a + ('A'..'Z').to_a + ('0'..'9').to_a).sample(32).join
-      sign = ''
     end
   end
 end
