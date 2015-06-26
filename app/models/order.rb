@@ -58,7 +58,7 @@ class Order < ActiveRecord::Base
     else
       self.status = STATUS[:pay]
     end
-    user.wallet.update(coupons: user_coupons.split(','), action: Wallet::ACTIONS[:pay_course])
+    user.wallet.update(coupons: (user_coupons-use_coupons), action: Wallet::ACTIONS[:pay_course])
   end
 
   def backend_task
