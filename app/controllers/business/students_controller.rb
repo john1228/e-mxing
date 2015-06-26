@@ -19,7 +19,10 @@ module Business
                        cover: (lesson.course.course_photos.first.thumb.url rescue ''),
                        type: lesson.course.type,
                        style: lesson.course.style,
-                       during: lesson.course.during
+                       during: lesson.course.during,
+                       available: lesson.available,
+                       used: lesson.used,
+                       exp: lesson.exp
                    }
                  }
              )
