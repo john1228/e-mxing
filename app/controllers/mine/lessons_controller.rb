@@ -1,36 +1,14 @@
 module Mine
   class LessonsController < BaseController
     def index
-      case params[:type] #全部
-        when '0'
+      case params[:list] #全部
+        when 'all'
           render json: Success.new(
-                     lessons: @user.appointments.joins(:course).page(params[:page]||1).map { |appointment| {
-                         id: appointment.id,
-                         course: {
-                             name: appointment.course_name,
-                             cover: appointment.course.cover,
-                             type: appointment.course.type,
-                             during: appointment.course.during,
-                             style: appointment.course.style
-                         },
-                         coach: appointment.course.coach.profile.summary_json,
-                         status: status
-                     } }
+                     lessons: @user.appointments.joins(:course).page(params[:page]||1)
                  )
-        when '1'
+        when 'waiting'
           render json: Success.new(
-                     lessons: @user.appointments.joins(:course).where(status: Appointment::STATUS[:waiting]).page(params[:page]||1).map { |appointment| {
-                         id: appointment.id,
-                         course: {
-                             name: appointment.course_name,
-                             cover: appointment.course.cover,
-                             type: appointment.course.type,
-                             during: appointment.course.during,
-                             style: appointment.course.style
-                         },
-                         coach: appointment.course.coach.profile.summary_json,
-                         status: status
-                     } }
+                     lessons: @user.appointments.joins(:course).where(status: Appointment::STATUS[:waiting]).page(params[:page]||1)
                  )
         else
           render json: Failure.new('未知到数据类型')
