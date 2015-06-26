@@ -14,7 +14,7 @@ module Business
       render json: Success.new(
                  courses: @coach.lessons.joins(:course).where(user: user).map { |lesson|
                    {
-                       id: lesson.course.id,
+                       id: lesson.id,
                        name: lesson.course.name,
                        cover: (lesson.course.course_photos.first.thumb.url rescue ''),
                        type: lesson.course.type,

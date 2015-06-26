@@ -5,8 +5,8 @@ namespace :gyms do
   desc '课程情况'
   task :courses do
     conn = Faraday.new(:url => host)
-    conn.headers[:token] = token
-    response = conn.get '/gyms/courses', mxid: 10081
+    conn.headers[:token] = '182be0c5cdcd5072bb1864cdee4d3d6e'
+    response = conn.get '/mine/lessons', list: 'all'
     puts response.body
   end
 
