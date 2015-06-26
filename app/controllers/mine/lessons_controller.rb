@@ -17,7 +17,7 @@ module Mine
 
     def confirm
       appointment = @user.appointments.find_by(id: params[:id])
-      if appointment.update(status: Appointment::STATUS[:done])
+      if appointment.update(status: Appointment::STATUS[:complete])
         render json: Success.new
       else
         render json: Failure.new(appointment.errors.map { |k, v| "#{k}:#{v}" })
