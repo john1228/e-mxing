@@ -21,7 +21,7 @@ class Appointment < ActiveRecord::Base
         user: user.profile.summary_json,
         amount: amount,
         status: status,
-        created: created_at
+        created: created_at.to_i
     }
   end
 
