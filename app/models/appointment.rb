@@ -19,7 +19,9 @@ class Appointment < ActiveRecord::Base
             during: course.during
         },
         user: user.profile.summary_json,
-        status: status
+        amount: amount,
+        status: status,
+        created: created_at
     }
   end
 
@@ -27,6 +29,7 @@ class Appointment < ActiveRecord::Base
   def confirm
     lesson.update(used: (lesson.used + 1)) if status.eql?(STATUS[:complete])
   end
+
   def notice
     #通知学员
   end

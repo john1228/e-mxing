@@ -49,10 +49,10 @@ namespace :business do
   end
 
   desc ''
-  task :setting_one do
+  task :students_course do
     conn = Faraday.new(:url => host)
-    conn.headers[:token] = token
-    response = conn.post '/business/settings/one', date: Date.today.next_day(3), address: 1, start: '9:00', end: '20:00', repeat: 1
+    conn.headers[:token] = '3c59dc048e8850243be8079a5c74d079'
+    response = conn.get '/business/students/courses', student: 10033
     puts response.body
   end
 
