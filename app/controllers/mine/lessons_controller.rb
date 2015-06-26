@@ -11,7 +11,7 @@ module Mine
                      lessons: @user.appointments.joins(:course).where(status: Appointment::STATUS[:waiting]).page(params[:page]||1)
                  )
         else
-          render json: Failure.new('未知到数据类型')
+          render json: Failure.new(lessons: [])
       end
     end
 
