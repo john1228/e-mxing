@@ -13,7 +13,7 @@ class Appointment < ActiveRecord::Base
         course: {
             id: course.id,
             name: course.name,
-            cover: (course.course_photos.first.thumb.url rescue ''),
+            cover: (course.course_photos.first.photo.thumb.url rescue ''),
             type: course.type,
             style: course.style,
             during: course.during

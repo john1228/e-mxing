@@ -16,11 +16,12 @@ module Business
                    {
                        id: lesson.id,
                        name: lesson.course.name,
-                       cover: (lesson.course.course_photos.first.thumb.url rescue ''),
+                       cover: (lesson.course.course_photos.first.photo.thumb.url rescue ''),
                        type: lesson.course.type,
                        style: lesson.course.style,
                        during: lesson.course.during,
                        available: lesson.available,
+                       using: lesson.appointments.where(status: Appointment::STATUS[:waiting]).sum(:amount),
                        used: lesson.used,
                        exp: lesson.exp
                    }
