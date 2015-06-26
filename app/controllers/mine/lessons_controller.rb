@@ -5,6 +5,7 @@ module Mine
         when '0'
           render json: Success.new(
                      lessons: @user.appointments.joins(:course).page(params[:page]||1).map { |appointment| {
+                         id: appointment.id,
                          course: {
                              name: appointment.course_name,
                              cover: appointment.course.cover,
@@ -13,32 +14,23 @@ module Mine
                              style: appointment.course.style
                          },
                          coach: appointment.course.coach.profile.summary_json,
-                         appointment: {
-                             id: appointment.id,
-                             date: appointment.date,
-                             start: appointment.start_time,
-                             classes: appointment.classes,
-                             address: appointment.address,
-                             status: appointment.status_tag
-                         }
+                         status: status
                      } }
                  )
         when '1'
           render json: Success.new(
-                     lessons: @user.lessons.joins('LEFT JOIN courses on courses.id=lessons.course_id').where('available > used').page(params[:page]||1).collect { |lesson|
-                       {
-                           course: {
-                               name: lesson.course.name,
-                               type: lesson.course.type,
-                               cover: lesson.course.cover,
-                               during: lesson.course.during,
-                               style: lesson.course.style
-                           },
-                           coach: lesson.course.coach.profile.summary_json,
-                           available: (lesson.available-lesson.used),
-                           exp: lesson.exp
-                       }
-                     }
+                     lessons: @user.appointments.joins(:course).where(status: Appointment::STATUS[:waiting]).page(params[:page]||1).map { |appointment| {
+                         id: appointment.id,
+                         course: {
+                             name: appointment.course_name,
+                             cover: appointment.course.cover,
+                             type: appointment.course.type,
+                             during: appointment.course.during,
+                             style: appointment.course.style
+                         },
+                         coach: appointment.course.coach.profile.summary_json,
+                         status: status
+                     } }
                  )
         else
           render json: Failure.new('未知到数据类型')
