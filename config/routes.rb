@@ -69,6 +69,7 @@ Rails.application.routes.draw do
   get 'deploy/icon' => 'deploy#icon'
   get 'deploy/banner' => 'deploy#banner'
   get 'deploy/json' => 'deploy#json'
+  get 'deploy/service' => 'deploy#service'
   #系统接口
   post 'feedback' => 'system#feedback'
   post 'report' => 'system#report'

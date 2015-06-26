@@ -1,10 +1,10 @@
 module Mine
   class LessonsController < BaseController
     def index
-      case params[:type] #0-预约课时 1-未约课时 2-过期课时
+      case params[:type] #全部
         when '0'
           render json: Success.new(
-                     lessons: @user.appointments.joins('LEFT JOIN courses on courses.id = appointments.course_id').page(params[:page]||1).collect { |appointment| {
+                     lessons: @user.appointments.joins(:course).page(params[:page]||1).map { |appointment| {
                          course: {
                              name: appointment.course_name,
                              cover: appointment.course.cover,
@@ -40,23 +40,6 @@ module Mine
                        }
                      }
                  )
-        when '2'
-          render json: Success.new(
-                     lessons: @user.lessons.joins('LEFT JOIN courses on courses.id=lessons.course_id').where('lessons.exp<?', Date.today).page(params[:page]||1).collect { |lesson|
-                       {
-                           course: {
-                               name: lesson.course.name,
-                               type: lesson.course.type,
-                               cover: lesson.course.cover,
-                               during: lesson.course.during,
-                               style: lesson.course.style
-                           },
-                           coach: lesson.course.coach.profile.summary_json,
-                           available: (lesson.available-lesson.used),
-                           exp: lesson.exp
-                       }
-                     }
-                 )
         else
           render json: Failure.new('未知到数据类型')
       end
@@ -67,7 +50,7 @@ module Mine
       if appointment.update(status: Appointment::STATUS[:done])
         render json: Success.new
       else
-        render json: Failure.new('确认完成上课失败')
+        render json: Failure.new(appointment.errors.map { |k, v| "#{k}:#{v}" })
       end
     end
 
