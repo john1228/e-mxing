@@ -56,7 +56,7 @@ ActiveAdmin.register Service do
       row('美型号') { service.profile_mxid }
       row('昵称') { service.profile_name }
       row('头像') { image_tag(service.profile_avatar.thumb.url, height: 70) }
-      row('签名') { service.profile_signature }
+      row('签名') { truncate(service.profile_signature) }
       row('服务') { service.profile_interests_string }
     end
   end
