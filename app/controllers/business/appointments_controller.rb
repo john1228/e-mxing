@@ -16,14 +16,14 @@ module Business
         user = User.find_by_mxid(params[:user])
         lesson = user.lessons.find_by(id: params[:lesson], coach: @coach)
         remain = lesson.available - lesson.used
-        using = Appointment.(user: user, coach: @coach, lesson: lesson).sum(:amount)
+        using = Appointment.where(user: user, coach: @coach, lesson: lesson).sum(:amount)
         amount = params[:amount].to_i
         if (remain - using) >= amount
           appointment = Appointment.new(user: user, coach: @coach, lesson: lesson, course: lesson.course, amount: params[:amount])
           if appointment.save
             render json: Success.new
           else
-            render json: Failure.new(appointment.errors.map { |k, v| "#{k}:#{v}" }.join('/n'))
+            render json: Failure.new(appointment.errors.map { |k, v| "#{k}:#{v}" })
           end
         else
           render json: Failure.new('该学员剩余到课程不足')
