@@ -4,6 +4,7 @@ class ChangeAppointment < ActiveRecord::Migration
       t.references :coach
       t.references :user
       t.references :course
+      t.references :lesson
       t.integer :amount
       t.integer :status, defaulut: 0
       t.timestamps null: false
