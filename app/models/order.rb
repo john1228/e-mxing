@@ -49,6 +49,7 @@ class Order < ActiveRecord::Base
         return false if coupon.min >= total_price
         total_price -= coupon.discount
       }
+      user.wallet.update(coupons: (user_coupons-use_coupons), action: Wallet::ACTIONS[:pay_course])
     end
     #TODO:美型豆使用
     self.coach = course.coach
@@ -58,7 +59,6 @@ class Order < ActiveRecord::Base
     else
       self.status = STATUS[:pay]
     end
-    user.wallet.update(coupons: (user_coupons-use_coupons), action: Wallet::ACTIONS[:pay_course])
   end
 
   def backend_task

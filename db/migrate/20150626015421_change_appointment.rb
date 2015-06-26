@@ -6,7 +6,7 @@ class ChangeAppointment < ActiveRecord::Migration
       t.references :course
       t.references :lesson
       t.integer :amount
-      t.integer :status, defaulut: 0
+      t.integer :status, default: 0
       t.timestamps null: false
     end
   end
