@@ -1,7 +1,6 @@
 class ChangeAppointment < ActiveRecord::Migration
   def change
-    # drop_table :appointments
-    create_table :appointments do |t|
+    create_table :appointments, force: true do |t|
       t.references :coach
       t.references :user
       t.references :course
