@@ -1,7 +1,10 @@
 class Like < ActiveRecord::Base
   before_save :within_month
+
+
   DYNAMIC = 1
   PERSON = 2
+
 
   private
   def within_month

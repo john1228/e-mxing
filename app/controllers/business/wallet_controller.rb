@@ -13,7 +13,7 @@ module Business
       render json: Success.new(detail: @coach.wallet.wallet_logs.where.not(balance: 0).page(params[:page]||1).map { |log|
                                  {
                                      id: log.id,
-                                     action: log.action,
+                                     action: log.action_name,
                                      balance: log.balance.abs,
                                      created: log.created_at.to_i
                                  }
