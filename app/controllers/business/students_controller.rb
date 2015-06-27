@@ -12,7 +12,7 @@ module Business
     def courses
       user = User.find_by_mxid(params[:student])
       render json: Success.new(
-                 courses: @coach.lessons.joins(:course).where(user: user).map { |lesson|
+                 courses: @coach.lessons.joins(:course).where('lessons.available > lessons.used and lessons.user_id = ?', user.id).map { |lesson|
                    {
                        id: lesson.id,
                        name: lesson.course.name,
