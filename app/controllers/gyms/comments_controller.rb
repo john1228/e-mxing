@@ -6,7 +6,7 @@ module Gyms
       case params[:list]
         when 'coach'
           coach = Coach.find_by_mxid(params[:mxid])
-          comments = Comment.where(course_id: coach.id)
+          comments = Comment.where(course_id: coach.courses.pluck(:id))
           if (params[:page]||1).to_i.eql?(1)
             comment = comment.merge(count: comments.count, items: comments.page(1))
           else
