@@ -21,7 +21,6 @@ module Business
                        style: lesson.course.style,
                        during: lesson.course.during,
                        available: lesson.available,
-                       using: lesson.appointments.where(status: Appointment::STATUS[:waiting]).sum(:amount),
                        used: lesson.used,
                        exp: lesson.exp
                    }

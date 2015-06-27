@@ -4,7 +4,7 @@ module Business
       case params[:list]
         when 'all'
           render json: Success.new(appointments: @coach.appointments.page(params[:page]))
-        when ''
+        when 'waiting'
           render json: Success.new(appointments: @coach.appointments.where(status: Appointment::STATUS[:waiting]))
         else
           render json: Success.new(appoinments: [])

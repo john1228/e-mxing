@@ -6,13 +6,19 @@ module ProfileAble
   private
   def regist_to_easemob
     easemob_token = Rails.cache.fetch(:easemob_token)||init_easemob_token
-    result =Faraday.post do |req|
+    Faraday.post do |req|
       req.url 'https://a1.easemob.com/jsnetwork/mxing/users'
       req.headers['Content-Type'] = 'application/json'
       req.headers['Authorization'] = "Bearer #{easemob_token}"
       req.body = "{\"username\": \"#{mxid}\", \"password\": \"123456\", \"nickname\": \"#{name}\"}"
     end
-    puts result.body
+
+    Faraday.post do |req|
+      req.url 'https://a1.easemob.com/jsnetwork/mxing/messages'
+      req.headers['Content-Type'] = 'application/json'
+      req.headers['Authorization'] = "Bearer #{easemob_token}"
+      req.body ={target_type: 'users', target: ['mxid'], msg: {type: 'txt', msg: '欢迎加入美型'}}.to_json.to_s
+    end
   end
 
   def init_easemob_token

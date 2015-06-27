@@ -2,7 +2,7 @@ ActiveAdmin.register Service do
   menu label: '服务号', priority: 2
 
   permit_params :identity, :name, :mobile, :password, :avatar, :signature, :address, :hobby
-  filter :profile_name, label: '昵称', as: :string
+  filter :profile_name, label: '名称', as: :string
   before_action :adjust, only: [:create, :update]
 
   controller do
@@ -26,6 +26,9 @@ ActiveAdmin.register Service do
     column '健身服务' do |service|
       truncate(service.profile_interests_string)
     end
+    column '服务号介绍' do |service|
+      truncate(service.profile_signature)
+    end
     actions
   end
 
@@ -48,6 +51,9 @@ ActiveAdmin.register Service do
           end
         end
       end
+      panel '报表' do
+
+      end
     end
   end
 
@@ -56,7 +62,7 @@ ActiveAdmin.register Service do
       row('美型号') { service.profile_mxid }
       row('昵称') { service.profile_name }
       row('头像') { image_tag(service.profile_avatar.thumb.url, height: 70) }
-      row('签名') { truncate(service.profile_signature) }
+      row('介绍') { truncate(service.profile_signature) }
       row('服务') { service.profile_interests_string }
     end
   end

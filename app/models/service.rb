@@ -28,8 +28,8 @@ class Service<User
 
   def gcj_02(bd_lng, bd_lat)
     x, y = bd_lng - 0.0065, bd_lat - 0.006
-    z = sqrt(x * x + y * y) - 0.00002 * sin(y * Math::PI)
-    theta = atan2(y, x) - 0.000003 * cos(x * Math::PI)
-    "POINT(#{z * cos(theta)} #{z * sin(theta)})"
+    z = Math.sqrt(x * x + y * y) - 0.00002 * Math.sin(y * Math::PI)
+    theta = Math.atan2(y, x) - 0.000003 * Math.cos(x * Math::PI)
+    "POINT(#{z * Math.cos(theta)} #{z * Math.sin(theta)})"
   end
 end
