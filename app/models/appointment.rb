@@ -4,7 +4,7 @@ class Appointment < ActiveRecord::Base
   belongs_to :course
   belongs_to :lesson
   STATUS = {cancel: -1, waiting: 0, complete: 1, done: 2}
-  after_update :confirm
+  after_save :backend
   after_create :notice
 
   def as_json
