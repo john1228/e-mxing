@@ -38,6 +38,14 @@
           <%= f.select(:hobby, INTERESTS['items'].map { |item| [item['name'], item['id']] }, {selected: (f.object.profile_interests.split(',') rescue []), include_blank: false}, {multiple: true}) %>
         </div>
       </div>
+
+      <div class="form-group form-group-sm">
+        <label class="col-sm-2 control-label" for="service_address">联系电话</label>
+
+        <div class="col-sm-10">
+          <%= f.text_field :address, class: 'form-control', placeholder: '请输入联系电话', value: (f.object.mobile) %>
+        </div>
+      </div>
     </fieldset>
     <%= f.submit('提交') %>
 <% end %>

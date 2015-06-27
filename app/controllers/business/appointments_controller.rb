@@ -5,7 +5,7 @@ module Business
         when 'all'
           render json: Success.new(appointments: @coach.appointments.page(params[:page]))
         when 'waiting'
-          render json: Success.new(appointments: @coach.appointments.where(status: Appointment::STATUS[:waiting]))
+          render json: Success.new(appointments: @coach.appointments.where(status: Appointment::STATUS[:waiting])).page(params[:page])
         else
           render json: Success.new(appoinments: [])
       end
