@@ -5,6 +5,6 @@ class Check < ActiveRecord::Base
   private
   def polite
     #TODO 现在没有连续签到奖励
-    user.wallet.update(bean: (user.wallet.bean + 5), action: 13)
+    user.wallet.update(bean: (user.wallet.bean + 5), action: WalletLog::ACTIONS['签到'])
   end
 end

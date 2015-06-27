@@ -13,7 +13,7 @@ module Callback
       course = order.order_items.first.course
       unless course.guarantee.eql?(Course::GUARANTEE)
         coach = course.coach
-        coach.wallet.update(balance: (coach.wallet.balance+BigDecimal(pay_amount)), action: Wallet::ACTIONS[:buy_course])
+        coach.wallet.update(balance: (coach.wallet.balance+BigDecimal(pay_amount)), action: WalletLog::ACTIONS['消费'])
       end
       render text: 'success'
     end

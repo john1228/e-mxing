@@ -3,8 +3,6 @@ class Wallet < ActiveRecord::Base
   has_many :wallet_logs
   attr_accessor :action
   after_update :create_wallet_log
-  #action 以1开头为增加 以2开头的为减少
-  ACTIONS = {buy_course: 1, check: 10, order_cancel: 11, pay_course: 2}
 
   def as_json
     {
