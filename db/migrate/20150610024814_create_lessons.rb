@@ -7,6 +7,8 @@ class CreateLessons < ActiveRecord::Migration
       t.references :course
       t.integer :available #可用课时
       t.integer :used #已用课时
+      t.string :contact_name
+      t.string :contact_phone
       t.date :exp
     end
   end
