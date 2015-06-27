@@ -27,7 +27,7 @@ class Appointment < ActiveRecord::Base
 
   private
   def confirm
-    lesson.update(used: (lesson.used + 1)) if status.eql?(STATUS[:complete])
+    lesson.update(used: (lesson.used + 1)) if status.eql?(STATUS[:waiting])
     lesson.update(used: (lesson.used - 1)) if status.eql?(STATUS[:cancel])
   end
 
