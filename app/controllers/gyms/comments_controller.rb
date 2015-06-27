@@ -10,14 +10,14 @@ module Gyms
           if (params[:page]||1).to_i.eql?(1)
             comment = comment.merge(count: comments.count, items: comments.page(1))
           else
-            comment = comment.merge(items: comments.page(1))
+            comment = comment.merge(items: comments.page(params[:page]||1))
           end
         when 'course'
           comments = Comment.where(course_id: params[:id])
           if (params[:page]||1).to_i.eql?(1)
             comment = comment.merge(count: comments.count, items: comments.page(1))
           else
-            comment = comment.merge(items: comments.page(1))
+            comment = comment.merge(items: comments.page(params[:page]||1))
           end
         else
           comment = comment.merge(count: 0, items: [])
