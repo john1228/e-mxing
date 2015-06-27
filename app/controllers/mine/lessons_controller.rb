@@ -17,7 +17,7 @@ module Mine
 
     def confirm
       appointment = @user.appointments.find_by(id: params[:id])
-      if appointment.update(status: Appointment::STATUS[:complete])
+      if appointment.update(status: Appointment::STATUS[:confirm])
         render json: Success.new
       else
         render json: Failure.new(appointment.errors.map { |k, v| "#{k}:#{v}" })
@@ -25,20 +25,25 @@ module Mine
     end
 
     def comment
-      # appointment = Appointment.find_by(id: params[:id], status: Appointment::STATUS[:done])
-      # if appointment.blank?
-      #   render json: Failure.new('未完成到课时，不能评论')
-      # else
-      course = Course.first
-      comment = Comment.new(comment_params.merge(course: course, user: @user))
-      (0..8).map { |index| comment.comment_images.build(image: params[index.to_s.to_sym]) unless params[index.to_s.to_sym].blank? }
-      if comment.save
-        #appointment.update(status: Appointment::STATUS[:complete])
-        render json: Success.new
+      appointment = Appointment.find_by(id: params[:id], status: Appointment::STATUS[:confirm])
+      if appointment.blank?
+        render json: Failure.new('未完成到课时，不能评论')
       else
-        render json: Failure.new('评论失败')
+        course = appointment.course
+        comment = Comment.new(comment_params.merge(course: course, user: @user))
+        (0..8).map { |index| comment.comment_images.build(image: params[index.to_s.to_sym]) unless params[index.to_s.to_sym].blank? }
+        if comment.save
+          appointment.update(status: Appointment::STATUS[:finish])
+          render json: Success.new
+        else
+          render json: Failure.new('评论失败')
+        end
       end
-      #end
+    end
+
+    private
+    def comment_params
+      params.permit(:content, :prof, :comm, :punc, :space)
     end
   end
 end

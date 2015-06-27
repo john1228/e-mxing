@@ -6,7 +6,7 @@ class Appointment < ActiveRecord::Base
 
   after_save :backend
   after_create :notice
-  STATUS = {cancel: -1, waiting: 0, complete: 1, done: 2}
+  STATUS = {cancel: -1, waiting: 0, confirm: 1, finish: 2}
 
   def as_json
     {

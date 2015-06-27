@@ -51,7 +51,7 @@ ActiveAdmin.register Service do
           end
         end
       end
-      panel '报表' do
+      panel '订单情况' do
 
       end
     end

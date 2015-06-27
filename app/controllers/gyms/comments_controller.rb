@@ -22,7 +22,7 @@ module Gyms
         else
           comment = comment.merge(count: 0, items: [])
       end
-      render json: Success.new(comment)
+      render json: Success.new(comments: comment)
     end
   end
 end
