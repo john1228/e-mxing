@@ -17,9 +17,8 @@ module Business
         user = User.find_by_mxid(params[:user])
         lesson = user.lessons.find_by(id: params[:lesson], coach: @coach)
         remain = lesson.available - lesson.used
-        using = Appointment.where(user: user, coach: @coach, lesson: lesson).sum(:amount)
         amount = params[:amount].to_i
-        if (remain - using) >= amount
+        if remain>= amount
           appointment = Appointment.new(user: user, coach: @coach, lesson: lesson, course: lesson.course, amount: params[:amount])
           if appointment.save
             render json: Success.new
