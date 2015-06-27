@@ -28,8 +28,8 @@ class Appointment < ActiveRecord::Base
 
   private
   def backend
-    lesson.update(used: (lesson.used + 1)) if status.eql?(STATUS[:waiting])
-    lesson.update(used: (lesson.used - 1)) if status.eql?(STATUS[:cancel])
+    lesson.update(used: (lesson.used + amount)) if status.eql?(STATUS[:waiting])
+    lesson.update(used: (lesson.used - amount)) if status.eql?(STATUS[:cancel])
   end
 
   def notice
