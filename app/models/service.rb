@@ -8,7 +8,6 @@ class Service<User
 
   has_many :coaches, through: :service_members, dependent: :destroy
   alias_attribute :service_id, :id
-
   private
   def location
     if address.present?

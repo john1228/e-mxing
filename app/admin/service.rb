@@ -43,8 +43,12 @@ ActiveAdmin.register Service do
     columns do
       column do
         render partial: 'order', locals: {
-                                   d1: (0..10).map { |index| [index, rand(100)] },
-                                   d2: (0..10).map { |index| [index, rand(100)] },
+                                   coaches: (0...service.coaches.count).map { |index|
+                                     [index, service.coaches[index].profile.name]
+                                   },
+                                   orders: (0...service.coaches.count).map { |index|
+                                     [index, service.coaches[index].orders.count]
+                                   }
                                }
       end
       column do

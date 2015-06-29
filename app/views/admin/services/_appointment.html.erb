@@ -13,8 +13,7 @@
                 [2, 125],
                 [3, 160],
                 [4, 95]
-            ],
-            label: "Series 1"
+            ]
         },
             {
                 data: [
@@ -23,8 +22,7 @@
                     [2, 20],
                     [3, 35],
                     [4, 35]
-                ],
-                label: "Series 2"
+                ]
             }, {
                 data: [
                     [0, 55],
@@ -32,18 +30,36 @@
                     [2, 60],
                     [3, 10],
                     [4, 20]
-                ],
-                label: "Series 3"
+                ]
             }];
 
         function plotWithOptions() {
             $.plot("#appointment", series, {
+                xaxis: {
+                    minTickSize: 0.1
+                },
                 series: {
                     stack: true,
                     bars: {
                         show: true,
                         barWidth: 0.5
                     }
+                },
+                tooltip: true,
+                tooltipOpts: {
+                    id: "chart-tooltip",
+                    content: "<p><b>20</b> Outgoing Filings</p>" +
+                    "<p>Out of <b>10</b> committed;</p>" +
+                    "<br />" +
+                    "<p><b>30%</b>% Ratio</p>",
+                    shifts: {
+                        x: -74,
+                        y: -125
+                    },
+                    lines: {
+                        track: true
+                    },
+                    compat: true
                 }
             });
         }
