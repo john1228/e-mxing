@@ -25,7 +25,6 @@ ActiveAdmin.register Coach do
           td link_to('课程', admin_coach_courses_path(coach), class: :button)
           td link_to('照片墙', admin_coach_coach_photos_path(coach), class: :button)
           td link_to('动  态', admin_coach_coach_dynamics_path(coach), class: :button)
-          td link_to('运动轨迹', admin_coach_coach_tracks_path(coach), class: :button)
         end
       end
     end
