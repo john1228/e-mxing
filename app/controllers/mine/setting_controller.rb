@@ -1,7 +1,7 @@
 module Mine
   class SettingController < BaseController
     def update
-      setting = Setting.find_or_create(user: @user)
+      setting = Setting.find_or_create_by(user: @user)
       if setting.update(stealth: params[:stealth])
         render json: Success.new
       else
