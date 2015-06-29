@@ -78,7 +78,7 @@ module FindManager
       when 'price-desc'
         results = CourseAbstract.where(filter).order(course_price: :desc)
       when 'distance-asc'
-        results = CourseAbstract.select("st_distance(course_abstracts.coordinate, 'POINT(121 31)') distance,course_id").where("st_dwithin(course_abstracts.coordinate, 'POINT(121 31)',150000) and #{filter}").order('distance asc').page(params[:page]||1)
+        results = CourseAbstract.select("st_distance(course_abstracts.coordinate, 'POINT(#{params[:lng]} #{params[:lat]})') distance,course_id").where("st_dwithin(course_abstracts.coordinate, 'POINT(#{params[:lng]} #{params[:lat]})',150000) and #{filter}").order('distance asc').page(params[:page]||1)
       when 'sale-desc'
         results = CourseAbstract.all
       else

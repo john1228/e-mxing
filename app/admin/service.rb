@@ -43,8 +43,8 @@ ActiveAdmin.register Service do
     columns do
       column do
         render partial: 'order', locals: {
-                                   n: service.coaches,
-                                   g: service.coaches,
+                                   d1: (0..10).map { |index| [index, rand(100)] },
+                                   d2: (0..10).map { |index| [index, rand(100)] },
                                }
       end
       column do

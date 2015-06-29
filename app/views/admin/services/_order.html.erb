@@ -6,19 +6,10 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        var d1 = [];
-        for (var i = 0; i <= 10; i += 1) {
-            d1.push([(Math.random() * 20).toString(), parseInt(Math.random() * 20)]);
-        }
-
-        var d2 = [];
-        for (var i = 0; i <= 10; i += 1) {
-            d2.push([(Math.random() * 20).toString(), parseInt(Math.random() * 20)]);
-        }
         var stack = 0, bars = false, lines = false, steps = false;
 
         function plotWithOptions() {
-            $.plot("#placeholder", [d1, d2], {
+            $.plot("#placeholder", [<%=d1%>, <%=d2%>], {
                 series: {
                     stack: stack,
                     lines: {

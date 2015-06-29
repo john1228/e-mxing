@@ -188,8 +188,11 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/profile/thumb_2015/04/13/69a967d4-9c11-4da6-8b6b-17be3c731773.jpg" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/profile/thumb_2015/04/13/bd9aae27-06f0-46ac-93c0-004ff0b0900d.jpg" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/profile/thumb_2015/06/01/3df5d85a-c35a-4fc4-89d0-86ae82286c07.jpg" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/order.rb" afterPath="$PROJECT_DIR$/app/models/order.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/admin/services/_order.html.erb" afterPath="$PROJECT_DIR$/app/views/admin/services/_order.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/concerned.rb" afterPath="$PROJECT_DIR$/app/models/concerned.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/concerns/find_manager.rb" afterPath="$PROJECT_DIR$/app/controllers/concerns/find_manager.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/.idea/photo.iml" afterPath="$PROJECT_DIR$/../photo/.idea/photo.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/admin/service.rb" afterPath="$PROJECT_DIR$/app/admin/service.rb" />
     </list>
     <ignored path="mxing.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -236,36 +239,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="20150629021326_create_settings.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/db/migrate/20150629021326_create_settings.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="306">
-              <caret line="4" column="24" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="20150521015221_create_courses.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/db/migrate/20150521015221_create_courses.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="594">
-              <caret line="22" column="33" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="setting_controller.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/mine/setting_controller.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="306">
-              <caret line="5" column="32" selection-start-line="5" selection-start-column="32" selection-end-line="5" selection-end-column="32" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="comments_controller.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/gyms/comments_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
@@ -279,18 +252,38 @@
       <file leaf-file-name="find_manager.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/concerns/find_manager.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1242" max-vertical-offset="2412">
-              <caret line="100" column="42" selection-start-line="100" selection-start-column="42" selection-end-line="100" selection-end-column="42" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2412">
+              <caret line="74" column="22" selection-start-line="74" selection-start-column="22" selection-end-line="74" selection-end-column="22" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="system_controller.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/system_controller.rb">
+      <file leaf-file-name="concerned.rb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/models/concerned.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="612">
-              <caret line="20" column="5" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.02631579" vertical-offset="0" max-vertical-offset="684">
+              <caret line="1" column="52" selection-start-line="1" selection-start-column="52" selection-end-line="1" selection-end-column="52" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="associations.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../local/rvm/gems/ruby-2.1.4/gems/activerecord-4.2.1/lib/active_record/associations.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-3.6607144" vertical-offset="6203" max-vertical-offset="31158">
+              <caret line="356" column="13" selection-start-line="356" selection-start-column="12" selection-end-line="356" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="like_controller.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/like_controller.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="468">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -309,28 +302,40 @@
       <file leaf-file-name="_order.html.erb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/admin/services/_order.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.3333335" vertical-offset="108" max-vertical-offset="828">
-              <caret line="17" column="35" selection-start-line="17" selection-start-column="35" selection-end-line="17" selection-end-column="35" />
-              <folding />
+            <state vertical-scroll-proportion="-7.3333335" vertical-offset="0" max-vertical-offset="666">
+              <caret line="11" column="48" selection-start-line="11" selection-start-column="48" selection-end-line="11" selection-end-column="48" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="courses_controller.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/business/courses_controller.rb">
+      <file leaf-file-name="service.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/admin/service.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1512">
-              <caret line="27" column="61" selection-start-line="27" selection-start-column="61" selection-end-line="27" selection-end-column="61" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="1818">
+              <caret line="46" column="37" selection-start-line="46" selection-start-column="37" selection-end-line="46" selection-end-column="37" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="order.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="order.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/order.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7585693" vertical-offset="715" max-vertical-offset="1386">
+            <state vertical-scroll-proportion="0.0" vertical-offset="715" max-vertical-offset="1386">
               <caret line="68" column="183" selection-start-line="68" selection-start-column="183" selection-end-line="68" selection-end-column="183" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="addresses_controller.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/business/addresses_controller.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="468">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -381,11 +386,9 @@
         <option value="$PROJECT_DIR$/app/assets/stylesheets/active_admin.css.scss" />
         <option value="$PROJECT_DIR$/app/views/admin/services/_appointment.html.erb" />
         <option value="$PROJECT_DIR$/app/models/like.rb" />
-        <option value="$PROJECT_DIR$/app/admin/service.rb" />
         <option value="$PROJECT_DIR$/app/controllers/mine/lessons_controller.rb" />
         <option value="$PROJECT_DIR$/app/models/user.rb" />
         <option value="$PROJECT_DIR$/app/models/setting.rb" />
-        <option value="$PROJECT_DIR$/app/models/concerned.rb" />
         <option value="$PROJECT_DIR$/app/models/order_item.rb" />
         <option value="$PROJECT_DIR$/app/models/course.rb" />
         <option value="$PROJECT_DIR$/app/controllers/gyms/courses_controller.rb" />
@@ -393,11 +396,13 @@
         <option value="$PROJECT_DIR$/db/migrate/20150629021326_create_settings.rb" />
         <option value="$PROJECT_DIR$/app/controllers/system_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/mine/setting_controller.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/concerns/find_manager.rb" />
         <option value="$PROJECT_DIR$/config/routes.rb" />
-        <option value="$PROJECT_DIR$/app/views/admin/services/_order.html.erb" />
         <option value="$PROJECT_DIR$/app/controllers/business/courses_controller.rb" />
         <option value="$PROJECT_DIR$/app/models/order.rb" />
+        <option value="$PROJECT_DIR$/app/admin/service.rb" />
+        <option value="$PROJECT_DIR$/app/views/admin/services/_order.html.erb" />
+        <option value="$PROJECT_DIR$/app/controllers/concerns/find_manager.rb" />
+        <option value="$PROJECT_DIR$/app/models/concerned.rb" />
       </list>
     </option>
   </component>
@@ -2463,38 +2468,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/models/banner.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="684">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../local/rvm/gems/ruby-2.1.4/gems/activerecord-4.2.1/lib/active_record/associations.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="26903" max-vertical-offset="31158">
-          <caret line="1513" column="10" selection-start-line="1513" selection-start-column="10" selection-end-line="1513" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/gyms/base_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="684">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/check.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="288">
-          <caret line="7" column="61" selection-start-line="7" selection-start-column="61" selection-end-line="7" selection-end-column="85" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/activities_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="792">
@@ -2702,7 +2675,7 @@
         <state vertical-scroll-proportion="-22.518518" vertical-offset="166" max-vertical-offset="882">
           <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2719,14 +2692,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="792">
           <caret line="8" column="2" selection-start-line="8" selection-start-column="2" selection-end-line="8" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/admin/service.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="414" max-vertical-offset="1818">
-          <caret line="53" column="38" selection-start-line="53" selection-start-column="38" selection-end-line="53" selection-end-column="38" />
           <folding />
         </state>
       </provider>
@@ -2751,14 +2716,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="414">
           <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/concerned.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="198">
-          <caret line="1" column="16" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
           <folding />
         </state>
       </provider>
@@ -2827,18 +2784,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/gyms/comments_controller.rb">
+    <entry file="file://$PROJECT_DIR$/app/controllers/business/courses_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="612">
-          <caret line="19" column="73" selection-start-line="19" selection-start-column="73" selection-end-line="19" selection-end-column="73" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1512">
+          <caret line="27" column="61" selection-start-line="27" selection-start-column="61" selection-end-line="27" selection-end-column="61" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/concerns/find_manager.rb">
+    <entry file="file://$PROJECT_DIR$/app/models/order.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1242" max-vertical-offset="2412">
-          <caret line="100" column="42" selection-start-line="100" selection-start-column="42" selection-end-line="100" selection-end-column="42" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="715" max-vertical-offset="1386">
+          <caret line="68" column="183" selection-start-line="68" selection-start-column="183" selection-end-line="68" selection-end-column="183" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/business/students_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.61698955" vertical-offset="0" max-vertical-offset="671">
+          <caret line="23" column="41" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/business/addresses_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="684">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -2851,26 +2824,60 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/gyms/comments_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="612">
+          <caret line="19" column="73" selection-start-line="19" selection-start-column="73" selection-end-line="19" selection-end-column="73" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/admin/services/_order.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.3333335" vertical-offset="108" max-vertical-offset="828">
-          <caret line="17" column="35" selection-start-line="17" selection-start-column="35" selection-end-line="17" selection-end-column="35" />
+        <state vertical-scroll-proportion="-7.3333335" vertical-offset="0" max-vertical-offset="666">
+          <caret line="11" column="48" selection-start-line="11" selection-start-column="48" selection-end-line="11" selection-end-column="48" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/admin/service.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="1818">
+          <caret line="46" column="37" selection-start-line="46" selection-start-column="37" selection-end-line="46" selection-end-column="37" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/business/courses_controller.rb">
+    <entry file="file://$PROJECT_DIR$/app/controllers/like_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1512">
-          <caret line="27" column="61" selection-start-line="27" selection-start-column="61" selection-end-line="27" selection-end-column="61" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="684">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/order.rb">
+    <entry file="file://$PROJECT_DIR$/../../local/rvm/gems/ruby-2.1.4/gems/activerecord-4.2.1/lib/active_record/associations.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7585693" vertical-offset="715" max-vertical-offset="1386">
-          <caret line="68" column="183" selection-start-line="68" selection-start-column="183" selection-end-line="68" selection-end-column="183" />
+        <state vertical-scroll-proportion="-3.6607144" vertical-offset="6203" max-vertical-offset="31158">
+          <caret line="356" column="13" selection-start-line="356" selection-start-column="12" selection-end-line="356" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/concerns/find_manager.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="864" max-vertical-offset="2412">
+          <caret line="74" column="22" selection-start-line="74" selection-start-column="22" selection-end-line="74" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/concerned.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.02631579" vertical-offset="0" max-vertical-offset="684">
+          <caret line="1" column="52" selection-start-line="1" selection-start-column="52" selection-end-line="1" selection-end-column="52" />
           <folding />
         </state>
       </provider>
