@@ -1,0 +1,43 @@
+﻿<div class="panel">
+  <h3>订单情况</h3>
+
+  <div class="panel_contents" id="placeholder" style="min-height: 400px">﻿</div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var d1 = [];
+        for (var i = 0; i <= 10; i += 1) {
+            d1.push([i, parseInt(Math.random() * 30)]);
+        }
+
+        var d2 = [];
+        for (var i = 0; i <= 10; i += 1) {
+            d2.push([i, parseInt(Math.random() * 30)]);
+        }
+        var stack = 0,
+                bars = true,
+                lines = false,
+                steps = false;
+
+        function plotWithOptions() {
+            $.plot("#placeholder", [d1, d2], {
+                series: {
+                    stack: stack,
+                    lines: {
+                        show: lines,
+                        fill: true,
+                        steps: steps
+                    },
+                    bars: {
+                        show: bars,
+                        barWidth: 0.6
+                    }
+                }
+            });
+        }
+
+        plotWithOptions();
+    });
+</script>
+

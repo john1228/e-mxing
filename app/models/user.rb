@@ -22,6 +22,8 @@ class User < ActiveRecord::Base
   has_many :lessons, dependent: :destroy
   has_many :concerneds, dependent: :destroy
 
+  has_one :setting, dependent: :destroy
+
 
   validates_uniqueness_of :sns, conditions: -> { where.not(sns: nil) }
   validates_uniqueness_of :mobile, conditions: -> { where.not(mobile: nil) }

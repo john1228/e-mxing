@@ -40,41 +40,54 @@ ActiveAdmin.register Service do
   end
 
   show do
-    div do
-      panel '资源' do
-        table style: 'width: 100%' do
-          tr do
-            td link_to('照片墙', admin_service_service_photos_path(service), class: :button)
-            td link_to('动  态', admin_service_service_dynamics_path(service), class: :button)
-            td link_to('旗下私教', admin_service_service_members_path(service), class: :button)
-            td link_to('聊天', chat_with_service_path(service), class: :button)
-          end
-        end
+    columns do
+      column do
+        render partial: 'order', locals: {
+                                   n: service.coaches,
+                                   g: service.coaches,
+                               }
       end
-      panel '订单情况' do
+      column do
+        render partial: 'appointment', locals: {
+                                         n: service.coaches,
+                                         g: service.coaches,
+                                     }
+      end
 
+    end
+  end
+
+  sidebar '钱包', only: :show do
+    div do
+      ul class: 'nav nav-pills nav-stacked' do
+        li role: 'presentation' do
+          link_to('钱包', chat_with_service_path(service))
+        end
+        li role: 'presentation' do
+          link_to('照片', admin_service_service_photos_path(service))
+        end
+        li role: 'presentation' do
+          link_to('动态', admin_service_service_dynamics_path(service))
+        end
+        li role: 'presentation' do
+          link_to('私教', admin_service_service_members_path(service))
+        end
+        li role: 'presentation' do
+          link_to('聊天', chat_with_service_path(service))
+        end
       end
     end
   end
 
-  sidebar '基本資料', only: :show do
+  sidebar '資料', only: :show do
     attributes_table_for service do
       row('美型号') { service.profile_mxid }
       row('昵称') { service.profile_name }
       row('头像') { image_tag(service.profile_avatar.thumb.url, height: 70) }
       row('介绍') { truncate(service.profile_signature) }
       row('服务') { service.profile_interests_string }
-    end
-  end
-
-
-  sidebar '钱包', only: :show do
-    wallet = service.wallet
-    service.create_wallet if wallet.blank?
-    attributes_table_for wallet do
-      row('余额') { service.wallet.balance }
-      row('优惠券') { service.wallet.coupons }
-      row('美豆') { image_tag(service.wallet.bean) }
+      row('地址') { service.profile_address }
+      row('联系电话') { service.mobile }
     end
   end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150627061529) do
+ActiveRecord::Schema.define(version: 20150629021326) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -239,11 +239,14 @@ ActiveRecord::Schema.define(version: 20150627061529) do
     t.string   "custom_mxid"
     t.string   "custom_mobile"
     t.integer  "top"
-    t.integer  "status",        default: 0
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.integer  "address",       default: [],              array: true
-    t.integer  "guarantee",     default: 0
+    t.integer  "status",            default: 0
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "address",           default: [],              array: true
+    t.integer  "guarantee",         default: 0
+    t.integer  "comments_count",    default: 0
+    t.integer  "concerns_count",    default: 0
+    t.integer  "order_items_count", default: 0
   end
 
   create_table "dynamic_comments", force: :cascade do |t|
@@ -439,6 +442,11 @@ ActiveRecord::Schema.define(version: 20150627061529) do
     t.integer  "coach_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "settings", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "stealth"
   end
 
   create_table "showtimes", force: :cascade do |t|

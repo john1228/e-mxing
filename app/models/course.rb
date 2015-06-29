@@ -4,8 +4,9 @@ class Course < ActiveRecord::Base
   has_many :course_photos, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :lessons, dependent: :destroy
-  has_many :concerned, class: Concerned, dependent: :destroy
+  has_many :concerns, class: Concerned, dependent: :destroy
   has_many :course_abstracts, dependent: :destroy
+  has_many :order_items
   attr_accessor :address
   STATUS = {delete: 0, online: 1}
   STYLE = {many: '团操', one: '1v1'}
@@ -27,7 +28,7 @@ class Course < ActiveRecord::Base
         guarantee: guarantee,
         address: school_addresses,
         images: course_photos.collect { |course_photo| course_photo.photo.thumb.url },
-        purchased: OrderItem.where(course_id: id).count
+        purchased: order_items.count
     }
   end
 

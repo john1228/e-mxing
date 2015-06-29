@@ -13,7 +13,7 @@ module Gyms
                      during: course.during,
                      type: course.type,
                      guarantee: course.guarantee,
-                     concerned: course.concerned.count,
+                     concerned: course.concerns.count,
                      top: course.top||0
                  } })
     end
@@ -25,7 +25,7 @@ module Gyms
       else
         user = Rails.cache.fetch(request.headers[:token])
         render json: Success.new(course: course.as_json.merge(
-                                     concerned: course.concerned.find_by(user: user).blank? ? 0 : 1,
+                                     concerned: course.concerns.find_by(user: user).blank? ? 0 : 1,
                                      comments: {
                                          count: course.comments.count,
                                          latest: course.comments.first.blank? ? {} : course.comments.first.as_json

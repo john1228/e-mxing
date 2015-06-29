@@ -27,7 +27,7 @@ module Mine
     def comment
       appointment = Appointment.find_by(id: params[:id], status: Appointment::STATUS[:confirm])
       if appointment.blank?
-        render json: Failure.new('未完成到课时，不能评论')
+        render json: Failure.new('未确认课时，不能评论')
       else
         course = appointment.course
         comment = Comment.new(comment_params.merge(course: course, user: @user))

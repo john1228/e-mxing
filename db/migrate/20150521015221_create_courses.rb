@@ -18,6 +18,9 @@ class CreateCourses < ActiveRecord::Migration
       t.string :custom_mobile #定制用户手机号
       t.integer :top #是否设置为推荐课程
       t.integer :status, default: 1
+      t.integer :comments_count, default: 0
+      t.integer :concerns_count, default: 0
+      t.string :order_items_count, default: 0
       t.timestamps null: false
     end
   end
