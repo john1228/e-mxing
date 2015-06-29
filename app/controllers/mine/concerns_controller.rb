@@ -13,7 +13,7 @@ module Mine
                        during: course.during,
                        type: course.type,
                        style: course.style,
-                       concerned: course.concerned.count,
+                       concerned: course.concerns_count,
                        top: course.top||0,
                        status: course.status,
                        coach: course.coach.profile.summary_json
@@ -24,7 +24,7 @@ module Mine
     def create
       course = Course.find_by(id: params[:course])
       if course.present?
-        concerned = @user.concerneds.new(course: course)
+        concerned = @user.concerns.new(course: course)
         if concerned.save
           render json: Success.new
         else
@@ -36,7 +36,7 @@ module Mine
     end
 
     def destroy
-      concerned = @user.concerneds.find_by(course_id: params[:course])
+      concerned = @user.concerns.find_by(course_id: params[:course])
       if concerned.destroy
         render json: Success.new
       else
