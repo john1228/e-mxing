@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   has_many :orders, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :lessons, dependent: :destroy
-  has_many :concerns, Class: Concerned, dependent: :destroy
+  has_many :concerns, class: Concerned, dependent: :destroy
 
   has_one :setting, dependent: :destroy
 
