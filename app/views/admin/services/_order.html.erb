@@ -15,10 +15,7 @@
         for (var i = 0; i <= 10; i += 1) {
             d2.push([(Math.random() * 20).toString(), parseInt(Math.random() * 20)]);
         }
-        var stack = 0,
-                bars = true,
-                lines = false,
-                steps = false;
+        var stack = 0, bars = false, lines = false, steps = false;
 
         function plotWithOptions() {
             $.plot("#placeholder", [d1, d2], {

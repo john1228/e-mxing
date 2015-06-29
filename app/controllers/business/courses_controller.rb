@@ -25,7 +25,7 @@ module Business
                                      guarantee: item.guarantee,
                                      top: item.top,
                                      images: item.course_photos.collect { |course_photo| course_photo.photo.thumb.url },
-                                     concerns: item.concerned.count
+                                     concerns: item.concerns_count
                                  }
                                })
     end

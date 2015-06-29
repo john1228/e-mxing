@@ -183,6 +183,8 @@ Rails.application.routes.draw do
     get 'wallet/coupons' => 'wallet#coupons'
     get 'wallet/detail' => 'wallet#detail'
     put 'wallet' => 'wallet#exchange'
+    #设置
+    put 'setting' => 'setting#update'
   end
 
   namespace :callback do
