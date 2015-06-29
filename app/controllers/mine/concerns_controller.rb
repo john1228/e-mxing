@@ -1,7 +1,7 @@
 module Mine
   class ConcernsController < BaseController
     def index
-      concerns = @user.concerneds.page(params[:page]||1)
+      concerns = @user.concerns.page(params[:page]||1)
       render json: Success.new(
                  concerned: concerns.map { |concern|
                    course = concern.course
