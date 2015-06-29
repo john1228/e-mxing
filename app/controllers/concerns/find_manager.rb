@@ -74,13 +74,13 @@ module FindManager
 
     case params[:sort]
       when 'price-asc'
-        results = CourseAbstract.select('DISTINCT(course_id) course_id').where(filter).order(course_price: :asc)
+        results = CourseAbstract.select(:course_id).uniq.where(filter).order(course_price: :asc)
       when 'price-desc'
-        results = CourseAbstract.select('DISTINCT(course_id) course_id').where(filter).order(course_price: :desc)
+        results = CourseAbstract.select(:course_id).uniq.where(filter).order(course_price: :desc)
       when 'distance-asc'
         results = CourseAbstract.select("st_distance(course_abstracts.coordinate, 'POINT(#{params[:lng]} #{params[:lat]})') distance,course_id").where("st_dwithin(course_abstracts.coordinate, 'POINT(#{params[:lng]} #{params[:lat]})',150000) and #{filter}").order('distance asc').page(params[:page]||1)
       when 'sale-desc'
-        results = CourseAbstract.all
+        results = CourseAbstract.select(:course_id).uniq.includes(:course).where(filter).order('courses.order_items_count desc')
       else
         results = []
     end
