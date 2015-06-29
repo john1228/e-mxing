@@ -3,9 +3,9 @@ module Business
     def index
       case params[:list]
         when 'all'
-          render json: Success.new(appointments: @coach.appointments.page(params[:page]||1))
+          render json: Success.new(appointments: @coach.appointments.page(params[:page]||1).collect { |appointment| appointment.as_json('coach') })
         when 'waiting'
-          render json: Success.new(appointments: @coach.appointments.where(status: Appointment::STATUS[:waiting]).page(params[:page]||1))
+          render json: Success.new(appointments: @coach.appointments.where(status: Appointment::STATUS[:waiting]).page(params[:page]||1).collect { |appointment| appointment.as_json('coach') })
         else
           render json: Success.new(appoinments: [])
       end

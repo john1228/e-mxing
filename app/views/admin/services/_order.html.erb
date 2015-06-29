@@ -1,7 +1,7 @@
 ﻿<div class="panel">
   <h3>订单情况</h3>
 
-  <div class="panel_contents" id="placeholder" style="min-height: 400px">﻿</div>
+  <div class="panel_contents" id="plot" style="min-height: 400px">﻿</div>
 </div>
 
 <script type="text/javascript">
@@ -9,7 +9,7 @@
         var stack = 0, bars = false, lines = false, steps = false;
 
         function plotWithOptions() {
-            $.plot("#placeholder", [<%=d1%>, <%=d2%>], {
+            $.plot("#plot", [<%=d1%>, <%=d2%>], {
                 series: {
                     stack: stack,
                     lines: {
