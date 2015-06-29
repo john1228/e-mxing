@@ -98,7 +98,7 @@ module FindManager
           style: course.style,
           top: course.top,
           guarantee: course.guarantee,
-          concerned: course.concerned.count,
+          concerned: course.concerns_count
       }
     }
   end
