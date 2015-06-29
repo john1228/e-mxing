@@ -16,7 +16,7 @@ module Mine
     end
 
     def confirm
-      appointment = @user.appointments.find_by(id: params[:id])
+      appointment = @user.appointments.find_by(id: params[:id], status: Appointment::STATUS[:waiting])
       if appointment.update(status: Appointment::STATUS[:confirm])
         render json: Success.new
       else
@@ -38,6 +38,15 @@ module Mine
         else
           render json: Failure.new('评论失败')
         end
+      end
+    end
+
+    def destroy
+      appointment = Appointment.find_by(id: params[:id], status: Appointment::STATUS[:waiting])
+      if appointment.update(status: Appointment::STATUS[:cancle])
+        render json: Success.new
+      else
+        render json: Failure.new(appointment.errors.map { |k, v| "#{k}:#{v}" })
       end
     end
 

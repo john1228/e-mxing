@@ -178,6 +178,7 @@ Rails.application.routes.draw do
     get 'lessons' => 'lessons#index'
     put 'lessons' => 'lessons#confirm'
     post 'lessons/comment' => 'lessons#comment'
+    delete 'lessons/:id' => 'lessons#destroy'
     #钱包
     get 'wallet' => 'wallet#index'
     get 'wallet/coupons' => 'wallet#coupons'
