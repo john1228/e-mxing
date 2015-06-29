@@ -1,10 +1,10 @@
 module Callback
   class WebchatController < BaseController
     def callback
-      params.map { |k, v|
+      request_data = Hash.from_xml(request.body.read)['xml'].symbolize_keys
+      request_data.map { |k, v|
         logger.info "#{k}<<<#{v}"
       }
-      logger.info request.body
       render text: 'success'
     end
 
