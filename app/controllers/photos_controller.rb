@@ -1,12 +1,24 @@
 class PhotosController < ApiController
   def index
-    render json: Success.new(
-               photos: @user.photos.page(params[:page]||1)
-           )
+    if @user.profile.identity.eql?(2)
+      service = Service.find(@user.id)
+      render json: Success.new(
+                 photos: service.service_photos.page(params[:page]||1)
+             )
+    else
+      render json: Success.new(
+                 photos: @user.photos.page(params[:page]||1)
+             )
+    end
   end
 
   def create
-    photo = @user.photos.new(photo: params[:photo])
+    if @user.profile.identity.eql?(2)
+      service = Service.find(@user.id)
+      photo = service.service_photos.new(photo: params[:photo])
+    else
+      photo = @user.photos.new(photo: params[:photo])
+    end
     if photo.save
       render json: {code: 1}
     else
@@ -18,7 +30,12 @@ class PhotosController < ApiController
   end
 
   def update
-    photo = @user.photos.find_by(id: params[:loc])
+    if @user.profile.identity.eql?(2)
+      service = Service.find(@user.id)
+      photo = service.service_photos.new(photo: params[:photo])
+    else
+      photo = @user.photos.new(photo: params[:photo])
+    end
     if photo.update(photo: params[:photo])
       render json: {code: 1}
     else
@@ -30,7 +47,12 @@ class PhotosController < ApiController
   end
 
   def destroy
-    photo = @user.photos.find_by(id: params[:loc])
+    if @user.profile.identity.eql?(2)
+      service = Service.find(@user.id)
+      photo = service.service_photos.new(photo: params[:photo])
+    else
+      photo = @user.photos.new(photo: params[:photo])
+    end
     if photo.nil?
       render json: {
                  code: 0,

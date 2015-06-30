@@ -46,7 +46,7 @@ module Gyms
 
     def coach
       coach = @course.coach
-      render json: Success.new({coach: {
+      render json: Success.new(coach: {
                                    mxid: coach.profile.mxid,
                                    name: coach.profile.name||'',
                                    avatar: coach.profile.avatar.thumb.url,
@@ -56,7 +56,7 @@ module Gyms
                                    tags: coach.profile.tags,
                                    mobile: coach.mobile,
                                    score: coach.score
-                               }})
+                               })
     end
 
     def comments

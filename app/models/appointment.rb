@@ -36,7 +36,17 @@ class Appointment < ActiveRecord::Base
               style: course.style,
               during: course.during
           },
-          coach: coach.profile.summary_json,
+          coach: {
+              mxid: coach.profile.mxid,
+              name: coach.profile.name||'',
+              avatar: coach.profile.avatar.thumb.url,
+              gender: coach.profile.gender||1,
+              age: coach.profile.age,
+              signature: coach.profile.signature,
+              tags: coach.profile.tags,
+              mobile: coach.mobile,
+              score: coach.score
+          },
           amount: amount,
           status: status,
           created: created_at.to_i
