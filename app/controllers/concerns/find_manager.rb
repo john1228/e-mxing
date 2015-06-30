@@ -58,17 +58,17 @@ module FindManager
 
   def courses
     filter = '1=1'
-    filter << " and course_type=#{params[:course].to_i}" if params[:course].present?
+    filter << " and course_abstracts.course_type=#{params[:course].to_i}" if params[:course].present?
     if params[:coach].eql?('male')||params[:coach].eql?('female')
       gender = params[:coach].eql?('male') ? 0 : 1
-      filter << " and coach_gender=#{gender}"
+      filter << " and course_abstracts.coach_gender=#{gender}"
     end
     if params[:price].present?
       price_range = params[:price].split('~')
       if price_range[1].blank?
-        filter << " and course_price > #{price_range[0].to_i}"
+        filter << " and course_abstracts.course_price > #{price_range[0].to_i}"
       else
-        filter << " and course_price between #{price_range[0].to_i} and #{price_range[1].to_i}"
+        filter << " and course_abstracts.course_price between #{price_range[0].to_i} and #{price_range[1].to_i}"
       end
     end
 
@@ -78,7 +78,7 @@ module FindManager
       when 'price-desc'
         results = CourseAbstract.select(:course_id, :course_price).uniq.where(filter).order(course_price: :desc).uniq.page(params[:page]||1)
       when 'distance-asc'
-        results = CourseAbstract.select("st_distance(course_abstracts.coordinate, 'POINT(#{params[:lng]} #{params[:lat]})') distance,course_id").where("st_dwithin(course_abstracts.coordinate, 'POINT(#{params[:lng]} #{params[:lat]})',150000) and #{filter}").order('distance asc').page(params[:page]||1)
+        results = CourseAbstract.select("course_id, st_distance(course_abstracts.coordinate, 'POINT(#{params[:lng]} #{params[:lat]})') distance").where("st_dwithin(course_abstracts.coordinate, 'POINT(#{params[:lng]} #{params[:lat]})',150000) and #{filter}").uniq.order('distance asc').page(params[:page]||1)
       when 'sale-desc'
         results = CourseAbstract.select(:course_id, :course_price).includes(:course).where(filter).order('courses.order_items_count desc').uniq.page(params[:page]||1)
       else
