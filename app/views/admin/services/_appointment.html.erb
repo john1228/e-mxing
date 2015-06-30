@@ -1,47 +1,50 @@
-﻿<script type='text/javascript'>
-    $(document).ready(function () {
-        var a1 = [[0, 3], [1, 19], [2, 15], [3, 5]];
-        var a2 = [[0, 8], [1, 6], [2, 12], [3, 10]];
-        var a3 = [[0, 3], [1, 12], [2, 11], [3, 2]];
+﻿<script type="text/javascript">
 
+    $(function () {
         var data = [
             {
-                color: '#FF0000',
-                data: a1
+                name: '担保订单',
+                value: [45, 52, 54, 74, 90, 84],
+                color: '#1385a5'
             },
             {
-
-                color: '#00FF00',
-                data: a2
-            },
-            {
-                color: '0000FF',
-                data: a3
+                name: '普通订单',
+                value: [60, 80, 105, 125, 108, 120],
+                color: '#c56966'
             }
         ];
-
-        $.plot($("#placeholder1"), data, {
-            series: {
-                bars: {
-                    show: true,
-                    barWidth: 0.13,
-                    order: 1
+        var chart = new iChart.ColumnMulti2D({
+            render: 'appointment',
+            data: data,
+            labels: ["一月", "二月", "三月", "四月", "五月", "六月"],
+            title: '私教预约情况',
+            width: 1000,
+            height: 400,
+            background_color: '#ffffff',
+            legend: {
+                enable: true,
+                background_color: null,
+                border: {
+                    enable: false
                 }
             },
-            colors: ['#FF0000', '#00FF00', '#0000FF'],
-            valueLabels: {
-                show: true
+            coordinate: {
+                background_color: '#f1f1f1',
+                scale: [{
+                    position: 'left',
+                    start_scale: 0,
+                    end_scale: 140,
+                    scale_space: 20
+                }],
+                width: 600,
+                height: 260
             }
         });
-
+        chart.draw();
     });
 </script>
 <div class="panel">
   <h3>私教订单情况</h3>
 
-  <div class="panel_contents" id="placeholder1" style="min-height: 400px">﻿</div>
-  <div style="text-align: center">
-    <button style="background-color: #FF0000"/>
-    1
-  </div>
+  <div id='appointment'></div>
 </div>

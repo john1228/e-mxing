@@ -42,11 +42,18 @@ ActiveAdmin.register Service do
   show do
     div do
       render partial: 'order', locals: {
-                                 coaches: (0...service.coaches.count).map { |index|
-                                   [index, service.coaches[index].profile.name]
+                                 coaches: service.coaches.map { |coach|
+                                   coach.profile.name
                                  },
-                                 orders: (0...service.coaches.count).map { |index|
-                                   [index, service.coaches[index].orders.count]
+                                 g_orders: service.coaches.map { |coach|
+                                   g_course = coach.courses.where(guarantee: 1).pluck(:id)
+                                   ids = OrderItem.where(course_id: g_course).pluck(:order_id)
+                                   Order.where(id: ids).sum(:pay_amount)
+                                 },
+                                 n_orders: service.coaches.map { |coach|
+                                   g_course = coach.courses.where(guarantee: 0).pluck(:id)
+                                   ids = OrderItem.where(course_id: g_course).pluck(:order_id)
+                                   Order.where(id: ids).sum(:pay_amount)
                                  }
                              }
     end

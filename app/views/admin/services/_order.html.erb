@@ -3,24 +3,22 @@
     $(function () {
         var data = [
             {
-                name: 'DPS01A',
-                value: [45, 52, 54, 74, 90, 84],
+                name: '担保订单',
+                value: <%= raw g_orders%>,
                 color: '#1385a5'
             },
             {
-                name: 'DPS01B',
-                value: [60, 80, 105, 125, 108, 120],
+                name: '普通订单',
+                value: <%= raw n_orders%>,
                 color: '#c56966'
             }
         ];
         var chart = new iChart.ColumnMulti2D({
-            render: 'canvasDiv',
+            render: 'order',
             data: data,
-            labels: ["一月", "二月", "三月", "四月", "五月", "六月"],
-            title: 'DPS01A型号比DPS01B型号的产品更受用户喜欢',
-            subtitle: '2012上半年DPS01A型号与DPS01B型号的鼠标销售比较,单位:万台',
-            footnote: '数据来源：销售中心',
-            width: 800,
+            labels: <%=raw coaches%>,
+            title: '私教订单销售金额,单位: 元',
+            width: 1000,
             height: 400,
             background_color: '#ffffff',
             legend: {
@@ -45,4 +43,8 @@
         chart.draw();
     });
 </script>
+<div class="panel">
+  <h3>私教订单情况</h3>
 
+  <div id='order' style="width: inherit;height: inherit"></div>
+</div>
