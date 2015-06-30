@@ -17,9 +17,5 @@ module Callback
       end
       render text: 'success'
     end
-
-    def prepay
-
-    end
   end
 end

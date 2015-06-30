@@ -25,7 +25,7 @@ class ShareController < ApplicationController
   end
 
   def service
-    @service = Service.first
+    @service = Service.find_by_mxid(params[:id])
     @coaches = @service.coaches.take(8)
     @photos = @service.service_photos.order(id: :desc).take(8)
     @courses = Course.where(coach_id: @service.coaches.pluck(:id))

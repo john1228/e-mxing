@@ -101,7 +101,7 @@ Rails.application.routes.draw do
   get 'webchat' => 'webchat#index'
 
   get 'share/:id/dynamic' => 'share#dynamic'
-  get 'share/service' => 'share#service'
+  get 'share/:id/service' => 'share#service'
 
   root 'home#index'
 
