@@ -1,188 +1,187 @@
-/* Flot plugin for stacking data sets rather than overlyaing them.
+/*
+ * Flot plugin to order bars side by side.
+ * 
+ * Released under the MIT license by Benjamin BUFFET, 20-Sep-2010.
+ *
+ * This plugin is an alpha version.
+ *
+ * To activate the plugin you must specify the parameter "order" for the specific serie :
+ *
+ *  $.plot($("#placeholder"), [{ data: [ ... ], bars :{ order = null or integer }])
+ *
+ * If 2 series have the same order param, they are ordered by the position in the array;
+ *
+ * The plugin adjust the point by adding a value depanding of the barwidth
+ * Exemple for 3 series (barwidth : 0.1) :
+ *
+ *          first bar d茅calage : -0.15
+ *          second bar d茅calage : -0.05
+ *          third bar d茅calage : 0.05
+ *
+ */
 
-Copyright (c) 2007-2014 IOLA and Ole Laursen.
-Licensed under the MIT license.
+(function($){
+    function init(plot){
+        var orderedBarSeries;
+        var nbOfBarsToOrder;
+        var borderWidth;
+        var borderWidthInXabsWidth;
+        var pixelInXWidthEquivalent = 1;
+        var isHorizontal = false;
 
-The plugin assumes the data is sorted on x (or y if stacking horizontally).
-For line charts, it is assumed that if a line has an undefined gap (from a
-null point), then the line above it should have the same gap - insert zeros
-instead of "null" if you want another behaviour. This also holds for the start
-and end of the chart. Note that stacking a mix of positive and negative values
-in most instances doesn't make sense (so it looks weird).
+        /*
+         * This method add shift to x values
+         */
+        function reOrderBars(plot, serie, datapoints){
+            var shiftedPoints = null;
 
-Two or more series are stacked when their "stack" attribute is set to the same
-key (which can be any number or string or just "true"). To specify the default
-stack, you can set the stack option like this:
+            if(serieNeedToBeReordered(serie)){
+                checkIfGraphIsHorizontal(serie);
+                calculPixel2XWidthConvert(plot);
+                retrieveBarSeries(plot);
+                calculBorderAndBarWidth(serie);
 
-	series: {
-		stack: null/false, true, or a key (number/string)
-	}
+                if(nbOfBarsToOrder >= 2){
+                    var position = findPosition(serie);
+                    var decallage = 0;
 
-You can also specify it for a single series, like this:
+                    var centerBarShift = calculCenterBarShift();
 
-	$.plot( $("#placeholder"), [{
-		data: [ ... ],
-		stack: true
-	}])
+                    if (isBarAtLeftOfCenter(position)){
+                        decallage = -1*(sumWidth(orderedBarSeries,position-1,Math.floor(nbOfBarsToOrder / 2)-1)) - centerBarShift;
+                    }else{
+                        decallage = sumWidth(orderedBarSeries,Math.ceil(nbOfBarsToOrder / 2),position-2) + centerBarShift + borderWidthInXabsWidth*2;
+                    }
 
-The stacking order is determined by the order of the data series in the array
-(later series end up on top of the previous).
-
-Internally, the plugin modifies the datapoints in each series, adding an
-offset to the y value. For line series, extra data points are inserted through
-interpolation. If there's a second y value, it's also adjusted (e.g for bar
-charts or filled areas).
-
-*/
-
-(function ($) {
-    var options = {
-        series: { stack: null } // or number/string
-    };
-    
-    function init(plot) {
-        function findMatchingSeries(s, allseries) {
-            var res = null;
-            for (var i = 0; i < allseries.length; ++i) {
-                if (s == allseries[i])
-                    break;
-                
-                if (allseries[i].stack == s.stack)
-                    res = allseries[i];
+                    shiftedPoints = shiftPoints(datapoints,serie,decallage);
+                    datapoints.points = shiftedPoints;
+                }
             }
-            
-            return res;
+            return shiftedPoints;
         }
-        
-        function stackData(plot, s, datapoints) {
-            if (s.stack == null || s.stack === false)
-                return;
 
-            var other = findMatchingSeries(s, plot.getData());
-            if (!other)
-                return;
+        function serieNeedToBeReordered(serie){
+            return serie.bars != null
+                && serie.bars.show
+                && serie.bars.order != null;
+        }
 
-            var ps = datapoints.pointsize,
-                points = datapoints.points,
-                otherps = other.datapoints.pointsize,
-                otherpoints = other.datapoints.points,
-                newpoints = [],
-                px, py, intery, qx, qy, bottom,
-                withlines = s.lines.show,
-                horizontal = s.bars.horizontal,
-                withbottom = ps > 2 && (horizontal ? datapoints.format[2].x : datapoints.format[2].y),
-                withsteps = withlines && s.lines.steps,
-                fromgap = true,
-                keyOffset = horizontal ? 1 : 0,
-                accumulateOffset = horizontal ? 0 : 1,
-                i = 0, j = 0, l, m;
+        function calculPixel2XWidthConvert(plot){
+            var gridDimSize = isHorizontal ? plot.getPlaceholder().innerHeight() : plot.getPlaceholder().innerWidth();
+            var minMaxValues = isHorizontal ? getAxeMinMaxValues(plot.getData(),1) : getAxeMinMaxValues(plot.getData(),0);
+            var AxeSize = minMaxValues[1] - minMaxValues[0];
+            pixelInXWidthEquivalent = AxeSize / gridDimSize;
+        }
 
-            while (true) {
-                if (i >= points.length)
-                    break;
+        function getAxeMinMaxValues(series,AxeIdx){
+            var minMaxValues = new Array();
+            for(var i = 0; i < series.length; i++){
+                minMaxValues[0] = series[i].data[0][AxeIdx];
+                minMaxValues[1] = series[i].data[series[i].data.length - 1][AxeIdx];
+            }
+            return minMaxValues;
+        }
 
-                l = newpoints.length;
+        function retrieveBarSeries(plot){
+            orderedBarSeries = findOthersBarsToReOrders(plot.getData());
+            nbOfBarsToOrder = orderedBarSeries.length;
+        }
 
-                if (points[i] == null) {
-                    // copy gaps
-                    for (m = 0; m < ps; ++m)
-                        newpoints.push(points[i + m]);
-                    i += ps;
-                }
-                else if (j >= otherpoints.length) {
-                    // for lines, we can't use the rest of the points
-                    if (!withlines) {
-                        for (m = 0; m < ps; ++m)
-                            newpoints.push(points[i + m]);
-                    }
-                    i += ps;
-                }
-                else if (otherpoints[j] == null) {
-                    // oops, got a gap
-                    for (m = 0; m < ps; ++m)
-                        newpoints.push(null);
-                    fromgap = true;
-                    j += otherps;
-                }
-                else {
-                    // cases where we actually got two points
-                    px = points[i + keyOffset];
-                    py = points[i + accumulateOffset];
-                    qx = otherpoints[j + keyOffset];
-                    qy = otherpoints[j + accumulateOffset];
-                    bottom = 0;
+        function findOthersBarsToReOrders(series){
+            var retSeries = new Array();
 
-                    if (px == qx) {
-                        for (m = 0; m < ps; ++m)
-                            newpoints.push(points[i + m]);
-
-                        newpoints[l + accumulateOffset] += qy;
-                        bottom = qy;
-                        
-                        i += ps;
-                        j += otherps;
-                    }
-                    else if (px > qx) {
-                        // we got past point below, might need to
-                        // insert interpolated extra point
-                        if (withlines && i > 0 && points[i - ps] != null) {
-                            intery = py + (points[i - ps + accumulateOffset] - py) * (qx - px) / (points[i - ps + keyOffset] - px);
-                            newpoints.push(qx);
-                            newpoints.push(intery + qy);
-                            for (m = 2; m < ps; ++m)
-                                newpoints.push(points[i + m]);
-                            bottom = qy; 
-                        }
-
-                        j += otherps;
-                    }
-                    else { // px < qx
-                        if (fromgap && withlines) {
-                            // if we come from a gap, we just skip this point
-                            i += ps;
-                            continue;
-                        }
-                            
-                        for (m = 0; m < ps; ++m)
-                            newpoints.push(points[i + m]);
-                        
-                        // we might be able to interpolate a point below,
-                        // this can give us a better y
-                        if (withlines && j > 0 && otherpoints[j - otherps] != null)
-                            bottom = qy + (otherpoints[j - otherps + accumulateOffset] - qy) * (px - qx) / (otherpoints[j - otherps + keyOffset] - qx);
-
-                        newpoints[l + accumulateOffset] += bottom;
-                        
-                        i += ps;
-                    }
-
-                    fromgap = false;
-                    
-                    if (l != newpoints.length && withbottom)
-                        newpoints[l + 2] += bottom;
-                }
-
-                // maintain the line steps invariant
-                if (withsteps && l != newpoints.length && l > 0
-                    && newpoints[l] != null
-                    && newpoints[l] != newpoints[l - ps]
-                    && newpoints[l + 1] != newpoints[l - ps + 1]) {
-                    for (m = 0; m < ps; ++m)
-                        newpoints[l + ps + m] = newpoints[l + m];
-                    newpoints[l + 1] = newpoints[l - ps + 1];
+            for(var i = 0; i < series.length; i++){
+                if(series[i].bars.order != null && series[i].bars.show){
+                    retSeries.push(series[i]);
                 }
             }
 
-            datapoints.points = newpoints;
+            return retSeries.sort(sortByOrder);
         }
-        
-        plot.hooks.processDatapoints.push(stackData);
+
+        function sortByOrder(serie1,serie2){
+            var x = serie1.bars.order;
+            var y = serie2.bars.order;
+            return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+        }
+
+        function  calculBorderAndBarWidth(serie){
+            borderWidth = serie.bars.lineWidth ? serie.bars.lineWidth  : 2;
+            borderWidthInXabsWidth = borderWidth * pixelInXWidthEquivalent;
+        }
+
+        function checkIfGraphIsHorizontal(serie){
+            if(serie.bars.horizontal){
+                isHorizontal = true;
+            }
+        }
+
+        function findPosition(serie){
+            var pos = 0
+            for (var i = 0; i < orderedBarSeries.length; ++i) {
+                if (serie == orderedBarSeries[i]){
+                    pos = i;
+                    break;
+                }
+            }
+
+            return pos+1;
+        }
+
+        function calculCenterBarShift(){
+            var width = 0;
+
+            if(nbOfBarsToOrder%2 != 0)
+                width = (orderedBarSeries[Math.ceil(nbOfBarsToOrder / 2)].bars.barWidth)/2;
+
+            return width;
+        }
+
+        function isBarAtLeftOfCenter(position){
+            return position <= Math.ceil(nbOfBarsToOrder / 2);
+        }
+
+        function sumWidth(series,start,end){
+            var totalWidth = 0;
+
+            for(var i = start; i <= end; i++){
+                totalWidth += series[i].bars.barWidth+borderWidthInXabsWidth*2;
+            }
+
+            return totalWidth;
+        }
+
+        function shiftPoints(datapoints,serie,dx){
+            var ps = datapoints.pointsize;
+            var points = datapoints.points;
+            var j = 0;
+            for(var i = isHorizontal ? 1 : 0;i < points.length; i += ps){
+                points[i] += dx;
+                //Adding the new x value in the serie to be abble to display the right tooltip value,
+                //using the index 3 to not overide the third index.
+                serie.data[j][3] = points[i];
+                j++;
+            }
+
+            return points;
+        }
+
+        plot.hooks.processDatapoints.push(reOrderBars);
+
     }
-    
+
+    var options = {
+        series : {
+            bars: {order: null} // or number/string
+        }
+    };
+
     $.plot.plugins.push({
         init: init,
         options: options,
-        name: 'stack',
-        version: '1.2'
+        name: "orderBars",
+        version: "0.2"
     });
+
 })(jQuery);
+
