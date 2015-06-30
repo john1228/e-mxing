@@ -57,10 +57,10 @@ namespace :business do
   end
 
   desc ''
-  task :setting_many do
+  task :orders do
     conn = Faraday.new(:url => host)
-    conn.headers[:token] = token
-    response = conn.post '/business/settings/many', name: '健身課程', type: 1, date: Date.today.next_day(3), address: 1, start: '10:00', end: '12:00', place: 50
+    conn.headers[:token] = '735b90b4568125ed6c3f678819b6e058'
+    response = conn.get '/business/orders'
     puts response.body
   end
 
