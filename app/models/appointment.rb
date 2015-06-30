@@ -9,7 +9,7 @@ class Appointment < ActiveRecord::Base
   STATUS = {cancel: -1, waiting: 0, confirm: 1, finish: 2}
 
   def as_json(owner)
-    if owner.eql?('user')
+    if owner.eql?('coach')
       {
           id: id,
           course: {

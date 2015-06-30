@@ -26,10 +26,10 @@ namespace :business do
 
 
   desc ''
-  task :courses do
+  task :waiting_lessons do
     conn = Faraday.new(:url => host)
     conn.headers[:token] = token
-    response = conn.get '/business/courses'
+    response = conn.get '/business/appointments', list: 'waiting'
     puts response.body
   end
 
@@ -65,10 +65,10 @@ namespace :business do
   end
 
   desc ''
-  task :appointment do
+  task :lessons do
     conn = Faraday.new(:url => host)
     conn.headers[:token] = '3c59dc048e8850243be8079a5c74d079'
-    response = conn.get '/business/appointments'
+    response = conn.get '/mine/lessons', list: 'all'
     puts response.body
   end
 

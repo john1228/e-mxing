@@ -57,11 +57,9 @@
                 var vHeight = 400;                   //播放器宽度设置
                 var vPlayer = "<%=asset_path('HLSPlayer.swf')%>?v=1.5"; //播放器文件
                 var vHLSset = "<%=asset_path('HLS.swf')%>";             //HLS配置
-                var vPic = "<%=asset_path('share/footer.png')%>";    //视频缩略图
+                var vPic = "<%=@dynamic_film.cover.thumb.url%>";    //视频缩略图
                 var vCssurl = "<%=asset_path('share/mini', type: :stylesheet )%>";     //移动端CSS应用文件
-
-                //HLS(m3u8)地址,适配PC,安卓,iOS,WP
-                var vHLSurl = "http://demo.cuplayer.com:8011/hls2-vod/test.mp4.m3u8";
+                var vHLSurl = <%=@dynamic_film.film.hls%>;
                 //-->
             </SCRIPT>
             <%= javascript_include_tag 'hls.min' %>
