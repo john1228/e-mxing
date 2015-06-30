@@ -40,24 +40,21 @@ ActiveAdmin.register Service do
   end
 
   show do
-    columns do
-      column do
-        render partial: 'order', locals: {
-                                   coaches: (0...service.coaches.count).map { |index|
-                                     [index, service.coaches[index].profile.name]
-                                   },
-                                   orders: (0...service.coaches.count).map { |index|
-                                     [index, service.coaches[index].orders.count]
+    div do
+      render partial: 'order', locals: {
+                                 coaches: (0...service.coaches.count).map { |index|
+                                   [index, service.coaches[index].profile.name]
+                                 },
+                                 orders: (0...service.coaches.count).map { |index|
+                                   [index, service.coaches[index].orders.count]
+                                 }
+                             }
+    end
+    div do
+      render partial: 'appointment', locals: {
+                                       n: service.coaches,
+                                       g: service.coaches,
                                    }
-                               }
-      end
-      column do
-        render partial: 'appointment', locals: {
-                                         n: service.coaches,
-                                         g: service.coaches,
-                                     }
-      end
-
     end
   end
 

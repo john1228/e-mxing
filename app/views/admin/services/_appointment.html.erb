@@ -1,26 +1,21 @@
-﻿<div class="panel">
-  <h3>订单情况</h3>
-
-  <div id="placeholder1" style="height:400px;"></div>
-</div>
-
-<script type="text/javascript">
-    $(function () {
-        var a1 = [[0, 3], [1, 19], [2, 15], [3, 5], [4, 11]];
-        var a2 = [[0, 8], [1, 6], [2, 12], [3, 10], [4, 1]];
-        var a3 = [[0, 3], [1, 12], [2, 11], [3, 2], [4, 13]];
+﻿<script type='text/javascript'>
+    $(document).ready(function () {
+        var a1 = [[0, 3], [1, 19], [2, 15], [3, 5]];
+        var a2 = [[0, 8], [1, 6], [2, 12], [3, 10]];
+        var a3 = [[0, 3], [1, 12], [2, 11], [3, 2]];
 
         var data = [
             {
-                label: "France",
+                color: '#FF0000',
                 data: a1
             },
             {
-                label: "Germany",
+
+                color: '#00FF00',
                 data: a2
             },
             {
-                label: "Italy",
+                color: '0000FF',
                 data: a3
             }
         ];
@@ -33,10 +28,20 @@
                     order: 1
                 }
             },
+            colors: ['#FF0000', '#00FF00', '#0000FF'],
             valueLabels: {
                 show: true
             }
         });
+
     });
 </script>
+<div class="panel">
+  <h3>私教订单情况</h3>
 
+  <div class="panel_contents" id="placeholder1" style="min-height: 400px">﻿</div>
+  <div style="text-align: center">
+    <button style="background-color: #FF0000"/>
+    1
+  </div>
+</div>

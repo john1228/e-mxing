@@ -6,5 +6,6 @@
 #= require jquery
 #= require admin/jquery.flot
 #= require admin/jquery.flot.stack
+#= require admin/jquery.flot.value.lable
 jQuery ->
   $('a.fancybox').fancybox()

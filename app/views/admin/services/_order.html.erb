@@ -11,27 +11,11 @@
             lines: {show: false},
             bars: {show: true, barWidth: 0.5, align: 'center'}
         }
-        var somePlot = $.plot("#order", [series], {
+        $.plot("#order", [series], {
             xaxis: {
                 ticks: <%= raw coaches%>
             }
         });
-
-        var ctx = somePlot.getCanvas().getContext("2d"); // get the context
-        var data = somePlot.getData()[0].data;  // get your series data
-        var xaxis = somePlot.getXAxes()[0]; // xAxis
-        var yaxis = somePlot.getYAxes()[0]; // yAxis
-        var offset = somePlot.getPlotOffset(); // plots offset
-        ctx.font = "16px 'Segoe UI'"; // set a pretty label font
-        ctx.fillStyle = "black";
-        for (var i = 0; i < data.length; i++) {
-            var text = data[i][1] + '';
-            var metrics = ctx.measureText(text);
-            var xPos = (xaxis.p2c(data[i][0]) + offset.left) - metrics.width / 2; // place it in the middle of the bar
-            var yPos = yaxis.p2c(data[i][1]) + offset.top - 5; // place at top of bar, slightly up
-            ctx.fillText(text, xPos, yPos);
-        }
     })
 </script>
 
-  
