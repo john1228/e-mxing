@@ -1,7 +1,7 @@
 module Business
   class OrdersController < BaseController
     def index
-      render json: Success.new(orders: @coach.orders.page(params[:page]||1).collect { |order|
+      render json: Success.new(orders: @coach.orders.where(status::Order::STATUS[:pay]).page(params[:page]||1).collect { |order|
                                  {
                                      no: order.no,
                                      items: order.order_items.collect { |item| item.as_json },

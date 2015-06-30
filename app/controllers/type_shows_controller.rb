@@ -3,6 +3,6 @@ class TypeShowsController < ApplicationController
     @show = TypeShow.find_by(id: params[:id])
     @cc = params[:cc]
     @created = @show.created_at.localtime.strftime('%m-%d %H:%M')
-    render layout: 'type_show'
+    render layout: false
   end
 end
