@@ -6,65 +6,60 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        var series = [{
-            data: [
-                [0, 100],
-                [1, 150],
-                [2, 125],
-                [3, 160],
-                [4, 95]
-            ]
-        },
-            {
-                data: [
-                    [0, 20],
-                    [1, 35],
-                    [2, 20],
-                    [3, 35],
-                    [4, 35]
-                ]
-            }, {
-                data: [
-                    [0, 55],
-                    [1, 40],
-                    [2, 60],
-                    [3, 10],
-                    [4, 20]
-                ]
-            }];
+        var ms_data = [{"label": "FOO", "data": [[0, 80], [1, 70], [2, 100], [3, 60], [4, 102]]},
+            {"label": "BAR", "data": [[0, 10], [1, 20], [2, 30], [3, 40], [4, 80]]},
+            {"label": "CAR", "data": [[0, 5], [1, 10], [2, 15], [3, 20], [4, 25]]}]
+        var ms_ticks = [[0, "1/28"], [1, "1/29"], [2, "1/30"], [3, "1/31"], [4, "1/32"]];
 
         function plotWithOptions() {
-            $.plot("#appointment", series, {
-                xaxis: {
-                    minTickSize: 0.1
-                },
-                series: {
-                    stack: true,
-                    bars: {
-                        show: true,
-                        barWidth: 0.5
-                    }
-                },
-                tooltip: true,
-                tooltipOpts: {
-                    id: "chart-tooltip",
-                    content: "<p><b>20</b> Outgoing Filings</p>" +
-                    "<p>Out of <b>10</b> committed;</p>" +
-                    "<br />" +
-                    "<p><b>30%</b>% Ratio</p>",
-                    shifts: {
-                        x: -74,
-                        y: -125
-                    },
-                    lines: {
-                        track: true
-                    },
-                    compat: true
-                }
+            $.plot($("#placeholder"), ms_data, {
+                bars: {show: true, barWidth: 0.6, series_spread: true, align: "center"},
+                xaxis: {ticks: ms_ticks, autoscaleMargin: .10},
+                grid: {hoverable: true, clickable: true}
             });
         }
 
+        function showTooltip(x, y, contents) {
+            $('').css({
+                position: 'absolute',
+                display: 'none',
+                top: y + 5,
+                left: x + 5,
+                border: '1px solid #fdd',
+                padding: '2px',
+                'background-color': '#fee',
+                opacity: 0.80
+            }).appendTo("body").show();
+        }
+
         plotWithOptions();
+
+        $("#placeholder").bind("plothover", function (event, pos, item) {
+            $("#x").text(pos.x.toFixed(2));
+            $("#y").text(pos.y.toFixed(2));
+            if (item) {
+                if (previousPoint != item.datapoint) {
+                    previousPoint = item.datapoint;
+
+                    $("#tooltip").remove();
+                    var x = item.datapoint[0].toFixed(2),
+                            y = item.datapoint[1].toFixed(2);
+
+                    showTooltip(item.pageX, item.pageY,
+                            item.series.label + " Group id: " + Math.floor(x) + ", y = " + y + ", seriesIndex: " + item.seriesIndex);
+                }
+            }
+            else {
+                $("#tooltip").remove();
+                previousPoint = null;
+            }
+        });
+
+        $("#placeholder").bind("plotclick", function (event, pos, item) {
+            if (item) {
+                $("#clickdata").text("You clicked bar " + item.dataIndex + " in " + item.series.label + ".");
+            }
+        });
     });
 </script>
 
