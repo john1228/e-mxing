@@ -1,2 +1,2 @@
 ﻿<h1><%= @news.title %></h1>
-<em>美型新闻 <%= @news.created_at.strftime('%m-%d %H:%M') %></em>
+<em>美型新闻 <%= @news.created_at.localtime.strftime('%m-%d %H:%M') %></em>
