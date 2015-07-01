@@ -5,7 +5,7 @@ module Business
         render json: Success.new(
                    top: @coach.courses.top||{},
                    hot: @coach.courses.hot||{},
-                   courses: @coach.courses.where.not(id: [(@coach.courses.top.id rescue 0), (coach.courses.hot.id rescue 0)]).order(id: :desc).page(params[:page]||1)
+                   courses: @coach.courses.where.not(status:: Course::STATUS[:delete],id: [(@coach.courses.top.id rescue 0), (@coach.courses.hot.id rescue 0)]).order(id: :desc).page(params[:page]||1)
                )
       else
         render json: Success.new(

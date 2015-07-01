@@ -129,14 +129,30 @@
   <div class="pages"></div>
 </section>
 <section class="page page4">
-  <% @courses.map do |course| %>
-      <div class="con con_a">
-        <h3><%= course.name %></h3>
+  <div class="con con_a">
+    <h3><%= @courses.first.name %></h3>
 
-        <p><%= course.style %></p><i></i><em></em>
-        <%= image_tag('share/service/kcico1.png') %>
-      </div>
-  <% end %>
+    <p><%= @courses.first.style %></p><i></i><em></em>
+      <%= image_tag('share/service/kcico1.png') %>
+  </div>
+  <div class="con con_b">
+    <h3><%= @courses.second.name %></h3>
+
+    <p><%= @courses.second.style %></p><i></i><em></em>
+    <%= image_tag('share/service/kcico1.png') %>
+  </div>
+  <div class="con con_c">
+    <h3><%= @courses.third.name %></h3>
+
+    <p><%= @courses.third.style %></p><i></i><em></em>
+    <%= image_tag('share/service/kcico1.png') %>
+  </div>
+  <div class="con con_d">
+    <h3><%= @courses.fourth.name %></h3>
+
+    <p><%= @courses.fourth.style %></p><i></i><em></em>
+    <%= image_tag('share/service/kcico1.png') %>
+  </div>
   <div class="pages"></div>
 </section>
 <section class="page page5">
