@@ -25,11 +25,10 @@ class Order < ActiveRecord::Base
     total_price = course.price*course_count.to_i
     #如果用户使用优惠券
     if coupons.present?
-      #检验优惠券的是否有效
       user_coupons = user.wallet.coupons
       use_coupons = coupons.split(',')
       #判断使用的优惠券是否是用户拥有的优惠券
-      use_coupons.map { |coupon| return false unless user_coupons.include?(coupon) }
+      use_coupons.map { |coupon| return false unless user_coupons.include?(coupon.to_i) }
       Coupon.where(id: use_coupons).map { |coupon|
         #优惠券不在有效期内
         return false if (coupon.start_date> Date.today) || (coupon.end_date< Date.today)

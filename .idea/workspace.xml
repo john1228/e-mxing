@@ -240,8 +240,8 @@
       <file leaf-file-name="order.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/models/order.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7317437" vertical-offset="445" max-vertical-offset="1404">
-              <caret line="52" column="117" selection-start-line="52" selection-start-column="117" selection-end-line="52" selection-end-column="117" />
+            <state vertical-scroll-proportion="0.14157973" vertical-offset="445" max-vertical-offset="1386">
+              <caret line="30" column="86" selection-start-line="30" selection-start-column="86" selection-end-line="30" selection-end-column="86" />
               <folding />
             </state>
           </provider>
@@ -2933,8 +2933,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/order.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7317437" vertical-offset="445" max-vertical-offset="1404">
-          <caret line="52" column="117" selection-start-line="52" selection-start-column="117" selection-end-line="52" selection-end-column="117" />
+        <state vertical-scroll-proportion="0.14157973" vertical-offset="445" max-vertical-offset="1386">
+          <caret line="30" column="86" selection-start-line="30" selection-start-column="86" selection-end-line="30" selection-end-column="86" />
           <folding />
         </state>
       </provider>
