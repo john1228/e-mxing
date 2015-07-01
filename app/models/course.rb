@@ -39,7 +39,7 @@ class Course < ActiveRecord::Base
         address: school_addresses,
         images: course_photos.collect { |course_photo| course_photo.photo.thumb.url },
         purchased: order_items_count,
-        concerns: item.concerns_count
+        concerns: concerns_count
     }
   end
 
