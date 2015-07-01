@@ -57,10 +57,10 @@ namespace :business do
   end
 
   desc ''
-  task :orders do
+  task :coach_course do
     conn = Faraday.new(:url => host)
-    conn.headers[:token] = '735b90b4568125ed6c3f678819b6e058'
-    response = conn.get '/business/orders'
+    conn.headers[:token] = '3c59dc048e8850243be8079a5c74d079'
+    response = conn.get '/business/courses'
     puts response.body
   end
 
