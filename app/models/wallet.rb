@@ -18,7 +18,7 @@ class Wallet < ActiveRecord::Base
     if coupons.size > coupons_was.size
       coupons_change = coupons - coupons_was #增加优惠券
     else
-      coupons_change = coupons_was- coupons #减少优惠券
+      coupons_change = coupons_was - coupons #减少优惠券
     end
     wallet_logs.create(
         action: action,
