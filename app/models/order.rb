@@ -1,4 +1,5 @@
 class Order < ActiveRecord::Base
+  include MessageAble
   before_create :detect_params
   after_save :backend_task #当订单完成支付时，生成课表
   default_scope { where('1=1').order(id: :desc) }
@@ -22,7 +23,7 @@ class Order < ActiveRecord::Base
     order_items.build(course_id: course.id, name: course.name, type: course.type, during: course.during,
                       cover: (course.course_photos.first.blank? ? '' : course.course_photos.first.photo),
                       price: course.price, amount: course_count)
-    total_price = course.price*course_count.to_i
+    self.total, total_price = course.price*course_count.to_i, course.price*course_count.to_i
     #如果用户使用优惠券
     if coupons.present?
       user_coupons = user.wallet.coupons
@@ -62,10 +63,30 @@ class Order < ActiveRecord::Base
   end
 
   def backend_task
-    order_items.each { |item|
+    if status.eql?(STATUS[:pay])
+      #现在只购买一个课程,逻辑遵循一个课时走
+      item = order_items.first
+      #设置课时
       lessons.create(coach: coach, user: user, course: item.course, available: item.amount, used: 0,
                      exp: Date.today.next_day(item.course.exp.to_i), contact_name: contact_name, contact_phone: contact_phone)
-    } if status.eql?(STATUS[:pay])
+
+      #结算
+      services = ServiceMember.select(:service_id).where(coach: coach).uniq
+      if services.size==1
+        service = services.take.service
+        #挂在单加服务号时，钱转给服务号
+        wallet = Wallet.find_or_create_by(user: service)
+        wallet.update(balance: total, action: WalletLog::ACTIONS['卖课收入']) unless item.course.guarantee.eql?(Course::GUARANTEE)
+      else
+        #挂在多家结构时,钱直接转给私教
+        wallet = Wallet.find_or_create_by(user: coach)
+        wallet.update(balance: total, action: WalletLog::ACTIONS['卖课收入']) unless item.course.guarantee.eql?(Course::GUARANTEE)
+      end
+      #推送消息 1-消息推送 2-短信推送
+      send(coach, '您有一笔新的订单，赶紧去看看新的订单，别忘记联系学员哦！')
+      #TODO 短信推送
+    end
+
     user.wallet.update(coupons: ((user.wallet.coupons||[]) + coupons.split(',').map { |coupon| coupon.to_i }), bean: (user.wallet.bean + bean), action: WalletLog::ACTIONS['订单取消']) if status.eql?(STATUS[:cancel]) && coupons.present?
   end
 end
