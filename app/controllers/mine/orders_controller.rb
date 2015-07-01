@@ -41,7 +41,7 @@ module Mine
                            name: order.contact_name,
                            phone: order.contact_phone
                        },
-                       coupons: Coupon.where(id: order.coupons.split(',')).sum(:discount).to_i,
+                       coupons: order.coupons.blank? ? 0 : Coupon.where(id: order.coupons.split(',')).sum(:discount).to_i,
                        bean: order.bean,
                        pay_type: order.pay_type,
                        pay_amount: order.pay_amount,
