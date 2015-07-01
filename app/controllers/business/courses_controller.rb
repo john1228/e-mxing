@@ -1,33 +1,17 @@
 module Business
   class CoursesController < BaseController
     def index
-      type = params[:type]
-      case type
-        when 'one'
-          courses = @coach.courses.where(style: Course::STYLE[:one], status: Course::STATUS[:online])
-        when 'many'
-          courses = @coach.courses.where(style: Course::STYLE[:many], status: Course::STATUS[:online])
-        else
-          courses = @coach.courses.where(status: Course::STATUS[:online]).page(params[:page]||1)
+      if params[:page].to_i.eql?(1)
+        render json: Success.new(
+                   top: @coach.courses.top||{},
+                   hot: @coach.courses.hot||{},
+                   courses: @coach.courses.where.not(id: [(@coach.courses.top.id rescue 0), (coach.courses.hot.id rescue 0)]).page(params[:page]||1)
+               )
+      else
+        render json: Success.new(
+                   courses: @coach.courses.where.not(id: [@coach.courses.top.id, @coach.course.hot.id]).page(params[:page]||1)
+               )
       end
-      render json: Success.new(courses: courses.collect { |item|
-                                 {
-                                     id: item.id,
-                                     name: item.name,
-                                     type: item.type,
-                                     style: item.style,
-                                     during: item.during,
-                                     price: item.price,
-                                     exp: item.exp,
-                                     proposal: item.proposal,
-                                     intro: item.intro,
-                                     address: item.school_addresses,
-                                     guarantee: item.guarantee,
-                                     top: item.top,
-                                     images: item.course_photos.collect { |course_photo| course_photo.photo.thumb.url },
-                                     concerns: item.concerns_count
-                                 }
-                               })
     end
 
 

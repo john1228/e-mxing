@@ -4,18 +4,17 @@ module Gyms
     before_action :verify_auth_token, only: :buy
 
     def index
-      render json: Success.new(
-                 courses: @coach.courses.page(params[:page]||1).collect { |course| {
-                     id: course.id,
-                     name: course.name,
-                     cover: course.course_photos.first.present? ? course.course_photos.first.photo.thumb.url : '',
-                     price: course.price,
-                     during: course.during,
-                     type: course.type,
-                     guarantee: course.guarantee,
-                     concerned: course.concerns.count,
-                     top: course.top||0
-                 } })
+      if params[:page].to_i.eql?(1)
+        render json: Success.new(
+                   top: @coach.courses.top||{},
+                   hot: @coach.courses.hot||{},
+                   courses: @coach.courses.where.not(id: [(@coach.courses.top.id rescue 0), (coach.courses.hot.id rescue 0)]).page(params[:page]||1)
+               )
+      else
+        render json: Success.new(
+                   courses: @coach.courses.where.not(id: [@coach.courses.top.id, @coach.course.hot.id]).page(params[:page]||1)
+               )
+      end
     end
 
     def show

@@ -46,23 +46,27 @@ ActiveAdmin.register ServiceMember do
     end
     actions
   end
-
   show title: '私教' do
-    panel '私教信息' do
-      attributes_table_for service_member do
-        row('登录名') { service_member.coach.mobile }
-        row('昵称') { service_member.coach.profile_name }
-        row('头像') { image_tag(service_member.coach.profile_avatar.thumb.url, height: 70) }
-        row('生日') { service_member.coach.profile_birthday.strftime('%Y-%m-%d') }
-        row('性别') { service_member.coach.profile_gender.eql?(1) ? '女' : '男' }
-        row('地址') { service_member.coach.profile_address }
-        row('健身目标') { service_member.coach.profile_target }
-        row('擅长领域') { service_member.coach.profile_skill }
-        row('常去场馆') { service_member.coach.profile_often }
-        row('健身兴趣') { service_member.coach.profile_interests_string }
-      end
+    div do
+      'hello'
     end
   end
+
+  sidebar '私教信息', only: :show do
+    attributes_table_for service_member do
+      row('登录名') { service_member.coach.mobile }
+      row('昵称') { service_member.coach.profile.name }
+      row('头像') { image_tag(service_member.coach.profile.avatar.thumb.url, height: 70) }
+      row('生日') { service_member.coach.profile.birthday }
+      row('性别') { service_member.coach.profile.gender.eql?(1) ? '女' : '男' }
+      row('地址') { service_member.coach.profile_address }
+      row('健身目标') { service_member.coach.profile.target }
+      row('擅长领域') { service_member.coach.profile.skill }
+      row('常去场馆') { service_member.coach.profile.often }
+      row('健身兴趣') { service_member.coach.profile.interests_string }
+    end
+  end
+
 
   form partial: 'form'
 end

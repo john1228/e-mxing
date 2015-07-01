@@ -11,6 +11,16 @@ class Course < ActiveRecord::Base
   STATUS = {delete: 0, online: 1}
   STYLE = {many: '团操', one: '1v1'}
   GUARANTEE = 1
+  class<< self
+    def top
+      where(top: 1, status: STATUS[:online]).order(id: :desc).take
+    end
+
+    def hot
+      where(status: STATUS[:online]).order(order_items_count: :desc).limit(1)
+    end
+  end
+
 
   after_save :update_course_abstract
 
@@ -28,7 +38,8 @@ class Course < ActiveRecord::Base
         guarantee: guarantee,
         address: school_addresses,
         images: course_photos.collect { |course_photo| course_photo.photo.thumb.url },
-        purchased: order_items.count
+        purchased: order_items_count,
+        concerns: item.concerns_count
     }
   end
 
