@@ -8,17 +8,17 @@ module Gyms
         render json: Success.new(
                    top: @coach.courses.top||{},
                    hot: @coach.courses.hot||{},
-                   courses: @coach.courses.where.not(status: Course::STATUS[:delete],id: [(@coach.courses.top.id rescue 0), (@coach.courses.hot.id rescue 0)]).order(id: :desc).page(params[:page]||1)
+                   courses: @coach.courses.where.not(status: Course::STATUS[:delete], id: [(@coach.courses.top.id rescue 0), (@coach.courses.hot.id rescue 0)]).order(id: :desc).page(params[:page]||1)
                )
       else
         render json: Success.new(
-                   courses: @coach.courses.where.not(status: Course::STATUS[:delete],id: [(@coach.courses.top.id rescue 0), (@coach.courses.hot.id rescue 0)]).order(id: :desc).page(params[:page]||1)
+                   courses: @coach.courses.where.not(status: Course::STATUS[:delete], id: [(@coach.courses.top.id rescue 0), (@coach.courses.hot.id rescue 0)]).order(id: :desc).page(params[:page]||1)
                )
       end
     end
 
     def show
-      course = Course.find_by(id: params[:id], status: Order::STATUS[:online])
+      course = Course.find_by(id: params[:id], status: Course::STATUS[:online])
       if course.blank?
         render json: Failure.new('您查看到课程已下架')
       else
