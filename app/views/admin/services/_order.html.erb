@@ -4,12 +4,12 @@
         var data = [
             {
                 name: '担保订单',
-                value: <%= raw g_orders%>,
+                value: <%= raw g%>,
                 color: '#1385a5'
             },
             {
                 name: '普通订单',
-                value: <%= raw n_orders%>,
+                value: <%= raw n%>,
                 color: '#c56966'
             }
         ];
@@ -18,7 +18,7 @@
             data: data,
             labels: <%=raw coaches%>,
             title: '私教订单销售金额,单位: 元',
-            width: 1000,
+            width: 800,
             height: 400,
             background_color: '#ffffff',
             legend: {
@@ -46,5 +46,5 @@
 <div class="panel">
   <h3>私教订单情况</h3>
 
-  <div id='order' style="width: inherit;height: inherit"></div>
+  <div id='order' style="width: auto;height: auto"></div>
 </div>

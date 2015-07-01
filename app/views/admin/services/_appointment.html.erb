@@ -3,22 +3,22 @@
     $(function () {
         var data = [
             {
-                name: '担保订单',
-                value: [45, 52, 54, 74, 90, 84],
+                name: '全部预约课时',
+                value: <%= raw all%>,
                 color: '#1385a5'
             },
             {
-                name: '普通订单',
-                value: [60, 80, 105, 125, 108, 120],
+                name: '已确认预约课时',
+                value: <%= raw confirm%>,
                 color: '#c56966'
             }
         ];
         var chart = new iChart.ColumnMulti2D({
             render: 'appointment',
             data: data,
-            labels: ["一月", "二月", "三月", "四月", "五月", "六月"],
+            labels: <%=raw coaches%>,
             title: '私教预约情况',
-            width: 1000,
+            width: 800,
             height: 400,
             background_color: '#ffffff',
             legend: {
@@ -43,7 +43,7 @@
         chart.draw();
     });
 </script>
-<div class="panel">
+<div class="panel" style="min-width: 800px">
   <h3>私教订单情况</h3>
 
   <div id='appointment'></div>

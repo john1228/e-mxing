@@ -45,12 +45,12 @@ ActiveAdmin.register Service do
                                  coaches: service.coaches.map { |coach|
                                    coach.profile.name
                                  },
-                                 g_orders: service.coaches.map { |coach|
+                                 g: service.coaches.map { |coach|
                                    g_course = coach.courses.where(guarantee: 1).pluck(:id)
                                    ids = OrderItem.where(course_id: g_course).pluck(:order_id)
                                    Order.where(id: ids, status: Order::STATUS[:pay]).sum(:pay_amount).to_i
                                  },
-                                 n_orders: service.coaches.map { |coach|
+                                 n: service.coaches.map { |coach|
                                    g_course = coach.courses.where(guarantee: 0).pluck(:id)
                                    ids = OrderItem.where(course_id: g_course).pluck(:order_id)
                                    Order.where(id: ids, status: Order::STATUS[:pay]).sum(:pay_amount).to_i
@@ -59,8 +59,15 @@ ActiveAdmin.register Service do
     end
     div do
       render partial: 'appointment', locals: {
-                                       n: service.coaches,
-                                       g: service.coaches,
+                                       coaches: service.coaches.map { |coach|
+                                         coach.profile.name
+                                       },
+                                       all: service.coaches.map { |coach|
+                                         coach.appointments.sum(:amount)
+                                       },
+                                       confirm: service.coaches.map { |coach|
+                                         coach.appointments.where(status: Appointment::STATUS[:confirm]).sum(:amount)
+                                       }
                                    }
     end
   end
