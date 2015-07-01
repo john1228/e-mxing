@@ -49,7 +49,7 @@ class Order < ActiveRecord::Base
         return false if coupon.min >= total_price
         total_price -= coupon.discount
       }
-      user.wallet.update(coupons: (user_coupons-use_coupons), action: WalletLog::ACTIONS['消费']) if use_coupons.present?
+      user.wallet.update(coupons: (user_coupons-use_coupons), action: WalletLog::ACTIONS['消费'])
     end
     #TODO:美型豆使用
     self.coach = course.coach
