@@ -12,7 +12,7 @@ module Gyms
                )
       else
         render json: Success.new(
-                   courses: @coach.courses.where.not(id: [@coach.courses.top.id, @coach.course.hot.id]).page(params[:page]||1)
+                   courses: @coach.courses.where.where.not(id: [@coach.courses.top.id, @coach.course.hot.id]).page(params[:page]||1)
                )
       end
     end

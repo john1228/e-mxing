@@ -28,7 +28,7 @@ class ShareController < ApplicationController
     @service = Service.find_by_mxid(params[:id])
     @coaches = @service.coaches.take(8)
     @photos = @service.service_photos.order(id: :desc).take(8)
-    @courses = Course.where(coach_id: @service.coaches.pluck(:id))
+    @courses = Course.where(coach_id: @service.coaches.pluck(:id)).take(4)
     render layout: false
   end
 end
