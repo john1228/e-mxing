@@ -29,8 +29,8 @@ class Order < ActiveRecord::Base
       user_coupons = user.wallet.coupons
       use_coupons = coupons.split(',')
       #判断使用的优惠券是否是用户拥有的优惠券
-      return false unless (use_coupons - user_coupons).blank?
-      Coupon.where(id: coupons.split(',')).map { |coupon|
+      return false if (use_coupons - user_coupons).blank?
+      Coupon.where(id: use_coupons).map { |coupon|
         #优惠券不在有效期内
         return false if (coupon.start_date> Date.today) || (coupon.end_date< Date.today)
         #种类是否满足要求
