@@ -17,7 +17,8 @@ class Course < ActiveRecord::Base
     end
 
     def hot
-      where(status: STATUS[:online]).order(order_items_count: :desc).limit(1)
+      hot_course = where(status: STATUS[:online]).order(order_items_count: :desc).take
+      return nil if hot_course.eql?(top)
     end
   end
 
