@@ -21,13 +21,11 @@ class DeployController < ApplicationController
   end
 
   def ver
-    render json: {
-               code: 1,
-               data: {
-                   ver: '2.0.0',
-                   force: 1
-               }
-           }
+    render json: Success.new(
+               ver: '2.0',
+               force: 0,
+               info: %w'更新内容1 更新内容2'
+           )
   end
 
 

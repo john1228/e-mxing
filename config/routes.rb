@@ -65,7 +65,8 @@ Rails.application.routes.draw do
   get 'friends/search' => 'friends#find'
   #服务号
   get 'services/coaches' => 'services#coaches'
-  #陪组文件
+  #配置文件
+  get 'deploy/ver' => 'deploy#ver'
   get 'deploy/icon' => 'deploy#icon'
   get 'deploy/banner' => 'deploy#banner'
   get 'deploy/json' => 'deploy#json'

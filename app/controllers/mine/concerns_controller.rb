@@ -13,9 +13,8 @@ module Mine
                        during: course.during,
                        type: course.type,
                        style: course.style,
+                       guarantee: course.guarantee,
                        concerned: course.concerns_count,
-                       top: course.top||0,
-                       status: course.status,
                        coach: course.coach.profile.summary_json
                    } }
              )
