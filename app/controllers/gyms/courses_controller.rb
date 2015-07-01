@@ -4,15 +4,15 @@ module Gyms
     before_action :verify_auth_token, only: :buy
 
     def index
-      if params[:page].to_i.eql?(1)
+      if (params[:page]||1).to_i.eql?(1)
         render json: Success.new(
                    top: @coach.courses.top||{},
                    hot: @coach.courses.hot||{},
-                   courses: @coach.courses.where.not(status:: Course::STATUS[:delete],id: [(@coach.courses.top.id rescue 0), (@coach.courses.hot.id rescue 0)]).order(id: :desc).page(params[:page]||1)
+                   courses: @coach.courses.where.not(status: Course::STATUS[:delete],id: [(@coach.courses.top.id rescue 0), (@coach.courses.hot.id rescue 0)]).order(id: :desc).page(params[:page]||1)
                )
       else
         render json: Success.new(
-                   courses: @coach.courses.where.not(status:: Course::STATUS[:delete],id: [(@coach.courses.top.id rescue 0), (@coach.courses.hot.id rescue 0)]).order(id: :desc).page(params[:page]||1)
+                   courses: @coach.courses.where.not(status: Course::STATUS[:delete],id: [(@coach.courses.top.id rescue 0), (@coach.courses.hot.id rescue 0)]).order(id: :desc).page(params[:page]||1)
                )
       end
     end
