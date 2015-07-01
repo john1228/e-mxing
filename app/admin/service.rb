@@ -48,12 +48,12 @@ ActiveAdmin.register Service do
                                  g_orders: service.coaches.map { |coach|
                                    g_course = coach.courses.where(guarantee: 1).pluck(:id)
                                    ids = OrderItem.where(course_id: g_course).pluck(:order_id)
-                                   Order.where(id: ids).sum(:pay_amount)
+                                   Order.where(id: ids).sum(:pay_amount).to_i
                                  },
                                  n_orders: service.coaches.map { |coach|
                                    g_course = coach.courses.where(guarantee: 0).pluck(:id)
                                    ids = OrderItem.where(course_id: g_course).pluck(:order_id)
-                                   Order.where(id: ids).sum(:pay_amount)
+                                   Order.where(id: ids).sum(:pay_amount).to_i
                                  }
                              }
     end
