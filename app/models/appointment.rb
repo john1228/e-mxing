@@ -1,4 +1,5 @@
 class Appointment < ActiveRecord::Base
+  include MessageAble
   belongs_to :coach
   belongs_to :user
   belongs_to :course
