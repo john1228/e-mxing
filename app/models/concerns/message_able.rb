@@ -1,13 +1,13 @@
 module MessageAble
   extend ActiveSupport::Concern
 
-  def send(target, msg)
+  def push(target, message)
     easemob_token = Rails.cache.fetch(:easemob_token)||init_easemob_token
     Faraday.post do |req|
       req.url 'https://a1.easemob.com/jsnetwork/mxing/messages'
       req.headers['Content-Type'] = 'application/json'
       req.headers['Authorization'] = "Bearer #{easemob_token}"
-      req.body ={target_type: 'users', target: ["#{target.profile.mxid}"], msg: {type: 'txt', msg: msg}}.to_json.to_s
+      req.body ={target_type: 'users', target: ["#{target.profile.mxid}"], msg: {type: 'txt', msg: message}}.to_json.to_s
     end
   end
 

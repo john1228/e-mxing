@@ -61,15 +61,15 @@ class Appointment < ActiveRecord::Base
     if status.eql?(STATUS[:cancel])
       lesson.update(used: (lesson.used - amount))
       #通知私教 1-消息推送 2短信推送
-      send(coach, "学员#{user.profile.name}已取消上课，赶快登陆查看，若有疑问，请联系学员。")
+      push(coach, "学员#{user.profile.name}已取消上课，赶快登陆查看，若有疑问，请联系学员。")
     end
     if status.eql?(STATUS[:confirm])
-      send(coach, "学员#{user.profile.name}已确认上课，别忘记提醒学员评价，增加您的人气哟。")
+      push(coach, "学员#{user.profile.name}已确认上课，别忘记提醒学员评价，增加您的人气哟。")
     end
   end
 
   def notice
     #通知学员 1-消息推送 2短信推送
-    send(user, "您的私教#{coach.profile.name}已邀约您上#{course.name}课，进入查看您的私人课时,小伙伴们，确认课时后别忘记评价下私教哟。")
+    push(user, "您的私教#{coach.profile.name}已邀约您上#{course.name}课，进入查看您的私人课时,小伙伴们，确认课时后别忘记评价下私教哟。")
   end
 end
