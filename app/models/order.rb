@@ -67,6 +67,6 @@ class Order < ActiveRecord::Base
       lessons.create(coach: coach, user: user, course: item.course, available: item.amount, used: 0,
                      exp: Date.today.next_day(item.course.exp.to_i), contact_name: contact_name, contact_phone: contact_phone)
     } if status.eql?(STATUS[:pay])
-    user.wallet.update(coupons: (user.wallet.coupons + coupons||[]), bean: (user.wallet.bean + bean), action: WalletLog::ACTIONS['订单取消']) if status.eql?(STATUS[:cancel]) && coupons.blank?
+    user.wallet.update(coupons: (user.wallet.coupons||[] + coupons||[]), bean: (user.wallet.bean + bean), action: WalletLog::ACTIONS['订单取消']) if status.eql?(STATUS[:cancel]) && coupons.blank?
   end
 end
