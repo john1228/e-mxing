@@ -66,13 +66,17 @@ class Course < ActiveRecord::Base
 
   private
   def update_course_abstract
-    if address.present?
-      CourseAbstract.delete_all(course_id: id)
-      address.each { |address_id|
-        CourseAbstract.create(course_id: id, address_id: address_id, coach_id: coach.id,
-                              coach_gender: coach.profile.gender, course_price: price, course_type: type,
-                              coordinate: AddressCoordinate.find_by(address_id: address_id).lonlat)
-      }
+    if status.eql?(STATUS[:online])
+      if address.present?
+        course_abstracts.destroy_all
+        address.each { |address_id|
+          course_abstracts.create(course_id: id, address_id: address_id, coach_id: coach.id,
+                                  coach_gender: coach.profile.gender, course_price: price, course_type: type,
+                                  coordinate: AddressCoordinate.find_by(address_id: address_id).lonlat)
+        }
+      end
+    else
+      course_abstracts.destroy_all
     end
   end
 end
