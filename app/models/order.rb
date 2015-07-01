@@ -29,7 +29,7 @@ class Order < ActiveRecord::Base
       user_coupons = user.wallet.coupons
       use_coupons = coupons.split(',')
       #判断使用的优惠券是否是用户拥有的优惠券
-      return false if (use_coupons - user_coupons).blank?
+      use_coupons.map { |coupon| return false unless user_coupons.include?(coupon) }
       Coupon.where(id: use_coupons).map { |coupon|
         #优惠券不在有效期内
         return false if (coupon.start_date> Date.today) || (coupon.end_date< Date.today)
@@ -50,7 +50,7 @@ class Order < ActiveRecord::Base
         return false if coupon.min >= total_price
         total_price -= coupon.discount
       }
-      user.wallet.update(coupons: (user_coupons-use_coupons), action: Wallet::ACTIONS[:pay_course])
+      user.wallet.update(coupons: (user_coupons-use_coupons), action: ACTIONS::ACTIONS['消费']) if use_coupons.present?
     end
     #TODO:美型豆使用
     self.coach = course.coach
