@@ -18,9 +18,9 @@ module Gyms
     end
 
     def show
-      course = Course.find_by(id: params[:id])
+      course = Course.find_by(id: params[:id], status: Order::STATUS[:online])
       if course.blank?
-        render json: Failure.new('您查看到课程不存在')
+        render json: Failure.new('您查看到课程已下架')
       else
         user = Rails.cache.fetch(request.headers[:token])
         render json: Success.new(course: course.as_json.merge(

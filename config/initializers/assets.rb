@@ -21,6 +21,10 @@ Rails.application.config.assets.precompile += %w(service.css
  webchat/jquery-1.11.1.js
  webchat/json2.js
  webchat/strophe-custom-2.0.0.js
- share/*
+ share/jquery.fullPage.min.js
+ share/jquery.js
+ share/jquery-ui-1.10.3.min.js
+ share/load.js
+ share/player.js
  hls.min.js
  )
