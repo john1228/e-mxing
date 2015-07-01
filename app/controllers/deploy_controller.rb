@@ -24,6 +24,7 @@ class DeployController < ApplicationController
     render json: Success.new(
                ver: '2.0',
                force: 0,
+               url: 'http://www.baidu.com',
                info: %w'更新内容1 更新内容2'
            )
   end

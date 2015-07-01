@@ -1,7 +1,7 @@
 module Business
   class CoursesController < BaseController
     def index
-      if params[:page].to_i.eql?(1)
+      if (params[:page]||1).to_i.eql?(1)
         render json: Success.new(
                    top: @coach.courses.top||{},
                    hot: @coach.courses.hot||{},
