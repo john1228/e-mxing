@@ -1,8 +1,5 @@
 class Like < ActiveRecord::Base
   before_save :within_month
-  after_save :send_message
-
-
   DYNAMIC = 1
   PERSON = 2
 
