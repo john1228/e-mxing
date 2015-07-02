@@ -1,5 +1,5 @@
 class SystemController < ApplicationController
-  before_action :verify_auth_token, except: active
+  before_action :verify_auth_token, except: :active
 
   def feedback
     Feedback.create(user_id: @user.id, content: params[:content], contact: params[:contact])
