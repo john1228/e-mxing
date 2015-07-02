@@ -73,13 +73,9 @@ ActiveAdmin.register Service do
   end
 
   sidebar '钱包', only: :show do
-    wallet = service.wallet
+    wallet = service.wallet||service.create_wallet
     attributes_table_for wallet do
       row('余额') { "#{wallet.balance.round(2)}元" }
-      row () do
-        link_to ''
-        link_to ''
-      end
     end
   end
 
