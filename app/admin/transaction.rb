@@ -9,8 +9,8 @@ ActiveAdmin.register Transaction do
     column '订单号', :order_no
     column '支付方式', :source
     column '支付账户', :buyer_id
-    column '支付金额' do |price|
-      price.to_f
+    column '支付金额' do |transaction|
+      transaction.price.to_f
     end
     column '支付时间' do |transaction|
       transaction.created_at.strftime('%Y-%m-%d %H:%M:%S')
