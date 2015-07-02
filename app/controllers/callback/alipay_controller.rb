@@ -1,7 +1,7 @@
 module Callback
   class AlipayController < BaseController
     def callback
-      trade_no = params[:trande_no]
+      trade_no = params[:trade_no]
       order_no = params[:out_trade_no]
       buyer_id = params[:buyer_id]
       buyer_email = params[:buyer_email]
