@@ -10,7 +10,7 @@ class Transaction < ActiveRecord::Base
   private
   def update_order
     order = Order.find_by(no: order_no)
-    order.update(status: Order::STATUS[:pay], pay_type: source_key) if order.pay_amount.eql?(price) && order.status.eql?(Order::STATUS[:pay])
+    order.update(status: Order::STATUS[:pay], pay_type: Order::PAY_TYPE[source_key]) if order.pay_amount.eql?(price)
 
     course = order.order_items.first.course
     unless course.guarantee.eql?(Course::GUARANTEE)
