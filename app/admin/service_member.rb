@@ -57,7 +57,7 @@ ActiveAdmin.register ServiceMember do
       row('登录名') { service_member.coach.mobile }
       row('昵称') { service_member.coach.profile.name }
       row('头像') { image_tag(service_member.coach.profile.avatar.thumb.url, height: 70) }
-      row('生日') { service_member.coach.profile.birthday }
+      row('生日') { service_member.coach.profile.age }
       row('性别') { service_member.coach.profile.gender.eql?(1) ? '女' : '男' }
       row('地址') { service_member.coach.profile_address }
       row('健身目标') { service_member.coach.profile.target }

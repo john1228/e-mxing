@@ -82,8 +82,6 @@ class Order < ActiveRecord::Base
         wallet = Wallet.find_or_create_by(user: coach)
         wallet.update(balance: (wallet.balance + total), action: WalletLog::ACTIONS['卖课收入']) unless item.course.guarantee.eql?(Course::GUARANTEE)
       end
-      #推送消息 1-消息推送 2-短信推送
-      push(coach, '您有一笔新的订单，赶紧去看看新的订单，别忘记联系学员哦！')
       #TODO 短信推送
     end
 

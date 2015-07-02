@@ -73,11 +73,19 @@ ActiveAdmin.register Service do
   end
 
   sidebar '钱包', only: :show do
+    wallet = service.wallet
+    attributes_table_for wallet do
+      row('余额') { "#{wallet.balance.round(2)}元" }
+      row () do
+        link_to ''
+        link_to ''
+      end
+    end
+  end
+
+  sidebar '钱包', only: :show do
     div do
       ul class: 'nav nav-pills nav-stacked' do
-        li role: 'presentation' do
-          link_to('钱包', chat_with_service_path(service))
-        end
         li role: 'presentation' do
           link_to('照片', admin_service_service_photos_path(service))
         end

@@ -1,11 +1,11 @@
 namespace :business do
-  host = 'http://stage.e-mxing.com'
+  host = 'http://www.e-mxing.com'
   token = '3c59dc048e8850243be8079a5c74d079'
 
   desc '登录'
   task :login do
     conn = Faraday.new(:url => host)
-    response = conn.post '/business/login', username: 18221058659, password: 12345678
+    response = conn.post '/business/login', username: 13918760835, password: 123456
     puts response.body
   end
 

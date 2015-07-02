@@ -1,5 +1,5 @@
-class SystemController < ApiController
-  before_action :verify_auth_token
+class SystemController < ApplicationController
+  before_action :verify_auth_token, except: active
 
   def feedback
     Feedback.create(user_id: @user.id, content: params[:content], contact: params[:contact])
@@ -20,9 +20,22 @@ class SystemController < ApiController
     end
   end
 
+  def active
+    device = Device.new(active_params)
+    if device.save
+      render json: Success.new(token: device.token)
+    else
+      render json: Failure.new('激活失败')
+    end
+  end
+
   private
   def verify_auth_token
     @user = Rails.cache.fetch(request.headers[:token])
     render json: {code: 0, message: '您还未登录'} if @user.blank?
+  end
+
+  def active_params
+    params.permit(:name, :system, :device, :channel, :version, :ip)
   end
 end
