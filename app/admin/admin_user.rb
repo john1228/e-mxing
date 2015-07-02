@@ -8,7 +8,7 @@ ActiveAdmin.register AdminUser do
     id_column
     column '邮箱', :email
     column '最后一次登录时间' do |admin_user|
-      admin_user.current_sign_in_at.strftime('%Y-%m-%d %H:%M:%S')
+      admin_user.current_sign_in_at.strftime('%Y-%m-%d %H:%M:%S') rescue ''
     end
     column '登录次数', :sign_in_count
     column '创建时间' do |admin_user|
