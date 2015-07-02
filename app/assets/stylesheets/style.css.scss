@@ -455,7 +455,7 @@ section img {
   position: absolute;
   top: 45%;
   right: 0;
-  background: asset_data_url("activity/more.png") no-repeat right
+  background: asset_data_url("event/more.png") no-repeat right
 }
 
 .hotlist dl dd .szxx {
@@ -471,7 +471,7 @@ section img {
   color: #fff;
   margin-right: 5px;
   font-style: normal;
-  background: asset_data_url("activity/icobg.png") no-repeat;
+  background: asset_data_url("event/icobg.png") no-repeat;
   background-size: cover
 }
 
@@ -575,7 +575,7 @@ section img {
   position: absolute;
   top: 35%;
   right: 6%;
-  background: asset_data_url("activity/yes.png") no-repeat;
+  background: asset_data_url("event/yes.png") no-repeat;
   background-size: cover
 }
 
@@ -735,7 +735,7 @@ section img {
     width: 20px;
     height: 20px;
     line-height: 20px;
-    background: asset_data_url('activity/ico.png') no-repeat;
+    background: asset_data_url('event/ico.png') no-repeat;
     font-style: normal;
     background-size: cover
   }
@@ -882,7 +882,7 @@ section img {
     width: 16px;
     height: 16px;
     line-height: 20px;
-    background: asset_data_url("activity/ico.png") no-repeat;
+    background: asset_data_url("event/ico.png") no-repeat;
     font-style: normal;
     background-size: cover
   }

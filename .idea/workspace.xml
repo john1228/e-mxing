@@ -189,19 +189,8 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/profile/thumb_2015/04/13/69a967d4-9c11-4da6-8b6b-17be3c731773.jpg" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/profile/thumb_2015/04/13/bd9aae27-06f0-46ac-93c0-004ff0b0900d.jpg" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/profile/thumb_2015/06/01/3df5d85a-c35a-4fc4-89d0-86ae82286c07.jpg" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/images/website/boy.png" afterPath="$PROJECT_DIR$/app/assets/images/wap/boy.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/images/website/default_avatar.png" afterPath="$PROJECT_DIR$/app/assets/images/wap/default_avatar.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/images/website/download.png" afterPath="$PROJECT_DIR$/app/assets/images/wap/download.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/images/website/dows.png" afterPath="$PROJECT_DIR$/app/assets/images/wap/dows.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/images/website/dynamic.png" afterPath="$PROJECT_DIR$/app/assets/images/wap/dynamic.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/images/website/girl.png" afterPath="$PROJECT_DIR$/app/assets/images/wap/girl.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/images/website/header.png" afterPath="$PROJECT_DIR$/app/assets/images/wap/header.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/images/website/home.png" afterPath="$PROJECT_DIR$/app/assets/images/wap/home.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/images/website/logo.png" afterPath="$PROJECT_DIR$/app/assets/images/wap/logo.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/images/website/sptu.jpg" afterPath="$PROJECT_DIR$/app/assets/images/wap/sptu.jpg" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/.idea/photo.iml" afterPath="$PROJECT_DIR$/../photo/.idea/photo.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/style.css.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/style.css.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="mxing.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -282,21 +271,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html.erb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html.erb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/wap/index.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="657">
+            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="126">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="style.css.scss" pinned="false" current-in-tab="false">
+      <file leaf-file-name="style.css.scss" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/style.css.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.4096386" vertical-offset="7144" max-vertical-offset="17604">
-              <caret line="408" column="35" selection-start-line="408" selection-start-column="35" selection-end-line="408" selection-end-column="35" />
+            <state vertical-scroll-proportion="-1.7637271" vertical-offset="16972" max-vertical-offset="17604">
+              <caret line="884" column="37" selection-start-line="884" selection-start-column="37" selection-end-line="884" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -2700,14 +2689,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/style.css.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.4096386" vertical-offset="7144" max-vertical-offset="17604">
-          <caret line="408" column="35" selection-start-line="408" selection-start-column="35" selection-end-line="408" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/layouts/home.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1872">
@@ -2751,6 +2732,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="684">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/style.css.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.7637271" vertical-offset="16972" max-vertical-offset="17604">
+          <caret line="884" column="37" selection-start-line="884" selection-start-column="37" selection-end-line="884" selection-end-column="37" />
           <folding />
         </state>
       </provider>
