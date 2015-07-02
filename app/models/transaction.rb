@@ -15,7 +15,7 @@ class Transaction < ActiveRecord::Base
     course = order.order_items.first.course
     unless course.guarantee.eql?(Course::GUARANTEE)
       coach = course.coach
-      coach.wallet.update(balance: (coach.wallet.balance+BigDecimal(pay_amount)), action: WalletLog::ACTIONS['卖课收入'])
+      coach.wallet.update(balance: (coach.wallet.balance+price), action: WalletLog::ACTIONS['卖课收入'])
     end
   end
 end
