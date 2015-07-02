@@ -10,10 +10,10 @@ namespace :business do
   end
 
   desc ''
-  task :addresses do
+  task :students do
     conn = Faraday.new(:url => host)
     conn.headers[:token] = token
-    response = conn.get '/business/addresses'
+    response = conn.get '/business/students'
     puts response.body
   end
 

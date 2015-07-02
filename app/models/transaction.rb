@@ -11,11 +11,5 @@ class Transaction < ActiveRecord::Base
   def update_order
     order = Order.find_by(no: order_no)
     order.update(status: Order::STATUS[:pay], pay_type: Order::PAY_TYPE[source_key]) if order.pay_amount.eql?(price)
-
-    course = order.order_items.first.course
-    unless course.guarantee.eql?(Course::GUARANTEE)
-      coach = course.coach
-      coach.wallet.update(balance: (coach.wallet.balance+price), action: WalletLog::ACTIONS['卖课收入'])
-    end
   end
 end
