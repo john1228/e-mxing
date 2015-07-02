@@ -13,8 +13,6 @@ class CreateCoupons < ActiveRecord::Migration
       t.integer :min, default: 0 #限制订单
       t.boolean :active #是否启用
       t.timestamps null: false
-
-      change_column :coupons,:limit_category,:integer
     end
   end
 end
