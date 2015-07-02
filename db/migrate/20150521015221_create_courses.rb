@@ -20,7 +20,7 @@ class CreateCourses < ActiveRecord::Migration
       t.integer :status, default: 1
       t.integer :comments_count, default: 0
       t.integer :concerns_count, default: 0
-      t.string :order_items_count, default: 0
+      t.integer :order_items_count, default: 0
       t.timestamps null: false
     end
   end
