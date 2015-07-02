@@ -70,11 +70,12 @@ class Appointment < ActiveRecord::Base
           service = services.take.service
           #挂在单加服务号时，钱转给服务号
           wallet = Wallet.find_or_create_by(user: service)
-          wallet.update(balance: total, action: WalletLog::ACTIONS['卖课收入']) unless item.course.guarantee.eql?(Course::GUARANTEE)
+          #购买时课程单价
+          wallet.update(balance: (wallet.balance + course.price), action: WalletLog::ACTIONS['卖课收入']) unless item.course.guarantee.eql?(Course::GUARANTEE)
         else
           #挂在多家结构时,钱直接转给私教
           wallet = Wallet.find_or_create_by(user: coach)
-          wallet.update(balance: total, action: WalletLog::ACTIONS['卖课收入']) unless item.course.guarantee.eql?(Course::GUARANTEE)
+          wallet.update(balance: (wallet.balance + course.price), action: WalletLog::ACTIONS['卖课收入']) unless item.course.guarantee.eql?(Course::GUARANTEE)
         end
       end
       push(coach, "学员#{user.profile.name}已确认上课，别忘记提醒学员评价，增加您的人气哟。")
