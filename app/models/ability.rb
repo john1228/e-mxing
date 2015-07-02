@@ -23,7 +23,7 @@ class Ability
         can :manage, ServiceMember
         can :manage, ServicePhoto
         can :manage, ServiceTrack
-        can :manage, AdminUser
+        can [:read, :create, :update], AdminUser
         can :read, ActiveAdmin::Page, :name => 'Dashboard'
       else
         cannot :manage, :all
