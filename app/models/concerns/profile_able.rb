@@ -17,7 +17,10 @@ module ProfileAble
       req.url 'https://a1.easemob.com/jsnetwork/mxing/messages'
       req.headers['Content-Type'] = 'application/json'
       req.headers['Authorization'] = "Bearer #{easemob_token}"
-      req.body ={target_type: 'users', target: ['mxid'], msg: {type: 'txt', msg: '欢迎加入美型'}}.to_json.to_s
+      req.body ={target_type: 'users', target: ['mxid'], msg: {type: 'txt', msg: '欢迎您加入国内首家线上健身社交平台。
+\n 美型拥有庞大的运动健身场地，并且展示驻地私教，您可用根据自己到运动健身需求选择对应的运动健身课程。
+\n 分享与动圈动态，来“约”更多型男美女，让运动健身不再孤单。
+\n【美型】2.0全线上线，运动健身哪家墙，卖课“约”课美型强'}}.to_json.to_s
     end
   end
 
