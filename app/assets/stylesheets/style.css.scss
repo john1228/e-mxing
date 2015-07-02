@@ -148,17 +148,17 @@ section img {
   position: absolute;
   left: 0;
   top: 2px;
-  background: asset_data_url("activity/ico1.png") no-repeat;
+  background: asset_data_url('event/ico1.png') no-repeat;
   background-size: cover
 }
 
 .actitop dt i.ico2 {
-  background: url('activity/ico2.png') no-repeat;
+  background: asset_data_url('event/ico2.png') no-repeat;
   background-size: cover
 }
 
 .actitop dt i.ico3 {
-  background: url('activity/ico3.png') no-repeat;
+  background: asset_data_url('event/ico3.png') no-repeat;
   background-size: cover
 }
 
@@ -294,7 +294,7 @@ section img {
   text-indent: -9999px;
   line-height: 24px;
   color: #fff;
-  background: url("activity/ico.png") no-repeat;
+  background: asset_data_url("event/ico.png") no-repeat;
   margin-right: 4px;
   font-style: normal;
 }
