@@ -44,7 +44,7 @@ class FriendsController < ApplicationController
   def add_friend_for_service(service)
     easemob_token = Rails.cache.fetch('easemob')||init_easemob_token
     result = Faraday.post do |req|
-      req.url "https://a1.easemob.com/jsnetwork/mxingsijiao/users/#{service.profile_mxid}/contacts/users/#{@user.profile_mxid}"
+      req.url "https://a1.easemob.com/jsnetwork/mxingsijiao/users/#{service.profile.mxid}/contacts/users/#{@user.profile.mxid}"
       req.headers['Content-Type'] = 'application/json'
       req.headers['Authorization'] = "Bearer #{easemob_token}"
     end

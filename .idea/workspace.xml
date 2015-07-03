@@ -330,8 +330,8 @@
       <file leaf-file-name="friends_controller.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/friends_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6780924" vertical-offset="661" max-vertical-offset="1332">
-              <caret line="62" column="158" selection-start-line="62" selection-start-column="158" selection-end-line="62" selection-end-column="158" />
+            <state vertical-scroll-proportion="0.14157973" vertical-offset="661" max-vertical-offset="1332">
+              <caret line="42" column="9" selection-start-line="42" selection-start-column="9" selection-end-line="42" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -2959,8 +2959,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/friends_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6780924" vertical-offset="661" max-vertical-offset="1332">
-          <caret line="62" column="158" selection-start-line="62" selection-start-column="158" selection-end-line="62" selection-end-column="158" />
+        <state vertical-scroll-proportion="0.14157973" vertical-offset="661" max-vertical-offset="1332">
+          <caret line="42" column="9" selection-start-line="42" selection-start-column="9" selection-end-line="42" selection-end-column="9" />
           <folding />
         </state>
       </provider>
