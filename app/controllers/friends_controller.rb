@@ -44,7 +44,7 @@ class FriendsController < ApplicationController
   def add_friend_for_service(service)
     easemob_token = Rails.cache.fetch('easemob')||init_easemob_token
     result = Faraday.post do |req|
-      req.url "https://a1.easemob.com/jsnetwork/mxing/users/#{service.profile_mxid}/contacts/users/#{@user.profile_mxid}"
+      req.url "https://a1.easemob.com/jsnetwork/mxingsijiao/users/#{service.profile_mxid}/contacts/users/#{@user.profile_mxid}"
       req.headers['Content-Type'] = 'application/json'
       req.headers['Authorization'] = "Bearer #{easemob_token}"
     end
@@ -58,9 +58,9 @@ class FriendsController < ApplicationController
 
   def init_easemob_token
     token_response = Faraday.post do |req|
-      req.url 'https://a1.easemob.com/jsnetwork/mxing/token'
+      req.url 'https://a1.easemob.com/jsnetwork/mxingsijiao/token'
       req.headers['Content-Type'] = 'application/json'
-      req.body = "{\"grant_type\": \"client_credentials\", \"client_id\": \"YXA6HPZzIHIkEeSy6P9lvafoPA\", \"client_secret\": \"YXA6GQOgkrCoDL61TY9IPzRcto4mJn4\"}"
+      req.body = "{\"grant_type\": \"client_credentials\", \"client_id\": \"YXA6NQmy0PIkEeSQO18Yeq100Q\", \"client_secret\": \"YXA6t1SdtNrJAAHq6m3Bu3Yx1Ryr8jI\"}"
     end
     easemob_body = JSON.parse(token_response.body)
     Rails.cache.write('easemob', easemob_body['access_token'], expires_in: easemob_body['expires_in'])
