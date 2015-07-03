@@ -15,7 +15,7 @@ module GroupAble
   def regist_to_easemob
     easemob_token = Rails.cache.fetch('easemob')||init_easemob_token
     result = Faraday.post { |req|
-      req.url "https://a1.easemob.com/jsnetwork/mxing/chatgroups"
+      req.url "https://a1.easemob.com/jsnetwork/mxingsijiao/chatgroups"
       req.headers['Content-Type'] = 'application/json'
       req.headers['Authorization'] = "Bearer #{easemob_token}"
       req.body = {groupname: name, desc: intro, public: true, maxusers: 100, approval: true, owner: "#{owner}"}.to_json.to_s
@@ -35,9 +35,9 @@ module GroupAble
 
   def init_easemob_token
     token_response = Faraday.post do |req|
-      req.url 'https://a1.easemob.com/jsnetwork/mxing/token'
+      req.url 'https://a1.easemob.com/jsnetwork/mxingsijiao/token'
       req.headers['Content-Type'] = 'application/json'
-      req.body = "{\"grant_type\": \"client_credentials\", \"client_id\": \"YXA6HPZzIHIkEeSy6P9lvafoPA\", \"client_secret\": \"YXA6GQOgkrCoDL61TY9IPzRcto4mJn4\"}"
+      req.body = "{\"grant_type\": \"client_credentials\", \"client_id\": \"YXA6NQmy0PIkEeSQO18Yeq100Q\", \"client_secret\": \"YXA6t1SdtNrJAAHq6m3Bu3Yx1Ryr8jI\"}"
     end
     easemob_body = JSON.parse(token_response.body)
     Rails.cache.write('easemob', easemob_body['access_token'], expires_in: 24*7*60*60)
