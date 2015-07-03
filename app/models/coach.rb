@@ -17,7 +17,7 @@ class Coach<User
 
   def score
     {
-        prof: 5,
+        prof: 5, #comments.average(:pro).to_f).round(1),
         comm: 5,
         punc: 5,
         space: 5

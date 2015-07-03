@@ -27,6 +27,8 @@ class User < ActiveRecord::Base
 
   validates_uniqueness_of :sns, conditions: -> { where.not(sns: nil) }
   validates_uniqueness_of :mobile, conditions: -> { where.not(mobile: nil) }
+  validates_presence_of :sns, unless: :mobile
+  validates_presence_of :mobile, unless: :sns
 
 
   TYPE=[['健身爱好者', 0], ['私教', 1], ['商家', 2]]
