@@ -17,9 +17,6 @@ class FriendsController < ApiController
       add_friend_for_service(service)
       render json: Success.new
     end
-    service = Service.first
-    add_friend_for_service(service)
-    render json: Success.new
   end
 
   def find
