@@ -23,7 +23,7 @@ module Mine
     def exchange
       exchange_code = params[:code]
       #TODO:优惠码兑换
-      render json: Failure.new('无效到兑换码')
+      render json: Failure.new('无效的兑换码')
     end
   end
 end

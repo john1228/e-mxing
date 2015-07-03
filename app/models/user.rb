@@ -25,10 +25,10 @@ class User < ActiveRecord::Base
   has_one :setting, dependent: :destroy
 
 
-  validates_uniqueness_of :sns, conditions: -> { where.not(sns: nil) }
-  validates_uniqueness_of :mobile, conditions: -> { where.not(mobile: nil) }
-  validates_presence_of :sns, unless: :mobile
-  validates_presence_of :mobile, unless: :sns
+  # validates_uniqueness_of :sns, conditions: -> { where.not(sns: nil) },message: '该第三方已注册'
+  # validates_uniqueness_of :mobile, conditions: -> { where.not(mobile: nil) },message: '该手机号已注册'
+  # validates_presence_of :sns, unless: :mobile, message: '第三方不能为空'
+  # validates_presence_of :mobile, unless: :sns, message: '手机号不能为空'
 
 
   TYPE=[['健身爱好者', 0], ['私教', 1], ['商家', 2]]
