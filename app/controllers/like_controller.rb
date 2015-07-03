@@ -5,7 +5,7 @@ class LikeController < ApiController
         Like.create(user_id: @user.id, liked_id: params[:no], like_type: Like::DYNAMIC)
       when 'person'
         user = User.find_by_mxid(params[:mxid])
-        Like.create(user_id: @user.id, liked_id: user.id, like_type: Like::PERSON)
+        user.likes.create(user_id: @user.id)
     end
     render json: {code: 1}
   end
