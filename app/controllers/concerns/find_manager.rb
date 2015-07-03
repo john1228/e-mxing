@@ -11,9 +11,13 @@ module FindManager
   end
 
   def persons
+
     filters = '1=1'
-    filters << " and profiles.gender=#{params[:gender]}" unless params[:gender].blank?||params[:gender].eql?("-1")
-    filters << " and profiles.identity=#{params[:identity]}" unless params[:identity].blank?||params[:identity].eql?("-1")
+    filters << " and profiles.gender=#{params[:gender]}" unless params[:gender].blank?||params[:gender].eql?('-1')
+    filters << " and profiles.identity=#{params[:identity]}" unless params[:identity].blank?||params[:identity].eql?('-1')
+    #过滤隐身的用户
+    streams = Setting.where(stealth: Setting::STEALTH).pluck(:user_id)
+    filters << " and profiles.user_id not in #{streams}" unless streams.blank?
     Place.nearby(params[:lng], params[:lat], filters, params[:page]||1).collect { |place| place.nearby_user_json }
   end
 
