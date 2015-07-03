@@ -1,24 +1,25 @@
-class FriendsController < ApplicationController
+class FriendsController < ApiController
   def index
-    ids = params[:mxids].split(',').collect { |mxid| mxid.to_i - 10000 }
-    render json: {
-               code: 1,
-               data: {profiles: Profile.where(id: ids).collect { |profile| profile.as_json }}
-           }
+    begin
+      ids = params[:mxids].split(',').collect { |mxid| mxid.to_i - 10000 }
+      render json: Success.new(profiles: Profile.where(id: ids).collect { |profile| profile.as_json })
+    rescue Exception => exp
+      render json: Failure.new(exp.message)
+    end
   end
 
 
   def create
     service = Service.find_by_mxid(params[:mxid])
     if service.nil?
-      render json: {code: 0, message: '服务号不存在'}
+      render json: Failure.new('服务号不存在')
     else
       add_friend_for_service(service)
-      render json: {code: 1}
+      render json: Success.new
     end
     service = Service.first
     add_friend_for_service(service)
-    render json: {code: 1}
+    render json: Success.new
   end
 
   def find
