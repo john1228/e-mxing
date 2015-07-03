@@ -1,7 +1,7 @@
 class ApiController < ApplicationController
   before_action :verify_auth_token, only: [:create, :update, :destroy, :upload]
 
-  before_action :find_user
+  before_action :find_user, except: [:create, :update, :destroy, :upload]
   private
   def verify_auth_token
     @user = Rails.cache.fetch(request.headers[:token])
