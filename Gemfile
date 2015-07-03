@@ -43,3 +43,7 @@ gem 'fancybox2-rails', '~> 0.2.8'
 gem 'active_skin'
 
 gem 'actionpack-xml_parser'
+
+#fluent
+# gem 'act-fluent-logger-rails'
+# gem 'lograge'

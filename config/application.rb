@@ -1,6 +1,7 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
+require ''
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -22,5 +23,10 @@ module Mxing
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     config.i18n.default_locale = 'zh-CN'
     config.active_job.queue_adapter = :sidekiq
+
+    # config.log_level = :info
+    # config.logger = ActFluentLoggerRails::Logger.new('', shift_age = 'daily')
+    # config.lograge.enabled = true
+    # config.lograge.formatter = Lograge::Formatters::Json.new
   end
 end
