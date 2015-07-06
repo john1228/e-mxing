@@ -11,7 +11,7 @@ module Mine
                      lessons: @user.appointments.joins(:course).where(status: Appointment::STATUS[:waiting]).order(id: :desc).page(params[:page]||1).collect { |appointment| appointment.as_json('user') }
                  )
         else
-          render json: Failure.new(lessons: [])
+          render json: Success  .new(lessons: [])
       end
     end
 

@@ -63,6 +63,11 @@ class Order < ActiveRecord::Base
   end
 
   def backend_task
+    case status
+      when status[:pay]
+      when status[:cancel]
+        user.wallet.update(coupons: ((user.wallet.coupons||[]) + coupons.split(',').map { |coupon| coupon.to_i }), bean: (user.wallet.bean + bean.to_i), action: WalletLog::ACTIONS['订单取消']) if coupons.present?||bean.present?
+    end
     if status.eql?(STATUS[:pay])
       #现在只购买一个课程,逻辑遵循一个课时走
       item = order_items.first
