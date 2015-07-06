@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   has_many :applies
   has_many :likes, -> { where(like_type: Like::PERSON) }, foreign_key: :liked_id, dependent: :destroy
 
-  attr_accessor :name, :avatar, :gender, :signature, :identity, :birthday, :address, :target, :skill, :often, :interests
+  attr_accessor :name, :avatar, :gender, :signature, :identity, :birthday, :address, :target, :skill, :often, :interests, :contact
   delegate :mxid, :name, :avatar, :age, :tags, :signature, :gender, :birthday, :identity, :address, :target, :skill, :often, :interests, :interests_string, to: :profile, prefix: true, allow_nil: false
   alias_attribute :hobby, :interests
 
@@ -23,21 +23,12 @@ class User < ActiveRecord::Base
   has_many :concerns, class: Concerned, dependent: :destroy
 
   has_one :setting, dependent: :destroy
-
-
-  # validates_uniqueness_of :sns, conditions: -> { where.not(sns: nil) },message: '该第三方已注册'
-  # validates_uniqueness_of :mobile, conditions: -> { where.not(mobile: nil) },message: '该手机号已注册'
-  # validates_presence_of :sns, unless: :mobile, message: '第三方不能为空'
-  # validates_presence_of :mobile, unless: :sns, message: '手机号不能为空'
-
-
   TYPE=[['健身爱好者', 0], ['私教', 1], ['商家', 2]]
   class<<self
     def find_by_mxid(mxid)
       includes(:profile).where('profiles.id' => ((mxid.to_i - 10000))).first
     end
   end
-
 
   def token
     Digest::MD5.hexdigest("#{id}")
@@ -54,11 +45,13 @@ class User < ActiveRecord::Base
   end
 
   def as_json
-    if profile.identity.eql?(0)
-      profile.as_json.merge(likes: likes.count)
-    else
-      profile.as_json.merge(likes: likes.count, mobile: mobile||'')
+    case profile.identity
+      when 0
+        profile.as_json.merge(likes: likes.count)
+      when 1
+        profile.as_json.merge(likes: likes.count, mobile: mobile)
+      when 2
+        profile.as_json.merge(likes: likes.count, mobile: profile.mobile)
     end
   end
-
 end

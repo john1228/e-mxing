@@ -11,10 +11,15 @@ module FindManager
   end
 
   def persons
-
     filters = '1=1'
     filters << " and profiles.gender=#{params[:gender]}" unless params[:gender].blank?||params[:gender].eql?('-1')
-    filters << " and profiles.identity=#{params[:identity]}" unless params[:identity].blank?||params[:identity].eql?('-1')
+    if params[:identity].eql?('0')
+      filters << " and profiles.identity=#{params[:identity]}"
+    elsif params[:identity].eql?('1')
+      filters << " and profiles.identity=#{params[:identity]}"
+    else
+      filters << ' and profiles.identity!=2'
+    end
     #过滤隐身的用户
     streams = Setting.where(stealth: Setting::STEALTH).pluck(:user_id)
     filters << " and profiles.user_id not in (#{streams.join(',')})" unless streams.blank?

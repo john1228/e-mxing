@@ -46,20 +46,21 @@ module UserAble
   end
 
   def update_profile
-    update_avatar = avatar||profile_avatar
+    update_avatar = avatar||profile.avatar
     update_params = {
-        name: name||profile_name,
-        gender: gender||profile_gender,
+        name: name||profile.name,
+        gender: gender||profile.gender,
         signature: signature||'这家伙很懒,什么也没留下',
         birthday: birthday.blank? ? Date.today.prev_year(15) : birthday,
-        address: address||profile_address,
-        target: target||profile_target,
-        skill: skill||profile_skill,
-        often: often||profile_often,
-        identity: identity||profile_identity,
-        interests: interests||profile_interests
+        address: address||profile.address,
+        target: target||profile.target,
+        skill: skill||profile.skill,
+        often: often||profile.often,
+        identity: identity||profile.identity,
+        interests: interests||profile.interests
     }
     update_params = update_params.merge(avatar: update_avatar) unless update_avatar.is_a?(String)
+    update_params = update_params.merge(mobile: contact) unless contact.present?
     profile.update(update_params)
   end
 end
