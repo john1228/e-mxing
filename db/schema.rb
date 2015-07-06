@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150703042925) do
+ActiveRecord::Schema.define(version: 20150706020608) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -95,6 +95,15 @@ ActiveRecord::Schema.define(version: 20150703042925) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  create_table "appoint_logs", force: :cascade do |t|
+    t.integer  "appointment_id"
+    t.integer  "status"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "appoint_logs", ["appointment_id", "status"], name: "index_appoint_logs_on_appointment_id_and_status", unique: true, using: :btree
 
   create_table "appointment_settings", force: :cascade do |t|
     t.integer  "coach_id"

@@ -54,10 +54,10 @@ class User < ActiveRecord::Base
   end
 
   def as_json
-    if profile.identity.eql?(1)
-      profile.as_json.merge(likes: likes.count, mobile: mobile)
-    else
+    if profile.identity.eql?(0)
       profile.as_json.merge(likes: likes.count)
+    else
+      profile.as_json.merge(likes: likes.count, mobile: mobile||'')
     end
   end
 

@@ -5,6 +5,7 @@ class OrderItem < ActiveRecord::Base
 
   def as_json
     {
+        id: course_id,
         name: name,
         cover: cover,
         type: type,

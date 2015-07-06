@@ -1,5 +1,5 @@
 namespace :business do
-  host = 'http://www.e-mxing.com'
+  host = 'http://stage.e-mxing.com'
   token = '3c59dc048e8850243be8079a5c74d079'
 
   desc '登录'
@@ -59,7 +59,7 @@ namespace :business do
   desc ''
   task :coach_course do
     conn = Faraday.new(:url => host)
-    conn.headers[:token] = '72b32a1f754ba1c09b3695e0cb6cde7f'
+    conn.headers[:token] = '3c59dc048e8850243be8079a5c74d079'
     response = conn.get '/business/courses'
     puts response.body
   end

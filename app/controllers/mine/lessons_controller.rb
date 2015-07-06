@@ -4,11 +4,11 @@ module Mine
       case params[:list] #全部
         when 'all'
           render json: Success.new(
-                     lessons: @user.appointments.joins(:course).page(params[:page]||1).collect { |appointment| appointment.as_json('user') }
+                     lessons: @user.appointments.joins(:course).order(id: :desc).page(params[:page]||1).collect { |appointment| appointment.as_json('user') }
                  )
         when 'waiting'
           render json: Success.new(
-                     lessons: @user.appointments.joins(:course).where(status: Appointment::STATUS[:waiting]).page(params[:page]||1).collect { |appointment| appointment.as_json('user') }
+                     lessons: @user.appointments.joins(:course).where(status: Appointment::STATUS[:waiting]).order(id: :desc).page(params[:page]||1).collect { |appointment| appointment.as_json('user') }
                  )
         else
           render json: Failure.new(lessons: [])
