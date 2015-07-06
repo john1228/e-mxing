@@ -1,6 +1,6 @@
 namespace :gyms do
-  host = 'http://stage.e-mxing.com'
-  token = 'f0935e4cd5920aa6c7c996a5ee53a70f'
+  host = 'http://localhost'
+  token = 'a87ff679a2f3e71d9181a67b7542122c'
 
   desc '课程情况'
   task :courses do

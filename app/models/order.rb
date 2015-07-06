@@ -64,32 +64,28 @@ class Order < ActiveRecord::Base
 
   def backend_task
     case status
-      when status[:pay]
-      when status[:cancel]
+      when STATUS[:pay]
+        #现在只购买一个课程,逻辑遵循一个课时走
+        item = order_items.first
+        #设置课时
+        lessons.create(coach: coach, user: user, course: item.course, available: item.amount, used: 0,
+                       exp: Date.today.next_day(item.course.exp.to_i), contact_name: contact_name, contact_phone: contact_phone)
+
+        #结算
+        services = ServiceMember.select(:service_id).where(coach: coach).uniq
+        if services.size==1
+          service = services.take.service
+          #挂在单加服务号时，钱转给服务号
+          wallet = Wallet.find_or_create_by(user: service)
+          wallet.update(balance: (wallet.balance + total), action: WalletLog::ACTIONS['卖课收入']) unless item.course.guarantee.eql?(Course::GUARANTEE)
+        else
+          #挂在多家结构时,钱直接转给私教
+          wallet = Wallet.find_or_create_by(user: coach)
+          wallet.update(balance: (wallet.balance + total), action: WalletLog::ACTIONS['卖课收入']) unless item.course.guarantee.eql?(Course::GUARANTEE)
+        end
+      #TODO 短信推送
+      when STATUS[:cancel]
         user.wallet.update(coupons: ((user.wallet.coupons||[]) + coupons.split(',').map { |coupon| coupon.to_i }), bean: (user.wallet.bean + bean.to_i), action: WalletLog::ACTIONS['订单取消']) if coupons.present?||bean.present?
     end
-    if status.eql?(STATUS[:pay])
-      #现在只购买一个课程,逻辑遵循一个课时走
-      item = order_items.first
-      #设置课时
-      lessons.create(coach: coach, user: user, course: item.course, available: item.amount, used: 0,
-                     exp: Date.today.next_day(item.course.exp.to_i), contact_name: contact_name, contact_phone: contact_phone)
-
-      #结算
-      services = ServiceMember.select(:service_id).where(coach: coach).uniq
-      if services.size==1
-        service = services.take.service
-        #挂在单加服务号时，钱转给服务号
-        wallet = Wallet.find_or_create_by(user: service)
-        wallet.update(balance: (wallet.balance + total), action: WalletLog::ACTIONS['卖课收入']) unless item.course.guarantee.eql?(Course::GUARANTEE)
-      else
-        #挂在多家结构时,钱直接转给私教
-        wallet = Wallet.find_or_create_by(user: coach)
-        wallet.update(balance: (wallet.balance + total), action: WalletLog::ACTIONS['卖课收入']) unless item.course.guarantee.eql?(Course::GUARANTEE)
-      end
-      #TODO 短信推送
-    end
-
-    user.wallet.update(coupons: ((user.wallet.coupons||[]) + coupons.split(',').map { |coupon| coupon.to_i }), bean: (user.wallet.bean + bean.to_i), action: WalletLog::ACTIONS['订单取消']) if status.eql?(STATUS[:cancel]) && coupons.present?
   end
 end
