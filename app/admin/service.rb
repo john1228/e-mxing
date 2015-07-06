@@ -74,13 +74,13 @@ ActiveAdmin.register Service do
       tab '2-资料' do
         panel '详细资料' do
           attributes_table_for service do
-            row('美型号') { service.profile_mxid }
-            row('昵称') { service.profile_name }
-            row('头像') { image_tag(service.profile_avatar.thumb.url, height: 70) }
-            row('介绍') { truncate(service.profile_signature) }
-            row('服务') { service.profile_interests_string }
-            row('地址') { service.profile_address }
-            row('联系电话') { service.mobile }
+            row('美型号') { service.profile.mxid }
+            row('昵称') { service.profile.name }
+            row('头像') { image_tag(service.profile.avatar.thumb.url, height: 70) }
+            row('介绍') { truncate(service.profile.signature) }
+            row('服务') { service.profile.interests_string }
+            row('地址') { service.profile.address }
+            row('联系电话') { service.profile.mobile }
           end
         end
       end

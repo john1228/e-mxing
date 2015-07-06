@@ -59,7 +59,6 @@ module UserAble
         identity: identity||profile.identity,
         interests: interests||profile.interests
     }
-    update_params = update_params.merge(avatar: update_avatar) unless update_avatar.is_a?(String)
     update_params = update_params.merge(mobile: contact) unless contact.present?
     profile.update(update_params)
   end
