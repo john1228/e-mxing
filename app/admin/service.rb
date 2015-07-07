@@ -112,8 +112,8 @@ ActiveAdmin.register Service do
       row('余额') { "#{wallet.balance.round(2)}元" }
     end
     div do
-      button '提现'
-      button '转账'
+      button('提现', class: 'fancybox', data: {'fancybox-type' => 'ajax'})
+      button('转账', class: 'fancybox', data: {'fancybox-type' => 'ajax'})
     end
   end
 
