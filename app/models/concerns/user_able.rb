@@ -46,7 +46,7 @@ module UserAble
   end
 
   def update_profile
-    update_avatar = avatar||profile.avatar
+    update_avatar = avatar
     update_params = {
         name: name||profile.name,
         gender: gender||profile.gender,
@@ -59,6 +59,7 @@ module UserAble
         identity: identity||profile.identity,
         interests: interests||profile.interests
     }
+    update_params = update_params.merge(avatar: update_avatar) unless update_avatar.is_a?(String)
     update_params = update_params.merge(mobile: contact) unless contact.present?
     profile.update(update_params)
   end

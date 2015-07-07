@@ -23,14 +23,14 @@ module Mxing
     config.i18n.default_locale = 'zh-CN'
     config.active_job.queue_adapter = :sidekiq
 
-    config.log_level = :info
-    config.logger = ActFluentLoggerRails::Logger.
-        new(log_tags: {
-                ip: :ip,
-                ua: :user_agent,
-                uid: ->(request) { request.headers[:token] }
-            })
-    config.lograge.enabled = true
-    config.lograge.formatter = Lograge::Formatters::Json.new
+    # config.log_level = :info
+    # config.logger = ActFluentLoggerRails::Logger.
+    #     new(log_tags: {
+    #             ip: :ip,
+    #             ua: :user_agent,
+    #             uid: ->(request) { request.headers[:token] }
+    #         })
+    # config.lograge.enabled = true
+    # config.lograge.formatter = Lograge::Formatters::Json.new
   end
 end
