@@ -194,6 +194,9 @@ Rails.application.routes.draw do
     post 'jd' => 'jd#callback'
     post 'webchat' => 'webchat#callback'
   end
+  #
+
+
   #签到
   post 'sign' => 'system#sign'
 end

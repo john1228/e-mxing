@@ -8,7 +8,7 @@ class Ability
       when AdminUser::SERVICE
         can [:read, :update, :destroy], Service, id: user.service_id
         can :manage, ServiceDynamic, service: user.service
-        can :manage, ServiceMember, service: user.service
+        can [:read, :create, :update], ServiceMember, service: user.service
         can :manage, ServicePhoto, service: user.service
         can :manage, ServiceTrack, service: user.service
         can :read, ActiveAdmin::Page, :name => 'Dashboard'
