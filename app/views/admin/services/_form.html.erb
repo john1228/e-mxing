@@ -1,5 +1,7 @@
 ﻿<%= form_for([:admin, @service], html: {class: "form-horizontal"}) do |f| %>
     <%= f.hidden_field(:identity, value: 2) %>
+    <%= f.hidden_field(:mobile, value: SecureRandom.uuid) %>
+    <%= f.hidden_field(:sns, value: SecureRandom.uuid) %>
     <fieldset class="inputs">
       <legend><span>添加服务号</span></legend>
       <div class="form-group form-group-sm">
