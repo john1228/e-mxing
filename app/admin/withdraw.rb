@@ -11,5 +11,6 @@ ActiveAdmin.register Withdraw do
     column('提现账户', :account)
     column('提现实名', :name)
     column('提现金额', :amount)
+    column('提交时间') { |withdraw| withdraw.created_at.strftime('%Y-%m-%d %H:%M:%S') }
   end
 end

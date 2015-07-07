@@ -16,7 +16,7 @@ module Mine
                    {
                        no: order.no,
                        coach: order.coach.profile.summary_json,
-                       items: order.order_items.collect { |item| item.as_json },
+                       items: order.order_item,
                        pay_type: order.pay_type,
                        pay_amount: order.pay_amount,
                        status: order.status,
@@ -34,9 +34,7 @@ module Mine
                    order: {
                        no: order.no,
                        coach: order.coach.profile.summary_json,
-                       items: order.order_items.collect { |item|
-                         item.as_json
-                       },
+                       items: order.order_item,
                        contact: {
                            name: order.contact_name,
                            phone: order.contact_phone

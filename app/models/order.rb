@@ -8,7 +8,7 @@ class Order < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :coach
-  has_many :order_items, dependent: :destroy
+  has_one :order_item, dependent: :destroy
   has_many :lessons, dependent: :destroy
   attr_accessor :item
   STATUS = {delete: -1, cancel: 0, unpay: 1, pay: 2, complete: 4}
@@ -20,9 +20,9 @@ class Order < ActiveRecord::Base
     item_info = item.split('|')
     course_id, course_count = item_info[0], item_info[1]
     course = Course.find_by(id: course_id)
-    order_items.build(course_id: course.id, name: course.name, type: course.type, during: course.during,
-                      cover: (course.course_photos.first.blank? ? '' : course.course_photos.first.photo),
-                      price: course.price, amount: course_count)
+    build_order_item(course_id: course.id, name: course.name, type: course.type, during: course.during,
+                     cover: (course.course_photos.first.blank? ? '' : course.course_photos.first.photo),
+                     price: course.price, amount: course_count)
     self.total, total_price = course.price*course_count.to_i, course.price*course_count.to_i
     #如果用户使用优惠券
     if coupons.present?
@@ -66,7 +66,7 @@ class Order < ActiveRecord::Base
     case status
       when STATUS[:pay]
         #现在只购买一个课程,逻辑遵循一个课时走
-        item = order_items.first
+        item = order_item
         #设置课时
         lessons.create(coach: coach, user: user, course: item.course, available: item.amount, used: 0,
                        exp: Date.today.next_day(item.course.exp.to_i), contact_name: contact_name, contact_phone: contact_phone)

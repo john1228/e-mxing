@@ -8,6 +8,10 @@ class FilmCoverUploader < CarrierWave::Uploader::Base
     "images/#{model.class.to_s.underscore}"
   end
 
+  def default_url
+    "#{$host}/images/default/cover.png"
+  end
+
 
   version :thumb do
     process :resize_to_fit => [200, 200]

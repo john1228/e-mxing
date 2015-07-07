@@ -47,8 +47,50 @@ ActiveAdmin.register ServiceMember do
     actions
   end
   show title: '私教' do
-    div do
-      'hello'
+    coach = service_member.coach
+    tabs do
+      tab '0-订单' do
+        paginated_collection(coach.orders.page(params[:order_page]), param_name: 'order_page') do
+          table_for collection, class: 'index_table' do
+            column('订单号', :no)
+            column('课程') { |order| order.order_item.name }
+            column('数量') { |order| order.order_item.amount }
+            column('下单时间') { |order| order.created_at.strftime('%Y-%m-%d %H:%M:%S') }
+          end
+        end
+      end
+      tab '1-预约' do
+        paginated_collection(coach.appointments.page(params[:appoint_page]), param_name: 'appoint_page') do
+          table_for collection, class: 'index_table' do
+            column('预约单号', :id)
+            column('课程') { |appointment| appointment.course.name }
+            column('课时', :amount)
+            column('状态') { |appointment|
+              case appointment.status
+                when Appointment::STATUS[:cancel]
+                  '已取消'
+                when Appointment::STATUS[:waiting]
+                  '待确认'
+                when Appointment::STATUS[:confirm]
+                  '已确认'
+                when Appointment::STATUS[:finish]
+                  '已评价'
+              end
+            }
+          end
+        end
+      end
+      tab '2-课程' do
+        paginated_collection(coach.courses.page(params[:course_page]), param_name: 'course_page') do
+          table_for collection, class: 'index_table' do
+            column('课程', :name)
+            column('类型', :type)
+            column('教学方式', :style)
+            column('时长', :during)
+            column('价格', :price)
+          end
+        end
+      end
     end
   end
 
