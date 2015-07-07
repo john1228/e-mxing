@@ -1,7 +1,7 @@
 ActiveAdmin.register Service do
   menu label: '服务号', priority: 2
 
-  permit_params :identity, :name, :contact, :password, :avatar, :signature, :address, :hobby
+  permit_params :mobile, :sns, :identity, :name, :contact, :password, :avatar, :signature, :address, :hobby
   filter :profile_name, label: '名称', as: :string
   before_action :adjust, only: [:create, :update]
 
