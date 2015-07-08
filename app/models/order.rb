@@ -85,7 +85,7 @@ class Order < ActiveRecord::Base
         end
       #TODO 短信推送
       when STATUS[:cancel]
-        user.wallet.update(coupons: ((user.wallet.coupons||[]) + coupons.split(',').map { |coupon| coupon.to_i }), bean: (user.wallet.bean + bean.to_i), action: WalletLog::ACTIONS['订单取消']) if coupons.present?||bean.present?
+        user.wallet.update(coupons: ((user.wallet.coupons||[]) + (coupons||'').split(',').map { |coupon| coupon.to_i }), bean: (user.wallet.bean + bean.to_i), action: WalletLog::ACTIONS['订单取消']) if coupons.present?||bean.present?
     end
   end
 end
