@@ -22,8 +22,14 @@ module Mine
 
     def exchange
       exchange_code = params[:code]
+      if exchange_code.eql?('qwer1234')
+        @user.wallet.update(coupons: (@user.wallet.coupons+[Coupon.all.sample.id]).uniq)
+        render json: Success.new
+      else
+        render json: Failure.new('无效的兑换码')
+      end
       #TODO:优惠码兑换
-      render json: Failure.new('无效的兑换码')
+
     end
   end
 end
