@@ -53,9 +53,9 @@ module FindManager
 
   def ranks
     week_rank = (Rails.cache.fetch('week')||{})
-    week_rank.delete { |k, v| user.find_by(id: k).blank? }
+    week_rank.delete_if { |k, v| User.find_by(id: k).blank? }
     month_rank = (Rails.cache.fetch('month')||{})
-    month_rank.delete { |k, v| user.find_by(id: k).blank? }
+    month_rank.delete_if { |k, v| User.find_by(id: k).blank? }
     {
         week: {
             week: Date.today.strftime('%U').to_i,
