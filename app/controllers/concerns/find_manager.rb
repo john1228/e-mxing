@@ -57,10 +57,14 @@ module FindManager
     {
         week: {
             week: Date.today.strftime('%U').to_i,
-            items: week_rank.map { |k, v| {user: User.find_by(id: k).summary_json, likes: v} }
+            items: week_rank.map { |k, v|
+              user = User.find_by(id: k)
+              {user: user.summary_json, likes: v} if user.present? }
         },
         month: {
-            items: month_rank.map { |k, v| {user: User.find_by(id: k).summary_json, likes: v} }
+            items: month_rank.map { |k, v|
+              user = User.find_by(id: k)
+              {user: user.summary_json, likes: v} if user.present? }
         }
     }
   end
@@ -111,31 +115,4 @@ module FindManager
       }
     }
   end
-
-  private
-  def get_week_rank
-    week_date = Date.today.at_beginning_of_week
-    ranks = Like.where(like_type: Like::PERSON, created_at: week_date.prev_week..week_date).group(:liked_id).limit(50).order('count_id desc').count(:id)
-    {
-        week: week_date.strftime('%U').to_i,
-        items: ranks.map { |rank|
-          user = User.find_by(id: rank[0])
-          {user: user.summary_json, likes: rank[1]} if user.present? }
-    }
-  end
-
-  def get_month_rank
-    month_date = Date.today
-    if month_date==month_date.at_beginning_of_month
-      ranks = Like.where(like_type: Like::PERSON, created_at: month_date.yesterday.at_beginning_of_month..month_date).group(:liked_id).limit(50).order('count_id desc').count(:id)
-    else
-      ranks = Like.where(like_type: Like::PERSON, created_at: month_date.at_beginning_of_month..month_date).group(:liked_id).limit(50).order('count_id desc').count(:id)
-    end
-    {
-        items: ranks.map { |rank|
-          user = User.find_by(id: rank[0])
-          {user: user.summary_json, likes: rank[1]} if user.present? }
-    }
-  end
-
 end
