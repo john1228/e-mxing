@@ -80,6 +80,7 @@ Rails.application.routes.draw do
   get 'home/dynamic' => 'home#dynamic'
   get 'home/contact' => 'home#contact'
   get 'home/join' => 'home#join'
+  
   get 'wap' => 'wap#index'
   get 'wap/film' => 'wap#film'
   get 'wap/course' => 'wap#course'
