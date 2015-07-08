@@ -4,5 +4,6 @@ class CreateAutoLogins < ActiveRecord::Migration
       t.references :user
       t.timestamps null: false
     end
+    add_column :withdraws, :status, :integer, default: 0
   end
 end
