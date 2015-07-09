@@ -11,7 +11,7 @@ class Dynamic < ActiveRecord::Base
   accepts_nested_attributes_for :dynamic_film
 
   attr_accessor :img_1, :img_2, :img_3, :img_4, :img_5, :img_6, :img_7, :img_8
-
+  validates_presence_of :content, if: Proc.new { |dynamic| dynamic.dynamic_images.blank?&&dynamic.dynamic_film.blank? }
 
   TOP = 1
 

@@ -2,8 +2,8 @@ class CreateAutoLogins < ActiveRecord::Migration
   def change
     create_table :auto_logins do |t|
       t.references :user
+      t.string :device
       t.timestamps null: false
     end
-    add_column :withdraws, :status, :integer, default: 0
   end
 end

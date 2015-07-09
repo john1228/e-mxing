@@ -20,27 +20,10 @@ class SystemController < ApplicationController
     end
   end
 
-  def active
-    device = Device.new(active_params)
-    if device.save
-      render json: Success.new(token: device.token)
-    else
-      render json: Failure.new('激活失败')
-    end
-  end
-
-  def auto_login
-    AutoLogin.create(user: @user)
-    render json: Success.new
-  end
 
   private
   def verify_auth_token
     @user = Rails.cache.fetch(request.headers[:token])
     render json: {code: -1, message: '您还未登录'} if @user.blank?
-  end
-
-  def active_params
-    params.permit(:name, :system, :device, :channel, :version, :ip)
   end
 end

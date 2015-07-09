@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150708024737) do
+ActiveRecord::Schema.define(version: 20150708091911) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -360,6 +360,13 @@ ActiveRecord::Schema.define(version: 20150708024737) do
     t.integer  "owner"
   end
 
+  create_table "hits", force: :cascade do |t|
+    t.date   "date"
+    t.string "device"
+    t.string "point"
+    t.string "number"
+  end
+
   create_table "lessons", force: :cascade do |t|
     t.integer "order_id"
     t.integer "coach_id"
@@ -389,6 +396,13 @@ ActiveRecord::Schema.define(version: 20150708024737) do
     t.text     "content"
     t.integer  "cover_width"
     t.integer  "cover_height"
+  end
+
+  create_table "onlines", force: :cascade do |t|
+    t.date     "date"
+    t.string   "device"
+    t.datetime "open"
+    t.datetime "close"
   end
 
   create_table "order_items", force: :cascade do |t|

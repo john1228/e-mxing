@@ -3,6 +3,6 @@ class Device < ActiveRecord::Base
 
   private
   def build_token
-    self.token = ''
+    self.token = SecureRandom.uuid
   end
 end

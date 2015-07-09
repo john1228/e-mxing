@@ -14,4 +14,14 @@ namespace :sns do
     userinfo_response = conn.get 'sns/userinfo', access_token: access_token, openid: appid
     puts userinfo_response.body
   end
+
+  task :body do
+    host = 'http://localhost'
+    conn = Faraday.new(:url => host)
+    conn.post do |req|
+      req.url 'upload?device=1'
+      req.headers['Content-Type'] = 'application/json'
+      req.body = '{"2015-06-05":{"c":{"0":0,"1":10,"2":10,"3":10,"4":10,"5":10,"6":10},"o": [["18:00","18:10"],["18:15","18:30"]]}}'
+    end
+  end
 end

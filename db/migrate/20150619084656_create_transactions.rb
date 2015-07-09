@@ -9,5 +9,6 @@ class CreateTransactions < ActiveRecord::Migration
       t.decimal :price
       t.timestamps null: false
     end
+    add_index :transactions, [:no, :source], unique: true
   end
 end

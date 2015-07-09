@@ -80,7 +80,7 @@ Rails.application.routes.draw do
   get 'home/dynamic' => 'home#dynamic'
   get 'home/contact' => 'home#contact'
   get 'home/join' => 'home#join'
-  
+
   get 'wap' => 'wap#index'
   get 'wap/film' => 'wap#film'
   get 'wap/course' => 'wap#course'
@@ -195,7 +195,10 @@ Rails.application.routes.draw do
     post 'jd' => 'jd#callback'
     post 'webchat' => 'webchat#callback'
   end
-  #
+  #数据上传
+  post 'active' => 'upload#active'
+  post 'auto_login' => 'upload#auto_login'
+  post 'upload' => 'upload#data'
 
 
   #签到
