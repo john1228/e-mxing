@@ -15,7 +15,8 @@ class UploadController < ApplicationController
 
 
   def data
-    upload_data = JSON(request.body.as_json[0])
+    #upload_data = JSON(request.body.as_json[0])
+    upload_data = JSON(params[:data])
     upload_data.map { |k, v|
       date = Date.parse(k)
       hits = []

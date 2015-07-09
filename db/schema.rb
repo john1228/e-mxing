@@ -130,6 +130,7 @@ ActiveRecord::Schema.define(version: 20150708091911) do
 
   create_table "auto_logins", force: :cascade do |t|
     t.integer  "user_id"
+    t.string   "device"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

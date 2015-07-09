@@ -17,12 +17,13 @@ class Course < ActiveRecord::Base
     end
 
     def hot
-      hot_course = where(status: STATUS[:online]).order(order_items_count: :desc).take
-      if hot_course.id.eql?(top.id)
-        nil
-      else
-        hot_course
-      end
+      # hot_course = where(status: STATUS[:online]).order(order_items_count: :desc).take
+      # if hot_course.id.eql?(top.id)
+      #   nil
+      # else
+      #   hot_course
+      # end
+      nil
     end
   end
 

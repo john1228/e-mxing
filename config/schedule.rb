@@ -1,5 +1,6 @@
-every 1.minute do
+every 1.day do
   rake 'st:overview'
+  rake 'st:retention'
 end
 
 every 1.hour do
