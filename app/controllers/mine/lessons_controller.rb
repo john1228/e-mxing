@@ -11,7 +11,7 @@ module Mine
                      lessons: @user.appointments.joins(:course).where(status: Appointment::STATUS[:waiting]).order(id: :desc).page(params[:page]||1).collect { |appointment| appointment.as_json('user') }
                  )
         else
-          render json: Success  .new(lessons: [])
+          render json: Success.new(lessons: [])
       end
     end
 
@@ -22,6 +22,10 @@ module Mine
       else
         render json: Failure.new(appointment.errors.map { |k, v| "#{k}:#{v}" })
       end
+    end
+
+    def un_confirm
+      render json: Success.new(unconfirm: @user.appointments.joins(:course).where(status: Appointment::STATUS[:waiting]).count)
     end
 
     def comment

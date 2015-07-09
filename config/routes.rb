@@ -178,6 +178,7 @@ Rails.application.routes.draw do
     delete 'orders/:no/delete' => 'orders#delete'
     #课时
     get 'lessons' => 'lessons#index'
+    get 'lessons/un_confirm' => 'lessons#un_confirm'
     put 'lessons' => 'lessons#confirm'
     post 'lessons/comment' => 'lessons#comment'
     delete 'lessons/:id' => 'lessons#destroy'
