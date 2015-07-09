@@ -1,8 +1,18 @@
 ActiveAdmin.register Enthusiast do
   menu label: '用户', priority: 4
   filter :profile_name, label: '昵称', as: :string
+  filter :created_at, label: '注册时间'
   actions :index, :show, :edit, :update, :destroy
   permit_params :identity
+
+  csv do
+    column('美型号') { |enthusiast| enthusiast.profile.mxid }
+    column('昵称') { |enthusiast| enthusiast.profile.name }
+    column('注册电话') { |enthusiast| enthusiast.mobile }
+    column('注册第三方') { |enthusiast| enthusiast.sns }
+    column('注册时间') { |enthusiast| enthusiast.created_at.localtime }
+  end
+
   index do
     column '美型号' do |enthusiast|
       link_to("#{enthusiast.profile_mxid}", admin_enthusiast_path(enthusiast))
@@ -13,8 +23,8 @@ ActiveAdmin.register Enthusiast do
     column '头像' do |enthusiast|
       link_to(image_tag(enthusiast.profile_avatar.thumb.url, height: 70), admin_enthusiast_path(enthusiast))
     end
-    column '签名' do |enthusiast|
-      truncate(enthusiast.profile_signature)
+    column ' 注册时间' do |enthusiast|
+      truncate(enthusiast.created_at.localtime.strftime('%Y-%m-%d %H:%M:%S'))
     end
     actions do |enthusiast|
       link_to '成为私教', pre_transfer_path(enthusiast), class: 'fancybox', data: {'fancybox-type' => 'ajax'}
