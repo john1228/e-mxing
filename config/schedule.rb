@@ -1,4 +1,4 @@
-every 1.second do
+every 1.minute do
   rake 'st:overview'
 end
 
