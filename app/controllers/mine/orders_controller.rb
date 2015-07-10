@@ -44,7 +44,7 @@ module Mine
                        pay_type: order.pay_type,
                        pay_amount: order.pay_amount,
                        status: order.status,
-                       created: order.created_at.localtime.strftime('%Y-%m-%d %H:%M:%S')
+                       created: order.updated_at.localtime.strftime('%Y-%m-%d %H:%M:%S')
                    }
                )
 

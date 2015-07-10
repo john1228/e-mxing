@@ -32,7 +32,7 @@ module Business
                        pay_amount: order.pay_amount,
                        status: order.status,
                        user: order.user.profile.summary_json,
-                       created: order.created_at.to_i
+                       created: order.updated_at.to_i
                    }
                )
 

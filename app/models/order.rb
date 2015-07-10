@@ -2,7 +2,7 @@ class Order < ActiveRecord::Base
   include MessageAble
   before_create :detect_params
   after_save :backend_task #当订单完成支付时，生成课表
-  default_scope { where('1=1').order(id: :desc) }
+  default_scope { where('1=1').order(updated_at: :desc) }
   scope :unpay, -> { where(status: STATUS[:unpay]) }
   scope :pay, -> { where(status: STATUS[:pay]) }
 
