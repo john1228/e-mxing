@@ -21,12 +21,21 @@ class DeployController < ApplicationController
   end
 
   def ver
-    render json: Success.new(
-               ver: '2.0',
-               force: 0,
-               url: 'http://www.baidu.com',
-               info: %w'更新内容1 更新内容2'
-           )
+    if params[:app].eql?('b')
+      render json: Success.new(
+                 ver: '1.0.1',
+                 force: 0,
+                 url: '',
+                 info: %w''
+             )
+    else
+      render json: Success.new(
+                 ver: '2.0',
+                 force: 0,
+                 url: '',
+                 info: %w''
+             )
+    end
   end
 
 
