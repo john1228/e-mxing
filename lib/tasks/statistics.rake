@@ -30,4 +30,19 @@ namespace :st do
     seven_day_retention = Retention.find_or_create_by(report_date: 7.days.ago(report_date))
     seven_day_retention.update(day_seven: ((seven_day_retention_activations/seven_day_ago_activations.to_f).round(2) rescue 0))
   end
+
+  desc '统计点击量,点数到总点击量和平均点击量'
+  task :hit => :environment do
+    report_date = Date.today.yesterday
+    hits = Hit.where(date: report_date).group(:point).count
+    hits.map { |point, number|
+
+    }
+  end
+
+  desc '计算在线时长'
+  task :hit => :environment do
+    report_date = Date.today.yesterday
+    onlines = Online.sum('close-open').where(open: report_date..report_date.tomorrow)
+  end
 end

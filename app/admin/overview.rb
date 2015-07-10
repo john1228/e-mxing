@@ -3,7 +3,7 @@ ActiveAdmin.register Overview do
   config.batch_actions = false
   actions :index
   filter :report_date, label: '报告日期'
-  index do
+  index title: '应用概括' do
     column('日期') { |overview| overview.report_date.strftime('%Y-%m-%d') }
     column '激活用户', :activation
     column '注册用户', :register

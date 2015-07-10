@@ -3,8 +3,8 @@ ActiveAdmin.register Retention do
   config.batch_actions = false
   actions :index
   filter :report_date, label: '报告日期'
-  index do
-    column '报告日期', :report_date
+  index title: '设备留存率' do
+    column('报告日期') { |retention| retention.report_date.strftime('%Y-%m-%d') }
     column '注册人数', :register
     column '次日留存率', :day_one
     column '三日留存率', :day_three
