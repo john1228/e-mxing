@@ -30,14 +30,15 @@ module SnsManager
     access_token = JSON.parse(response.body)['access_token']
   end
 
-  def qq
-    appid = 'wxcf5397f869f11922'
-    secret = 'd1df9bb3aa1954f501814a40175a4f31'
-    code = '001c02acbd2c3f0d3006ba343d7b635F'
+  def qq(code)
+    client_id = 'wxcf5397f869f11922'
+    client_secret = 'd1df9bb3aa1954f501814a40175a4f31'
+    code = code
     grant_type = 'authorization_code'
-    host = 'https://api.weixin.qq.com'
+    redirect_uri = 'http://www.ugoodtech.com'
+    host = 'https://graph.z.qq.com'
     conn = Faraday.new(:url => host)
-    response = conn.get 'sns/oauth2/access_token', appid: appid, secret: secret, code: code, grant_type: grant_type
+    response = conn.get 'sns/oauth2/access_token', client_id: client_id, client_secret: client_secret, code: code, grant_type: grant_type
     puts response.body
   end
 end
