@@ -4,9 +4,9 @@ class DownloadController < ApplicationController
     ua = request.env['HTTP_USER_AGENT'].downcase
     if package.eql?('b')
       if ua.include?('micromessenger')
-        redirect_to 'http://a.app.qq.com/o/simple.jsp?pkgname=com.example.mx_app'
+        redirect_to 'https://51.emxing.sinaapp.com'
       elsif ua.include?('iphone')||ua.include?('ipod')||ua.include?('ipad')
-        redirect_to 'https://itunes.apple.com/app/id937987572'
+        redirect_to 'https://51.emxing.sinaapp.com'
       else
         send_file("#{Rails.root}/public/apk/e-mxing-b.apk")
       end

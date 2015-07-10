@@ -16,11 +16,21 @@ class Coach<User
   validates_uniqueness_of :mobile, message: '该手机号已经注册'
 
   def score
-    {
-        prof: 5, #comments.average(:pro).to_f).round(1),
-        comm: 5,
-        punc: 5,
-        space: 5
-    }
+    comments = Comment.where(course_id: courses.pluck(:id))
+    if comments.blank?
+      {
+          prof: 5,
+          comm: 5,
+          punc: 5,
+          space: 5,
+      }
+    else
+      {
+          prof: (comments.average(:prof).to_f).round(1),
+          comm: (comments.average(:comm).to_f).round(1),
+          punc: (comments.average(:punc).to_f).round(1),
+          space: (comments.average(:space).to_f).round(1),
+      }
+    end
   end
 end

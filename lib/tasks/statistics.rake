@@ -33,16 +33,27 @@ namespace :st do
 
   desc '统计点击量,点数到总点击量和平均点击量'
   task :hit => :environment do
-    report_date = Date.today.yesterday
+    report_date = Date.parse('2015-06-05') #Date.today.yesterday
     hits = Hit.where(date: report_date).group(:point).count
     hits.map { |point, number|
-
+      HitReport.create(report_date: report_date, point: point, number: number)
     }
   end
 
   desc '计算在线时长'
-  task :hit => :environment do
-    report_date = Date.today.yesterday
-    onlines = Online.sum('close-open').where(open: report_date..report_date.tomorrow)
+  task :online => :environment do
+    report_date = Date.parse('2015-06-05') #Date.today.yesterday
+    #上传设备数
+    devices = Online.select(:device).where(open: report_date..report_date.tomorrow).uniq.count
+    #总在线时长数
+    total = Online.where(open: report_date..report_date.tomorrow).sum('extract(epoch FROM (close - open))')
+    #平均打开时长
+    avg = (total/devices.to_f).round(2) rescue 0
+    (1..12).map { |hour|
+      start_time = ((hour-1)*2).hours.since(report_date)
+      end_time = (hour*2).hours.since(report_date)
+      period_devices = Online.select(:device).where(open: start_time..end_time).uniq.count
+      OnlineReport.create(report_date: report_date, avg: avg, period: (hour*2), number: period_devices)
+    }
   end
 end
