@@ -24,7 +24,7 @@ class Dynamic < ActiveRecord::Base
   def as_json
     json_hash = {
         no: id,
-        content: content || '',
+        content: HarmoniousDictionary.clean(content || ''),
         created: created_at.to_i,
         likes: likes.count,
         comments: {
@@ -56,7 +56,7 @@ class Dynamic < ActiveRecord::Base
     image = dynamic_images.first.image rescue nil
     image = dynamic_film.cover if image.blank? && dynamic_film.present?
     {
-        content: content,
+        content: HarmoniousDictionary.clean(content),
         image: image.present? ? image.thumb.url : ''
     }
   end

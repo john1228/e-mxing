@@ -45,9 +45,10 @@ gem 'active_skin'
 gem 'actionpack-xml_parser'
 
 #fluent
-gem 'act-fluent-logger-rails'
-gem 'lograge'
-gem 'fluent-plugin-parser'
-gem 'fluent-plugin-mongo'
+# gem 'act-fluent-logger-rails'
+# gem 'lograge'
+# gem 'fluent-plugin-parser'
+# gem 'fluent-plugin-mongo'
 #whenever
 gem 'whenever'
+gem 'harmonious_dictionary'

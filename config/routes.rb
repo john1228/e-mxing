@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   post 'users/sns' => 'users#sns'
   put 'users' => 'users#update'
   delete 'users' => 'users#logout'
+  
+  post 'login/sns' => 'login#sns'
   #个人资料
   get 'profile' => 'profile#index'
   put 'profile' => 'profile#complete'

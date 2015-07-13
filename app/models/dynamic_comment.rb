@@ -5,7 +5,7 @@ class DynamicComment < ActiveRecord::Base
 
   def as_json
     {
-        content: content,
+        content: HarmoniousDictionary.clean(content),
         created: created_at.to_i,
         user: user.summary_json
     }

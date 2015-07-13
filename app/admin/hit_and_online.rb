@@ -21,8 +21,8 @@ ActiveAdmin.register_page 'HitAndOnline' do
     div class: 'panel_contents' do
       form do
         div class: 'buttons' do
-          input class: 'button', type: 'submit',value: '过滤'
-          a href: '#', class:'clear_filters_btn',value: '清除'
+          input class: 'button', type: 'submit', value: '过滤'
+          a href: '#', class: 'clear_filters_btn', value: '清除'
         end
       end
     end

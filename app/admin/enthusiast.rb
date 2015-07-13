@@ -2,7 +2,7 @@ ActiveAdmin.register Enthusiast do
   menu label: '用户', priority: 4
   filter :profile_name, label: '昵称', as: :string
   filter :created_at, label: '注册时间'
-  actions :index, :show, :edit, :update, :destroy
+  actions :index, :show, :destroy
   permit_params :identity
 
   csv do
@@ -71,6 +71,4 @@ ActiveAdmin.register Enthusiast do
       row('生日') { |profile| profile.birthday.strftime('%Y-%m-%d') rescue Date.today.prev_year(15) }
     end
   end
-
-  form partial: 'form'
 end

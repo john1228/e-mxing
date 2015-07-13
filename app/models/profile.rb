@@ -41,11 +41,11 @@ class Profile < ActiveRecord::Base
   def summary_json
     {
         mxid: mxid,
-        name: name||'',
+        name: HarmoniousDictionary.clean(name||''),
         avatar: avatar.thumb.url,
         gender: gender||1,
         age: age,
-        signature: signature,
+        signature: HarmoniousDictionary.clean(signature),
         tags: tags,
         identity: identity,
     }
@@ -57,16 +57,16 @@ class Profile < ActiveRecord::Base
         mxid: mxid,
         name: name||'',
         avatar: avatar.thumb.url,
-        signature: signature,
+        signature: HarmoniousDictionary.clean(signature),
         gender: gender||1,
         identity: identity,
         age: age,
         birthday: birthday,
         address: address,
 
-        target: target,
+        target: HarmoniousDictionary.clean(target),
         skill: skill,
-        often: often_stadium,
+        often: HarmoniousDictionary.clean(often_stadium),
         interests: interests,
 
         tags: tags

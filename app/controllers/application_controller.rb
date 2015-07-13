@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
 
   rescue_from CanCan::AccessDenied do |exception|
-    redirect_to 'http://www.e-mxing.com/admin'
+    redirect_to 'http://www.e-mxing.com/admin/login'
   end
 
 
