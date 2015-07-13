@@ -13,7 +13,7 @@ class LoginController < ApplicationController
   private
   def sns_login(sns, code)
     case sns
-      when 'QQ'
+      when 'qq'
         oauth_consumer_key = '1103429959'
         host = 'https://graph.qq.com/'
         conn = Faraday.new(:url => host)
@@ -24,7 +24,7 @@ class LoginController < ApplicationController
         #获取用户信息
         userinfo_response = conn.get 'user/get_info', access_token: code, oauth_consumer_key: oauth_consumer_key, openid: openid
         user_info = JSON.parse(userinfo_response.body)
-        sns_key = "qq_#{user_info['seqid']}"
+        sns_key = "QQ_#{user_info['seqid']}"
         user = User.find_by(sns: sns_key)
         user = User.create(
             mobile: SecureRandom.uuid, sns: sns_key, name: user_info['nick'], avatar: user_info['head'],
@@ -32,7 +32,7 @@ class LoginController < ApplicationController
             signature: '', gender: user_info['sex'].eql?('1') ? 0 : 1, address: user_info['location']
         ) if user.nil?
         user
-      when 'WeChat'
+      when 'weixin'
         appid = 'wxcf5397f869f11922'
         secret = 'd1df9bb3aa1954f501814a40175a4f31'
         grant_type = 'authorization_code'
@@ -43,7 +43,7 @@ class LoginController < ApplicationController
         #TO: 获取用户信息
         userinfo_response = conn.get 'sns/userinfo', access_token: access_token, openid: appid
         user_info = JSON.parse(userinfo_response.body)
-        sns_key = "webchat_#{user_info['openid']}"
+        sns_key = "WeChat#{user_info['openid']}"
         user = User.find_by(sns: sns_key)
         user.create(
             mobile: SecureRandom.uuid, sns: sns_key, name: user_info['nickname'], avatar: user_info['headimgurl'],

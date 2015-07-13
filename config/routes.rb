@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   post 'users/sns' => 'users#sns'
   put 'users' => 'users#update'
   delete 'users' => 'users#logout'
-  
+
   post 'login/sns' => 'login#sns'
   #个人资料
   get 'profile' => 'profile#index'
@@ -99,6 +99,7 @@ Rails.application.routes.draw do
   post '/admin/enthusiasts/:id/transfer' => 'admin/enthusiasts#transfer_result', as: :summit_transfer, defaults: {format: 'js'}
 
   get 'download' => 'download#index'
+  get 'download/:package' => 'download#index'
 
   get 'orders/pay' => 'orders#pay'
 
