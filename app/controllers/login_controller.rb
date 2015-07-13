@@ -28,9 +28,9 @@ class LoginController < ApplicationController
         sns_key = "QQ_#{user_info['seqid']}"
         user = User.find_by(sns: sns_key)
         user = User.create(
-            mobile: SecureRandom.uuid, sns: sns_key, name: user_info['nick'], avatar: user_info['head'],
-            birthday: "#{user_info['birth_year']}-#{user_info['birth_month']}-#{user_info['birth_day']}",
-            signature: '', gender: user_info['sex'].eql?('1') ? 0 : 1, address: user_info['location']
+            mobile: SecureRandom.uuid, sns: sns_key, name: user_info['data']['nick'], avatar: user_info['data']['head'],
+            birthday: "#{user_info['data']['birth_year']}-#{user_info['data']['birth_month']}-#{user_info['data']['birth_day']}",
+            signature: '', gender: user_info['data']['sex'].eql?('1') ? 0 : 1, address: user_info['data']['location']
         ) if user.nil?
         user
       when 'weixin'
