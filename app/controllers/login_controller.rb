@@ -69,7 +69,7 @@ class LoginController < ApplicationController
                             redirect_uri: redirect_uri
         access_token = JSON.parse(response.body)['access_token']
         #TO: 获取用户信息
-        userinfo_response = conn.get '2/users/show.json', access_token: access_token
+        userinfo_response = conn.get '2/users/show.json', source: client_id, access_token: access_token
         user_info = JSON.parse(userinfo_response.body)
         logger.info user_info
         sns_key = "sina_#{user_info['id']}"
