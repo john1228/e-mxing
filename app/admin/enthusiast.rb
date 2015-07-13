@@ -14,6 +14,7 @@ ActiveAdmin.register Enthusiast do
   end
 
   index do
+    selectable_column
     column '美型号' do |enthusiast|
       link_to("#{enthusiast.profile_mxid}", admin_enthusiast_path(enthusiast))
     end
