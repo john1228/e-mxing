@@ -24,6 +24,7 @@ class LoginController < ApplicationController
         #获取用户信息
         userinfo_response = conn.get 'user/get_info', access_token: code, oauth_consumer_key: oauth_consumer_key, openid: openid
         user_info = JSON.parse(userinfo_response.body)
+        logger.info user_info
         sns_key = "QQ_#{user_info['seqid']}"
         user = User.find_by(sns: sns_key)
         user = User.create(
@@ -43,7 +44,8 @@ class LoginController < ApplicationController
         #TO: 获取用户信息
         userinfo_response = conn.get 'sns/userinfo', access_token: access_token, openid: appid
         user_info = JSON.parse(userinfo_response.body)
-        sns_key = "WeChat#{user_info['openid']}"
+        logger.info user_info
+        sns_key = "WeChat_#{user_info['openid']}"
         user = User.find_by(sns: sns_key)
         user.create(
             mobile: SecureRandom.uuid, sns: sns_key, name: user_info['nickname'], avatar: user_info['headimgurl'],
@@ -63,6 +65,7 @@ class LoginController < ApplicationController
         #TO: 获取用户信息
         userinfo_response = conn.get '2/users/show.json', access_token: access_token
         user_info = JSON.parse(userinfo_response.body)
+        logger.info user_info
         sns_key = "sina_#{user_info['id']}"
         user = User.find_by(sns: sns_key)
         user = User.create(
