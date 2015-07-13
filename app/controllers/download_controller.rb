@@ -29,8 +29,6 @@ class DownloadController < ApplicationController
         send_file("#{Rails.root}/public/apk/e-mxing.apk")
       end
     end
-
-
   end
 
   def internal
