@@ -65,8 +65,8 @@ class LoginController < ApplicationController
         host = 'https://api.weibo.com'
         redirect_uri = 'http://www.e-mxing.com'
         conn = Faraday.new(:url => host)
-        response = conn.get 'oauth2/access_token', client_id: client_id, client_secret: client_secret, grant_type: grant_type, code: code,
-                            redirect_uri: redirect_uri
+        response = conn.post 'oauth2/access_token', client_id: client_id, client_secret: client_secret, grant_type: grant_type, code: code,
+                             redirect_uri: redirect_uri
         access_token_info = JSON.parse(response.body)
         logger.info access_token_info
         #TO: 获取用户信息
