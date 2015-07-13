@@ -67,9 +67,10 @@ class LoginController < ApplicationController
         conn = Faraday.new(:url => host)
         response = conn.get 'oauth2/access_token', client_id: client_id, client_secret: client_secret, grant_type: grant_type, code: code,
                             redirect_uri: redirect_uri
-        access_token = JSON.parse(response.body)['access_token']
+        access_token_info = JSON.parse(response.body)
+        logger.info access_token_info
         #TO: 获取用户信息
-        userinfo_response = conn.get '2/users/show.json', source: client_id, access_token: access_token
+        userinfo_response = conn.get '2/users/show.json', source: client_id, access_token: access_token_info['access_token']
         user_info = JSON.parse(userinfo_response.body)
         logger.info user_info
         sns_key = "sina_#{user_info['id']}"
