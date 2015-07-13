@@ -27,11 +27,14 @@ class LoginController < ApplicationController
         logger.info user_info
         sns_key = "QQ_#{user_info['seqid']}"
         user = User.find_by(sns: sns_key)
-        user = User.create(
-            mobile: SecureRandom.uuid, sns: sns_key, name: user_info['data']['nick'], avatar: user_info['data']['head'],
-            birthday: "#{user_info['data']['birth_year']}-#{user_info['data']['birth_month']}-#{user_info['data']['birth_day']}",
-            signature: '', gender: user_info['data']['sex'].eql?('1') ? 0 : 1, address: user_info['data']['location']
-        ) if user.nil?
+        if user.nil?
+          user = User.new(
+              mobile: SecureRandom.uuid, sns: sns_key, name: user_info['data']['nick'], avatar: user_info['data']['head'],
+              birthday: "#{user_info['data']['birth_year']}-#{user_info['data']['birth_month']}-#{user_info['data']['birth_day']}",
+              signature: '', gender: user_info['data']['sex'].eql?('1') ? 0 : 1, address: user_info['data']['location']
+          )
+          user.save
+        end
         user
       when 'weixin'
         appid = 'wxcf5397f869f11922'
@@ -47,10 +50,13 @@ class LoginController < ApplicationController
         logger.info user_info
         sns_key = "WeChat_#{user_info['openid']}"
         user = User.find_by(sns: sns_key)
-        user.create(
-            mobile: SecureRandom.uuid, sns: sns_key, name: user_info['nickname'], avatar: user_info['headimgurl'],
-            signature: '', gender: user_info['sex'].eql?('1') ? 0 : 1, address: "#{user_info['province']}#{user_info['city']}"
-        ) if user.nil?
+        if user.nil?
+          user = User.new(
+              mobile: SecureRandom.uuid, sns: sns_key, name: user_info['nickname'], avatar: user_info['headimgurl'],
+              signature: '', gender: user_info['sex'].eql?('1') ? 0 : 1, address: "#{user_info['province']}#{user_info['city']}"
+          )
+          user.save
+        end
         user
       when 'sina'
         client_id = 3156824048
@@ -68,10 +74,13 @@ class LoginController < ApplicationController
         logger.info user_info
         sns_key = "sina_#{user_info['id']}"
         user = User.find_by(sns: sns_key)
-        user = User.create(
-            mobile: SecureRandom.uuid, sns: sns_key, name: user_info['screen_name'], avatar: user_info['avatar_hd'],
-            signature: user_info['description'], gender: user_info['gender'].eql?('m') ? 0 : 1, address: user_info['location']
-        ) if user.nil?
+        if user.nil?
+          user = User.new(
+              mobile: SecureRandom.uuid, sns: sns_key, name: user_info['screen_name'], avatar: user_info['avatar_hd'],
+              signature: user_info['description'], gender: user_info['gender'].eql?('m') ? 0 : 1, address: user_info['location']
+          )
+          user.save
+        end
         user
     end
   end
