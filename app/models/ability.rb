@@ -25,6 +25,18 @@ class Ability
         can :manage, ServiceTrack
         can [:read, :create, :update], AdminUser
         can :read, ActiveAdmin::Page, :name => 'Dashboard'
+      when AdminUser::ROLE[:operate]
+        can :read, Enthusiast
+        can :read, Service
+        can :read, ServiceDynamic
+        can :read, ServiceMember
+        can :read, ServicePhoto
+        can :read, Coach
+        can :manage, Report
+        can :manage, Feedback
+        can :manage, Overview
+        can :manage, ActiveAdmin::Page, :name => 'HitAndOnline'
+        can :manage, Retention
       else
         cannot :manage, :all
     end
