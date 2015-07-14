@@ -62,7 +62,7 @@ class LoginController < ApplicationController
         #获取UID
         host = 'https://api.weibo.com'
         conn = Faraday.new(:url => host)
-        response = conn.post '2/account/get_uid.json', access_token: code
+        response = conn.get '2/account/get_uid.json', access_token: code
         uid_json = JSON.parse(response.body)
         #TO: 获取用户信息
         userinfo_response = conn.get '2/users/show.json', access_token: code, uid: uid_json['uid']
