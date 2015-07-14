@@ -32,6 +32,16 @@ ActiveAdmin.register Enthusiast do
     end
   end
 
+  batch_action '拉黑' do |ids|
+    User.find(ids).each { |user|
+      user.dynamics.destroy_all
+      user.dynamic_comments.destroy_all
+      Rails.cache.delete(user.token)
+      Blacklist.create(user_id: user.id)
+    }
+    redirect_to collection_path, alert: "拉黑成功"
+  end
+
   controller do
     def transfer
       @enthusiast = Enthusiast.find_by(id: params[:id])

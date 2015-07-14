@@ -1,6 +1,6 @@
-class CreateBlackLists < ActiveRecord::Migration
+class CreateBlacklists < ActiveRecord::Migration
   def change
-    create_table :black_lists do |t|
+    create_table :blacklists do |t|
       t.references :user
       t.timestamps null: false
     end
