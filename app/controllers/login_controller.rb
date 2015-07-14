@@ -29,11 +29,13 @@ class LoginController < ApplicationController
         user = User.find_by(sns: sns_key)
         if user.nil?
           user = User.new(
-              mobile: SecureRandom.uuid, sns: sns_key, name: user_info['data']['nick'], avatar: user_info['data']['head'],
+              mobile: SecureRandom.uuid, sns: sns_key, name: user_info['data']['nick'], avatar: user_info['data']['head']+'/100',
               birthday: "#{user_info['data']['birth_year']}-#{user_info['data']['birth_month']}-#{user_info['data']['birth_day']}",
               signature: '', gender: user_info['data']['sex'].eql?('1') ? 0 : 1, address: user_info['data']['location']
           )
+          logger.info
           user.save
+          logger.info user.errors
         end
         user
       when 'weixin'
