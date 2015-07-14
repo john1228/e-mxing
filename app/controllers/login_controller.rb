@@ -59,20 +59,14 @@ class LoginController < ApplicationController
         end
         user
       when 'sina'
-        client_id = 3156824048
-        client_secret = 'daf17bdcbf3000a284ab196c5efba9e3'
-        grant_type = 'authorization_code'
+        #获取UID
         host = 'https://api.weibo.com'
-        redirect_uri = 'http://www.ugoodtech.com'
         conn = Faraday.new(:url => host)
-        response = conn.post 'oauth2/access_token', client_id: client_id, client_secret: client_secret, grant_type: grant_type, code: code,
-                             redirect_uri: redirect_uri
-        access_token_info = JSON.parse(response.body)
-        logger.info access_token_info
+        response = conn.post '2/account/get_uid.json', access_token: code
+        uid_json = JSON.parse(response.body)
         #TO: 获取用户信息
-        userinfo_response = conn.get '2/users/show.json', source: client_id, access_token: access_token_info['access_token']
+        userinfo_response = conn.get '2/users/show.json', access_token: code, uid: uid_json['uid']
         user_info = JSON.parse(userinfo_response.body)
-        logger.info user_info
         sns_key = "sina_#{user_info['id']}"
         user = User.find_by(sns: sns_key)
         if user.nil?
