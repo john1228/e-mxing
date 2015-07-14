@@ -2,7 +2,90 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f75bf04f-a2fb-45db-a107-604099c0492b" name="Default" comment="mxing v 1.0">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/images/business/endico.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/images/business/fotnav1_a.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/images/business/fotnav1_b.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/images/business/fotnav2_a.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/images/business/fotnav2_b.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/images/business/fotnav3_a.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/images/business/fotnav3_b.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/images/business/fotnav4_a.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/images/business/fotnav4_b.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/images/business/ico1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/images/business/ico2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/images/business/ico3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/images/business/ico4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/images/business/ico5_a.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/images/business/ico5_b.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/images/business/ico6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/images/business/ico7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/images/business/imgico.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/images/business/jiaico.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/images/business/jiaico2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/images/business/kcico1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/images/business/kcico10.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/images/business/kcico11.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/images/business/kcico2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/images/business/kcico3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/images/business/kcico4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/images/business/kcico5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/images/business/kcico6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/images/business/kcico7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/images/business/kcico8.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/images/business/kcico9.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/images/business/loginbg.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/images/business/mytoptu.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/images/business/rzico.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/images/business/topicobg.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/images/business/touxiang.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/images/business/tu1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/images/business/userico.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/images/business/yesico.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/images/business/yesico2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/images/business/yesico3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/images/business/yfktu.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/images/business/zskctu1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/images/business/zskctu2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/images/business/zskctu3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/business/jquery.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/business/public.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/business/swiper-2.1.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/business/style.css" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/share/style.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/business/address_add.html.erb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/business/appoint_index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/business/appointment.html.erb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/business/appointment_show.html.erb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/business/change.html.erb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/business/choose_address.html.erb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/business/contact.html.erb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/business/course-1v1-default.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/business/course-1v1.html.erb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/business/course-1vn-default.html.erb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/business/course-1vn.html.erb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/business/course_add.html.erb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/business/course_add_blank.html.erb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/business/course_add_images.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/business/courses_index.html.erb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/business/feedback.html.erb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/business/forget.html.erb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/business/invite.html.erb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/business/invite_offline.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/business/login.html.erb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/business/me.html.erb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/business/me_account.html.erb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/business/me_account_detail.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/business/order_detail.html.erb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/business/order_list.html.erb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/business/setting.html.erb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/business/è¯¾ç¨è¯¦æ-å¢æ-çº¦æ»¡.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/business/è¯¾è¡¨è¯¦æ-1v1.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/business/è¯¾è¡¨è¯¦æ-1v1å·²å®æ.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/business/è¯¾è¡¨è¯¦æ-éè¯·å­¦å-1v1-éæ©è¯¾ç¨.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/business/è¯¾è¡¨è¯¦æ-éè¯·å­¦å-1v1.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/business/è¯¾è¡¨è¯¦æ-éè¯·å­¦å-å¢æ.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/business/éè¯·å­¦å.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/business/éè¯·çº¿ä¸å­¦å.html" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/136/Yoga@2x.png" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/136/run@2x.png" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/public/deploy/136/举重-1@2x.png" afterPath="" />
@@ -189,10 +272,10 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/profile/thumb_2015/04/13/69a967d4-9c11-4da6-8b6b-17be3c731773.jpg" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/profile/thumb_2015/04/13/bd9aae27-06f0-46ac-93c0-004ff0b0900d.jpg" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/profile/thumb_2015/06/01/3df5d85a-c35a-4fc4-89d0-86ae82286c07.jpg" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/admin/coach_photo.rb" afterPath="$PROJECT_DIR$/app/admin/coach_photo.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/share/dynamic.html.erb" afterPath="$PROJECT_DIR$/app/views/share/dynamic.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/login_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/login_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/.idea/photo.iml" afterPath="$PROJECT_DIR$/../photo/.idea/photo.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/admin/photo.rb" afterPath="$PROJECT_DIR$/app/admin/photo.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/admin/service_photo.rb" afterPath="$PROJECT_DIR$/app/admin/service_photo.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="mxing.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -240,13 +323,85 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="carrierwave.rb" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/config/initializers/carrierwave.rb">
+      <file leaf-file-name="logo.png" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/assets/images/web/logo.png">
+          <provider selected="true" editor-type-id="images">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="iphone.jpg" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/assets/images/web/iphone.jpg">
+          <provider selected="true" editor-type-id="images">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="download_icon.png" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/assets/images/web/download_icon.png">
+          <provider selected="true" editor-type-id="images">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="down_btn.png" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/assets/images/web/down_btn.png">
+          <provider selected="true" editor-type-id="images">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="download.png" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/assets/images/wap/download.png">
+          <provider selected="true" editor-type-id="images">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="upload_controller.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/upload_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.07941177" vertical-offset="0" max-vertical-offset="680">
-              <caret line="3" column="3" selection-start-line="3" selection-start-column="3" selection-end-line="3" selection-end-column="3" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="108" max-vertical-offset="846">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="captcha_controller.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/captcha_controller.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1278">
+              <caret line="1" column="15" selection-start-line="1" selection-start-column="15" selection-end-line="1" selection-end-column="15" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="captcha_manager.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/concerns/captcha_manager.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="594" max-vertical-offset="1296">
+              <caret line="0" column="7" selection-start-line="0" selection-start-column="7" selection-end-line="0" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="login_controller.rb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/controllers/login_controller.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.4317841" vertical-offset="216" max-vertical-offset="1566">
+              <caret line="28" column="33" selection-start-line="28" selection-start-column="33" selection-end-line="28" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="middle.png" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/assets/images/share/middle.png">
+          <provider selected="true" editor-type-id="images">
+            <state />
           </provider>
         </entry>
       </file>
@@ -261,7 +416,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/views/admin/hit_and_onlines/_online.html.erb" />
         <option value="$PROJECT_DIR$/app/views/admin/hitandonline/_hits.html.erb" />
         <option value="$PROJECT_DIR$/app/views/admin/hitandonline/_online.html.erb" />
         <option value="$PROJECT_DIR$/db/migrate/20150710024310_create_online_reports.rb" />
@@ -302,7 +456,6 @@
         <option value="$PROJECT_DIR$/app/models/blacklist.rb" />
         <option value="$PROJECT_DIR$/app/models/transaction.rb" />
         <option value="$PROJECT_DIR$/lib/tasks/sns.rake" />
-        <option value="$PROJECT_DIR$/app/controllers/login_controller.rb" />
         <option value="$PROJECT_DIR$/app/models/user.rb" />
         <option value="$PROJECT_DIR$/app/admin/coach.rb" />
         <option value="$PROJECT_DIR$/app/admin/course.rb" />
@@ -312,6 +465,8 @@
         <option value="$PROJECT_DIR$/app/admin/photo.rb" />
         <option value="$PROJECT_DIR$/app/admin/coach_photo.rb" />
         <option value="$PROJECT_DIR$/config/initializers/carrierwave.rb" />
+        <option value="$PROJECT_DIR$/app/views/share/dynamic.html.erb" />
+        <option value="$PROJECT_DIR$/app/controllers/login_controller.rb" />
       </list>
     </option>
   </component>
@@ -411,65 +566,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="initializers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mxing" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mxing" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mxing" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mxing" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="uploaders" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mxing" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mxing" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="models" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -519,7 +620,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="admin" />
+              <option name="myItemId" value="assets" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2154,206 +2255,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/lib/tasks/business.rake">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1584">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/tasks/captcha.rake">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="774">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/tasks/like.rake">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="680">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/tasks/system.rake">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="680">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/tasks/track.rake">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1260">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/tasks/showtime.rake">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="667">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/uploaders/dynamic_images_uploader.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="76" max-vertical-offset="954">
-          <caret line="32" column="5" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../local/rvm/gems/ruby-2.1.4/gems/carrierwave-0.10.0/lib/carrierwave/processing/mini_magick.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="4404" max-vertical-offset="5094">
-          <caret line="257" column="8" selection-start-line="257" selection-start-column="8" selection-end-line="257" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/api_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="396">
-          <caret line="1" column="79" selection-start-line="1" selection-start-column="79" selection-end-line="1" selection-end-column="79" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/admin_user.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="576">
-          <caret line="23" column="26" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/application_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="432">
-          <caret line="8" column="52" selection-start-line="8" selection-start-column="52" selection-end-line="8" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/routes.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.928571" vertical-offset="1430" max-vertical-offset="3906">
-          <caret line="101" column="44" selection-start-line="101" selection-start-column="44" selection-end-line="101" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/download_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="900">
-          <caret line="30" column="7" selection-start-line="30" selection-start-column="7" selection-end-line="30" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/tasks/statistics.rake">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="432" max-vertical-offset="1152">
-          <caret line="44" column="18" selection-start-line="44" selection-start-column="18" selection-end-line="44" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/admin/group.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="810">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/admin/feedback.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="680">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/admin/news.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="828">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/admin/overview.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="680">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/admin/hit_and_online.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="648">
-          <caret line="0" column="39" selection-start-line="0" selection-start-column="27" selection-end-line="0" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/ability.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="162" max-vertical-offset="882">
-          <caret line="33" column="24" selection-start-line="33" selection-start-column="24" selection-end-line="33" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20150714021010_create_blacklists.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="252">
-          <caret line="3" column="24" selection-start-line="3" selection-start-column="24" selection-end-line="3" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/admin/coach_docs/_form.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="680">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/admin/admin_users/_form.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.703704" vertical-offset="206" max-vertical-offset="846">
-          <caret line="29" column="144" selection-start-line="29" selection-start-column="144" selection-end-line="29" selection-end-column="144" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/admin/enthusiast.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="198" max-vertical-offset="1638">
-          <caret line="39" column="39" selection-start-line="39" selection-start-column="39" selection-end-line="39" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/users_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="162" max-vertical-offset="1386">
-          <caret line="29" column="81" selection-start-line="29" selection-start-column="81" selection-end-line="29" selection-end-column="81" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/blacklist.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="162">
@@ -2402,14 +2303,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/login_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.32383808" vertical-offset="324" max-vertical-offset="1566">
-          <caret line="30" column="19" selection-start-line="30" selection-start-column="19" selection-end-line="30" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/rubystubs21/module.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.17352942" vertical-offset="8198" max-vertical-offset="22464">
@@ -2422,14 +2315,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="323" max-vertical-offset="1152">
           <caret line="44" column="46" selection-start-line="44" selection-start-column="46" selection-end-line="44" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/course_photo.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="680">
-          <caret line="0" column="6" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="6" />
           <folding />
         </state>
       </provider>
@@ -2450,26 +2335,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/course.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1656">
-          <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/admin/service_dynamic.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="864">
           <caret line="3" column="17" selection-start-line="3" selection-start-column="2" selection-end-line="3" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/admin/course.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="414">
-          <caret line="14" column="29" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
           <folding />
         </state>
       </provider>
@@ -2556,8 +2425,195 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/config/initializers/carrierwave.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.07941177" vertical-offset="0" max-vertical-offset="680">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="162">
           <caret line="3" column="3" selection-start-line="3" selection-start-column="3" selection-end-line="3" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/api_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="396">
+          <caret line="1" column="79" selection-start-line="1" selection-start-column="79" selection-end-line="1" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/application_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="432">
+          <caret line="8" column="52" selection-start-line="8" selection-start-column="52" selection-end-line="8" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/users_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="162" max-vertical-offset="1386">
+          <caret line="29" column="81" selection-start-line="29" selection-start-column="81" selection-end-line="29" selection-end-column="81" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/profile_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="756">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/admin/course.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="414">
+          <caret line="14" column="29" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/share/dynamic.css.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="5.7777777" vertical-offset="4602" max-vertical-offset="6930">
+          <caret line="247" column="11" selection-start-line="247" selection-start-column="11" selection-end-line="247" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/course.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1656">
+          <caret line="3" column="23" selection-start-line="3" selection-start-column="23" selection-end-line="3" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/download_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="4" max-vertical-offset="900">
+          <caret line="30" column="7" selection-start-line="30" selection-start-column="7" selection-end-line="30" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/share/dynamic.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.478125" vertical-offset="594" max-vertical-offset="2232">
+          <caret line="50" column="32" selection-start-line="50" selection-start-column="32" selection-end-line="50" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/course_photo.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="680">
+          <caret line="0" column="6" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/images/logo.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/images/web/xian.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/images/web/xian.gif">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/images/web/wap_bg.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/images/web/tu3.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/images/web/tu2.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/images/web/tu1.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/images/web/quntu.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/images/web/map.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/images/web/logo.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/images/web/iphone.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/images/web/download_icon.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/images/web/down_btn.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/images/share/middle.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/images/wap/download.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/upload_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="108" max-vertical-offset="846">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/captcha_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1278">
+          <caret line="1" column="15" selection-start-line="1" selection-start-column="15" selection-end-line="1" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/concerns/captcha_manager.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="594" max-vertical-offset="1296">
+          <caret line="0" column="7" selection-start-line="0" selection-start-column="7" selection-end-line="0" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/login_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4317841" vertical-offset="216" max-vertical-offset="1566">
+          <caret line="28" column="33" selection-start-line="28" selection-start-column="33" selection-end-line="28" selection-end-column="33" />
           <folding />
         </state>
       </provider>

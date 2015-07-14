@@ -59,7 +59,7 @@
                 var vHLSset = "<%=asset_path('HLS.swf')%>";             //HLS配置
                 var vPic = "<%=@dynamic_film.cover.thumb.url%>";    //视频缩略图
                 var vCssurl = "<%=asset_path('share/mini', type: :stylesheet )%>";     //移动端CSS应用文件
-                var vHLSurl = <%=@dynamic_film.film.hls%>;
+                var vHLSurl = "<%=@dynamic_film.film.hls%>";
                 //-->
             </SCRIPT>
             <%= javascript_include_tag 'hls.min' %>

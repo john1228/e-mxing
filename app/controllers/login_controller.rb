@@ -24,9 +24,9 @@ class LoginController < ApplicationController
         #获取用户信息
         userinfo_response = conn.get 'user/get_info', access_token: code, oauth_consumer_key: oauth_consumer_key, openid: openid
         user_info = JSON.parse(userinfo_response.body)
-        logger.info user_info
         sns_key = "QQ_#{user_info['seqid']}"
         user = User.find_by(sns: sns_key)
+        logger.info user.present?
         if user.nil?
           user = User.new(
               mobile: SecureRandom.uuid, sns: sns_key, name: user_info['data']['nick'], avatar: user_info['data']['head']+'/100',
