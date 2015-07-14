@@ -33,7 +33,7 @@ namespace :st do
 
   desc '统计点击量,点数到总点击量和平均点击量'
   task :hit => :environment do
-    report_date = Date.parse('2015-06-05') #Date.today.yesterday
+    report_date = Date.today.yesterday
     hits = Hit.where(date: report_date).group(:point).count
     hits.map { |point, number|
       HitReport.create(report_date: report_date, point: point, number: number)
@@ -42,7 +42,7 @@ namespace :st do
 
   desc '计算在线时长'
   task :online => :environment do
-    report_date = Date.parse('2015-06-05') #Date.today.yesterday
+    report_date = Date.today.yesterday
     #上传设备数
     devices = Online.select(:device).where(open: report_date..report_date.tomorrow).uniq.count
     #总在线时长数
