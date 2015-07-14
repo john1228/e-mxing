@@ -4,7 +4,7 @@ class DownloadController < ApplicationController
     ua = request.env['HTTP_USER_AGENT'].downcase
     if package.eql?('b')
       if ua.include?('micromessenger')
-        redirect_to 'https://51.emxing.sinaapp.com'
+        render layout: false
       elsif ua.include?('iphone')||ua.include?('ipod')||ua.include?('ipad')
         redirect_to 'https://51.emxing.sinaapp.com'
       else
