@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   attr_accessor :name, :avatar, :gender, :signature, :identity, :birthday, :address, :target, :skill, :often, :interests, :contact
   delegate :mxid, :name, :avatar, :age, :tags, :signature, :gender, :birthday, :identity, :address, :target, :skill, :often, :interests, :interests_string, to: :profile, prefix: true, allow_nil: false
   alias_attribute :hobby, :interests
+  attr_accessor :new
 
   #v3
   has_one :wallet, dependent: :destroy
@@ -41,7 +42,7 @@ class User < ActiveRecord::Base
     else
       login_info = profile.summary_json.merge(mobile: mobile[0, 3]+'****'+ mobile[7, 4], token: token)
     end
-    login_info
+    login_info.merge(new: new.present? ? 1 : 0)
   end
 
   def as_json

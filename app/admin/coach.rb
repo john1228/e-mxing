@@ -36,7 +36,7 @@ ActiveAdmin.register Coach do
       row('头像') { |profile| image_tag(profile.avatar.thumb.url) }
       row('签名') { |profile| profile.signature }
       row('性别') { |profile| profile.gender }
-      row('生日') { |profile| profile.birthday.strftime('%Y-%m-%d') rescue Date.today.prev_year(15) }
+      row('生日') { |profile| (profile.birthday||Date.today.prev_year(15)).strftime('%Y-%m-%d') }
     end
   end
 end
