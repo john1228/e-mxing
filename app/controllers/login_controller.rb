@@ -6,7 +6,7 @@ class LoginController < ApplicationController
     else
       render json: {code: 0, message: '该用户已经被用户举报封存，如有疑问，可联系客服人员咨询解封'} if Blacklist.find_by(user: user).present?
       Rails.cache.write(user.token, user)
-      render json: Success.new(user: user)
+      render json: Success.new(user: user.summary_json)
     end
   end
 
