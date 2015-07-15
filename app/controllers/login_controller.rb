@@ -23,6 +23,7 @@ class LoginController < ApplicationController
         openid = me_json['openid']
         #获取用户信息
         userinfo_response = conn.get 'user/get_info', access_token: code, oauth_consumer_key: oauth_consumer_key, openid: openid
+        logger.info userinfo_response.body
         user_info = JSON.parse(userinfo_response.body)
         sns_key = "QQ_#{user_info['seqid']}"
         user = User.find_by(sns: sns_key)
