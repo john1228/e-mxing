@@ -18,8 +18,12 @@ class Course < ActiveRecord::Base
 
     def hot
       hot_course = where(status: STATUS[:online]).order(order_items_count: :desc).take
-      if hot_course.present? && hot_course.id.eql?(top.id)
-        nil
+      if top.present?
+        if hot_course.present? && hot_course.id.eql?(top.id)
+          nil
+        else
+          hot_course
+        end
       else
         hot_course
       end
