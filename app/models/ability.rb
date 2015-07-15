@@ -37,6 +37,7 @@ class Ability
         can :manage, Overview
         can :manage, ActiveAdmin::Page, :name => 'HitAndOnline'
         can :manage, Retention
+        can :read, ActiveAdmin::Page, :name => 'Dashboard'
       else
         cannot :manage, :all
     end
