@@ -382,10 +382,10 @@ ActiveRecord::Schema.define(version: 20150714021010) do
   end
 
   create_table "hits", force: :cascade do |t|
-    t.date   "date"
-    t.string "device"
-    t.string "point"
-    t.string "number"
+    t.date    "date"
+    t.string  "device"
+    t.integer "point"
+    t.integer "number"
   end
 
   create_table "lessons", force: :cascade do |t|

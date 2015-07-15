@@ -3,8 +3,8 @@ class CreateHits < ActiveRecord::Migration
     create_table :hits do |t|
       t.date :date
       t.string :device
-      t.string :point
-      t.string :number
+      t.integer :point
+      t.integer :number
     end
   end
 end
