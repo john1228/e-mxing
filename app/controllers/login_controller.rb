@@ -34,8 +34,10 @@ class LoginController < ApplicationController
         logger.info "3::#{Time.now.strftime('%H:%M:%S %L')}"
         logger.info "4::#{user.present?}"
         if user.nil?
+          avatar = user_info['data']['head']+'/100'
+          logger.info avatar
           user = User.new(
-              mobile: SecureRandom.uuid, sns: sns_key, name: user_info['data']['nick'], avatar: user_info['data']['head']+'/100',
+              mobile: SecureRandom.uuid, sns: sns_key, name: user_info['data']['nick'], avatar: avatar,
               birthday: "#{user_info['data']['birth_year']}-#{user_info['data']['birth_month']}-#{user_info['data']['birth_day']}",
               signature: '', gender: user_info['data']['sex'].eql?('1') ? 0 : 1, address: user_info['data']['location']
           )
