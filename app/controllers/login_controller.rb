@@ -23,27 +23,18 @@ class LoginController < ApplicationController
         me_json = JSON.parse(me.body.gsub('callback( ', '').gsub(');', ''))
         openid = me_json['openid']
         #获取用户信息
-        userinfo_response = conn.get 'user/get_info', access_token: code, oauth_consumer_key: oauth_consumer_key, openid: openid
-        logger.info "1::#{Time.now.strftime('%H:%M:%S %L')}"
+        userinfo_response = conn.get 'user/get_user_info ', access_token: code, oauth_consumer_key: oauth_consumer_key, openid: openid
         user_info = JSON.parse(userinfo_response.body)
-        logger.info(user_info)
-        logger.info "2::#{Time.now.strftime('%H:%M:%S %L')}"
-        sns_key = "QQ_#{user_info['seqid']}"
-        logger.info sns_key
+        sns_key = "QQ_#{openid}"
         user = User.find_by(sns: sns_key)
-        logger.info "3::#{Time.now.strftime('%H:%M:%S %L')}"
-        logger.info "4::#{user.present?}"
         if user.nil?
-          avatar = user_info['data']['head']+'/100'
           logger.info avatar
           user = User.new(
-              mobile: SecureRandom.uuid, sns: sns_key, name: user_info['data']['nick'], avatar: avatar,
-              birthday: "#{user_info['data']['birth_year']}-#{user_info['data']['birth_month']}-#{user_info['data']['birth_day']}",
-              signature: '', gender: user_info['data']['sex'].eql?('1') ? 0 : 1, address: user_info['data']['location']
+              mobile: SecureRandom.uuid, sns: sns_key, name: user_info['nickname'], avatar: user_info['figureurl_qq_1'],
+              birthday: "#{user_info['figureurl_qq_1']}", gender: user_info['gender'].eql?('男') ? 0 : 1
           )
           user.save
         end
-        logger.info "5::#{Time.now.strftime('%H:%M:%S %L')}"
         user
       when 'weixin'
         appid = 'wxcf5397f869f11922'
