@@ -26,6 +26,7 @@ class LoginController < ApplicationController
         userinfo_response = conn.get 'user/get_info', access_token: code, oauth_consumer_key: oauth_consumer_key, openid: openid
         logger.info "1::#{Time.now.strftime('%H:%M:%S %L')}"
         user_info = JSON.parse(userinfo_response.body)
+        logger.info(user_info)
         logger.info "2::#{Time.now.strftime('%H:%M:%S %L')}"
         sns_key = "QQ_#{user_info['seqid']}"
         logger.info sns_key
