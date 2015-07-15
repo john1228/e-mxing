@@ -4,7 +4,6 @@ class DynamicImagesUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
   storage :file
   process :store_dimensions
-  process :sample_rotate => ['90%', '-80>']
 
   def store_dir
     "images/#{model.class.to_s.underscore}"
@@ -27,19 +26,7 @@ class DynamicImagesUploader < CarrierWave::Uploader::Base
       model.width, model.height = img.width, img.height
     end
   end
-
-
-  def sample_rotate(sample, rotate)
-    manipulate! do |img|
-      img.combine_options do |c|
-        c.sample(sample)
-        c.rotate(rotate)
-      end
-      img = yield(img) if block_given?
-      img
-    end
-  end
-
+  
   protected
   def secure_token
     var = :"@#{mounted_as}_secure_token"
