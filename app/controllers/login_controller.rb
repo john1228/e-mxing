@@ -6,7 +6,7 @@ class LoginController < ApplicationController
     else
       render json: {code: 0, message: '该用户已经被用户举报封存，如有疑问，可联系客服人员咨询解封'} if Blacklist.find_by(user: user).present?
       Rails.cache.write(user.token, user)
-      logger.info "5::#{Time.now.strftime('%H:%M:%S %L')}"
+      logger.info "6::#{Time.now.strftime('%H:%M:%S %L')}"
       render json: Success.new(user: user.summary_json)
     end
   end
@@ -28,9 +28,10 @@ class LoginController < ApplicationController
         user_info = JSON.parse(userinfo_response.body)
         logger.info "2::#{Time.now.strftime('%H:%M:%S %L')}"
         sns_key = "QQ_#{user_info['seqid']}"
+        logger.info sns_key
         user = User.find_by(sns: sns_key)
         logger.info "3::#{Time.now.strftime('%H:%M:%S %L')}"
-        logger.info user.present?
+        logger.info "4::#{user.present?}"
         if user.nil?
           user = User.new(
               mobile: SecureRandom.uuid, sns: sns_key, name: user_info['data']['nick'], avatar: user_info['data']['head']+'/100',
@@ -39,7 +40,7 @@ class LoginController < ApplicationController
           )
           user.save
         end
-        logger.info "4::#{Time.now.strftime('%H:%M:%S %L')}"
+        logger.info "5::#{Time.now.strftime('%H:%M:%S %L')}"
         user
       when 'weixin'
         appid = 'wxcf5397f869f11922'
