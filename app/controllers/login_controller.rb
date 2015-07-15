@@ -28,7 +28,6 @@ class LoginController < ApplicationController
         sns_key = "QQ_#{openid}"
         user = User.find_by(sns: sns_key)
         if user.nil?
-          logger.info avatar
           user = User.new(
               mobile: SecureRandom.uuid, sns: sns_key, name: user_info['nickname'], avatar: user_info['figureurl_qq_1'],
               birthday: "#{user_info['figureurl_qq_1']}", gender: user_info['gender'].eql?('男') ? 0 : 1
