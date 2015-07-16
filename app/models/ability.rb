@@ -25,7 +25,7 @@ class Ability
         can :manage, ServiceTrack
         can [:read, :create, :update], AdminUser
         can :read, ActiveAdmin::Page, :name => 'Dashboard'
-      when AdminUser::ROLE[:operate]
+      when AdminUser::ROLE[:operator]
         can :read, Enthusiast
         can :read, Service
         can :read, ServiceDynamic
@@ -37,7 +37,7 @@ class Ability
         can :manage, Overview
         can :manage, ActiveAdmin::Page, :name => 'HitAndOnline'
         can :manage, Retention
-        can :read, ActiveAdmin::Page, :name => 'Dashboard'
+        can :manage, ActiveAdmin::Page, :name => 'Dashboard'
       else
         cannot :manage, :all
     end

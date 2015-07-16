@@ -22,12 +22,21 @@ class DeployController < ApplicationController
 
   def ver
     if params[:app].eql?('b')
-      render json: Success.new(
-                 ver: '1.0.1',
-                 force: 0,
-                 url: '',
-                 info: %w''
-             )
+      if params[:device].eql?('ios')
+        render json: Success.new(
+                   ver: '1.0.2',
+                   force: 0,
+                   url: 'http://www.e-mxing/download/b',
+                   info: %w''
+               )
+      else
+        render json: Success.new(
+                   ver: '1.0.1',
+                   force: 0,
+                   url: 'http://www.e-mxing/download/b',
+                   info: %w''
+               )
+      end
     else
       render json: Success.new(
                  ver: '2.0',

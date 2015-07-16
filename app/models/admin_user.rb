@@ -10,17 +10,5 @@ class AdminUser < ActiveRecord::Base
 
   belongs_to :service
 
-  ROLE = {super: 0, service: 1, cms: 2, market: 3, operater: 4}
-
-  def is_service?
-    role.eql?(ROLE[:service])
-  end
-
-  def is_cms?
-    role.eql?(ROLE[:cms])
-  end
-
-  def is_market?
-    role.eql?(ROLE[:market])
-  end
+  ROLE = {super: 0, service: 1, cms: 2, market: 3, operator: 4}
 end
