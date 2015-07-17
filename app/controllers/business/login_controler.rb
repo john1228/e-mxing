@@ -4,7 +4,7 @@ module Business
       if params[:password].present?
         if @coach.password.eql?(Digest::MD5.hexdigest("#{params[:password]}|#{@coach.salt}"))
           if @coach.update(password: params[:new_password])
-            Rails.cache.write("#{@coach.token}|gyms", @coach)
+            Rails.cache.write("#{@coach.token}|gyms", @coach.reload)
             render json: {code: 1}
           else
             render json: {code: 0, message: '更新密码失败'}
