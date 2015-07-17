@@ -1,7 +1,9 @@
 module Business
   class LoginController < BaseController
     def update
-      logger.info "#{params[:password]}-#{params[:new_password]}"
+      logger.info "#{params[:password]}::#{Digest::MD5.hexdigest("#{params[:password]}|#{@coach.salt}")}"
+      logger.info "#{params[:new_password]}::#{@coach.password}"
+      logger.info @coach.password.eql?(Digest::MD5.hexdigest("#{params[:password]}|#{@coach.salt}"))
       if params[:password].present?
         if @coach.password.eql?(Digest::MD5.hexdigest("#{params[:password]}|#{@coach.salt}"))
           if @coach.update(password: params[:new_password])
