@@ -18,9 +18,29 @@ ActiveAdmin.register AdminUser do
   end
   show do
     attributes_table do
-      row('用户名') { admin_user.email }
-      row('角色') { admin_user.email }
-      row('服务号') { admin_user.email }
+      row('用户名', :email)
+      row('角色') { |admin_user|
+        case admin_user.role
+          when AdminUser::ROLE[:super]
+            '超级管理员'
+          when AdminUser::ROLE[:service]
+            '服务号管理员'
+          when AdminUser::ROLE[:cms]
+            '内容管理员'
+          when AdminUser::ROLE[:market]
+            '市场管理员'
+          when AdminUser::ROLE[:operator]
+            '运营管理员'
+        end
+      }
+      row('服务号') { |admin_user|
+        case admin_user.role
+          when AdminUser::ROLE[:service]
+            Service.find_by(id: service_id).profile.name
+          else
+            ''
+        end
+      }
     end
   end
   filter :email

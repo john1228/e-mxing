@@ -1,12 +1,15 @@
 # encoding: utf-8
-
-class ActivityCoverUploader < CarrierWave::Uploader::Base
+class GalleryUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
   storage :file
-  process :resize_to_limit => [150, 210]
+  process :resize_to_limit => [2080, nil]
 
   def store_dir
-    "images/#{model.class.to_s.underscore}"
+    'images/gallery'
+  end
+
+  version :thumb do
+    process :resize_to_fit => [300, nil]
   end
 
   def extension_white_list

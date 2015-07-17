@@ -117,4 +117,25 @@ module FindManager
       }
     }
   end
+
+  def gallery
+    if params[:tag].present?
+      [{
+           tag: params[:tag],
+           items: Gallery.where(tag: params[:tag]).page(params[:page]||1)
+
+       }]
+    else
+      Gallery::TAGS.map { |tag|
+        {
+            tag: tag,
+            items: Gallery.where(tag: tag).page(1)
+        }
+      }
+    end
+  end
+
+  def activities
+    Activity.order(id: :desc).page(params[:page]||1).collect { |activity| activity.as_json }
+  end
 end

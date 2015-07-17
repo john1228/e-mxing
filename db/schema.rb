@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150714021010) do
+ActiveRecord::Schema.define(version: 20150717021529) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,13 +37,14 @@ ActiveRecord::Schema.define(version: 20150714021010) do
     t.string   "cover"
     t.string   "address"
     t.integer  "group_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.text     "content"
     t.date     "start_date"
     t.date     "end_date"
     t.integer  "activity_type"
     t.integer  "theme"
+    t.integer  "pos",           default: 0
   end
 
   create_table "address_coordinates", force: :cascade do |t|
@@ -336,6 +337,16 @@ ActiveRecord::Schema.define(version: 20150714021010) do
     t.string   "contact"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "galleries", force: :cascade do |t|
+    t.integer "user_id"
+    t.string  "tag"
+  end
+
+  create_table "gallery_images", force: :cascade do |t|
+    t.integer "gallery_id"
+    t.string  "image"
   end
 
   create_table "group_members", force: :cascade do |t|

@@ -1,9 +1,9 @@
 namespace :st do
   desc '计算应用概况'
   task :overview => :environment do
-    report_date = Date qSu.yesterday
+    report_date = Date.yesterday
     activation = Device.where(created_at: report_date...report_date.tomorrow).count
-    register = User.where(created_at: report_date...report_date.tomorrow).count
+      register = User.where(created_at: report_date...report_date.tomorrow).count
     activity = AutoLogin.select(:device).where(created_at: report_date.yesterday...report_date).uniq.count
     Overview.create(report_date: report_date, activation: activation, register: register, activity: activity)
   end

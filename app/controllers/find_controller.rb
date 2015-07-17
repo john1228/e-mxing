@@ -44,6 +44,8 @@ class FindController < ApiController
         data = {ranks: ranks}
       when 'courses'
         data = {courses: courses}
+      when 'gallery'
+        data = {gallery: gallery}
       else
         data = {}
     end
@@ -52,6 +54,5 @@ class FindController < ApiController
     else
       render json: Success.new(data)
     end
-
   end
 end

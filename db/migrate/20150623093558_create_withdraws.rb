@@ -4,7 +4,7 @@ class CreateWithdraws < ActiveRecord::Migration
       t.references :coach
       t.decimal :account
       t.string :name
-      t.string :amount
+      t.decimal :amount
       t.timestamps null: false
     end
   end

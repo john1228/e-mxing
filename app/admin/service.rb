@@ -37,11 +37,40 @@ ActiveAdmin.register Service do
       @service = Service.find_by(id: params[:id])
       render layout: false
     end
+
+    def withdraw
+
+    end
+
+    def transfer
+
+    end
   end
 
   show do
     tabs do
-      tab '0-订单' do
+      tab '0-账户余额' do
+        panel '账户余额' do
+          wallet = service.wallet||service.create_wallet
+          div class: 'attributes_table' do
+            table do
+              tr do
+                th '余额'
+                td "#{wallet.balance}元"
+              end
+              tr do
+                th do
+                  link_to('提现', '', class: 'fancybox button', data: {'fancybox-type' => 'ajax'})
+                end
+                td do
+                  link_to('转账', '', class: 'fancybox button', data: {'fancybox-type' => 'ajax'})
+                end
+              end
+            end
+          end
+        end
+      end
+      tab '1-订单' do
         render partial: 'order', locals: {
                                    coaches: service.coaches.map { |coach|
                                      coach.profile.name
@@ -58,7 +87,7 @@ ActiveAdmin.register Service do
                                    }
                                }
       end
-      tab '1-预约' do
+      tab '2-预约' do
         render partial: 'appointment', locals: {
                                          coaches: service.coaches.map { |coach|
                                            coach.profile.name
@@ -71,7 +100,7 @@ ActiveAdmin.register Service do
                                          }
                                      }
       end
-      tab '2-资料' do
+      tab '3-资料' do
         panel '详细资料' do
           attributes_table_for service do
             row('美型号') { service.profile.mxid }
@@ -103,17 +132,6 @@ ActiveAdmin.register Service do
           link_to('聊天', chat_with_service_path(service))
         end
       end
-    end
-  end
-
-  sidebar '钱包', only: :show do
-    wallet = service.wallet||service.create_wallet
-    attributes_table_for wallet do
-      row('余额') { "#{wallet.balance.round(2)}元" }
-    end
-    div do
-      button('提现', class: 'fancybox', data: {'fancybox-type' => 'ajax'})
-      button('转账', class: 'fancybox', data: {'fancybox-type' => 'ajax'})
     end
   end
 

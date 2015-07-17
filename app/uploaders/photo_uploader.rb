@@ -3,6 +3,7 @@
 class PhotoUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
   storage :file
+  process :resize_to_limit => [2080, nil]
 
   def store_dir
     'images/photo'

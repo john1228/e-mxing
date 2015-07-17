@@ -115,6 +115,7 @@ Rails.application.routes.draw do
   namespace :business do
     #登录
     post 'login' => 'login#mobile'
+    put 'login' => 'login#update'
     #设置
     post 'settings' => 'appointment_settings#create'
     #地址管理
@@ -201,8 +202,8 @@ Rails.application.routes.draw do
   post 'active' => 'upload#active'
   post 'auto_login' => 'upload#auto_login'
   post 'upload' => 'upload#data'
-
-
+  #发现图片和活动
+  get 'find/:type' => 'find#list'
   #签到
   post 'sign' => 'system#sign'
 end

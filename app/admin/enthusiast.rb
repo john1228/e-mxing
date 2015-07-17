@@ -1,7 +1,9 @@
 ActiveAdmin.register Enthusiast do
   menu label: '用户', priority: 4
   filter :profile_name, label: '昵称', as: :string
+  filter :mobile,label: '注册手机号'
   filter :created_at, label: '注册时间'
+
   actions :index, :show, :destroy
   permit_params :identity
 
