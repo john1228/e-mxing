@@ -29,7 +29,6 @@ module Mine
         render json: Failure.new('无效的兑换码')
       end
       #TODO:优惠码兑换
-
     end
   end
 end

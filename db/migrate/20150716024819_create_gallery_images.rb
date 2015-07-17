@@ -3,6 +3,7 @@ class CreateGalleryImages < ActiveRecord::Migration
     create_table :gallery_images do |t|
       t.references :gallery
       t.string :image
+      t.text :caption
     end
   end
 end

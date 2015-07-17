@@ -347,6 +347,7 @@ ActiveRecord::Schema.define(version: 20150717021529) do
   create_table "gallery_images", force: :cascade do |t|
     t.integer "gallery_id"
     t.string  "image"
+    t.text    "caption"
   end
 
   create_table "group_members", force: :cascade do |t|

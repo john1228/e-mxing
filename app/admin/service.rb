@@ -39,11 +39,36 @@ ActiveAdmin.register Service do
     end
 
     def withdraw
+      @service = Service.find_by(id: params[:id])
+      render layout: false
+    end
 
+    def withdraw_result
+      service = Service.find_by(id: params[:id])
+      withdraw = Withdraw.new(coach: service, amount: params[:amount])
+      if withdraw.save
+        @errors = nil
+      else
+        @errors = withdraw.errors.messages
+      end
+      render layout: false
     end
 
     def transfer
+      @service = Service.find_by(id: params[:id])
+      render layout: false
+    end
 
+    def transfer_result
+      service = Service.find_by(id: params[:id])
+      coach = service.coaches.find_by(id: coach)
+      wallet = Wallet.find_or_create_by(user: coach)
+      if wallet.update(balance: (wallet.balance+BigDecimal(params[:amount])), action: WalletLog::ACTIONS['转账'])
+        @errors = nil
+      else
+        @errors = wallet.errors.messages
+      end
+      render layout: false
     end
   end
 
@@ -60,10 +85,10 @@ ActiveAdmin.register Service do
               end
               tr do
                 th do
-                  link_to('提现', '', class: 'fancybox button', data: {'fancybox-type' => 'ajax'})
+                  link_to('提现', transfer_path(service), class: 'fancybox button', data: {'fancybox-type' => 'ajax'})
                 end
                 td do
-                  link_to('转账', '', class: 'fancybox button', data: {'fancybox-type' => 'ajax'})
+                  link_to('转账', withdraw_path(service), class: 'fancybox button', data: {'fancybox-type' => 'ajax'})
                 end
               end
             end

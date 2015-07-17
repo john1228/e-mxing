@@ -4,6 +4,7 @@ class Withdraw < ActiveRecord::Base
 
   private
   def reduce
-    coach.wallet.update(balance: (coach.wallet.balance - amount), action: WalletLog::ACTIONS['提现'])
+    wallet = Wallet.find_by(user: coach_id)
+    wallet.update(balance: (coach.wallet.balance - amount), action: WalletLog::ACTIONS['提现'])
   end
 end

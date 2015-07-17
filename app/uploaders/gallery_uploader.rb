@@ -9,7 +9,7 @@ class GalleryUploader < CarrierWave::Uploader::Base
   end
 
   version :thumb do
-    process :resize_to_fit => [300, nil]
+    process :resize_to_fit => [690, nil]
   end
 
   def extension_white_list

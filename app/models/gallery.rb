@@ -7,7 +7,8 @@ class Gallery < ActiveRecord::Base
     images.map { |image|
       {
           thumb: image.image.thumb.url,
-          original: image.image.url
+          original: image.image.url,
+          caption: image.caption
       }
     }
   end
