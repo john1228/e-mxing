@@ -149,6 +149,8 @@ Rails.application.routes.draw do
     #学员
     get 'students' => 'students#index'
     get 'students/courses' => 'students#courses'
+    
+    post 'feedback' => 'system#feedback'
   end
 
   namespace :gyms do
