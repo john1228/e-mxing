@@ -4,7 +4,7 @@ class Coupon < ActiveRecord::Base
 
   def as_json
     {
-        no: no,
+        no: id,
         name: name,
         discount: discount,
         info: info,
