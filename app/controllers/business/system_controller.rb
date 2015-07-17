@@ -1,5 +1,5 @@
 module Business
-  class LoginController < BaseController
+  class SystemController < BaseController
 
     def feedback
       Feedback.create(user_id: @coach.id, content: params[:content], contact: params[:contact])
