@@ -91,10 +91,15 @@ Rails.application.routes.draw do
   put 'activities/:id' => 'activities#apply', as: :apply_activity
   post 'activities/:id' => 'activities#group', as: :join_in_group_of_activity
   get 'activities' => 'activities#mine'
+  #后台路由配置
   get '/admin/services/:id/chat' => 'admin/services#chat', as: :chat_with_service
-
   get '/admin/enthusiasts/:id/transfer' => 'admin/enthusiasts#transfer', as: :pre_transfer
   post '/admin/enthusiasts/:id/transfer' => 'admin/enthusiasts#transfer_result', as: :summit_transfer, defaults: {format: 'js'}
+  get '/admin/services/:id/transfer' => 'admin/services#transfer', as: :transfer
+  post '/admin/services/:id/transfer' => 'admin/services#transfer_result', as: :submit_transfer
+  get '/admin/services/:id/withdraw' => 'admin/services#withdraw', as: :withdraw
+  post '/admin/services/:id/withdraw' => 'admin/services#withdraw_result', as: :summit_withdraw
+
 
   get 'download' => 'download#index'
   get 'download/:package' => 'download#index'
@@ -116,8 +121,6 @@ Rails.application.routes.draw do
     #登录
     post 'login' => 'login#mobile'
     put 'login' => 'login#update'
-    #设置
-    post 'settings' => 'appointment_settings#create'
     #地址管理
     get 'addresses' => 'addresses#index'
     post 'addresses' => 'addresses#create'
@@ -127,17 +130,11 @@ Rails.application.routes.draw do
     post 'courses' => 'courses#create'
     put 'courses' => 'courses#update'
     delete 'courses/:id' => 'courses#destroy'
-    #设置
-    post 'settings/one' => 'appointment_settings#one_to_one'
-    post 'settings/many' => 'appointment_settings#one_to_many'
     #预约
     get 'appointments' => 'appointments#index'
     get 'appointments/show' => 'appointments#show'
     post 'appointments' => 'appointments#create'
     put 'appointments' => 'appointments#cancel'
-    post 'appointments/to_rest' => 'appointments#rest'
-    post 'appointments/to_class' => 'appointments#cancel_rest'
-
     #订单
     get 'orders' => 'orders#index'
     get 'orders/show' => 'orders#show'
@@ -149,7 +146,7 @@ Rails.application.routes.draw do
     #学员
     get 'students' => 'students#index'
     get 'students/courses' => 'students#courses'
-    
+
     post 'feedback' => 'system#feedback'
   end
 
@@ -206,7 +203,9 @@ Rails.application.routes.draw do
   post 'upload' => 'upload#data'
   #发现图片和活动
   get 'find/:type' => 'find#list'
+  get 'find/:type/:tag' => 'find#list'
   #签到
   post 'sign' => 'system#sign'
+
 end
 

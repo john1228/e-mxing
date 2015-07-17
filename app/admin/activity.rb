@@ -1,8 +1,7 @@
 ActiveAdmin.register Activity do
   menu label: '活动', parent: '配置'
   filter :title, label: '标题'
-  permit_params :id, :activity_type, :group_id, :title, :cover, :address, :start_date, :end_date, :content
-
+  permit_params :id, :title, :cover, :pos, :content
   index title: '新闻列表' do
     selectable_column
     column '标题', :title do |activity|
@@ -23,5 +22,5 @@ ActiveAdmin.register Activity do
       row(' 封面 ') { image_tag(activity.cover.url, width: 150) }
     end
   end
-  form partial: ' form '
+  form partial: 'form'
 end

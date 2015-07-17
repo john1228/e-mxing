@@ -136,6 +136,16 @@ module FindManager
   end
 
   def events
-    Activity.order(id: :desc).page(params[:page]||1).collect { |activity| activity.as_json }
+    if params[:tag].eql?('top')
+      {
+          first: Activity.top_1,
+          second: Activity.top_2,
+          third: Activity.top_3
+      }
+    elsif params[:tag].eql?('list')
+      Activity.where.not(id: [Activity.top_1.id, Activity.top_2.id, Activity.top_3.id]).order(created_at: :desc).page(params[:page]||1)
+    else
+      []
+    end
   end
 end

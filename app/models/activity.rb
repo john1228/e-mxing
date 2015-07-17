@@ -1,6 +1,19 @@
 class Activity < ActiveRecord::Base
   mount_uploader :cover, ActivityCoverUploader
-  TOP = {first: 1, second: 2, third: 3}
+  TOP = {'第一位' => 1, '第二位' => 2, '第三位' => 3}
+  class << self
+    def top_1
+      where(pos: TOP['第一位']).order(update_at: :desc).take
+    end
+
+    def top_2
+      where(pos: TOP['第二位']).order(update_at: :desc).take
+    end
+
+    def top_3
+      where(pos: TOP['第三位']).order(update_at: :desc).take
+    end
+  end
 
   def as_json
     {
