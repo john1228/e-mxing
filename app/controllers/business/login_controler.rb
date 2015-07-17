@@ -1,11 +1,10 @@
 module Business
   class LoginController < BaseController
     def update
-      logger.info "#{params[:password]}::#{Digest::MD5.hexdigest("#{params[:password]}|#{@coach.salt}")}"
-      logger.info "#{params[:new_password]}::#{@coach.password}::#{@coach.id}"
       if params[:password].present?
         if @coach.password.eql?(Digest::MD5.hexdigest("#{params[:password]}|#{@coach.salt}"))
           if @coach.update(password: params[:new_password])
+            Rails.cache.write("#{@coach.token}|gyms", @coach)
             render json: {code: 1}
           else
             render json: {code: 0, message: '更新密码失败'}
