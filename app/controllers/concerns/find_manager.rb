@@ -135,7 +135,7 @@ module FindManager
     end
   end
 
-  def activities
+  def events
     Activity.order(id: :desc).page(params[:page]||1).collect { |activity| activity.as_json }
   end
 end

@@ -36,8 +36,8 @@ class FindController < ApiController
         data = {services: services}
       when 'news'
         data = {news: news}
-      when 'activities'
-        data = {activities: activities}
+      when 'events'
+        data = {events: events}
       when 'shows'
         data = {shows: shows}
       when 'ranks'
