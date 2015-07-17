@@ -190,14 +190,7 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/profile/thumb_2015/04/13/bd9aae27-06f0-46ac-93c0-004ff0b0900d.jpg" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/profile/thumb_2015/06/01/3df5d85a-c35a-4fc4-89d0-86ae82286c07.jpg" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/migrate/20150716024819_create_gallery_images.rb" afterPath="$PROJECT_DIR$/db/migrate/20150716024819_create_gallery_images.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/gallery.rb" afterPath="$PROJECT_DIR$/app/models/gallery.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/uploaders/gallery_uploader.rb" afterPath="$PROJECT_DIR$/app/uploaders/gallery_uploader.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/business/orders_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/business/orders_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/.idea/photo.iml" afterPath="$PROJECT_DIR$/../photo/.idea/photo.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="$PROJECT_DIR$/db/schema.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/admin/service.rb" afterPath="$PROJECT_DIR$/app/admin/service.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/mine/wallet_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/mine/wallet_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/withdraw.rb" afterPath="$PROJECT_DIR$/app/models/withdraw.rb" />
     </list>
     <ignored path="mxing.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -282,16 +275,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="business.rake" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/tasks/business.rake">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1584">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="mine.rake" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/tasks/mine.rake">
           <provider selected="true" editor-type-id="text-editor">
@@ -302,11 +285,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="orders_controller.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="orders_controller.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/business/orders_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.66927594" vertical-offset="162" max-vertical-offset="846">
+            <state vertical-scroll-proportion="0.0" vertical-offset="162" max-vertical-offset="846">
               <caret line="28" column="122" selection-start-line="28" selection-start-column="122" selection-end-line="28" selection-end-column="122" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="20150717021529_add_column_for_activity.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/db/migrate/20150717021529_add_column_for_activity.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="198">
+              <caret line="2" column="54" selection-start-line="2" selection-start-column="54" selection-end-line="2" selection-end-column="54" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="20150716024819_create_gallery_images.rb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/db/migrate/20150716024819_create_gallery_images.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.17175573" vertical-offset="0" max-vertical-offset="524">
+              <caret line="5" column="33" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -327,16 +330,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="54" max-vertical-offset="1224">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="gyms.rake" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/tasks/gyms.rake">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="900">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -400,10 +393,10 @@
         <option value="$PROJECT_DIR$/app/admin/service.rb" />
         <option value="$PROJECT_DIR$/app/models/withdraw.rb" />
         <option value="$PROJECT_DIR$/app/uploaders/gallery_uploader.rb" />
-        <option value="$PROJECT_DIR$/db/migrate/20150716024819_create_gallery_images.rb" />
         <option value="$PROJECT_DIR$/app/models/gallery.rb" />
         <option value="$PROJECT_DIR$/lib/tasks/mine.rake" />
         <option value="$PROJECT_DIR$/app/controllers/business/orders_controller.rb" />
+        <option value="$PROJECT_DIR$/db/migrate/20150716024819_create_gallery_images.rb" />
       </list>
     </option>
   </component>
@@ -508,6 +501,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="db" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mxing" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mxing" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="db" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="migrate" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2322,14 +2333,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20150717021529_add_column_for_activity.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="198">
-          <caret line="2" column="54" selection-start-line="2" selection-start-column="54" selection-end-line="2" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/profile_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.5590062" vertical-offset="270" max-vertical-offset="756">
@@ -2570,14 +2573,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20150716024819_create_gallery_images.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="270">
-          <caret line="5" column="21" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/gallery_image.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="162">
@@ -2676,8 +2671,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/business/orders_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.66927594" vertical-offset="162" max-vertical-offset="846">
+        <state vertical-scroll-proportion="0.0" vertical-offset="162" max-vertical-offset="846">
           <caret line="28" column="122" selection-start-line="28" selection-start-column="122" selection-end-line="28" selection-end-column="122" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/migrate/20150717021529_add_column_for_activity.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="198">
+          <caret line="2" column="54" selection-start-line="2" selection-start-column="54" selection-end-line="2" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/migrate/20150716024819_create_gallery_images.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.17175573" vertical-offset="0" max-vertical-offset="524">
+          <caret line="5" column="33" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
           <folding />
         </state>
       </provider>
