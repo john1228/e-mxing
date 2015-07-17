@@ -6,7 +6,7 @@ module Mine
     end
 
     def coupons
-      render json: Success.new(coupons: Coupon.where(id: @user.wallet.coupons))
+      render json: Success.new(coupons: Coupon.where(id: @user.wallet.coupons).page(params[:page]||1))
     end
 
     def detail
