@@ -32,7 +32,7 @@ class Order < ActiveRecord::Base
       use_coupons.map { |coupon| return false unless user_coupons.include?(coupon) }
       Coupon.where(id: use_coupons).map { |coupon|
         #优惠券不在有效期内
-        return false if (coupon.start_date>= Date.today) || (coupon.end_date<= Date.today)
+        return false if (coupon.start_date> Date.today) || (coupon.end_date< Date.today)
         #种类是否满足要求
         case coupon.limit_category
           when Coupon::TYPE[:general]
