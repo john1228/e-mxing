@@ -96,9 +96,9 @@ Rails.application.routes.draw do
   get '/admin/enthusiasts/:id/transfer' => 'admin/enthusiasts#transfer', as: :pre_transfer
   post '/admin/enthusiasts/:id/transfer' => 'admin/enthusiasts#transfer_result', as: :summit_transfer, defaults: {format: 'js'}
   get '/admin/services/:id/transfer' => 'admin/services#transfer', as: :transfer
-  post '/admin/services/:id/transfer' => 'admin/services#transfer_result', as: :submit_transfer
+  post '/admin/services/:id/transfer' => 'admin/services#transfer_result', as: :service_transfer, defaults: {format: 'js'}
   get '/admin/services/:id/withdraw' => 'admin/services#withdraw', as: :withdraw
-  post '/admin/services/:id/withdraw' => 'admin/services#withdraw_result', as: :summit_withdraw
+  post '/admin/services/:id/withdraw' => 'admin/services#withdraw_result', as: :service_withdraw, defaults: {format: 'js'}
 
 
   get 'download' => 'download#index'

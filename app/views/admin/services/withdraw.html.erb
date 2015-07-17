@@ -1,10 +1,12 @@
-﻿<%= form_tag(summit_transfer_path(@enthusiast), remote: true) do %>
-    <div id="transfer_errors"/>
-    <table>
-      <tr>
-        <td><label>选择服务号</label></td>
-        <td> <%= select_tag(:service_id, options_for_select(Service.includes(:profile).pluck('profiles.name', :id)), {include_blank: false}) %></td>
-      </tr>
-    </table>
+﻿<%= form_tag(service_withdraw_path(@service), remote: true, html: {class: 'form-horizontal'}) do %>
+    <fieldset class="inputs">
+      <legend><span>添加团操</span></legend>
+      <table>
+        <tr>
+          <td><label></label></td>
+          <td><%= text_field %></td>
+        </tr>
+      </table>
+    </fieldset>
     <%= submit_tag('提交') %>
 <% end %>

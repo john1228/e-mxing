@@ -85,10 +85,10 @@ ActiveAdmin.register Service do
               end
               tr do
                 th do
-                  link_to('提现', transfer_path(service), class: 'fancybox button', data: {'fancybox-type' => 'ajax'})
+                  link_to('提现', withdraw_path(service), class: 'fancybox button', data: {'fancybox-type' => 'ajax'})
                 end
                 td do
-                  link_to('转账', withdraw_path(service), class: 'fancybox button', data: {'fancybox-type' => 'ajax'})
+                  link_to('转账', transfer_path(service), class: 'fancybox button', data: {'fancybox-type' => 'ajax'})
                 end
               end
             end
