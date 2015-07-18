@@ -1,12 +1,17 @@
-﻿<%= form_tag(service_withdraw_path(@service), remote: true, html: {class: 'form-horizontal'}) do %>
-    <fieldset class="inputs">
-      <legend><span>添加团操</span></legend>
-      <table>
-        <tr>
-          <td><label></label></td>
-          <td><%= text_field %></td>
-        </tr>
-      </table>
-    </fieldset>
+﻿<%= form_tag(service_withdraw_path(@service), remote: true) do %>
+    <table width="350px">
+      <tr>
+        <td><label>支付宝实名</label></td>
+        <td> <%= text_field_tag :name %></td>
+      </tr>
+      <tr>
+        <td><label>支付宝账户</label></td>
+        <td> <%= text_field_tag :account %></td>
+      </tr>
+      <tr>
+        <td><label>金额</label></td>
+        <td> <%= number_field_tag(:amount, nil, min: 200, max: @service.wallet.balance) %></td>
+      </tr>
+    </table>
     <%= submit_tag('提交') %>
 <% end %>

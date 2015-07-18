@@ -622,9 +622,10 @@ ActiveRecord::Schema.define(version: 20150717021529) do
   create_table "withdraws", force: :cascade do |t|
     t.integer  "coach_id"
     t.string   "account"
-    t.string   "amount"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "name",       default: ""
+    t.decimal  "amount",     default: 0.0
   end
 
 end

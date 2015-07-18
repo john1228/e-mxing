@@ -4,6 +4,10 @@
         <td><label>选择私教</label></td>
         <td> <%= select_tag(:coach, options_for_select(@service.coaches.includes(:profile).pluck('profiles.name', :id)), {include_blank: false}) %></td>
       </tr>
+      <tr>
+        <td><label>金额</label></td>
+        <td> <%= number_field_tag(:amount, nil, min: 200, max: @service.wallet.balance) %></td>
+      </tr>
     </table>
     <%= submit_tag('提交') %>
 <% end %>

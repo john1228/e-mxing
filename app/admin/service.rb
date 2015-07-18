@@ -45,7 +45,7 @@ ActiveAdmin.register Service do
 
     def withdraw_result
       service = Service.find_by(id: params[:id])
-      withdraw = Withdraw.new(coach: service, amount: params[:amount])
+      withdraw = Withdraw.new(coach_id: service.id, name: params[:name], account: params[:account], amount: params[:amount])
       if withdraw.save
         @errors = nil
       else
@@ -62,8 +62,10 @@ ActiveAdmin.register Service do
     def transfer_result
       service = Service.find_by(id: params[:id])
       coach = service.coaches.find_by(id: coach)
-      wallet = Wallet.find_or_create_by(user: coach)
-      if wallet.update(balance: (wallet.balance+BigDecimal(params[:amount])), action: WalletLog::ACTIONS['转账'])
+      coach_wallet = Wallet.find_or_create_by(user: coach)
+      service_wallet = Wallet.find_or_create_by(user: service)
+      if coach_wallet.update(balance: (coach_wallet.balance+BigDecimal(params[:amount])), action: WalletLog::ACTIONS['转账'])
+        service_wallet.update(balance: (service_wallet.balance-BigDecimal(params[:amount])), action: WalletLog::ACTIONS['转账'])
         @errors = nil
       else
         @errors = wallet.errors.messages
