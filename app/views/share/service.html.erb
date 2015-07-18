@@ -109,7 +109,7 @@
   %>
           <p class="tx<%= (index+1) %>"><%= image_tag(coach.profile_avatar.thumb.url) %></p>
       <% else %>
-          <p class="tx<%= (index+1) %>"><%= image_tag('share/service/touxiang.jpg') %></p>
+          <p class="tx<%= (index+1) %>"><%= image_tag("share/service/coach/#{index+1}.png") %></p>
       <% end %>
   <% end %>
   <div class="pages"></div>
@@ -120,9 +120,9 @@
        photo = @photos[index]
        if photo.present?
   %>
-          <p class="pic<%= (index+1) %>"><%= image_tag(photo.photo.thumb.url) %></p>
+          <p class="pic<%= (index+1) %>" style="background-image: <%=asset_path%>">#<%= image_tag(photo.photo.thumb.url) %></p>
       <% else %>
-          <p class="pic<%= (index+1) %>"><%= image_tag("share/pic/tu0#{(index+1)}.jpg") %></p>
+          <p class="pic<%= (index+1) %>"><%= image_tag("share/service/photowall/tu0#{(index+1)}.jpg") %></p>
       <% end %>
   <% end %>
 
