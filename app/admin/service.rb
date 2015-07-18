@@ -61,7 +61,7 @@ ActiveAdmin.register Service do
 
     def transfer_result
       service = Service.find_by(id: params[:id])
-      coach = service.coaches.find_by(id: coach)
+      coach = service.coaches.find_by(id: params[:coach])
       coach_wallet = Wallet.find_or_create_by(user: coach)
       service_wallet = Wallet.find_or_create_by(user: service)
       if coach_wallet.update(balance: (coach_wallet.balance+BigDecimal(params[:amount])), action: WalletLog::ACTIONS['转账'])
