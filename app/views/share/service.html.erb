@@ -96,7 +96,7 @@
   <div class="pgbox02">
     <div class="text"><%= @service.profile_signature %></div>
     <div class="add">地址:<%= @service.profile_address %></div>
-    <div class="tel"><a href="#"><i></i>021-65873433</a></div>
+    <div class="tel"><a href="#"><i></i><%= @service.profile.mobile %></a></div>
   </div>
   <div class="pages"></div>
 </section>
@@ -129,7 +129,38 @@
   <div class="pages"></div>
 </section>
 <section class="page page4">
+  <% if @courses.first.present? %>
+      <div class="con con_a">
+        <h3><%= @courses.first.name %></h3>
 
+        <p>教学方式: <%= @courses.first.style %></p><i></i><em></em>
+        <img src="images/icon/<%= @courses.first.type %>.png">
+      </div>
+  <% end %>
+  <% if @courses.second.present? %>
+      <div class="con con_b">
+        <h3><%= @courses.second.name %></h3>
+
+        <p>教学方式: <%= @courses.second.style %></p><i></i><em></em>
+        <img src="images/icon/<%= @courses.second.type %>.png">
+      </div>
+  <% end %>
+  <% if @courses.third.present? %>
+      <div class="con con_c">
+        <h3><%= @courses.third.name %></h3>
+
+        <p>教学方式: <%= @courses.third.style %></p><i></i><em></em>
+        <img src="images/icon/<%= @courses.third.type %>.png">
+      </div>
+  <% end %>
+  <% if @courses.fourth.present? %>
+      <div class="con con_d">
+        <h3><%= @courses.fourth.name %></h3>
+
+        <p>教学方式: <%= @courses.fourth.style %></p><i></i><em></em>
+        <img src="images/icon/<%= @courses.fourth.type %>.png">
+      </div>
+  <% end %>
 </section>
 <section class="page page5">
   <div class="logo"><%= image_tag('share/service/logo.png') %></div>
