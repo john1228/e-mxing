@@ -9,7 +9,7 @@ ActiveAdmin.register ServicePhoto do
   index title: '照片墙', as: :grid, columns: 5 do |photo|
     div for: photo do
       resource_selection_cell photo
-      div link_to(image_tag(photo.photo.thumb.url), photo.photo.url, popup: true, height: 140)
+      div link_to(image_tag(photo.photo.share.url), photo.photo.url, popup: true, height: 140)
     end
   end
 
