@@ -1,5 +1,5 @@
 ActiveAdmin.register News do
-  menu label: '新闻', parent: '配置'
+  menu label: '新闻', parent: '运营'
   filter :title, label: '标题'
   permit_params :id, :title, :cover, :content
 

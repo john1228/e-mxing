@@ -1,5 +1,5 @@
 ActiveAdmin.register Gallery do
-  menu label: '图库'
+  menu label: '图库', parent: '运营'
   filter :tag, label: '标记', as: :select, collections: Gallery::TAGS
   permit_params :tag, images_attributes: [:id, :image, :caption]
   form partial: 'form'

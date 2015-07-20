@@ -1,5 +1,5 @@
 ActiveAdmin.register Hit do
-  menu label: '点击'
+  menu label: '点击',parent: '原始数据'
 
   index do
     column('点击日期') { |hit| hit.date.strftime('%Y-%m-%d') }

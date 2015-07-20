@@ -1,5 +1,5 @@
 ActiveAdmin.register AdminUser do
-  menu label: '管理员'
+  menu label: '管理员', parent: '运营'
   config.per_page = 10
   permit_params :email, :password, :password_confirmation, :role, :service_id
 

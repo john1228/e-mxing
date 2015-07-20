@@ -1,5 +1,5 @@
 ActiveAdmin.register Device do
-  menu label: '激活设备'
+  menu label: '激活设备', parent: '原始数据'
   actions :index
 
   index do

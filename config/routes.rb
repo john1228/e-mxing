@@ -100,6 +100,7 @@ Rails.application.routes.draw do
   get '/admin/services/:id/withdraw' => 'admin/services#withdraw', as: :withdraw
   post '/admin/services/:id/withdraw' => 'admin/services#withdraw_result', as: :service_withdraw, defaults: {format: 'js'}
   get '/admin/withdraws/:id/people' => 'admin/withdraws#people', as: :withdraw_people
+  post '/admin/message/push' => 'admin/message#push', as: :push_message
 
 
   get 'download' => 'download#index'

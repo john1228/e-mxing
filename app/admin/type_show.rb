@@ -1,5 +1,5 @@
 ActiveAdmin.register TypeShow do
-  menu label: '型男美女', parent: '配置'
+  menu label: '型男美女', parent: '运营'
   filter :title, label: '标题'
   permit_params :id, :title, :cover, :content
 

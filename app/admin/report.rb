@@ -1,5 +1,5 @@
 ActiveAdmin.register Report do
-  menu label: '举报'
+  menu label: '举报', parent: '反馈与举报'
   actions :index
   index do
     selectable_column

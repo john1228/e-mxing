@@ -1,5 +1,5 @@
 ActiveAdmin.register Feedback do
-  menu label: '反馈'
+  menu label: '反馈',parent: '反馈与举报'
 
   actions :index
 
