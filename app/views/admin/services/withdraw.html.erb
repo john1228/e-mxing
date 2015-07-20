@@ -1,17 +1,24 @@
-﻿<%= form_tag(service_withdraw_path(@service), remote: true) do %>
-    <table width="350px">
-      <tr>
-        <td><label>支付宝实名</label></td>
-        <td> <%= text_field_tag :name %></td>
-      </tr>
-      <tr>
-        <td><label>支付宝账户</label></td>
-        <td> <%= text_field_tag :account %></td>
-      </tr>
-      <tr>
-        <td><label>金额</label></td>
-        <td> <%= number_field_tag(:amount, nil, min: 200, max: @service.wallet.balance) %></td>
-      </tr>
-    </table>
-    <%= submit_tag('提交') %>
-<% end %>
+﻿<div class="panel">
+  <h3>详细资料</h3>
+  <%= form_tag(service_withdraw_path(@service), remote: true) do %>
+      <table style='padding: 20px'>
+        <tr>
+          <th>支付宝实名</th>
+          <td> <%= text_field_tag :name %></td>
+        </tr>
+        <tr>
+          <th>支付宝账户</th>
+          <td> <%= text_field_tag :account %></td>
+        </tr>
+        <tr>
+          <th>金额</th>
+          <td> <%= number_field_tag(:amount, nil, min: 200, max: @service.wallet.balance) %></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <%= submit_tag('提交') %></td>
+        </tr>
+      </table>
+  <% end %>
+</div>

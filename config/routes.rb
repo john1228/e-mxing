@@ -99,6 +99,7 @@ Rails.application.routes.draw do
   post '/admin/services/:id/transfer' => 'admin/services#transfer_result', as: :service_transfer, defaults: {format: 'js'}
   get '/admin/services/:id/withdraw' => 'admin/services#withdraw', as: :withdraw
   post '/admin/services/:id/withdraw' => 'admin/services#withdraw_result', as: :service_withdraw, defaults: {format: 'js'}
+  get '/admin/withdraws/:id/people' => 'admin/withdraws#people', as: :withdraw_people
 
 
   get 'download' => 'download#index'

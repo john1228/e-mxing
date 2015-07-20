@@ -1,6 +1,7 @@
 class Withdraw < ActiveRecord::Base
   belongs_to :coach
   after_create :reduce
+  STATUS ={'未处理' => 0, '已处理' => 1}
 
   private
   def reduce

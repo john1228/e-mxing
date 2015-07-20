@@ -1,10 +1,10 @@
 ActiveAdmin.register Enthusiast do
   menu label: '用户', priority: 4
   filter :profile_name, label: '昵称', as: :string
-  filter :mobile,label: '注册手机号'
+  filter :mobile, label: '注册手机号'
   filter :created_at, label: '注册时间'
 
-  actions :index, :show, :destroy
+  actions :index, :show
   permit_params :identity
 
   csv do
@@ -18,13 +18,13 @@ ActiveAdmin.register Enthusiast do
   index do
     selectable_column
     column '美型号' do |enthusiast|
-      link_to("#{enthusiast.profile_mxid}", admin_enthusiast_path(enthusiast))
+      link_to("#{enthusiast.profile.mxid}", admin_enthusiast_path(enthusiast))
     end
     column '昵称' do |enthusiast|
-      link_to(truncate("#{enthusiast.profile_name}"), admin_enthusiast_path(enthusiast))
+      link_to(truncate("#{enthusiast.profile.name}"), admin_enthusiast_path(enthusiast))
     end
     column '头像' do |enthusiast|
-      link_to(image_tag(enthusiast.profile_avatar.thumb.url, height: 70), admin_enthusiast_path(enthusiast))
+      link_to(image_tag(enthusiast.profile.avatar.thumb.url, height: 70), admin_enthusiast_path(enthusiast))
     end
     column ' 注册时间' do |enthusiast|
       truncate(enthusiast.created_at.localtime.strftime('%Y-%m-%d %H:%M:%S'))
@@ -41,7 +41,7 @@ ActiveAdmin.register Enthusiast do
       Rails.cache.delete(user.token)
       Blacklist.create(user_id: user.id)
     }
-    redirect_to collection_path, alert: "拉黑成功"
+    redirect_to collection_path, alert: '拉黑成功'
   end
 
   controller do
@@ -63,7 +63,7 @@ ActiveAdmin.register Enthusiast do
     end
   end
 
-  show title: proc { |enthusiast| "#{enthusiast.profile_name}详情" } do
+  show title: proc { |enthusiast| "#{enthusiast.profile.name}详情" } do
     panel '用戶信息' do
       table style: 'width: 100%' do
         tr do

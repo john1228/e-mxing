@@ -2,14 +2,14 @@
 class GalleryUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
   storage :file
-  process :resize_to_limit => [2080, nil]
+  process :resize_to_limit => [2080, 2080]
 
   def store_dir
     'images/gallery'
   end
 
   version :thumb do
-    process :resize_to_fit => [690, nil]
+    process :resize_to_fit => [220, 220]
   end
 
   def extension_white_list

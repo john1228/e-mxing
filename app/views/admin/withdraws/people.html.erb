@@ -1,0 +1,36 @@
+﻿<div class="panel">
+  <h3>用户资料</h3>
+
+  <div class="panel_contents">
+    <div class="attributes_table service" id="attributes_table_service_89">
+      <table border="0" cellspacing="0" cellpadding="0" style="padding: 20px">
+        <tr class="row row-">
+          <th>美型号</th>
+          <td><%= @user.profile.mxid %></td>
+        </tr>
+        <tr class="row row-">
+          <th>昵称</th>
+          <td><%= @user.profile.name %></td>
+        </tr>
+        <tr class="row row-">
+          <th>头像</th>
+          <td>
+            <%= image_tag(@user.profile.avatar.thumb.url, height: 70) %>
+          </td>
+        </tr>
+        <tr class="row row-">
+          <th>介绍</th>
+          <td><%= @user.signature %></td>
+        </tr>
+        <tr class="row row-">
+          <th>兴趣</th>
+          <td><%= @user.profile.interests_string %></td>
+        </tr>
+        <tr class="row row-">
+          <th>地址</th>
+          <td><%= @user.profile.address %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

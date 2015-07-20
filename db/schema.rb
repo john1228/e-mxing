@@ -626,6 +626,7 @@ ActiveRecord::Schema.define(version: 20150717021529) do
     t.datetime "updated_at",               null: false
     t.string   "name",       default: ""
     t.decimal  "amount",     default: 0.0
+    t.integer  "status",     default: 0
   end
 
 end

@@ -6,7 +6,7 @@ class Ability
       when AdminUser::ROLE[:super]
         can :manage, :all
       when AdminUser::ROLE[:service]
-        can [:read, :update, :destroy], Service, id: user.service_id
+        can [:read, :update, :destroy, :transfer, :withdraw], Service, id: user.service_id
         can :manage, ServiceDynamic, service: user.service
         can [:read, :create, :update], ServiceMember, service: user.service
         can :manage, ServicePhoto, service: user.service
