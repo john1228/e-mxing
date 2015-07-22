@@ -3,7 +3,6 @@ ActiveAdmin.register Enthusiast do
   filter :profile_name, label: '昵称', as: :string
   filter :mobile, label: '注册手机号'
   filter :created_at, label: '注册时间'
-
   actions :index, :show
   permit_params :identity
 
