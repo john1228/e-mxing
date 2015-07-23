@@ -11,7 +11,7 @@ ActiveAdmin.register_page 'Message' do
         mxids = params[:users].split(',')
       end
       PushMessageJob.perform_later(mxids, params[:message])
-      redirect_to admin_message_path, alert: '推送完成'
+      redirect_to admin_message_path, alert: '推送消息已放入消息队列开始推送'
     end
   end
 end

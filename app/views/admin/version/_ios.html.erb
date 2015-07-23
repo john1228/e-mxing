@@ -1,0 +1,65 @@
+﻿<%= form_tag(update_version_path('ios'), {class: 'form-horizontal'}) do %>
+    <fieldset class="inputs">
+      <legend><span>C端</span></legend>
+      <div class="form-group form-group-sm">
+        <label class="col-sm-2 control-label" for="service_interests">版本号</label>
+
+        <div class="col-sm-10">
+          <%= text_field_tag('c[ver]', ios['c']['ver'], class: 'form-control', placeholder: '请输入最新到版本号') %>
+        </div>
+      </div>
+      <div class="form-group form-group-sm">
+        <label class="col-sm-2 control-label" for="service_interests">强制更新</label>
+
+        <div class="col-sm-10">
+          <%= check_box_tag('c[force]', 1, ios['c']['force'].eql?('1')) %>
+        </div>
+      </div>
+      <div class="form-group form-group-sm">
+        <label class="col-sm-2 control-label" for="service_interests">下载链接</label>
+
+        <div class="col-sm-10">
+          <%= url_field_tag('c[url]', ios['c']['url'], class: 'form-control', placeholder: '请输入苹果C端下载地址') %>
+        </div>
+      </div>
+      <div class="form-group form-group-sm">
+        <label class="col-sm-2 control-label" for="service_interests">更新内容</label>
+
+        <div class="col-sm-10">
+          <%= text_area_tag('c[info]', ios['c']['info']) %>
+        </div>
+      </div>
+    </fieldset>
+    <fieldset class="inputs">
+      <legend><span>B端</span></legend>
+      <div class="form-group form-group-sm">
+        <label class="col-sm-2 control-label" for="service_interests">版本号</label>
+
+        <div class="col-sm-10">
+          <%= text_field_tag('b[ver]', ios['b']['ver'], class: 'form-control', placeholder: '请输入最新到版本号') %>
+        </div>
+      </div>
+      <div class="form-group form-group-sm">
+        <label class="col-sm-2 control-label" for="service_interests">强制更新</label>
+
+        <div class="col-sm-10">
+          <%= check_box_tag('b[force]', 1, ios['c']['force'].eql?('1')) %>
+        </div>
+      </div>
+      <div class="form-group form-group-sm">
+        <label class="col-sm-2 control-label" for="service_interests">下载链接</label>
+
+        <div class="col-sm-10">
+          <%= url_field_tag('b[url]', ios['b']['url'], class: 'form-control', placeholder: '请输入苹果B端下载地址') %>
+        </div>
+      </div>
+      <div class="form-group form-group-sm">
+        <label class="col-sm-2 control-label" for="service_interests">更新内容</label>
+
+        <div class="col-sm-10">
+          <%= text_area_tag('b[info]', ios['b']['info']) %>
+        </div>
+      </div>
+    </fieldset>
+    <%= submit_tag('提交') %>
+<% end %>

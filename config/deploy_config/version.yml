@@ -1,0 +1,25 @@
+--- 
+android: 
+  b: 
+    force: "1"
+    info: ""
+    url: ""
+    ver: "1.0"
+  c: 
+    force: "1"
+    info: |-
+        你好1
+        你好2
+    url: "http://www.baidu.com"
+    ver: "1.0"
+ios: 
+  b: 
+    force: 0
+    info: ""
+    url: ""
+    ver: 1.0
+  c: 
+    force: 0
+    info: ""
+    url: ""
+    ver: 1.0

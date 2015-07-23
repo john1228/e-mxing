@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150717021529) do
+ActiveRecord::Schema.define(version: 20150723034009) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -298,6 +298,8 @@ ActiveRecord::Schema.define(version: 20150717021529) do
     t.datetime "updated_at"
   end
 
+  add_index "dynamic_comments", ["dynamic_id"], name: "index_dynamic_comments_on_dynamic_id", using: :btree
+
   create_table "dynamic_films", force: :cascade do |t|
     t.integer  "dynamic_id"
     t.string   "cover",      limit: 255
@@ -517,6 +519,8 @@ ActiveRecord::Schema.define(version: 20150717021529) do
     t.string  "interests",     limit: 255, default: ""
     t.string  "mobile",        limit: 255, default: ""
   end
+
+  add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
 
   create_table "reports", force: :cascade do |t|
     t.integer  "report_type"
