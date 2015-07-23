@@ -122,7 +122,7 @@ module FindManager
     if params[:tag].present?
       [{
            tag: params[:tag],
-           items: Gallery.where(tag: params[:tag]).page(params[:page]||1)
+           items: Gallery.where(tag: params[:tag]).order(id: :desc).page(params[:page]||1)
 
        }]
     else
