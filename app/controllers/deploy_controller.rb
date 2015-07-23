@@ -21,7 +21,7 @@ class DeployController < ApplicationController
   end
 
   def ver
-    version = VERSION[params[:device]][params[:app]]
+    version = VERSION[params[:device].downcase][params[:app].downcase]
     render json: Success.new(ver: version['ver'], force: version['force'].to_i, url: version['url'], info: version['info'].split("\n"))
   end
 
