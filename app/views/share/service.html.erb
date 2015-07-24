@@ -136,6 +136,13 @@
         <p>教学方式: <%= @courses.first.style %></p><i></i><em></em>
         <img src="/images/icons/<%= @courses.first.type %>.png">
       </div>
+  <% else %>
+      <div class="con con_a">
+        <h3>暂无课程,敬请期待</h3>
+
+        <p>教学方式: 其他</p><i></i><em></em>
+        <img src="/images/icons/30.png">
+      </div>
   <% end %>
   <% if @courses.second.present? %>
       <div class="con con_b">
