@@ -4,7 +4,7 @@ module Business
     private
     def verify_auth_token
       @coach = Rails.cache.fetch("#{request.headers[:token]}|gyms")
-      render json: {code: 0, message: '您还为登录'} if @coach.blank?
+      render json: {code: -1, message: '您还为登录'} if @coach.blank?
     end
   end
 end
