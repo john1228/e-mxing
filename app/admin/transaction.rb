@@ -3,7 +3,7 @@ ActiveAdmin.register Transaction do
 
   filter :no, label: '交易流水号'
   filter :order_no, label: '订单号'
-
+  actions :index
   index do
     column '交易流水号', :no
     column '订单号', :order_no
