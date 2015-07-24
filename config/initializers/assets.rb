@@ -13,6 +13,7 @@ Rails.application.config.assets.precompile += %w(service.css
  share/service.css
  share/dynamic.css
  share/mini.css
+ share/mobile.css
 
  home/jquery.touchSlider.js
  home/jquery-1.7.1.min.js

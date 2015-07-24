@@ -1,0 +1,21 @@
+"zh-CN":
+  activerecord:
+      models:
+        service: '服务号'
+        service_photo: '照片'
+        service_dynamic: '动态'
+        service_member: '私教'
+        service_track: '团操'
+        group: '群组'
+        coach: '私教'
+        enthusiast: '用户'
+        transation: '交易流水'
+        online: '在线时长'
+        course: '课程'
+        coupon: '优惠券'
+        gallery: '图片'
+        type_show: '型男美女'
+        banner: '公告'
+        news: '新闻'
+        activity: '活动'
+        admin_user: '管理员'

@@ -1,2 +1,4 @@
 en:
-  hello: "Hello world"
+  activerecord:
+      models:
+        service: '服务号'
