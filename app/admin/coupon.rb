@@ -5,8 +5,18 @@ ActiveAdmin.register Coupon do
   index do
     selectable_column
     column('名称', :name)
-    column('类型') { |coupon| coupon.limit_catego }
-    column('对应', :limit_ext)
+    column('类型') { |coupon|
+      case coupon.limit_category
+        when 1
+          '通用'
+        when 2
+          '机构'
+        when 3
+          '私教'
+        when 4
+          '课程'
+      end
+    }
     column('最小金额', :min)
     column('折扣金额', :discount)
     column('开始日期') { |coupon| coupon.start_date.strftime('%Y-%m-%d') }

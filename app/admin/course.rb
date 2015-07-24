@@ -1,9 +1,8 @@
 ActiveAdmin.register Course do
-  menu label: '课程'
-  belongs_to :coach
-  navigation_menu :coach
+  menu label: '课程', parent: '课程'
 
   filter :name, label: '课程名'
+  scope ''
   index do
     selectable_column
     column '名称', :name
