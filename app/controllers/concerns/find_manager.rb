@@ -129,7 +129,7 @@ module FindManager
       Gallery::TAGS.map { |tag|
         {
             tag: tag,
-            items: Gallery.where(tag: tag).page(1)
+            items: Gallery.where(tag: tag).order(id: :desc).page(1)
         }
       }
     end

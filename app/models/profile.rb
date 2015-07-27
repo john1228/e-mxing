@@ -19,9 +19,12 @@ class Profile < ActiveRecord::Base
   end
 
   def age
-    birth = birthday||Date.today.prev_year(15)
-    years = Date.today.year - birth.year
-    years + (Date.today < birth + years.year ? -1 : 0)
+    if birthday.blank?
+      0
+    else
+      years = Date.today.year - birth.year
+      years + (Date.today < birth + years.year ? -1 : 0)
+    end
   end
 
   def interests_string
@@ -44,7 +47,8 @@ class Profile < ActiveRecord::Base
         name: HarmoniousDictionary.clean(name||''),
         avatar: avatar.thumb.url,
         gender: gender||1,
-        age: age,
+        age: age.eql?(0) ? '16' : age,
+        true_age: age,
         signature: HarmoniousDictionary.clean(signature),
         tags: tags,
         identity: identity,
@@ -60,8 +64,9 @@ class Profile < ActiveRecord::Base
         signature: HarmoniousDictionary.clean(signature),
         gender: gender||1,
         identity: identity,
-        age: age,
-        birthday: birthday,
+        age: age.eql?(0) ? '16' : age,
+        true_age: age,
+        birthday: birthday||'',
         address: address,
 
         target: HarmoniousDictionary.clean(target),

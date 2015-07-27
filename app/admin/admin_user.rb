@@ -18,7 +18,7 @@ ActiveAdmin.register AdminUser do
   end
   show do
     attributes_table do
-      row('用户名', :email)
+      row('用户名') { |admin_user| admin_user.email }
       row('角色') { |admin_user|
         case admin_user.role
           when AdminUser::ROLE[:super]
@@ -36,7 +36,7 @@ ActiveAdmin.register AdminUser do
       row('服务号') { |admin_user|
         case admin_user.role
           when AdminUser::ROLE[:service]
-            Service.find_by(id: service_id).profile.name
+            Service.find_by(id: admin_user.service_id).profile.name
           else
             ''
         end

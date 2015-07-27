@@ -1,5 +1,5 @@
 ActiveAdmin.register Service do
-  menu label: '服务号', priority: 2
+  menu label: '服务号', if: proc { !current_admin_user.role.eql?(AdminUser::ROLE[:service]) }
 
   permit_params :mobile, :sns, :identity, :name, :contact, :password, :avatar, :signature, :address, :hobby
   filter :profile_name, label: '名称', as: :string
@@ -139,6 +139,10 @@ ActiveAdmin.register Service do
             row('联系电话') { service.profile.mobile }
           end
         end
+      end
+
+      tab '4-消息群发' do
+        render partial: 'message'
       end
     end
   end

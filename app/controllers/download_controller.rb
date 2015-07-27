@@ -4,7 +4,12 @@ class DownloadController < ApplicationController
     ua = request.env['HTTP_USER_AGENT'].downcase
     if package.eql?('b')
       if ua.include?('micromessenger')
-        render layout: false
+        if ua.include?('iphone')
+          render layout: false
+        else
+          redirect_to 'http://a.app.qq.com/o/simple.jsp?pkgname=com.example.mx_b_app'
+        end
+
       elsif ua.include?('iphone')||ua.include?('ipod')||ua.include?('ipad')
         redirect_to 'https://51.emxing.sinaapp.com'
       else

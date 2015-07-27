@@ -53,3 +53,5 @@ gem 'ya2yaml'
 #whenever
 gem 'whenever'
 gem 'harmonious_dictionary'
+gem 'rqrcode'
+gem 'rqrcode_png'

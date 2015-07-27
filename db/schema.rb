@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150723034009) do
+ActiveRecord::Schema.define(version: 20150727025429) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -539,6 +539,23 @@ ActiveRecord::Schema.define(version: 20150723034009) do
     t.decimal "day_seven"
   end
 
+  create_table "service_courses", force: :cascade do |t|
+    t.string   "name",        default: ""
+    t.integer  "type",        default: 0
+    t.string   "style",       default: ""
+    t.integer  "during"
+    t.integer  "proposal"
+    t.integer  "exp"
+    t.text     "info",        default: ""
+    t.text     "special",     default: ""
+    t.integer  "service",     default: [],              array: true
+    t.date     "limit_start"
+    t.date     "limit_end"
+    t.integer  "status",      default: 0
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
   create_table "service_members", force: :cascade do |t|
     t.integer  "service_id"
     t.integer  "coach_id"
@@ -560,6 +577,22 @@ ActiveRecord::Schema.define(version: 20150723034009) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "skus", force: :cascade do |t|
+    t.string    "sku"
+    t.integer   "course_id"
+    t.decimal   "market_price"
+    t.decimal   "selling_price"
+    t.integer   "store"
+    t.integer   "limit"
+    t.string    "address"
+    t.geography "coordinate",    limit: {:srid=>4326, :type=>"point", :geographic=>true}
+    t.datetime  "created_at",                                                             null: false
+    t.datetime  "updated_at",                                                             null: false
+  end
+
+  add_index "skus", ["coordinate"], name: "index_skus_on_coordinate", using: :gist
+  add_index "skus", ["sku"], name: "index_skus_on_sku", unique: true, using: :btree
 
   create_table "tracks", force: :cascade do |t|
     t.integer  "user_id"

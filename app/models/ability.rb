@@ -11,7 +11,6 @@ class Ability
         can [:read, :create, :update], ServiceMember, service: user.service
         can :manage, ServicePhoto, service: user.service
         can :manage, ServiceTrack, service: user.service
-        can :read, ActiveAdmin::Page, :name => 'Dashboard'
       when AdminUser::ROLE[:cms]
         can :manage, TypeShow
         can :manage, Activity
