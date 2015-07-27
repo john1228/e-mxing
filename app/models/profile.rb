@@ -22,8 +22,8 @@ class Profile < ActiveRecord::Base
     if birthday.blank?
       0
     else
-      years = Date.today.year - birth.year
-      years + (Date.today < birth + years.year ? -1 : 0)
+      years = Date.today.year - birthday.year
+      years + (Date.today < birthday + years.year ? -1 : 0)
     end
   end
 
