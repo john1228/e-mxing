@@ -1,153 +1,152 @@
-﻿<%= form_for([:admin, @service_course], html: {class: 'form-horizontal'}) do |f| %>
+﻿<%= semantic_form_for([:admin, @service_course], html: {class: 'form-horizontal', enctype: 'multipart/form-data'}) do |f| %>
     <fieldset class="inputs">
       <legend><span>商品管理</span></legend>
-      <div class="container-fluid">
-        <div class="row">
-          <div class="form-group form-group-sm">
-            <label class="col-sm-2 control-label">商品类型</label>
 
-            <div class="col-sm-10">
-              <input type="text" value="体验课" disabled>
-            </div>
+      <% if f.object.errors.full_messages.present? %>
+          <div class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            <%= f.object.errors.full_messages %>
           </div>
-          <div class="form-group form-group-sm">
-            <label class="col-sm-2 control-label" for="service_name">商品名称</label>
+      <% end %>
+      <div class="form-group form-group-sm">
+        <label class="col-sm-2 control-label">商品类型</label>
 
-            <div class="col-sm-10">
-              <%= f.text_field :name, class: 'form-control', placeholder: '请输入商品名称', value: (f.object.profile.name rescue '') %>
-            </div>
-          </div>
-          <div class="form-group form-group-sm">
-            <label class="col-sm-2 control-label" for="service_signature">上传图片</label>
-
-            <div class="col-sm-10">
-              <%= f.text_field :images, class: 'form-control' %>
-            </div>
-          </div>
-          <div class="form-group form-group-sm">
-            <label class="col-sm-2 control-label" for="service_interests">授课项目</label>
-
-            <div class="col-sm-10">
-              <%= f.select(:type, INTERESTS['items'].map { |item| [item['name'], item['id']] }, {include_blank: false}) %>
-            </div>
-          </div>
-          <div class="form-group form-group-sm">
-            <label class="col-sm-2 control-label" for="service_address">教学方式</label>
-
-            <div class="col-sm-10">
-              <%= f.text_field(:style, class: 'form-control', placeholder: '请输入教学方式') %>
-            </div>
-          </div>
-
-          <div class="form-group form-group-sm">
-            <label class="col-sm-2 control-label" for="service_signature">限制时间</label>
-
-            <div class="col-sm-10">
-              <%= f.select :limit, [['']] %>
-            </div>
-          </div>
+        <div class="col-sm-10">
+          <input type="text" value="体验课" disabled>
         </div>
-        <div class="row">
+      </div>
+      <div class="form-group form-group-sm">
+        <label class="col-sm-2 control-label" for="service_name">商品名称</label>
 
-          <div class="form-group form-group-sm">
-            <label class="col-sm-2 control-label" for="service_address">教学方式</label>
+        <div class="col-sm-10">
+          <%= f.text_field :name, class: 'form-control', placeholder: '请输入商品名称', value: (f.object.profile.name rescue '') %>
+        </div>
+      </div>
+      <div class="form-group form-group-sm">
+        <label class="col-sm-2 control-label" for="service_signature">上传图片</label>
 
-            <div class="col-sm-10">
-              <%= f.text_field(:style, class: 'form-control', placeholder: '请输入教学方式,格式为: 1V1') %>
-            </div>
-          </div>
+        <div class="col-sm-10">
+          <%= f.file_field :image, multiple: 'multiple' %>
+        </div>
+      </div>
+      <div class="form-group form-group-sm">
+        <label class="col-sm-2 control-label" for="service_interests">授课项目</label>
 
-          <div class="form-group form-group-sm">
-            <label class="col-sm-2 control-label" for="service_address">单课时长</label>
+        <div class="col-sm-10">
+          <%= f.select(:type, INTERESTS['items'].map { |item| [item['name'], item['id']] }, {include_hidden: false}) %>
+        </div>
+      </div>
+      <div class="form-group form-group-sm">
+        <label class="col-sm-2 control-label" for="service_address">教学方式</label>
 
-            <div class="col-sm-10">
-              <%= f.select(:during, [['30分钟', 30], ['60分钟', 60], ['90分钟', 90]]) %>
-            </div>
-          </div>
+        <div class="col-sm-10">
+          <%= f.text_field(:style, class: 'form-control', placeholder: '请输入教学方式,格式为: 1V1') %>
+        </div>
+      </div>
 
-          <div class="form-group form-group-sm">
-            <label class="col-sm-2 control-label" for="service_address">建议课时</label>
+      <div class="form-group form-group-sm">
+        <label class="col-sm-2 control-label" for="service_signature">限制时间</label>
 
-            <div class="col-sm-10">
-              <%= f.number_field(:proposal, min: 1) %>
-            </div>
-          </div>
+        <div class="col-sm-10">
+          <%= f.select :limit_time, [['']] %>
+        </div>
+      </div>
+      <div class="form-group form-group-sm">
+        <label class="col-sm-2 control-label" for="service_address">单课时长</label>
 
-          <div class="form-group form-group-sm">
-            <label class="col-sm-2 control-label" for="service_address">有效期</label>
+        <div class="col-sm-10">
+          <%= f.select(:during, [['30分钟', 30], ['60分钟', 60], ['90分钟', 90]]) %>
+        </div>
+      </div>
 
-            <div class="col-sm-10">
-              <%= f.select(:exp, [['半年', 183], ['1年', 365], ['2年', 730]]) %>
-            </div>
-          </div>
+      <div class="form-group form-group-sm">
+        <label class="col-sm-2 control-label" for="service_address">建议课时</label>
 
-          <div class="form-group form-group-sm">
-            <label class="col-sm-2 control-label" for="service_address">课程内容</label>
+        <div class="col-sm-10">
+          <%= f.number_field(:proposal, min: 1) %>
+        </div>
+      </div>
 
-            <div class="col-sm-10">
-              <%= f.text_area(:info) %>
-            </div>
-          </div>
+      <div class="form-group form-group-sm">
+        <label class="col-sm-2 control-label" for="service_address">有效期</label>
 
-          <div class="form-group form-group-sm">
-            <label class="col-sm-2 control-label" for="service_address">特殊说明</label>
+        <div class="col-sm-10">
+          <%= f.select(:exp, [['半年', 183], ['1年', 365], ['2年', 730]]) %>
+        </div>
+      </div>
 
-            <div class="col-sm-10">
-              <%= f.text_area(:special) %>
-            </div>
-          </div>
-          <div class="form-group form-group-sm">
-            <label class="col-sm-2 control-label" for="service_address">提供服务</label>
+      <div class="form-group form-group-sm">
+        <label class="col-sm-2 control-label" for="service_address">课程内容</label>
 
-            <div class="col-sm-10">
-              <%= f.select :service, [['淋浴', 1], ['停车', 2], ['WIFI', 3], ['餐饮', 4]], {}, {multiple: true} %>
-            </div>
-          </div>
+        <div class="col-sm-10">
+          <%= f.text_area(:info) %>
+        </div>
+      </div>
 
-          <div class="form-group form-group-sm">
-            <label class="col-sm-2 control-label" for="service_address">关联机构</label>
+      <div class="form-group form-group-sm">
+        <label class="col-sm-2 control-label" for="service_address">特殊说明</label>
 
-            <div class="col-sm-10">
-              <%= f.select :agency, Service.includes(:profile).pluck('profiles.name', :id), {}, {multiple: true} %>
-            </div>
-          </div>
+        <div class="col-sm-10">
+          <%= f.text_area(:special) %>
+        </div>
+      </div>
+      <div class="form-group form-group-sm">
+        <label class="col-sm-2 control-label" for="service_address">提供服务</label>
+
+        <div class="col-sm-10">
+          <%= f.select :service, [['淋浴', 1], ['停车', 2], ['WIFI', 3], ['餐饮', 4]], {include_hidden: false}, {multiple: true} %>
+        </div>
+      </div>
+
+      <div class="form-group form-group-sm">
+        <label class="col-sm-2 control-label" for="service_address">关联机构</label>
+
+        <div class="col-sm-10">
+          <%= f.select :agency, Service.includes(:profile).pluck('profiles.name', :id), {include_hidden: false} %>
+        </div>
+      </div>
 
 
-          <div class="form-group form-group-sm">
-            <label class="col-sm-2 control-label" for="service_address">市场价</label>
+      <div class="form-group form-group-sm">
+        <label class="col-sm-2 control-label" for="service_address">市场价</label>
 
-            <div class="col-sm-10">
-              <%= f.number_field :market_price, min: 1, placeholder: '请输入商品市场价,价格不能抵于1' %>
-            </div>
-          </div>
-          <div class="form-group form-group-sm">
-            <label class="col-sm-2 control-label" for="service_address">体验价</label>
+        <div class="col-sm-10">
+          <%= f.number_field :market_price, min: 1, placeholder: '请输入商品市场价,价格不能抵于1' %>
+        </div>
+      </div>
+      <div class="form-group form-group-sm">
+        <label class="col-sm-2 control-label" for="service_address">体验价</label>
 
-            <div class="col-sm-10">
-              <%= f.number_field :selling_price, min: 1, placeholder: '请输入商品体验价格,价格不能抵于1' %>
-            </div>
-          </div>
+        <div class="col-sm-10">
+          <%= f.number_field :selling_price, min: 1, placeholder: '请输入商品体验价格,价格不能抵于1' %>
+        </div>
+      </div>
 
-          <div class="form-group form-group-sm">
-            <label class="col-sm-2 control-label" for="service_address">库存</label>
+      <div class="form-group form-group-sm">
+        <label class="col-sm-2 control-label" for="service_address">库存</label>
 
-            <div class="col-sm-10">
-              <%= f.number_field :store, min: 1, placeholder: '请输入商品库存数量,数量不能少于1' %>
-            </div>
-          </div>
-          <div class="form-group form-group-sm">
-            <label class="col-sm-2 control-label" for="service_address">限制节数</label>
+        <div class="col-sm-10">
+          <%= f.number_field :store, min: 1, placeholder: '请输入商品库存数量,数量不能少于1' %>
+        </div>
+      </div>
+      <div class="form-group form-group-sm">
+        <label class="col-sm-2 control-label" for="service_address">限制节数</label>
 
-            <div class="col-sm-10">
-              <%= f.select :limit, [['不限制', 0], ['限制1节', 1], ['限制2节', 2]] %>
-            </div>
-          </div>
+        <div class="col-sm-10">
+          <%= f.select :limit, [['不限制', 0], ['限制1节', 1], ['限制2节', 2]] %>
         </div>
       </div>
     </fieldset>
     <%= f.submit('提交') %>
 <% end %>
 <script type="text/javascript">
+    $('#service_course_type').multiselect();
+    $('#service_course_limit_time').multiselect();
+    $('#service_course_during').multiselect();
+    $('#service_course_exp').multiselect();
     $('#service_course_service').multiselect();
     $('#service_course_agency').multiselect();
+    $('#service_course_limit').multiselect();
+    $('#service_course_during').multiselect();
 </script>

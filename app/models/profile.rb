@@ -64,7 +64,7 @@ class Profile < ActiveRecord::Base
         signature: HarmoniousDictionary.clean(signature),
         gender: gender||1,
         identity: identity,
-        age: age.eql?(0) ? '16' : age,
+        age: age.eql?(0) ? 16 : age,
         true_age: age,
         birthday: birthday||'',
         address: address,

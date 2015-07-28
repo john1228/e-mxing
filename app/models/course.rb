@@ -5,11 +5,9 @@ class Course < ActiveRecord::Base
   has_many :comments, dependent: :destroy
   has_many :lessons, dependent: :destroy
   has_many :concerns, class: Concerned, dependent: :destroy
-  has_many :course_abstracts, dependent: :destroy
   has_many :order_items
   attr_accessor :address
   STATUS = {delete: 0, online: 1}
-  STYLE = {many: '团操', one: '1v1'}
   GUARANTEE = 1
   class<< self
     def top
@@ -30,8 +28,7 @@ class Course < ActiveRecord::Base
     end
   end
 
-
-  after_save :update_course_abstract
+  after_save :skus_build
 
   def as_json
     {
@@ -73,10 +70,10 @@ class Course < ActiveRecord::Base
   end
 
   private
-  def update_course_abstract
+  def skus_build
     if status.eql?(STATUS[:online])
       if address.present?
-        course_abstracts.destroy_all
+        skus.destroy_all
         address.each { |address_id|
           course_abstracts.create(course_id: id, address_id: address_id, coach_id: coach.id,
                                   coach_gender: coach.profile.gender, course_price: price, course_type: type,

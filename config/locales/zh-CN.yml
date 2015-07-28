@@ -32,3 +32,12 @@
         report: '举报'
         track: '轨迹'
         withdraw: '提现'
+        service_course: '体验课'
+      attributes:
+        service_course:
+          name: '名称'
+          type: '授课项目'
+          style: '教学方式'
+          during: '课程时长'
+          proposal: '建议课时'
+          exp: '有效期'
