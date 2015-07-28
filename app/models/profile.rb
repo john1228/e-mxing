@@ -47,7 +47,7 @@ class Profile < ActiveRecord::Base
         name: HarmoniousDictionary.clean(name||''),
         avatar: avatar.thumb.url,
         gender: gender||1,
-        age: age.eql?(0) ? '16' : age,
+        age: age.eql?(0) ? 16 : age,
         true_age: age,
         signature: HarmoniousDictionary.clean(signature),
         tags: tags,
