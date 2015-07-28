@@ -5,6 +5,7 @@ class Course < ActiveRecord::Base
   has_many :comments, dependent: :destroy
   has_many :lessons, dependent: :destroy
   has_many :concerns, class: Concerned, dependent: :destroy
+  has_many :course_abstracts, dependent: :destroy
   has_many :order_items
   attr_accessor :address
   STATUS = {delete: 0, online: 1}
@@ -28,7 +29,7 @@ class Course < ActiveRecord::Base
     end
   end
 
-  after_save :skus_build
+  after_save :update_course_abstract
 
   def as_json
     {
@@ -70,10 +71,10 @@ class Course < ActiveRecord::Base
   end
 
   private
-  def skus_build
+  def update_course_abstract
     if status.eql?(STATUS[:online])
       if address.present?
-        skus.destroy_all
+        course_abstracts.destroy_all
         address.each { |address_id|
           course_abstracts.create(course_id: id, address_id: address_id, coach_id: coach.id,
                                   coach_gender: coach.profile.gender, course_price: price, course_type: type,
