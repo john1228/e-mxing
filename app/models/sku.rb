@@ -64,7 +64,7 @@ class Sku < ActiveRecord::Base
     if sku.start_with?('SC')
       user = Service.find_by(id: seller_id)
     else
-      user = Enthusiast.find_by(id: seller_id)
+      user = Coach.find_by(id: seller_id)
     end
     user
   end
