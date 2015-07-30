@@ -18,6 +18,7 @@ class ServiceCourse < ActiveRecord::Base
           sku: 'SC'+'-' + '%06d' % id + '-' + '%06d' % (agency.id),
           course_id: id,
           seller: agency.profile.name,
+          seller_id: agency.id,
           market_price: market_price,
           selling_price: selling_price,
           store: store,

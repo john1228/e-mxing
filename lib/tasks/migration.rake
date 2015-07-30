@@ -5,6 +5,8 @@ namespace :migration do
       service = course.coach.service
       Sku.create(
           sku: 'CC'+'-' + '%06d' % course.id + '-' + '%06d' % (service.id),
+          seller: course.coach.name,
+          seller_id: course.coach.id,
           market_price: course.price,
           selling_price: course.price,
           address: service.address||'',

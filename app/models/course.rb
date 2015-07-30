@@ -53,6 +53,7 @@ class Course < ActiveRecord::Base
         sku: 'CC'+'-' + '%06d' % id + '-' + '%06d' % (service.id),
         course_id: id,
         seller: coach.profile.name,
+        seller_id: coach.id,
         market_price: price,
         selling_price: price,
         address: service.address||'',
