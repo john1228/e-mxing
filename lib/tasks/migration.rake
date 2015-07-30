@@ -33,7 +33,7 @@ namespace :migration do
   desc '课时转移'
   task :lessons => :environment do
     Lesson.all.map { |lesson|
-      course = Course.find_by(id: item.course_id)
+      course = Course.find_by(id: lesson.course_id)
       if course.present?
         lesson.update(sku: Sku.find_by(course_id: course.id).sku)
       else
