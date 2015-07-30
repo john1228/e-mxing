@@ -1,13 +1,14 @@
 class Sku < ActiveRecord::Base
-  belongs_to :valid
+  scope :nearby, ->(lng, lat, filters, page=1) { find_by_sql("select profiles.*,st_distance(places.lonlat, 'POINT(#{lng} #{lat})') as distance from profiles,places where  st_dwithin(places.lonlat, 'POINT(#{lng} #{lat})',15000000) and profiles.user_id=places.user_id and #{filters} order by distance asc") }
 
   def as_json
     {
         sku: sku,
         name: course.name,
+        seller: seller,
         cover: course.cover,
         selling: selling_price,
-        address: address,
+        address: address
     }
   end
 
@@ -21,7 +22,6 @@ class Sku < ActiveRecord::Base
         type: course.type,
         style: course.style,
         proposal: course.proposal,
-
     }
   end
 
