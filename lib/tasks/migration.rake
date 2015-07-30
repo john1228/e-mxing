@@ -3,8 +3,10 @@ namespace :migration do
   task :course => :environment do
     Course.all.map { |course|
       service = course.coach.service
+
       Sku.create(
           sku: 'CC'+'-' + '%06d' % course.id + '-' + '%06d' % (service.id),
+          course_id: course.id,
           seller: course.coach.name,
           seller_id: course.coach.id,
           market_price: course.price,
