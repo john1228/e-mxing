@@ -6,9 +6,10 @@ class Lesson < ActiveRecord::Base
   has_many :appointments
 
   def as_json
+    sku = Sku.find_by(sku: sku)
     {
         id: id,
-        course: course.name,
+        course: sku.course.name,
         seller: coach.profile.name,
         available: available,
         used: used

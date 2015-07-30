@@ -25,11 +25,20 @@ class Sku < ActiveRecord::Base
     }
   end
 
+  def seller
+
+  end
+
   def course
     if sku.start_with?('SC')
       ServiceCourse.find_by(id: course_id)
     else
       Course.find_by(id: course_id)
     end
+  end
+
+  private
+  def seller
+
   end
 end
