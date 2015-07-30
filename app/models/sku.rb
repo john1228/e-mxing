@@ -27,7 +27,7 @@ class Sku < ActiveRecord::Base
         style: course.style,
         proposal: course.proposal,
         seller: {
-            mxid: seller_user.mxid,
+            mxid: seller_user.profile.mxid,
             name: seller_user.profile.name,
             avatar: seller_user.profile.thumb.url
         },
