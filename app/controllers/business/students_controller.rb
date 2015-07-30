@@ -11,21 +11,29 @@ module Business
 
     def courses
       user = User.find_by_mxid(params[:student])
-      render json: Success.new(
-                 courses: @coach.lessons.joins(:course).where('lessons.available > lessons.used and lessons.user_id = ?', user.id).order(exp: :asc).map { |lesson|
-                   {
-                       id: lesson.id,
-                       name: lesson.course.name,
-                       cover: (lesson.course.course_photos.first.photo.thumb.url rescue ''),
-                       type: lesson.course.type,
-                       style: lesson.course.style,
-                       during: lesson.course.during,
-                       available: lesson.available,
-                       used: lesson.used,
-                       exp: lesson.exp
+      if user.blank?
+        render json: Failure.new('您查看到用户不存在')
+      else
+        render json: Success.new(
+                   courses: @coach.lessons.joins(:course).where('lessons.available > lessons.used and lessons.user_id = ?', user.id).order(exp: :asc).map { |lesson|
+                     {
+                         name: lesson.course.name,
+                         available: lesson.available,
+                         used: lesson.used
+                     }
                    }
-                 }
-             )
+               )
+      end
+
+    end
+
+    def attend
+      user = User.find_by_mxid(params[:student])
+      if user.blank?
+        render json: Failure.new('您查看到用户不存在')
+      else
+        render json: Success.new
+      end
     end
   end
 end

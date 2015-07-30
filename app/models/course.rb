@@ -1,35 +1,18 @@
 class Course < ActiveRecord::Base
   self.inheritance_column = nil
   belongs_to :coach
-  has_many :course_photos, dependent: :destroy
+  has_many :photos, class_name: CoursePhoto, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :lessons, dependent: :destroy
-  has_many :concerns, class: Concerned, dependent: :destroy
+  has_many :concerns, class_name: Concerned, dependent: :destroy
   has_many :course_abstracts, dependent: :destroy
   has_many :order_items
   attr_accessor :address
-  STATUS = {delete: 0, online: 1}
+  after_save :skus_build
+
+  STATUS = {offline: 0, online: 1}
   GUARANTEE = 1
-  class<< self
-    def top
-      where(top: 1, status: STATUS[:online]).order(id: :desc).take
-    end
 
-    def hot
-      hot_course = where(status: STATUS[:online]).order(order_items_count: :desc).take
-      if top.present?
-        if hot_course.present? && hot_course.id.eql?(top.id)
-          nil
-        else
-          hot_course
-        end
-      else
-        hot_course
-      end
-    end
-  end
-
-  after_save :update_course_abstract
 
   def as_json
     {
@@ -44,45 +27,34 @@ class Course < ActiveRecord::Base
         intro: intro,
         guarantee: guarantee,
         address: school_addresses,
-        images: course_photos.collect { |course_photo| course_photo.photo.thumb.url },
+        images: photos.collect { |photo| photo.photo.thumb.url },
         purchased: order_items_count,
-        concerns: concerns_count,
-        top: 0
+        concerns: concerns_count
     }
   end
 
   def cover
-    if course_photos.blank?
-      ''
-    else
-      course_photos.first.photo.thumb.url
-    end
+    photos.first.photo.thumb.url rescue ''
   end
 
   def school_addresses
-    course_abstracts.map { |course_abstract|
-      address = course_abstract.address
-      {
-          id: address.id,
-          venues: address.venues,
-          address: address.city + address.address
-      }
-    }
+    [
+        {
+            venues: coach.service.profile.name,
+            address: coach.service.profile.address
+        }
+    ]
   end
 
   private
-  def update_course_abstract
-    if status.eql?(STATUS[:online])
-      if address.present?
-        course_abstracts.destroy_all
-        address.each { |address_id|
-          course_abstracts.create(course_id: id, address_id: address_id, coach_id: coach.id,
-                                  coach_gender: coach.profile.gender, course_price: price, course_type: type,
-                                  coordinate: AddressCoordinate.find_by(address_id: address_id).lonlat)
-        }
-      end
-    else
-      course_abstracts.destroy_all
-    end
+  def sku_build
+    Sku.destroy_all("sku LIKE 'CC%' and course_id = #{id}")
+    Sku.create(
+        sku: 'CC'+'-' + '%06d' % id + '-' + '%06d' % (service.id),
+        market_price: price,
+        selling_price: price,
+        address: service.address||'',
+        coordinate: (service.place.lonlat rescue 'POINT(0 0)')
+    )
   end
 end

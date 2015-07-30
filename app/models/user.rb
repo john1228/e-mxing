@@ -21,9 +21,10 @@ class User < ActiveRecord::Base
   has_many :orders, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :lessons, dependent: :destroy
-  has_many :concerns, class: Concerned, dependent: :destroy
-
+  has_many :concerns, class_name: Concerned, dependent: :destroy
   has_one :setting, dependent: :destroy
+
+
   TYPE=[['健身爱好者', 0], ['私教', 1], ['商家', 2]]
   class<<self
     def find_by_mxid(mxid)

@@ -12,6 +12,11 @@ class Wallet < ActiveRecord::Base
     }
   end
 
+  def valid_coupons(course, amount)
+    #TODO: 筛选可用的优惠券
+    []
+  end
+
   private
   def create_wallet_log
     coupons_change

@@ -187,6 +187,9 @@ Rails.application.routes.draw do
     put 'lessons' => 'lessons#confirm'
     post 'lessons/comment' => 'lessons#comment'
     delete 'lessons/:id' => 'lessons#destroy'
+    #V3课时
+    get 'classes/:type' => 'classes#index'
+    post 'classes' => 'classes#comment'
     #钱包
     get 'wallet' => 'wallet#index'
     get 'wallet/coupons' => 'wallet#coupons'
@@ -200,6 +203,13 @@ Rails.application.routes.draw do
     post 'alipay' => 'alipay#callback'
     post 'jd' => 'jd#callback'
     post 'webchat' => 'webchat#callback'
+  end
+
+  namespace :shop do
+    get '' => 'courses#index'
+    get 'courses' => 'courses#show'
+    post 'courses' => 'courses#pre_order'
+    put 'courses' => 'courses#confirm_order'
   end
   #数据上传
   post 'active' => 'upload#active'

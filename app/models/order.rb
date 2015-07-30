@@ -21,8 +21,7 @@ class Order < ActiveRecord::Base
     course_id, course_count = item_info[0], item_info[1]
     course = Course.find_by(id: course_id)
     build_order_item(course_id: course.id, name: course.name, type: course.type, during: course.during,
-                     cover: (course.course_photos.first.blank? ? '' : course.course_photos.first.photo),
-                     price: course.price, amount: course_count)
+                     cover: course.cover, price: course.price, amount: course_count)
     self.total, total_price = course.price*course_count.to_i, course.price*course_count.to_i
     #如果用户使用优惠券
     if coupons.present?

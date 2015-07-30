@@ -1,24 +1,16 @@
 module Business
   class CoursesController < BaseController
     def index
-      if (params[:page]||1).to_i.eql?(1)
-        render json: Success.new(
-                   top: @coach.courses.top||{},
-                   hot: @coach.courses.hot||{},
-                   courses: @coach.courses.where.not(status: Course::STATUS[:delete],id: [(@coach.courses.top.id rescue 0), (@coach.courses.hot.id rescue 0)]).order(id: :desc).page(params[:page]||1)
-               )
-      else
-        render json: Success.new(
-                   courses: @coach.courses.where.not(status: Course::STATUS[:delete],id: [(@coach.courses.top.id rescue 0), (@coach.courses.hot.id rescue 0)]).order(id: :desc).page(params[:page]||1)
-               )
-      end
+      render json: Success.new(
+                 courses: @coach.courses.where(status: Course::STATUS[:online]).order(id: :desc).page(params[:page]||1)
+             )
     end
 
 
     def create
       begin
         course = @coach.courses.new(new_params.merge(status: Course::STATUS[:online]))
-        (0..8).each { |index| course.course_photos.build(photo: params[index.to_s.to_sym]) if params[index.to_s.to_sym].present? }
+        (0..8).each { |index| course.photos.build(photo: params[index.to_s.to_sym]) if params[index.to_s.to_sym].present? }
         if course.save
           render json: Success.new
         else
@@ -40,7 +32,7 @@ module Business
 
     def destroy
       course = @coach.courses.find_by(id: params[:id])
-      if course.update(status: Course::STATUS[:delete])
+      if course.update(status: Course::STATUS[:offline])
         render json: Success.new
       else
         render json: Failure.new('删除课程失败')
@@ -49,10 +41,8 @@ module Business
 
     private
     def new_params
-      permit_params = params.permit(:name, :type, :style, :during, :price, :exp, :proposal, :intro, :guarantee,
-                                    :customized, :top)
-      permit_params = permit_params.merge(custom_mxid: params[:mxid], custom_mobile: params[:mobile])
-      permit_params.merge(address: params[:address].split(',').map { |item| item.to_i })
+      permit_params = params.permit(:name, :type, :style, :during, :price, :exp, :proposal, :intro, :guarantee, :top)
+      permit_params.merge(address: params[:address].split(','))
     end
 
     def update_params

@@ -7,7 +7,7 @@ class DownloadController < ApplicationController
         if ua.include?('iphone')
           render layout: false
         else
-          redirect_to 'http://a.app.qq.com/o/simple.jsp?pkgname=com.example.mx_b_app'
+          redirect_to 'http://a.app.qq.com/o/simple.jsp?pkgname=com.mx.mx_b_app'
         end
 
       elsif ua.include?('iphone')||ua.include?('ipod')||ua.include?('ipad')

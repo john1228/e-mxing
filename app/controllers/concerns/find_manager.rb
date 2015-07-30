@@ -28,7 +28,7 @@ module FindManager
 
   def groups
     {
-        recommend: Group.recommend.limit(2).collect { |group| group.as_json },
+        recommend: Group.all.sample(2),
         nearby: GroupPlace.nearby(params[:lng], params[:lat]).page(params[:page]).collect { |group_place|
           group_place.group.as_json.merge(distance: group_place.distance.to_i)
         }
@@ -106,7 +106,7 @@ module FindManager
       {
           id: course.id,
           name: course.name,
-          cover: course.course_photos.first.present? ? course.course_photos.first.photo.thumb.url : '',
+          cover: course.cover,
           price: course.price,
           during: course.during,
           type: course.type,

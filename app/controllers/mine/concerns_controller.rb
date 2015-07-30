@@ -8,7 +8,7 @@ module Mine
                    {
                        id: course.id,
                        name: course.name,
-                       cover: course.course_photos.first.present? ? course.course_photos.first.photo.thumb.url : '',
+                       cover: course.cover,
                        price: course.price,
                        during: course.during,
                        type: course.type,

@@ -6,8 +6,10 @@ class Service<User
   has_many :service_tracks, foreign_key: :user_id, dependent: :destroy
   has_many :service_dynamics, foreign_key: :user_id, dependent: :destroy
 
-  has_many :coaches, through: :service_members, dependent: :destroy
+  has_many :service_members, dependent: :destroy
+  has_many :coaches, through: :service_members
   alias_attribute :service_id, :id
+  
   private
   def location
     if address.present?
@@ -16,7 +18,6 @@ class Service<User
       json_string = JSON.parse(result.body)
       bd_lng = json_string['result']['location']['lng']
       bd_lat = json_string['result']['location']['lat']
-
       if place.nil?
         create_place(lonlat: gcj_02(bd_lng, bd_lat))
       else
