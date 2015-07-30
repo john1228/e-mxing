@@ -28,7 +28,7 @@ module Shop
     end
 
     def confirm_order
-
+      
     end
   end
 end

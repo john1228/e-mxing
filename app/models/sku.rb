@@ -49,6 +49,27 @@ class Sku < ActiveRecord::Base
     }
   end
 
+  def course
+    if sku.start_with?('SC')
+      ServiceCourse.find_by(id: course_id)
+    else
+      Course.find_by(id: course_id)
+    end
+  end
+
+  def related_sellers
+    Sku.where('sku LIKE ? and course_id=?', sku[0, 2] + '%', course_id).map { |sku|
+      {
+          seller: sku.seller,
+          address: sku.address,
+          coordinate: {
+              lng: sku.coordinate.x,
+              lat: sku.coordinate.y
+          }
+      }
+    }
+  end
+
   private
   def buyers
     User.where(id: Order.includes(:order_item).where('order_items.sku=?', sku).pluck(:user_id)).map { |user|
@@ -68,13 +89,4 @@ class Sku < ActiveRecord::Base
     end
     user
   end
-
-  def course
-    if sku.start_with?('SC')
-      ServiceCourse.find_by(id: course_id)
-    else
-      Course.find_by(id: course_id)
-    end
-  end
-
 end

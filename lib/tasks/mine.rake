@@ -1,12 +1,12 @@
 namespace :mine do
   host = 'http://stage.e-mxing.com'
-  token = '182be0c5cdcd5072bb1864cdee4d3d6e'
+  token = '6ea9ab1baa0efb9e19094440c317e21b'
 
   desc ''
-  task :order do
+  task :lesson do
     conn = Faraday.new(:url => host)
     conn.headers[:token] = token
-    response = conn.get 'mine/orders/show', no: 143712273333850
+    response = conn.get 'mine/classes/incomplete'
     puts response.body
   end
 end
