@@ -7,7 +7,7 @@ class CreateServiceCourses < ActiveRecord::Migration
       t.integer :during #时长
       t.integer :proposal #建议时长
       t.integer :exp #有效期
-      t.text :info, default: '' #课程内容
+      t.text :intro, default: '' #课程内容
       t.text :special, default: '' #特殊说明
 
       t.integer :service, array: true, default: [] #服务支持

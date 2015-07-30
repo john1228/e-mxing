@@ -38,7 +38,7 @@ class Sku < ActiveRecord::Base
                           lat: coordinate.y
                       }
                   }],
-        info: course.info,
+        intro: course.intro,
         special: course.special,
         service: [1, 2, 3, 4],
         buyers: buyers,
