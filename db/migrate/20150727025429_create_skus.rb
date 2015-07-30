@@ -5,6 +5,7 @@ class CreateSkus < ActiveRecord::Migration
       t.integer :course_id #对应课程ID
       t.string :seller #售课者到名字
       t.integer :seller_id #售课者ID
+      t.integer :service, array: true, default: []
       t.decimal :market_price #市场价
       t.decimal :selling_price #销售价
       t.integer :store #库存数量

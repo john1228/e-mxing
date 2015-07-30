@@ -1,5 +1,5 @@
 class Comment < ActiveRecord::Base
-  default_scope { where('1=1').order(id: :desc) }
+  default_scope { order(id: :desc) }
   has_many :comment_images, dependent: :destroy
   belongs_to :user
   belongs_to :course, counter_cache: true

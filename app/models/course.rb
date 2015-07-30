@@ -1,7 +1,7 @@
 class Course < ActiveRecord::Base
   self.inheritance_column = nil
   belongs_to :coach
-  has_many :photos, class_name: CoursePhoto, dependent: :destroy
+  has_many :images, class_name: CoursePhoto, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :lessons, dependent: :destroy
   has_many :concerns, class_name: Concerned, dependent: :destroy
