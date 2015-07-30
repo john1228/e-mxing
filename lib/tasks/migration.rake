@@ -19,7 +19,12 @@ namespace :migration do
   task :orders => :environment do
     OrderItem.all.map { |item|
       course = Course.find_by(id: item.course_id)
-      OrderItem.update(price: course.price, sku: Sku.find_by(course_id: course.id).sku)
+      if course.present?
+        item.update(price: course.price, sku: Sku.find_by(course_id: course.id).sku) unless course.present?
+      else
+        item.destroy
+      end
+
     }
   end
 
@@ -27,7 +32,11 @@ namespace :migration do
   task :lessons => :environment do
     Lesson.all.map { |lesson|
       course = Course.find_by(id: item.course_id)
-      lesson.update(sku: Sku.find_by(course_id: course.id).sku)
+      if course.present?
+        lesson.update(sku: Sku.find_by(course_id: course.id).sku)
+      else
+        lesson.destroy
+      end
     }
   end
 end
