@@ -41,4 +41,15 @@ namespace :migration do
       end
     }
   end
+  desc '预约转移'
+  task :appointment => :environment do
+    Appointment.all.map { |appointment|
+      course = Course.find_by(id: appointment.course_id)
+      if course.present?
+        appointment.update(sku: Sku.find_by(course_id: course.id).sku)
+      else
+        appointment.destroy
+      end
+    }
+  end
 end
