@@ -189,6 +189,7 @@ Rails.application.routes.draw do
     delete 'lessons/:id' => 'lessons#destroy'
     #V3课时
     get 'classes/:type' => 'classes#index'
+    get 'classes/:type/detail' => 'classes#show'
     post 'classes' => 'classes#comment'
     #钱包
     get 'wallet' => 'wallet#index'

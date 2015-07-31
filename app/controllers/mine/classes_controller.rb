@@ -14,9 +14,9 @@ module Mine
     def show
       case params[:type]
         when 'incomplete'
-          render json: Success.new(class: @user.lessons.find_by(id: params[:id]).detail)
-        when 'complete'
-
+          render json: Success.new(class: @user.lessons.find_by(id: params[:id])[8, (params[:id].length-8)])
+        else
+          render json: Failure.new('无效到请求')
       end
     end
 
