@@ -35,7 +35,7 @@ namespace :migration do
       course = Course.find_by(id: lesson.course_id)
       order = lesson.order
       if course.present?
-        lesson.update(sku: Sku.find_by(course_id: course.id).sku, code: (1..available).map { |index|
+        lesson.update(sku: Sku.find_by(course_id: course.id).sku, code: (1..lesson.available).map { |index|
                                                                   'L'+'%05d' % lesson.user_id + +'%04d' % order.id + '%02d' + index
                                                                 })
       else
