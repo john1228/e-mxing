@@ -10,7 +10,7 @@ module Business
     def create
       begin
         course = @coach.courses.new(new_params.merge(status: Course::STATUS[:online]))
-        (0..8).each { |index| course.photos.build(photo: params[index.to_s.to_sym]) if params[index.to_s.to_sym].present? }
+        (0..8).each { |index| course.images.build(photo: params[index.to_s.to_sym]) if params[index.to_s.to_sym].present? }
         if course.save
           render json: Success.new
         else

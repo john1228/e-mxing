@@ -27,7 +27,7 @@ class Course < ActiveRecord::Base
         intro: intro,
         guarantee: guarantee,
         address: school_addresses,
-        images: photos.collect { |photo| photo.photo.thumb.url },
+        images: images.collect { |photo| photo.photo.thumb.url },
         purchased: order_items_count,
         concerns: concerns_count
     }
