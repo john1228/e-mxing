@@ -11,6 +11,15 @@ module Mine
       end
     end
 
+    def show
+      case params[:type]
+        when 'incomplete'
+          render json: Success.new(class: @user.lessons.find_by(id: params[:id]).detail)
+        when 'complete'
+
+      end
+    end
+
     def comment
       appointment = Appointment.find_by(id: params[:id], status: Appointment::STATUS[:confirm])
       course = appointment.course

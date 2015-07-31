@@ -11,7 +11,7 @@ class Sku < ActiveRecord::Base
   end
 
   def detail
-    {
+    json_hash = {
         sku: sku,
         name: course.name,
         images: course.images.map { |image|
@@ -47,6 +47,8 @@ class Sku < ActiveRecord::Base
             items: course.comments.take(2)
         ]
     }
+    json_hash = json_hash.merge(limit: {start: course.limit_start, end: course.limit_end}) if course.has_attribute?(:limit_start)
+    json_hash
   end
 
   def course
@@ -89,4 +91,5 @@ class Sku < ActiveRecord::Base
     end
     user
   end
+
 end
