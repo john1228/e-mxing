@@ -11,15 +11,15 @@ namespace :mine do
   end
 
   desc '未完成课时详情'
-  task :lesson_incomplete do
+  task :lesson_incomplete_detail do
     conn = Faraday.new(:url => host)
     conn.headers[:token] = token
-    response = conn.get 'mine/classes/incomplete?id='
+    response = conn.get 'mine/classes/incomplete/detail?id=162'
     puts response.body
   end
 
   desc '已完成课时'
-  task :lesson_incomplete do
+  task :lesson_complete do
     conn = Faraday.new(:url => host)
     conn.headers[:token] = token
     response = conn.get 'mine/classes/complete'
