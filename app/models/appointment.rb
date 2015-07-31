@@ -11,6 +11,7 @@ class Appointment < ActiveRecord::Base
     {
         id: Date.today.strftime('%Y-%m-%d')+'%05d' % id,
         course: sku_course.course.name,
+        student: user.profile.name,
         seller: sku_course.seller,
         amount: amount,
         created: created_at.localtime.strftime('%Y-%m-%d %H:%M')

@@ -4,6 +4,7 @@ class Lesson < ActiveRecord::Base
   belongs_to :course
   belongs_to :order
   has_many :appointments
+  before_create :build_code
 
   def as_json
     sku_course = Sku.find_by(sku: sku)
@@ -32,9 +33,10 @@ class Lesson < ActiveRecord::Base
     }
   end
 
-  def code
-    (1..available).map { |index|
-      'L'+'%05d' % user_id + +'%04d' % id + '%02d' + index
+  private
+  def build_code
+    self.code = (1..available).map { |index|
+      'L'+'%05d' % user_id + +'%04d' % order.id + '%02d' + index
     }
   end
 end

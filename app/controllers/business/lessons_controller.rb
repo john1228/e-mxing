@@ -16,5 +16,14 @@ module Business
                )
       end
     end
+
+    def update
+      appointment = @coach.appointments.new(code: params[:code])
+      if appointment.save
+        render json: Success.new
+      else
+        render json: Failure.new('消课失败:' + appointment.errors.full_messages.join(';'))
+      end
+    end
   end
 end

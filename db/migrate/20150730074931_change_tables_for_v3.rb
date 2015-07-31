@@ -8,8 +8,9 @@ class ChangeTablesForV3 < ActiveRecord::Migration
     # add_column :profiles, :service, :integer, array: true, default: []
     #
 
-    add_column :appointments, :code, :string
-    add_index :appointments, :code, unique: true
-    drop_table :appoint_logs
+    #add_column :appointments, :code, :string
+    #add_index :appointments, :code, unique: true
+    #drop_table :appoint_logs
+    #add_column :lessons, :code, :string, array: true, default: []
   end
 end
