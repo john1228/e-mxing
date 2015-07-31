@@ -10,6 +10,7 @@ class Lesson < ActiveRecord::Base
     {
         id: id,
         course: sku_course.course.name,
+        student: user.profile.name,
         seller: sku_course.seller,
         available: available,
         used: used

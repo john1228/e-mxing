@@ -127,7 +127,8 @@ Rails.application.routes.draw do
     put 'login' => 'login#update'
     #地址管理
     get 'addresses' => 'addresses#index'
-    post 'addresses' => 'addresses#create'
+    get 'lessons' => 'lessons#index'
+    get 'lessons/records' => 'lessons#records'
     #课程
     get 'courses' => 'courses#index'
     get 'courses/:type' => 'courses#index'

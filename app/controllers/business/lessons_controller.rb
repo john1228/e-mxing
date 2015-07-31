@@ -12,12 +12,7 @@ module Business
         render json: Failure.new('您没有这个课程')
       else
         render json: Success.new(
-                   records: lesson.appointments.map { |appointment|
-                     {
-                       id: 'L%08d' + appointment.id,
-                       created: appointment.created_at
-                     }
-                   }
+                   records: lesson.appointments
                )
       end
     end
