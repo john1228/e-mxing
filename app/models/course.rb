@@ -8,7 +8,7 @@ class Course < ActiveRecord::Base
   #has_many :course_abstracts, dependent: :destroy
   has_many :order_items
   attr_accessor :address
-  after_save :skus_build
+  after_save :sku_build
 
   STATUS = {offline: 0, online: 1}
   GUARANTEE = 1

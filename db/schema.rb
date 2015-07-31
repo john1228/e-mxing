@@ -97,15 +97,6 @@ ActiveRecord::Schema.define(version: 20150730074931) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "appoint_logs", force: :cascade do |t|
-    t.integer  "appointment_id"
-    t.integer  "status"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-  end
-
-  add_index "appoint_logs", ["appointment_id", "status"], name: "index_appoint_logs_on_appointment_id_and_status", unique: true, using: :btree
-
   create_table "appointment_settings", force: :cascade do |t|
     t.integer  "coach_id"
     t.date     "start_date"
@@ -128,7 +119,10 @@ ActiveRecord::Schema.define(version: 20150730074931) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "sku"
+    t.string   "code"
   end
+
+  add_index "appointments", ["code"], name: "index_appointments_on_code", unique: true, using: :btree
 
   create_table "auto_logins", force: :cascade do |t|
     t.integer  "user_id"
