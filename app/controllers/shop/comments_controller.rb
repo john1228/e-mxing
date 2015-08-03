@@ -1,5 +1,5 @@
 module Shop
-  class CommentsController < BaseController
+  class CommentsController < ApplicationController
     #私教评论列表
     def index
       if params[:type]
@@ -9,7 +9,7 @@ module Shop
     end
 
     def create
-      
+
     end
   end
 end
