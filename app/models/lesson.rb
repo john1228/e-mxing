@@ -29,7 +29,7 @@ class Lesson < ActiveRecord::Base
         during: sku_course.course.during,
         exp: exp,
         address: sku_course.related_sellers,
-        code: code
+        qr_code: code
     }
   end
 

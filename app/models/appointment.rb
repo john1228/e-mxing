@@ -20,7 +20,9 @@ class Appointment < ActiveRecord::Base
 
   private
   def backend
-    lesson.update(used: (lesson.used + amount)) if status.eql?(STATUS[:waiting])
+    lesson.update(used: (lesson.used + amount)) if status.eql?(STATUS[:confirm])
+
+
     case status
       when STATUS[:cancel]
         #取消
@@ -30,19 +32,14 @@ class Appointment < ActiveRecord::Base
       when STATUS[:waiting]
         push(user, "您的私教#{coach.profile.name}已邀约您上#{course.name}课，进入查看您的私人课时,小伙伴们，确认课时后别忘记评价下私教哟。")
       when STATUS[:confirm]
+        sku_course = Sku.find_by(sku: sku)
+        course = sku_course.course
         if course.guarantee.eql?(Course::GUARANTEE)
-          services = ServiceMember.select(:service_id).where(coach: coach).uniq
-          if services.size==1
-            service = services.take.service
-            #挂在单加服务号时，钱转给服务号
-            wallet = Wallet.find_or_create_by(user: service)
-            #购买时课程单价
-            wallet.update(balance: (wallet.balance + course.price*amount), action: WalletLog::ACTIONS['卖课收入'])
-          else
-            #挂在多家结构时,钱直接转给私教
-            wallet = Wallet.find_or_create_by(user: coach)
-            wallet.update(balance: (wallet.balance + course.price*amount), action: WalletLog::ACTIONS['卖课收入'])
-          end
+          service = coach.service
+          #挂在单加服务号时，钱转给服务号
+          wallet = Wallet.find_or_create_by(user: service)
+          #购买时课程单价
+          wallet.update(balance: (wallet.balance + course.price*amount), action: WalletLog::ACTIONS['卖课收入'])
         end
         push(coach, "学员#{user.profile.name}已确认上课，别忘记提醒学员评价，增加您的人气哟。")
       when STATUS[:finish]

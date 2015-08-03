@@ -1,4 +1,5 @@
 class Sku < ActiveRecord::Base
+
   def as_json
     {
         sku: sku,
@@ -70,6 +71,11 @@ class Sku < ActiveRecord::Base
           }
       }
     }
+  end
+
+
+  def comments
+    Comment.where('sku LIKE ?', sku[0, sku.rindex('-')])
   end
 
   private

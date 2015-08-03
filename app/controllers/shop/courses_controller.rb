@@ -13,7 +13,7 @@ module Shop
       else
         user = Rails.cache.fetch(request.headers[:token])
         render json: Success.new(
-                   sku: sku.detail.merge(conerned: user ? 0 : 1)
+                   course: sku.detail.merge(conerned: user ? 0 : 1)
                )
       end
     end
