@@ -25,7 +25,7 @@ module Mine
     end
 
     def un_confirm
-      render json: Success.new(unconfirm: @user.appointments.joins(:course).where(status: Appointment::STATUS[:waiting]).count)
+      render json: Success.new(unconfirm: 0)
     end
 
     def comment
