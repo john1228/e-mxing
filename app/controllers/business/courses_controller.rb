@@ -8,7 +8,7 @@ module Business
 
 
     def create
-      begin
+      #begin
         course = @coach.courses.new(new_params.merge(status: Course::STATUS[:online]))
         (0..8).each { |index| course.images.build(photo: params[index.to_s.to_sym]) if params[index.to_s.to_sym].present? }
         if course.save
@@ -16,9 +16,9 @@ module Business
         else
           render json: Failure.new('课程添加失败')
         end
-      rescue Exception => e
-        render json: Failure.new(e.message)
-      end
+      #rescue Exception => e
+       # render json: Failure.new(e.message)
+      #end
     end
 
     def update
