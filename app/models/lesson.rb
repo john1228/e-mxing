@@ -26,7 +26,7 @@ class Lesson < ActiveRecord::Base
         seller: sku_course.seller,
         available: available,
         used: used,
-        during: sku.course.during,
+        during: sku_course.course.during,
         exp: exp,
         address: sku_course.related_sellers,
         code: code
