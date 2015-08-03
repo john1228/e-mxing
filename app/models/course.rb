@@ -50,14 +50,14 @@ class Course < ActiveRecord::Base
   def sku_build
     Sku.destroy_all("sku LIKE 'CC%' and course_id = #{id}")
     Sku.create(
-        sku: 'CC'+'-' + '%06d' % id + '-' + '%06d' % (service.id),
+        sku: 'CC'+'-' + '%06d' % id + '-' + '%06d' % (coach.id),
         course_id: id,
         seller: coach.profile.name,
         seller_id: coach.id,
         market_price: price,
         selling_price: price,
-        address: service.address||'',
-        coordinate: (service.place.lonlat rescue 'POINT(0 0)')
+        address: coach.service.address||'',
+        coordinate: (coach.service.place.lonlat rescue 'POINT(0 0)')
     )
   end
 end
