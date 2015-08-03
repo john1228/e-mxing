@@ -33,14 +33,14 @@ module Mine
       if appointment.blank?
         render json: Failure.new('未确认课时，不能评论')
       else
-        course = appointment.course
-        comment = Comment.new(comment_params.merge(course: course, user: @user))
+        appointment = Appointment.find_by(id: params[:id], status: Appointment::STATUS[:confirm])
+        comment = Comment.new(comment_params.merge(sku: appointment.sku, user: @user))
         (0..8).map { |index| comment.comment_images.build(image: params[index.to_s.to_sym]) unless params[index.to_s.to_sym].blank? }
         if comment.save
           appointment.update(status: Appointment::STATUS[:finish])
           render json: Success.new
         else
-          render json: Failure.new('评论失败')
+          render json: Failure.new('评论失败' + comment.errors.full_messages.join(';'))
         end
       end
     end
