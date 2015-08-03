@@ -23,12 +23,22 @@ module Shop
       if user.blank?
         render json: Failure.new(-1, '您还没有登录')
       else
-        render json: Success.new(coupons: user.wallet.valid_coupons)
+        render json: Success.new(coupons: user.wallet.valid_coupons(sku, amount))
       end
     end
 
     def confirm_order
-      
+      order = Order.new(order_params.merge(status: Order::STATUS[:unpay]))
+      if order.save
+        render json: Success.new(order: order)
+      else
+        render json: Failure.new(order.errors.full_messages.join(','))
+      end
+    end
+
+    private
+    def order_params
+      params.permit(:sku, :amount, :coupon, :pay_type, :contact_name, :contact_phone)
     end
   end
 end

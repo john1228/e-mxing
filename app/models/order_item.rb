@@ -1,7 +1,7 @@
 class OrderItem < ActiveRecord::Base
   self.inheritance_column = nil
   belongs_to :order
-  belongs_to :course, counter_cache: true
+  belongs_to :sku_info, class_name: Sku, foreign_key: :sku, counter_cache: true
 
   def as_json
     {

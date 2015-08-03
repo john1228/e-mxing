@@ -41,7 +41,7 @@ module Business
 
     private
     def new_params
-      permit_params = params.permit(:name, :type, :style, :during, :price, :exp, :proposal, :intro, :guarantee, :top)
+      permit_params = params.permit(:name, :type, :style, :during, :price, :exp, :proposal, :intro, :guarantee)
       permit_params.merge(address: params[:address].split(','))
     end
 

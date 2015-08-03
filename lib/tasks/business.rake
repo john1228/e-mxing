@@ -17,13 +17,6 @@ namespace :business do
     puts response.body
   end
 
-  task :address_create do
-    conn = Faraday.new(:url => host)
-    conn.headers[:token] = token
-    response = conn.post '/business/addresses', venues: '美型健身房', city: '上海', address: '中山西路933号1206-1208室'
-    puts response.body
-  end
-
 
   desc ''
   task :waiting_lessons do
@@ -68,7 +61,7 @@ namespace :business do
   task :lessons do
     conn = Faraday.new(:url => host)
     conn.headers[:token] = '182be0c5cdcd5072bb1864cdee4d3d6e'
-    response = conn.get '/mine/lessons', list: 'all', page: 2
+    response = conn.get '/mine/lessons', list: 'all', page: 1
     puts response.body
   end
 

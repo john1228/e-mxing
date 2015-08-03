@@ -18,6 +18,7 @@ module Business
     end
 
     def update
+      lesson =
       appointment = @coach.appointments.new(code: params[:code])
       if appointment.save
         render json: Success.new
