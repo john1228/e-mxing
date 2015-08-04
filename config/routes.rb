@@ -129,6 +129,7 @@ Rails.application.routes.draw do
     get 'addresses' => 'addresses#index'
     get 'lessons' => 'lessons#index'
     get 'lessons/records' => 'lessons#records'
+    get 'lessons/show' => 'lessons#show'
     #课程
     get 'courses' => 'courses#index'
     get 'courses/:type' => 'courses#index'
