@@ -30,6 +30,16 @@ class DeployController < ApplicationController
     render json: Success.new(phone: '021-51113602')
   end
 
+
+  def city
+    render json: Success.new(
+               city: {
+                   opened: %w'北京 上海',
+                   openning: %w'天津'
+               }
+           )
+  end
+
   def json
     render json: {
                citys: [

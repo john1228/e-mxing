@@ -19,12 +19,12 @@ module Business
 
 
     def show
-      lesson = Lesson.where('? ANY (code)', params[:code]).take
+      lesson = Lesson.where('? = ANY (code)', params[:code]).take
       render json: Success.new(lesson: lesson)
     end
 
     def update
-      lesson = Lesson.where('? ANY (code)', params[:code]).take
+      lesson = Lesson.where('? = ANY (code)', params[:code]).take
       sku = Sku.find_by(sku: lesson.sku)
       if sku.seller_id.eql?(@coach.id)
         appointment = @coach.appointments.new(
