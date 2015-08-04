@@ -9,7 +9,7 @@ class OrderItem < ActiveRecord::Base
         name: name,
         cover: cover,
         type: type,
-        price: price.to_i,
+        price: price,
         during: during,
         amount: amount,
         guarantee: sku_info.course.guarantee
