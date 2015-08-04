@@ -21,16 +21,11 @@ module Mine
     end
 
     def create
-      course = Course.find_by(id: params[:course])
-      if course.present?
-        concerned = @user.concerns.new(course: course)
-        if concerned.save
-          render json: Success.new
-        else
-          render json: Failure.new('关注课程失败')
-        end
+      concerned = @user.concerns.new(course: course)
+      if concerned.save
+        render json: Success.new
       else
-        render json: Failure.new('课程不存在')
+        render json: Failure.new('关注课程失败')
       end
     end
 

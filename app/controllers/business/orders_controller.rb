@@ -4,7 +4,7 @@ module Business
       render json: Success.new(orders: @coach.orders.where(status: Order::STATUS[:pay]).page(params[:page]||1).collect { |order|
                                  {
                                      no: order.no,
-                                     items: [order.order_item],
+                                     items: [order. ],
                                      pay_type: order.pay_type,
                                      pay_amount: order.pay_amount,
                                      status: order.status,
