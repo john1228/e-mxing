@@ -1,5 +1,4 @@
 class Sku < ActiveRecord::Base
-
   def as_json
     {
         sku: sku,
