@@ -34,6 +34,8 @@ class Ability
         can :manage, Report
         can :manage, Feedback
         can :manage, Overview
+        can :manage, Gallery
+        can :manage, Activity
         can :manage, ActiveAdmin::Page, :name => 'HitAndOnline'
         can :manage, Retention
         can :manage, ActiveAdmin::Page, :name => 'Dashboard'

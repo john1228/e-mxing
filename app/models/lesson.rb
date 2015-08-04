@@ -24,7 +24,7 @@ class Lesson < ActiveRecord::Base
         id: id,
         course: sku_info.course.name,
         seller: sku_info.seller,
-        seller_type: sku_info.start_with?('CC') ? 'coach' : 'service',
+        seller_type: sku.start_with?('CC') ? 'coach' : 'service',
         available: available,
         used: used,
         during: sku_info.course.during,
