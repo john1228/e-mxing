@@ -29,6 +29,7 @@ class Lesson < ActiveRecord::Base
         used: used,
         during: sku_info.course.during,
         exp: exp,
+        class_time: '',
         address: sku_info.related_sellers,
         qr_code: code
     }
