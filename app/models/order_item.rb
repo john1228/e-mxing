@@ -1,9 +1,9 @@
 class OrderItem < ActiveRecord::Base
   self.inheritance_column = nil
   belongs_to :order
-  belongs_to :sku_info, class_name: Sku, counter_cache: true
 
   def as_json
+    sku_info = Sku.find_by(sku: sku)
     {
         sku: sku,
         name: name,
