@@ -27,6 +27,8 @@ class Sku < ActiveRecord::Base
         score: rand(5),
         type: course.type,
         style: course.style,
+        during: course.during,
+        exp: course.exp,
         proposal: course.proposal,
         seller: {
             mxid: seller_user.profile.mxid,

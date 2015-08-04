@@ -1,6 +1,13 @@
 module Shop
   class CoursesController < ApplicationController
     def index
+      case params[:sort]
+        when 'smart'
+        when 'distance-asc'
+        when 'evaluate-asc'
+        when 'price-asc'
+        when 'price-desc'
+      end
       render json: Success.new(
                  courses: Sku.page(params[:page]||1)
              )
