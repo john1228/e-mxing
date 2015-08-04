@@ -7,28 +7,28 @@ class Lesson < ActiveRecord::Base
   before_create :build_code
 
   def as_json
-    sku_course = Sku.find_by(sku: sku)
+    sku_info = Sku.find_by(sku: sku)
     {
         id: id,
-        course: sku_course.course.name,
+        course: sku_info.course.name,
         student: user.profile.name,
-        seller: sku_course.seller,
+        seller: sku_info.seller,
         available: available,
         used: used
     }
   end
 
   def detail
-    sku_course = Sku.find_by(sku: sku)
+    sku_info = Sku.find_by(sku: sku)
     {
         id: id,
-        course: sku_course.course.name,
-        seller: sku_course.seller,
+        course: sku_info.course.name,
+        seller: sku_info.seller,
         available: available,
         used: used,
-        during: sku_course.course.during,
+        during: sku_info.course.during,
         exp: exp,
-        address: sku_course.related_sellers,
+        address: sku_info.related_sellers,
         qr_code: code
     }
   end

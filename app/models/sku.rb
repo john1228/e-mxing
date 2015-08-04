@@ -65,6 +65,7 @@ class Sku < ActiveRecord::Base
       {
           seller: sku.seller,
           address: sku.address,
+          tel: seller_user.is_a?(Service) ? seller_user.profile.mobile : seller_user.mobile,
           coordinate: {
               lng: sku.coordinate.x,
               lat: sku.coordinate.y
@@ -77,6 +78,7 @@ class Sku < ActiveRecord::Base
   def comments
     Comment.where('sku LIKE ?', sku[0, sku.rindex('-')])
   end
+
 
   private
   def buyers
@@ -97,5 +99,4 @@ class Sku < ActiveRecord::Base
     end
     user
   end
-
 end
