@@ -67,5 +67,4 @@ namespace :migration do
       end
     }
   end
-
 end

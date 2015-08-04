@@ -39,7 +39,7 @@ module Business
         end
       else
         service = Service.find_by(id: sku.seller_id)
-        if service.coaches.include?(@coach)
+        if service.present? && service.coaches.include?(@coach)
           appointment = @coach.appointments.new(
               lesson_id: lesson.id, user_id: lesson.user_id,
               sku: lesson.sku, code: params[:code], amount: 1,
