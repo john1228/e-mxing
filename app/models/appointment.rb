@@ -21,8 +21,6 @@ class Appointment < ActiveRecord::Base
   private
   def backend
     lesson.update(used: (lesson.used + amount)) if status.eql?(STATUS[:confirm])
-
-
     case status
       when STATUS[:cancel]
         #取消

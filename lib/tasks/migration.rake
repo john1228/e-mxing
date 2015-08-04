@@ -20,9 +20,9 @@ namespace :migration do
   desc '订单转移'
   task :orders => :environment do
     OrderItem.all.map { |item|
-      course = Course.find_by(id: item.course_id)
-      if course.present?
-        item.update(price: course.price, sku: Sku.find_by(course_id: course.id).sku) unless course.present?
+      sku = Sku.find_by(course_id: item.course_id)
+      if sku.present?
+        item.update(price: course.price, sku: sku.sku)
       else
         item.destroy
       end
