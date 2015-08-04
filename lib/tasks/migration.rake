@@ -22,7 +22,7 @@ namespace :migration do
     OrderItem.all.map { |item|
       sku = Sku.find_by(course_id: item.course_id)
       if sku.present?
-        item.update(price: course.price, sku: sku.sku)
+        item.update(price: sku.selling_price, sku: sku.sku)
       else
         item.destroy
       end
