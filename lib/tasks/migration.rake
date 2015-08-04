@@ -43,6 +43,7 @@ namespace :migration do
       end
     }
   end
+
   desc '预约转移'
   task :appointment => :environment do
     Lesson.all.map { |lesson|
@@ -53,4 +54,18 @@ namespace :migration do
       }
     }
   end
+
+
+  desc '预约转移'
+  task :concerned => :environment do
+    Concerned.all.map { |item|
+      sku = Sku.find_by(course_id: item.course_id)
+      if sku.present?
+        item.update(sku: sku.sku)
+      else
+        item.destroy
+      end
+    }
+  end
+
 end
