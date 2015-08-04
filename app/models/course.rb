@@ -34,7 +34,7 @@ class Course < ActiveRecord::Base
   end
 
   def cover
-    photos.first.photo.thumb.url rescue ''
+    images.first.photo.thumb.url rescue ''
   end
 
   def school_addresses
