@@ -3,8 +3,9 @@ module Business
     #获取线上学员列表
     def index
       render json: Success.new(
-                 students: @coach.lessons.select('DISTINCT(user_id) user_id').where('available > used').page(params[:page]||1).map { |lesson|
-                   lesson.user.profile.summary_json.merge(contact: lesson.contact_phone)
+                 students: @coach.lessons.select('DISTINCT(user_id) user_id,').where('available > used').page(params[:page]||1).map { |lesson|
+                   latest_lesson = Lesson.where(user_id: lesson.user_id).order(id: :desc).take
+                   lesson.user.profile.summary_json.merge(contact: latest_lesson.contact_phone)
                  }
              )
     end
