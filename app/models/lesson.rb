@@ -22,9 +22,9 @@ class Lesson < ActiveRecord::Base
     sku_info = Sku.find_by(sku: sku)
     {
         id: id,
-        sku: sku,
         course: sku_info.course.name,
         seller: sku_info.seller,
+        seller_type: sku_info.start_with?('CC') ? 'coach' : 'service',
         available: available,
         used: used,
         during: sku_info.course.during,
