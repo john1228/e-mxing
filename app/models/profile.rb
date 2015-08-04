@@ -51,7 +51,7 @@ class Profile < ActiveRecord::Base
         true_age: age,
         signature: HarmoniousDictionary.clean(signature),
         tags: tags,
-        identity: identity,
+        identity: identity
     }
   end
 

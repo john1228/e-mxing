@@ -4,7 +4,7 @@ module Business
     def index
       render json: Success.new(
                  students: @coach.lessons.select('DISTINCT(user_id) user_id').where('available > used').page(params[:page]||1).map { |lesson|
-                   lesson.user.profile.summary_json
+                   lesson.user.profile.summary_json.merge(contact: lesson.contact_phone)
                  }
              )
     end
