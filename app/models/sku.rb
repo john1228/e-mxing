@@ -6,6 +6,7 @@ class Sku < ActiveRecord::Base
         seller: seller,
         cover: course.cover,
         selling: selling_price,
+        guarantee: course.guarantee,
         address: address
     }
   end
@@ -20,6 +21,7 @@ class Sku < ActiveRecord::Base
               original: image.photo.url
           }
         },
+        guarantee: course.guarantee,
         market: market_price,
         selling: selling_price,
         score: rand(5),
