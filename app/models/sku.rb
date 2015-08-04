@@ -1,4 +1,6 @@
 class Sku < ActiveRecord::Base
+  attr_accessor :distance
+
   def as_json
     {
         sku: sku,
@@ -7,7 +9,8 @@ class Sku < ActiveRecord::Base
         cover: course.cover,
         selling: selling_price,
         guarantee: course.guarantee,
-        address: address
+        address: address,
+        distance: distance
     }
   end
 

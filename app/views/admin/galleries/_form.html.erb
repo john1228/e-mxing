@@ -1,6 +1,13 @@
 ﻿<%= semantic_form_for([:admin, @gallery], multipart: true, builder: ActiveAdmin::FormBuilder, html: {class: 'form-horizontal'}) do |f| %>
     <fieldset class="inputs">
       <legend><span>添加图片</span></legend>
+      <% if f.object.errors.full_messages.present? %>
+          <div class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            <%= f.object.errors.full_messages.join(';') %>
+          </div>
+      <% end %>
 
       <div class="form-group form-group-sm">
         <label class="col-sm-2 control-label" for="service_interests">标记:</label>

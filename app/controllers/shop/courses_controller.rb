@@ -3,14 +3,19 @@ module Shop
     def index
       case params[:sort]
         when 'smart'
+          courses = Sku.select("skus.*, st_distance(skus.coordinate, 'POINT(#{params[:lng]} #{params[:lat]})') as distance").where(course_type: params[:cat]).order('distance asc').page(params[:page]||1)
         when 'distance-asc'
+          courses = Sku.select("skus.*, st_distance(skus.coordinate, 'POINT(#{params[:lng]} #{params[:lat]})') as distance").where(course_type: params[:cat]).order('distance asc').page(params[:page]||1)
         when 'evaluate-asc'
+          courses = Sku.where(course_type: params[:cat]).page(params[:page]||1)
         when 'price-asc'
+          courses = Sku.where(course_type: params[:cat]).order(selling_price: :asc).page(params[:page]||1)
         when 'price-desc'
+          courses = Sku.where(course_type: params[:cat]).order(selling_price: :desc).page(params[:page]||1)
+        else
+          courses = []
       end
-      render json: Success.new(
-                 courses: Sku.page(params[:page]||1)
-             )
+      render json: Success.new(courses: courses)
     end
 
     def show
