@@ -45,7 +45,7 @@ class Sku < ActiveRecord::Base
         buyers: buyers,
         comments: [
             count: course.comments_count,
-            items: course.comments.take(2)
+            items: comments.take(2)
         ]
     }
     json_hash = json_hash.merge(limit: {start: course.limit_start, end: course.limit_end}) if course.has_attribute?(:limit_start)
