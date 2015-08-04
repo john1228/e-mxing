@@ -9,7 +9,7 @@ namespace :business do
     puts response.body
   end
 
-  desc ''
+  desc '学员'
   task :students do
     conn = Faraday.new(:url => host)
     conn.headers[:token] = token
@@ -18,13 +18,14 @@ namespace :business do
   end
 
 
-  desc ''
-  task :waiting_lessons do
+  desc '订单'
+  task :orders do
     conn = Faraday.new(:url => host)
     conn.headers[:token] = token
-    response = conn.get '/business/appointments', list: 'waiting'
+    response = conn.get '/business/orders'
     puts response.body
   end
+
 
   task :course_create do
     conn = Faraday.new(:url => host) do |faraday|
