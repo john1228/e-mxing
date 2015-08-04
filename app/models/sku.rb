@@ -28,7 +28,7 @@ class Sku < ActiveRecord::Base
         type: course.type,
         style: course.style,
         during: course.during,
-        exp: course.exp,
+        exp: Date.today.next_day(course.exp).strftime('%Y-%m-%d'),
         proposal: course.proposal,
         seller: {
             mxid: seller_user.profile.mxid,
