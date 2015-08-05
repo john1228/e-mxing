@@ -7,8 +7,8 @@ module Mine
     end
 
     def create
-      concerned = @user.concerns.find_or_create(sku: params[:sku])
-      if concerned.save
+      concerned = @user.concerns.find_or_create_by(sku: params[:sku])
+      if concerned.present?
         render json: Success.new
       else
         render json: Failure.new('关注课程失败')
