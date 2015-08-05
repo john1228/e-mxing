@@ -46,7 +46,10 @@ class Sku < ActiveRecord::Base
         intro: course.intro,
         special: course.special,
         service: [1, 2, 3, 4],
-        buyers: buyers,
+        buyers: {
+            count: orders_count,
+            items: buyers
+        },
         comments: [
             count: course.comments_count,
             items: comments.take(2)
@@ -86,7 +89,7 @@ class Sku < ActiveRecord::Base
 
   private
   def buyers
-    User.where(id: Order.includes(:order_item).where('order_items.sku LIKE ?', sku[0, sku.rindex('-')] + '%').pluck(:user_id)).map { |user|
+    User.where(id: Order.includes(:order_item).where('order_items.sku LIKE ?', sku[0, sku.rindex('-')] + '%').order(id: :desc).limit(5).pluck(:user_id)).map { |user|
       {
           mxid: user.profile.mxid,
           name: user.profile.name,
