@@ -14,6 +14,7 @@ class Appointment < ActiveRecord::Base
         student: user.profile.name,
         seller: sku_course.seller,
         amount: amount,
+        status: status,
         created: created_at.localtime.strftime('%Y-%m-%d %H:%M')
     }
   end
