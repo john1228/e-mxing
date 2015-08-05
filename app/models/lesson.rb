@@ -14,7 +14,7 @@ class Lesson < ActiveRecord::Base
         student: user.profile.name,
         seller: sku_info.seller,
         available: available,
-        used: used
+        used: appointments.pluck(:code)
     }
   end
 
@@ -26,7 +26,7 @@ class Lesson < ActiveRecord::Base
         seller: sku_info.seller,
         seller_type: sku.start_with?('CC') ? 'coach' : 'service',
         available: available,
-        used: used,
+        used: appointments.pluck(:code),
         during: sku_info.course.during,
         exp: exp,
         class_time: '',
