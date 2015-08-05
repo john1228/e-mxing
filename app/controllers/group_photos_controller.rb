@@ -27,7 +27,6 @@ class GroupPhotosController < ApiController
     else
       render json: {code: 0, message: '您不是群主，不能进行此操作'}
     end
-
   end
 
   def delete

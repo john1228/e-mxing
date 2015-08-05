@@ -5,7 +5,6 @@ class Course < ActiveRecord::Base
   has_many :comments, dependent: :destroy
   has_many :lessons, dependent: :destroy
   has_many :concerns, class_name: Concerned, dependent: :destroy
-  #has_many :course_abstracts, dependent: :destroy
   has_many :order_items
   attr_accessor :address
   after_save :sku_build
@@ -50,10 +49,15 @@ class Course < ActiveRecord::Base
   def sku_build
     Sku.destroy_all("sku LIKE 'CC%' and course_id = #{id}")
     Sku.create(
-        sku: 'CC'+'-' + '%06d' % id + '-' + '%06d' % (coach.id),
+        sku: 'CC' + '-' + '%06d' % id + '-' + '%06d' % (coach.service.id),
         course_id: id,
+        course_type: type,
+        course_name: name,
+        course_cover: cover,
+
         seller: coach.profile.name,
         seller_id: coach.id,
+
         market_price: price,
         selling_price: price,
         address: coach.service.address||'',

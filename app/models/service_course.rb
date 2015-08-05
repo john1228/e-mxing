@@ -17,6 +17,11 @@ class ServiceCourse < ActiveRecord::Base
       Sku.create(
           sku: 'SC'+'-' + '%06d' % id + '-' + '%06d' % (agency.id),
           course_id: id,
+          course_id: id,
+          course_type: type,
+          course_name: name,
+          course_cover: cover,
+
           seller: agency.profile.name,
           seller_id: agency.id,
           market_price: market_price,
