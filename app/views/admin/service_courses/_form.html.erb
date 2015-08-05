@@ -54,18 +54,18 @@
       </div>
 
       <div class="form-group form-group-sm" id="limit_start">
-        <label class="col-sm-2 control-label" for="service_address">建议课时</label>
+        <label class="col-sm-2 control-label" for="service_address">开始时间</label>
 
         <div class="col-sm-10">
-          <%= f.number_field(:limit_start) %>
+          <%= f.text_field(:limit_start) %>
         </div>
       </div>
 
       <div class="form-group form-group-sm" id="limit_end">
-        <label class="col-sm-2 control-label" for="service_address">建议课时</label>
+        <label class="col-sm-2 control-label" for="service_address">结束时间</label>
 
         <div class="col-sm-10">
-          <%= f.number_field(:limit_end) %>
+          <%= f.text_field(:limit_end) %>
         </div>
       </div>
 
@@ -167,6 +167,8 @@
     $('#service_course_agency').multiselect();
     $('#service_course_limit').multiselect();
     $('#service_course_during').multiselect();
+    $('#service_limit_start').datepicker();
+    $('#service_course_during').datepicker();
     $('#limit_start').hide();
     $('#limit_end').hide();
 
@@ -177,7 +179,11 @@
                     if (value == 1) {
                         $('#limit_start').show();
                         $('#limit_end').show();
+                    } else {
+                        $('#limit_start').hide();
+                        $('#limit_end').hide();
                     }
+
                 });
             }
     );

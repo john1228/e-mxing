@@ -34,7 +34,8 @@ class Sku < ActiveRecord::Base
         seller: {
             mxid: seller_user.profile.mxid,
             name: seller_user.profile.name,
-            avatar: seller_user.profile.avatar.thumb.url
+            avatar: seller_user.profile.avatar.thumb.url,
+            mobile: seller_user.is_a?(Coach) ? seller_user.mobile : seller_user.profile.mobile
         },
         address: [{
                       name: address,
