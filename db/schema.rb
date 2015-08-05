@@ -604,9 +604,16 @@ ActiveRecord::Schema.define(version: 20150803060531) do
     t.integer   "store"
     t.integer   "limit"
     t.string    "address"
-    t.geography "coordinate",    limit: {:srid=>4326, :type=>"point", :geographic=>true}
-    t.datetime  "created_at",                                                             null: false
-    t.datetime  "updated_at",                                                             null: false
+    t.geography "coordinate",       limit: {:srid=>4326, :type=>"point", :geographic=>true}
+    t.datetime  "created_at",                                                                            null: false
+    t.datetime  "updated_at",                                                                            null: false
+    t.integer   "course_type"
+    t.string    "course_name"
+    t.string    "course_cover"
+    t.integer   "course_guarantee",                                                          default: 0
+    t.integer   "comments_count",                                                            default: 0
+    t.integer   "orders_count",                                                              default: 0
+    t.integer   "concerns_count",                                                            default: 0
   end
 
   add_index "skus", ["coordinate"], name: "index_skus_on_coordinate", using: :gist
