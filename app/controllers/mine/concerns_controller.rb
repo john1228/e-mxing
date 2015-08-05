@@ -7,7 +7,7 @@ module Mine
     end
 
     def create
-      concerned = @user.concerns.find_or_create_by(sku: params[:course ])
+      concerned = @user.concerns.find_or_create_by(sku: params[:course])
       if concerned.present?
         render json: Success.new
       else
@@ -16,7 +16,7 @@ module Mine
     end
 
     def destroy
-      concerned = @user.concerns.find_by(course_id: params[:course])
+      concerned = @user.concerns.find_by(sku: params[:course])
       if concerned.destroy
         render json: Success.new
       else
