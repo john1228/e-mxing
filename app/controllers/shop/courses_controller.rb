@@ -9,11 +9,11 @@ module Shop
         when 'distance-asc'
           courses = Sku.select("skus.*, st_distance(skus.coordinate, 'POINT(#{params[:lng]} #{params[:lat]})') as distance").where(filters).order('distance asc').page(params[:page]||1)
         when 'evaluate-asc'
-          courses = Sku.where(filters).page(params[:page]||1)
+          courses = Sku.select("skus.*, st_distance(skus.coordinate, 'POINT(#{params[:lng]} #{params[:lat]})') as distance").where(filters).page(params[:page]||1)
         when 'price-asc'
-          courses = Sku.where(filters).order(selling_price: :asc).page(params[:page]||1)
+          courses = Sku.select("skus.*, st_distance(skus.coordinate, 'POINT(#{params[:lng]} #{params[:lat]})') as distance").where(filters).order(selling_price: :asc).page(params[:page]||1)
         when 'price-desc'
-          courses = Sku.where(filters).order(selling_price: :desc).page(params[:page]||1)
+          courses = Sku.select("skus.*, st_distance(skus.coordinate, 'POINT(#{params[:lng]} #{params[:lat]})') as distance").where(filters).order(selling_price: :desc).page(params[:page]||1)
         else
           courses = []
       end
