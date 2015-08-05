@@ -11,7 +11,7 @@ namespace :migration do
           course_name: course.name,
           course_cover: course.cover,
           course_guarantee: course.guarantee,
-          seller: course.coach.name,
+          seller: course.coach.profile.name,
           seller_id: course.coach.id,
           market_price: course.price,
           selling_price: course.price,

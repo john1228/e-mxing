@@ -4,11 +4,11 @@ class Sku < ActiveRecord::Base
   def as_json
     {
         sku: sku,
-        name: course.name,
+        name: course_name,
         seller: seller,
-        cover: course.cover,
+        cover: course_cover,
         selling: selling_price,
-        guarantee: course.guarantee,
+        guarantee: course_guarantee,
         address: address,
         distance: distance
     }
