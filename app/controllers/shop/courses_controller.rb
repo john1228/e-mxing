@@ -38,7 +38,7 @@ module Shop
       if user.blank?
         render json: Failure.new(-1, '您还没有登录')
       else
-        render json: Success.new(coupons: user.wallet.valid_coupons(params[:sku], amount))
+        render json: Success.new(coupons: user.wallet.valid_coupons(params[:sku], params[:amount].to_i))
       end
     end
 
