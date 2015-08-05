@@ -21,7 +21,7 @@ module Mine
     end
 
     def comment
-      appointment = Appointment.find_by(id: params[:id], status: Appointment::STATUS[:confirm])
+      appointment = Appointment.find_by(id: params[:id][8, params[:id].length], status: Appointment::STATUS[:confirm])
       comment = Comment.new(comment_params.merge(sku: appointment.sku, user: @user))
       (0..8).map { |index| comment.comment_images.build(image: params[index.to_s.to_sym]) unless params[index.to_s.to_sym].blank? }
       if comment.save

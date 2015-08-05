@@ -194,7 +194,7 @@ Rails.application.routes.draw do
     #V3课时
     get 'classes/:type' => 'classes#index'
     get 'classes/:type/detail' => 'classes#show'
-    post 'classes' => 'classes#comment'
+    post 'classes/comment' => 'classes#comment'
     #钱包
     get 'wallet' => 'wallet#index'
     get 'wallet/coupons' => 'wallet#coupons'
