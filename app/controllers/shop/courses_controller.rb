@@ -26,8 +26,9 @@ module Shop
         render json: Failure.new('您查看到课程已下架')
       else
         user = Rails.cache.fetch(request.headers[:token])
+        concern = Concerned.find_by(sku: params[:sku], user: user)
         render json: Success.new(
-                   course: sku.detail.merge(conerned: user ? 0 : 1)
+                   course: sku.detail.merge(conerned: concern.present? ? 1 : 0)
                )
       end
     end
