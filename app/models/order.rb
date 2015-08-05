@@ -21,7 +21,7 @@ class Order < ActiveRecord::Base
     course = sku_info.course
     build_order_item(sku: sku, name: course.name, type: course.type, during: course.during,
                      cover: course.cover, price: sku_info.selling_price, amount: amount)
-    self.total, total_price = sku_info.selling_price*amount, sku_info.selling_price*amount
+    self.total, total_price = sku_info.selling_price*order_item.amount, sku_info.selling_price*order_item.amount
     #如果用户使用优惠券
     if coupons.present?
       user_coupons = user.wallet.coupons
