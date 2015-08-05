@@ -25,6 +25,8 @@ class Sku < ActiveRecord::Base
         guarantee: course.guarantee,
         market: market_price,
         selling: selling_price,
+        limit: limit.blank? ? '-1' : limit,
+        store: limit.blank? ? '-1' : store,
         score: rand(5),
         type: course.type,
         style: course.style,
