@@ -7,7 +7,7 @@ module Mine
     end
 
     def create
-      concerned = @user.concerns.new(course: course)
+      concerned = @user.concerns.find_or_create(sku: params[:sku])
       if concerned.save
         render json: Success.new
       else

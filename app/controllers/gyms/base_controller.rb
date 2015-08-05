@@ -1,6 +1,6 @@
 module Gyms
   class BaseController < ApplicationController
-    before_action :verify_coach, only: :index
+    before_action :verify_coach
     private
     def verify_coach
       @coach = Coach.find_by_mxid(params[:mxid])
