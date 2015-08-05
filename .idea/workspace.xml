@@ -193,8 +193,8 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/profile/thumb_2015/04/13/69a967d4-9c11-4da6-8b6b-17be3c731773.jpg" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/profile/thumb_2015/04/13/bd9aae27-06f0-46ac-93c0-004ff0b0900d.jpg" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/profile/thumb_2015/06/01/3df5d85a-c35a-4fc4-89d0-86ae82286c07.jpg" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/shop/courses_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/shop/courses_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/.idea/photo.iml" afterPath="$PROJECT_DIR$/../photo/.idea/photo.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/wallet.rb" afterPath="$PROJECT_DIR$/app/models/wallet.rb" />
     </list>
     <ignored path="mxing.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -252,21 +252,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="courses_controller.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="courses_controller.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/shop/courses_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5682159" vertical-offset="341" max-vertical-offset="1170">
-              <caret line="40" column="102" selection-start-line="40" selection-start-column="102" selection-end-line="40" selection-end-column="102" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="341" max-vertical-offset="1170">
+              <caret line="40" column="60" selection-start-line="40" selection-start-column="60" selection-end-line="40" selection-end-column="60" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="wallet.rb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="wallet.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/models/wallet.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="26" max-vertical-offset="792">
-              <caret line="14" column="6" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
+            <state vertical-scroll-proportion="0.4764706" vertical-offset="0" max-vertical-offset="792">
+              <caret line="18" column="100" selection-start-line="18" selection-start-column="100" selection-end-line="18" selection-end-column="100" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="coupon.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/coupon.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="504">
+              <caret line="2" column="2" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="2" />
               <folding />
             </state>
           </provider>
@@ -297,16 +307,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="432">
               <caret line="8" column="18" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="banner.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/admin/banner.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="900">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -364,7 +364,6 @@
         <option value="$PROJECT_DIR$/app/models/comment.rb" />
         <option value="$PROJECT_DIR$/db/migrate/20150725021916_create_service_courses.rb" />
         <option value="$PROJECT_DIR$/lib/tasks/mine.rake" />
-        <option value="$PROJECT_DIR$/app/models/wallet.rb" />
         <option value="$PROJECT_DIR$/app/controllers/business/courses_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/gyms/appointments_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/shop/comments_controller.rb" />
@@ -404,6 +403,7 @@
         <option value="$PROJECT_DIR$/app/views/admin/service_courses/_form.html.erb" />
         <option value="$PROJECT_DIR$/app/models/order.rb" />
         <option value="$PROJECT_DIR$/app/controllers/shop/courses_controller.rb" />
+        <option value="$PROJECT_DIR$/app/models/wallet.rb" />
       </list>
     </option>
   </component>
@@ -2342,14 +2342,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/controllers/business/lessons_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="544" max-vertical-offset="1224">
-          <caret line="58" column="54" selection-start-line="58" selection-start-column="54" selection-end-line="58" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/mine/orders_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="216" max-vertical-offset="1638">
@@ -2590,14 +2582,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/sku.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1080" max-vertical-offset="2070">
-          <caret line="0" column="6" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/gyms/courses_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="270">
@@ -2734,18 +2718,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/wallet.rb">
+    <entry file="file://$PROJECT_DIR$/app/controllers/shop/courses_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="26" max-vertical-offset="792">
-          <caret line="14" column="6" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="341" max-vertical-offset="1170">
+          <caret line="40" column="60" selection-start-line="40" selection-start-column="60" selection-end-line="40" selection-end-column="60" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/shop/courses_controller.rb">
+    <entry file="file://$PROJECT_DIR$/app/models/sku.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5682159" vertical-offset="341" max-vertical-offset="1170">
-          <caret line="40" column="102" selection-start-line="40" selection-start-column="102" selection-end-line="40" selection-end-column="102" />
+        <state vertical-scroll-proportion="-0.5667167" vertical-offset="378" max-vertical-offset="2070">
+          <caret line="0" column="6" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/coupon.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="504">
+          <caret line="2" column="2" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/wallet.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4764706" vertical-offset="0" max-vertical-offset="792">
+          <caret line="18" column="100" selection-start-line="18" selection-start-column="100" selection-end-line="18" selection-end-column="100" />
           <folding />
         </state>
       </provider>
