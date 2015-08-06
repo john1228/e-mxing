@@ -3,9 +3,9 @@ module Mine
     def index
       case params[:type]
         when 'incomplete'
-          render json: Success.new(classes: @user.lessons.joins(:course).where('lessons.available > lessons.used').order(id: :asc))
+          render json: Success.new(classes: @user.lessons.joins(:course).where('lessons.available > lessons.used').order(id: :asc).page(params[:page]||1))
         when 'complete'
-          render json: Success.new(classes: @user.appointments)
+          render json: Success.new(classes: @user.appointments.page(params[:page]||1))
         else
           render Success.new(classes: [])
       end
