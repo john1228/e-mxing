@@ -36,7 +36,7 @@ namespace :mine do
   end
 
   desc '订单'
-  task :wallet do
+  task :order do
     conn = Faraday.new(:url => host)
     conn.headers[:token] = token
     response = conn.get 'mine/orders'

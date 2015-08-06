@@ -1,5 +1,7 @@
 module Shop
   class CoursesController < ApplicationController
+    before_action :verify_auth_token, only: [:pre_order, :confirm_order]
+
     def index
       filters = {course_type: params[:cat]} if params[:cat].present?
       case params[:sort]
@@ -35,16 +37,11 @@ module Shop
     end
 
     def pre_order
-      user = Rails.cache.fetch(request.headers[:token])
-      if user.blank?
-        render json: Failure.new(-1, '您还没有登录')
-      else
-        render json: Success.new(coupons: user.wallet.valid_coupons(params[:sku], params[:amount].to_i))
-      end
+      render json: Success.new(coupons: @user.wallet.valid_coupons(params[:sku], params[:amount].to_i))
     end
 
     def confirm_order
-      order = Order.new(order_params.merge(status: Order::STATUS[:unpay]))
+      order = @user.order.new(order_params.merge(status: Order::STATUS[:unpay]))
       if order.save
         render json: Success.new(order: order)
       else
@@ -55,6 +52,11 @@ module Shop
     private
     def order_params
       params.permit(:sku, :amount, :coupon, :pay_type, :contact_name, :contact_phone)
+    end
+
+    def verify_auth_token
+      @user = Rails.cache.read(request.headers[:token])
+      render json: Failure.new(-1, '您还没有登录') if @user.nil?
     end
   end
 end
