@@ -75,4 +75,12 @@ namespace :migration do
       end
     }
   end
+
+
+  desc ''
+  task :comment => :environment do
+    Comment.all.each { |item|
+      item.update(image: CommentImage.where(course_id: item.id).pluck(:image))
+    }
+  end
 end

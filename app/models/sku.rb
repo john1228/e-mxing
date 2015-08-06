@@ -50,7 +50,7 @@ class Sku < ActiveRecord::Base
                   }],
         intro: course.intro,
         special: course.special,
-        service: [1, 2, 3, 4],
+        service: course.service,
         buyers: {
             count: orders_count,
             items: buyers
