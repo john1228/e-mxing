@@ -56,7 +56,7 @@ class Sku < ActiveRecord::Base
             items: buyers
         },
         comments: [
-            count: course.comments_count,
+            count: tmp_comments_count,
             items: comments.take(2)
         ]
     }
@@ -86,6 +86,9 @@ class Sku < ActiveRecord::Base
     }
   end
 
+  def tmp_comments_count
+    Comment.where('sku LIKE ?', sku[0, sku.rindex('-')] + '%').count
+  end
 
   def comments
     Comment.where('sku LIKE ?', sku[0, sku.rindex('-')] + '%')

@@ -21,7 +21,7 @@ class ServiceCourse < ActiveRecord::Base
           course_id: id,
           course_type: type,
           course_name: name,
-          course_cover: cover,
+          course_cover: image[0].thumb.url,
 
           seller: agency.profile.name,
           seller_id: agency.id,
