@@ -60,7 +60,7 @@ class Sku < ActiveRecord::Base
             items: comments.take(5)
         ]
     }
-    json_hash = json_hash.merge(limit_time: {start: course.limit_start, end: course.limit_end}) if course.has_attribute?(:limit_start)
+    json_hash = json_hash.merge(limit_time: {start: course.limit_start.strftime('%Y-%m-%d %H:%M'), end: course.limit_end.strftime('%Y-%m-%d %H:%M')}) if course.has_attribute?(:limit_start)
     json_hash
   end
 

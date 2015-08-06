@@ -5,7 +5,7 @@ module Shop
       case params[:sort]
         when 'smart'
           courses = Sku.online.select("skus.*, st_distance(skus.coordinate, 'POINT(#{params[:lng]} #{params[:lat]})') as distance").where(filters).order('distance asc').page(params[:page]||1)
-        when 'fresh'
+        when 'fresh-asc'
           courses = Sku.online.select("skus.*, st_distance(skus.coordinate, 'POINT(#{params[:lng]} #{params[:lat]})') as distance").where(filters).order(updated_at: :desc).page(params[:page]||1)
         when 'distance-asc'
           courses = Sku.online.select("skus.*, st_distance(skus.coordinate, 'POINT(#{params[:lng]} #{params[:lat]})') as distance").where(filters).order('distance asc').page(params[:page]||1)
