@@ -212,6 +212,7 @@ Rails.application.routes.draw do
   end
 
   namespace :shop do
+    get 'buyers' => 'buyers#index'
     get '' => 'courses#index'
     get 'courses' => 'courses#show'
     post 'courses' => 'courses#pre_order'

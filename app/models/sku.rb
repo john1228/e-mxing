@@ -95,7 +95,6 @@ class Sku < ActiveRecord::Base
   end
 
 
-  private
   def buyers
     User.where(id: Order.includes(:order_item).where('order_items.sku LIKE ?', sku[0, sku.rindex('-')] + '%').order(id: :desc).limit(5).pluck(:user_id)).map { |user|
       {
@@ -106,6 +105,7 @@ class Sku < ActiveRecord::Base
     }
   end
 
+  private
   def seller_user
     if sku.start_with?('SC')
       user = Service.find_by(id: seller_id)
