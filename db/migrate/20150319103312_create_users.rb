@@ -5,6 +5,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :sns
       t.string :password
       t.string :salt
+      t.string :device, default: ''
       t.timestamps
     end
   end

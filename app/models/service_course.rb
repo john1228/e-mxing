@@ -2,7 +2,7 @@ class ServiceCourse < ActiveRecord::Base
   self.inheritance_column = nil
   STATUS = {offline: 0, online: 1}
   attr_accessor :agency, :market_price, :selling_price, :store, :limit, :limit_time
-  after_update :skus_build
+  after_create :generate_sku
   validates_presence_of :name, :type, :style, :during, :proposal, :exp, :intro
 
   mount_uploaders :image, PhotoUploader
@@ -12,14 +12,13 @@ class ServiceCourse < ActiveRecord::Base
   end
 
   private
-  def skus_build
+  def generate_sku
     Sku.destroy_all("sku LIKE 'SC%' and course_id = #{id}")
     if status.eql?(STATUS[:online])
       agencies = Service.where(id: agency)
       agencies.each { |agency|
         Sku.create(
             sku: 'SC'+'-' + '%06d' % id + '-' + '%06d' % (agency.id),
-            course_id: id,
             course_id: id,
             course_type: type,
             course_name: name,

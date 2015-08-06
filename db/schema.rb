@@ -617,6 +617,7 @@ ActiveRecord::Schema.define(version: 20150803060531) do
     t.integer   "concerns_count",                                                            default: 0
     t.datetime  "created_at",                                                                            null: false
     t.datetime  "updated_at",                                                                            null: false
+    t.integer   "status",                                                                    default: 0
   end
 
   add_index "skus", ["coordinate"], name: "index_skus_on_coordinate", using: :gist

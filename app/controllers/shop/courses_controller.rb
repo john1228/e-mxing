@@ -1,21 +1,20 @@
 module Shop
   class CoursesController < ApplicationController
     def index
-      filters = '1=1'
       filters = {course_type: params[:cat]} if params[:cat].present?
       case params[:sort]
         when 'smart'
-          courses = Sku.select("skus.*, st_distance(skus.coordinate, 'POINT(#{params[:lng]} #{params[:lat]})') as distance").where(filters).order('distance asc').page(params[:page]||1)
+          courses = Sku.online.select("skus.*, st_distance(skus.coordinate, 'POINT(#{params[:lng]} #{params[:lat]})') as distance").where(filters).order('distance asc').page(params[:page]||1)
         when 'fresh'
-          courses = Sku.select("skus.*, st_distance(skus.coordinate, 'POINT(#{params[:lng]} #{params[:lat]})') as distance").where(filters).order(id: :desc).page(params[:page]||1)
+          courses = Sku.online.select("skus.*, st_distance(skus.coordinate, 'POINT(#{params[:lng]} #{params[:lat]})') as distance").where(filters).order(id: :desc).page(params[:page]||1)
         when 'distance-asc'
-          courses = Sku.select("skus.*, st_distance(skus.coordinate, 'POINT(#{params[:lng]} #{params[:lat]})') as distance").where(filters).order('distance asc').page(params[:page]||1)
+          courses = Sku.online.select("skus.*, st_distance(skus.coordinate, 'POINT(#{params[:lng]} #{params[:lat]})') as distance").where(filters).order('distance asc').page(params[:page]||1)
         when 'evaluate-asc'
-          courses = Sku.select("skus.*, st_distance(skus.coordinate, 'POINT(#{params[:lng]} #{params[:lat]})') as distance").where(filters).order(orders_count: :desc).page(params[:page]||1)
+          courses = Sku.online.select("skus.*, st_distance(skus.coordinate, 'POINT(#{params[:lng]} #{params[:lat]})') as distance").where(filters).order(orders_count: :desc).page(params[:page]||1)
         when 'price-asc'
-          courses = Sku.select("skus.*, st_distance(skus.coordinate, 'POINT(#{params[:lng]} #{params[:lat]})') as distance").where(filters).order(selling_price: :asc).page(params[:page]||1)
+          courses = Sku.online.select("skus.*, st_distance(skus.coordinate, 'POINT(#{params[:lng]} #{params[:lat]})') as distance").where(filters).order(selling_price: :asc).page(params[:page]||1)
         when 'price-desc'
-          courses = Sku.select("skus.*, st_distance(skus.coordinate, 'POINT(#{params[:lng]} #{params[:lat]})') as distance").where(filters).order(selling_price: :desc).page(params[:page]||1)
+          courses = Sku.online.select("skus.*, st_distance(skus.coordinate, 'POINT(#{params[:lng]} #{params[:lat]})') as distance").where(filters).order(selling_price: :desc).page(params[:page]||1)
         else
           courses = []
       end

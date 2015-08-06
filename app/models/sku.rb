@@ -1,4 +1,6 @@
 class Sku < ActiveRecord::Base
+  scope :online, -> { where(status: 1) }
+
   def as_json
     {
         sku: sku,
