@@ -88,15 +88,15 @@ class Order < ActiveRecord::Base
         sku_info = Sku.find_by(sku: order_item.sku)
         course = sku_info.course
         if course.is_a?(Course)
-          lessons.create(sku: order_item.sku, coach_id: sku_info.seller_id, user: user, available: order_item.amount, used: 0,
-                         exp: Date.today.next_day(course.exp), contact_name: contact_name, contact_phone: contact_phone)
+          Lesson.create(order_id: id, sku: order_item.sku, coach_id: sku_info.seller_id, user: user, available: order_item.amount, used: 0,
+                        exp: Date.today.next_day(course.exp), contact_name: contact_name, contact_phone: contact_phone)
           #钱的處理
           service = course.coach.service
           wallet = service.nil? ? Wallet.find_or_create_by(user: course.coach) : Wallet.find_or_create_by(user: service)
           wallet.update(balance: (wallet.balance + total), action: WalletLog::ACTIONS['卖课收入']) unless item.course.guarantee.eql?(Course::GUARANTEE)
         else
-          lessons.create(sku: order_item.sku, user: user, available: order_item.amount, used: 0,
-                         exp: Date.today.next_day(course.exp), contact_name: contact_name, contact_phone: contact_phone)
+          Lesson.create(order_id: id, sku: order_item.sku, user: user, available: order_item.amount, used: 0,
+                        exp: Date.today.next_day(course.exp), contact_name: contact_name, contact_phone: contact_phone)
           #钱的處理
           wallet = Wallet.find_or_create_by(user_id: order_item.seller_id)
           wallet.update(balance: (wallet.balance + total), action: WalletLog::ACTIONS['卖课收入']) unless item.course.guarantee.eql?(Course::GUARANTEE)
