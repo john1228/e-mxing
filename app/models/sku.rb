@@ -91,7 +91,7 @@ class Sku < ActiveRecord::Base
   end
 
   def comments
-    Comment.where('sku LIKE ?', sku[0, sku.rindex('-')] + '%')
+    Comment.where.not(image: []).where('sku LIKE ?', sku[0, sku.rindex('-')] + '%')
   end
 
 
