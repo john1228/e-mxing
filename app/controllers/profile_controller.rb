@@ -11,7 +11,7 @@ class ProfileController < ApiController
                  message: '您到注册信息已过期,请重新注册'
              }
     else
-      user = User.new(mobile: mobile, password: params[:password], name: params[:name])
+      user = User.new(mobile: mobile, password: params[:password], name: params[:name], device: params[:device])
       if user.save
         Rails.cache.write(user.token, user)
         render json: {code: 1, data: {user: user.summary_json}}

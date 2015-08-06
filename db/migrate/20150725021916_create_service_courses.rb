@@ -7,15 +7,17 @@ class CreateServiceCourses < ActiveRecord::Migration
       t.integer :during #时长
       t.integer :proposal #建议时长
       t.integer :exp #有效期
+      t.integer :guarantee, default: 0
       t.text :intro, default: '' #课程内容
       t.text :special, default: '' #特殊说明
 
       t.integer :service, array: true, default: [] #服务支持
 
-      t.date :limit_start #限制上课开始时间
-      t.date :limit_end #限制上课结束时间
+      t.datetime :limit_start #限制上课开始时间
+      t.datetime :limit_end #限制上课结束时间
 
       t.integer :status, default: 0 #状态 默认上架
+      t.string :image, array: true, default: []
 
       t.timestamps null: false
     end

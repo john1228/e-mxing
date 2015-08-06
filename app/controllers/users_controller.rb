@@ -5,6 +5,7 @@ class UsersController < ApiController
     if login_user.nil?
       render json: Failure.new('该用户还未注册')
     else
+      login_user.update(device: params[:device]) if login_user.blank?
       render json: {code: 0, message: '该用户已经被用户举报封存，如有疑问，可联系客服人员咨询解封'} if Blacklist.find_by(user: login_user).present?
       my_password = Digest::MD5.hexdigest("#{params[:password]}|#{login_user.salt}")
       if login_user.password.eql?(my_password)
@@ -27,6 +28,7 @@ class UsersController < ApiController
       login_user = User.create(sns: "#{params[:sns_name]}_#{params[:sns_id]}", name: params[:name],
                                avatar: params[:avatar], gender: params[:gender], birthday: params[:birthday])
     end
+    login_user.update(device: params[:device]) if login_user.blank?
     render json: {code: 0, message: '该用户已经被用户举报封存，如有疑问，可联系客服人员咨询解封'} if Blacklist.find_by(user: login_user).present?
     Rails.cache.write(login_user.token, login_user)
     render json: Success.new(user: login_user.summary_json)

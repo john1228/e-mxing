@@ -564,12 +564,13 @@ ActiveRecord::Schema.define(version: 20150803060531) do
     t.integer  "during"
     t.integer  "proposal"
     t.integer  "exp"
-    t.text     "info",        default: ""
+    t.text     "intro",       default: ""
     t.text     "special",     default: ""
     t.integer  "service",     default: [],              array: true
-    t.date     "limit_start"
-    t.date     "limit_end"
+    t.datetime "limit_start"
+    t.datetime "limit_end"
     t.integer  "status",      default: 0
+    t.string   "image",       default: [],              array: true
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
   end
@@ -599,21 +600,23 @@ ActiveRecord::Schema.define(version: 20150803060531) do
   create_table "skus", force: :cascade do |t|
     t.string    "sku"
     t.integer   "course_id"
+    t.integer   "course_type"
+    t.string    "course_name"
+    t.string    "course_cover"
+    t.integer   "course_guarantee"
+    t.string    "seller"
+    t.integer   "seller_id"
     t.decimal   "market_price"
     t.decimal   "selling_price"
     t.integer   "store"
     t.integer   "limit"
     t.string    "address"
     t.geography "coordinate",       limit: {:srid=>4326, :type=>"point", :geographic=>true}
-    t.datetime  "created_at",                                                                            null: false
-    t.datetime  "updated_at",                                                                            null: false
-    t.integer   "course_type"
-    t.string    "course_name"
-    t.string    "course_cover"
-    t.integer   "course_guarantee",                                                          default: 0
     t.integer   "comments_count",                                                            default: 0
     t.integer   "orders_count",                                                              default: 0
     t.integer   "concerns_count",                                                            default: 0
+    t.datetime  "created_at",                                                                            null: false
+    t.datetime  "updated_at",                                                                            null: false
   end
 
   add_index "skus", ["coordinate"], name: "index_skus_on_coordinate", using: :gist

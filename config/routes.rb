@@ -104,6 +104,7 @@ Rails.application.routes.draw do
   post '/admin/message/push' => 'admin/message#push', as: :push_message
   post '/admin/:type/version' => 'admin/version#update', as: :update_version
   get '/admin/coupons/:type/category' => 'admin/coupons#list'
+  post '/admin/service_courses/:id/online' => 'admin/service_courses#online', as: :online
 
 
   get 'download' => 'download#index'

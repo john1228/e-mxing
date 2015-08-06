@@ -17,6 +17,16 @@ GIT
       polyamorous (~> 1.1)
 
 GIT
+  remote: git://github.com/carrierwaveuploader/carrierwave.git
+  revision: 37cf31d34fa411db20e99cc654195020b06202c3
+  specs:
+    carrierwave (0.10.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
+      mime-types (>= 1.16)
+
+GIT
   remote: git://github.com/galetahub/ckeditor.git
   revision: 0efddf9a46bbba4aeda562ec0ea77af738404418
   specs:
@@ -110,11 +120,6 @@ GEM
       thor
     builder (3.2.2)
     cancan (1.6.10)
-    carrierwave (0.10.0)
-      activemodel (>= 3.2.0)
-      activesupport (>= 3.2.0)
-      json (>= 1.7)
-      mime-types (>= 1.16)
     celluloid (0.16.0)
       timers (~> 4.0.0)
     chronic (0.10.2)
@@ -297,7 +302,7 @@ DEPENDENCIES
   bootstrap-multiselect-rails
   bootstrap-sass
   cancan
-  carrierwave
+  carrierwave!
   ckeditor!
   coffee-rails (~> 4.0.0)
   devise

@@ -20,9 +20,9 @@ class CreateSkus < ActiveRecord::Migration
       t.st_point :coordinate, :geographic => true #地址对应坐标
 
       #缓存数量
-      t.integer :comments_count
-      t.integer :orders_count
-      t.integer :concerns_count
+      t.integer :comments_count, default: 0
+      t.integer :orders_count, default: 0
+      t.integer :concerns_count, default: 0
 
       t.timestamps null: false
     end
