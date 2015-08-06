@@ -19,7 +19,8 @@ namespace :migration do
           coordinate: (service.place.lonlat rescue 'POINT(0 0)'),
           comments_count: 0,
           orders_count: 0,
-          concerns_count: 0
+          concerns_count: 0,
+          status: course.status
       ) if service.present?
     }
   end

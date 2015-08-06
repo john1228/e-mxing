@@ -9,7 +9,7 @@ class Appointment < ActiveRecord::Base
   def as_json
     sku_course = Sku.find_by(sku: sku)
     {
-        id: Date.today.strftime('%Y%m%d')+'%05d' % id,
+        id: created_at.strftime('%Y%m%d')+'%05d' % id,
         course: sku_course.course.name,
         student: user.profile.name,
         seller: sku_course.seller,
