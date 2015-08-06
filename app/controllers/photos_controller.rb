@@ -22,7 +22,7 @@ class PhotosController < ApiController
   end
 
   def destroy
-    photo = @user.photos.find_by(id: params[:id])
+    photo = @user.photos.find_by(id: params[:loc])
     if photo.nil?
       render json: Failure.new('照片不存在或已删除')
 
