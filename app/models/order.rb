@@ -88,7 +88,7 @@ class Order < ActiveRecord::Base
         sku_info = Sku.find_by(sku: order_item.sku)
         course = sku_info.course
         if course.is_a?(Course)
-          lessons.create(sku: order_item.sku, coach: sku_info.seller_id, user: user, available: order_item.amount, used: 0,
+          lessons.create(sku: order_item.sku, coach_id: sku_info.seller_id, user: user, available: order_item.amount, used: 0,
                          exp: Date.today.next_day(course.exp), contact_name: contact_name, contact_phone: contact_phone)
           #钱的處理
           service = course.coach.service
