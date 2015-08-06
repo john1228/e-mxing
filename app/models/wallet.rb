@@ -6,7 +6,7 @@ class Wallet < ActiveRecord::Base
 
   def as_json
     {
-        balance: balance,
+        balance: balance.to_f.round(2),
         coupons: coupons.size,
         bean: bean
     }

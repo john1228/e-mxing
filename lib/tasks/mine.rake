@@ -25,4 +25,13 @@ namespace :mine do
     response = conn.get 'mine/classes/complete'
     puts response.body
   end
+
+
+  desc '已完成课时'
+  task :wallet do
+    conn = Faraday.new(:url => host)
+    conn.headers[:token] = token
+    response = conn.get 'mine/wallet'
+    puts response.body
+  end
 end
