@@ -23,6 +23,8 @@ class CreateSkus < ActiveRecord::Migration
       t.integer :comments_count, default: 0
       t.integer :orders_count, default: 0
       t.integer :concerns_count, default: 0
+      #是否上下架
+      t.integer :status, default: 0
 
       t.timestamps null: false
     end

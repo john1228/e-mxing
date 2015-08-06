@@ -8,6 +8,6 @@ class ChangeCommentTable < ActiveRecord::Migration
     # add_column :comments, :score, :integer
     # add_column :comments, :sku, :string
 
-    add_column :skus, :status, :integer, default: 0
+    #add_column :comments,:image,:string,array:true,default: []
   end
 end

@@ -192,10 +192,11 @@ ActiveRecord::Schema.define(version: 20150803060531) do
   create_table "comments", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.integer  "score"
     t.string   "sku"
+    t.string   "image",      default: [],              array: true
   end
 
   create_table "companies", force: :cascade do |t|
