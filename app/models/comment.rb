@@ -1,7 +1,7 @@
 class Comment < ActiveRecord::Base
   default_scope { order(id: :desc) }
   belongs_to :user
-  mount_uploaders :images, ImagesUploader
+  mount_uploaders :image, ImagesUploader
 
   def as_json
     {
