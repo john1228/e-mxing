@@ -18,12 +18,12 @@ class Sku < ActiveRecord::Base
     json_hash = {
         sku: sku,
         name: course.name,
-        images: course.images.map { |image|
+        images: course.is_a?(Course) ? course.images.map { |image|
           {
               thumb: image.photo.thumb.url,
               original: image.photo.url
           }
-        },
+        } : course.image.map { |item| {thumb: item.thumb.url, original: item.url} },
         guarantee: course.guarantee,
         market: market_price,
         selling: selling_price,
