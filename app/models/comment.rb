@@ -1,13 +1,12 @@
 class Comment < ActiveRecord::Base
   default_scope { order(id: :desc) }
   belongs_to :user
-  belongs_to :course, counter_cache: true
-  mount_uploaders :images,ImagesUploader
+  mount_uploaders :images, ImagesUploader
 
   def as_json
     {
         content: HarmoniousDictionary.clean(content),
-        images: image.map{|item|
+        images: image.map { |item|
           {
               thumb: item.thumb.url,
               original: item.url
