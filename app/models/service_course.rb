@@ -9,7 +9,7 @@ class ServiceCourse < ActiveRecord::Base
   mount_uploaders :image, PhotoUploader
 
   def cover
-    image[0].thumb.url
+    image.first.thumb.url
   end
 
   private
@@ -21,7 +21,6 @@ class ServiceCourse < ActiveRecord::Base
           course_id: id,
           course_type: type,
           course_name: name,
-          course_cover: image[0].thumb.url,
 
           seller: agency.profile.name,
           seller_id: agency.id,
@@ -37,9 +36,9 @@ class ServiceCourse < ActiveRecord::Base
 
   def online_or_offline
     if status.eql?(STATUS[:online])
-      Sku.where("sku LIKE 'SC%' and course_id = #{id}").update_all(status: STATUS[:online])
+      Sku.where("sku LIKE 'SC%' and course_id = #{id}").update_all(status: STATUS[:online], course_cover: cover)
     else
-      Sku.where("sku LIKE 'SC%' and course_id = #{id}").update_all(status: STATUS[:offline])
+      Sku.where("sku LIKE 'SC%' and course_id = #{id}").update_all(status: STATUS[:offline], course_cover: cover)
     end
   end
 end
