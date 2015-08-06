@@ -80,7 +80,7 @@ namespace :migration do
   desc ''
   task :comment => :environment do
     Comment.all.each { |item|
-      item.update(image: CommentImage.where(comment_id: item.id).pluck(:image))
+      item.update(image: CommentImage.where(comment_id: item.id).map { |item| item.image })
     }
   end
 end
