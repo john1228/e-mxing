@@ -105,7 +105,6 @@ class Sku < ActiveRecord::Base
     }
   end
 
-  private
   def seller_user
     if sku.start_with?('SC')
       user = Service.find_by(id: seller_id)

@@ -13,9 +13,10 @@ module Mine
       end
       render json: Success.new(
                  orders: order.collect { |order|
+                   seller = Sku.find_by(sku: order.order_item.sku).seller_user
                    {
                        no: order.no,
-                       coach: order.coach.profile.summary_json,
+                       coach: seller.profile.summary_json,
                        items: [order.order_item],
                        pay_type: order.pay_type,
                        pay_amount: order.pay_amount,

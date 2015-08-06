@@ -39,7 +39,7 @@ namespace :mine do
   task :order do
     conn = Faraday.new(:url => host)
     conn.headers[:token] = token
-    response = conn.get 'mine/orders'
+    response = conn.get 'mine/orders', {status: 0}
     puts response.body
   end
 end
