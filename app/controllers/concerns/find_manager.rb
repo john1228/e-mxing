@@ -23,7 +23,7 @@ module FindManager
     #过滤隐身的用户
     streams = Setting.where(stealth: Setting::STEALTH).pluck(:user_id)
     filters << " and profiles.user_id not in (#{streams.join(',')})" unless streams.blank?
-    Place.nearby(params[:lng], params[:lat], filters, params[:page]||1).collect { |place| place.nearby_user_json }
+    Place.nearby(params[:lng], params[:lat], filters, params[:page]||1)
   end
 
   def groups

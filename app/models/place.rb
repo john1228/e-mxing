@@ -5,27 +5,9 @@ class Place < ActiveRecord::Base
   validates_uniqueness_of :user_id, message: '用户已经有定位信息'
   set_rgeo_factory_for_column(:lonlat, RGeo::Geographic.spherical_factory(:srid => 4326))
 
-  def nearby_user_json
-    {
-        mxid: 10000 + id,
-        name: name||'',
-        avatar: $img_host+ '/' + (avatar.blank? ? '/default/user.png' : "profile/thumb_#{avatar}"),
-        gender: gender||1,
-        age: (user_age rescue 15),
-        signature: signature,
-        tags: user_tags,
-        identity: identity,
-        distance: distance.to_i
-    }
+  def as_json
+    user.summary_json
   end
 
-  private
-  def user_age
-    years = Date.today.year - birthday.year
-    years + (Date.today < birthday + years.year ? -1 : 0)
-  end
 
-  def user_tags
-    [0, identity.eql?(2) ? 1 : 0, identity.eql?(1) ? 1 : 0]
-  end
 end
