@@ -6,6 +6,7 @@ class Concerned < ActiveRecord::Base
   def as_json
     sku_info = Sku.find_by(sku: sku)
     sku_info.as_json.merge(
+        status: sku_info.status,
         address: {
             name: sku_info.address,
             coordinate: {

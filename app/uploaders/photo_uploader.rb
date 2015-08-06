@@ -28,7 +28,6 @@ class PhotoUploader < CarrierWave::Uploader::Base
 
   protected
   def secure_token
-    var = :"@#{mounted_as}_secure_token"
-    model.instance_variable_get(var) or model.instance_variable_set(var, SecureRandom.uuid)
+    Digest::MD5.hexdigest(original_filename + %w'0 1 2 3 4 5 6 7 8 9 a b c d e f g h i j k l m n o p q r s t'.sample(6) + Time.now)
   end
 end
