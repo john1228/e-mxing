@@ -7,5 +7,6 @@ class ChangeCommentTable < ActiveRecord::Migration
     # remove_column :comments, :course_id
     # add_column :comments, :score, :integer
     # add_column :comments, :sku, :string
+    add_column :users, :device, :string, default: ''
   end
 end

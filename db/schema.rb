@@ -663,6 +663,7 @@ ActiveRecord::Schema.define(version: 20150803060531) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "sns",                    default: ""
+    t.string   "device",                 default: ""
   end
 
   add_index "users", ["mobile", "sns"], name: "index_users_on_mobile_and_sns", unique: true, using: :btree
