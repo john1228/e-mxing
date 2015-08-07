@@ -36,7 +36,7 @@ module FindManager
   end
 
   def services
-    Place.nearby_services(params[:lng], params[:lat], params[:page]||1).collect { |place| place.nearby_user_json }
+    Place.nearby_services(params[:lng], params[:lat], params[:page]||1)
   end
 
   def news
