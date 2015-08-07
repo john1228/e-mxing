@@ -24,14 +24,14 @@ module Shop
     end
 
     def show
-      sku = Sku.online.find_by(sku: params[:sku])
+      sku = Sku.find_by(sku: params[:sku])
       if sku.blank?
         render json: Failure.new('您查看到课程已下架')
       else
         user = Rails.cache.fetch(request.headers[:token])
         concern = Concerned.find_by(sku: params[:sku], user: user)
         render json: Success.new(
-                   course: sku.detail.merge(conerned: concern.present? ? 1 : 0)
+                   course: sku.detail.merge(conerned: concern.present? ? 1 : 0, status: sku.status)
                )
       end
     end
