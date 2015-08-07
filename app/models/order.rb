@@ -90,7 +90,7 @@ class Order < ActiveRecord::Base
         course = sku_info.course
         if course.is_a?(Course)
           Lesson.create(order_id: id, sku: order_item.sku, coach_id: sku_info.seller_id, user: user, available: order_item.amount, used: 0,
-                        exp: Date.today.next_day(course.exp), contact_name: contact_name, contact_phone: contact_phone) unless lessons.blank?
+                        exp: Date.today.next_day(course.exp), contact_name: contact_name, contact_phone: contact_phone) if lessons.blank?
           #钱的處理
           service = course.coach.service
           wallet = service.nil? ? Wallet.find_or_create_by(user: course.coach) : Wallet.find_or_create_by(user: service)
@@ -98,7 +98,7 @@ class Order < ActiveRecord::Base
           MessageJob.perform_later(sku_info.seller_id, MESSAGE['order'] % [user.profile.name, sku_info.course_name, no])
         else
           Lesson.create(order_id: id, sku: order_item.sku, user: user, available: order_item.amount, used: 0,
-                        exp: Date.today.next_day(course.exp), contact_name: contact_name, contact_phone: contact_phone) unless lessons.blank?
+                        exp: Date.today.next_day(course.exp), contact_name: contact_name, contact_phone: contact_phone) if lessons.blank?
           #钱的處理
           wallet = Wallet.find_or_create_by(user_id: sku_info.seller_id)
           wallet.update(balance: (wallet.balance + total), action: WalletLog::ACTIONS['卖课收入']) unless course.guarantee.eql?(Course::GUARANTEE)

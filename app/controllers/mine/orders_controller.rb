@@ -34,7 +34,6 @@ module Mine
       else
         seller = Sku.find_by(sku: order.order_item.sku).seller_user
         render json: Success.new(
-
                    order: {
                        no: order.no,
                        coach: seller.profile.summary_json,
