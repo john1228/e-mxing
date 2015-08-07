@@ -29,7 +29,7 @@ class Sku < ActiveRecord::Base
         selling: selling_price,
         limit: limit.blank? ? '-1' : limit,
         store: limit.blank? ? '-1' : store,
-        score: score,
+        score: score == 0 ? 4 : score,
         type: course.type,
         style: course.style,
         during: course.during,
