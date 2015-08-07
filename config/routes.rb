@@ -175,11 +175,9 @@ Rails.application.routes.draw do
   end
 
 
-  namespace :service do
+  namespace :agency do
     #查看课程和购买
     get 'courses' => 'courses#index'
-    #查看评论
-    get ':list/comments' => 'comments#list'
   end
   namespace :mine do
     #关注
