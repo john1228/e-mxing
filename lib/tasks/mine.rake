@@ -1,6 +1,6 @@
 namespace :mine do
   host = 'http://stage.e-mxing.com'
-  token = '3416a75f4cea9109507cacd8e2f2aefc'
+  token = '502e4a16930e414107ee22b6198c578f'
 
   desc '未完成课时'
   task :lesson_incomplete do
