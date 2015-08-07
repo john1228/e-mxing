@@ -13,35 +13,23 @@ module GroupAble
 
   private
   def regist_to_easemob
-    easemob_token = Rails.cache.fetch('easemob')||init_easemob_token
+    access_token = Rails.cache.fetch('mob')
     result = Faraday.post { |req|
-      req.url "https://a1.easemob.com/jsnetwork/mxingsijiao/chatgroups"
+      req.url "#{MOB['host']}/chatgroups"
       req.headers['Content-Type'] = 'application/json'
-      req.headers['Authorization'] = "Bearer #{easemob_token}"
+      req.headers['Authorization'] = "Bearer #{access_token}"
       req.body = {groupname: name, desc: intro, public: true, maxusers: 100, approval: true, owner: "#{owner}"}.to_json.to_s
     }
-    puts result.body
     self.easemob_id = JSON.parse(result.body).fetch('data').fetch('groupid')
     self.save
   end
 
   def delete_group
-    easemob_token = Rails.cache.fetch('easemob')||init_easemob_token
+    access_token = Rails.cache.fetch('mob')
     Faraday.delete do |req|
-      req.url "https://a1.easemob.com/jsnetwork/mxing/chatgroups/#{easemob_id}"
-      req.headers['Authorization'] = "Bearer #{easemob_token}"
+      req.url "#{MOB['host']}/chatgroups/#{easemob_id}"
+      req.headers['Authorization'] = "Bearer #{access_token}"
     end
-  end
-
-  def init_easemob_token
-    token_response = Faraday.post do |req|
-      req.url 'https://a1.easemob.com/jsnetwork/mxingsijiao/token'
-      req.headers['Content-Type'] = 'application/json'
-      req.body = "{\"grant_type\": \"client_credentials\", \"client_id\": \"YXA6NQmy0PIkEeSQO18Yeq100Q\", \"client_secret\": \"YXA6t1SdtNrJAAHq6m3Bu3Yx1Ryr8jI\"}"
-    end
-    easemob_body = JSON.parse(token_response.body)
-    Rails.cache.write('easemob', easemob_body['access_token'], expires_in: 24*7*60*60)
-    easemob_body['access_token']
   end
 
   def build_default_place

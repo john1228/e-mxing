@@ -1,5 +1,4 @@
 class Order < ActiveRecord::Base
-  include MessageAble
   before_create :detect_params
   after_save :backend_task #当订单完成支付时，生成课表
   default_scope { where('1=1').order(updated_at: :desc) }
@@ -96,6 +95,7 @@ class Order < ActiveRecord::Base
           service = course.coach.service
           wallet = service.nil? ? Wallet.find_or_create_by(user: course.coach) : Wallet.find_or_create_by(user: service)
           wallet.update(balance: (wallet.balance + total), action: WalletLog::ACTIONS['卖课收入']) unless item.course.guarantee.eql?(Course::GUARANTEE)
+          MessageJob.perform_later(sku_info.seller_id, MESSAGE['order'] % [user.profile.name, course.name, no])
         else
           Lesson.create(order_id: id, sku: order_item.sku, user: user, available: order_item.amount, used: 0,
                         exp: Date.today.next_day(course.exp), contact_name: contact_name, contact_phone: contact_phone) unless lessons.blank?
@@ -103,6 +103,7 @@ class Order < ActiveRecord::Base
           wallet = Wallet.find_or_create_by(user_id: order_item.seller_id)
           wallet.update(balance: (wallet.balance + total), action: WalletLog::ACTIONS['卖课收入']) unless item.course.guarantee.eql?(Course::GUARANTEE)
         end
+
       #结算
       when STATUS[:cancel]
         user.wallet.update(coupons: ((user.wallet.coupons||[]) + (coupons||'').split(',').map { |coupon| coupon.to_i }), bean: (user.wallet.bean + bean.to_i), action: WalletLog::ACTIONS['订单取消']) if coupons.present?||bean.present?
