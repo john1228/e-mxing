@@ -14,8 +14,8 @@ class CreateSkus < ActiveRecord::Migration
 
       t.decimal :market_price #市场价
       t.decimal :selling_price #销售价
-      t.integer :store #库存数量
-      t.integer :limit #限制购买数量
+      t.integer :store, default: -1 #库存数量
+      t.integer :limit, default: -1 #限制购买数量
       t.string :address #地址
       t.st_point :coordinate, :geographic => true #地址对应坐标
 

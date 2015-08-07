@@ -17,6 +17,18 @@ class Order < ActiveRecord::Base
     self.no = "#{Time.now.to_i}#{user_id}#{%w'0 1 2 3 4 5 6 7 8 9'.sample(3).join('')}"
     #产品购买
     sku_info = Sku.find_by(sku: sku)
+
+    #库存不足
+    if sku_info.store >= 0 && sku_info.store<amount
+      errors.add(:store, '库存不足')
+      return false
+    end
+    #限制数量
+    if sku_info.limit >= 0&& sku_info.limit<amount
+      errors.add(:limit, '您够卖到数量超出限制')
+      return false
+    end
+
     course = sku_info.course
     build_order_item(sku: sku, name: course.name, type: course.type, during: course.during,
                      cover: course.cover, price: sku_info.selling_price, amount: amount)
@@ -83,6 +95,8 @@ class Order < ActiveRecord::Base
   def backend_task
     case status
       when STATUS[:unpay]
+        sku_info = Sku.find_by(sku: order_item.sku)
+        Sku.where('sku LIKE ?', sku[0, sku.rindex('-')] + '%').update_all(store: (sku_info.store - order_item.amount)) if sku_info.store > -1
         OrderJob.set(wait: 2.hours).perform_later(id)
       when STATUS[:pay]
         #现在只购买一个课程,逻辑遵循一个课时走
@@ -106,6 +120,8 @@ class Order < ActiveRecord::Base
 
       #结算
       when STATUS[:cancel]
+        sku_info = Sku.find_by(sku: order_item.sku)
+        Sku.where('sku LIKE ?', sku[0, sku.rindex('-')] + '%').update_all(store: (sku_info.store + order_item.amount)) if sku_info.store > -1
         user.wallet.update(coupons: ((user.wallet.coupons||[]) + (coupons||'').split(',').map { |coupon| coupon.to_i }), bean: (user.wallet.bean + bean.to_i), action: WalletLog::ACTIONS['订单取消']) if coupons.present?||bean.present?
     end
   end

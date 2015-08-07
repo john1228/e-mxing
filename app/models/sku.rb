@@ -27,8 +27,8 @@ class Sku < ActiveRecord::Base
         guarantee: course.guarantee,
         market: market_price,
         selling: selling_price,
-        limit: limit.blank? ? '-1' : limit,
-        store: limit.blank? ? '-1' : store,
+        limit: limit,
+        store: store,
         score: score == 0 ? 4 : score,
         type: course.type,
         style: course.style,
@@ -57,6 +57,7 @@ class Sku < ActiveRecord::Base
             count: orders_count,
             items: buyers
         },
+        status: status,
         comments: [
             count: tmp_comments_count,
             items: comments.take(5)
@@ -100,6 +101,9 @@ class Sku < ActiveRecord::Base
     Comment.where.not(image: []).where('sku LIKE ?', sku[0, sku.rindex('-')] + '%')
   end
 
+  def limit_detect(user)
+    Order.includes(:order_item).where('orders.user_id=? && order_items.sku LIKE ?', user, sku[0, sku.rindex('-')] + '%')
+  end
 
   def buyers
     User.where(id: Order.includes(:order_item).where('order_items.sku LIKE ?', sku[0, sku.rindex('-')] + '%').order(id: :desc).limit(5).pluck(:user_id)).map { |user|
