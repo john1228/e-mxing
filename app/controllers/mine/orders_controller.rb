@@ -32,10 +32,12 @@ module Mine
       if order.blank?
         render json: Failure.new('您查看到订单不存在')
       else
+        seller = Sku.find_by(sku: order.order_item.sku).seller_user
         render json: Success.new(
+
                    order: {
                        no: order.no,
-                       coach: order.coach.profile.summary_json,
+                       coach: seller.profile.summary_json,
                        items: [order.order_item],
                        contact: {
                            name: order.contact_name,
