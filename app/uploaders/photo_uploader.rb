@@ -23,6 +23,6 @@ class PhotoUploader < CarrierWave::Uploader::Base
   end
 
   def filename
-    "#{SecureRandom.uuid}.#{file.extension}" if original_filename.present?
+    "#{Time.now.strftime('%Y/%m/%d')}/#{SecureRandom.uuid}.#{file.extension}" if original_filename.present?
   end
 end

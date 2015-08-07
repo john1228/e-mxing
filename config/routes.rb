@@ -174,6 +174,13 @@ Rails.application.routes.draw do
     get ':list/comments' => 'comments#list'
   end
 
+
+  namespace :service do
+    #查看课程和购买
+    get 'courses' => 'courses#index'
+    #查看评论
+    get ':list/comments' => 'comments#list'
+  end
   namespace :mine do
     #关注
     get 'concerns' => 'concerns#index'

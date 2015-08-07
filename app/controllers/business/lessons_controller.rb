@@ -1,8 +1,9 @@
 module Business
   class LessonsController < BaseController
     def index
+      lesson_ids = @coach.appointments.pluck(:lesson_id) + @coach.lessons.pluck(:id)
       render json: Success.new(
-                 lessons: @coach.lessons.page(params[:page]||1)
+                 lessons: Lesson.where(id: lesson_ids).page(params[:page]||1)
              )
     end
 
