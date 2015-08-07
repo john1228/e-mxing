@@ -31,20 +31,27 @@ module Shop
         user = Rails.cache.fetch(request.headers[:token])
         if user.present?
           concerned = Concerned.find_by(sku: params[:sku], user: user).present? ? 1 : 0
-          limit = sku.limit
-          limit = sku.limit - sku.limit_detect(user.id) if sku.limit > 0
         else
           concerned = 0
-          limit = sku.limit
         end
         render json: Success.new(
-                   course: sku.detail.merge(conerned: concerned, limit: limit)
+                   course: sku.detail.merge(conerned: concerned)
                )
       end
     end
 
     def pre_order
-      render json: Success.new(coupons: @user.wallet.valid_coupons(params[:sku], params[:amount].to_i))
+      amount = params[:amount].to_i
+      sku = Sku.find_by(sku: params[:sku])
+      if sku.store==0
+        render json: Failure.new('库存不足')
+      elsif sku.store < amount
+        render json: Failure.new('库存不足')
+      elsif sku.limit > 0 && (sku.limit_detect(@user.id) + amount) > sku.limit
+        render json: Failure.new('已超出每人购买数量')
+      else
+        render json: Success.new(coupons: @user.wallet.valid_coupons(params[:sku], amount))
+      end
     end
 
     def confirm_order
