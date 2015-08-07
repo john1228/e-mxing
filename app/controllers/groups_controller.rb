@@ -1,12 +1,9 @@
 class GroupsController < ApiController
   def mine
     groups = Group.where(easemob_id: params[:ids].split(','))
-    render json: {
-               code: 1,
-               data: {
-                   groups: groups.collect { |group| group.summary_json }
-               }
-           }
+    render json: Success.new(
+               groups: groups.collect { |group| group.summary_json }
+           )
   end
 
   def show
