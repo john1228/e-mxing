@@ -29,7 +29,7 @@ class Sku < ActiveRecord::Base
         selling: selling_price,
         limit: limit.blank? ? '-1' : limit,
         store: limit.blank? ? '-1' : store,
-        score: rand(5),
+        score: score,
         type: course.type,
         style: course.style,
         during: course.during,
@@ -88,6 +88,10 @@ class Sku < ActiveRecord::Base
 
   def tmp_comments_count
     Comment.where('sku LIKE ?', sku[0, sku.rindex('-')] + '%').count
+  end
+
+  def score
+    Comment.where('sku LIKE ?', sku[0, sku.rindex('-')] + '%').average(:score).to_f.round(2)
   end
 
   def comments
