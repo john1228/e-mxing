@@ -61,8 +61,8 @@ namespace :business do
   desc ''
   task :lessons do
     conn = Faraday.new(:url => host)
-    conn.headers[:token] = '182be0c5cdcd5072bb1864cdee4d3d6e'
-    response = conn.get '/mine/lessons', list: 'all', page: 1
+    conn.headers[:token] = '34173cb38f07f89ddbebc2ac9128303f'
+    response = conn.get '/business/lessons', page: 1
     puts response.body
   end
 

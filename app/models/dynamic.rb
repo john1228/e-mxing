@@ -55,7 +55,7 @@ class Dynamic < ActiveRecord::Base
     image = dynamic_images.first.image rescue nil
     image = dynamic_film.cover if image.blank? && dynamic_film.present?
     {
-        content: HarmoniousDictionary.clean(content),
+        content: HarmoniousDictionary.clean(content||''),
         image: image.present? ? image.thumb.url : ''
     }
   end

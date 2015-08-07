@@ -1,21 +1,10 @@
 module Business
   class LessonsController < BaseController
     def index
-      lesson_ids = @coach.appointments.pluck(:lesson_id) + @coach.lessons.pluck(:id)
-      render json: Success.new(
-                 lessons: Lesson.where(id: lesson_ids).page(params[:page]||1)
-             )
-    end
 
-    def records
-      lesson = @coach.lessons.find_by(id: params[:id])
-      if lesson.blank?
-        render json: Failure.new('您没有这个课程')
-      else
-        render json: Success.new(
-                   records: lesson.appointments
-               )
-      end
+      render json: Success.new(
+                 lessons: @coach.appointments.order(created_at: :desc).page(params[:page]||1)
+             )
     end
 
 
