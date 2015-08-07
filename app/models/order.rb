@@ -101,7 +101,7 @@ class Order < ActiveRecord::Base
                         exp: Date.today.next_day(course.exp), contact_name: contact_name, contact_phone: contact_phone) unless lessons.blank?
           #钱的處理
           wallet = Wallet.find_or_create_by(user_id: sku_info.seller_id)
-          wallet.update(balance: (wallet.balance + total), action: WalletLog::ACTIONS['卖课收入']) unless item.course.guarantee.eql?(Course::GUARANTEE)
+          wallet.update(balance: (wallet.balance + total), action: WalletLog::ACTIONS['卖课收入']) unless course.guarantee.eql?(Course::GUARANTEE)
         end
 
       #结算
