@@ -38,7 +38,7 @@ class Lesson < ActiveRecord::Base
   private
   def build_code
     self.code = (1..available).map { |index|
-      'L'+'%05d' % user_id +'%04d' % order_id + '%02d' + index
+      'L'+('%05d' % user_id) + ('%04d' % order_id) + ('%02d' % index)
     }
   end
 end
