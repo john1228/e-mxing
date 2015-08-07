@@ -84,7 +84,7 @@ class Order < ActiveRecord::Base
   def backend_task
     case status
       when STATUS[:unpay]
-        OrderJob.set(wait: 2.minutes).perform_later(id)
+        OrderJob.set(wait: 2.hours).perform_later(id)
       when STATUS[:pay]
         #现在只购买一个课程,逻辑遵循一个课时走
         sku_info = Sku.find_by(sku: order_item.sku)
