@@ -16,7 +16,7 @@ class Wallet < ActiveRecord::Base
     #TODO: 筛选可用的优惠券,暂时不做商品区分
     sku = Sku.find_by(sku: sku)
     total = sku.selling_price * amount
-    valid_coupons = Coupon.where(id: coupons, limit_category: Coupon::TYPE[:general]).where('min > ?', total)
+    valid_coupons = Coupon.where(id: coupons, limit_category: Coupon::TYPE[:general]).where('min > ? and start_date >= ? and end_date <= ?', total, Date.today, Date.today)
     valid_coupons
   end
 
