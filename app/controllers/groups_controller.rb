@@ -12,9 +12,9 @@ class GroupsController < ApiController
   def show
     group = Group.find_by(easemob_id: params[:id])
     if group.blank?
-      render json: {code: 0, message: '您查看到群已解散'}
+      render json: Failure.new('您查看到群已解散')
     else
-      render json: {code: 1, data: {group: group.as_json}}
+      render json: Success.new(group: group)
     end
   end
 
@@ -22,14 +22,9 @@ class GroupsController < ApiController
     group = Group.new(name: params[:name], interests: params[:interests], intro: params[:intro], owner: @user.profile_mxid, lat: params[:lat], lng: params[:lng])
     if group.save
       (0...10).each { |photo_index| group.group_photos.create(photo: params["#{photo_index}"]) if params["#{photo_index}"].present? }
-      render json: {
-                 code: 1,
-                 data: {
-                     group: group.as_json
-                 }
-             }
+      render json: Success.new(group: group)
     else
-      render json: {code: 0, message: '创建群组失败'}
+      render json: Failure.new('创建群组失败')
     end
   end
 
@@ -39,24 +34,24 @@ class GroupsController < ApiController
       if group.update(update_params)
         group.group_photos.where(id: params[:del].split(',')).delete_all unless params[:del].nil?
         (0...10).each { |photo_index| group.group_photos.create(photo: params["#{photo_index}"]) if params["#{photo_index}"].present? }
-        render json: {code: 1}
+        render json: Success.new
       else
-        render json: {code: 0, message: '修改群信息失败'}
+        render json: Failure.new('修改群信息失败')
       end
     else
-      render json: {code: 0, message: '您不是群主,不能更新群信息'}
+      render json: Failure.new('您不是群主,不能更新群信息')
     end
   end
 
   def destroy
     group = Group.find_by(id: params[:id])
     if group.nil?
-      render json: {code: 0, message: '您的群组已解散'}
+      render json: Failure.new('您的群组已解散')
     else
       if group.destroy
-        render json: {code: 1}
+        render json: Success.new
       else
-        render json: {code: 0, message: '删除群组失败'}
+        render json: Failure.new('删除群组失败')
       end
     end
   end
