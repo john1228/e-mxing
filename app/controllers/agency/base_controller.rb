@@ -1,0 +1,10 @@
+module Agency
+  class BaseController < ApplicationController
+    before_action :verify_agency
+    private
+    def verify_agency
+      @agency = Service.find_by_mxid(params[:mxid])
+      render json: Failure.new('您查看的服务号不存在') if @agency.nil?
+    end
+  end
+end
