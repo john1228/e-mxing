@@ -5,15 +5,10 @@ ActiveAdmin.register ServiceMember do
   navigation_menu :service
   permit_params :service_id,
                 coach_attributes: [:id, :mobile, :password, :signature, :name, :avatar, :gender, :identity, :birthday,
-                                   :address, :target, :skill, :often, :hobby]
+                                   :address, :target, :skill, :often, interest: []]
   before_filter :adjust, only: :create
   before_filter :update_coach, only: :update
   controller do
-    def adjust
-      params[:service_member][:coach_attributes][:hobby].reject! { |item| item.blank? }
-      params[:service_member][:coach_attributes][:hobby] = params[:service_member][:coach_attributes][:hobby].join(',')
-    end
-
     def update_coach
       params[:service_member][:coach_attributes][:hobby].reject! { |item| item.blank? }
       avatar = params[:service_member][:coach_attributes][:avatar]

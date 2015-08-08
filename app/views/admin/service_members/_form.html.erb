@@ -100,7 +100,7 @@
             <label class="col-sm-2 control-label" for="service_interests">健身服务</label>
 
             <div class="col-sm-10">
-              <%= coach.select(:interests, INTERESTS['items'].map { |item| [item['name'], item['id']] }, {selected: (coach.object.profile.interests.split(',') rescue []), include_blank: false}, {multiple: true}) %>
+              <%= coach.select(:interest, INTERESTS['items'].map { |item| [item['name'], item['id']] }, {selected: (coach.object.profile.interests.split(',') rescue []), include_hidden: false}, {multiple: true}) %>
             </div>
           </div>
       <% end %>
@@ -108,5 +108,5 @@
     <%= f.submit('提交') %>
 <% end %>
 <script type="text/javascript">
-    $('#service_member_coach_attributes_hobby').multiselect();
+    $('#service_member_coach_attributes_interest').multiselect();
 </script>
