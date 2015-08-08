@@ -45,7 +45,7 @@
         <label class="col-sm-2 control-label" for="service_address">提供服务</label>
 
         <div class="col-sm-10">
-          <%= f.select :service, [['淋浴', 1], ['停车', 2], ['WIFI', 3], ['餐饮', 4]], {selected: f.object.profile.service, include_hidden: false}, {multiple: true} %>
+          <%= f.select :service, [['淋浴', 1], ['停车', 2], ['WIFI', 3], ['餐饮', 4]], {selected: (f.object.profile.service rescue []), include_hidden: false}, {multiple: true} %>
         </div>
       </div>
 
