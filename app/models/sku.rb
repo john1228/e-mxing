@@ -101,7 +101,7 @@ class Sku < ActiveRecord::Base
   end
 
   def limit_detect(user)
-    Order.includes(:order_item).where('orders.status!=? and orders.status!=? and orders.user_id=? AND order_items.sku LIKE ?', Order::STATUS[:delete], Order::STATUS[:cancel], user, sku[0, sku.rindex('-')] + '%').sum('order_items.amount')
+    Order.includes(:order_item).where(status: [Order::STATUS[:unpay], Order::STATUS[:pay], Order::STATUS[:finish]]).where('orders.user_id=? AND order_items.sku LIKE ?', user, sku[0, sku.rindex('-')] + '%').sum('order_items.amount')
   end
 
   def buyers
