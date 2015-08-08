@@ -199,6 +199,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/.idea/photo.iml" afterPath="$PROJECT_DIR$/../photo/.idea/photo.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/admin/service.rb" afterPath="$PROJECT_DIR$/app/admin/service.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/concerns/user_able.rb" afterPath="$PROJECT_DIR$/app/models/concerns/user_able.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="mxing.iws" />
     <ignored path=".idea/workspace.xml" />
