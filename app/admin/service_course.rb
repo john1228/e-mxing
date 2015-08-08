@@ -16,8 +16,11 @@ ActiveAdmin.register ServiceCourse do
     column(:proposal)
     column(:exp)
     actions do |course|
-      link_to '上架', online_path(course), method: :post unless course.status.eql?(0)
-      link_to '下架', '', method: :post unless course.status.eql?(1)
+      if course.status.eql?(1)
+        link_to '上架', online_path(course), method: :post
+      else
+        link_to '下架', offline_path(course), method: :post
+      end
     end
   end
 
@@ -25,6 +28,11 @@ ActiveAdmin.register ServiceCourse do
     def online
       ServiceCourse.find_by(id: params[:id]).update(status: ServiceCourse::STATUS[:online])
       redirect_to collection_path, alert: '上架成功'
+    end
+
+    def offline
+      ServiceCourse.find_by(id: params[:id]).update(status: ServiceCourse::STATUS[:offline])
+      redirect_to collection_path, alert: '下架成功'
     end
   end
 
