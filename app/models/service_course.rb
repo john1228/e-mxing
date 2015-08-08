@@ -13,9 +13,7 @@ class ServiceCourse < ActiveRecord::Base
   end
 
   def type_name
-    interests_ary = interests.split(',')
-    choose_type = INTERESTS['items'].select { |item| interests_ary.include?(item['id'].to_s) }
-    choose_type.collect { |choose| choose['name'] }.join(',')
+    INTERESTS['items'].select { |item| type.eql?(item['id']) }.first['name']
   end
 
   private
