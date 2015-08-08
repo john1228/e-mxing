@@ -31,11 +31,17 @@ module Shop
         user = Rails.cache.fetch(request.headers[:token])
         if user.present?
           concerned = Concerned.find_by(sku: params[:sku], user: user).present? ? 1 : 0
+          purchased = sku.limit_detect(user.id)
+          if purchased >= sku.limit
+            limit = 0
+          else
+            limit = (sku.limit - purchased)
+          end
         else
           concerned = 0
         end
         render json: Success.new(
-                   course: sku.detail.merge(conerned: concerned)
+                   course: sku.detail.merge(conerned: concerned, limit: limit||sku.limit)
                )
       end
     end

@@ -23,6 +23,16 @@ class PhotosUploader < CarrierWave::Uploader::Base
   end
 
   def filename
-    "#{Time.now.strftime('%Y/%m/%d')}/#{Digest::MD5.hexdigest(self.size.to_s)}.#{file.extension}" if original_filename
+    "#{Time.now.strftime('%Y/%m/%d')}/#{secure_token}.#{file.extension}" if original_filename
+  end
+
+  private
+  def secure_token
+    if parent_version.present?
+      img = MiniMagick::Image::new(parent_version.file.file)
+    else
+      img = MiniMagick::Image::new(file.file)
+    end
+    Digest::MD5::hexdigest("#{img.size}|#{img.width}|#{img.height}")
   end
 end
