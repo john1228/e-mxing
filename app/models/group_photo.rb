@@ -1,6 +1,6 @@
 class GroupPhoto < ActiveRecord::Base
   belongs_to :group
-  mount_uploader :photo, PhotoUploader
+  mount_uploader :photo, PhotosUploader
 
   def as_json
     {

@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class PhotoUploader < CarrierWave::Uploader::Base
+class PhotosUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
   storage :file
   process :resize_to_limit => [2080, nil]
@@ -23,6 +23,6 @@ class PhotoUploader < CarrierWave::Uploader::Base
   end
 
   def filename
-    "#{Time.now.strftime('%Y/%m/%d')}/#{Digest::MD5.hexdigest(original_filename)}.#{file.extension}" if original_filename
+    "#{Time.now.strftime('%Y/%m/%d')}/#{Digest::MD5.hexdigest(self.size.to_s)}.#{file.extension}" if original_filename
   end
 end

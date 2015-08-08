@@ -6,7 +6,7 @@ class ServiceCourse < ActiveRecord::Base
   after_update :online_or_offline
   validates_presence_of :name, :type, :style, :during, :proposal, :exp, :intro
 
-  mount_uploaders :image, PhotoUploader
+  mount_uploaders :image, PhotosUploader
 
   def cover
     image.first.thumb.url

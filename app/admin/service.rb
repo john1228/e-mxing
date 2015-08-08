@@ -1,7 +1,7 @@
 ActiveAdmin.register Service do
   menu label: '服务号', if: proc { !current_admin_user.role.eql?(AdminUser::ROLE[:service]) }
 
-  permit_params :mobile, :sns, :identity, :name, :contact, :password, :avatar, :signature, :address, :hobby
+  permit_params :mobile, :sns, :identity, :name, :contact, :password, :avatar, :signature, :address, :hobby, service: []
   filter :profile_name, label: '名称', as: :string
   before_action :adjust, only: [:create, :update]
 

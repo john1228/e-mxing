@@ -19,6 +19,7 @@ module UserAble
                     target: target||'',
                     skill: skill||'',
                     often: often||'',
+                    service: service,
                     interests: interests||'')
     else
       build_profile(name: name,
@@ -31,6 +32,7 @@ module UserAble
                     target: target||'',
                     skill: skill||'',
                     often: often||'',
+                    service: service,
                     interests: interests||'')
     end
     true
