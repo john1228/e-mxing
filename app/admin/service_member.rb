@@ -36,10 +36,10 @@ ActiveAdmin.register ServiceMember do
   index title: '旗下私教' do
     selectable_column
     column '昵称' do |member|
-      "#{member.coach.profile_name}"
+      "#{member.coach.profile.name}"
     end
     column '头像' do |member|
-      image_tag("#{member.coach.profile_avatar.thumb.url}", height: 70)
+      image_tag("#{member.coach.profile.avatar.thumb.url}", height: 70)
     end
     column '签名' do |member|
       truncate(member.coach.profile.signature)
@@ -101,7 +101,7 @@ ActiveAdmin.register ServiceMember do
       row('头像') { image_tag(service_member.coach.profile.avatar.thumb.url, height: 70) }
       row('年龄') { service_member.coach.profile.age }
       row('性别') { service_member.coach.profile.gender.eql?(1) ? '女' : '男' }
-      row('地址') { service_member.coach.profile_address }
+      row('地址') { service_member.coach.profile.address }
       row('健身目标') { service_member.coach.profile.target }
       row('擅长领域') { service_member.coach.profile.skill }
       row('常去场馆') { service_member.coach.profile.often }

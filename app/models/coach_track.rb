@@ -16,9 +16,9 @@ class CoachTrack<Track
         avail: places-appointments.count,
         free: free,
         gyms: {
-            mxid: coach.profile_mxid,
-            name: coach.profile_name,
-            tags: coach.profile_tags
+            mxid: coach.profile.mxid,
+            name: coach.profile.name,
+            tags: coach.profile.tags
         }
     }
   end

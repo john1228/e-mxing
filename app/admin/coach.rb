@@ -4,16 +4,16 @@ ActiveAdmin.register Coach do
   actions :index, :show, :destroy
   index do
     column '美型号' do |coach|
-      link_to("#{coach.profile_mxid}", admin_coach_path(coach))
+      link_to("#{coach.profile.mxid}", admin_coach_path(coach))
     end
     column '昵称' do |coach|
-      link_to(truncate("#{coach.profile_name}"), admin_coach_path(coach))
+      link_to(truncate("#{coach.profile.name}"), admin_coach_path(coach))
     end
     column '头像' do |coach|
-      link_to(image_tag(coach.profile_avatar.thumb.url, height: 70), admin_coach_path(coach))
+      link_to(image_tag(coach.profile.avatar.thumb.url, height: 70), admin_coach_path(coach))
     end
     column '签名' do |coach|
-      truncate(coach.profile_signature)
+      truncate(coach.profile.signature)
     end
     actions
   end

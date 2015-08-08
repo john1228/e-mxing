@@ -32,7 +32,7 @@
             <label class="col-sm-2 control-label" for="service_signature">昵称</label>
 
             <div class="col-sm-10">
-              <%= coach.text_field :name, class: 'form-control', placeholder: '请输入教练昵称', value: (coach.object.profile_name rescue '') %>
+              <%= coach.text_field :name, class: 'form-control', placeholder: '请输入教练昵称', value: (coach.object.profile.name rescue '') %>
             </div>
           </div>
           <div class="form-group form-group-sm">
@@ -46,7 +46,7 @@
             <label class="col-sm-2 control-label" for="service_address">生日</label>
 
             <div class="col-sm-10">
-              <%= coach.date_field :birthday, class: 'form-control', placeholder: '请输入教练生日', value: (coach.object.profile_birthday rescue '') %>
+              <%= coach.date_field :birthday, class: 'form-control', placeholder: '请输入教练生日', value: (coach.object.profile.birthday rescue '') %>
             </div>
           </div>
           <div class="form-group form-group-sm">
@@ -60,7 +60,7 @@
             <label class="col-sm-2 control-label" for="service_signature">签名</label>
 
             <div class="col-sm-10">
-              <%= coach.text_field :signature, class: 'form-control', placeholder: '请输入教练签名', value: (coach.object.profile_signature rescue '') %>
+              <%= coach.text_field :signature, class: 'form-control', placeholder: '请输入教练签名', value: (coach.object.profile.signature rescue '') %>
             </div>
           </div>
 
@@ -68,7 +68,7 @@
             <label class="col-sm-2 control-label" for="service_address">地址</label>
 
             <div class="col-sm-10">
-              <%= coach.text_field :address, class: 'form-control', placeholder: '请输入教练地址', value: (coach.object.profile_address rescue '') %>
+              <%= coach.text_field :address, class: 'form-control', placeholder: '请输入教练地址', value: (coach.object.profile.address rescue '') %>
             </div>
           </div>
 
@@ -76,7 +76,7 @@
             <label class="col-sm-2 control-label" for="service_address">健身目标</label>
 
             <div class="col-sm-10">
-              <%= coach.text_field :target, class: 'form-control', placeholder: '请输入健身目标', value: (coach.object.profile_target rescue '') %>
+              <%= coach.text_field :target, class: 'form-control', placeholder: '请输入健身目标', value: (coach.object.profile.target rescue '') %>
             </div>
           </div>
 
@@ -84,7 +84,7 @@
             <label class="col-sm-2 control-label" for="service_address">擅长领域</label>
 
             <div class="col-sm-10">
-              <%= coach.text_field :skill, class: 'form-control', placeholder: '请输入擅长领域', value: (coach.object.profile_skill rescue '') %>
+              <%= coach.text_field :skill, class: 'form-control', placeholder: '请输入擅长领域', value: (coach.object.profile.skill rescue '') %>
             </div>
           </div>
 
@@ -92,7 +92,7 @@
             <label class="col-sm-2 control-label" for="service_address">常去场馆</label>
 
             <div class="col-sm-10">
-              <%= coach.text_field :often, class: 'form-control', placeholder: '请输入常去场馆', value: (coach.object.profile_often rescue '') %>
+              <%= coach.text_field :often, class: 'form-control', placeholder: '请输入常去场馆', value: (coach.object.profile.often rescue '') %>
             </div>
           </div>
 
@@ -100,7 +100,7 @@
             <label class="col-sm-2 control-label" for="service_interests">健身服务</label>
 
             <div class="col-sm-10">
-              <%= coach.select(:hobby, INTERESTS['items'].map { |item| [item['name'], item['id']] }, {selected: (coach.object.profile_interests.split(',') rescue []), include_blank: false}, {multiple: true}) %>
+              <%= coach.select(:interests, INTERESTS['items'].map { |item| [item['name'], item['id']] }, {selected: (coach.object.profile.interests.split(',') rescue []), include_blank: false}, {multiple: true}) %>
             </div>
           </div>
       <% end %>

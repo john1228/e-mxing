@@ -83,10 +83,10 @@
     });
 </script>
 <section class="page page1">
-  <div class="tx"><%= image_tag(@service.profile_avatar.thumb.url) %></div>
+  <div class="tx"><%= image_tag(@service.profile.avatar.thumb.url) %></div>
   <div class="pgbox01">
     <div class="mxzt">
-      <h3><%= @service.profile_name %></h3>
+      <h3><%= @service.profile.name %></h3>
       <i><%= image_tag('share/service/vitu.png') %></i>
 
       <p>斗牛三对三，你行你来吧！</p>
@@ -94,8 +94,8 @@
     <div class="ico1"><%= image_tag('share/service/ico1.png') %></div>
   </div>
   <div class="pgbox02">
-    <div class="text"><%= @service.profile_signature %></div>
-    <div class="add">地址:<%= @service.profile_address %></div>
+    <div class="text"><%= @service.profile.signature %></div>
+    <div class="add">地址:<%= @service.profile.address %></div>
     <div class="tel">
       <a href="tel:<%= @service.profile.mobile %>" data-role="button" data-theme="a"><i></i><%= @service.profile.mobile %>
       </a></div>

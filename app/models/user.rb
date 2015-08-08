@@ -12,7 +12,6 @@ class User < ActiveRecord::Base
   has_many :likes, -> { where(like_type: Like::PERSON) }, foreign_key: :liked_id, dependent: :destroy
 
   attr_accessor :name, :avatar, :gender, :signature, :identity, :birthday, :address, :target, :skill, :often, :interests, :contact, :service
-  delegate :mxid, :name, :avatar, :age, :tags, :signature, :gender, :birthday, :identity, :address, :target, :skill, :often, :interests, :interests_string, to: :profile, prefix: true, allow_nil: false
   alias_attribute :hobby, :interests
   attr_accessor :new
 

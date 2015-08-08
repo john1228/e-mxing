@@ -14,19 +14,19 @@ ActiveAdmin.register Service do
 
   index title: '服务号' do
     column '美型号' do |service|
-      link_to("#{service.profile_mxid}", admin_service_path(service))
+      link_to("#{service.profile.mxid}", admin_service_path(service))
     end
     column '昵称' do |service|
-      link_to("#{service.profile_name}", admin_service_path(service))
+      link_to("#{service.profile.name}", admin_service_path(service))
     end
     column '头像' do |service|
-      link_to(image_tag(service.profile_avatar.thumb.url, height: 70), admin_service_path(service))
+      link_to(image_tag(service.profile.avatar.thumb.url, height: 70), admin_service_path(service))
     end
     column '健身服务' do |service|
-      truncate(service.profile_interests_string)
+      truncate(service.profile.interests_string)
     end
     column '服务号介绍' do |service|
-      truncate(service.profile_signature)
+      truncate(service.profile.signature)
     end
     actions
   end

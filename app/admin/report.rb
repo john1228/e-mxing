@@ -3,7 +3,7 @@ ActiveAdmin.register Report do
   actions :index
   index do
     selectable_column
-    column('举报人') { |report| report.user.profile_name }
+    column('举报人') { |report| report.user.profile.name }
     column('举报类型', :report_type)
     column('被举报者') { |report| report.report_id }
     column('举报内容') { |report| truncate(report.content) }

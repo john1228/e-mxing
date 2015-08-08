@@ -16,7 +16,7 @@ class GroupsController < ApiController
   end
 
   def create
-    group = Group.new(name: params[:name], interests: params[:interests], intro: params[:intro], owner: @user.profile_mxid, lat: params[:lat], lng: params[:lng])
+    group = Group.new(name: params[:name], interests: params[:interests], intro: params[:intro], owner: @user.profile.mxid, lat: params[:lat], lng: params[:lng])
     if group.save
       (0...10).each { |photo_index| group.group_photos.create(photo: params["#{photo_index}"]) if params["#{photo_index}"].present? }
       render json: Success.new(group: group)
@@ -27,7 +27,7 @@ class GroupsController < ApiController
 
   def update
     group = Group.find_by(id: params[:id])
-    if group.owner.eql?(@user.profile_mxid)
+    if group.owner.eql?(@user.profile.mxid)
       if group.update(update_params)
         group.group_photos.where(id: params[:del].split(',')).delete_all unless params[:del].nil?
         (0...10).each { |photo_index| group.group_photos.create(photo: params["#{photo_index}"]) if params["#{photo_index}"].present? }
