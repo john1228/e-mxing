@@ -42,7 +42,7 @@ class ServiceCourse < ActiveRecord::Base
     if status.eql?(STATUS[:online])
       Sku.where("sku LIKE 'SC%' and course_id = #{id}").update_all(status: STATUS[:online], course_cover: cover)
     else
-      Sku.where("sku LIKE 'SC%' and course_id = #{id}").update_all(status: STATUS[:offline], course_cover: cover)
+      Sku.where("sku LIKE 'SC%' and course_id = #{id}").update_all(status: STATUS[:offline])
     end
   end
 end
