@@ -12,6 +12,12 @@ class ServiceCourse < ActiveRecord::Base
     image.first.thumb.url
   end
 
+  def typ_name
+    interests_ary = interests.split(',')
+    choose_type = INTERESTS['items'].select { |item| interests_ary.include?(item['id'].to_s) }
+    choose_type.collect { |choose| choose['name'] }.join(',')
+  end
+
   private
   def generate_sku
     agencies = Service.where(id: agency)

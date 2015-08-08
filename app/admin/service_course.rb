@@ -4,17 +4,17 @@ ActiveAdmin.register ServiceCourse do
 
   permit_params :name, :type, :style, :during, :limit_start, :limit_end, :proposal, :exp, :intro, :special, :market_price, :selling_price, :store,
                 :agency, :limit, service: [], image: []
-  actions :index, :show
+  actions :index, :new, :create, :show
   scope('0-全部', :all, default: true)
   scope('1-在售', :online) { |scope| scope.where(status: ServiceCourse::STATUS[:online]) }
   scope('2-仓库', :offline) { |scope| scope.where(status: ServiceCourse::STATUS[:offline]) }
   index do
     selectable_column
     column(:name)
-    column(:type)
-    column(:during)
+    column { |course| course.type_name }
+    column {|course| "#{course.during}分钟"  }
     column(:proposal)
-    column(:exp)
+    column{|course| "#{course.exp}天"  }
     actions do |course|
       if course.status.eql?(1)
         link_to '下架', online_path(course), method: :post
