@@ -21,7 +21,7 @@ module UserAble
           skill: skill||'',
           often: often||'',
           service: service,
-          interests: interests||'',
+          interests: (interest.join(',') rescue ''),
           mobile: mobile||'',
       )
     else
@@ -37,7 +37,7 @@ module UserAble
           skill: skill||'',
           often: often||'',
           service: service,
-          interests: interests||'',
+          interests: (interest.join(',') rescue ''),
           mobile: mobile||''
       )
     end
@@ -65,7 +65,7 @@ module UserAble
         skill: skill||profile.skill,
         often: often||profile.often,
         identity: identity||profile.identity,
-        interests: interests||profile.interests,
+        interests: (interest.join(',') rescue nil)||profile.interests,
         service: service,
         mobile: mobile
     }

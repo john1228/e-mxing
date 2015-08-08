@@ -166,13 +166,8 @@ Rails.application.routes.draw do
     get 'courses/show' => 'courses#show'
     get 'courses/coach' => 'courses#coach'
     post 'courses' => 'courses#buy'
-    #查看预约和预约团课
-    get 'appointments' => 'appointments#index'
-    get 'appointments/show' => 'appointments#show'
-    post 'appointments' => 'appointments#appoint'
-    post 'appointments/comment' => 'appointments#comment'
     #查看评论
-    get ':list/comments' => 'comments#list'
+    get ':list/comments' => 'comments#index'
   end
 
 
