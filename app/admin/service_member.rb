@@ -6,12 +6,9 @@ ActiveAdmin.register ServiceMember do
   permit_params :service_id,
                 coach_attributes: [:id, :mobile, :password, :signature, :name, :avatar, :gender, :identity, :birthday,
                                    :address, :target, :skill, :often, interest: []]
-  before_filter :adjust, only: :create
   before_filter :update_coach, only: :update
   controller do
     def update_coach
-      params[:service_member][:coach_attributes][:hobby].reject! { |item| item.blank? }
-      avatar = params[:service_member][:coach_attributes][:avatar]
       member = ServiceMember.find_by(id: params[:id])
       coach = member.coach
       update_params = {
@@ -21,8 +18,9 @@ ActiveAdmin.register ServiceMember do
           target: params[:service_member][:coach_attributes][:target],
           skill: params[:service_member][:coach_attributes][:target],
           often: params[:service_member][:coach_attributes][:target],
-          hobby: params[:service_member][:coach_attributes][:hobby].join(',')
+          interest: params[:service_member][:coach_attributes][:interest]
       }
+      avatar = params[:service_member][:coach_attributes][:avatar]
       update_params = update_params.merge(avatar: avatar) unless avatar.blank?
       coach.update(update_params)
     end
