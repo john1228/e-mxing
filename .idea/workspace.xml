@@ -178,6 +178,9 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/photo/2015/04/04/6a612b5f-2546-4731-9052-c1ff27710a46.jpg" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/photo/2015/04/04/c60c4187-ffe1-4605-b913-37a06400b02b.jpg" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/photo/2015/08/06/8f0053b8-a0b0-4478-b4a2-7d71c3d7a84f.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/photo/2015/08/08/a7c9585703d275249f30a088cebba0ad.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/photo/2015/08/08/bb319a954eef4a99b72e60f9b295f123.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/photo/2015/08/08/d106161033da24ceb07a0103fd837433.jpg" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/photo/share_2015/08/06/8f0053b8-a0b0-4478-b4a2-7d71c3d7a84f.jpg" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/photo/thumb_2015/03/20/73653b6b-443e-4fe7-a458-41b0485cff48.jpg" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/photo/thumb_2015/04/02/79f12c9d-ab11-4ffe-af81-75d75a021b37.jpg" afterPath="" />
@@ -187,7 +190,28 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/photo/thumb_2015/04/03/a29bec27-e9b7-4636-8686-82c7ae5d8ba1.jpg" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/photo/thumb_2015/04/04/6a612b5f-2546-4731-9052-c1ff27710a46.jpg" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/photo/thumb_2015/04/04/c60c4187-ffe1-4605-b913-37a06400b02b.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/photo/thumb_2015/08/06/69b99421-5349-4cbb-a722-8babf93a58b2.jpg" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/photo/thumb_2015/08/06/8f0053b8-a0b0-4478-b4a2-7d71c3d7a84f.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/photo/thumb_2015/08/07/0c27cd4f-d127-4a15-ba92-f5c645664878.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/photo/thumb_2015/08/07/25ee04c2-fea0-4fb7-bb44-f241af62f667.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/photo/thumb_2015/08/07/2add3cb7-350f-4d42-96c6-b3d2b5624b6d.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/photo/thumb_2015/08/07/5b0a7abeb1fce2f4ff6c403e92ccb0f2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/photo/thumb_2015/08/07/750ed934-7a89-4c07-a62a-44925eea752f.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/photo/thumb_2015/08/07/9a369bd9-6f47-4b03-ba9e-6c2e53f1b700.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/photo/thumb_2015/08/07/9a74b4794c44805e04cf7224a2512453.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/photo/thumb_2015/08/07/a794d3e5-89bf-430f-9314-11b4ed538e99.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/photo/thumb_2015/08/07/c9974f730a00ecae3ef071535f27d0ee.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/photo/thumb_2015/08/08/02c8864abf55d765a399ceefa5122dd6.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/photo/thumb_2015/08/08/053f0ceb97cf58b2cd1ab89d4e0b18bd.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/photo/thumb_2015/08/08/0ef037ce94ff9b7930d095a7e2ffee1f.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/photo/thumb_2015/08/08/18889922-a9ba-446e-a1ca-3b2feb47de9d.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/photo/thumb_2015/08/08/1e2031455b419283a33339fed2aa742c.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/photo/thumb_2015/08/08/28136f22-f9ba-444d-b9c7-3ca4ab809f3a.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/photo/thumb_2015/08/08/633f6a54399fd8745558c6f9f6a2f9f1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/photo/thumb_2015/08/08/7e0ff37942c2de60cbcbd27041196ce3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/photo/thumb_2015/08/08/7fd429bea2f099ac9b7ed881c0d364fc.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/photo/thumb_2015/08/08/d95d0d27891755a248c8a4f7165dbf0c.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/photo/thumb_2015/08/08/e1299a373959af1cdab6bedd7e069d33.jpg" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/profile/2015/04/07/682650a1-53d7-4ca2-982f-a181eb18b1ee.jpg" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/profile/2015/04/13/69a967d4-9c11-4da6-8b6b-17be3c731773.jpg" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/profile/2015/04/13/bd9aae27-06f0-46ac-93c0-004ff0b0900d.jpg" afterPath="" />
@@ -196,21 +220,51 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/profile/thumb_2015/04/13/69a967d4-9c11-4da6-8b6b-17be3c731773.jpg" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/profile/thumb_2015/04/13/bd9aae27-06f0-46ac-93c0-004ff0b0900d.jpg" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/profile/thumb_2015/06/01/3df5d85a-c35a-4fc4-89d0-86ae82286c07.jpg" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/uploaders/photo_uploader.rb" afterPath="$PROJECT_DIR$/app/uploaders/photos_uploader.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/admin/services/_form.html.erb" afterPath="$PROJECT_DIR$/app/views/admin/services/_form.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/coach_doc.rb" afterPath="$PROJECT_DIR$/app/models/coach_doc.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/course_photo.rb" afterPath="$PROJECT_DIR$/app/models/course_photo.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/group_photo.rb" afterPath="$PROJECT_DIR$/app/models/group_photo.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/order.rb" afterPath="$PROJECT_DIR$/app/models/order.rb" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/tmp/1430800309-3217-9293/41eb4d338744ebf8ea86bc36ddf9d72a6159a754.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/tmp/1430800309-3217-9293/thumb_41eb4d338744ebf8ea86bc36ddf9d72a6159a754.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/tmp/1437032032-20559-4443/609b2fcf-0122-417d-b915-3db7869c96e1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/tmp/1437032032-20559-4443/thumb_609b2fcf-0122-417d-b915-3db7869c96e1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/tmp/1438685123-26664-2427/69a864c5-0751-43bb-bc20-b090ac0f8df4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/tmp/1438685123-26664-2427/thumb_69a864c5-0751-43bb-bc20-b090ac0f8df4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/tmp/1438685123-26664-8038/69a864c5-0751-43bb-bc20-b090ac0f8df4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/tmp/1438685123-26664-8038/thumb_69a864c5-0751-43bb-bc20-b090ac0f8df4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/tmp/1438685124-26664-1752/122ceedd-b2dc-48e5-8f8b-bbf218c36bfe.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/tmp/1438685124-26664-1752/thumb_122ceedd-b2dc-48e5-8f8b-bbf218c36bfe.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/tmp/1438685124-26664-4263/69a864c5-0751-43bb-bc20-b090ac0f8df4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/tmp/1438685124-26664-4263/thumb_69a864c5-0751-43bb-bc20-b090ac0f8df4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/tmp/1438685125-26664-0536/69a864c5-0751-43bb-bc20-b090ac0f8df4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/tmp/1438685125-26664-0536/thumb_69a864c5-0751-43bb-bc20-b090ac0f8df4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/tmp/1438685125-26664-6631/69a864c5-0751-43bb-bc20-b090ac0f8df4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/tmp/1438685125-26664-6631/thumb_69a864c5-0751-43bb-bc20-b090ac0f8df4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/tmp/1438685125-26664-7873/122ceedd-b2dc-48e5-8f8b-bbf218c36bfe.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/tmp/1438685125-26664-7873/thumb_122ceedd-b2dc-48e5-8f8b-bbf218c36bfe.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/tmp/1439015440-4910-5607/3b87e950352ac65c478e556ff8f2b21193138a26.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/tmp/1439015440-4910-5607/share_3b87e950352ac65c478e556ff8f2b21193138a26.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/tmp/1439015440-4910-5607/thumb_3b87e950352ac65c478e556ff8f2b21193138a26.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/tmp/1439015440-4910-7047/7a899e510fb30f24b96c3394ca95d143ac4b03b7.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/tmp/1439015440-4910-7047/share_7a899e510fb30f24b96c3394ca95d143ac4b03b7.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/tmp/1439015440-4910-7047/thumb_7a899e510fb30f24b96c3394ca95d143ac4b03b7.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/tmp/1439015441-4910-4445/10dfa9ec8a1363278957c93b938fa0ec08fac704.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/tmp/1439015441-4910-4445/share_10dfa9ec8a1363278957c93b938fa0ec08fac704.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/tmp/1439015441-4910-4445/thumb_10dfa9ec8a1363278957c93b938fa0ec08fac704.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/tmp/1439015968-4910-0995/3b87e950352ac65c478e556ff8f2b21193138a26.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/tmp/1439015968-4910-0995/share_3b87e950352ac65c478e556ff8f2b21193138a26.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/tmp/1439015968-4910-0995/thumb_3b87e950352ac65c478e556ff8f2b21193138a26.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/tmp/1439015968-4910-7065/10dfa9ec8a1363278957c93b938fa0ec08fac704.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/tmp/1439015968-4910-7065/share_10dfa9ec8a1363278957c93b938fa0ec08fac704.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/tmp/1439015968-4910-7065/thumb_10dfa9ec8a1363278957c93b938fa0ec08fac704.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/tmp/1439015968-4910-8659/7a899e510fb30f24b96c3394ca95d143ac4b03b7.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/tmp/1439015968-4910-8659/share_7a899e510fb30f24b96c3394ca95d143ac4b03b7.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/tmp/1439015968-4910-8659/thumb_7a899e510fb30f24b96c3394ca95d143ac4b03b7.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/tmp/1439016417-4910-2915/7a899e510fb30f24b96c3394ca95d143ac4b03b7.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/tmp/1439016417-4910-2915/share_7a899e510fb30f24b96c3394ca95d143ac4b03b7.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/tmp/1439016417-4910-2915/thumb_7a899e510fb30f24b96c3394ca95d143ac4b03b7.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/tmp/1439016417-4910-5172/10dfa9ec8a1363278957c93b938fa0ec08fac704.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/tmp/1439016417-4910-5172/share_10dfa9ec8a1363278957c93b938fa0ec08fac704.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/tmp/1439016417-4910-5172/thumb_10dfa9ec8a1363278957c93b938fa0ec08fac704.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/tmp/1439016417-4910-7608/share_3b87e950352ac65c478e556ff8f2b21193138a26.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/tmp/1439016417-4910-7608/thumb_3b87e950352ac65c478e556ff8f2b21193138a26.jpg" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/.idea/photo.iml" afterPath="$PROJECT_DIR$/../photo/.idea/photo.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/photo.rb" afterPath="$PROJECT_DIR$/app/models/photo.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="$PROJECT_DIR$/db/schema.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/admin/service.rb" afterPath="$PROJECT_DIR$/app/admin/service.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/service.rb" afterPath="$PROJECT_DIR$/app/models/service.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/service_course.rb" afterPath="$PROJECT_DIR$/app/models/service_course.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/user.rb" afterPath="$PROJECT_DIR$/app/models/user.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/concerns/user_able.rb" afterPath="$PROJECT_DIR$/app/models/concerns/user_able.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="mxing.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -507,7 +561,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="images" />
+              <option name="myItemId" value="uploads" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -526,156 +580,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="images" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="photo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="thumb_2015" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="08" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mxing" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mxing" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="images" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="photo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="thumb_2015" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mxing" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mxing" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="images" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="photo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mxing" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mxing" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="images" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="photo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="2015" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="08" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="08" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mxing" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mxing" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="images" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="photo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="2015" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="08" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mxing" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mxing" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="images" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="photo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="2015" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
