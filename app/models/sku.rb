@@ -52,7 +52,7 @@ class Sku < ActiveRecord::Base
                   }],
         intro: course.intro,
         special: course.special,
-        service: [1, 2, 3, 4].sample(rand(5)),
+        service: seller_user.profile.service,
         buyers: {
             count: orders_count,
             items: buyers
