@@ -14,5 +14,6 @@ class ChangeTablesForV3 < ActiveRecord::Migration
     #add_column :lessons, :code, :string, array: true, default: []
 
     #add_column :concerneds, :sku, :string
+    #add_column :profile,:service,:integer,array:true,default: []
   end
 end

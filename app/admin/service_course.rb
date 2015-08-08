@@ -12,14 +12,14 @@ ActiveAdmin.register ServiceCourse do
     selectable_column
     column(:name)
     column { |course| course.type_name }
-    column {|course| "#{course.during}分钟"  }
+    column { |course| "#{course.during}分钟" }
     column(:proposal)
-    column{|course| "#{course.exp}天"  }
+    column { |course| "#{course.exp}天" }
     actions do |course|
       if course.status.eql?(1)
-        link_to '下架', online_path(course), method: :post
+        link_to '下架', offline_path(course), method: :post
       else
-        link_to '上架', offline_path(course), method: :post
+        link_to '上架', online_path(course), method: :post
       end
     end
   end
