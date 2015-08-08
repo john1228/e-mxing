@@ -17,9 +17,9 @@ ActiveAdmin.register ServiceCourse do
     column(:exp)
     actions do |course|
       if course.status.eql?(1)
-        link_to '上架', online_path(course), method: :post
+        link_to '下架', online_path(course), method: :post
       else
-        link_to '下架', offline_path(course), method: :post
+        link_to '上架', offline_path(course), method: :post
       end
     end
   end
