@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   has_many :applies
   has_many :likes, -> { where(like_type: Like::PERSON) }, foreign_key: :liked_id, dependent: :destroy
 
-  attr_accessor :name, :avatar, :gender, :signature, :identity, :birthday, :address, :target, :skill, :often, :interests, :contact, :service
+  attr_accessor :name, :avatar, :gender, :signature, :identity, :birthday, :address, :target, :skill, :often, :interest, :interests, :contact, :service
   alias_attribute :hobby, :interests
   attr_accessor :new
 

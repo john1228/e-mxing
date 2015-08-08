@@ -1,13 +1,13 @@
 ActiveAdmin.register Service do
   menu label: '服务号', if: proc { !current_admin_user.role.eql?(AdminUser::ROLE[:service]) }
 
-  permit_params :mobile, :sns, :identity, :name, :contact, :password, :avatar, :signature, :address, interests: [], service: []
+  permit_params :mobile, :sns, :identity, :name, :contact, :password, :avatar, :signature, :address, interest: [], service: []
   filter :profile_name, label: '名称', as: :string
   before_action :adjust, only: [:create, :update]
 
   controller do
     def adjust
-      params[:service][:interests] = (params[:service][:interests].join(',') rescue '')
+      params[:service][:interests] = (params[:service][:interest].join(',') rescue '')
     end
   end
 
