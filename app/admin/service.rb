@@ -7,7 +7,6 @@ ActiveAdmin.register Service do
 
   controller do
     def adjust
-      params[:service][:hobby].reject! { |item| item.blank? }
       params[:service][:hobby] = params[:service][:hobby].join(',')
     end
   end

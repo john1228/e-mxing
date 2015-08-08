@@ -5,7 +5,7 @@ module ProfileAble
   end
   private
   def regist_to_easemob
-    easemob_token = Rails.cache.fetch(:easemob_token)||init_easemob_token
+    easemob_token = Rails.cache.fetch('mob')
     Faraday.post do |req|
       req.url "#{MOB['host']}/users"
       req.headers['Content-Type'] = 'application/json'

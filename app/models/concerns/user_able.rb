@@ -59,7 +59,8 @@ module UserAble
         skill: skill||profile.skill,
         often: often||profile.often,
         identity: identity||profile.identity,
-        interests: interests||profile.interests
+        interests: interests||profile.interests,
+        service: service
     }
     update_params = update_params.merge(avatar: update_avatar) if update_avatar.present?
     update_params = update_params.merge(mobile: contact) if contact.present?
