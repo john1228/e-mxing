@@ -9,31 +9,37 @@ module UserAble
   private
   def build_default_profile
     if avatar.is_a?(String)
-      build_profile(name: name,
-                    remote_avatar_url: avatar,
-                    gender: identity.eql?(2) ? 2 : (gender||1),
-                    signature: signature||'这家伙很懒,什么也没留下',
-                    identity: identity||0,
-                    birthday: birthday,
-                    address: address||'',
-                    target: target||'',
-                    skill: skill||'',
-                    often: often||'',
-                    service: service,
-                    interests: interests||'')
+      build_profile(
+          name: name,
+          remote_avatar_url: avatar,
+          gender: identity.eql?(2) ? 2 : (gender||1),
+          signature: signature||'这家伙很懒,什么也没留下',
+          identity: identity||0,
+          birthday: birthday,
+          address: address||'',
+          target: target||'',
+          skill: skill||'',
+          often: often||'',
+          service: service,
+          interests: interests||'',
+          mobile: mobile||'',
+      )
     else
-      build_profile(name: name,
-                    avatar: avatar,
-                    gender: identity.eql?(2) ? 2 : (gender||1),
-                    signature: signature||'这家伙很懒,什么也没留下',
-                    identity: identity||0,
-                    birthday: birthday,
-                    address: address||'',
-                    target: target||'',
-                    skill: skill||'',
-                    often: often||'',
-                    service: service,
-                    interests: interests||'')
+      build_profile(
+          name: name,
+          avatar: avatar,
+          gender: identity.eql?(2) ? 2 : (gender||1),
+          signature: signature||'这家伙很懒,什么也没留下',
+          identity: identity||0,
+          birthday: birthday,
+          address: address||'',
+          target: target||'',
+          skill: skill||'',
+          often: often||'',
+          service: service,
+          interests: interests||'',
+          mobile: mobile||''
+      )
     end
     true
   end
@@ -60,7 +66,8 @@ module UserAble
         often: often||profile.often,
         identity: identity||profile.identity,
         interests: interests||profile.interests,
-        service: service
+        service: service,
+        mobile: mobile
     }
     update_params = update_params.merge(avatar: update_avatar) if update_avatar.present?
     update_params = update_params.merge(mobile: contact) if contact.present?
