@@ -7,7 +7,7 @@ ActiveAdmin.register Service do
 
   controller do
     def adjust
-      params[:service][:interests] = params[:service][:interests].join(',')
+      params[:service][:interests] = (params[:service][:interests].join(',') rescue '')
     end
   end
 
