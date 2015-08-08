@@ -9,5 +9,6 @@ class ChangeCommentTable < ActiveRecord::Migration
     # add_column :comments, :sku, :string
 
     #add_column :comments,:image,:string,array:true,default: []
+
   end
 end
