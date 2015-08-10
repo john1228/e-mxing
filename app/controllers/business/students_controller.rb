@@ -16,13 +16,7 @@ module Business
         render json: Failure.new('您查看到用户不存在')
       else
         render json: Success.new(
-                   courses: @coach.lessons.joins(:course).where('lessons.available > lessons.used and lessons.user_id = ?', user.id).order(exp: :asc).map { |lesson|
-                     {
-                         name: lesson.course.name,
-                         available: lesson.available,
-                         used: lesson.used
-                     }
-                   }
+                   courses: @coach.lessons.where('lessons.available > lessons.used and lessons.user_id = ?', user.id).order(exp: :asc)
                )
       end
 
