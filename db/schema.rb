@@ -292,6 +292,7 @@ ActiveRecord::Schema.define(version: 20150803060531) do
     t.integer  "concerns_count",    default: 0
     t.integer  "order_items_count", default: 0
     t.text     "special",           default: ""
+    t.string   "image",             default: [],              array: true
   end
 
   create_table "devices", force: :cascade do |t|
