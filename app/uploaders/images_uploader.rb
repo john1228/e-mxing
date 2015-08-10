@@ -3,8 +3,10 @@ class ImagesUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
   storage :file
 
+  after :store, :update_model
+
   def store_dir
-    "images/#{model.class.to_s.underscore}"
+    'images/course'
   end
 
   version :thumb do
@@ -23,5 +25,13 @@ class ImagesUploader < CarrierWave::Uploader::Base
       img = MiniMagick::Image::new(file.file)
     end
     Digest::MD5::hexdigest("#{img.size}|#{img.width}|#{img.height}")
+  end
+
+  def update_model
+    if model.is_a?(Course)
+      Sku.where('sku LIKE ? ', 'CC' + '-' + '%06d' % model.id + '%').update_all(course_cover: model.image.first.thumb.url)
+    elsif model.is_a?(ServiceCourse)
+      Sku.where('sku LIKE ? ', 'SC' + '-' + '%06d' % model.id + '%').update_all(course_cover: model.image.first.thumb.url)
+    end
   end
 end

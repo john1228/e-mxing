@@ -26,6 +26,10 @@ class DeployController < ApplicationController
   end
 
 
+  def online
+    render json: Success.new()
+  end
+
   def service
     render json: Success.new(phone: '021-51113602')
   end
