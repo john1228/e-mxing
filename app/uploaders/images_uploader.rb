@@ -27,7 +27,7 @@ class ImagesUploader < CarrierWave::Uploader::Base
     Digest::MD5::hexdigest("#{img.size}|#{img.width}|#{img.height}")
   end
 
-  def update_model
+  def update_model(args)
     if model.is_a?(Course)
       Sku.where('sku LIKE ? ', 'CC' + '-' + '%06d' % model.id + '%').update_all(course_cover: model.image.first.thumb.url)
     elsif model.is_a?(ServiceCourse)
