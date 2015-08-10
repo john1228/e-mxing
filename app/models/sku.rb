@@ -58,8 +58,8 @@ class Sku < ActiveRecord::Base
         },
         status: status,
         comments: [
-            count: tmp_comments_count,
-            items: comments.take(5)
+            count: comments.count,
+            items: image_comments.take(5)
         ]
     }
     json_hash = json_hash.merge(limit_time: {start: course.limit_start.strftime('%Y-%m-%d %H:%M'), end: course.limit_end.strftime('%Y-%m-%d %H:%M')}) if course.has_attribute?(:limit_start)&&course.limit_start.present?
@@ -88,16 +88,16 @@ class Sku < ActiveRecord::Base
     }
   end
 
-  def tmp_comments_count
-    Comment.where('sku LIKE ?', sku[0, sku.rindex('-')] + '%').count
-  end
-
   def score
     Comment.where('sku LIKE ?', sku[0, sku.rindex('-')] + '%').average(:score).to_f.round(2)
   end
 
-  def comments
+  def image_comments
     Comment.where.not(image: []).where('sku LIKE ?', sku[0, sku.rindex('-')] + '%')
+  end
+
+  def comments
+    Comment.where('sku LIKE ?', sku[0, sku.rindex('-')] + '%')
   end
 
   def limit_detect(user)
