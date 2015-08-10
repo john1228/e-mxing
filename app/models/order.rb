@@ -48,7 +48,7 @@ class Order < ActiveRecord::Base
           errors.add('优惠活动', '还未开始')
           return false
         elsif (coupon.end_date< Date.today)
-          errors.add('', '过期')
+          errors.add('优惠券', '过期')
           return false
         end
         #种类是否满足要求
@@ -56,24 +56,24 @@ class Order < ActiveRecord::Base
           when Coupon::TYPE[:general]
           when Coupon::TYPE[:gyms]
             unless coupon.limit_ext.eql?(course.coach.id)
-              errors.add(:coupon, '无效的私教优惠券')
+              errors.add('优惠券', '无效')
               return false
             end
           when Coupon::TYPE[:course]
             unless coupon.limit_ext.eql?(course.id)
-              errors.add(:coupon, '无效的课程优惠券')
+              errors.add('优惠券', '无效')
               return false
             end
           when Coupon::TYPE[:service]
-            errors.add(:coupon, '无效的优惠券')
+            errors.add('优惠券', '无效')
             return false
           else
-            errors.add(:coupon, '无效的优惠券')
+            errors.add('优惠券', '无效')
             return false
         end
         #判断金额是否满足
         if coupon.min >= total_price
-          errors.add(:coupon, '订单金额未满足要求')
+          errors.add('订单金额', '未满足要求')
           return false
         end
         total_price -= coupon.discount

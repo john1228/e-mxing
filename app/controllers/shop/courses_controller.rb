@@ -51,7 +51,7 @@ module Shop
       sku = Sku.find_by(sku: params[:sku])
       if sku.store==0
         render json: Failure.new('库存不足')
-      elsif sku.store < amount
+      elsif sku.store>0 && sku.store < amount
         render json: Failure.new('库存不足')
       elsif sku.limit > 0 && (sku.limit_detect(@user.id) + amount) > sku.limit
         render json: Failure.new('已超出每人购买数量')
