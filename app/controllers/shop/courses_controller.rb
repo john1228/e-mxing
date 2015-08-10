@@ -4,7 +4,10 @@ module Shop
 
     def index
       logger.info "所选城市: #{request.headers[:city]}"
-      city = request.headers['city']||'上海'
+      request.headers.each { |k, v|
+        logger.info "HEAD::##{k}::#{v}"
+      }
+      city = '上海'
       filters = {course_type: params[:cat]} if params[:cat].present?
       case params[:sort]
         when 'smart'
