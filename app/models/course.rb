@@ -1,7 +1,6 @@
 class Course < ActiveRecord::Base
   self.inheritance_column = nil
   belongs_to :coach
-  has_many :images, class_name: CoursePhoto, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :lessons, dependent: :destroy
   has_many :concerns, class_name: Concerned, dependent: :destroy
@@ -11,7 +10,7 @@ class Course < ActiveRecord::Base
 
   STATUS = {offline: 0, online: 1}
   GUARANTEE = 1
-
+  mount_uploaders :image, :ImagesUploader
 
   def as_json
     {
@@ -26,7 +25,7 @@ class Course < ActiveRecord::Base
         intro: intro,
         guarantee: guarantee,
         address: school_addresses,
-        images: images.collect { |photo| photo.photo.thumb.url },
+        images: images.map { |image| image.thumb.url },
         purchased: order_items_count,
         concerns: concerns_count
     }

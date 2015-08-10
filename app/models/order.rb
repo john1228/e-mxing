@@ -21,12 +21,12 @@ class Order < ActiveRecord::Base
                      cover: course.cover, price: sku_info.selling_price, amount: amount)
     #库存不足
     if sku_info.store >= 0 && sku_info.store<order_item.amount
-      errors.add(:store, '库存不足')
+      errors.add('库存', '不足')
       return false
     end
     #限制数量
     if sku_info.limit > 0 && (sku_info.limit_detect(user_id) + order_item.amount) > sku_info.limit
-      errors.add(:limit, '您够卖到数量超出限制')
+      errors.add('购买数量', '超出限制')
       return false
     end
 
@@ -38,17 +38,17 @@ class Order < ActiveRecord::Base
       #判断使用的优惠券是否是用户拥有的优惠券
       use_coupons.map { |coupon|
         unless user_coupons.include?(coupon)
-          errors.add(:coupon, '无效的优惠券')
+          errors.add('优惠券', '无效')
           return false
         end
       }
       Coupon.where(id: use_coupons).map { |coupon|
         #优惠券不在有效期内
         if (coupon.start_date> Date.today)
-          errors.add(:coupon, '优惠券还未启用')
+          errors.add('优惠活动', '还未开始')
           return false
         elsif (coupon.end_date< Date.today)
-          errors.add(:coupon, '优惠券已经过期')
+          errors.add('', '过期')
           return false
         end
         #种类是否满足要求
