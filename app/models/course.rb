@@ -60,7 +60,7 @@ class Course < ActiveRecord::Base
 
         market_price: price,
         selling_price: price,
-        address: coach.service.address||'',
+        address: coach.service.profile.address||'',
         coordinate: (coach.service.place.lonlat rescue 'POINT(0 0)'),
         status: 1
     )
