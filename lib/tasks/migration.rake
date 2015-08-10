@@ -3,25 +3,28 @@ namespace :migration do
   task :course => :environment do
     Course.all.map { |course|
       service = course.coach.service
-
-      Sku.create(
-          sku: 'CC'+'-' + '%06d' % course.id + '-' + '%06d' % (service.id),
-          course_id: course.id,
-          course_type: course.type,
-          course_name: course.name,
-          course_cover: course.cover,
-          course_guarantee: course.guarantee,
-          seller: course.coach.profile.name,
-          seller_id: course.coach.id,
-          market_price: course.price,
-          selling_price: course.price,
-          address: service.address||'',
-          coordinate: (service.place.lonlat rescue 'POINT(0 0)'),
-          comments_count: 0,
-          orders_count: 0,
-          concerns_count: 0,
-          status: course.status
-      ) if service.present?
+      # Sku.create(
+      #     sku: 'CC'+'-' + '%06d' % course.id + '-' + '%06d' % (service.id),
+      #     course_id: course.id,
+      #     course_type: course.type,
+      #     course_name: course.name,
+      #     course_cover: course.cover,
+      #     course_guarantee: course.guarantee,
+      #     seller: course.coach.profile.name,
+      #     seller_id: course.coach.id,
+      #     market_price: course.price,
+      #     selling_price: course.price,
+      #     address: service.address||'',
+      #     coordinate: (service.place.lonlat rescue 'POINT(0 0)'),
+      #     comments_count: 0,
+      #     orders_count: 0,
+      #     concerns_count: 0,
+      #     status: course.status
+      # ) if service.present?
+      image = CoursePhoto.where(course_id: course.id).map { |photo|
+        photo.photo
+      }
+      course.update(image: image)
     }
   end
 
