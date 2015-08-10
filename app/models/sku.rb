@@ -100,7 +100,7 @@ class Sku < ActiveRecord::Base
   end
 
   def buyers
-    User.where(id: Order.includes(:order_item).where('order_items.sku LIKE ?', sku[0, sku.rindex('-')] + '%').order(id: :desc).limit(5).pluck(:user_id)).map { |user|
+    User.where(id: Order.includes(:order_item).where('order_items.sku LIKE ?', sku[0, sku.rindex('-')] + '%').order(id: :desc).pluck(:user_id)).limit(5).map { |user|
       {
           mxid: user.profile.mxid,
           name: user.profile.name,
