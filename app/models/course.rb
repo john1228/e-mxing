@@ -10,7 +10,7 @@ class Course < ActiveRecord::Base
 
   STATUS = {offline: 0, online: 1}
   GUARANTEE = 1
-  mount_uploaders :image, :ImagesUploader
+  mount_uploaders :image, ImagesUploader
   validates_presence_of :image
 
   def as_json
