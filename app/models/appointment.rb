@@ -34,7 +34,7 @@ class Appointment < ActiveRecord::Base
           #购买时课程单价
           wallet.update(balance: (wallet.balance + course.price*amount), action: WalletLog::ACTIONS['卖课收入'])
         end
-        MessageJob.perform_later(user.id, MESSAGE[:lesson])
+        MessageJob.perform_later(user.id, MESSAGE['lesson'])
         SmsJob.perform_later(lesson.order.contact_phone, SMS['消课'], [sku_course.name, created_at.strftime('%Y%m%d')+'%05d' % id])
       when STATUS[:finish]
 
