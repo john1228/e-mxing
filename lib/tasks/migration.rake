@@ -83,9 +83,8 @@ namespace :migration do
   desc ''
   task :comment => :environment do
     Comment.all.each { |item|
-      image = []
-      CommentImage.where(comment_id: item.id).map { |item| image << item.image }
-      item.update(image: image)
+      image = CommentImage.where(comment_id: item.id).map { |image| image.image }
+      item.update(image: image) if image.present?
     }
   end
 end
