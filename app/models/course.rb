@@ -26,7 +26,7 @@ class Course < ActiveRecord::Base
         intro: intro,
         guarantee: guarantee,
         address: school_addresses,
-        images: images.map { |image| image.thumb.url },
+        images: image.map { |image| image.thumb.url },
         purchased: order_items_count,
         concerns: concerns_count
     }
