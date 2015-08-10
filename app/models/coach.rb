@@ -19,6 +19,11 @@ class Coach<User
     Comment.where(course_id: courses.pluck(:id)).average(:id)
   end
 
+  def comments
+    sku_array = courses.pluck(:id).map { |id| 'CC' + '-' + '%06d' % id + '-' + '%06d' % (service.id) }
+    Comment.where(sku: sku_array)
+  end
+
   def addresses
     if service.blank?
       []
