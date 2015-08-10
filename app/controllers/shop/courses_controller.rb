@@ -3,7 +3,6 @@ module Shop
     before_action :verify_auth_token, only: [:pre_order, :confirm_order]
 
     def index
-      logger.info "所选城市: #{URI.decode(request.headers[:city])}"
       city = URI.decode(request.headers[:city])||'上海'
       filters = {course_type: params[:cat]} if params[:cat].present?
       case params[:sort]
