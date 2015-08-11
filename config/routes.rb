@@ -72,6 +72,7 @@ Rails.application.routes.draw do
   get 'deploy/json' => 'deploy#json'
   get 'deploy/service' => 'deploy#service'
   get 'deploy/city' => 'deploy#city'
+  get 'deploy/online' => 'deploy#online'
   #系统接口
   post 'feedback' => 'system#feedback'
   post 'report' => 'system#report'
@@ -106,6 +107,7 @@ Rails.application.routes.draw do
   get '/admin/coupons/:type/category' => 'admin/coupons#list'
   post '/admin/service_courses/:id/online' => 'admin/service_courses#online', as: :online
   post '/admin/service_courses/:id/offline' => 'admin/service_courses#offline', as: :offline
+  post '/admin/order/:id/user' => 'admin/order#user', as: :order_user
 
 
   get 'download' => 'download#index'

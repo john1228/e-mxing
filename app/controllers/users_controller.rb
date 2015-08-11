@@ -39,6 +39,7 @@ class UsersController < ApiController
     if params[:password].present?
       if @user.password.eql?(Digest::MD5.hexdigest("#{params[:password]}|#{@user.salt}"))
         if @user.update(password: params[:new_password])
+          Rails.cache.write(@user.token, @user.reload)
           render json: {code: 1}
         else
           render json: {code: 0, message: '更新密码失败'}

@@ -10,6 +10,13 @@ ActiveAdmin.register Order do
 
   index do
     column('订单编号', :no)
+    column('卖家') { |order|
+      sku = Sku.find_by(sku: order.order_item.sku)
+      link_to(sku.seller_user.profile.name, order_user_path(sku.seller_id), class: 'fancybox', data: {'fancybox-type' => 'ajax'})
+    }
+    column('买家') { |order|
+      link_to(order.user.profile, order_user_path(sku.seller_id), class: 'fancybox', data: {'fancybox-type' => 'ajax'})
+    }
     column('联系人', :contact_name)
     column('联系电话', :contact_phone)
     column('订单金额', :total)
@@ -37,5 +44,12 @@ ActiveAdmin.register Order do
       end
     }
     column('时间') { |order| order.updated_at.strftime('%Y-%m-%d %H:%M:%S') }
+  end
+
+  controller do
+    def user
+      @user = User.find_by_mxid(params[:id])
+      render layout: false
+    end
   end
 end

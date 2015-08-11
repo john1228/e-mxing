@@ -56,7 +56,7 @@ module Mine
 
     private
     def comment_params
-      params.permit(:content, :prof, :comm, :punc, :space)
+      params.permit(:content)
     end
   end
 end

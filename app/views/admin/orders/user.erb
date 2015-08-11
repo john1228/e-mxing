@@ -1,0 +1,29 @@
+<html>
+<body>
+<div class="panel">
+  <h3>用户信息</h3>
+
+  <div class="panel_contents">
+    <div class="attributes_table">
+      <table border="0" cellspacing="0" cellpadding="0">
+        <tr class="row row-">
+          <th>名字</th>
+          <td><%= @user.profile.name %></td>
+        </tr>
+
+        <tr class="row row-">
+          <th>美型号</th>
+          <td><%= @user.profile.mxid %></td>
+        </tr>
+
+        <tr class="row row-">
+          <th>头像</th>
+          <td><%= image_tag(@user.profile.avatar.thumb.url) %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+</body>
+</html>
+
