@@ -1,4 +1,5 @@
 class Appointment < ActiveRecord::Base
+  default_scope -> { order(id: :desc) }
   belongs_to :coach
   belongs_to :user
   belongs_to :lesson
