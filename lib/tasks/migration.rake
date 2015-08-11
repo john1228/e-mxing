@@ -14,7 +14,7 @@ namespace :migration do
       #     seller_id: course.coach.id,
       #     market_price: course.price,
       #     selling_price: course.price,
-      #     address: service.address||'',
+      #     address: service.profile.address||'',
       #     coordinate: (service.place.lonlat rescue 'POINT(0 0)'),
       #     comments_count: 0,
       #     orders_count: 0,

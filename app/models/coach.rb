@@ -32,7 +32,7 @@ class Coach<User
       [
           {
               id: service.profile.id,
-              venus: service.profile.name,
+              venues: service.profile.name,
               address: service.profile.address
           }
       ]
