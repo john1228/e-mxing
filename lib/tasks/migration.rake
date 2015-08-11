@@ -3,10 +3,18 @@ namespace :migration do
   task :course => :environment do
     Course.all.map { |course|
       service = course.coach.service
-      sku = Sku.find_by(sku: 'CC'+'-' + '%06d' % course.id + '-' + '%06d' % (service.id))
       if service.present?
         image = CoursePhoto.where(course_id: course.id).map { |photo| photo.photo }
         course.update(image: image)
+      else
+        course.destroy
+      end
+    }
+
+    Course.all.map { |course|
+      service = course.coach.service
+      sku = Sku.find_by(sku: 'CC'+'-' + '%06d' % course.id + '-' + '%06d' % (service.id))
+      if service.present?
         if sku.present?
           sku.update(address: service.profile.address, course_cover: course.cover)
         else
@@ -29,10 +37,6 @@ namespace :migration do
               status: course.status
           )
         end
-        image = CoursePhoto.where(course_id: course.id).map { |photo|
-          photo.photo
-        }
-        course.update(image: image)
       else
         course.destroy
       end
