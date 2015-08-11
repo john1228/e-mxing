@@ -19,15 +19,15 @@ module Business
                    courses: @coach.lessons.where('lessons.available > lessons.used and lessons.user_id = ?', user.id).order(exp: :asc)
                )
       end
-
     end
 
-    def attend
-      user = User.find_by_mxid(params[:student])
-      if user.blank?
-        render json: Failure.new('您查看到用户不存在')
-      else
+    def follow
+      begin
+        user = User.find_by_mxid(params[:mxid])
+        Follow.create(service: @coach.service, user: user)
         render json: Success.new
+      rescue Exception => exp
+        render json: Failure.new('关注失败')
       end
     end
   end

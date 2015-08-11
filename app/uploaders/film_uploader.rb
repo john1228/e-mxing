@@ -6,7 +6,7 @@ class FilmUploader < CarrierWave::Uploader::Base
   after :store, :slice
 
   def store_dir
-    "videos/#{model.class.to_s.underscore}"
+    'videos'
   end
 
   def hls
