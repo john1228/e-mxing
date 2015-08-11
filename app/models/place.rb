@@ -6,6 +6,6 @@ class Place < ActiveRecord::Base
   set_rgeo_factory_for_column(:lonlat, RGeo::Geographic.spherical_factory(:srid => 4326))
 
   def as_json
-    user.summary_json.merge(distance: distance)
+    user.summary_json.merge(distance: distance.to_i)
   end
 end
