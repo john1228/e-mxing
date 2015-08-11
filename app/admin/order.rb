@@ -15,7 +15,7 @@ ActiveAdmin.register Order do
       link_to(sku.seller_user.profile.name, order_user_path(sku.seller_id), class: 'fancybox', data: {'fancybox-type' => 'ajax'})
     }
     column('买家') { |order|
-      link_to(order.user.profile, order_user_path(sku.seller_id), class: 'fancybox', data: {'fancybox-type' => 'ajax'})
+      link_to(order.user.profile, order_user_path(order.user_id), class: 'fancybox', data: {'fancybox-type' => 'ajax'})
     }
     column('联系人', :contact_name)
     column('联系电话', :contact_phone)

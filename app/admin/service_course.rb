@@ -1,5 +1,6 @@
 ActiveAdmin.register ServiceCourse do
-  menu label: '商品管理'
+  menu label: '商品', parent: '商品管理'
+
   filter :name, label: '名称'
 
   permit_params :name, :type, :style, :during, :limit_start, :limit_end, :proposal, :exp, :intro, :special, :market_price, :selling_price, :store,
