@@ -216,6 +216,7 @@ Rails.application.routes.draw do
     get 'buyers' => 'buyers#index'
     get '' => 'courses#index'
     get 'courses' => 'courses#show'
+    get 'comments' => 'comments#index'
     post 'courses' => 'courses#pre_order'
     put 'courses' => 'courses#confirm_order'
   end

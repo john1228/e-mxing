@@ -46,7 +46,7 @@ class Sku < ActiveRecord::Base
                   }],
         intro: course.intro,
         special: course.special,
-        service: seller_user.is_a?(Coach) ? seller_user.profile.service : seller_user.service.profile.service,
+        service: seller_user.is_a?(Service) ? seller_user.profile.service : seller_user.service.profile.service,
         buyers: {
             count: orders_count,
             items: buyers
