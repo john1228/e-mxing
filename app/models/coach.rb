@@ -25,10 +25,6 @@ class Coach<User
     Comment.where(sku: sku_array)
   end
 
-  def service
-    service.profile.service
-  end
-
   def addresses
     if service.blank?
       []

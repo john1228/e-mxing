@@ -10,10 +10,6 @@ class Service<User
   has_many :coaches, through: :service_members
   alias_attribute :service_id, :id
 
-  def service
-    profile.service
-  end
-
   private
   def location
     if address.present?
