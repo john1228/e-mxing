@@ -107,7 +107,7 @@ Rails.application.routes.draw do
   get '/admin/coupons/:type/category' => 'admin/coupons#list'
   post '/admin/service_courses/:id/online' => 'admin/service_courses#online', as: :online
   post '/admin/service_courses/:id/offline' => 'admin/service_courses#offline', as: :offline
-  post '/admin/orders/:id/user' => 'admin/orders#user', as: :order_user
+  get '/admin/orders/:id/user' => 'admin/orders#user', as: :order_user
 
 
   get 'download' => 'download#index'
