@@ -1,5 +1,5 @@
 ActiveAdmin.register Order do
-  menu label: '订单', parent: '课程'
+  menu label: '订单', parent: '商品管理'
   config.batch_actions = false
   scope('0-全部', :all, default: true)
   scope('1-已付款', :unprocessed) { |scope| scope.where(status: Order::STATUS[:pay]) }
@@ -15,7 +15,7 @@ ActiveAdmin.register Order do
     column('订单金额', :total)
     column('支付金额', :pay_amount)
     column('支付方式') { |order|
-      case order.pay_type
+      case order.pay_type.to_i
         when 1
           '支付宝'
         when 2
