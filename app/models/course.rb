@@ -47,22 +47,26 @@ class Course < ActiveRecord::Base
 
   private
   def sku_build
-    Sku.destroy_all("sku LIKE 'CC%' and course_id = #{id}")
-    Sku.create(
-        sku: 'CC' + '-' + '%06d' % id + '-' + '%06d' % (coach.service.id),
-        course_id: id,
-        course_type: type,
-        course_name: name,
-        course_cover: cover,
+    if status.eql?(STATUS[:online])
+      Sku.destroy_all("sku LIKE 'CC%' and course_id = #{id}")
+      Sku.create(
+          sku: 'CC' + '-' + '%06d' % id + '-' + '%06d' % (coach.service.id),
+          course_id: id,
+          course_type: type,
+          course_name: name,
+          course_cover: cover,
 
-        seller: coach.profile.name,
-        seller_id: coach.id,
+          seller: coach.profile.name,
+          seller_id: coach.id,
 
-        market_price: price,
-        selling_price: price,
-        address: coach.service.profile.address||'',
-        coordinate: (coach.service.place.lonlat rescue 'POINT(0 0)'),
-        status: 1
-    )
+          market_price: price,
+          selling_price: price,
+          address: coach.service.profile.address||'',
+          coordinate: (coach.service.place.lonlat rescue 'POINT(0 0)'),
+          status: STATUS[:online]
+      )
+    else
+      Sku.where("sku LIKE 'CC%' and course_id = #{id}").update_all(status: STATUS[:offline])
+    end
   end
 end
