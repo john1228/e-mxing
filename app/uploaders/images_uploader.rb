@@ -10,7 +10,7 @@ class ImagesUploader < CarrierWave::Uploader::Base
   end
 
   version :thumb do
-    process :resize_to_fit => [300, 300]
+    process :resize_to_fit => [750, 750]
   end
 
   def filename
