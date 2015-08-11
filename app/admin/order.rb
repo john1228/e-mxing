@@ -48,7 +48,7 @@ ActiveAdmin.register Order do
 
   controller do
     def user
-      @user = User.find_by_mxid(params[:id])
+      @user = User.find_by(id: params[:id])
       render layout: false
     end
   end
