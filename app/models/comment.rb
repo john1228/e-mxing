@@ -6,6 +6,7 @@ class Comment < ActiveRecord::Base
   def as_json
     {
         content: HarmoniousDictionary.clean(content),
+        score: score,
         images: image.map { |item|
           {
               thumb: item.thumb.url,
