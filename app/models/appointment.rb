@@ -9,7 +9,7 @@ class Appointment < ActiveRecord::Base
     sku_course = Sku.find_by(sku: sku)
     {
         id: created_at.strftime('%Y%m%d')+'%05d' % id,
-        course: sku_course.course.name,
+        course: sku_course.course_name,
         student: user.profile.name,
         seller: sku_course.seller,
         amount: amount,
@@ -34,8 +34,8 @@ class Appointment < ActiveRecord::Base
           #购买时课程单价
           wallet.update(balance: (wallet.balance + course.price*amount), action: WalletLog::ACTIONS['卖课收入'])
         end
-        MessageJob.perform_later(user.id, MESSAGE['lesson'])
-        SmsJob.perform_later(lesson.order.contact_phone, SMS['消课'], [sku_course.name, created_at.strftime('%Y%m%d')+'%05d' % id])
+        MessageJob.perform_later(user.id, MESSAGE['消课'] % [sku_course.course_name, created_at.strftime('%Y%m%d')+'%05d' % id])
+        SmsJob.perform_later(lesson.order.contact_phone, SMS['消课'], [sku_course.course_name, created_at.strftime('%Y%m%d')+'%05d' % id])
       when STATUS[:finish]
 
     end
