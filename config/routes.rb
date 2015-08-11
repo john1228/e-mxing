@@ -158,6 +158,7 @@ Rails.application.routes.draw do
     #学员
     get 'students' => 'students#index'
     get 'students/courses' => 'students#courses'
+    post 'students/follow' => 'students#follow'
 
     post 'feedback' => 'system#feedback'
   end
