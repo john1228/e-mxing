@@ -31,7 +31,7 @@ module Shop
     end
 
     def show
-      sku = Sku.find_by(sku: params[:sku])
+      sku = Sku.online.find_by(sku: params[:sku])
       if sku.blank?
         render json: Failure.new('您查看到课程已下架')
       else

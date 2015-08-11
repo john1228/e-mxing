@@ -196,8 +196,7 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/profile/thumb_2015/04/13/69a967d4-9c11-4da6-8b6b-17be3c731773.jpg" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/profile/thumb_2015/04/13/bd9aae27-06f0-46ac-93c0-004ff0b0900d.jpg" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/profile/thumb_2015/06/01/3df5d85a-c35a-4fc4-89d0-86ae82286c07.jpg" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/appointment.rb" afterPath="$PROJECT_DIR$/app/models/appointment.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/course.rb" afterPath="$PROJECT_DIR$/app/models/course.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/shop/courses_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/shop/courses_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/.idea/photo.iml" afterPath="$PROJECT_DIR$/../photo/.idea/photo.iml" />
     </list>
     <ignored path="mxing.iws" />
@@ -316,11 +315,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="course.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="course.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/course.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7352941" vertical-offset="670" max-vertical-offset="1404">
-              <caret line="65" column="32" selection-start-line="65" selection-start-column="32" selection-end-line="65" selection-end-column="32" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="724" max-vertical-offset="1404">
+              <caret line="68" column="5" selection-start-line="68" selection-start-column="5" selection-end-line="68" selection-end-column="55" />
               <folding />
             </state>
           </provider>
@@ -336,11 +335,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="courses_controller.rb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="courses_controller.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/shop/courses_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="18" max-vertical-offset="1710">
-              <caret line="5" column="11" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
+            <state vertical-scroll-proportion="0.15882353" vertical-offset="486" max-vertical-offset="1710">
+              <caret line="33" column="22" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -392,7 +391,6 @@
         <option value="$PROJECT_DIR$/app/jobs/sms_job.rb" />
         <option value="$PROJECT_DIR$/config/deploy_config/sms.yml" />
         <option value="$PROJECT_DIR$/config/initializers/load_config.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/shop/courses_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/admin/services/_form.html.erb" />
         <option value="$PROJECT_DIR$/app/controllers/mine/base_controller.rb" />
         <option value="$PROJECT_DIR$/app/models/concerns/profile_able.rb" />
@@ -408,6 +406,7 @@
         <option value="$PROJECT_DIR$/app/models/place.rb" />
         <option value="$PROJECT_DIR$/app/models/appointment.rb" />
         <option value="$PROJECT_DIR$/app/models/course.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/shop/courses_controller.rb" />
       </list>
     </option>
   </component>
@@ -2896,18 +2895,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/shop/courses_controller.rb">
+    <entry file="file://$PROJECT_DIR$/app/models/course.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1710">
-          <caret line="5" column="11" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="724" max-vertical-offset="1404">
+          <caret line="68" column="5" selection-start-line="68" selection-start-column="5" selection-end-line="68" selection-end-column="55" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/course.rb">
+    <entry file="file://$PROJECT_DIR$/app/controllers/shop/courses_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7352941" vertical-offset="670" max-vertical-offset="1404">
-          <caret line="65" column="32" selection-start-line="65" selection-start-column="32" selection-end-line="65" selection-end-column="32" />
+        <state vertical-scroll-proportion="0.15882353" vertical-offset="486" max-vertical-offset="1710">
+          <caret line="33" column="22" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
           <folding />
         </state>
       </provider>
