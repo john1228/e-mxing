@@ -22,7 +22,7 @@ class Sku < ActiveRecord::Base
         guarantee: course.guarantee,
         market: market_price,
         selling: selling_price,
-        store: store,
+        store: store||-1,
         score: score == 0 ? 4 : score,
         type: course.type,
         style: course.style,
