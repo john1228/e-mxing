@@ -20,7 +20,7 @@ class Lesson < ActiveRecord::Base
 
   def detail
     sku_info = Sku.find_by(sku: sku)
-    {
+    json_hash = {
         id: id,
         course: sku_info.course.name,
         seller: sku_info.seller,
