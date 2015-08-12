@@ -4,7 +4,6 @@ module UserAble
     before_create :build_default_profile
     before_save :encrypted_password
     after_update :update_profile
-    after_destroy :mo
   end
 
   private
