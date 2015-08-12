@@ -16,6 +16,7 @@ module Business
     def update
       begin
         lesson = Lesson.where('? = ANY (code)', params[:code]).take
+        render json: Failure.new('消课失败:错误的消课码') if lesson.present?
         sku = Sku.find_by(sku: lesson.sku)
         if sku.seller_id.eql?(@coach.id)
           appointment = @coach.appointments.new(
@@ -26,7 +27,7 @@ module Business
           if appointment.save
             render json: Success.new
           else
-            render json: Failure.new('消课失败:' +appointment.errors.full_messages.join(';'))
+            render json: Failure.new('消课失败')
           end
         else
           service = Service.find_by(id: sku.seller_id)
@@ -39,14 +40,14 @@ module Business
             if appointment.save
               render json: Success.new
             else
-              render json: Failure.new('消课失败:' +appointment.errors.full_messages.join(';'))
+              render json: Failure.new('消课失败')
             end
           else
             render json: Failure.new('您没有权限消除该课时')
           end
         end
       rescue Exception => exp
-        render json: Failure.new('消课失败:' + exp.message)
+        render json: Failure.new('消课失败')
       end
     end
   end

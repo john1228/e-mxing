@@ -1,7 +1,7 @@
 class Concerned < ActiveRecord::Base
-  belongs_to :course, counter_cache: :concerns_count
   belongs_to :user
   validates_uniqueness_of :user_id, scope: :sku
+  after_create :update_count
 
   def as_json
     sku_info = Sku.find_by(sku: sku)
@@ -15,5 +15,10 @@ class Concerned < ActiveRecord::Base
             }
         }
     )
+  end
+
+  private
+  def update_count
+    Sku.where('sku LIKE ?', sku[0, sku.rindex('-')] + '%').update_all('concerns_count = concerns_count + 1')
   end
 end

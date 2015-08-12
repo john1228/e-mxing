@@ -66,7 +66,7 @@ class Profile < ActiveRecord::Base
         identity: identity,
         age: age.eql?(0) ? 16 : age,
         true_age: age,
-        birthday: birthday||'',
+        birthday: birthday||Date.today.prev_year(16),
         address: address,
 
         target: HarmoniousDictionary.clean(target),

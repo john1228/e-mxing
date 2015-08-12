@@ -6,7 +6,7 @@ class GroupPhoto < ActiveRecord::Base
     {
         no: id,
         thumb: photo.thumb.url,
-        original: photo.large.url
+        original: photo.url
     }
   end
 end
