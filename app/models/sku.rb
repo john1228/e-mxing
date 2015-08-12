@@ -88,7 +88,7 @@ class Sku < ActiveRecord::Base
   end
 
   def image_comments
-    Comment.where.not(image: []).where('sku LIKE ?', sku[0, sku.rindex('-')] + '%').order(id: :desc)
+    Comment.where('sku LIKE ? and array_length(image,1)>0', sku[0, sku.rindex('-')] + '%').order(id: :desc)
   end
 
   def comments

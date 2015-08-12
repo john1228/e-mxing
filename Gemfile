@@ -23,6 +23,7 @@ gem 'faraday'
 gem 'mini_magick'
 gem 'streamio-ffmpeg'
 gem 'sidekiq'
+gem 'sidekiq-status'
 gem 'geokit-rails'
 
 gem 'activeadmin', github: 'gregbell/active_admin'

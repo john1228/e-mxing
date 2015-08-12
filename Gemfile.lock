@@ -259,6 +259,8 @@ GEM
       json
       redis (>= 3.0.6)
       redis-namespace (>= 1.3.1)
+    sidekiq-status (0.5.4)
+      sidekiq (>= 2.7)
     spring (1.3.3)
     sprockets (2.12.3)
       hike (~> 1.2)
@@ -327,6 +329,7 @@ DEPENDENCIES
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
   sidekiq
+  sidekiq-status
   spring
   streamio-ffmpeg
   therubyracer

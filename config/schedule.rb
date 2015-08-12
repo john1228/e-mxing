@@ -14,3 +14,7 @@ every 1.day do
   rake 'rank:month'
 end
 
+every 30.minutes do
+  rake 'course:check'
+end
+
