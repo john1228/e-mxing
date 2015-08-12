@@ -10,14 +10,7 @@ module Mine
     end
 
     def detail
-      render json: Success.new(detail: @user.wallet.wallet_logs.where.not(balance: 0).page(params[:page]||1).map { |log|
-                                 {
-                                     id: log.id,
-                                     action: log.action_name,
-                                     balance: log.balance,
-                                     created: log.created_at.to_i
-                                 }
-                               })
+      render json: Success.new(detail: @user.wallet.wallet_logs.where.not(balance: 0).page(params[:page]||1))
     end
 
     def exchange
