@@ -196,8 +196,8 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/profile/thumb_2015/04/13/69a967d4-9c11-4da6-8b6b-17be3c731773.jpg" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/profile/thumb_2015/04/13/bd9aae27-06f0-46ac-93c0-004ff0b0900d.jpg" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/profile/thumb_2015/06/01/3df5d85a-c35a-4fc4-89d0-86ae82286c07.jpg" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/gallery.rb" afterPath="$PROJECT_DIR$/app/models/gallery.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/.idea/photo.iml" afterPath="$PROJECT_DIR$/../photo/.idea/photo.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/sku.rb" afterPath="$PROJECT_DIR$/app/models/sku.rb" />
     </list>
     <ignored path="mxing.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -255,11 +255,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sku.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="sku.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/sku.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.26986507" vertical-offset="252" max-vertical-offset="2268">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1116" max-vertical-offset="2268">
               <caret line="24" column="24" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="gallery.rb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/models/gallery.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.026470589" vertical-offset="0" max-vertical-offset="680">
+              <caret line="1" column="30" selection-start-line="1" selection-start-column="30" selection-end-line="1" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -325,16 +335,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="routes.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/routes.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3694" max-vertical-offset="4374">
-              <caret line="97" column="21" selection-start-line="97" selection-start-column="19" selection-end-line="97" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Gemfile" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Gemfile">
           <provider selected="true" editor-type-id="text-editor">
@@ -389,7 +389,6 @@
         <option value="$PROJECT_DIR$/db/migrate/20150811123711_create_follows.rb" />
         <option value="$PROJECT_DIR$/app/admin/service_course.rb" />
         <option value="$PROJECT_DIR$/app/views/admin/services/transfer.html.erb" />
-        <option value="$PROJECT_DIR$/app/models/gallery.rb" />
         <option value="$PROJECT_DIR$/app/controllers/concerns/find_manager.rb" />
         <option value="$PROJECT_DIR$/app/views/admin/services/withdraw.html.erb" />
         <option value="$PROJECT_DIR$/app/models/lesson.rb" />
@@ -407,6 +406,7 @@
         <option value="$PROJECT_DIR$/app/uploaders/activity_cover_uploader.rb" />
         <option value="$PROJECT_DIR$/app/jobs/message_job.rb" />
         <option value="$PROJECT_DIR$/app/models/sku.rb" />
+        <option value="$PROJECT_DIR$/app/models/gallery.rb" />
       </list>
     </option>
   </component>
@@ -2274,14 +2274,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/gallery.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="680">
-          <caret line="0" column="6" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/concerns/find_manager.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1728" max-vertical-offset="2826">
@@ -2652,8 +2644,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/sku.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.26986507" vertical-offset="252" max-vertical-offset="2268">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1116" max-vertical-offset="2268">
           <caret line="24" column="24" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/gallery.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.026470589" vertical-offset="0" max-vertical-offset="680">
+          <caret line="1" column="30" selection-start-line="1" selection-start-column="30" selection-end-line="1" selection-end-column="30" />
           <folding />
         </state>
       </provider>
