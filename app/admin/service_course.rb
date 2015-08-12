@@ -16,6 +16,11 @@ ActiveAdmin.register ServiceCourse do
     column { |course| "#{course.during}分钟" }
     column(:proposal)
     column { |course| "#{course.exp}天" }
+    column('关联机构') { |course|
+      skus = Sku.where('sku LIKE ?', 'SC'+'-' + '%06d' % course.id + '%')
+      sellers = skus.map { |sku| [sku.seller_user.profile.mxid, sku.seller_user.profile.name] }
+      sellers.join('|')
+    }
     actions do |course|
       if course.status.eql?(1)
         link_to '下架', offline_path(course), method: :post

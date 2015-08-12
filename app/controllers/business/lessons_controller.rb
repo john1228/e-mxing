@@ -1,7 +1,6 @@
 module Business
   class LessonsController < BaseController
     def index
-
       render json: Success.new(
                  lessons: @coach.appointments.order(created_at: :desc).page(params[:page]||1)
              )

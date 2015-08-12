@@ -21,5 +21,6 @@ class CreateServiceCourses < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+    rename_column :service_courses,:info,:intro
   end
 end
