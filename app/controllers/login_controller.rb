@@ -30,7 +30,7 @@ class LoginController < ApplicationController
         if user.nil?
           user = User.new(
               mobile: SecureRandom.uuid, sns: sns_key, name: user_info['nickname'], avatar: user_info['figureurl_qq_1'],
-              birthday: "#{user_info['figureurl_qq_1']}", gender: user_info['gender'].eql?('男') ? 0 : 1
+              birthday: "#{user_info['figureurl_qq_1']}", gender: user_info['gender'].eql?('男') ? 0 : 1, new: 1
           )
           user.save
         end
@@ -52,7 +52,7 @@ class LoginController < ApplicationController
         if user.nil?
           user = User.new(
               mobile: SecureRandom.uuid, sns: sns_key, name: user_info['nickname'], avatar: user_info['headimgurl'],
-              signature: '', gender: user_info['sex'].eql?('1') ? 0 : 1, address: "#{user_info['province']}#{user_info['city']}"
+              signature: '', gender: user_info['sex'].eql?('1') ? 0 : 1, address: "#{user_info['province']}#{user_info['city']}", new: 1
           )
           user.save
         end
@@ -71,7 +71,7 @@ class LoginController < ApplicationController
         if user.nil?
           user = User.new(
               mobile: SecureRandom.uuid, sns: sns_key, name: user_info['screen_name'], avatar: user_info['avatar_hd'],
-              signature: user_info['description'], gender: user_info['gender'].eql?('m') ? 0 : 1, address: user_info['location']
+              signature: user_info['description'], gender: user_info['gender'].eql?('m') ? 0 : 1, address: user_info['location'], new: 1
           )
           user.save
         end
