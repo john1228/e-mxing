@@ -13,7 +13,7 @@
         </tr>
         <tr>
           <td></td>
-          <td><%= submit_tag('提交') %></td>
+          <td><%= submit_tag('提交',data: {disable_with: '提交中...'}) %></td>
         </tr>
       </table>
   <% end %>

@@ -33,6 +33,12 @@ class Lesson < ActiveRecord::Base
         address: sku_info.related_sellers,
         qr_code: code
     }
+    if sku_info.course.has_attribute?(:limit_start)&&sku_info.course.limit_start.present?
+      json_hash = json_hash.merge(class_time: sku_info.course.limit_start.strftime('%m月%d日 %H:%M') + '-'+ sku_info.course.limit_end.strftime('%H:%M'))
+    else
+      json_hash = json_hash.merge(class_time: '')
+    end
+    json_hash
   end
 
   private

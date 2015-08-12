@@ -1,5 +1,5 @@
 ﻿<div class="panel">
-  <h3>详细资料</h3>
+  <h3>提现</h3>
   <%= form_tag(service_withdraw_path(@service), remote: true) do %>
       <table style='padding: 20px'>
         <tr>
@@ -17,7 +17,8 @@
         <tr>
           <td></td>
           <td>
-            <%= submit_tag('提交') %></td>
+            <%= submit_tag('提交', data: {disable_with: '提交中...'}) %>
+          </td>
         </tr>
       </table>
   <% end %>
