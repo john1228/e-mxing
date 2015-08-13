@@ -25,7 +25,7 @@ class CaptchaController < ApplicationController
       SmsJob.perform_now(params[:mobile], SMS['验证码'], ["#{captcha}", '30'])
       mobile_token = Digest::MD5.hexdigest(params[:mobile])
       Rails.cache.write(mobile_token, {action: 'change', mobile: params[:mobile], captcha: captcha}, expires_in: 30.minutes)
-      render Success.new(token: mobile_token)
+      render json: Success.new(token: mobile_token)
     end
   end
 
