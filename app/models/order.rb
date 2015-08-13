@@ -13,7 +13,6 @@ class Order < ActiveRecord::Base
   PAY_TYPE = {alipay: 1, webchat: 2, jd: 3}
   alias_attribute :coupon, :coupons
 
-  Time.parse
   private
   def detect_params
     self.no = "#{Time.now.to_i}#{user_id}#{%w'0 1 2 3 4 5 6 7 8 9'.sample(3).join('')}"
