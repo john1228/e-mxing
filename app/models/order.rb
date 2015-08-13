@@ -119,7 +119,7 @@ class Order < ActiveRecord::Base
           wallet = Wallet.find_or_create_by(user_id: sku_info.seller_id)
           wallet.update(balance: (wallet.balance + total), action: WalletLog::ACTIONS['卖课收入']) unless course.guarantee.eql?(Course::GUARANTEE)
         end
-
+        Sku.where('sku LIKE ?', order_item.sku[0, order_item.sku.rindex('-')] + '%').update_all('orders_count =  orders_count + 1')
       #结算
       when STATUS[:cancel]
         sku_info = Sku.find_by(sku: order_item.sku)
