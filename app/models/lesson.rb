@@ -35,9 +35,12 @@ class Lesson < ActiveRecord::Base
     }
     if sku_info.course.has_attribute?(:limit_start)&&sku_info.course.limit_start.present?
       json_hash = json_hash.merge(
-          class_time: "上课时间: #{sku_info.course.limit_start.strftime('%Y年%m月%d日 %H:%M')}
-至
-#{sku_info.course.limit_end.strftime('%Y年%m月%d日 %H:%M')}")
+          class_time:
+              {
+                  start: sku_info.course.limit_start.strftime('%Y-%m-%d %H:%M'),
+                  end: sku_info.course.limit_start.strftime('%Y-%m-%d %H:%M')
+              }
+      )
     else
       json_hash = json_hash.merge(class_time: '')
     end
