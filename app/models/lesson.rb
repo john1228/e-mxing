@@ -38,7 +38,7 @@ class Lesson < ActiveRecord::Base
           class_time:
               {
                   start: sku_info.course.limit_start.strftime('%Y-%m-%d %H:%M'),
-                  end: sku_info.course.limit_start.strftime('%Y-%m-%d %H:%M')
+                  end: sku_info.course.limit_end.strftime('%Y-%m-%d %H:%M')
               }
       )
     else
