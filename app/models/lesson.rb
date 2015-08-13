@@ -42,7 +42,7 @@ class Lesson < ActiveRecord::Base
               }
       )
     else
-      json_hash = json_hash.merge(class_time: '')
+      json_hash = json_hash.merge(class_time: {start: '', end: ''})
     end
     json_hash
   end
