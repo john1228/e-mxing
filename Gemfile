@@ -8,6 +8,8 @@ gem 'coffee-rails', '~> 4.0.0'
 
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+gem 'jquery-timepicker-addon-rails'
+
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
@@ -18,6 +20,7 @@ gem 'therubyracer'
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem 'devise'
 gem 'puma'
+
 
 gem 'faraday'
 gem 'mini_magick'
@@ -35,6 +38,7 @@ gem 'ckeditor', github: 'galetahub/ckeditor'
 gem 'cancan'
 gem 'bootstrap-sass'
 gem 'bootstrap-multiselect-rails'
+gem 'bootstrap-datetimepicker-rails'
 
 gem 'pg', '0.18.1'
 gem 'rgeo'

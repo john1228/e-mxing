@@ -57,7 +57,7 @@
         <label class="col-sm-2 control-label" for="service_address">开始时间</label>
 
         <div class="col-sm-10">
-          <%= f._field :limit_start, class: 'form-control', placeholder: "请输入课程允许的上课的开始时间,格式: #{Time.now.strftime('%Y-%m-%d %H:%M')}" %>
+          <%= f.text_field :limit_start, class: 'datetimepicker' %>
         </div>
       </div>
 
@@ -65,7 +65,7 @@
         <label class="col-sm-2 control-label" for="service_address">结束时间</label>
 
         <div class="col-sm-10">
-          <%= f.text_field :limit_end, class: 'form-control', placeholder: "请输入课程的结束时间,格式: #{Time.now.strftime('%Y-%m-%d %H:%M')}" %>
+          <%= f.text_field :limit_end, class: 'datetimepicker' %>
         </div>
       </div>
 

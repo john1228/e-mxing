@@ -7,6 +7,8 @@
 // For example, to change the sidebar width:
 // $sidebar-width: 242px;
 // Active Admin's got SASS!
+//= require jquery-ui
+//= require jquery-ui-timepicker-addon.css
 $skinActiveColor: orangered;
 $skinHeaderBck: black;
 $panelHeaderBck: orangered;
@@ -16,7 +18,6 @@ $panelHeaderBck: orangered;
 @import "active_admin/base";
 @import "active_skin";
 @import "fancybox";
-//= require jquery-ui
 // Overriding any non-variable SASS must be done after the fact.
 // For example, to change the default status-tag color:
 //
