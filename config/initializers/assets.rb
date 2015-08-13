@@ -12,6 +12,7 @@ Rails.application.config.assets.precompile += %w(service.css
  style.css
  share/service.css
  share/dynamic.css
+ share/course.css
  share/mini.css
  share/mobile.css
 

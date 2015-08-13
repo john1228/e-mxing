@@ -1,4 +1,6 @@
+'验证码':
+   templateid: '12107'
 '订单':
-   templateid: 24351
+   templateid: '24351'
 '消课':
-   templateid: 30013
+   templateid: '30013'

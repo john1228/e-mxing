@@ -119,6 +119,7 @@ Rails.application.routes.draw do
 
   get 'share/:id/dynamics' => 'share#dynamic'
   get 'share/:id/service' => 'share#service'
+  get 'share/:id/course' => 'share#course'
 
   root 'home#index'
 

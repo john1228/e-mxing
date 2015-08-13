@@ -31,4 +31,9 @@ class ShareController < ApplicationController
     @courses = Course.where(status: Course::STATUS[:online], coach_id: @service.coaches.pluck(:id)).take(4)
     render layout: false
   end
+
+
+  def course
+    render layout: false
+  end
 end

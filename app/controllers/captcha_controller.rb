@@ -7,7 +7,7 @@ class CaptchaController < ApplicationController
     user = User.find_by(mobile: params[:mobile])
     if user.nil?
       captcha = generate_captcha
-      send_sms(params[:mobile], captcha)
+      SmsJob.perform_now(params[:mobile], SMS['验证码'], ["#{captcha}", '30'])
       mobile_token = Digest::MD5.hexdigest(params[:mobile])
       Rails.cache.write(mobile_token, {action: 'regist', mobile: params[:mobile], captcha: captcha}, expires_in: 30.minutes)
       render json: Success.new({token: mobile_token})
@@ -19,19 +19,13 @@ class CaptchaController < ApplicationController
   def change
     user = User.find_by(mobile: params[:mobile])
     if user.nil?
-      render json: {
-                 code: 0,
-                 message: '该号码还未注册'
-             }
+      render json: Failure.new('该号码还未注册')
     else
       captcha = generate_captcha
-      send_sms(params[:mobile], captcha)
+      SmsJob.perform_now(params[:mobile], SMS['验证码'], ["#{captcha}", '30'])
       mobile_token = Digest::MD5.hexdigest(params[:mobile])
       Rails.cache.write(mobile_token, {action: 'change', mobile: params[:mobile], captcha: captcha}, expires_in: 30.minutes)
-      render json: {
-                 code: 1,
-                 data: {token: mobile_token}
-             }
+      render Success.new(token: mobile_token)
     end
   end
 
@@ -40,11 +34,11 @@ class CaptchaController < ApplicationController
     user = User.find_by(mobile: params[:mobile])
     if user.nil?
       captcha = generate_captcha
-      send_sms(params[:mobile], captcha)
+      SmsJob.perform_now(params[:mobile], SMS['验证码'], ["#{captcha}", '30'])
       Rails.cache.write("#{@user.id}_binding", {action: 'binding', mobile: params[:mobile], captcha: captcha}, expires_in: 30.minutes)
-      render json: {code: 1}
+      render json: Success.new
     else
-      render json: {code: 0, message: '该号码已绑定'}
+      render json: Failure.new('该号码已绑定')
     end
   end
 

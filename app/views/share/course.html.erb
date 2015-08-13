@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>课程详情</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0, user-scalable=0">
+  <meta content="yes" name="apple-mobile-web-app-capable">
+  <meta content="black" name="apple-mobile-web-app-status-bar-style">
+  <meta content="telephone=no" name="format-detection">
+  <%= stylesheet_link_tag 'share/course' %>
+</head>
+<body>
+
+<a class="downtoad" href="#">
+  <button id="download-button"></button>
+</a>
+
+<!-- 代码 开始 -->
+<div class="container-fluid text-center">
+  <div class="header"><%= image_tag('', 'data-slideshow' => '', 'class' => 'headerImg') %></div>
+  <div class="toix-txt">
+    <div class="toix-pocx">美形担保</div>
+    <div class="toix-jg">
+      <p class="lrs-l"><span class="dopoci">10</span>元 <span class="tpci">268元</span></p>
+    </div>
+  </div>
+</div>
+<div class="Product">
+  <h1>初级燃脂自由器械</h1>
+
+  <h2>1.5<samp class="Score Score-3"></samp></h2>
+
+  <div class="Introduction">
+    <ul>
+      <li>1V1</li>
+      <li>10课时</li>
+      <li>瑜伽</li>
+    </ul>
+    <samp class="clear"></samp></div>
+  <div class="adtre">
+    <a href="#" class="Address-Headportrait"> <samp class="Headportrait"><img src="img/icon.png" alt=""/></samp>
+      <samp class="Name">李晶晶-上海兆钧健身徐汇店</samp></a>
+    <a href="#" class="address"><samp class="Arrow"></samp>徐汇区中山西路2368号华鼎大厦南楼2层</a>
+
+    <div class="Time">
+      <ul>
+        <li>
+          <div class="Time-tie"><samp class="Time-pol">10:30</samp><samp class="tdeqa">2015</samp></div>
+          <div class="Time-teu">有效期截止</div>
+        </li>
+        <li>
+          <div class="Time-tie"><samp class="Time-pol">120</samp><samp class="tdeqa">分钟</samp></div>
+          <div class="Time-teu">课程时长</div>
+        </li>
+        <samp class="clear"></samp>
+      </ul>
+      <samp class="clear"></samp></div>
+  </div>
+</div>
+<div class="Coursecontent">
+  <h1>课程内容</h1>
+  <h4>课程内容是指各门学科中特定的事实、观点、原理和问题及其处理方式，它是学习的对象，它源于社会文化，并随着社会文化的发展而不断发展变化。基于课程内容的整合，以传播；
+    <div id="content" class="Coursecontent-txt" style="display: none;">三是信息技术并非万能技术，还需要为那些无法用信息技术来表达的内容保留必要的空间．比如缄默知识或意会知识。</div>
+    <a id="toggle" class="Clicktriangle"><img src="" class="fpofdt"></a></h4>
+</div>
+<div class="Coursecontent">
+  <h1>特殊说明</h1>
+  <h4>我是特殊说明、观点、原理和问题及其处理方式，它是学习的对象，它源于社会文化，并随着社会文化的发展而不断发展变化。 </h4>
+</div>
+<div class="Equipment">
+  <ul>
+    <li><img src="img/Parking-a.png" alt=""/></li>
+    <li><img src="img/Restauranticon-a.png" alt=""/></li>
+    <li><img src="img/Wifiicon-a.png" alt=""/></li>
+    <li><img src="img/Showericon.png" alt=""/></li>
+  </ul>
+</div>
+<div class="Purchase"><samp class="Purchase-Buy">已购：100/100</samp> <a href="#"><img src="img/icon.png" alt=""/></a>
+  <a href="#"><img src="img/icon.png" alt=""/></a> <a href="#"><img src="img/icon.png" alt=""/></a>
+  <a href="#"><img src="img/icon.png" alt=""/></a> <samp class="Arrow arltop"></samp> <samp class="clear"></samp></div>
+<div class="Number"><samp class="Arrow Numbertop"></samp>6710个美形</div>
+<div class="Recommend"><a href="#">
+  <div class="Recommend-txt">
+    <h1 class="Recommend-txt-top"><samp><img src="images/i.jpg" alt=""/></samp>
+
+      <div class="Recommend-txt-tx"><img src="img/icon.png" alt=""/></div>
+    </h1>
+    <h2 class="poir">我爱健身</h2>
+
+    <h3 class="pxco"><samp class="Score Score-3"></samp></h3>
+
+    <div class="mend-txt">24小时滚动报道国内、国际及社会新闻。每日编发...</div>
+  </div>
+</a> <a href="#">
+  <div class="Recommend-txt">
+    <h1 class="Recommend-txt-top"><samp><img src="images/i.jpg" alt=""/></samp>
+
+      <div class="Recommend-txt-tx"><img src="img/icon.png" alt=""/></div>
+    </h1>
+    <h2 class="poir">我爱健身</h2>
+
+    <h3 class="pxco"><samp class="Score Score-3"></samp></h3>
+
+    <div class="mend-txt">24小时滚动报道国内、国际及社会新闻。每日编发...</div>
+  </div>
+</a>
+
+  <p class="clear"></p>
+</div>
+<div class="foot"><a class="foot-Call" href="#">联系我们</a> <a class="foot-Buy" href="#">立即购买</a></div>
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.hammer-full.min.js"></script>
+<script src="js/plugin.js"></script>
+<script src="js/lrtk.js"></script>
+<script>
+    $(".slide").click(function () {
+        var index = $(this).attr('index');
+        if (index === undefined) {
+            window.open(links[0]);
+        } else {
+            window.open(links[(parseInt(index) + 1)]);
+        }
+    });
+</script>
+</body>
+</html>
