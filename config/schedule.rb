@@ -5,7 +5,6 @@ every 1.day do
   rake 'st:online'
   rake 'mob:access_token'
 end
-
 every 1.hour do
   rake 'rank:week'
 end
