@@ -11,8 +11,7 @@ ActiveAdmin.register Order do
   filter :pay_type, label: '支付方式', as: :select, collection: Order::PAY_TYPE
   filter :service_id, label: '服务号'
   filter :coach_id, label: '私教'
-
-  action :index, :show
+  actions :index, :show
 
   index do
     column('订单编号', :no)
