@@ -1,7 +1,7 @@
 namespace :migration do
   desc '课程转移'
   task :course => :environment do
-    ids = Sku.where('sku LIKE ?', 'CC%').pluck(:course_id)
+    ids = Course.where(image: [])
     Course.where.not(id: ids).map { |course|
       service = course.coach.service
       if service.present?
@@ -40,6 +40,12 @@ namespace :migration do
 
   desc '订单转移'
   task :order => :environment do
+    Order.where(service_id: nil).map { |order|
+      if order.coach.present? && order.coach.service.present?
+        order.update(service_id: order.coach.service.id, updated_at: order.updated_at)
+      end
+    }
+
     OrderItem.where(sku: nil).map { |item|
       sku = Sku.find_by(course_id: item.course_id)
       if sku.present?
