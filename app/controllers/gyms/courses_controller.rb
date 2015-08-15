@@ -3,7 +3,7 @@ module Gyms
     def index
       if params[:version].present?
         render json: Success.new(
-                   courses: Sku.online.where(seller_id: @coach.id).where("sku LIKE 'CC%'").order(id: :desc).page(params[:page]||1)
+                   courses: Sku.where(seller_id: @coach.id).where("sku LIKE 'CC%'").order(id: :desc).page(params[:page]||1)
                )
       else
         render json: Success.new(

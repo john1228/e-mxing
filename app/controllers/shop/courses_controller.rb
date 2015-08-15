@@ -7,22 +7,22 @@ module Shop
       filters = {course_type: params[:cat]} if params[:cat].present?
       case params[:sort]
         when 'smart'
-          courses = Sku.online.select("skus.*, st_distance(skus.coordinate, 'POINT(#{params[:lng]} #{params[:lat]})') as distance").
+          courses = Sku.select("skus.*, st_distance(skus.coordinate, 'POINT(#{params[:lng]} #{params[:lat]})') as distance").
               where('address Like ?', city + '%').where(filters).order('distance asc').page(params[:page]||1)
         when 'fresh-asc'
-          courses = Sku.online.select("skus.*, st_distance(skus.coordinate, 'POINT(#{params[:lng]} #{params[:lat]})') as distance").
+          courses = Sku.select("skus.*, st_distance(skus.coordinate, 'POINT(#{params[:lng]} #{params[:lat]})') as distance").
               where('address Like ?', city + '%').where(filters).order(updated_at: :desc).page(params[:page]||1)
         when 'distance-asc'
-          courses = Sku.online.select("skus.*, st_distance(skus.coordinate, 'POINT(#{params[:lng]} #{params[:lat]})') as distance").
+          courses = Sku.select("skus.*, st_distance(skus.coordinate, 'POINT(#{params[:lng]} #{params[:lat]})') as distance").
               where('address Like ?', city + '%').where(filters).order('distance asc').page(params[:page]||1)
         when 'evaluate-asc'
-          courses = Sku.online.select("skus.*, st_distance(skus.coordinate, 'POINT(#{params[:lng]} #{params[:lat]})') as distance").
+          courses = Sku.select("skus.*, st_distance(skus.coordinate, 'POINT(#{params[:lng]} #{params[:lat]})') as distance").
               where('address Like ?', city + '%').where(filters).order(orders_count: :desc).page(params[:page]||1)
         when 'price-asc'
-          courses = Sku.online.select("skus.*, st_distance(skus.coordinate, 'POINT(#{params[:lng]} #{params[:lat]})') as distance").
+          courses = Sku.select("skus.*, st_distance(skus.coordinate, 'POINT(#{params[:lng]} #{params[:lat]})') as distance").
               where('address Like ?', city + '%').where(filters).order(selling_price: :asc).page(params[:page]||1)
         when 'price-desc'
-          courses = Sku.online.select("skus.*, st_distance(skus.coordinate, 'POINT(#{params[:lng]} #{params[:lat]})') as distance").
+          courses = Sku.select("skus.*, st_distance(skus.coordinate, 'POINT(#{params[:lng]} #{params[:lat]})') as distance").
               where('address Like ?', city + '%').where(filters).order(selling_price: :desc).page(params[:page]||1)
         else
           courses = []
@@ -31,7 +31,7 @@ module Shop
     end
 
     def show
-      sku = Sku.online.find_by(sku: params[:sku])
+      sku = Sku.find_by(sku: params[:sku])
       if sku.blank?
         render json: Failure.new('您查看到课程已下架')
       else
