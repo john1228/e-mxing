@@ -1,5 +1,7 @@
 class Sku < ActiveRecord::Base
   scope :online, -> { where(status: 1) }
+  scope :recommended, -> { joins(:recommend) }
+  has_one :recommend, -> { where(type: Recommend::TYPE[:course]) }, foreign_key: :recommended_id
 
   def as_json
     {

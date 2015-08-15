@@ -7,10 +7,16 @@ ActiveAdmin.register Order do
   filter :no, label: '订单号'
   filter :contact_name, label: '联系人'
   filter :contact_phone, label: '联系电话'
+  filter :created_at, label: '订单日期'
+  filter :pay_type, label: '支付方式', as: :select, collection: Order::PAY_TYPE
+  filter :service_id, label: '服务号'
+  filter :coach_id, label: '私教'
+
+  action :index, :show
 
   index do
     column('订单编号', :no)
-    column('卖家') { |order|
+    column('服务号') { |order|
       sku = Sku.find_by(sku: order.order_item.sku)
       link_to(sku.seller_user.profile.name, order_user_path(sku.seller_id), class: 'fancybox', data: {'fancybox-type' => 'ajax'})
     }

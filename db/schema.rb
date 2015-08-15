@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150811123711) do
+ActiveRecord::Schema.define(version: 20150814073327) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -504,6 +504,7 @@ ActiveRecord::Schema.define(version: 20150811123711) do
     t.string   "status"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
+    t.integer  "service_id"
   end
 
   create_table "overviews", force: :cascade do |t|
@@ -548,6 +549,14 @@ ActiveRecord::Schema.define(version: 20150811123711) do
   end
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
+
+  create_table "recommends", force: :cascade do |t|
+    t.integer  "type"
+    t.integer  "recommended_id"
+    t.text     "recommended_tip"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
 
   create_table "reports", force: :cascade do |t|
     t.integer  "report_type"

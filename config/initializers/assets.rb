@@ -7,7 +7,7 @@ Rails.application.config.assets.precompile += %w(service.css
  webchat/webim.css
  webchat/bootstrap.css
  wap/wap.css
- web/web.css
+ home/style.css
  home/home.js
  style.css
  share/service.css
@@ -18,6 +18,11 @@ Rails.application.config.assets.precompile += %w(service.css
 
  home/jquery.touchSlider.js
  home/jquery-1.7.1.min.js
+ home/homeban.js
+ home/plus2015.js
+ home/stellar.js
+ home/home.js
+
  webchat/bootstrap.js
  webchat/easemob.im-1.0.5.js
  webchat/jquery-1.11.1.js

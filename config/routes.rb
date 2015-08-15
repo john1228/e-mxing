@@ -80,6 +80,7 @@ Rails.application.routes.draw do
   get 'home/index' => 'home#index'
   get 'home/about' => 'home#about'
   get 'home/dynamic' => 'home#dynamic'
+  get 'home/dynamic/:id' => 'home#detail'
   get 'home/contact' => 'home#contact'
   get 'home/join' => 'home#join'
 
@@ -108,6 +109,14 @@ Rails.application.routes.draw do
   post '/admin/service_courses/:id/online' => 'admin/service_courses#online', as: :online
   post '/admin/service_courses/:id/offline' => 'admin/service_courses#offline', as: :offline
   get '/admin/orders/:id/user' => 'admin/orders#user', as: :order_user
+  #推荐私教
+  get '/admin/coaches/:id/recommend' => 'admin/coaches#recommend', as: :recommend_coach
+  post '/admin/coaches/:id/recommend' => 'admin/coaches#recommend_result', as: :submit_recommend_coach, defaults: {format: 'js'}
+  delete '/admin/coaches/:id/recommend' => 'admin/coaches#cancel_recommend', as: :cancel_recommend_coach
+  #推荐课程
+  get '/admin/skus/:id/recommend' => 'admin/skus#recommend', as: :recommend_course
+  post '/admin/skus/:id/recommend' => 'admin/skus#recommend_result', as: :submit_recommend_course, defaults: {format: 'js'}
+  delete '/admin/skus/:id/recommend' => 'admin/skus#cancel_recommend', as: :cancel_recommend_course
 
 
   get 'download' => 'download#index'
@@ -223,6 +232,7 @@ Rails.application.routes.draw do
     get 'comments' => 'comments#index'
     post 'courses' => 'courses#pre_order'
     put 'courses' => 'courses#confirm_order'
+    get 'recommends/:type' => 'recommends#index'
   end
   #数据上传
   post 'active' => 'upload#active'

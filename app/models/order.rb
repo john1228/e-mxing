@@ -5,8 +5,10 @@ class Order < ActiveRecord::Base
   scope :unpay, -> { where(status: STATUS[:unpay]) }
   scope :pay, -> { where(status: STATUS[:pay]) }
   belongs_to :user
+  belongs_to :service
   belongs_to :coach
   has_one :order_item, dependent: :destroy
+
   has_many :lessons, dependent: :destroy
   attr_accessor :item, :sku, :amount
   STATUS = {delete: -1, cancel: 0, unpay: 1, pay: 2, complete: 4}
@@ -83,7 +85,8 @@ class Order < ActiveRecord::Base
       user.wallet.update(coupons: (user_coupons-use_coupons), action: WalletLog::ACTIONS['消费'])
     end
     #TODO:美型豆使用
-    self.coach = course.coach if course.is_a?(Course)
+    self.service = course.is_a?(ServiceCourse) ? sku_info.seller_id : course.coach.service.id
+    self.coach = sku_info.seller_id if course.is_a?(Course)
     self.pay_amount = total_price >0 ? total_price : 0
     if pay_amount>0
       self.status = STATUS[:unpay]

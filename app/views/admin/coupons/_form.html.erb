@@ -15,6 +15,7 @@
           <%= f.text_field(:name, class: 'form-control', placeholder: '请输入优惠券名称') %>
         </div>
       </div>
+      <!--
       <div class="form-group form-group-sm">
         <label class="col-sm-2 control-label" for="service_interests">适用种类:</label>
 
@@ -22,6 +23,8 @@
           <%= f.select(:limit_category, [['通用', 1], ['机构', 2], ['私教', 3], ['课程', 4]]) %>
         </div>
       </div>
+      -->
+      <!--
       <div class="form-group form-group-sm">
         <label class="col-sm-2 control-label" for="service_interests">适用:</label>
 
@@ -29,8 +32,9 @@
           <%= f.select(:limit_ext, []) %>
         </div>
       </div>
+      -->
       <div class="form-group form-group-sm">
-        <label class="col-sm-2 control-label" for="service_interests">抵价金额:</label>
+        <label class="col-sm-2 control-label" for="service_interests">抵扣金额:</label>
 
         <div class="col-sm-10">
           <%= f.text_field(:discount, class: 'form-control', placeholder: '请输入优惠券优惠的金额') %>

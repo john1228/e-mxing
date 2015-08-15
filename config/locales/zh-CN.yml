@@ -34,6 +34,7 @@
         track: '轨迹'
         withdraw: '提现'
         service_course: '体验课'
+        sku: '课程'
       attributes:
         service_course:
           name: '名称'
@@ -42,3 +43,13 @@
           during: '课程时长'
           proposal: '建议课时'
           exp: '有效期'
+        sku:
+          course_name: '课程名'
+          course_cover: '封面'
+          market_price: '市场价'
+          selling_price: '售价'
+          store: '库存'
+          limit: '限购'
+          seller: '卖家'
+          address: '卖家地址'
+

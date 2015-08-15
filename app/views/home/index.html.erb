@@ -1,43 +1,142 @@
-<div class="header">
-  <div class="logo"><a href="#">美型网</a></div>
-  <ul class="nav">
-    <li><%= link_to('首页', {controller: :home, action: :index}, class: 'cur') %></li>
-    <li><%= link_to('关于美型', {controller: :home, action: :about}) %> <i></i></li>
-    <li><%= link_to('美型动态', {controller: :home, action: :dynamic}) %> <i></i></li>
-    <li><%= link_to('联系我们', {controller: :home, action: :contact}) %><i></i></li>
-    <li><%= link_to('加入我们', {controller: :home, action: :join}) %> <i></i></li>
-  </ul>
-  <div class="clear"></div>
-</div>
-<div class="banner">
-  <div class="main_visual">
-    <div class="visual">
-      <div class="flicking_con">
-        <div class="flicking_inner">
-          <a href="javascript:void(0)">1</a>
-          <a href="javascript:void(0)">2</a>
-          <a href="javascript:void(0)">3</a>
-        </div>
-      </div>
-      <div class="main_image">
-        <ul>
-          <li class="image_fst"></li>
-          <li class="image_mid"></li>
-          <li class="image_lst"></li>
-        </ul>
-        <a href="javascript:" id="btn_prev"></a>
-        <a href="javascript:" id="btn_next"></a>
-      </div>
-    </div>
-    <div class="code">
-      <%= image_tag('web/code.png') %><br>手机扫描直接下载
-    </div>
-    <div class="dow"><a id="mm_downloads_rightnow" href="#mm_downloads">立即下载</a></div>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <%= stylesheet_link_tag 'home/style' %>
+  <%= javascript_include_tag 'home/jquery-1.7.1.min',
+                             'home/homeban',
+                             'home/jquery.touchSlider',
+                             'home/plus2015',
+                             'home/stellar' %>
+  <title>美于型|健于身</title>
+</head>
+<body>
+<div class="header" id="topbar">
+  <div class="headercon">
+    <div class="logo"><a href="#">美型网－美于身 健于型</a></div>
+    <ul class="nav">
+      <li class="cur"><%= link_to('首页', '/home/index') %></li>
+      <li><%= link_to('关于我们', '/home/about') %></li>
+      <li><%= link_to('动态', '/home/dynamic') %></li>
+      <li><%= link_to('商务合作', '/home/contact') %></li>
+      <li><%= link_to('加入美型', '/home/join') %></li>
+    </ul>
+    <div class="clear"></div>
   </div>
 </div>
-<div class="download_text" id="mm_downloads">根据你的手机，选择下载</div>
-<ul class="download">
-  <li><a href="https://itunes.apple.com/app/id937987572"><i class="ico1"></i><br>iphone</a></li>
-  <li><a href="download"><i class="ico2"></i><br>android</a></li>
-  <li class="code"><%= image_tag('web/code.png') %></li>
-</ul>
+<!--banner-->
+<div class="main_visual">
+  <div class="flicking_con">
+    <div class="flicking_inner">
+      <a href="javascript:void(0)" title="1"></a>
+      <a href="javascript:void(0)" title="2"></a>
+      <a href="javascript:void(0)" title="3"></a>
+    </div>
+  </div>
+  <div class="main_image">
+    <ul>
+      <li><span>
+           	<div class="bnbut">
+              <a href="#" class="ios" title="苹果下载"></a>
+              <a href="#" title="安卓下载"></a>
+              <i class="codebut" onClick="code()"></i>
+
+              <div class="codebox" style="display:none">
+                <em onClick="closes()" class="close">关闭</em>
+                <dl>
+                  <dt><%= image_tag('home/code1.png') %><em>用户端</em></dt>
+                  <dd><%= image_tag('home/code2.png') %><em>私教端</em></dd>
+                </dl>
+              </div>
+            </div>
+           </span></li>
+      <li><span></span></li>
+      <li><span></span></li>
+    </ul>
+  </div>
+  <a href="javascript:;" id="btn_prev"></a>
+  <a href="javascript:;" id="btn_next"></a>
+</div>
+<!--banner End-->
+<div class="activebg onebg" data-stellar-background-ratio="0.05"></div>
+<div class="xiuchang">
+  <div class="xc_con"></div>
+</div>
+<div class="activebg twobg" data-stellar-background-ratio="0.05"></div>
+<div class="sijiao">
+  <div class="sj_con">
+    <ul>
+      <li><%= image_tag('home/ico8_a.png') %></li>
+      <li><%= image_tag('home/ico10_a.png') %></li>
+      <li>&nbsp;</li>
+      <li><%= image_tag('home/ico4_a.png') %></li>
+      <li><%= image_tag('home/ico6_a.png') %></li>
+      <li><%= image_tag('home/ico2_a.png') %></li>
+    </ul>
+  </div>
+</div>
+<div class="activebg thirdbg" data-stellar-background-ratio="0.05"></div>
+<div class="tongdao">
+  <div class="td_con">
+    <ul>
+      <li><%= image_tag('home/ico1.png') %></li>
+      <li><%= image_tag('home/ico2.png') %></li>
+      <li><%= image_tag('home/ico3.png') %></li>
+      <li><%= image_tag('home/ico4.png') %></li>
+      <li><%= image_tag('home/ico5.png') %></li>
+      <li><%= image_tag('home/ico6.png') %></li>
+      <li><%= image_tag('home/ico7.png') %></li>
+      <li><%= image_tag('home/ico8.png') %></li>
+      <li><%= image_tag('home/ico9.png') %></li>
+      <li><%= image_tag('home/ico10.png') %></li>
+    </ul>
+  </div>
+</div>
+<!--footer-->
+<div class="footer">
+  <div class="footcon">
+    <div class="fl_left"><%= image_tag('home/footlogo.png') %>www.e-mxing.com 2014-2018 &copy; All Rights Reserved.<br>沪ICP备14049249号-1
+    </div>
+    <div class="fl_right"><a href="#" class="ios" title="苹果下载"></a><a href="#" title="安卓下载"></a></div>
+    <div class="clear"></div>
+  </div>
+</div>
+
+<script type="text/javascript">
+    function code() {
+        $(".codebox").show();
+    }
+    ;
+
+    function closes() {
+        $(".codebox").hide();
+    }
+    ;
+
+    $(function () {
+        $.qReport(1);
+        $.stellar({
+            horizontalScrolling: false,
+            verticalOffset: 40
+        });
+
+        var $body = $("body");
+        var firstHeight = 960;
+        var st = new Date().getTime();
+        $(window).scroll(function (e) {
+            scrollTop = $(window).scrollTop();
+            if (scrollTop >= firstHeight) {
+                $("#topbar").addClass("topicfixed")
+            } else {
+                if ($("#topbar").hasClass("topicfixed")) {
+                    $("#topbar").removeClass("topicfixed")
+                }
+            }
+
+        })
+    });
+</script>
+
+</body>
+</html>
+

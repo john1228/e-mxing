@@ -89,7 +89,7 @@ ActiveAdmin.register Service do
                   link_to('提现', withdraw_path(service), class: 'fancybox button', data: {'fancybox-type' => 'ajax'}) if authorized?(:withdraw, service)
                 end
                 td do
-                  link_to('转账', transfer_path(service), class: 'fancybox button', data: {'fancybox-type' => 'ajax'}) if authorized?(:transfer, :service)
+                  link_to('转账', transfer_path(service), class: 'fancybox button', data: {'fancybox-type' => 'ajax'}) if authorized?(:transfer, service)
                 end
               end
             end
@@ -160,6 +160,9 @@ ActiveAdmin.register Service do
         end
         li role: 'presentation' do
           link_to('聊天', chat_with_service_path(service))
+        end
+        li role: 'presentation' do
+          link_to('修改密码', edit_admin_admin_user_path(current_admin_user))
         end
       end
     end

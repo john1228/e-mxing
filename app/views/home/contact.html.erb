@@ -1,48 +1,86 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <%= stylesheet_link_tag 'home/style' %>
+  <title>美型网</title>
+</head>
+<body class="bodybg">
 <div class="header">
-  <div class="logo"><a href="#">美型网</a></div>
-  <ul class="nav">
-    <li><%= link_to('首页', {controller: :home, action: :index}) %></li>
-    <li><%= link_to('关于美型', {controller: :home, action: :about}) %> <i></i></li>
-    <li><%= link_to('美型动态', {controller: :home, action: :dynamic}) %> <i></i></li>
-    <li><%= link_to('联系我们', {controller: :home, action: :contact}, class: 'cur') %><i></i></li>
-    <li><%= link_to('加入我们', {controller: :home, action: :join}) %> <i></i></li>
-  </ul>
-  <div class="clear"></div>
-</div>
-<div class="content ">
-  <div class="map">
-    <%= image_tag('web/map.jpg') %>
-  </div>
-  <div class="contact">
-    <div class="left">
-      <h3>联络我们</h3>
-      <dl>
-        <dt>姓名</dt>
-        <dd><input type="text" class="inp"></dd>
-      </dl>
-      <dl>
-        <dt>您的E-mail</dt>
-        <dd><input type="text" class="inp"></dd>
-      </dl>
-      <dl>
-        <dt>输入内容</dt>
-        <dd><textarea></textarea></dd>
-      </dl>
-      <dl>
-        <dt>&nbsp;</dt>
-        <dd><input type="button" class="but" value="发送信息"></dd>
-      </dl>
-    </div>
-    <div class="right">
-      <h3>办公室</h3>
-      <dl>
-        <dt>联系方式</dt>
-        <dd>上海市中山西路933号</dd>
-      </dl>
-      <dl>
-        <dt>工作时间</dt>
-        <dd>周一至周五 9:00-18:00<br>周六至周日</dd>
-      </dl>
-    </div>
+  <div class="headercon">
+    <div class="logo"><a href="#">美型网－美于身 健于型</a></div>
+    <ul class="nav">
+      <li><%= link_to('首页', '/home/index') %></li>
+      <li><%= link_to('关于我们', '/home/about') %></li>
+      <li><%= link_to('动态', '/home/dynamic') %></li>
+      <li class="cur"><%= link_to('商务合作', '/home/contact') %></li>
+      <li><%= link_to('加入美型', '/home/join') %></li>
+    </ul>
+    <div class="clear"></div>
   </div>
 </div>
+<!--banner-->
+<div class="sw_banner">
+  <div class="sw_text">
+    <p>上海公司办公地点在凌空soho，太空堡垒的建筑内，距离二号线地铁淞虹路十分钟。</p>
+
+    <p>携手一起迈出坚实的一步，让我们开启星际远航吧！</p>
+
+    <p>北京分公司筹备ing，上海总部办公地点在凌空soho，太空堡垒的建筑内，</p>
+
+    <p>距离二号线地铁淞虹路十分钟。携手一起迈出坚实的一步，让我们开启星际远航吧！</p>
+  </div>
+  <div class="tel"><em>商务合作QQ 2065356158</em></div>
+</div>
+<!--banner End-->
+<div class="affairs">
+  <div class="sw_l">
+    <h3>商务合作&amp;公司地址</h3>
+    <dl>
+      <dt>公司地址</dt>
+      <dd>上海市健视网络科技有限公司，上海市凌空SOHO</dd>
+    </dl>
+    <dl>
+      <dt>公司地址</dt>
+      <dd>
+        <p>商务合作：QQ: 2065356158 </p>
+
+        <p>意见反馈：support@e-mxing.com</p>
+
+        <p>美型微信公众号：e-mxing</p>
+      </dd>
+    </dl>
+    <dl>
+      <dt>工作时间</dt>
+      <dd>
+        <p>周一至周五 9:00-18:00</p>
+
+        <p>周六至周日</p>
+      </dd>
+    </dl>
+  </div>
+  <div class="sw_r">
+    <h3>写东西给我们</h3>
+
+    <p><input type="text" class="inp" placeholder="姓名"></p>
+
+    <p><input type="text" class="inp" placeholder="您的E-mail"></p>
+
+    <p><textarea placeholder="输入内容"></textarea></p>
+
+    <p><input type="button" class="but" value="发送"></p>
+  </div>
+</div>
+<!--footer-->
+<div class="footer">
+  <div class="footcon">
+    <div class="fl_left"><%= image_tag('home/footlogo.png') %>www.e-mxing.com 2014-2018 &copy; All Rights
+      Reserved.<br>沪ICP备14049249号-1
+    </div>
+    <div class="fl_right"><a href="#" class="ios" title="苹果下载"></a><a href="#" title="安卓下载"></a></div>
+    <div class="clear"></div>
+  </div>
+</div>
+</body>
+</html>
+

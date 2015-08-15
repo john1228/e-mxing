@@ -55,4 +55,9 @@ class User < ActiveRecord::Base
         profile.as_json.merge(likes: likes.count, mobile: profile.mobile)
     end
   end
+
+
+  def self.search(attendance_level, options = {})
+    puts attendance_level, options
+  end
 end

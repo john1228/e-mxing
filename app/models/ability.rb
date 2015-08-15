@@ -7,10 +7,10 @@ class Ability
         can :manage, :all
       when AdminUser::ROLE[:service]
         can [:read, :update, :destroy, :transfer, :withdraw], Service, id: user.service_id
+        can [:read, :update], AdminUser, id: user.id
         can :manage, ServiceDynamic, service: user.service
         can [:read, :create, :update], ServiceMember, service: user.service
         can :manage, ServicePhoto, service: user.service
-        can :manage, ServiceTrack, service: user.service
       when AdminUser::ROLE[:cms]
         can :manage, TypeShow
         can :manage, Activity
@@ -21,7 +21,6 @@ class Ability
         can :manage, ServiceDynamic
         can :manage, ServiceMember
         can :manage, ServicePhoto
-        can :manage, ServiceTrack
         can [:read, :create, :update], AdminUser
         can :read, ActiveAdmin::Page, :name => 'Dashboard'
       when AdminUser::ROLE[:operator]

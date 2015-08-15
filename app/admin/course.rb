@@ -1,7 +1,6 @@
 ActiveAdmin.register Course do
-  menu label: '课程'
-  belongs_to :coach
-  navigation_menu :coach
+  menu label: '私教课程', parent: '商品管理'
+
 
   filter :name, label: '课程名'
   scope('0-全部', :all, default: true)

@@ -1,5 +1,5 @@
 ActiveAdmin.register ServiceCourse do
-  menu label: '商品', parent: '商品管理'
+  menu label: '机构课程', parent: '商品管理'
 
   filter :name, label: '名称'
 

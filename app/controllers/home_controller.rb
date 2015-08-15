@@ -1,23 +1,26 @@
 class HomeController < ApplicationController
-  layout 'home'
 
   def index
-    @qr_img = RQRCode::QRCode.new('https://github.com/whomwah/rqrcode', :size => 4, :level => :h).to_img
+    render layout: false
   end
 
   def about
-
+    render layout: false
   end
 
   def dynamic
-
+    render layout: false
   end
 
   def contact
-
+    render layout: false
   end
 
   def join
+    render layout: false
+  end
 
+  def detail
+    render layout: false
   end
 end
