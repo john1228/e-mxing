@@ -54,6 +54,14 @@ namespace :migration do
     }
   end
 
+  desc '订单数量'
+  task :order => :environment do
+    Sku.all.each { |sku|
+      sku_code = sku.sku
+      sku.update(orders_count: Order.joins(:order_item).where(status: 2).where('order_items.sku = ?', sku_code))
+    }
+  end
+
   desc '课时转移'
   task :lesson => :environment do
     Lesson.where(sku: nil).map { |lesson|
