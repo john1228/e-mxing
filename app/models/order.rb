@@ -86,7 +86,7 @@ class Order < ActiveRecord::Base
     end
     #TODO:美型豆使用
     self.service_id = course.is_a?(ServiceCourse) ? sku_info.seller_id : course.coach.service.id
-    self.coach = sku_info.seller_id if course.is_a?(Course)
+    self.coach_id = sku_info.seller_id if course.is_a?(Course)
     self.pay_amount = total_price >0 ? total_price : 0
     if pay_amount>0
       self.status = STATUS[:unpay]
