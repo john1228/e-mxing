@@ -41,9 +41,9 @@ namespace :migration do
   desc '订单转移'
   task :order => :environment do
     Order.where(service_id: nil).map { |order|
-      if order.coach.present? && order.coach.service.present?
-        order.update(service_id: order.coach.service.id, updated_at: order.updated_at)
-      end
+      puts order.order_item.sku
+      sku = Sku.find_by(sku: order.order_item.sku)
+      order.update(service_id: sku.seller_id, updated_at: order.updated_at)
     }
 
     OrderItem.where(sku: nil).map { |item|

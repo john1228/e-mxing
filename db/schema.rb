@@ -239,8 +239,9 @@ ActiveRecord::Schema.define(version: 20150814073327) do
     t.string   "limit_ext"
     t.string   "min"
     t.boolean  "active"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.string   "code",           default: [],              array: true
   end
 
   create_table "course_abstracts", force: :cascade do |t|

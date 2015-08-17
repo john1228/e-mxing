@@ -7,5 +7,6 @@ class CreateRecommends < ActiveRecord::Migration
       t.timestamps null: false
     end
     add_column :orders, :service_id, :integer
+    add_column :coupons, :code, :string, array: true, default: []
   end
 end

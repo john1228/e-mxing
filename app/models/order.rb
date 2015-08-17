@@ -85,7 +85,7 @@ class Order < ActiveRecord::Base
       user.wallet.update(coupons: (user_coupons-use_coupons), action: WalletLog::ACTIONS['消费'])
     end
     #TODO:美型豆使用
-    self.service = course.is_a?(ServiceCourse) ? sku_info.seller_id : course.coach.service.id
+    self.service_id = course.is_a?(ServiceCourse) ? sku_info.seller_id : course.coach.service.id
     self.coach = sku_info.seller_id if course.is_a?(Course)
     self.pay_amount = total_price >0 ? total_price : 0
     if pay_amount>0
