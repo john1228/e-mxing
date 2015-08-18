@@ -199,9 +199,9 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/Gemfile.lock" afterPath="$PROJECT_DIR$/../photo/Gemfile.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/Gemfile" afterPath="$PROJECT_DIR$/../photo/Gemfile" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/app/assets/stylesheets/active_admin.css.scss" afterPath="$PROJECT_DIR$/../photo/app/assets/stylesheets/active_admin.css.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/admin/message.rb" afterPath="$PROJECT_DIR$/app/admin/message.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/.idea/photo.iml" afterPath="$PROJECT_DIR$/../photo/.idea/photo.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/jobs/push_message_job.rb" afterPath="$PROJECT_DIR$/app/jobs/push_message_job.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="mxing.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -262,8 +262,8 @@
       <file leaf-file-name="push_message_job.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/jobs/push_message_job.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4587706" vertical-offset="0" max-vertical-offset="667">
-              <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.62068963" vertical-offset="0" max-vertical-offset="756">
+              <caret line="23" column="43" selection-start-line="23" selection-start-column="43" selection-end-line="23" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -273,7 +273,7 @@
         <entry file="file://$PROJECT_DIR$/app/jobs/message_job.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="360">
-              <caret line="5" column="43" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="43" />
+              <caret line="8" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -332,8 +332,8 @@
       <file leaf-file-name="message.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/admin/message.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="414">
-              <caret line="0" column="34" selection-start-line="0" selection-start-column="27" selection-end-line="0" selection-end-column="34" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="324">
+              <caret line="10" column="5" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -360,7 +360,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/views/admin/admin_users/_form.html.erb" />
         <option value="$PROJECT_DIR$/app/admin/admin_user.rb" />
         <option value="$PROJECT_DIR$/app/admin/service.rb" />
         <option value="$PROJECT_DIR$/config/initializers/assets.rb" />
@@ -410,6 +409,7 @@
         <option value="$PROJECT_DIR$/lib/tasks/migration.rake" />
         <option value="$PROJECT_DIR$/app/controllers/shop/buyers_controller.rb" />
         <option value="$PROJECT_DIR$/app/models/ability.rb" />
+        <option value="$PROJECT_DIR$/app/admin/message.rb" />
         <option value="$PROJECT_DIR$/app/jobs/push_message_job.rb" />
       </list>
     </option>
@@ -2389,6 +2389,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="680">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2494,6 +2495,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="324">
           <caret line="2" column="4" selection-start-line="2" selection-start-column="4" selection-end-line="7" selection-end-column="7" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2587,14 +2589,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/admin/message.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="414">
-          <caret line="0" column="34" selection-start-line="0" selection-start-column="27" selection-end-line="0" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/ability.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="256" max-vertical-offset="936">
@@ -2635,18 +2629,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/admin/message.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="324">
+          <caret line="10" column="5" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/jobs/message_job.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="360">
-          <caret line="5" column="43" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="43" />
+          <caret line="8" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/jobs/push_message_job.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4587706" vertical-offset="0" max-vertical-offset="667">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.62068963" vertical-offset="0" max-vertical-offset="756">
+          <caret line="23" column="43" selection-start-line="23" selection-start-column="43" selection-end-line="23" selection-end-column="43" />
           <folding />
         </state>
       </provider>

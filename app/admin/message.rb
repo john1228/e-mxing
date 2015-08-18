@@ -5,12 +5,7 @@ ActiveAdmin.register_page 'Message' do
   end
   controller do
     def push
-      if params[:users].eql?('all')
-        mxids = Profile.where.not(identity: 2).pluck(:id).map { |id| "#{Profile::BASE_NO + id}" }
-      else
-        mxids = params[:users].split(',')
-      end
-      PushMessageJob.perform_later(mxids, params[:message])
+      PushMessageJob.perform_later(params[:users], params[:message])
       redirect_to admin_message_path, alert: '推送消息已放入消息队列开始推送'
     end
   end
