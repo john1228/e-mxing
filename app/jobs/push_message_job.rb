@@ -19,7 +19,7 @@ class PushMessageJob < ActiveJob::Base
     else
       user = target.split(',')
       (0..(user.size/2)).map { |index|
-        mxids = mxids[index*20, 20]
+        mxids = user[index*20, 20]
         resp = Faraday.post do |req|
           req.url "#{MOB['host']}/messages"
           req.headers['Content-Type'] = 'application/json'
