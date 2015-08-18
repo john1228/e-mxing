@@ -29,12 +29,14 @@ class Ability
         can :read, ServiceDynamic
         can :read, ServiceMember
         can :read, ServicePhoto
+        can :manage, ServiceCourse
         can :read, Coach
         can :manage, Report
         can :manage, Feedback
         can :manage, Overview
         can :manage, Gallery
         can :manage, Activity
+        can :manage, ActiveAdmin::Page, :name => 'Message'
         can :manage, ActiveAdmin::Page, :name => 'HitAndOnline'
         can :manage, Retention
         can :manage, ActiveAdmin::Page, :name => 'Dashboard'
