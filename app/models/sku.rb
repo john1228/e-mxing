@@ -12,7 +12,11 @@ class Sku < ActiveRecord::Base
         selling: selling_price,
         guarantee: course_guarantee,
         address: address,
-        distance: attributes['distance']||0
+        distance: attributes['distance']||0,
+        coordinate: {
+            lng: coordinate.x,
+            lat: coordinate.y
+        }
     }
   end
 

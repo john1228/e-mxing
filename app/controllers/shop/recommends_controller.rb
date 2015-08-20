@@ -5,11 +5,7 @@ module Shop
       case params[:type]
         when 'course'
           render json: Success.new(
-                     course: Sku.recommended.page(params[:page]||1).map { |sku|
-                       sku.as_json.merge(
-                           distance: sku.coordinate.distance(RGeo::Geographic.spherical_factory(:srid => 4326).point(params[:lng]||0, params[:lat]||0))
-                       )
-                     }
+                     course: Sku.recommended.page(params[:page]||1)
                  )
         when 'coach'
           render json: Success.new(
@@ -25,11 +21,7 @@ module Shop
                      }
                  )
         when 'buy'
-          render json: Success.new(course: Sku.order(orders_count: :desc).page(params[:page]||1).map { |sku|
-                                     sku.as_json.merge(
-                                         distance: sku.coordinate.distance(RGeo::Geographic.spherical_factory(:srid => 4326).point(params[:lng]||0, params[:lat]||0))
-                                     )
-                                   })
+          render json: Success.new(course: Sku.order(orders_count: :desc).page(params[:page]||1))
         else
           render json: Failure.new('非法请求')
       end
