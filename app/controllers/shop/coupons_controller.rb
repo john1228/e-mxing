@@ -3,7 +3,7 @@ module Shop
     #私教评论列表
     def index
       render json: Success.new(
-                 coupon: Coupon.where('end_date > ? and active=?', true).page(params[:page]||1)
+                 coupon: Coupon.where('end_date > ? and active=?', Date.today, true).page(params[:page]||1)
              )
     end
 

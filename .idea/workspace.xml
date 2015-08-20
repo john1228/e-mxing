@@ -199,7 +199,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/Gemfile.lock" afterPath="$PROJECT_DIR$/../photo/Gemfile.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/Gemfile" afterPath="$PROJECT_DIR$/../photo/Gemfile" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/app/assets/stylesheets/active_admin.css.scss" afterPath="$PROJECT_DIR$/../photo/app/assets/stylesheets/active_admin.css.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/admin/coupon.rb" afterPath="$PROJECT_DIR$/app/admin/coupon.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/shop/coupons_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/shop/coupons_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/.idea/photo.iml" afterPath="$PROJECT_DIR$/../photo/.idea/photo.iml" />
     </list>
@@ -249,10 +248,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="coupon.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="coupon.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/admin/coupon.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2382353" vertical-offset="324" max-vertical-offset="1008">
+            <state vertical-scroll-proportion="0.0" vertical-offset="324" max-vertical-offset="1008">
               <caret line="27" column="10" selection-start-line="27" selection-start-column="10" selection-end-line="27" selection-end-column="10" />
               <folding />
             </state>
@@ -299,11 +298,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="coupons_controller.rb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="coupons_controller.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/shop/coupons_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="720">
-              <caret line="5" column="71" selection-start-line="5" selection-start-column="71" selection-end-line="5" selection-end-column="71" />
+            <state vertical-scroll-proportion="0.13235295" vertical-offset="0" max-vertical-offset="720">
+              <caret line="5" column="77" selection-start-line="5" selection-start-column="77" selection-end-line="5" selection-end-column="77" />
               <folding />
             </state>
           </provider>
@@ -379,8 +378,8 @@
         <option value="$PROJECT_DIR$/db/migrate/20150814073327_create_recommends.rb" />
         <option value="$PROJECT_DIR$/app/controllers/shop/recommends_controller.rb" />
         <option value="$PROJECT_DIR$/config/routes.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/shop/coupons_controller.rb" />
         <option value="$PROJECT_DIR$/app/admin/coupon.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/shop/coupons_controller.rb" />
       </list>
     </option>
   </component>
@@ -2844,18 +2843,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/shop/coupons_controller.rb">
+    <entry file="file://$PROJECT_DIR$/app/admin/coupon.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="720">
-          <caret line="5" column="71" selection-start-line="5" selection-start-column="71" selection-end-line="5" selection-end-column="71" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="324" max-vertical-offset="1008">
+          <caret line="27" column="10" selection-start-line="27" selection-start-column="10" selection-end-line="27" selection-end-column="10" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/admin/coupon.rb">
+    <entry file="file://$PROJECT_DIR$/app/controllers/shop/coupons_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2382353" vertical-offset="324" max-vertical-offset="1008">
-          <caret line="27" column="10" selection-start-line="27" selection-start-column="10" selection-end-line="27" selection-end-column="10" />
+        <state vertical-scroll-proportion="0.13235295" vertical-offset="0" max-vertical-offset="720">
+          <caret line="5" column="77" selection-start-line="5" selection-start-column="77" selection-end-line="5" selection-end-column="77" />
           <folding />
         </state>
       </provider>
