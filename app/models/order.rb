@@ -12,7 +12,7 @@ class Order < ActiveRecord::Base
 
   has_many :lessons, dependent: :destroy
   attr_accessor :item, :sku, :amount
-  STATUS = {delete: -1, cancel: 0, unpay: 1, pay: 2, complete: 4}
+  STATUS = {delete: -1, cancel: 0, unpaid: 1, pay: 2, complete: 4}
   PAY_TYPE = {alipay: 1, webchat: 2, jd: 3}
   alias_attribute :coupon, :coupons
 
