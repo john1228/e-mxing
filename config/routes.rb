@@ -233,6 +233,8 @@ Rails.application.routes.draw do
     post 'courses' => 'courses#pre_order'
     put 'courses' => 'courses#confirm_order'
     get 'recommends/:type' => 'recommends#index'
+    get 'coupons' => 'coupons#index'
+    post 'coupons' => 'coupons#update'
   end
   #数据上传
   post 'active' => 'upload#active'

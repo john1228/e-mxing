@@ -242,6 +242,8 @@ ActiveRecord::Schema.define(version: 20150814073327) do
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.string   "code",           default: [],              array: true
+    t.integer  "amount",         default: 0
+    t.integer  "lock_version",   default: 0
   end
 
   create_table "course_abstracts", force: :cascade do |t|
@@ -700,9 +702,10 @@ ActiveRecord::Schema.define(version: 20150814073327) do
 
   create_table "wallets", force: :cascade do |t|
     t.integer "user_id"
-    t.decimal "balance", default: 0.0
-    t.integer "bean",    default: 0
-    t.integer "coupons", default: [],  array: true
+    t.decimal "balance",      default: 0.0
+    t.integer "bean",         default: 0
+    t.integer "coupons",      default: [],  array: true
+    t.integer "lock_version"
   end
 
   create_table "withdraws", force: :cascade do |t|

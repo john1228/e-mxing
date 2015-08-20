@@ -63,11 +63,19 @@ ActiveAdmin.register Service do
       coach = service.coaches.find_by(id: params[:coach])
       coach_wallet = Wallet.find_or_create_by(user: coach)
       service_wallet = Wallet.find_or_create_by(user: service)
-      if coach_wallet.update(balance: (coach_wallet.balance+BigDecimal(params[:amount])), action: WalletLog::ACTIONS['转账'])
-        service_wallet.update(balance: (service_wallet.balance-BigDecimal(params[:amount])), action: WalletLog::ACTIONS['转账'])
-        @errors = nil
-      else
-        @errors = wallet.errors.messages
+      begin
+        coach_wallet.with_lock do
+          coach_wallet.balance = coach_wallet.balance + BigDecimal(params[:amount])
+          coach_wallet.action = WalletLog::ACTIONS['转账']
+          coach_wallet.save
+        end
+        service_wallet.with_lock do
+          service_wallet.balance = service_wallet.balance - BigDecimal(params[:amount])
+          service_wallet.action = WalletLog::ACTIONS['转账']
+          service_wallet.save
+        end
+      rescue Exception => exp
+        @errors = exp.message
       end
       render layout: false
     end

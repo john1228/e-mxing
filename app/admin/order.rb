@@ -3,7 +3,7 @@ ActiveAdmin.register Order do
   config.batch_actions = false
   scope('0-全部', :all, default: true)
   scope('1-已付款', :unprocessed) { |scope| scope.where(status: Order::STATUS[:pay]) }
-  scope('2-未付款', :processed) { |scope| scope.where(status: Order::STATUS[:unpay]) }
+  scope('2-未付款', :processed) { |scope| scope.where(status: Order::STATUS[:unpaid]) }
   filter :no, label: '订单号'
   filter :contact_name, label: '联系人'
   filter :contact_phone, label: '联系电话'
