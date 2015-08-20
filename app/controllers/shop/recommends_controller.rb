@@ -14,9 +14,10 @@ module Shop
                            tip: coach.recommend.recommended_tip,
                            courses: coach.course.count,
                            address: coach.service.address,
-                           distance: coach.service.place.
-                               lonlat.distance(RGeo::Geographic.spherical_factory(:srid => 4326).point(params[:lng], params[:lat]))
-
+                           coordinate: {
+                               lng: coach.service.place.lonlat.x,
+                               lat: coach.service.place.lonlat.y,
+                           }
                        )
                      }
                  )
