@@ -47,6 +47,8 @@ class Order < ActiveRecord::Base
     self.coach_id = sku_info.seller_id if course.is_a?(Course)
     if using_coupon.present?
       self.pay_amount = using_coupon.discount > total ? 0 : (total-using_coupon.discount)
+    else
+      self.pay_amount = total
     end
     if pay_amount>0
       self.status = STATUS[:unpaid]
