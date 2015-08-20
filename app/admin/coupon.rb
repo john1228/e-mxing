@@ -24,9 +24,9 @@ ActiveAdmin.register Coupon do
     column '激活状态', :active
     actions do |coupon|
       if coupon.active
-        link_to('下架', offline_coupon_path(coupon))
+        link_to('下架', offline_coupon_path(coupon), method: :post)
       else
-        link_to('上架', online_coupon_path(coupon))
+        link_to('上架', online_coupon_path(coupon), method: :post)
       end
     end
   end
