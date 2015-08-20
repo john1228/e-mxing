@@ -12,7 +12,7 @@ module Shop
       if coupon.present?
         if coupon.amount >0
           #begin
-          if coupon.update_attributes(amount: (coupon.amount -1))
+          if coupon.update_attributes(amount: (coupon.amount-1))
             wallet = @user.wallet
             wallet.with_lock do
               wallet.coupons << coupon.id
