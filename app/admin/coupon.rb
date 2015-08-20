@@ -7,13 +7,13 @@ ActiveAdmin.register Coupon do
     column('名称', :name)
     column('类型') { |coupon|
       case coupon.limit_category
-        when 1
+        when '1'
           '通用'
-        when 2
+        when '2'
           '机构'
-        when 3
+        when '3'
           '私教'
-        when 4
+        when '4'
           '课程'
       end
     }
@@ -22,28 +22,29 @@ ActiveAdmin.register Coupon do
     column('开始日期') { |coupon| coupon.start_date.strftime('%Y-%m-%d') }
     column('截至日期') { |coupon| coupon.end_date.strftime('%Y-%m-%d') }
     column '激活状态', :active
-    actions
-  end
-
-  controller do
-    def list
-      case params[:type].to_i
-        when 1
-          data = []
-        when 2
-          data = Service.all.includes(:profile).pluck('users.id', 'profiles.name')
-        when 3
-          data = Coach.order(id: :desc).all.pluck('users.id', 'profiles.name')
-        when 4
-          data = Course.order(id: :desc).all.pluck(:id, :name)
+    actions do |coupon|
+      if coupon.active
+        link_to('下架', offline_coupon_path(coupon))
+      else
+        link_to('上架', online_coupon_path(coupon))
       end
-      render json: data, layout: false
     end
   end
 
-  show title: '优惠券详情' do
+  controller do
+    def online
+      Coupon.find_by(id: params[:id]).update(active: Coupon::STATUS[:online])
+      redirect_to collection_path, alert: '上架成功'
+    end
 
+    def offline
+      Coupon.find_by(id: params[:id]).update(status: Coupon::STATUS[:offline])
+      redirect_to collection_path, alert: '下架成功'
+    end
   end
 
+  show do
+
+  end
   form partial: 'form'
 end

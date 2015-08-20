@@ -8,6 +8,7 @@
             <%= f.object.errors.full_messages %>
           </div>
       <% end %>
+      <%= f.hidden_field(:limit_category, value: Coupon::TYPE[:general]) %>
       <div class="form-group form-group-sm">
         <label class="col-sm-2 control-label" for="service_interests">优惠券名称:</label>
 
@@ -62,17 +63,21 @@
 <% end %>
 <script>
     $(function () {
-                $("#datepicker1").datepicker();
-                $("#datepicker2").datepicker();
-                $("#coupon_limit_category").change(function () {
-                    $("#coupon_limit_ext").empty();
-                    $.get($("#coupon_limit_category").val() + "/category", {}, function (data) {
-                        var datas = eval(data);
-                        $.each(datas, function (i) {
-                            $("#coupon_limit_ext").append("<option value='" + datas[i][0] + "'>" + datas[i][1] + "</option>");
-                        });
-                    });
+                $("#datepicker1").datepicker({
+                    dateFormat: "yy-mm-dd"
                 });
+                $("#datepicker2").datepicker({
+                    dateFormat: "yy-mm-dd"
+                });
+//                $("#coupon_limit_category").change(function () {
+//                    $("#coupon_limit_ext").empty();
+//                    $.get($("#coupon_limit_category").val() + "/category", {}, function (data) {
+//                        var datas = eval(data);
+//                        $.each(datas, function (i) {
+//                            $("#coupon_limit_ext").append("<option value='" + datas[i][0] + "'>" + datas[i][1] + "</option>");
+//                        });
+//                    });
+//                });
             }
     );
 </script>

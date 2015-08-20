@@ -108,6 +108,9 @@ Rails.application.routes.draw do
   get '/admin/coupons/:type/category' => 'admin/coupons#list'
   post '/admin/service_courses/:id/online' => 'admin/service_courses#online', as: :online
   post '/admin/service_courses/:id/offline' => 'admin/service_courses#offline', as: :offline
+  post '/admin/coupons/:id/online' => 'admin/coupons#online', as: :online_coupon
+  post '/admin/coupons/:id/offline' => 'admin/coupons#offline', as: :offline_coupon
+
   get '/admin/orders/:id/user' => 'admin/orders#user', as: :order_user
   #推荐私教
   get '/admin/coaches/:id/recommend' => 'admin/coaches#recommend', as: :recommend_coach
