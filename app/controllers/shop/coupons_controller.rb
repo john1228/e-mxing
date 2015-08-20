@@ -11,18 +11,19 @@ module Shop
       coupon = Coupon.find_by(id: params[:id])
       if coupon.present?
         if coupon.amount >0
-          begin
-            if coupon.update(amount: (coupon.amount -1))
-              wallet = @user.wallet
-              wallet.with_lock do
-                wallet.coupons << coupon.id
-                wallet.action = WalletLog::ACTIONS['兑换']
-                wallet.save
-              end
+          #begin
+          if coupon.update(amount: (coupon.amount -1))
+            wallet = @user.wallet
+            wallet.with_lock do
+              wallet.coupons << coupon.id
+              wallet.action = WalletLog::ACTIONS['兑换']
+              wallet.save
             end
-          rescue Exception => exp
-            render Failure.new('抢购失败，请刷新重试:' + exp.message)
           end
+          render json: Success.new
+          # rescue Exception => exp
+          #   render json: Failure.new('抢购失败，请刷新重试:' + exp.message)
+          # end
         else
           render json: Failure.new('该优惠券已抢光')
         end
