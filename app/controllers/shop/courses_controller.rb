@@ -72,7 +72,7 @@ module Shop
       if order.save
         render json: Success.new(order: order)
       else
-        render json: Failure.new(order.errors.full_messages.join(','))
+        render json: Failure.new(order.errors.messages.values.join(';'))
       end
     end
 

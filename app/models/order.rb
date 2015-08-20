@@ -15,7 +15,7 @@ class Order < ActiveRecord::Base
   STATUS = {delete: -1, cancel: 0, unpay: 1, pay: 2, complete: 4}
   PAY_TYPE = {alipay: 1, webchat: 2, jd: 3}
   alias_attribute :coupon, :coupons
-  before_create :reduce
+
   private
   def detect_params
     #校验优惠券
@@ -58,7 +58,6 @@ class Order < ActiveRecord::Base
       errors.add(:store, '库存不足')
       return false
     end
-
   end
 
 
