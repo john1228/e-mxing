@@ -1,5 +1,5 @@
 module Shop
-  class CouponsController < ApplicationController
+  class CouponsController < ApiController
     #私教评论列表
     def index
       render json: Success.new(
