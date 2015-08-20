@@ -38,7 +38,7 @@ ActiveAdmin.register Coupon do
     end
 
     def offline
-      Coupon.find_by(id: params[:id]).update(status: Coupon::STATUS[:offline])
+      Coupon.find_by(id: params[:id]).update(active: Coupon::STATUS[:offline])
       redirect_to collection_path, alert: '下架成功'
     end
   end
