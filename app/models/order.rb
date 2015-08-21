@@ -21,7 +21,7 @@ class Order < ActiveRecord::Base
     #校验优惠券
     if coupon.present?
       using_coupon = Coupon.find_by(id: coupon)
-      unless check_coupon(coupon)
+      if using_coupon.blank?||!check_coupon(using_coupon)
         errors.add(:coupon, '无效的优惠券')
         return false
       end
