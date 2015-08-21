@@ -117,10 +117,8 @@ Rails.application.routes.draw do
   post '/admin/coaches/:id/recommend' => 'admin/coaches#recommend_result', as: :submit_recommend_coach, defaults: {format: 'js'}
   delete '/admin/coaches/:id/recommend' => 'admin/coaches#cancel_recommend', as: :cancel_recommend_coach
   #推荐课程
-  get '/admin/skus/:id/recommend' => 'admin/skus#recommend', as: :recommend_course
-  post '/admin/skus/:id/recommend' => 'admin/skus#recommend_result', as: :submit_recommend_course, defaults: {format: 'js'}
+  post '/admin/skus/:id/recommend' => 'admin/skus#recommend', as: :recommend_course
   delete '/admin/skus/:id/recommend' => 'admin/skus#cancel_recommend', as: :cancel_recommend_course
-
 
   get 'download' => 'download#index'
   get 'download/:package' => 'download#index'
