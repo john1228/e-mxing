@@ -113,7 +113,7 @@
 <div class="Purchase "><samp class="Purchase-Buy">已购</samp>
   <% @buyers.each do |buyer| %>
       <a href="#">
-        <%= image_tag(buyer.profile_path.avatar.thumb.url) %>
+        <%= image_tag(buyer.profile.avatar.thumb.url) %>
       </a>
   <% end %><samp class="Arrow arltop"></samp> <samp class="clear"></samp></div>
 <div class="Number"><samp class="Arrow Numbertop"></samp>6710个美形</div>
