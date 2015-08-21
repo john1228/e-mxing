@@ -40,10 +40,10 @@ button::-moz-focus-inner, input::-moz-focus-inner {
   border: 0;
 }
 
-//* html {
-//    background-image: url(about:blank);
-//    background-attachment: fixed;
-//}
+* html {
+  background-image: url(about:blank);
+  background-attachment: fixed;
+}
 
 /* 修正IE6振动bug */
 
@@ -127,19 +127,15 @@ ul, ol, li, dl, dt, dd, h1, h2, h3, h4, h5, p {
   .header {
     margin-bottom: 25px;
   }
-
   .col-lg-7 {
     padding: 15px;
   }
-
   .col-lg-7 h2 {
     font-size: 16px;
   }
-
   .col-lg-7 p {
     font-size: 12px;
   }
-
   .credit {
     margin-bottom: 25px;
   }
@@ -237,7 +233,7 @@ ul, ol, li, dl, dt, dd, h1, h2, h3, h4, h5, p {
 }
 
 .toix-pocx {
-  background: asset-data-url('share/course/bz@2x.png') 0 0px no-repeat;
+  background: asset_data_url('share.course/bz@2x.png') 0 0px no-repeat;
   width: 66px;
   margin-right: 15px;
   margin-top: 30px;
@@ -277,43 +273,43 @@ ul, ol, li, dl, dt, dd, h1, h2, h3, h4, h5, p {
 }
 
 .Score-1 {
-  background: url(../img/Star1.png) 0 0 no-repeat;
+  background: asset_data_url('share.course/Star1.png') 0 0 no-repeat;
 }
 
 .Score-2 {
-  background: url(../img/Star2.png) 0 0 no-repeat;
+  background: asset_data_url('share.course/Star2.png') 0 0 no-repeat;
 }
 
 .Score-3 {
-  background: url(../img/Star3.png) 0 0 no-repeat;
+  background: asset_data_url('share.course/Star3.png') 0 0 no-repeat;
 }
 
 .Score-4 {
-  background: url(../img/Star4.png) 0 0 no-repeat;
+  background: asset_data_url('share.course/Star4.png') 0 0 no-repeat;
 }
 
 .Score-5 {
-  background: url(../img/Star5.png) 0 0 no-repeat;
+  background: asset_data_url('share.course/Star5.png') 0 0 no-repeat;
 }
 
 .Score-6 {
-  background: url(../img/Star6.png) 0 0 no-repeat;
+  background: asset_data_url('share.course/Star6.png') 0 0 no-repeat;
 }
 
 .Score-7 {
-  background: url(../img/Star7.png) 0 0 no-repeat;
+  background: asset_data_url('share.course/Star7.png') 0 0 no-repeat;
 }
 
 .Score-8 {
-  background: url(../img/Star8.png) 0 0 no-repeat;
+  background: asset_data_url('share.course/Star8.png') 0 0 no-repeat;
 }
 
 .Score-9 {
-  background: url(../img/Star9.png) 0 0 no-repeat;
+  background: asset_data_url('share.course/Star9.png') 0 0 no-repeat;
 }
 
 .Score-10 {
-  background: url(../img/Star10.png) 0 0 no-repeat;
+  background: asset_data_url('share.course/Star10.png') 0 0 no-repeat;
 }
 
 .Product h2 {
@@ -371,7 +367,7 @@ ul, ol, li, dl, dt, dd, h1, h2, h3, h4, h5, p {
 }
 
 .address {
-  background: url(../img/icon_location.png) 5px 5px no-repeat;
+  background: asset_data_url('share.course/icon_location.png') 5px 5px no-repeat;
   background-size: 15px 15px;
   line-height: 23px;
   padding-left: 20px;
@@ -380,7 +376,7 @@ ul, ol, li, dl, dt, dd, h1, h2, h3, h4, h5, p {
 }
 
 .Arrow {
-  background: url(../img/morecopy.png) 0 0 no-repeat;
+  background: asset_data_url('share.course/morecopy.png') 0 0 no-repeat;
   width: 7px;
   height: 12px;
   margin-top: 10px;
@@ -572,7 +568,7 @@ ul, ol, li, dl, dt, dd, h1, h2, h3, h4, h5, p {
   text-align: center;
   margin-top: 20px;
   color: #8d97a6;
-  font-weight: 400px;
+  font-weight: 400;
 }
 
 .pxco {
@@ -618,7 +614,7 @@ ul, ol, li, dl, dt, dd, h1, h2, h3, h4, h5, p {
 }
 
 .foot-Call {
-  background: url(../img/mine.png) 30px 13px no-repeat;
+  background: asset_data_url('share.course/mine.png') 30px 13px no-repeat;
   color: #8d97a6;
   background-size: 23px 23px;
 }
@@ -636,7 +632,7 @@ ul, ol, li, dl, dt, dd, h1, h2, h3, h4, h5, p {
 }
 
 .downtoad {
-  background: url(../img/download.jpg) 0 0 no-repeat;
+  background: asset_data_url('share.course/download.png') 0 0 no-repeat;
   background-size: cover;
   height: 60px;
   line-height: 60px;

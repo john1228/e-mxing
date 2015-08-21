@@ -34,7 +34,10 @@ class ShareController < ApplicationController
 
 
   def course
-    @sku = Sku.first #Sku.find_by(sku: params[:id])
+    sku = params[:id]
+    @sku = Sku.find_by(sku: sku)
+    @services = sku.start_with?('CC') ? @sku.seller_user.service.profile.service : @sku.seller_user.profile
+    @buyers = User.where(id: Order.includes(:order_item).where('orders.status = ? and order_items.sku LIKE ?', Order::STATUS[:pay], sku[0, sku.rindex('-')] + '%').order(id: :desc).pluck(:user_id))
     render layout: false
   end
 end
