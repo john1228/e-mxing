@@ -66,11 +66,13 @@ class Order < ActiveRecord::Base
   def backend_task
     case status
       when STATUS[:unpaid]
-        wallet = user.wallet
-        wallet.with_lock do
-          wallet.coupons -= coupons.to_i if coupons.present?
-          wallet.action = WalletLog::ACTIONS['消费']
-          wallet.save
+        if coupons.present?
+          wallet = user.wallet
+          wallet.with_lock do
+            wallet.coupons.delete(coupons.to_i)
+            wallet.action = WalletLog::ACTIONS['消费']
+            wallet.save
+          end
         end
         OrderJob.set(wait: 2.hours).perform_later(id)
       when STATUS[:pay]
