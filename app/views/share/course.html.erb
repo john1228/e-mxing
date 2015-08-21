@@ -45,7 +45,7 @@
     <a href="#" class="Address-Headportrait"> <samp class="Headportrait"><img src="img/icon.png" alt=""/></samp>
       <samp class="Name">
         <% if @sku.sku.start_with?('CC') %>
-            <%= @sku.seller %>-<%= @sku.seller.service.profile.name %>
+            <%= @sku.seller %>-<%= @sku.seller_user.service.profile.name %>
         <% else %>
             <%= @sku.seller %>
         <% end %></samp></a>
