@@ -1,7 +1,7 @@
 ActiveAdmin.register Course do
-  menu label: '私教课程', parent: '商品管理'
-
-
+  menu label: '私教课程'
+  belongs_to :coach
+  navigation_menu :coach
   filter :name, label: '课程名'
   scope('0-全部', :all, default: true)
   scope('1-在线', :unprocessed) { |scope| scope.where(status: Course::STATUS[:online]) }

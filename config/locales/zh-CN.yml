@@ -45,6 +45,7 @@
           exp: '有效期'
         sku:
           course_name: '课程名'
+          course_type: '课程类型'
           course_cover: '封面'
           market_price: '市场价'
           selling_price: '售价'

@@ -2,6 +2,11 @@ ActiveAdmin.register Sku do
   menu label: '全部课程', parent: '商品管理'
   config.batch_actions = false
   actions :index, :show, :recommend, :cancel_recommend
+  filter :course_type
+  filter :course_name
+  filter :seller
+  filter :selling_price
+  filter :store
   index do
     column(:course_name)
     column('课程封面') { |sku| image_tag(sku.course_cover, width: 50, height: 50) }
@@ -25,11 +30,16 @@ ActiveAdmin.register Sku do
     }
     column(:seller)
     column(:address)
+    column('状态') { |sku|
+      sku.status.eql?(1) ? status_tag('已上架', :ok) : status_tag('库存中', :error)
+    }
     actions do |sku|
-      if sku.recommend
-        link_to('取消爆款', cancel_recommend_course_path(sku), method: :delete)
-      else
-        link_to('设为爆款', recommend_course_path(sku), method: :post)
+      if sku.sku.start_with?('SC') && sku.status.eql?(1)
+        if sku.recommend
+          link_to('取消爆款', cancel_recommend_course_path(sku), method: :delete)
+        else
+          link_to('设为爆款', recommend_course_path(sku), method: :post)
+        end
       end
     end
   end

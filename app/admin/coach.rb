@@ -6,7 +6,7 @@ ActiveAdmin.register Coach do
   scope('1-已推荐', :recommended)
   index do
     column '机构号' do |coach|
-      coach.service.profile.name rescue '无'
+      coach.service.profile.mxid rescue ''
     end
     column '机构名' do |coach|
       coach.service.profile.name rescue '无'
@@ -41,6 +41,11 @@ ActiveAdmin.register Coach do
       coach = Coach.find_by(id: params[:id])
       Recommend.remove(coach)
       redirect_to collection_path, alert: '取消推荐成功'
+    end
+
+    def coach
+      @coach = Coach.find_by(id: params[:id])
+      render layout: false
     end
   end
 
