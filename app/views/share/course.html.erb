@@ -43,7 +43,7 @@
     <samp class="clear"></samp></div>
   <div class="adtre">
     <a href="#" class="Address-Headportrait">
-      <samp class="Headportrait"><%= image_tag(@sku.seller_user.profile.thumb.url) %></samp>
+      <samp class="Headportrait"><%= image_tag(@sku.seller_user.profile.avatar.thumb.url) %></samp>
       <samp class="Name">
         <% if @sku.sku.start_with?('CC') %>
             <%= @sku.seller %>-<%= @sku.seller_user.service.profile.name %>
