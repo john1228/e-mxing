@@ -17,24 +17,28 @@
 
 <!-- 代码 开始 -->
 <div class="container-fluid text-center">
-  <div class="header"><%= image_tag('', 'data-slideshow' => '', 'class' => 'headerImg') %></div>
+  <div class="header"><%= image_tag(
+                                  @sku.course_cover,
+                                  'data-slideshow' => "#{@sku.course.image.map { |item| item.thumb.url unless item.thumb.url.eql?(@sku.course_cover) }.join('|')}",
+                                  class: 'headerImg') %></div>
   <div class="toix-txt">
     <div class="toix-pocx">美形担保</div>
     <div class="toix-jg">
-      <p class="lrs-l"><span class="dopoci">10</span>元 <span class="tpci">268元</span></p>
+      <p class="lrs-l"><span class="dopoci"><%= @sku.selling_price %></span>元
+        <span class="tpci"><%= @sku.market_price %>元</span></p>
     </div>
   </div>
 </div>
 <div class="Product">
-  <h1>初级燃脂自由器械</h1>
+  <h1><%= @sku.course_name %></h1>
 
-  <h2>1.5<samp class="Score Score-3"></samp></h2>
+  <h2><%= @sku.score == 0 ? 4 : @sku.score %><samp class="Score Score-3"></samp></h2>
 
   <div class="Introduction">
     <ul>
-      <li>1V1</li>
-      <li>10课时</li>
-      <li>瑜伽</li>
+      <li><%= @sku.course.style %></li>
+      <li><%= @sku.course.proposal %>课时</li>
+      <li><%= @sku.course.type %></li>
     </ul>
     <samp class="clear"></samp></div>
   <div class="adtre">
@@ -69,25 +73,25 @@
 </div>
 <div class="Equipment">
   <ul>
-    <li><img src="img/Parking-a.png" alt=""/></li>
-    <li><img src="img/Restauranticon-a.png" alt=""/></li>
-    <li><img src="img/Wifiicon-a.png" alt=""/></li>
-    <li><img src="img/Showericon.png" alt=""/></li>
+    <li><img src="img/Parking-a.png" alt=" "/></li>
+    <li><img src="img/Restauranticon-a.png" alt=" "/></li>
+    <li><img src="img/Wifiicon-a.png" alt=" "/></li>
+    <li><img src="img/Showericon.png" alt=" "/></li>
   </ul>
 </div>
-<div class="Purchase"><samp class="Purchase-Buy">已购：100/100</samp> <a href="#"><img src="img/icon.png" alt=""/></a>
-  <a href="#"><img src="img/icon.png" alt=""/></a> <a href="#"><img src="img/icon.png" alt=""/></a>
+<div class="Purchase "><samp class="Purchase-Buy">已购：100/100</samp> <a href="#"><img src="img/icon.png" alt=""/></a>
+  <a href="#"><img src="img/icon.png" alt=""/></a> <a href="#"><img src="img/icon.png " alt=" "/></a>
   <a href="#"><img src="img/icon.png" alt=""/></a> <samp class="Arrow arltop"></samp> <samp class="clear"></samp></div>
 <div class="Number"><samp class="Arrow Numbertop"></samp>6710个美形</div>
 <div class="Recommend"><a href="#">
   <div class="Recommend-txt">
     <h1 class="Recommend-txt-top"><samp><img src="images/i.jpg" alt=""/></samp>
 
-      <div class="Recommend-txt-tx"><img src="img/icon.png" alt=""/></div>
+      <div class="Recommend-txt-tx"><img src="img/icon.png " alt=" "/></div>
     </h1>
-    <h2 class="poir">我爱健身</h2>
+    <h2 class="poir ">我爱健身</h2>
 
-    <h3 class="pxco"><samp class="Score Score-3"></samp></h3>
+    <h3 class="pxco "><samp class="Score Score-3"></samp></h3>
 
     <div class="mend-txt">24小时滚动报道国内、国际及社会新闻。每日编发...</div>
   </div>
@@ -95,25 +99,25 @@
   <div class="Recommend-txt">
     <h1 class="Recommend-txt-top"><samp><img src="images/i.jpg" alt=""/></samp>
 
-      <div class="Recommend-txt-tx"><img src="img/icon.png" alt=""/></div>
+      <div class="Recommend-txt-tx"><img src="img/icon.png " alt=" "/></div>
     </h1>
-    <h2 class="poir">我爱健身</h2>
+    <h2 class="poir ">我爱健身</h2>
 
-    <h3 class="pxco"><samp class="Score Score-3"></samp></h3>
+    <h3 class="pxco "><samp class="Score Score-3"></samp></h3>
 
     <div class="mend-txt">24小时滚动报道国内、国际及社会新闻。每日编发...</div>
   </div>
 </a>
 
-  <p class="clear"></p>
+  <p class="clear "></p>
 </div>
-<div class="foot"><a class="foot-Call" href="#">联系我们</a> <a class="foot-Buy" href="#">立即购买</a></div>
+<div class="foot "><a class="foot-Call" href="#">联系我们</a> <a class="foot-Buy" href="#">立即购买</a></div>
 <script src="js/jquery.min.js"></script>
 <script src="js/jquery.hammer-full.min.js"></script>
 <script src="js/plugin.js"></script>
 <script src="js/lrtk.js"></script>
 <script>
-    $(".slide").click(function () {
+    $(".slide ").click(function () {
         var index = $(this).attr('index');
         if (index === undefined) {
             window.open(links[0]);

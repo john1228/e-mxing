@@ -2,6 +2,7 @@ class WapController < ApplicationController
   layout 'wap'
 
   def index
+    render layout: false
   end
 
   def film

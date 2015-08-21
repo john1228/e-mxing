@@ -27,9 +27,9 @@ ActiveAdmin.register Sku do
     column(:address)
     actions do |sku|
       if sku.recommend
-        link_to('取消爆款', cancel_recommend_course_path(sku))
+        link_to('取消爆款', cancel_recommend_course_path(sku), method: :delete)
       else
-        link_to('设为爆款', recommend_course_path(sku))
+        link_to('设为爆款', recommend_course_path(sku), method: :post)
       end
     end
   end

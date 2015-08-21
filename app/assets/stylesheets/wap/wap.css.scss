@@ -1,0 +1,287 @@
+@charset "utf-8";
+/* CSS Document */
+
+.header-top {
+  position: fixed;
+  width: 640px;
+  background-size: 33px 33px;
+  height: 45px;
+  background: #234969 asset-data-url('wap/logo.png') center 7px no-repeat;
+  background-size: 33px 33px;
+  top: 0px;
+  z-index: 3;
+}
+
+.header-top dl {
+  width: 100%;
+}
+
+.header-top dl dt {
+  width: 50%;
+  padding-left: -10px;
+}
+
+.header-top dl dt img {
+  width: 24px;
+  height: 24px;
+  margin-top: 12px;
+  padding-left: 10px;
+}
+
+.swiperbj-a {
+  background: asset-data-url('wap/bj_01.jpg') 50% 0 no-repeat;
+  background-size: cover;
+}
+
+.swiperbj-b {
+  background: asset-data-url('wap/bj_02.jpg') 50% 0 no-repeat;
+  background-size: cover;
+}
+
+.swiper-Download {
+  width: 80%;
+  position: absolute;
+  left: 50%;
+  bottom: 45%;
+  margin-left: -40%;
+}
+
+.swiper-Download a {
+  display: inline-block;
+  width: 45%;
+}
+
+.swiper-Download-a {
+  float: left;
+}
+
+.swiper-Download-b {
+  float: right
+}
+
+.swiper-Downloada {
+  width: 80%;
+  position: absolute;
+  left: 50%;
+  bottom: 5%;
+  margin-left: -40%;
+}
+
+.swiper-Downloada a {
+  display: inline-block;
+  width: 45%;
+}
+
+.swiper-Download-a {
+  float: left;
+}
+
+.swiper-Download-b {
+  float: right
+}
+
+@media (max-width: 320px) {
+  .header-top dl dt {
+    float: left;
+    width: 140px;
+  }
+
+  .swiper-Download {
+    width: 80%;
+    position: absolute;
+    left: 50%;
+    bottom: 43%;
+    margin-left: -40%;
+  }
+}
+
+@media (max-width: 640px) {
+  .header-top {
+    width: 100%;
+  }
+}
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  display: none;
+}
+
+.modal {
+  display: none;
+  overflow: auto;
+  z-index: 1001;
+  position: absolute;
+  width: 60%;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  border-radius: 15px;
+}
+
+#array {
+  position: absolute;
+  z-index: 999;
+  -webkit-animation: start 1.5s infinite ease-in-out;
+}
+
+@-webkit-keyframes start {
+  0%, 30% {
+    opacity: 0;
+    -webkit-transform: translate(0, 10px);
+  }
+  60% {
+    opacity: 1;
+    -webkit-transform: translate(0, 0);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translate(0, -8px);
+  }
+}
+
+@-moz-keyframes start {
+  0%, 30% {
+    opacity: 0;
+    -moz-transform: translate(0, 10px);
+  }
+  60% {
+    opacity: 1;
+    -moz-transform: translate(0, 0);
+  }
+  100% {
+    opacity: 0;
+    -moz-transform: translate(0, -8px);
+  }
+}
+
+@keyframes start {
+  0%, 30% {
+    opacity: 0;
+    transform: translate(0, 10px);
+  }
+  60% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(0, -8px);
+  }
+}
+
+.pages {
+  width: 25px;
+  height: 20px;
+  bottom: 5px;
+  left: 50%;
+  margin-left: -12.5px;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  height: 100%;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+  outline: 0;
+}
+
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td {
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline
+}
+
+img {
+  border: 0 none;
+  vertical-align: top
+}
+
+i, em {
+  font-style: normal
+}
+
+ol, ul {
+  list-style: none
+}
+
+input, select, button, h1, h2, h3, h4, h5, h6 {
+  font-size: 100%;
+  font-family: inherit
+}
+
+a, a:visited {
+  text-decoration: none;
+  color: #333
+}
+
+body {
+  margin: 0 auto;
+  min-width: 320px;
+  max-width: 640px;
+  height: 100%;
+  background: #e8e8e8;
+  font-size: 14px;
+  font-family: Helvetica, STHeiti STXihei, Microsoft JhengHei, Microsoft YaHei, Arial;
+  line-height: 1.5;
+  color: #000;
+  -webkit-text-size-adjust: 100% !important;
+  -webkit-user-select: none;
+  user-select: none;
+  position: relative;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  border: none;
+  interpolation-mode: bicubic;
+}
+
+.txt-center {
+  text-align: center;
+}
+
+.txt-justify {
+  text-align: justify;
+  text-justify: inter-ideograph;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, div, p, ul, dl {
+  display: block;
+  padding: 0px;
+  margin: 0px auto;
+  border: none;
+}
+
+a, button, input, i {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -moz-tap-highlight-color: rgba(0, 0, 0, 0);
+  -ms-tap-highlight-color: rgba(0, 0, 0, 0);
+  tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.swiper-container {
+  width: 100%;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.swiper-slide {
+  text-align: center;
+  position: relative;
+}
+
+.swiper-container {
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  z-index: 1
+}

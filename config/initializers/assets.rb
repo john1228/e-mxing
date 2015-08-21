@@ -23,6 +23,10 @@ Rails.application.config.assets.precompile += %w(service.css
  home/stellar.js
  home/home.js
 
+ wap/jquery.min.js
+ wap/jquery.modal.js
+ wap/swiper.min.js
+
  webchat/bootstrap.js
  webchat/easemob.im-1.0.5.js
  webchat/jquery-1.11.1.js

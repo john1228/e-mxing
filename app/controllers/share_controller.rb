@@ -34,6 +34,7 @@ class ShareController < ApplicationController
 
 
   def course
+    @sku = Sku.first #Sku.find_by(sku: params[:id])
     render layout: false
   end
 end

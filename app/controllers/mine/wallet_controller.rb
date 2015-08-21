@@ -14,14 +14,25 @@ module Mine
     end
 
     def exchange
-      exchange_code = params[:code]
-      if exchange_code.eql?('qwer1234')
-        @user.wallet.update(coupons: (@user.wallet.coupons+[Coupon.all.sample.id]).uniq)
-        render json: Success.new
+      coupon = Coupon.where('? = ANY (code) and amount > used', params[:code]).take
+      if coupon.blank?
+        begin
+          if coupon.update(used: (coupon.used + 1))
+            wallet = @user.wallet
+            wallet.with_lock do
+              wallet.coupons << coupon.id
+              wallet.action = WalletLog::ACTIONS['兑换']
+              wallet.save
+            end
+          else
+            render json: Failure.new('兑换失败')
+          end
+        rescue
+          render json: Failure.new('兑换失败')
+        end
       else
         render json: Failure.new('无效的兑换码')
       end
-      #TODO:优惠码兑换
     end
   end
 end
