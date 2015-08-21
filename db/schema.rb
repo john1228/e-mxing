@@ -244,6 +244,7 @@ ActiveRecord::Schema.define(version: 20150814073327) do
     t.string   "code",           default: [],              array: true
     t.integer  "amount",         default: 0
     t.integer  "lock_version",   default: 0
+    t.integer  "used",           default: 0
   end
 
   create_table "course_abstracts", force: :cascade do |t|
