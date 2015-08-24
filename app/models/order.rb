@@ -31,8 +31,10 @@ class Order < ActiveRecord::Base
     #产品购买
     build_order_item(sku: sku, name: course.name, type: course.type, during: course.during,
                      cover: course.cover, price: sku_info.selling_price, amount: amount)
-
-
+    if coupon.min > (order_item.amount*order_item.price)
+      errors.add(:coupon, '无效的优惠券')
+      return false
+    end
     #限制数量
     if sku_info.limit > 0 && (sku_info.limit_detect(user_id) + order_item.amount) > sku_info.limit
       errors.add(:limit, '购买数量超出限制')

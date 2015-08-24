@@ -2,7 +2,7 @@ module Mine
   class ConcernsController < BaseController
     def index
       render json: Success.new(
-                 concerned: @user.concerns.page(params[:page]||1)
+                 concerned: @user.concerns.order(id: :desc).page(params[:page]||1)
              )
     end
 

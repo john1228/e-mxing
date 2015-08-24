@@ -7,6 +7,11 @@ ActiveAdmin.register Sku do
   filter :seller
   filter :selling_price
   filter :store
+
+  scope('0-私教课程', :coach_courses)
+  scope('1-机构课程', :service_courses)
+  scope('2-已推荐', :recommended, default: true)
+
   index do
     column(:course_name)
     column('课程封面') { |sku| image_tag(sku.course_cover, width: 50, height: 50) }
@@ -34,7 +39,7 @@ ActiveAdmin.register Sku do
       sku.status.eql?(1) ? status_tag('已上架', :ok) : status_tag('库存中', :error)
     }
     actions do |sku|
-      if sku.sku.start_with?('SC') && sku.status.eql?(1)
+      if sku.status.eql?(1)
         if sku.recommend
           link_to('取消爆款', cancel_recommend_course_path(sku), method: :delete)
         else

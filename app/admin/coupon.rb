@@ -19,6 +19,9 @@ ActiveAdmin.register Coupon do
     }
     column('最小金额', :min)
     column('折扣金额', :discount)
+    column('已使用/总数量') { |coupon|
+      coupon.used + '/' + coupon.amount
+    }
     column('开始日期') { |coupon| coupon.start_date.strftime('%Y-%m-%d') }
     column('截至日期') { |coupon| coupon.end_date.strftime('%Y-%m-%d') }
     column '激活状态', :active
