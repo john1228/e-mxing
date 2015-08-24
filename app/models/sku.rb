@@ -5,6 +5,8 @@ class Sku < ActiveRecord::Base
   scope :recommended, -> { joins(:recommend).order('recommends.id desc') }
   has_one :recommend, -> { where(type: Recommend::TYPE[:course]).order(id: :desc) }, foreign_key: :recommended_id
 
+  before_save :offline
+
   def as_json
     {
         sku: sku,
@@ -14,6 +16,7 @@ class Sku < ActiveRecord::Base
         selling: selling_price,
         guarantee: course_guarantee,
         address: address,
+        store: store,
         distance: attributes['distance']||0,
         coordinate: {
             lng: coordinate.x,
@@ -79,8 +82,9 @@ class Sku < ActiveRecord::Base
 
   def related_sellers
     Sku.where('sku LIKE ? and course_id=?', sku[0, 2] + '%', course_id).map { |sku|
+      seller_user = sku.seller_user
       {
-          seller: sku.seller,
+          seller: seller_user.is_a?(Service) ? seller_user.profile.name : seller_user.service.profile.name,
           address: sku.address,
           tel: seller_user.is_a?(Service) ? seller_user.profile.mobile : seller_user.mobile,
           coordinate: {
@@ -124,5 +128,10 @@ class Sku < ActiveRecord::Base
       user = Coach.find_by(id: seller_id)
     end
     user
+  end
+
+  protected
+  def offline
+    self.status = 0 if store.eql?(0)
   end
 end

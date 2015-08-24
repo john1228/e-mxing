@@ -7,6 +7,7 @@ ActiveAdmin.register Sku do
   filter :seller
   filter :selling_price
   filter :store
+  filter :address
 
   scope('0-私教课程', :coach_courses)
   scope('1-机构课程', :service_courses)
