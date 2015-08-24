@@ -2,7 +2,6 @@ ActiveAdmin.register Coach do
   menu label: '私教', priority: 4
   filter :profile_name, label: '昵称', as: :string
   filter :profile_address, label: '城市', as: :string
-  filter :service_profile_address, label: '城市', as: :string
 
   actions :index, :show, :recommend, :recommend_result
   scope('0-全部', :all, default: true)
