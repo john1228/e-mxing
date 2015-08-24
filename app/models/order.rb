@@ -36,8 +36,6 @@ class Order < ActiveRecord::Base
       errors.add(:limit, '购买数量超出限制')
       return false
     end
-
-
     self.no = "#{Time.now.to_i}#{user_id}#{%w'0 1 2 3 4 5 6 7 8 9'.sample(3).join('')}"
     self.total = sku_info.selling_price*order_item.amount
     self.no = "#{Time.now.to_i}#{user_id}#{%w'0 1 2 3 4 5 6 7 8 9'.sample(3).join('')}"
