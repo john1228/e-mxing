@@ -18,22 +18,18 @@ class Order < ActiveRecord::Base
 
   private
   def detect_params
-    #校验优惠券
-    if coupon.present?
-      using_coupon = Coupon.find_by(id: coupon)
-      if using_coupon.blank?||!check_coupon(using_coupon)
-        errors.add(:coupon, '无效的优惠券')
-        return false
-      end
-    end
     sku_info = Sku.find_by(sku: sku)
     course = sku_info.course
     #产品购买
     build_order_item(sku: sku, name: course.name, type: course.type, during: course.during,
                      cover: course.cover, price: sku_info.selling_price, amount: amount)
-    if coupon.min.to_i > (order_item.amount*order_item.price)
-      errors.add(:coupon, '无效的优惠券')
-      return false
+    #校验优惠券
+    if coupon.present?
+      using_coupon = Coupon.find_by(id: coupon)
+      if using_coupon.blank? || !check_coupon(using_coupon) || using_coupon.min > (order_item.price * order_item.amount)
+        errors.add(:coupon, '无效的优惠券')
+        return false
+      end
     end
     #限制数量
     if sku_info.limit > 0 && (sku_info.limit_detect(user_id) + order_item.amount) > sku_info.limit

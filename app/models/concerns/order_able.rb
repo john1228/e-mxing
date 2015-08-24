@@ -8,7 +8,6 @@ module OrderAble
     return false unless user.wallet.coupons.include?(coupon.id)
     #优惠券不在有效期内
     return false if (coupon.start_date> Date.today) || (coupon.end_date< Date.today)
-
     #种类是否满足要求,暂时移除
     case coupon.limit_category
       when Coupon::TYPE[:general]

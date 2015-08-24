@@ -11,5 +11,7 @@ class CreateRecommends < ActiveRecord::Migration
     # add_column :coupons, :lock_version, :integer, default: 0
     # add_column :coupons, :amount, :integer, default: 0
     add_column :coupons, :used, :integer, default: 0
+
+    change_column_default
   end
 end
