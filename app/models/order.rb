@@ -52,11 +52,13 @@ class Order < ActiveRecord::Base
       self.status = STATUS[:pay]
     end
     #库存更新
-    if sku_info.store >= 0 && sku_info.store<order_item.amount
-      errors.add(:store, '库存不足')
-      return false
-    else
-      Sku.where('sku LIKE ?', order_item.sku[0, order_item.sku.rindex('-')] + '%').update_all(store: (sku_info.store - order_item.amount))
+    if sku_info.store >= 0
+      if sku_info.store<order_item.amount
+        errors.add(:store, '库存不足')
+        return false
+      else
+        Sku.where('sku LIKE ?', order_item.sku[0, order_item.sku.rindex('-')] + '%').update_all(store: (sku_info.store - order_item.amount))
+      end
     end
   end
 
