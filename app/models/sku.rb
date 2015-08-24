@@ -1,7 +1,7 @@
 class Sku < ActiveRecord::Base
   scope :online, -> { where(status: 1) }
-  scope :coach_courses, -> { where('sku LIKE ?', 'SC%') }
-  scope :service_courses, -> { where('sku LIKE ?', 'CC%') }
+  scope :coach_courses, -> { where('sku LIKE ?', 'CC%') }
+  scope :service_courses, -> { where('sku LIKE ?', 'SC%') }
   scope :recommended, -> { joins(:recommend).order('recommends.id desc') }
   has_one :recommend, -> { where(type: Recommend::TYPE[:course]).order(id: :desc) }, foreign_key: :recommended_id
 
