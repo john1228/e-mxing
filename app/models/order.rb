@@ -55,6 +55,8 @@ class Order < ActiveRecord::Base
     if sku_info.store >= 0 && sku_info.store<order_item.amount
       errors.add(:store, '库存不足')
       return false
+    else
+      Sku.where('sku LIKE ?', order_item.sku[0, order_item.sku.rindex('-')] + '%').update_all(store: (sku_info.store - order_item.amount))
     end
   end
 
@@ -70,6 +72,7 @@ class Order < ActiveRecord::Base
             wallet.save
           end
         end
+        #TODO 锁定库存
         OrderJob.set(wait: 2.hours).perform_later(id)
       when STATUS[:pay]
         #现在只购买一个课程,逻辑遵循一个课时走
