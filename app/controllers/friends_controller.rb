@@ -40,9 +40,9 @@ class FriendsController < ApiController
 
   private
   def add_friend_for_service(service)
-    easemob_token = Rails.cache.fetch('easemob')||init_easemob_token
+    easemob_token = Rails.cache.fetch('easemob')
     result = Faraday.post do |req|
-      req.url "https://a1.easemob.com/jsnetwork/mxingsijiao/users/#{service.profile.mxid}/contacts/users/#{@user.profile.mxid}"
+      req.url "#{MOB['host']}/users/#{service.profile.mxid}/contacts/users/#{@user.profile.mxid}"
       req.headers['Content-Type'] = 'application/json'
       req.headers['Authorization'] = "Bearer #{easemob_token}"
     end
@@ -52,16 +52,5 @@ class FriendsController < ApiController
   def verify_auth_token
     @user = Rails.cache.fetch(request.headers[:token])
     render json: {code: -1, message: '用户未登录'} if @user.nil?
-  end
-
-  def init_easemob_token
-    token_response = Faraday.post do |req|
-      req.url 'https://a1.easemob.com/jsnetwork/mxingsijiao/token'
-      req.headers['Content-Type'] = 'application/json'
-      req.body = "{\"grant_type\": \"client_credentials\", \"client_id\": \"YXA6NQmy0PIkEeSQO18Yeq100Q\", \"client_secret\": \"YXA6t1SdtNrJAAHq6m3Bu3Yx1Ryr8jI\"}"
-    end
-    easemob_body = JSON.parse(token_response.body)
-    Rails.cache.write('easemob', easemob_body['access_token'], expires_in: easemob_body['expires_in'])
-    easemob_body['access_token']
   end
 end
