@@ -31,7 +31,7 @@ class Order < ActiveRecord::Base
     #产品购买
     build_order_item(sku: sku, name: course.name, type: course.type, during: course.during,
                      cover: course.cover, price: sku_info.selling_price, amount: amount)
-    if coupon.min > (order_item.amount*order_item.price)
+    if coupon.min.to_i > (order_item.amount*order_item.price)
       errors.add(:coupon, '无效的优惠券')
       return false
     end
