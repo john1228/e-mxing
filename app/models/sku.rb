@@ -60,10 +60,10 @@ class Sku < ActiveRecord::Base
             items: buyers
         },
         status: status,
-        comments: {
+        comments: [
             count: comments.count,
             items: image_comments.take(5)
-        }
+        ]
     }
     json_hash = json_hash.merge(limit_time: {start: course.limit_start.strftime('%Y-%m-%d %H:%M'), end: course.limit_end.strftime('%Y-%m-%d %H:%M')}) if course.has_attribute?(:limit_start)&&course.limit_start.present?
     json_hash
