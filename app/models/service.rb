@@ -23,6 +23,10 @@ class Service<User
       else
         place.update(lonlat: gcj_02(bd_lng, bd_lat))
       end
+      #更新机构课程课程的地址
+      coach_ids = coaches.pluck(:id)
+      Sku.where(seller_id: coach_ids).where('sku LIKE ?', 'CC%').update_all(address: address, coordinate: gcj_02(bd_lng, bd_lat))
+      Sku.where(seller_id: id).where('sku LIKE ?', 'SC%').update_all(address: address, coordinate: gcj_02(bd_lng, bd_lat))
     end
   end
 

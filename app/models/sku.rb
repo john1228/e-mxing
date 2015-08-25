@@ -6,6 +6,7 @@ class Sku < ActiveRecord::Base
   has_one :recommend, -> { where(type: Recommend::TYPE[:course]).order(id: :desc) }, foreign_key: :recommended_id
 
   before_save :offline
+  before_create :injection
 
   def as_json
     {
@@ -133,5 +134,9 @@ class Sku < ActiveRecord::Base
   protected
   def offline
     self.status = 0 if store.eql?(0)
+  end
+
+  def injection
+    self.orders_count = rand(100)
   end
 end
