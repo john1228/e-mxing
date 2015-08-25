@@ -40,7 +40,7 @@ class FriendsController < ApiController
 
   private
   def add_friend_for_service(service)
-    easemob_token = Rails.cache.fetch('easemob')
+    easemob_token = Rails.cache.fetch('mob')
     result = Faraday.post do |req|
       req.url "#{MOB['host']}/users/#{service.profile.mxid}/contacts/users/#{@user.profile.mxid}"
       req.headers['Content-Type'] = 'application/json'
