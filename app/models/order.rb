@@ -51,6 +51,15 @@ class Order < ActiveRecord::Base
     else
       self.status = STATUS[:pay]
     end
+    #优惠券更新
+    if using_coupon.present?
+      wallet = user.wallet
+      wallet.with_lock do
+        wallet.coupons.delete(using_coupon.id)
+        wallet.action = WalletLog::ACTIONS['消费']
+        wallet.save
+      end
+    end
     #库存更新
     if sku_info.store >= 0
       if sku_info.store<order_item.amount
@@ -60,21 +69,13 @@ class Order < ActiveRecord::Base
         Sku.where('sku LIKE ?', order_item.sku[0, order_item.sku.rindex('-')] + '%').update_all(store: (sku_info.store - order_item.amount))
       end
     end
+
   end
 
 
   def backend_task
     case status
       when STATUS[:unpaid]
-        if coupons.present?
-          wallet = user.wallet
-          wallet.with_lock do
-            wallet.coupons.delete(coupons.to_i)
-            wallet.action = WalletLog::ACTIONS['消费']
-            wallet.save
-          end
-        end
-        #TODO 锁定库存
         OrderJob.set(wait: 2.hours).perform_later(id)
       when STATUS[:pay]
         #现在只购买一个课程,逻辑遵循一个课时走
