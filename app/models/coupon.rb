@@ -11,7 +11,7 @@ class Coupon < ActiveRecord::Base
     {
         no: id,
         name: name,
-        discount: discount.to_i,
+        discount: discount.to_i.to_s,
         info: info,
         start_date: start_date,
         end_date: end_date,
