@@ -11,13 +11,13 @@ class Coupon < ActiveRecord::Base
     {
         no: id,
         name: name,
-        discount: discount,
+        discount: discount.to_i,
         info: info,
         start_date: start_date,
         end_date: end_date,
         limit_category: limit_category,
         limit_ext: limit_ext,
-        min: min,
+        min: min.to_i,
         amount: amount
     }
   end
