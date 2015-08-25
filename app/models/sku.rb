@@ -47,11 +47,11 @@ class Sku < ActiveRecord::Base
             avatar: seller_user.profile.avatar.thumb.url,
             mobile: seller_user.is_a?(Coach) ? seller_user.mobile : seller_user.profile.mobile,
             identity: seller_user.profile.identity,
-            tags: seller_user.profile.tags,
-            agency: seller_user.is_a?(Coach) ? seller_user.service.profile.name : seller_user.profile.name
+            tags: seller_user.profile.tags
         },
         address: [{
                       name: address,
+                      agency: seller_user.is_a?(Coach) ? seller_user.service.profile.name : seller_user.profile.name,
                       coordinate: {
                           lng: coordinate.x,
                           lat: coordinate.y
