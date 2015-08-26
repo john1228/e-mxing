@@ -8,7 +8,7 @@
   <meta content="black" name="apple-mobile-web-app-status-bar-style">
   <meta content="telephone=no" name="format-detection">
   <%= stylesheet_link_tag 'share/course/style', 'share/course/lrtk' %>
-  <%= javascript_include_tag 'share/course/jquery.min', 'share/course/jquery.hammer-full.min', 'share/course/lrtk', 'share/course/plugin' %>
+
 </head>
 <body>
 
@@ -135,6 +135,7 @@
   <p class="clear "></p>
 </div>
 <div class="foot "><a class="foot-Call" href="#">联系我们</a> <a class="foot-Buy" href="#">立即购买</a></div>
+<%= javascript_include_tag 'share/course/jquery.min', 'share/course/jquery.hammer-full.min', 'share/course/plugin', 'share/course/lrtk' %>
 <script>
     $(".slide ").click(function () {
         var index = $(this).attr('index');
