@@ -31,8 +31,8 @@ module Shop
     end
 
     def show
-      sku = Sku.online.find_by(sku: params[:sku])
-      if sku.blank?
+      sku = Sku.find_by(sku: params[:sku])
+      if sku.recommend.blank?&&sku.status.eql?(0)
         render json: Failure.new('您查看到课程已下架')
       else
         user = Rails.cache.fetch(request.headers[:token])
