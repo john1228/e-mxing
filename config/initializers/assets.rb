@@ -41,7 +41,7 @@ Rails.application.config.assets.precompile += %w(service.css
  share/load.js
  share/player.js
  share/course/jquery.hammer-full.min.js
- share/course/jquery.js
+ share/course/jquery.min.js
  share/course/lrtk.js
  share/course/plugin.js
 
