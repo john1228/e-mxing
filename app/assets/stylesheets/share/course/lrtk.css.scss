@@ -126,19 +126,12 @@ ul, ol, li, dl, dt, dd, h1, h2, h3, h4, h5, p {
 .previous {
   width: 0;
   height: 0;
-  border-top: 20px solid transparent;
-  border-bottom: 20px solid transparent;
-  border-right: 20px solid white;
 }
 
 .next {
   width: 0;
   height: 0;
-  border-top: 20px solid transparent;
-  border-bottom: 20px solid transparent;
-  border-left: 20px solid white;
-  right: 12px;
-  left: auto;
+
 }
 
 .hide {
@@ -341,6 +334,7 @@ ul, ol, li, dl, dt, dd, h1, h2, h3, h4, h5, p {
   width: 100%;
   margin: 15px auto;
   background: #f7f7f9;
+  padding: 20px 0;
 }
 
 .Time ul {
