@@ -3,7 +3,6 @@ class Service<User
   after_save :location
   has_many :service_members, dependent: :destroy
   has_many :service_photos, foreign_key: :user_id, dependent: :destroy
-  has_many :service_tracks, foreign_key: :user_id, dependent: :destroy
   has_many :service_dynamics, foreign_key: :user_id, dependent: :destroy
 
   has_many :service_members, dependent: :destroy

@@ -7,7 +7,8 @@
   <meta content="yes" name="apple-mobile-web-app-capable">
   <meta content="black" name="apple-mobile-web-app-status-bar-style">
   <meta content="telephone=no" name="format-detection">
-  <%= stylesheet_link_tag 'share/course' %>
+  <%= stylesheet_link_tag 'share/course/style', 'share/course/lrtk' %>
+
 </head>
 <body>
 
@@ -70,9 +71,6 @@
 <div class="Coursecontent">
   <h1>课程内容</h1>
   <h4>
-    <!--课程内容是指各门学科中特定的事实、观点、原理和问题及其处理方式，它是学习的对象，它源于社会文化，并随着社会文化的发展而不断发展变化。基于课程内容的整合，以传播；-->
-    <!--<div id="content" class="Coursecontent-txt" style="display: none;">三是信息技术并非万能技术，还需要为那些无法用信息技术来表达的内容保留必要的空间．比如缄默知识或意会知识。</div>-->
-    <!--<a id="toggle" class="Clicktriangle"><img src="" class="fpofdt"></a>-->
     <%= @sku.course.intro %>
   </h4>
 </div>
@@ -117,40 +115,28 @@
         <%= image_tag(buyer.profile.avatar.thumb.url) %>
       </a>
   <% end %><samp class="Arrow arltop"></samp> <samp class="clear"></samp></div>
-<div class="Number"><samp class="Arrow Numbertop"></samp>6710个美形</div>
-<div class="Recommend"><a href="#">
-  <div class="Recommend-txt">
-    <h1 class="Recommend-txt-top"><samp><img src="images/i.jpg" alt=""/></samp>
+<div class="Number"><samp class="Arrow Numbertop"></samp><%= @comment_count %>秀</div>
+<div class="Recommend">
+  <% @image_comments.each do |image_comment| %>
+      <a href="#">
+        <div class="Recommend-txt">
+          <h1 class="Recommend-txt-top"><samp><%= image_tag(image_comment.image.first.thumb.url) %></samp>
 
-      <div class="Recommend-txt-tx"><img src="img/icon.png " alt=" "/></div>
-    </h1>
-    <h2 class="poir ">我爱健身</h2>
+            <div class="Recommend-txt-tx">
+              <img src="img/icon.png " alt=" "/><%= image_tag(image_comment.user.profile.avatar.thumb.url) %></div>
+          </h1>
+          <h2 class="poir "><%= image_comment.user.profile.name %></h2>
 
-    <h3 class="pxco "><samp class="Score Score-3"></samp></h3>
+          <h3 class="pxco "><samp class="Score Score-3"></samp></h3>
 
-    <div class="mend-txt">24小时滚动报道国内、国际及社会新闻。每日编发...</div>
-  </div>
-</a> <a href="#">
-  <div class="Recommend-txt">
-    <h1 class="Recommend-txt-top"><samp><img src="images/i.jpg" alt=""/></samp>
-
-      <div class="Recommend-txt-tx"><img src="img/icon.png " alt=" "/></div>
-    </h1>
-    <h2 class="poir ">我爱健身</h2>
-
-    <h3 class="pxco "><samp class="Score Score-3"></samp></h3>
-
-    <div class="mend-txt">24小时滚动报道国内、国际及社会新闻。每日编发...</div>
-  </div>
-</a>
-
+          <div class="mend-txt"><%= image_comment.content %></div>
+        </div>
+      </a>
+  <% end %>
   <p class="clear "></p>
 </div>
 <div class="foot "><a class="foot-Call" href="#">联系我们</a> <a class="foot-Buy" href="#">立即购买</a></div>
-<script src="js/jquery.min.js"></script>
-<script src="js/jquery.hammer-full.min.js"></script>
-<script src="js/plugin.js"></script>
-<script src="js/lrtk.js"></script>
+<%= javascript_include_tag 'share/course/jquery.js', 'share/course/jquery.hammer-full.min', 'share/course/lrtk', 'share/course/plugin' %>
 <script>
     $(".slide ").click(function () {
         var index = $(this).attr('index');
