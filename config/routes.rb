@@ -236,6 +236,7 @@ Rails.application.routes.draw do
     get 'recommends/:type' => 'recommends#index'
     get 'coupons' => 'coupons#index'
     post 'coupons' => 'coupons#update'
+    get 'coupons/help' => 'coupons#help'
   end
   #数据上传
   post 'active' => 'upload#active'
