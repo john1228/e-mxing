@@ -43,6 +43,8 @@ class ServiceCourse < ActiveRecord::Base
       Sku.where("sku LIKE 'SC%' and course_id = #{id}").update_all(status: STATUS[:online], course_cover: cover)
     else
       Sku.where("sku LIKE 'SC%' and course_id = #{id}").update_all(status: STATUS[:offline])
+      #移除爆款列表
+      Recommend.delete_all(recommended_id: Sku.where("sku LIKE 'SC%' and course_id = #{id}").pluck(:id), type: Recommend::TYPE[:course])
     end
   end
 end
