@@ -36,7 +36,7 @@ class ShareController < ApplicationController
   def course
     sku = params[:id]
     @sku = Sku.find_by(sku: sku)
-    @services = sku.start_with?('CC') ? @sku.seller_user.service.profile.service : @sku.seller_user.profile
+    @services = sku.start_with?('CC') ? @sku.seller_user.service.profile.service : @sku.seller_user.profile.service
     @buyers = User.where(id: Order.includes(:order_item).where('orders.status = ? and order_items.sku LIKE ?', Order::STATUS[:pay], sku[0, sku.rindex('-')] + '%').order(id: :desc).pluck(:user_id))
     @comment_count = @sku.comments.count
     @image_comments = @sku.image_comments.take(5)
