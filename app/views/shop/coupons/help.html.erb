@@ -1,0 +1,6 @@
+﻿<div class="video">
+  <%= video_tag(@dynamic.dynamic_film.film.url, controls: true, width: '100%', height: 422, poster: @dynamic.dynamic_film.cover.thumb.url, background: '#000000') %>
+</div>
+<h1>视频简介</h1>
+
+<div class="conbox" style="text-align: center"><%= @dynamic.content %></div>

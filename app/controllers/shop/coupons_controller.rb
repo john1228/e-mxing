@@ -37,5 +37,9 @@ module Shop
         end
       end
     end
+
+    def help
+      render layout: false
+    end
   end
 end

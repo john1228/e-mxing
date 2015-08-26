@@ -27,11 +27,7 @@ class PhotosUploader < CarrierWave::Uploader::Base
 
   private
   def secure_token
-    if parent_version.present?
-      img = MiniMagick::Image::new(parent_version.file.file)
-    else
-      img = MiniMagick::Image::new(file.file)
-    end
-    Digest::MD5::hexdigest("#{img.size}|#{img.width}|#{img.height}")
+    var = :"@#{mounted_as}_secure_token"
+    model.instance_variable_get(var) or model.instance_variable_set(var, SecureRandom.uuid)
   end
 end
