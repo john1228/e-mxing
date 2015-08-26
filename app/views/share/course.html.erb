@@ -18,10 +18,9 @@
 
 <!-- 代码 开始 -->
 <div class="container-fluid text-center">
-  <div class="header"><%= image_tag(
-                                  @sku.course_cover,
-                                  'data-slideshow' => "#{@sku.course.image.map { |item| item.thumb.url unless item.thumb.url.eql?(@sku.course_cover) }.join('|')}",
-                                  class: 'headerImg') %></div>
+  <div class="header"><%= image_tag(@sku.course_cover,
+                                    'data-slideshow' => "#{@sku.course.image.map { |item| item.thumb.url }.join('|')}",
+                                    class: 'headerImg') %></div>
   <div class="toix-txt">
     <div class="toix-pocx">美形担保</div>
     <div class="toix-jg">
