@@ -15,6 +15,8 @@ Rails.application.config.assets.precompile += %w(service.css
  share/course.css
  share/mini.css
  share/mobile.css
+ share/course/style.css
+ share/course/lrtk.css
 
  home/jquery.touchSlider.js
  home/jquery-1.7.1.min.js
@@ -38,5 +40,10 @@ Rails.application.config.assets.precompile += %w(service.css
  share/jquery-ui-1.10.3.min.js
  share/load.js
  share/player.js
+ share/course/jquery.hammer-full.min.js
+ share/course/jquery.js
+ share/course/lrtk.js
+ share/course/plugin.js
+
  hls.min.js
  )
