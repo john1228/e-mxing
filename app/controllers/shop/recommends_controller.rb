@@ -6,7 +6,7 @@ module Shop
       case params[:type]
         when 'course'
           render json: Success.new(
-                     course: Sku.where('address LIKE ?', city + '%').recommended.page(params[:page]||1).map { |sku|
+                     course: Sku.select("skus.*, st_distance(skus.coordinate, 'POINT(#{params[:lng]} #{params[:lat]})') as distance").where('address LIKE ?', city + '%').recommended.page(params[:page]||1).map { |sku|
                        sku.as_json.merge(store: sku.store)
                      }
                  )
@@ -26,7 +26,7 @@ module Shop
                      }
                  )
         when 'buy'
-          render json: Success.new(course: Sku.where('address LIKE ? AND status=1', city + '%').order(orders_count: :desc).page(params[:page]||1).map { |sku|
+          render json: Success.new(course: Sku.online.select("skus.*, st_distance(skus.coordinate, 'POINT(#{params[:lng]} #{params[:lat]})') as distance").where('address LIKE ? AND status=1', city + '%').order(orders_count: :desc).page(params[:page]||1).map { |sku|
                                      sku.as_json.merge(buyers: sku.orders_count)
                                    })
         else
