@@ -14,12 +14,11 @@ android:
     ver: "1.0"
 ios: 
   b: 
-    force: 0
     info: ""
     url: ""
-    ver: 1.0
+    ver: "1.0"
   c: 
-    force: 0
+    force: "1"
     info: ""
     url: ""
-    ver: 1.0
+    ver: "1.0"
