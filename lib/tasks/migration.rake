@@ -1,17 +1,7 @@
 namespace :migration do
   desc '课程转移'
   task :course => :environment do
-
-    Course.where.(created_at: Date.today.yesterday..Date.today).map { |course|
-      service = course.coach.service
-      if service.present?
-        image = CoursePhoto.where(course_id: course.id).map { |photo| photo.photo }
-        course.update(image: image)
-      end
-    }
-
-
-    Course.where.not(id: ids).map { |course|
+    Course.all.map { |course|
       service = course.coach.service
       if service.present?
         if course.image.first.present?
@@ -34,6 +24,8 @@ namespace :migration do
               status: course.status
           )
         end
+      else
+        course.update(status: 0)
       end
     }
   end
