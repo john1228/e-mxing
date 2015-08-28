@@ -30,7 +30,7 @@ class DeployController < ApplicationController
     params.each { |k, v|
       logger.info "#{k}::#{v}"
     }
-    render json: Success.new('host' => 'http://pre.e-mxing.com/', 're-request' => 1)
+    render json: Success.new('host' => 'http://www.e-mxing.com/', 're-request' => 1)
   end
 
   def service
