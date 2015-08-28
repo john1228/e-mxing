@@ -85,7 +85,7 @@ Rails.application.routes.draw do
   get 'home/join' => 'home#join'
 
   get 'wap' => 'wap#index'
-  get 'wap/film' => 'wap#film'
+  get 'wap/film' => 'share/dynamic'
   get 'wap/course' => 'wap#course'
 
   get 'news/:id' => 'news#show', as: :news_detail
