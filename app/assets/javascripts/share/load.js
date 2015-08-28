@@ -5,7 +5,7 @@ var demoImgArray = [
     '/images/share/page04.jpg',
     '/images/share/s-up.png',
     '/images/share/ico1.png',
-    '/images/share/code.jpg',
+    '/images/share/code.png',
     '/images/share/jmtext.png',
     '/images/share/jmtext2.png',
     '/images/share/kcico1.png',
