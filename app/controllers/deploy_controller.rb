@@ -41,7 +41,7 @@ class DeployController < ApplicationController
   def city
     render json: Success.new(
                city: {
-                   opened: %w'北京 上海',
+                   opened: %w'北京 上海 南京',
                    openning: %w'天津'
                }
            )
