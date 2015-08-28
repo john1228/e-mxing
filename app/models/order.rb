@@ -95,6 +95,7 @@ class Order < ActiveRecord::Base
               wallet.with_lock do
                 wallet.balance += total
                 wallet.action = WalletLog::ACTIONS['卖课收入']
+                wallet.save
               end
             end
           end
@@ -105,7 +106,13 @@ class Order < ActiveRecord::Base
                         exp: Date.today.next_day(course.exp), contact_name: contact_name, contact_phone: contact_phone) if lessons.blank?
           #钱的處理
           wallet = Wallet.find_or_create_by(user_id: sku_info.seller_id)
-          wallet.update(balance: (wallet.balance + total), action: WalletLog::ACTIONS['卖课收入']) unless course.guarantee.eql?(Course::GUARANTEE)
+          unless course.guarantee.eql?(Course::GUARANTEE)
+            wallet.with_lock do
+              wallet.balance += total
+              wallet.action = WalletLog::ACTIONS['卖课收入']
+              wallet.save
+            end
+          end
         end
         Sku.where('sku LIKE ?', order_item.sku[0, order_item.sku.rindex('-')] + '%').update_all("orders_count =  orders_count + #{order_item.amount}")
       #结算
