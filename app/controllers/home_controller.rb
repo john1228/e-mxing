@@ -1,6 +1,8 @@
 class HomeController < ApplicationController
 
   def index
+    ua = request.env['HTTP_USER_AGENT'].downcase
+    @wap = true if ua.include?('android') || ua.include?('iphone')
     render layout: false
   end
 

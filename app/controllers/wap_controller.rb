@@ -6,7 +6,6 @@ class WapController < ApplicationController
   end
 
   def film
-    @dynamic= Dynamic.find_by(id: params[:id])
-    @actor = @dynamic.user.profile
+    redirect_to controller: :share, action: :dynamic, id: params[:id]
   end
 end
