@@ -1,19 +1,14 @@
 module Gyms
   class CoursesController < BaseController
     def index
-      if params[:version].present?
-        render json: Success.new(
-                   courses: Sku.online.
-                       select("skus.*, st_distance(skus.coordinate, 'POINT(#{params[:lng]||0} #{params[:lat]||0})') as distance").
-                       where(seller_id: @coach.id).
-                       where("sku LIKE 'CC%'").
-                       order(id: :desc).page(params[:page]||1)
-               )
-      else
-        render json: Success.new(
-                   courses: @coach.courses.where(status: Course::STATUS[:online]).order(id: :desc).page(params[:page]||1)
-               )
-      end
+      user = Rails.cache.fetch(request.headers[:token])
+      render json: Success.new(
+                 courses: Sku.online.
+                     select("skus.*, st_distance(skus.coordinate, 'POINT(#{params[:lng]||(user.place.lonlat.x rescue 0)} #{params[:lat]||(user.place.lonlat.y rescue 0)})') as distance").
+                     where(seller_id: @coach.id).
+                     where("sku LIKE 'CC%'").
+                     order(id: :desc).page(params[:page]||1)
+             )
     end
 
     def show

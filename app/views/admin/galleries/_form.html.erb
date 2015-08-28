@@ -13,7 +13,7 @@
         <label class="col-sm-2 control-label" for="service_interests">标记:</label>
 
         <div class="col-sm-10">
-          <%= f.select(:tag, Gallery::TAGS, {selected: (f.object.tag), include_blank: false}) %>
+          <%= f.select(:tag, TAGS, {selected: (f.object.tag), include_blank: false}) %>
         </div>
       </div>
       <% f.has_many :images, allow_destroy: true, heading: false do |cf| %>

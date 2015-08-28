@@ -126,7 +126,7 @@ module FindManager
 
        }]
     else
-      Gallery::TAGS.map { |tag|
+      TAGS.map { |tag|
         {
             tag: tag,
             items: Gallery.where(tag: tag).order(id: :desc).page(1)
