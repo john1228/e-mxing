@@ -8,13 +8,10 @@
   <meta content="black" name="apple-mobile-web-app-status-bar-style">
   <meta content="telephone=no" name="format-detection">
   <%= stylesheet_link_tag 'share/course/style', 'share/course/lrtk' %>
-  <script>
-      $("a").attr("href", "http://www.e-mxing.com");
-  </script>
 </head>
 <body>
 
-<a class="downtoad" href="#">
+<a class="downtoad" href="http://www.e-mxing.com/download">
   <button id="download-button"></button>
 </a>
 
@@ -44,7 +41,7 @@
     </ul>
     <samp class="clear"></samp></div>
   <div class="adtre">
-    <a href="#" class="Address-Headportrait">
+    <a href="http://www.e-mxing.com/download" class="Address-Headportrait">
       <samp class="Headportrait"><%= image_tag(@sku.seller_user.profile.avatar.thumb.url) %></samp>
       <samp class="Name">
         <% if @sku.sku.start_with?('CC') %>
@@ -52,7 +49,7 @@
         <% else %>
             <%= @sku.seller %>
         <% end %></samp></a>
-    <a href="#" class="address"><samp class="Arrow"></samp><%= @sku.address %></a>
+    <a href="http://www.e-mxing.com/download" class="address"><samp class="Arrow"></samp><%= @sku.address %></a>
 
     <div class="Time">
       <ul>
@@ -112,14 +109,14 @@
 </div>
 <div class="Purchase "><samp class="Purchase-Buy">已购</samp>
   <% @buyers.each do |buyer| %>
-      <a href="#">
+      <a href="http://www.e-mxing.com/download">
         <%= image_tag(buyer.profile.avatar.thumb.url) %>
       </a>
   <% end %><samp class="Arrow arltop"></samp> <samp class="clear"></samp></div>
 <div class="Number"><samp class="Arrow Numbertop"></samp><%= @comment_count %>秀</div>
 <div class="Recommend">
   <% @image_comments.each do |image_comment| %>
-      <a href="#">
+      <a href="http://www.e-mxing.com/download">
         <div class="Recommend-txt">
           <h1 class="Recommend-txt-top"><samp><%= image_tag(image_comment.image.first.thumb.url) %></samp>
 
@@ -136,7 +133,7 @@
   <% end %>
   <p class="clear "></p>
 </div>
-<div class="foot "><a class="foot-Call" href="#">联系我们</a> <a class="foot-Buy" href="#">立即购买</a></div>
+<div class="foot "><a class="foot-Call" href="http://www.e-mxing.com/download">联系我们</a> <a class="foot-Buy" href="http://www.e-mxing.com/download">立即购买</a></div>
 <%= javascript_include_tag 'share/course/jquery.min', 'share/course/jquery.hammer-full.min', 'share/course/plugin', 'share/course/lrtk' %>
 <script>
     $(".slide ").click(function () {

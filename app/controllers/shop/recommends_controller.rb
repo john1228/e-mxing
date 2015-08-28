@@ -16,7 +16,7 @@ module Shop
                      course: Coach.includes(:service_member).where(service_members: {service_id: services}).recommended.page(params[:page]||1).map { |coach|
                        coach.summary_json.merge(
                            tip: coach.recommend.recommended_tip,
-                           courses: coach.courses.count,
+                           courses: coach.courses.where(status: Course::STATUS[:online]).count,
                            address: coach.service.profile.address,
                            coordinate: {
                                lng: coach.service.place.lonlat.x,

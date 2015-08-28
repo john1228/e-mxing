@@ -9,6 +9,7 @@ class HomeController < ApplicationController
   end
 
   def dynamic
+    @type_shows = TypeShow.order(id: :desc).take(10)
     render layout: false
   end
 
