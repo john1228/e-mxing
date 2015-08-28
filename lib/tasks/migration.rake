@@ -52,10 +52,9 @@ namespace :migration do
   end
 
   desc '订单数量'
-  task :order => :environment do
+  task :orders_count => :environment do
     Sku.all.each { |sku|
-      sku_code = sku.sku
-      sku.update(orders_count: Order.joins(:order_item).where(status: 2).where('order_items.sku = ?', sku_code))
+      sku.update(orders_count: (OrderItem.joins(:order).where(orders: {status: 2}, sku: 'CC-000088-001147').sum(:amount) + rand(100)))
     }
   end
 
