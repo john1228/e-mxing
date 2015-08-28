@@ -132,7 +132,7 @@
     <h1><%= @activity.title %></h1>
     <em>美型活动 <%= @activity.created_at.localtime.strftime('%m-%d %H:%M') %></em>
   </div>
-  <div class="artcon"><%= sanitize @activity.content %></div>
+  <div class="artcon"><%= sanitize @activity.content.gsub('http://www.e-mxing.com/uploads', 'http://image.e-mxing.com/uploads') %></div>
 </section>
 <% unless @cc.eql?('app') %>
     <div class="bottomSection J_bottomSection" style="">
