@@ -66,7 +66,7 @@ class Order < ActiveRecord::Base
         errors.add(:store, '库存不足')
         return false
       else
-        Sku.where('sku LIKE ?', order_item.sku[0, order_item.sku.rindex('-')] + '%').update_all(store: (sku_info.store - order_item.amount))
+        Sku.where('sku LIKE ? and course_id=?', order_item.sku[0, 2] + '%', sku_info.course_id).map { |sku| sku.update(store: (sku_info.store - order_item.amount)) }
       end
     end
 
