@@ -2,7 +2,7 @@ ActiveAdmin.register Activity do
   menu label: '活动', parent: '运营'
   filter :title, label: '标题'
   permit_params :id, :title, :cover, :pos, :content
-  index title: '新闻列表' do
+  index title: '最新活动' do
     selectable_column
     column '标题', :title do |activity|
       truncate(activity.title)
@@ -11,7 +11,7 @@ ActiveAdmin.register Activity do
       image_tag(activity.cover.url, width: 75)
     end
     column '链接地址' do |activity|
-      link_to('详情', '#', onclick: "javascript:void window.open('http://www.textfixer.com','1437100812098','toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0');return false;")
+      link_to('详情', activity_detail_path(activity))
     end
     actions
   end
