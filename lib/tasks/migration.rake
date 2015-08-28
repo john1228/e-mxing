@@ -3,7 +3,7 @@ namespace :migration do
   task :course => :environment do
 
     Course.all.map { |course|
-      service = course.coach.service
+      service = course.coach.service rescue nil
       if service.present?
         if course.image.blank?
           image = CoursePhoto.where(course_id: course.id).map { |photo| photo.photo }
@@ -16,8 +16,9 @@ namespace :migration do
 
 
     Course.all.map { |course|
+      service = course.coach.service rescue nil
       sku = Sku.where('course_id = ? and sku LIKE ?', course.id, 'CC%')
-      if course.image.first.present? && sku.blank?
+      if course.image.first.present? && sku.blank? && service.present?
         Sku.create(
             sku: 'CC'+'-' + '%06d' % course.id + '-' + '%06d' % (service.id),
             course_id: course.id,
