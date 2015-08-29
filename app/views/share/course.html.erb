@@ -18,7 +18,7 @@
 <!-- 代码 开始 -->
 <div class="container-fluid text-center">
   <div class="header"><%= image_tag(@sku.course_cover,
-                                    'data-slideshow' => "#{@sku.course.image.map { |item| item.thumb.url }.join('|')}",
+                                    'data-slideshow' => "#{@course.image.map { |item| item.thumb.url }.join('|')}",
                                     class: 'headerImg') %></div>
   <div class="toix-txt">
     <div class="toix-pocx">美型担保</div>
@@ -35,9 +35,9 @@
 
   <div class="Introduction">
     <ul>
-      <li><%= @sku.course.style %></li>
-      <li><%= @sku.course.proposal %>课时</li>
-      <li><%= @sku.course.type %></li>
+      <li><%= @course.style %></li>
+      <li><%= @course.proposal %>课时</li>
+      <li><%= @type_name %></li>
     </ul>
     <samp class="clear"></samp></div>
   <div class="adtre">
@@ -54,11 +54,13 @@
     <div class="Time">
       <ul>
         <li>
-          <div class="Time-tie"><samp class="Time-pol">10:30</samp><samp class="tdeqa">2015</samp></div>
+          <div class="Time-tie"><samp class="Time-pol"><%= @expired_date.month %>
+            .<%= @expired_date.day %></samp><samp class="tdeqa"><%= @expired_date.year %></samp>
+          </div>
           <div class="Time-teu">有效期截止</div>
         </li>
         <li>
-          <div class="Time-tie"><samp class="Time-pol">120</samp><samp class="tdeqa">分钟</samp></div>
+          <div class="Time-tie"><samp class="Time-pol"><%= @course.during %></samp><samp class="tdeqa">分钟</samp></div>
           <div class="Time-teu">课程时长</div>
         </li>
         <samp class="clear"></samp>
@@ -133,7 +135,8 @@
   <% end %>
   <p class="clear "></p>
 </div>
-<div class="foot "><a class="foot-Call" href="http://www.e-mxing.com/download">联系我们</a> <a class="foot-Buy" href="http://www.e-mxing.com/download">立即购买</a></div>
+<div class="foot "><a class="foot-Call" href="http://www.e-mxing.com/download">联系我们</a>
+  <a class="foot-Buy" href="http://www.e-mxing.com/download">立即购买</a></div>
 <%= javascript_include_tag 'share/course/jquery.min', 'share/course/jquery.hammer-full.min', 'share/course/plugin', 'share/course/lrtk' %>
 <script>
     $(".slide ").click(function () {
