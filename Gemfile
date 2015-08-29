@@ -60,3 +60,5 @@ gem 'whenever'
 gem 'harmonious_dictionary'
 gem 'rqrcode'
 gem 'rqrcode_png'
+
+gem 'actionpack-page_caching'

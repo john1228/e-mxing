@@ -17,7 +17,7 @@ module Mxing
     # config.time_zone = 'Central Time (US & Canada)'
     config.active_record.raise_in_transactional_callbacks = true
     config.middleware.insert_after ActionDispatch::ParamsParser, ActionDispatch::XmlParamsParser
-
+    config.action_controller.page_cache_directory = "#{Rails.root.to_s}/public/caches"
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     config.time_zone = 'Beijing'

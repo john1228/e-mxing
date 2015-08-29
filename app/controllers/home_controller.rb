@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+  caches_page :index, :wap, :about, :contact, :join, :detail
 
   def index
     ua = request.env['HTTP_USER_AGENT'].downcase
