@@ -2,13 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-  <%= stylesheet_link_tag 'home/style' %>
+
   <%= javascript_include_tag 'home/jquery-1.7.1.min',
                              'home/homeban',
                              'home/jquery.touchSlider',
                              'home/plus2015',
                              'home/stellar' %>
   <title>美于型|健于身</title>
+  <%= csrf_meta_tags %>
 </head>
 <body>
 <div class="header" id="topbar">
@@ -122,4 +123,5 @@
 </script>
 
 </body>
+<%= stylesheet_link_tag 'home/style' %>
 </html>
