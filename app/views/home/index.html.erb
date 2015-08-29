@@ -1,54 +1,4 @@
 <!DOCTYPE html>
-<% if @wap %>
-    <html>
-    <head>
-      <meta charset="utf-8">
-      <title>美型-美于型，健于身</title>
-      <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
-      <%= stylesheet_link_tag 'wap/wap' %>
-    </head>
-    <body>
-    <div class="overlay"></div>
-    <div id="modal1" class="modal">
-      <%= image_tag('wap/QR-ode.png') %></div>
-    <div class="swiper-container">
-      <div class="header-top">
-        <dl>
-          <dt><a class="modalLink" href="#modal1"><%= image_tag('wap/QRcode.png') %></a></dt>
-        </dl>
-      </div>
-      <div class="swiper-wrapper">
-        <section class="swiper-slide swiperbj-a ">
-
-          <div class="swiper-Download ">
-            <a href="http://www.e-mxing.com/download" class="swiper-Download-a "><%= image_tag('wap/Download-01.png', class: 'resize') %></a>
-            <a href="http://www.e-mxing.com/download/b" class="swiper-Download-b "><%= image_tag('wap/Download-02.png', class: 'resize') %></a>
-          </div>
-        </section>
-        <section class="swiper-slide swiperbj-b">
-          <div class="swiper-Downloada">
-            <a href="http://www.e-mxing.com/download" class="swiper-Download-a"><%= image_tag('wap/Download-01.png', class: 'resize') %></a>
-            <a href="http://www.e-mxing.com/download/b" class="swiper-Download-b "><%= image_tag('wap/Download-02.png', class: 'resize') %></a>
-          </div>
-        </section>
-      </div>
-      <%= image_tag('wap/arrow.png', id: 'array', class: 'pages') %>
-    </div>
-    <%= javascript_include_tag 'wap/swiper.min', 'wap/jquery.min', 'wap/jquery.modal' %>
-    <script>
-        var swiper = new Swiper('.swiper-container', {
-            pagination: '.swiper-pagination',
-            direction: 'vertical',
-            slidesPerView: 1,
-            paginationClickable: true,
-            spaceBetween: 30,
-            mousewheelControl: true
-
-        })
-    </script>
-    </body>
-    </html>
-<% else %>
     <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
       <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -114,11 +64,31 @@
     <div class="activebg twobg" data-stellar-background-ratio="0.05"></div>
     <div class="sijiao">
       <div class="sj_con">
+        <ul>
+          <li><%= image_tag('home/ico8_a.png') %></li>
+          <li><%= image_tag('home/ico10_a.png') %></li>
+          <li>&nbsp;</li>
+          <li><%= image_tag('home/ico4_a.png') %></li>
+          <li><%= image_tag('home/ico6_a.png') %></li>
+          <li><%= image_tag('home/ico2_a.png') %></li>
+        </ul>
       </div>
     </div>
     <div class="activebg thirdbg" data-stellar-background-ratio="0.05"></div>
     <div class="tongdao">
       <div class="td_con">
+        <ul>
+          <li><%= image_tag('home/ico1.png') %></li>
+          <li><%= image_tag('home/ico2.png') %></li>
+          <li><%= image_tag('home/ico3.png') %></li>
+          <li><%= image_tag('home/ico4.png') %></li>
+          <li><%= image_tag('home/ico5.png') %></li>
+          <li><%= image_tag('home/ico6.png') %></li>
+          <li><%= image_tag('home/ico7.png') %></li>
+          <li><%= image_tag('home/ico8.png') %></li>
+          <li><%= image_tag('home/ico9.png') %></li>
+          <li><%= image_tag('home/ico10.png') %></li>
+        </ul>
       </div>
     </div>
     <!--footer-->
@@ -171,4 +141,3 @@
 
     </body>
     </html>
-<% end %>

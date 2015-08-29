@@ -79,6 +79,26 @@ ActiveAdmin.register Service do
       end
       render layout: false
     end
+
+    def message
+      service = Service.find_by(id: params[:id])
+      case params[:target].to_i
+        when 1
+          #全部推送消息
+          order_users = Order.includes(:user).where(service_id: service.id, status: Order::STATUS[:pay]).map { |item| item.user.profile.mxid }
+          follow_users = Follow.includes(:user).where(service_id: service.id).map { |item| item.user.profile.mxid }
+          PushMessageJob.perform_later((order_users|follow_users), params[:message])
+        when 2
+          #购课需要推送消息
+          order_users = Order.includes(:user).where(service_id: service.id, status: Order::STATUS[:pay]).map { |item| item.user.profile.mxid }
+          PushMessageJob.perform_later(order_users, params[:message])
+        when 3
+          #扫码推送消息
+          follow_users = Follow.includes(:user).where(service_id: service.id).map { |item| item.user.profile.mxid }
+          PushMessageJob.perform_later(follow_users, params[:message])
+      end
+      redirect_to admin_service_path(service), alert: '消息已发送'
+    end
   end
 
   show do

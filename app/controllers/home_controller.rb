@@ -2,7 +2,14 @@ class HomeController < ApplicationController
 
   def index
     ua = request.env['HTTP_USER_AGENT'].downcase
-    @wap = true if ua.include?('android') || ua.include?('iphone')
+    if ua.include?('android') || ua.include?('iphone')
+      redirect_to action: :wap
+    else
+      render layout: false
+    end
+  end
+
+  def wap
     render layout: false
   end
 

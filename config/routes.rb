@@ -83,6 +83,7 @@ Rails.application.routes.draw do
   get 'home/dynamic/:id' => 'home#detail'
   get 'home/contact' => 'home#contact'
   get 'home/join' => 'home#join'
+  get 'home/wap' => 'home#wap'
 
   get 'wap' => 'wap#index'
   get 'wap/film' => 'share/dynamic'
@@ -110,6 +111,8 @@ Rails.application.routes.draw do
   post '/admin/service_courses/:id/offline' => 'admin/service_courses#offline', as: :offline
   post '/admin/coupons/:id/online' => 'admin/coupons#online', as: :online_coupon
   post '/admin/coupons/:id/offline' => 'admin/coupons#offline', as: :offline_coupon
+  post '/admin/services/:id/message' => 'admin/services#message', as: :service_message
+
 
   get '/admin/orders/:id/user' => 'admin/orders#user', as: :order_user
   #推荐私教
