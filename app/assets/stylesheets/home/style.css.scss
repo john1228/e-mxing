@@ -193,7 +193,7 @@ input, textarea, select {
   overflow: hidden;
   width: 268px;
   height: 80px;
-  background: asset_data_url('home/logo.png') no-repeat center
+  background: url(image_path('home/logo.png')) no-repeat center
 }
 
 .nav {
@@ -249,7 +249,7 @@ input, textarea, select {
 }
 
 .topicfixed .logo a {
-  background: asset_data_url('home/logo.png') no-repeat center
+  background: url(image_path('home/logo.png')) no-repeat center
 }
 
 .main_visual {
@@ -351,7 +351,7 @@ input, textarea, select {
   margin-right: 20px;
   text-indent: -9999px;
   overflow: hidden;
-  background: asset_data_url('home/iosbut.png') no-repeat -194px 0;
+  background: url(image_path('home/iosbut.png')) no-repeat -194px 0;
 }
 
 .bnbut a.ios {
@@ -365,7 +365,7 @@ input, textarea, select {
   margin: 20px;
   text-indent: -9999px;
   overflow: hidden;
-  background: asset_data_url('home/codebut.png') no-repeat;
+  background: url(image_path('home/codebut.png')) no-repeat;
   cursor: pointer
 }
 
@@ -378,7 +378,7 @@ input, textarea, select {
   margin-left: -400px;
   padding: 10px;
   border-radius: 20px;
-  background: asset_data_url('home/btm.png');
+  background: url(image_path('home/btm.png'));
   z-index: 99
 }
 
@@ -391,7 +391,7 @@ input, textarea, select {
   overflow: hidden;
   text-indent: -999px;
   cursor: pointer;
-  background: asset_data_url('home/close.png');
+  background: url(image_path('home/close.png'));
   z-index: 99
 }
 
@@ -426,25 +426,25 @@ input, textarea, select {
 
 .xiuchang {
   height: 680px;
-  background: asset_data_url('home/picture_01.png') no-repeat center
+  background: url(image_path('home/picture_01.png')) no-repeat center
 }
 
 .xiuchang .xc_con {
   width: 1200px;
   height: 680px;
-  background: asset_data_url('home/picture_01.png') no-repeat center
+  background: url(image_path('home/picture_01.png')) no-repeat center
 }
 
 .sijiao {
   height: 680px;
-  background: asset_data_url('home/picture_02.png') no-repeat center
+  background: url(image_path('home/picture_02.png')) no-repeat center
 }
 
 .sijiao .sj_con {
   width: 1200px;
   height: 680px;
   position: relative;
-  background: asset_data_url('home/picture_02.png') no-repeat center
+  background: url(image_path('home/picture_02.png')) no-repeat center
 }
 
 .sijiao .sj_con ul {
@@ -463,14 +463,14 @@ input, textarea, select {
 
 .tongdao {
   height: 680px;
-  background: asset_data_url('home/picture_03.png') no-repeat center
+  background: url(image_path('home/picture_03.png')) no-repeat center
 }
 
 .tongdao .td_con {
   width: 1200px;
   height: 680px;
   position: relative;
-  background: asset_data_url('home/picture_03.png') no-repeat center
+  background: url(image_path('home/picture_03.png')) no-repeat center
 }
 
 .tongdao .td_con ul {
@@ -528,7 +528,7 @@ input, textarea, select {
   margin-right: 20px;
   text-indent: -9999px;
   overflow: hidden;
-  background: asset_data_url('home/iosbut.png') no-repeat -194px -66px;
+  background: url(image_path('home/iosbut.png')) no-repeat -194px -66px;
 }
 
 .footer .fl_right a.ios {
@@ -546,20 +546,20 @@ input, textarea, select {
 }
 
 .onebg {
-  background-image: asset_data_url('home/bg_01.png');
+  background-image: url(image_path('home/bg_01.png'));
 }
 
 .twobg {
-  background-image: asset_data_url('home/bg_02.png');
+  background-image: url(image_path('home/bg_02.png'));
 }
 
 .thirdbg {
-  background-image: asset_data_url('home/bg_03.png');
+  background-image: url(image_path('home/bg_03.png'));
 }
 
 .dt_banner {
   height: 600px;
-  background: asset_data_url('home/bannerbg2.png') no-repeat center
+  background: url(image_path('home/bannerbg2.png')) no-repeat center
 }
 
 .dynamic {
@@ -706,7 +706,7 @@ input, textarea, select {
 .sw_banner {
   height: 600px;
   position: relative;
-  background: asset_data_url('home/bannerbg3.png') no-repeat center
+  background: url(image_path('home/bannerbg3.png')) no-repeat center
 }
 
 .sw_banner .sw_text {
@@ -751,7 +751,7 @@ input, textarea, select {
   padding: 40px 20px;
   overflow: hidden;
   line-height: 28px;
-  background: asset_data_url('home/swhzbg.png') no-repeat center 120px;
+  background: url(image_path('home/swhzbg.png')) no-repeat center 120px;
 }
 
 .affairs h3 {
@@ -817,11 +817,11 @@ input, textarea, select {
 }
 
 .jr_banner {
-  background: asset_data_url('home/bannerbg4.png') no-repeat center
+  background: url(image_path('home/bannerbg4.png')) no-repeat center
 }
 
 .gy_banner {
-  background: asset_data_url('home/bannerbg5.png') no-repeat center
+  background: url(image_path('home/bannerbg5.png')) no-repeat center
 }
 
 .jobbox {
@@ -834,7 +834,7 @@ input, textarea, select {
   padding: 30px 20px;
   font-size: 28px;
   line-height: 28px;
-  background: asset_data_url('home/swhzbg.png') no-repeat center bottom;
+  background: url(image_path('home/swhzbg.png')) no-repeat center bottom;
 }
 
 .jobbox .jobcon {
@@ -873,7 +873,7 @@ input, textarea, select {
   padding: 40px 0;
   margin-top: 40px;
   margin-bottom: 40px;
-  background: asset_data_url('home/aboutbg.png') no-repeat center;
+  background: url(image_path('home/aboutbg.png')) no-repeat center;
   font-size: 20px;
 }
 
