@@ -44,6 +44,10 @@ class Course < ActiveRecord::Base
     ]
   end
 
+  def type_name
+    (INTERESTS['items'].detect { |item| item['id']==type })['name']
+  end
+
   private
   def sku_build
     if status.eql?(STATUS[:online])

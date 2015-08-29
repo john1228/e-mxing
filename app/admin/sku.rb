@@ -7,7 +7,7 @@ ActiveAdmin.register Sku do
   filter :seller
   filter :selling_price
   filter :store
-  filter :status
+  filter :status, as: :select, collection: [['库存中', 0], ['已上架', 1]]
   filter :address
 
   scope('0-私教课程', :coach_courses)
@@ -48,6 +48,22 @@ ActiveAdmin.register Sku do
           link_to('设为爆款', recommend_course_path(sku), method: :post)
         end
       end
+    end
+  end
+
+  show title: '课程详情' do
+    attributes_table do
+      row(:sku)
+      row(:course_name)
+      row('封面') { image_tag(sku.course_cover, width: 100) }
+      row(:market_price)
+      row(:selling_price)
+      row('课程类型') { sku.course.type_name }
+      row('建议课时') { sku.course.proposal }
+      row('有效期') { "#{sku.course.exp}天" }
+      row(:seller)
+      row('服务号') { sku.seller_user.is_a?(Coach) ? sku.seller_user.service.profile.name : sku.seller_user.profile.name }
+      row(:address)
     end
   end
 

@@ -44,6 +44,7 @@
           proposal: '建议课时'
           exp: '有效期'
         sku:
+          sku: '商品SKU码'
           course_name: '课程名'
           course_type: '课程类型'
           course_cover: '封面'
@@ -53,4 +54,5 @@
           limit: '限购'
           seller: '卖家'
           address: '卖家地址'
+          status: '状态'
 
