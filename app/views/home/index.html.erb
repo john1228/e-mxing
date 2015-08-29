@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-
+  <%= stylesheet_link_tag 'home/style' %>
   <%= javascript_include_tag 'home/jquery-1.7.1.min',
                              'home/homeban',
                              'home/jquery.touchSlider',
@@ -14,7 +14,8 @@
 <body>
 <div class="header" id="topbar">
   <div class="headercon">
-    <div class="logo"><a href="#">美型网－美于身 健于型</a></div>
+    <div class="logo">
+      <a href="#" class="background: url(<%= image_path('home/logo.png') %>) no-repeat center">美型网－美于身 健于型</a></div>
     <ul class="nav">
       <li><%= link_to('首页', '/home/index') %></li>
       <li><%= link_to('关于我们', '/home/about') %></li>
@@ -59,20 +60,22 @@
 </div>
 <!--banner End-->
 <div class="activebg onebg" data-stellar-background-ratio="0.05"></div>
-<div class="xiuchang">
-  <div class="xc_con"></div>
+<div style="height: 680px;background: url(<%=image_path('home/picture_01.png')%>) no-repeat center">
+  <div style=" width: 1200px;
+          height: 680px;
+          background: url(<%=image_path('home/picture_01.png')%>) no-repeat center"></div>
 </div>
 <div class="activebg twobg" data-stellar-background-ratio="0.05"></div>
-<div class="sijiao">
-  <div class="sj_con">
-  </div>
+<div style="height: 680px;background: url(<%=image_path('home/picture_02.png')%>) no-repeat center">
+  <div style=" width: 1200px;
+          height: 680px;
+          background: url(<%=image_path('home/picture_02.png')%>) no-repeat center"></div>
 </div>
 <div class="activebg thirdbg" data-stellar-background-ratio="0.05"></div>
-<div class="tongdao">
-  <div class="td_con">
-    <ul>
-    </ul>
-  </div>
+<div style="height: 680px;background: url(<%=image_path('home/picture_03.png')%>) no-repeat center">
+  <div style=" width: 1200px;
+          height: 680px;
+          background: url(<%=image_path('home/picture_03.png')%>) no-repeat center"></div>
 </div>
 <!--footer-->
 <div class="footer">
@@ -104,10 +107,7 @@
             horizontalScrolling: false,
             verticalOffset: 40
         });
-
-        var $body = $("body");
         var firstHeight = 960;
-        var st = new Date().getTime();
         $(window).scroll(function (e) {
             scrollTop = $(window).scrollTop();
             if (scrollTop >= firstHeight) {
@@ -123,5 +123,4 @@
 </script>
 
 </body>
-<%= stylesheet_link_tag 'home/style' %>
 </html>

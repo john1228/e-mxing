@@ -196,7 +196,6 @@ input, textarea, select {
   background: asset_data_url('home/logo.png') no-repeat center
 }
 
-
 .nav {
   float: right;
   position: relative;
@@ -247,10 +246,6 @@ input, textarea, select {
 
 .topicfixed .nav li.cur a {
   color: #fff;
-}
-
-.topicfixed .logo a {
-  background: asset_data_url('home/logo.png') no-repeat center
 }
 
 .main_visual {
@@ -423,69 +418,6 @@ input, textarea, select {
 .codebox dl em {
   display: block;
   margin-bottom: -35px;
-}
-
-.xiuchang {
-  height: 680px;
-  background: asset_data_url('home/picture_01.png') no-repeat center
-}
-
-.xiuchang .xc_con {
-  width: 1200px;
-  height: 680px;
-  background: asset_data_url('home/picture_01.png') no-repeat center
-}
-
-.sijiao {
-  height: 680px;
-  background: asset_data_url('home/picture_02.png') no-repeat center
-}
-
-.sijiao .sj_con {
-  width: 1200px;
-  height: 680px;
-  position: relative;
-  background: asset_data_url('home/picture_02.png') no-repeat center
-}
-
-.sijiao .sj_con ul {
-  position: absolute;
-  top: 400px;
-  left: 40px;
-  overflow: hidden;
-  width: 240px
-}
-
-.sijiao .sj_con ul li {
-  float: left;
-  width: 80px;
-  height: 80px;
-}
-
-.tongdao {
-  height: 680px;
-  background: asset_data_url('home/picture_03.png') no-repeat center
-}
-
-.tongdao .td_con {
-  width: 1200px;
-  height: 680px;
-  position: relative;
-  background: asset_data_url('home/picture_03.png') no-repeat center
-}
-
-.tongdao .td_con ul {
-  position: absolute;
-  top: 150px;
-  left: 700px;
-  overflow: hidden;
-  width: 450px
-}
-
-.tongdao .td_con ul li {
-  float: left;
-  width: 90px;
-  height: 90px;
 }
 
 .footer {
