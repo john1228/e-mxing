@@ -3,7 +3,7 @@ class PushMessageJob < ActiveJob::Base
 
   def perform(from, to, message)
     access_token = Rails.cache.fetch('mob')
-    if target.eql?('all')
+    if to.eql?('all')
       user = Profile.where.not(identity: 2)
       (0..(user.size/20)).map { |index|
         mxids = user.page(index+1).pluck(:id).map { |id| "#{Profile::BASE_NO + id}" }
