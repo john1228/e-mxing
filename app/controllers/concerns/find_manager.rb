@@ -126,12 +126,12 @@ module FindManager
 
        }]
     else
-      TAGS.map { |tag|
+      TAGS['opened'].map { |tag|
         {
             tag: tag,
             items: Gallery.where(tag: tag).order(id: :desc).page(1)
-        }
-      }
+        } unless Gallery.where(tag: tag).count == 0
+      }.delete(nil)
     end
   end
 

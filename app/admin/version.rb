@@ -40,10 +40,8 @@ ActiveAdmin.register_page 'Version' do
             message = err.message
           end
         when 'tag'
-          TAGS.clear
-          params[:tag].split(',').each { |tag|
-            TAGS << tag
-          }
+          TAGS['all'] = params[:all].split(',')
+          TAGS['opened'] = params[:opened]
           begin
             File.open(Rails.root.to_s + '/config/deploy_config/gallery.yml', 'w') { |f|
               f.puts TAGS.ya2yaml

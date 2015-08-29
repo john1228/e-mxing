@@ -1,6 +1,6 @@
 ActiveAdmin.register Gallery do
   menu label: '图库', parent: '运营'
-  filter :tag, label: '标记', as: :select, collections: TAGS
+  filter :tag, label: '标记', as: :select, collections: TAGS['all']
   permit_params :tag, images_attributes: [:id, :image, :caption]
   form partial: 'form'
   index title: '图库', as: :grid, columns: 5 do |gallery|
