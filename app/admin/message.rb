@@ -5,7 +5,7 @@ ActiveAdmin.register_page 'Message' do
   end
   controller do
     def push
-      PushMessageJob.perform_later(params[:users], params[:message])
+      PushMessageJob.perform_later('mxing', params[:users], params[:message])
       redirect_to admin_message_path, alert: '推送消息已放入消息队列开始推送'
     end
   end

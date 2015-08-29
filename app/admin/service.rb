@@ -87,15 +87,15 @@ ActiveAdmin.register Service do
           #全部推送消息
           order_users = Order.includes(:user).where(service_id: service.id, status: Order::STATUS[:pay]).map { |item| item.user.profile.mxid }
           follow_users = Follow.includes(:user).where(service_id: service.id).map { |item| item.user.profile.mxid }
-          PushMessageJob.perform_later((order_users|follow_users), params[:message])
+          PushMessageJob.perform_later(service.profile.mxid, (order_users+follow_users).uniq, params[:message])
         when 2
           #购课需要推送消息
           order_users = Order.includes(:user).where(service_id: service.id, status: Order::STATUS[:pay]).map { |item| item.user.profile.mxid }
-          PushMessageJob.perform_later(order_users, params[:message])
+          PushMessageJob.perform_later(service.profile.mxid, order_users, params[:message])
         when 3
           #扫码推送消息
           follow_users = Follow.includes(:user).where(service_id: service.id).map { |item| item.user.profile.mxid }
-          PushMessageJob.perform_later(follow_users, params[:message])
+          PushMessageJob.perform_later(service.profile.mxid, follow_users, params[:message])
       end
       redirect_to admin_service_path(service), alert: '消息已发送'
     end
