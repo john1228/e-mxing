@@ -13,7 +13,7 @@ class ServiceCourse < ActiveRecord::Base
   end
 
   def type_name
-    INTERESTS['items'].select { |item| type.eql?(item['id']) }.first['name']
+    (INTERESTS['items'].detect { |item| item['id']==type })['name']
   end
 
   private
