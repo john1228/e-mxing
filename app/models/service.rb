@@ -8,15 +8,28 @@ class Service<User
   has_many :service_members, dependent: :destroy
   has_many :coaches, through: :service_members
   alias_attribute :service_id, :id
+  attr_accessor :distance
 
-  
-  def floor_price
-    floor_course  = Sku.where(seller_id: coaches.pluck(:id)<<id).order(selling_price: :asc).first
-    if floor_course.present?
-      floor_course.selling_price
-    else
-      -1
-    end
+  def as_json
+    in_the_sale = Sku.online.where(seller_id: coaches.pluck(:id)<<id)
+    top_sellers = in_the_sale.where('sku LIKE ', 'CC%').order(orders_count: :desc).order(id: :asc).take(3)
+    tops = coaches.where(id: top_sellers)||coaches.order(id: :desc).take(3)
+    {
+        mxid: mxid,
+        name: name,
+        avatar: profile.avatar.thumb.url,
+        address: profile.address,
+        distance: distance.to_i,
+        coach: {
+            amount: coaches.count,
+            top: tops.map { |top| top.summary_json }
+        },
+        sale: {
+            amount: in_the_sale.count,
+            sold: in_the_sale.sum(:orders_count),
+            floor_price: (in_the_sale.order(selling_price: :desc).first.selling_price.to_i rescue 0)
+        }
+    }
   end
   
   private
