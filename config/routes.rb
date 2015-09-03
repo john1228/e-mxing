@@ -193,7 +193,7 @@ Rails.application.routes.draw do
     #查看课程和购买
     get 'courses' => 'courses#index'
   end
-  name :find do
+  namespace :find do
     get 'news' => 'news#index'
   end
   
