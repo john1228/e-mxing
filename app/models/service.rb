@@ -9,6 +9,11 @@ class Service<User
   has_many :coaches, through: :service_members
   alias_attribute :service_id, :id
 
+  
+  def floor_price
+    Sku.where(seller_id: coaches.pluck(:id)<<id).order(selling_price: :asc).first.selling_price
+  end
+  
   private
   def location
     if address.present?
