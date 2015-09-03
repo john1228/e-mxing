@@ -4,9 +4,9 @@ module Agency
   
     def index
       city = URI.decode(request.headers[:city]) rescue '上海'
-      agencies = Service.select("profiles.*,st_distance(places.lonlat, 'POINT(#{params[:lng]} #{params[:lat]})') as distance").
+      agencies = Service.select("profiles.*,st_distance(places.lonlat, 'POINT(#{params[:lng]||0} #{params[:lat]||0})') as distance").
           includes(:profile, :place).
-          where('profiles.name LIKE ? or profiles.address LIKE ? and profiles.address LIKE ？', params[:keyword], params[:keyword],city).
+          where('profiles.name LIKE ? or profiles.address LIKE ? and profiles.address LIKE ？', "#{params[:keyword]||''}%", "#{params[:keyword]||''}%",city).
           order('distance asc').
           order(id: :desc).
           page(params[:page]||1)
