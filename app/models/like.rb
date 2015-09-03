@@ -3,7 +3,13 @@ class Like < ActiveRecord::Base
   belongs_to :user
   DYNAMIC = 1
   PERSON = 2
-
+  
+  def as_json
+    {
+        user: user.summary_json,
+        created_at: created_at.localtime.strftime('%Y-%m-%d %H:%M:%S')
+    }
+  end
 
   private
   def within_month
