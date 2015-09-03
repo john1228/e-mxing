@@ -15,8 +15,8 @@ class Service<User
     top_sellers = in_the_sale.where('sku LIKE ?', 'CC%').order(orders_count: :desc).order(id: :asc).take(3)
     tops = coaches.where(id: top_sellers)||coaches.order(id: :desc).take(3)
     {
-        mxid: mxid,
-        name: name,
+        mxid: profile.mxid,
+        name: profile.name,
         avatar: profile.avatar.thumb.url,
         address: profile.address,
         distance: distance.to_i,
