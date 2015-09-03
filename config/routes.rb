@@ -189,6 +189,7 @@ Rails.application.routes.draw do
 
 
   namespace :agency do
+    get '/' => 'base#index'
     #查看课程和购买
     get 'courses' => 'courses#index'
   end
