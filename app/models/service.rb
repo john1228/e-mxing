@@ -11,7 +11,12 @@ class Service<User
 
   
   def floor_price
-    Sku.where(seller_id: coaches.pluck(:id)<<id).order(selling_price: :asc).first.selling_price
+    floor_course  = Sku.where(seller_id: coaches.pluck(:id)<<id).order(selling_price: :asc).first
+    if floor_course.present?
+      floor_course.selling_price
+    else
+      -1
+    end
   end
   
   private
