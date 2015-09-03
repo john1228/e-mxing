@@ -1,7 +1,7 @@
 module Find
   class NewsController < ApplicationController
     def index
-      if params[:tag].blank?
+      if params[:tag].present?
         render json: Success.new(news: [{
                                             tag: params[:tag],
                                             item: News.where(tag: tag).order(id: :desc).page(params[:page]||1)
