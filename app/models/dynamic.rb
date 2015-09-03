@@ -26,6 +26,7 @@ class Dynamic < ActiveRecord::Base
         content: HarmoniousDictionary.clean(content || ''),
         created: created_at.to_i,
         likes: likes.count,
+        like_user: likes.includes(:user).order(id: :desc).limit(15),
         comments: {
             count: dynamic_comments.count,
             item: dynamic_comments.order(id: :desc).limit(2).collect { |comment| comment.as_json }
