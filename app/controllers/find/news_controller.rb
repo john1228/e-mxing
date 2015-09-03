@@ -3,7 +3,7 @@ module Find
     def index
       if params[:tag].blank?
         render json: Success.new(news: [{
-                                            tag: tag,
+                                            tag: params[:tag],
                                             item: News.where(tag: tag).order(id: :desc).page(params[:page]||1)
                                         }])
       else
