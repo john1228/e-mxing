@@ -1,6 +1,24 @@
 module Agency
   class BaseController < ApplicationController
-    before_action :verify_agency
+    before_action :verify_agency, except: :index
+  
+    def index
+      city = URI.decode(request.headers[:city]) rescue '上海'
+      agencies = Service.select("profiles.*,st_distance(places.lonlat, 'POINT(#{params[:lng]} #{params[:lat]})') as distance").
+          includes(:profile, :place).
+          where('profiles.name LIKE ? or profiles.address LIKE ? and profiles.address LIKE ？', params[:keyword], params[:keyword],city).
+          order('distance asc').
+          order(id: :desc).
+          page(params[:page]||1)
+      agencies = Service.select("profiles.*,st_distance(places.lonlat, 'POINT(#{params[:lng]} #{params[:lat]})') as distance").order('distance asc').take(3) if agencies.blank?
+      render json: Success.new(agency: agencies.map { |agency|
+                                 agency.summary_json.merge(
+                                     coach: agency.coaches.map { |coach| coach.summary_json },
+                                     sales: agency.orders.where(status: 2).count,
+                                     floor_price: agency.floor_price
+                                 )
+                               })
+    end
     private
     def verify_agency
       @agency = Service.find_by_mxid(params[:mxid])
