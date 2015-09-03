@@ -12,13 +12,7 @@ module Agency
           order(id: :desc).
           page(params[:page]||1)
       agencies = Service.select("profiles.*,st_distance(places.lonlat, 'POINT(#{params[:lng]} #{params[:lat]})') as distance").order('distance asc').take(3) if agencies.blank?
-      render json: Success.new(agency: agencies.map { |agency|
-                                 agency.summary_json.merge(
-                                     coach: agency.coaches.map { |coach| coach.summary_json },
-                                     sales: agency.orders.where(status: 2).count,
-                                     floor_price: agency.floor_price
-                                 )
-                               })
+      render json: Success.new(agency: agencies)
     end
     private
     def verify_agency
