@@ -7,7 +7,7 @@ module Find
                                             item: News.where(tag: tag).order(id: :desc).page(params[:page]||1)
                                         }])
       else
-        render json: Success.new(news: News::TAGS.map { |tag|
+        render json: Success.new(news: News::TAG.map { |tag|
                                    {
                                        tag: tag,
                                        item: News.where(tag: tag).order(id: :desc).take(2)
