@@ -1,10 +1,9 @@
 ActiveAdmin.register Dynamic do
   menu label: '动态'
   actions :index
-  scope('0-所有动态', :all, default: true){|scope| scope.order(id: :desc)} 
-  scope('1-带图动态', :image){|scope| scope.joins(:dynamic_images).uniq.order(id: :desc)} 
+  scope('0-带图动态', :image, default: true){|scope| scope.joins(:dynamic_images).uniq.order(id: :desc)} 
   index title: '动态' do
-     column('发布者头像') do |dynamic|
+     column('发布者') do |dynamic|
       dynamic.user.profile.mxid
     end
     column('发布者名称') do |dynamic|
@@ -14,7 +13,9 @@ ActiveAdmin.register Dynamic do
       image_tag(dynamic.user.profile.avatar.thumb.url,height: 50)
     end
     column('发布内容') do |dynamic|
-      image_tag(dynamic.dynamic_images.first.image.thumb.url,width:50) if dynamic.dynamic_images.present?
+      image_tag(dynamic.dynamic_images.first.image.thumb.url,width:50)
+    end
+    column('发布内容') do |dynamic|
       dynamic.content
     end
     column('发布时间') { |dynamic| dynamic.created_at.localtime.strftime('%Y-%m-%d %H:%M:%S') }
