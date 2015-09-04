@@ -14,10 +14,8 @@ ActiveAdmin.register Dynamic do
       image_tag(dynamic.user.profile.avatar.thumb.url,height: 50)
     end
     column('发布内容') do |dynamic|
-      div do
-        image_tag(dynamic.dynamic_images.first.image.thumb.url,width:50) if dynamic.dynamic_images.present?
-        p dynamic.content
-      end
+      image_tag(dynamic.dynamic_images.first.image.thumb.url,width:50) if dynamic.dynamic_images.present?
+      dynamic.content
     end
     column('发布时间') { |dynamic| dynamic.created_at.localtime.strftime('%Y-%m-%d %H:%M:%S') }
     actions do
