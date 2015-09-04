@@ -1,7 +1,7 @@
 ActiveAdmin.register Dynamic do
   menu label: '动态'
   actions :index
-  scope('0-所有动态', :all, default: true){|scope| scope.order(id: desc)} 
+  scope('0-所有动态', :all, default: true){|scope| scope.order(id: :desc)} 
   scope('1-带图动态', :image){|scope| scope.joins(:dynamic_images).uniq.order(id: :desc)} 
   index title: '动态' do
      column('发布者头像') do |dynamic|
