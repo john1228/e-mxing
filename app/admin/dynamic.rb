@@ -15,7 +15,7 @@ ActiveAdmin.register Dynamic do
     end
     column('发布内容') do |dynamic|
       div do
-        image_tag(dynamic.dynamic_images.first.image.thumb.url,width:50)
+        image_tag(dynamic.dynamic_images.first.image.thumb.url,width:50) if dynamic.dynamic_images.present?
         p dynamic.content
       end
     end
