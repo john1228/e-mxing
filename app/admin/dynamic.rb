@@ -3,6 +3,7 @@ ActiveAdmin.register Dynamic do
   actions :index
   scope('0-带图动态', :image, default: true){|scope| scope.joins(:dynamic_images).uniq.order(id: :desc)} 
   index title: '动态' do
+    selectable_column
      column('发布者') do |dynamic|
       dynamic.user.profile.mxid
     end
@@ -19,10 +20,13 @@ ActiveAdmin.register Dynamic do
       dynamic.content
     end
     column('发布时间') { |dynamic| dynamic.created_at.localtime.strftime('%Y-%m-%d %H:%M:%S') }
-    actions do
-      link_to('1')
-    end
   end
+  
+  TAGS.each do |item|
+     batch_action item do |ids| 
+       redirect_to collection_path, alert: '拉黑成功'
+     end
+  end 
 
   show title: '动态信息' do
     tabs do
