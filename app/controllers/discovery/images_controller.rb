@@ -1,28 +1,16 @@
 module Find
-  class NewsController < ApplicationController
+  class ImagesController < ApplicationController
     def index
-      if params[:tag].present?
+      if params[:tag].blank?
         render json: Success.new(news: [{
-                                            tag: params[:tag],
-                                            item: News.where(tag: tag).order(id: :desc).page(params[:page]||1).map{|news|
-                                              {
-                                                title: news.title,
-                                                cover: news.cover.url,
-                                                content: news.content[4,new.content.index('</p>')]
-                                              }
-                                            }
+                                          tag: params[:tag],
+                                          item: Dynamic.joins(:dynamic_images).where('? = ANY (dynamic_images.tag)', tag).uniq.order(id: :desc).page(params[:page]||1)
                                         }])
       else
-        render json: Success.new(news: News::TAG.map { |tag|
+        render json: Success.new(news: TAGS.map { |tag|
                                    {
-                                       tag: tag,
-                                       item: News.where(tag: tag).order(id: :desc).take(2).map{|news|
-                                          {
-                                            title: news.title,
-                                            cover: news.cover.url,
-                                            content: news.content[4,new.content.index('</p>')]
-                                          }
-                                       }
+                                      tag: tag,
+                                      item: Dynamic.joins(:dynamic_images).where('? = ANY (dynamic_images.tag)', tag).uniq.order(id: :desc).take(3)
                                    }
                                  })
       end
