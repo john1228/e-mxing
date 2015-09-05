@@ -6,19 +6,19 @@ ActiveAdmin.register DynamicImage do
      column('发布者') do |image|
       image.dynamic.user.profile.mxid
     end
-    column('发布者名称') do |dynamic|
+    column('发布者名称') do |image|
       image.dynamic.user.profile.name
     end
-    column('发布者头像') do |dynamic|
+    column('发布者头像') do |image|
       image_tag(image.dynamic.user.profile.avatar.thumb.url,height: 50)
     end
-    column('图片') do |dynamic|
+    column('图片') do |image|
       image_tag(image.image.thumb.url,width:50)
     end
-    column('发布内容') do |dynamic|
+    column('发布内容') do |image|
       image.dynamic.content
     end
-    column('发布时间') { |dynamic| dynamic.created_at.localtime.strftime('%Y-%m-%d %H:%M:%S') }
+    column('发布时间') { |image| image.created_at.localtime.strftime('%Y-%m-%d %H:%M:%S') }
   end
   
   TAGS.each do |item|
