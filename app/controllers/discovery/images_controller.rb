@@ -1,4 +1,4 @@
-module Find
+module Discovery
   class ImagesController < ApplicationController
     def index
       if params[:tag].blank?
