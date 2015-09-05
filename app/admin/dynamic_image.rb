@@ -1,6 +1,7 @@
 ActiveAdmin.register DynamicImage do
   menu label: '动态图片'
   actions :index
+  filter :tag, label: '标记'
   index title: '动态' do
     selectable_column
      column('发布者') do |image|
