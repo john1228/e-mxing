@@ -8,7 +8,7 @@ module Discovery
                                               {
                                                 title: news.title,
                                                 cover: news.cover.url,
-                                                content: news.content[4,new.content.index('</p>')]
+                                                content: news.content[4,news.content.index('</p>')]
                                               }
                                             }
                                         }])
@@ -20,7 +20,7 @@ module Discovery
                                           {
                                             title: news.title,
                                             cover: news.cover.url,
-                                            content: news.content[4,new.content.index('</p>')]
+                                            content: news.content[4,news.content.index('</p>')]
                                           }
                                        }
                                    }
