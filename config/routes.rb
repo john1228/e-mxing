@@ -195,6 +195,7 @@ Rails.application.routes.draw do
   end
   namespace :find do
     get 'news' => 'news#index'
+    get 'images' => 'images#index'
   end
   
   namespace :mine do
