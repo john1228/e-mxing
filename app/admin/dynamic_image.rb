@@ -1,25 +1,32 @@
-ActiveAdmin.register Dynamic do
-  menu label: '动态'
+ActiveAdmin.register DynamicImage do
+  menu label: '动态图片'
   actions :index
-  scope('0-带图动态', :image, default: true){|scope| scope.joins(:dynamic_images).uniq.order(id: :desc)} 
   index title: '动态' do
     selectable_column
-     column('发布者') do |dynamic|
-      dynamic.user.profile.mxid
+     column('发布者') do |image|
+      image.dynamic.user.profile.mxid
     end
     column('发布者名称') do |dynamic|
-      dynamic.user.profile.name
+      image.dynamic.user.profile.name
     end
     column('发布者头像') do |dynamic|
-      image_tag(dynamic.user.profile.avatar.thumb.url,height: 50)
+      image_tag(image.dynamic.user.profile.avatar.thumb.url,height: 50)
+    end
+    column('图片') do |dynamic|
+      image_tag(image.image.thumb.url,width:50)
     end
     column('发布内容') do |dynamic|
-      image_tag(dynamic.dynamic_images.first.image.thumb.url,width:50)
-    end
-    column('发布内容') do |dynamic|
-      dynamic.content
+      image.dynamic.content
     end
     column('发布时间') { |dynamic| dynamic.created_at.localtime.strftime('%Y-%m-%d %H:%M:%S') }
+  end
+  
+  
+  TAGS.each do |item|
+    batch_action item do |ids|
+      DynamicImage.where(id: ids).update_all('tag = array_append(tag,?)',params[:batch_action])
+      redirect_to collection_path, alert: '标记成功'
+    end
   end
   show title: '动态信息' do
     tabs do
