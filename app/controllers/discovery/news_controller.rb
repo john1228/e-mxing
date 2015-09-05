@@ -1,4 +1,4 @@
-module Find
+module Discovery
   class NewsController < ApplicationController
     def index
       if params[:tag].present?
