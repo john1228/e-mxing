@@ -48,7 +48,6 @@ Rails.application.routes.draw do
   #发现
   get 'find' => 'find#list'
   put 'find/upload' => 'find#upload'
-  get 'find/tips' => 'find#tips'
   #群组
   get 'groups/mine' => 'groups#mine'
   get 'groups' => 'groups#show'
@@ -193,7 +192,7 @@ Rails.application.routes.draw do
     #查看课程和购买
     get 'courses' => 'courses#index'
   end
-  namespace :find do
+  namespace :discovery do
     get 'news' => 'news#index'
     get 'images' => 'images#index'
   end
