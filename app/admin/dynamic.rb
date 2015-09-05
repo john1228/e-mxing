@@ -21,13 +21,6 @@ ActiveAdmin.register Dynamic do
     end
     column('发布时间') { |dynamic| dynamic.created_at.localtime.strftime('%Y-%m-%d %H:%M:%S') }
   end
-  
-  TAGS.each do |item|
-     batch_action item do |ids| 
-       redirect_to collection_path, alert: '拉黑成功'
-     end
-  end 
-
   show title: '动态信息' do
     tabs do
       tab '0-评论' do
