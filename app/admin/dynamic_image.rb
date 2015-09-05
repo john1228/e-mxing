@@ -21,48 +21,10 @@ ActiveAdmin.register DynamicImage do
     column('发布时间') { |dynamic| dynamic.created_at.localtime.strftime('%Y-%m-%d %H:%M:%S') }
   end
   
-  
   TAGS.each do |item|
     batch_action item do |ids|
       DynamicImage.where(id: ids).update_all('tag = array_append(tag,?)',params[:batch_action])
       redirect_to collection_path, alert: '标记成功'
     end
   end
-  show title: '动态信息' do
-    tabs do
-      tab '0-评论' do
-        paginated_collection(dynamic.dynamic_comments.page(params[:comment_page]), param_name: :comment_page) do
-          table_for(collection, class: 'index_table') do
-            column('用户') { |comment|
-              div image_tag(comment.user.profile.avatar.thumb.url)
-              div style: '' do
-                comment.user.profile.name
-              end
-            }
-            column('评论') { |comment| comment.content }
-          end
-        end
-      end
-    end
-  end
-
-  sidebar '详情 ', only: :show do
-    attributes_table_for dynamic do
-      row('内容') { dynamic.content }
-      row('图片') {
-        table do
-          tr do
-            for dynamic_image in dynamic.dynamic_images
-              image_tag(dynamic_image.image.thumb.url)
-            end
-          end
-        end
-      } unless dynamic.dynamic_images.blank?
-      row('视频') {
-        video_tag(dynamic.dynamic_film.film.url, post: dynamic.dynamic_film.cover, controls: true)
-      } unless dynamic.dynamic_film.blank?
-    end
-  end
-
-  form partial: 'form'
 end
