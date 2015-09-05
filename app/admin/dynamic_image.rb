@@ -23,7 +23,7 @@ ActiveAdmin.register DynamicImage do
   
   TAGS.each do |item|
     batch_action item do |ids|
-      DynamicImage.where(id: ids).update_all('tag = array_append(tag,?)',params[:batch_action])
+      DynamicImage.where(id: ids).update_all("tag = array_append(tag,'#{params[:batch_action]}')")
       redirect_to collection_path, alert: '标记成功'
     end
   end
