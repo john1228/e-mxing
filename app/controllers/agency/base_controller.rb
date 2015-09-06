@@ -1,8 +1,8 @@
 module Agency
   class BaseController < ApplicationController
-    before_action :verify_agency, except: :index
+    before_action :verify_agency, except: :list
   
-    def index
+    def list
       city = URI.decode(request.headers[:city]) rescue '上海'
       agencies = Service.select("profiles.*,st_distance(places.lonlat, 'POINT(#{params[:lng]||0} #{params[:lat]||0})') as distance").
           includes(:profile, :place).
