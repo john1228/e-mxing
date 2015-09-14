@@ -10,5 +10,13 @@ module Callback
       # order.update(status: Order::STATUS[:pay]) if order.pay_amount.eql?(pay_amount.to_d)
       render text: 'success'
     end
+
+    def fail
+      render text: 'fail'
+    end
+
+    def notify
+      render text: 'notify'
+    end
   end
 end
