@@ -22,7 +22,7 @@ module UserAble
           often: often||'',
           service: service,
           interests: (interest.join(',') rescue ''),
-          mobile: mobile||contact
+          mobile: mobile.to_s.length.eql?(13) ? mobile : contact
       )
     else
       build_profile(
@@ -38,7 +38,7 @@ module UserAble
           often: often||'',
           service: service,
           interests: (interest.join(',') rescue ''),
-          mobile: mobile||contact
+          mobile: mobile.to_s.length.eql?(13) ? mobile : contact
       )
     end
     true
