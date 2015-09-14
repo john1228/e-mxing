@@ -12,7 +12,7 @@ class Service<User
 
   def as_json
     in_the_sale = Sku.online.where(seller_id: coaches.pluck(:id)<<id)
-    top_sellers = in_the_sale.where('sku LIKE ?', 'CC%').order(orders_count: :desc).order(id: :asc).take(3)
+    top_sellers = in_the_sale.where('skus.sku LIKE ?', 'CC%').order(orders_count: :desc).order(id: :asc).pluck(:seller_id).uniq[0, 3]
     tops = coaches.where(id: top_sellers)||coaches.order(id: :desc).take(3)
     {
         mxid: profile.mxid,
@@ -32,7 +32,45 @@ class Service<User
     }
   end
 
+  def detail
+    in_the_sale = Sku.online.where(seller_id: coaches.pluck(:id)<<id)
+    {
+        mxid: profile.mxid,
+        name: profile.name,
+        avatar: profile.avatar.thumb.url,
+        address: profile.address,
+        coordinate: {
+            lng: coordinate.x,
+            lat: coordinate.y
+        },
+        intro: profile.signature,
+        coach: {
+            amount: coaches.count,
+            item: coaches.map { |coach| coach.summary_json }
+        },
+        course: {
+            amount: in_the_sale.count,
+            item: in_the_sale.order(updated_at: :desc).take(2)
+        },
+        open: '8:30-21:30',
+        service: _service,
+        facility: profile.service,
+        contact: profile.mobile,
+        photowall: photos,
+        showtime: {
+            cover: showtime.dynamic_film.cover,
+            film: showtime.dynamic_film.film.hls
+        }
+    }
+  end
+
   private
+  def _service
+    interests_ary = interests.split(',')
+    choose_interests = INTERESTS['items'].select { |item| interests_ary.include?(item['id'].to_s) }
+    choose_interests.collect { |choose| choose['name'] }
+  end
+
   def location
     if address.present?
       conn = Faraday.new(:url => 'http://api.map.baidu.com')
