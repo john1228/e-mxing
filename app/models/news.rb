@@ -1,5 +1,5 @@
 class News < ActiveRecord::Base
-  TAG = ['训练课', '饮食控', '私教', '机构']
+  TAG = %w'训练课 饮食控 私教 机构'
   mount_uploader :cover, NewsCoverUploader
 
 
@@ -9,7 +9,7 @@ class News < ActiveRecord::Base
         cover: cover.thumb.url,
         width: cover_width,
         height: cover_height,
-        content: content[4, content.index('</p>')],
+        content: content[0, 200],
         url: $host + "/news/#{id}"
     }
   end

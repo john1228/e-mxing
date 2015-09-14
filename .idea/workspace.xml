@@ -201,15 +201,11 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/app/assets/stylesheets/active_admin.css.scss" afterPath="$PROJECT_DIR$/../photo/app/assets/stylesheets/active_admin.css.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/app/assets/javascripts/appointments.js.coffee" afterPath="$PROJECT_DIR$/../photo/app/assets/javascripts/appointments.js.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/app/assets/javascripts/comments.js.coffee" afterPath="$PROJECT_DIR$/../photo/app/assets/javascripts/comments.js.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/discovery/images_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/discovery/images_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/news.rb" afterPath="$PROJECT_DIR$/app/models/news.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/discovery/news_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/discovery/news_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/.idea/photo.iml" afterPath="$PROJECT_DIR$/../photo/.idea/photo.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/app/assets/javascripts/resumes.js.coffee" afterPath="$PROJECT_DIR$/../photo/app/assets/javascripts/resumes.js.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="$PROJECT_DIR$/db/schema.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/app/assets/javascripts/stars.js.coffee" afterPath="$PROJECT_DIR$/../photo/app/assets/javascripts/stars.js.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/app/assets/javascripts/works.js.coffee" afterPath="$PROJECT_DIR$/../photo/app/assets/javascripts/works.js.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="mxing.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -327,21 +323,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="images_controller.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="images_controller.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/discovery/images_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.12690952" vertical-offset="0" max-vertical-offset="851">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="450">
               <caret line="6" column="130" selection-start-line="6" selection-start-column="130" selection-end-line="6" selection-end-column="130" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="news.rb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="news.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/models/news.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="396">
-              <caret line="12" column="28" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
+            <state vertical-scroll-proportion="0.22916667" vertical-offset="0" max-vertical-offset="864">
+              <caret line="11" column="31" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -413,9 +409,9 @@
         <option value="$PROJECT_DIR$/app/admin/dynamic_image.rb" />
         <option value="$PROJECT_DIR$/app/controllers/agency/base_controller.rb" />
         <option value="$PROJECT_DIR$/app/models/dynamic.rb" />
-        <option value="$PROJECT_DIR$/app/models/news.rb" />
         <option value="$PROJECT_DIR$/app/controllers/discovery/news_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/discovery/images_controller.rb" />
+        <option value="$PROJECT_DIR$/app/models/news.rb" />
       </list>
     </option>
   </component>
@@ -2659,14 +2655,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/news.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="396">
-          <caret line="12" column="28" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/discovery/news_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="450">
@@ -2677,8 +2665,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/discovery/images_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.12690952" vertical-offset="0" max-vertical-offset="851">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="450">
           <caret line="6" column="130" selection-start-line="6" selection-start-column="130" selection-end-line="6" selection-end-column="130" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/news.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.22916667" vertical-offset="0" max-vertical-offset="864">
+          <caret line="11" column="31" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
           <folding />
         </state>
       </provider>
