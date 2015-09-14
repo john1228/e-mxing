@@ -31,7 +31,7 @@ class Service<User
         }
     }
   end
-  
+
   private
   def location
     if address.present?

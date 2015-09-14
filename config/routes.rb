@@ -188,7 +188,9 @@ Rails.application.routes.draw do
 
 
   namespace :agency do
-    get '/' => 'base#list'
+    get '' => 'agencies#list'
+    get 'hot' => 'agencies#hot'
+    get 'detail' => 'agencies#detail'
     #查看课程和购买
     get 'courses' => 'courses#index'
   end
@@ -196,7 +198,7 @@ Rails.application.routes.draw do
     get 'news' => 'news#index'
     get 'images' => 'images#index'
   end
-  
+
   namespace :mine do
     #关注
     get 'concerns' => 'concerns#index'

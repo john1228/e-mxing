@@ -5,6 +5,15 @@ ActiveAdmin.register Service do
   filter :profile_name, label: '名称', as: :string
   before_action :adjust, only: [:create, :update]
 
+  csv do
+    column('美型号') { |service| service.profile.mxid }
+    column('地区') { |service| service.profile.address[0, service.profile.address.index('市')] rescue '' }
+    column('名称') { |service| service.profile.name }
+    column('服务项目') { |service| service.profile.interests_string }
+    column('地址') { |service| service.profile.address }
+    column('联系方式') { |service| service.profile.mobile }
+  end
+
   controller do
     def adjust
       params[:service][:interests] = (params[:service][:interest].join(',') rescue '')
