@@ -16,9 +16,5 @@ module Agency
     def hot
       render json: Success.new(hot: %w'凌空SOHO 徐家汇 人民广场')
     end
-
-    def show
-      render json: Success.new(agency: @service.detail)
-    end
   end
 end

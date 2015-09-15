@@ -176,24 +176,29 @@ Rails.application.routes.draw do
     post 'feedback' => 'system#feedback'
   end
 
+  namespace :agency do
+    get '' => 'agencies#list'
+    get 'hot' => 'agencies#hot'
+    get 'profile' => 'profiles#show'
+    #查看课程和购买
+    get 'courses' => 'courses#index'
+  end
+
   namespace :gyms do
     #查看课程和购买
     get 'courses' => 'courses#index'
     get 'courses/show' => 'courses#show'
     get 'courses/coach' => 'courses#coach'
     post 'courses' => 'courses#buy'
+    get 'profile' => 'profiles#show'
     #查看评论
     get ':list/comments' => 'comments#index'
   end
 
-
-  namespace :agency do
-    get '' => 'agencies#list'
-    get 'hot' => 'agencies#hot'
-    get 'detail' => 'agencies#detail'
-    #查看课程和购买
-    get 'courses' => 'courses#index'
+  namespace :fan do
+    get 'profile' => 'profiles#show'
   end
+
   namespace :discovery do
     get 'news' => 'news#index'
     get 'images' => 'images#index'

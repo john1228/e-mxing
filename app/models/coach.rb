@@ -23,14 +23,48 @@ class Coach<User
   end
 
   def comments
-    sku_array = courses.pluck(:id).map { |id| 'CC' + '-' + '%06d' % id + '-' + '%06d' % (service.id) }
-    Comment.where(sku: sku_array)
+    sku_array = Sku.online.where('skus.sku LIKE ?', 'CC%').where(seller_id: id).pluck(:sku)
+    Comment.where(sku: sku_array).order(id: :desc)
   end
 
   def detail
-    {
-        
+    detail = {
+        mxid: profile.mxid,
+        name: HarmoniousDictionary.clean(profile.name),
+        avatar: {
+            thumb: profile.avatar.thumb.url,
+            origin: profile.avatar.url
+        },
+        tag: profile.tags,
+        gender: profile.gender||1,
+        age: profile.age,
+        photowall: photos,
+        score: score,
+        likes: likes.count,
+        dynamics: dynamics.count,
+        intro: profile.signature,
+        address: service.profile.address,
+        service: {
+            mxid: service.profile.mxid,
+            name: service.profile.name,
+        },
+        skill: _skill,
+        course: {
+            amount: Sku.online.where('skus.sku LIKE ?', 'CC%').where(seller_id: id).count,
+            item: Sku.online.where('skus.sku LIKE ?', 'CC%').where(seller_id: id).order(updated_at: :desc).take(2)
+        },
+        comment: {
+            amount: comments.count,
+            item: comments.take(2)
+        },
+        contact: mobile
     }
+
+    detail = detail.merge(showtime: {
+                              cover: showtime.dynamic_film.cover,
+                              film: showtime.dynamic_film.film.hls
+                          }) if showtime.present?
+    detail
   end
 
   def addresses
@@ -45,5 +79,12 @@ class Coach<User
           }
       ]
     end
+  end
+
+  private
+  def _skill
+    interests_ary = interests.split(',') rescue []
+    choose_interests = INTERESTS['items'].select { |item| interests_ary.include?(item['id'].to_s) }
+    choose_interests.collect { |choose| choose['name'] }
   end
 end

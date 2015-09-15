@@ -9,7 +9,7 @@ default: &default
   encoding: utf8
   username: mxing_v2
   password: mxing~1228
-  pool: 5
+  pool: 10
   timeout: 5000
   host: localhost
   port: 5432

@@ -34,14 +34,17 @@ class Service<User
 
   def detail
     in_the_sale = Sku.online.where(seller_id: coaches.pluck(:id)<<id)
-    {
+    detail = {
         mxid: profile.mxid,
         name: profile.name,
-        avatar: profile.avatar.thumb.url,
+        avatar: {
+            thumb: profile.avatar.thumb.url,
+            origin: profile.avatar.url
+        },
         address: profile.address,
         coordinate: {
-            lng: coordinate.x,
-            lat: coordinate.y
+            lng: place.lonlat.x,
+            lat: place.lonlat.y
         },
         intro: profile.signature,
         coach: {
@@ -56,17 +59,19 @@ class Service<User
         service: _service,
         facility: profile.service,
         contact: profile.mobile,
-        photowall: photos,
-        showtime: {
-            cover: showtime.dynamic_film.cover,
-            film: showtime.dynamic_film.film.hls
-        }
+        photowall: photos
     }
+
+    detail = detail.merge(showtime: {
+                              cover: showtime.dynamic_film.cover,
+                              film: showtime.dynamic_film.film.hls
+                          }) if showtime.present?
+    detail
   end
 
   private
   def _service
-    interests_ary = interests.split(',')
+    interests_ary = interests.split(',') rescue []
     choose_interests = INTERESTS['items'].select { |item| interests_ary.include?(item['id'].to_s) }
     choose_interests.collect { |choose| choose['name'] }
   end

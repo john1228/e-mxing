@@ -1,5 +1,5 @@
 module Gyms
-  class CoachesController < BaseController
+  class ProfilesController < BaseController
     def show
       render json: Success.new(coach: @coach.detail)
     end

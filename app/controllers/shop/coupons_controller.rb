@@ -1,6 +1,5 @@
 module Shop
   class CouponsController < ApiController
-    #私教评论列表
     def index
       @user = Rails.cache.fetch(request.headers[:token])
       render json: Success.new(
