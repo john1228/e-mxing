@@ -18,7 +18,15 @@ class Enthusiast<User
         hobby: _hobby,
         often: profile.often_stadium,
         skill: profile.skill,
-        dynamics: dynamics.order(id: :desc).page(1)
+        dynamic: dynamics.order(id: :desc).page(1).map { |dynamic|
+          json_str = {
+              id: dynamic.id,
+              content: dynamic.content
+          }
+          json_str = json_str.merge(image: dynamic.dynamic_images.first.image.thumb.url) if dynamic.dynamic_images.present?
+          json_str = json_str.merge(film: dynamic.dynamic_film.cover.thumb.url) if dynamic.dynamic_film.present?
+          json_str
+        }
     }
     detail = detail.merge(showtime: {
                               cover: showtime.dynamic_film.cover,

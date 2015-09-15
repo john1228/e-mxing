@@ -42,7 +42,7 @@ class Coach<User
         score: score,
         likes: likes.count,
         dynamics: dynamics.count,
-        intro: profile.signature,
+        signature: profile.signature,
         address: service.profile.address,
         service: {
             mxid: service.profile.mxid,
@@ -51,7 +51,14 @@ class Coach<User
         skill: _skill,
         course: {
             amount: Sku.online.where('skus.sku LIKE ?', 'CC%').where(seller_id: id).count,
-            item: Sku.online.where('skus.sku LIKE ?', 'CC%').where(seller_id: id).order(updated_at: :desc).take(2)
+            item: Sku.online.where('skus.sku LIKE ?', 'CC%').where(seller_id: id).order(updated_at: :desc).take(2).map { |item|
+              {
+                  sku: item.sku,
+                  name: item.course_name,
+                  cover: item.course_cover,
+                  selling: item.selling_price.to_i
+              }
+            }
         },
         comment: {
             amount: comments.count,
