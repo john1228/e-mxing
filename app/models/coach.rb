@@ -68,6 +68,7 @@ class Coach<User
     }
 
     detail = detail.merge(showtime: {
+                              id: showtime.id,
                               cover: showtime.dynamic_film.cover.url,
                               film: showtime.dynamic_film.film.hls
                           }) if showtime.present?
