@@ -41,6 +41,7 @@ class Service<User
             thumb: profile.avatar.thumb.url,
             origin: profile.avatar.url
         },
+        views: rand(10000) + 10000,
         address: profile.address,
         coordinate: {
             lng: place.lonlat.x,
@@ -49,7 +50,7 @@ class Service<User
         intro: profile.signature,
         coach: {
             amount: coaches.count,
-            item: coaches.map { |coach| coach.summary_json }
+            item: coaches.map { |coach| coach.summary_json.merge(likes: coach.likes.count) }
         },
         course: {
             amount: in_the_sale.count,
