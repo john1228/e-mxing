@@ -79,7 +79,7 @@ class Service<User
 
   private
   def _service
-    interests_ary = interests.split(',') rescue []
+    interests_ary = profile.interests.split(',') rescue []
     choose_interests = INTERESTS['items'].select { |item| interests_ary.include?(item['id'].to_s) }
     choose_interests.collect { |choose| choose['name'] }
   end
