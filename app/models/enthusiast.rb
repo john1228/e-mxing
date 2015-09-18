@@ -10,6 +10,8 @@ class Enthusiast<User
             origin: profile.avatar.url
         },
         tag: profile.tags,
+        gender: profile.gender||1,
+        age: profile.age,
         address: profile.address,
         signature: profile.signature,
         likes: likes.count,

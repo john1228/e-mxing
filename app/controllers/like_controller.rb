@@ -1,4 +1,15 @@
 class LikeController < ApiController
+
+  def index
+    case params[:type]
+      when 'dynamic'
+        likes = Like.where(liked_id: params[:id], like_type: Like::DYNAMIC).page(params[:page]||1)
+      when 'person'
+        likes = Like.where(liked_id: params[:id], like_type: Like::PERSON).page(params[:page]||1)
+    end
+    render json: Success.new(like: likes)
+  end
+
   def create
     case params[:type]
       when 'dynamic'
@@ -7,14 +18,14 @@ class LikeController < ApiController
         user = User.find_by_mxid(params[:mxid])
         user.likes.create(user_id: @user.id)
     end
-    render json: {code: 1}
+    render json: Success.new
   end
 
   def count
     begin
-      render json: {code: 1, data: {likes: @user.likes.count}}
+      render json: Success.new(likes: @user.likes.count)
     rescue
-      render json: {code: 0, message: '获取赞信息失败'}
+      render json: Failure.new('获取赞信息失败')
     end
   end
 end

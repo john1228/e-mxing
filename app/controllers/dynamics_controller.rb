@@ -8,6 +8,11 @@ class DynamicsController < ApiController
            }
   end
 
+  def show
+    dynamic = Dynamic.find_by(id: params[:id])
+    render json: Success.new(dynamic: dynamic)
+  end
+
   def latest
     latest = @user.dynamics.latest
     if latest.nil?
