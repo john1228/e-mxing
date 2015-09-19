@@ -36,6 +36,7 @@ Rails.application.routes.draw do
   delete 'photos/:loc' => 'photos#destroy'
   #动态
   get 'dynamics' => 'dynamics#index'
+  get 'dynamics/show' => 'dynamics#show'
   get 'dynamics/latest' => 'dynamics#latest'
   post 'dynamics' => 'dynamics#create'
   delete 'dynamics/:id' => 'dynamics#destroy'
