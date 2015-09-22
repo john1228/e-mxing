@@ -54,14 +54,7 @@ class Service<User
         },
         course: {
             amount: in_the_sale.count,
-            item: in_the_sale.order(updated_at: :desc).take(2).map { |item|
-              {
-                  sku: item.sku,
-                  name: item.course_name,
-                  cover: item.course_cover,
-                  selling: item.selling_price.to_i
-              }
-            }
+            item: in_the_sale.order(updated_at: :desc).take(2)
         },
         open: '8:30-21:30',
         service: _service,
