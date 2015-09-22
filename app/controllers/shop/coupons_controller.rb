@@ -3,7 +3,7 @@ module Shop
     def index
       @user = Rails.cache.fetch(request.headers[:token])
       render json: Success.new(
-                 coupon: Coupon.where('end_date >= ? and active=? and amount > used', Date.today, true).order(id: :desc).
+                 coupon: Coupon.where('end_date >= ? and active=? and amount > used', Date.today, true).order(end_date: :asc).
                      page(params[:page]||1).map { |coupon|
                    if @user.blank?
                      coupon.as_json.merge(have: 0)

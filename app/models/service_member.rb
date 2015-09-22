@@ -6,6 +6,8 @@ class ServiceMember < ActiveRecord::Base
   after_destroy :change_identity
   private
   def change_identity
+    coach.courses.update_all(status: Course::STATUS[:offline])
+
     coach.profile.update(identity: 0)
   end
 end
