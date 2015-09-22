@@ -1,4 +1,6 @@
 class SystemController < ApplicationController
+  before_action :verify_auth_token
+
   def feedback
     Feedback.create(user_id: @user.id, content: params[:content], contact: params[:contact])
     render json: Success.new
