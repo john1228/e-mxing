@@ -1,9 +1,7 @@
 class SystemController < ApplicationController
-  before_action :verify_auth_token, except: :active
-
   def feedback
     Feedback.create(user_id: @user.id, content: params[:content], contact: params[:contact])
-    render json: {code: 1}
+    render json: Success.new
   end
 
   def report
@@ -24,6 +22,6 @@ class SystemController < ApplicationController
   private
   def verify_auth_token
     @user = Rails.cache.fetch(request.headers[:token])
-    render json: {code: -1, message: '您还未登录'} if @user.blank?
+    render json: Failure.new('您还未登录') if @user.blank?
   end
 end
