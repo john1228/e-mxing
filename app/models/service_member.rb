@@ -7,7 +7,6 @@ class ServiceMember < ActiveRecord::Base
   private
   def change_identity
     coach.courses.update_all(status: Course::STATUS[:offline])
-
     coach.profile.update(identity: 0)
   end
 end

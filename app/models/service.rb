@@ -19,7 +19,7 @@ class Service<User
         name: profile.name,
         avatar: profile.avatar.thumb.url,
         address: profile.address,
-        distance: distance.to_i,
+        distance: attributes['distance']||0,
         coach: {
             amount: coaches.count,
             top: tops.map { |top| top.summary_json }
