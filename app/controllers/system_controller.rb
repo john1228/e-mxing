@@ -22,6 +22,6 @@ class SystemController < ApplicationController
   private
   def verify_auth_token
     @user = Rails.cache.fetch(request.headers[:token])
-    render json: Failure.new('您还未登录') if @user.blank?
+    render json: Failure.new(-1, '您还未登录') if @user.blank?
   end
 end
