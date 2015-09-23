@@ -52,6 +52,7 @@ class Service<User
             amount: coaches.count,
             item: coaches.map { |coach| coach.summary_json.merge(likes: coach.likes.count) }
         },
+        dynamics: dynamics.count,
         course: {
             amount: in_the_sale.count,
             item: in_the_sale.order(updated_at: :desc).take(2)
