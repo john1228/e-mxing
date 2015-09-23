@@ -44,6 +44,10 @@ class Coach<User
         dynamics: dynamics.count,
         signature: profile.signature,
         address: service.profile.address,
+        coordinate: {
+            lng: service.place.lonlat.x,
+            lat: service.place.lonlat.y
+        },
         service: {
             mxid: service.profile.mxid,
             name: service.profile.name,
