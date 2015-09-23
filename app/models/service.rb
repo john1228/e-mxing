@@ -8,7 +8,6 @@ class Service<User
   has_many :service_members, dependent: :destroy
   has_many :coaches, through: :service_members
   alias_attribute :service_id, :id
-  attr_accessor :distance
 
   def as_json
     in_the_sale = Sku.online.where(seller_id: coaches.pluck(:id)<<id)

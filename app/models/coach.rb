@@ -18,8 +18,11 @@ class Coach<User
   validates_uniqueness_of :mobile, message: '该手机号已经注册'
 
   def score
-    sku_array = courses.pluck(:id).map { |id| 'CC' + '-' + '%06d' % id + '-' + '%06d' % (service.id) }
-    Comment.where(sku: sku_array).average(:score)
+    if comments.blank?
+      4
+    else
+      comments.average(:score)
+    end
   end
 
   def comments
