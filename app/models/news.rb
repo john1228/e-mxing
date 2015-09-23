@@ -9,7 +9,7 @@ class News < ActiveRecord::Base
         cover: cover.thumb.url,
         width: cover_width,
         height: cover_height,
-        content: content[0, 200],
+        content: Nokogiri::HTML(content).inner_text[0, 200],
         url: $host + "/news/#{id}"
     }
   end
