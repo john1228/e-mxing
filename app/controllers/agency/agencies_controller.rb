@@ -10,7 +10,7 @@ module Agency
           order('distance asc').
           order(id: :desc).
           page(page)
-      agencies = Service.select("profiles.*,st_distance(places.lonlat, 'POINT(#{params[:lng]} #{params[:lat]})') as distance").includes(:profile, :place).where('profiles.address LIKE ?', "#{city}%").order('distance asc').take(3) if agencies.blank?&&page.eql?(1)
+      agencies = Service.select("profiles.*,st_distance(places.lonlat, 'POINT(#{params[:lng]} #{params[:lat]})') as distance").joins(:profile, :place).where('profiles.address LIKE ?', "#{city}%").order('distance asc').take(3) if agencies.blank?&&page.eql?(1)
       render json: Success.new(agency: agencies)
     end
 
