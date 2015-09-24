@@ -210,13 +210,12 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../agency/app/views/coaches/_form.html.erb" afterPath="$PROJECT_DIR$/../agency/app/views/coaches/_form.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../agency/app/views/layouts/_sidebar.html.erb" afterPath="$PROJECT_DIR$/../agency/app/views/layouts/_sidebar.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/app/assets/stylesheets/active_admin.css.scss" afterPath="$PROJECT_DIR$/../photo/app/assets/stylesheets/active_admin.css.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/agency/agencies_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/agency/agencies_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../agency/.idea/agency.iml" afterPath="$PROJECT_DIR$/../agency/.idea/agency.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/app/assets/javascripts/appointments.js.coffee" afterPath="$PROJECT_DIR$/../photo/app/assets/javascripts/appointments.js.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../agency/config/initializers/carrierwave.rb" afterPath="$PROJECT_DIR$/../agency/config/initializers/carrierwave.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/admin/coach.rb" afterPath="$PROJECT_DIR$/app/admin/coach.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../agency/app/controllers/coaches_controller.rb" afterPath="$PROJECT_DIR$/../agency/app/controllers/coaches_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/app/assets/javascripts/comments.js.coffee" afterPath="$PROJECT_DIR$/../photo/app/assets/javascripts/comments.js.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/share/course.html.erb" afterPath="$PROJECT_DIR$/app/views/share/course.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../agency/app/controllers/dashboard_controller.rb" afterPath="$PROJECT_DIR$/../agency/app/controllers/dashboard_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../agency/app/controllers/dynamics_controller.rb" afterPath="$PROJECT_DIR$/../agency/app/controllers/dynamics_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../agency/app/controllers/finance_controller.rb" afterPath="$PROJECT_DIR$/../agency/app/controllers/finance_controller.rb" />
@@ -224,8 +223,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../agency/app/views/dynamics/index.html.erb" afterPath="$PROJECT_DIR$/../agency/app/views/dynamics/index.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../agency/app/views/report/index.html.erb" afterPath="$PROJECT_DIR$/../agency/app/views/report/index.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../agency/app/views/students/index.html.erb" afterPath="$PROJECT_DIR$/../agency/app/views/students/index.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/home/index.html.erb" afterPath="$PROJECT_DIR$/app/views/home/index.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/share/course/lrtk.css.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/share/course/lrtk.css.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../agency/app/controllers/message_controller.rb" afterPath="$PROJECT_DIR$/../agency/app/controllers/message_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/.idea/photo.iml" afterPath="$PROJECT_DIR$/../photo/.idea/photo.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../agency/app/controllers/profile_controller.rb" afterPath="$PROJECT_DIR$/../agency/app/controllers/profile_controller.rb" />
@@ -234,14 +231,10 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../agency/config/routes.rb" afterPath="$PROJECT_DIR$/../agency/config/routes.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../agency/app/assets/javascripts/js/sb-admin-2.js" afterPath="$PROJECT_DIR$/../agency/app/assets/javascripts/js/sb-admin-2.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../agency/app/assets/stylesheets/css/sb-admin.css.scss" afterPath="$PROJECT_DIR$/../agency/app/assets/stylesheets/css/sb-admin.css.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/admin/service.rb" afterPath="$PROJECT_DIR$/app/admin/service.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/share_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/share_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../agency/app/views/profile/show.html.erb" afterPath="$PROJECT_DIR$/../agency/app/views/profile/show.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/sku.rb" afterPath="$PROJECT_DIR$/app/models/sku.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/app/assets/javascripts/stars.js.coffee" afterPath="$PROJECT_DIR$/../photo/app/assets/javascripts/stars.js.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../agency/app/controllers/students_controller.rb" afterPath="$PROJECT_DIR$/../agency/app/controllers/students_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../agency/app/views/finance/transfer.html.erb" afterPath="$PROJECT_DIR$/../agency/app/views/finance/transfer.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/wallet.rb" afterPath="$PROJECT_DIR$/app/models/wallet.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../agency/app/views/finance/withdraw.html.erb" afterPath="$PROJECT_DIR$/../agency/app/views/finance/withdraw.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/app/assets/javascripts/works.js.coffee" afterPath="$PROJECT_DIR$/../photo/app/assets/javascripts/works.js.coffee" />
     </list>
@@ -384,8 +377,8 @@
       <file leaf-file-name="agencies_controller.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/agency/agencies_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.10575793" vertical-offset="0" max-vertical-offset="851">
-              <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
+            <state vertical-scroll-proportion="0.25381905" vertical-offset="0" max-vertical-offset="851">
+              <caret line="12" column="41" selection-start-line="12" selection-start-column="41" selection-end-line="12" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -420,7 +413,6 @@
         <option value="$PROJECT_DIR$/app/models/service_member.rb" />
         <option value="$PROJECT_DIR$/../agency/app/views/finance/withdraw.html.erb" />
         <option value="$PROJECT_DIR$/app/models/coach.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/agency/agencies_controller.rb" />
         <option value="$PROJECT_DIR$/app/models/service.rb" />
         <option value="$PROJECT_DIR$/app/models/news.rb" />
         <option value="$PROJECT_DIR$/app/views/home/index.html.erb" />
@@ -450,6 +442,7 @@
         <option value="$PROJECT_DIR$/../agency/app/views/layouts/_sidebar.html.erb" />
         <option value="$PROJECT_DIR$/../agency/config/routes.rb" />
         <option value="$PROJECT_DIR$/../agency/app/views/coaches/_form.html.erb" />
+        <option value="$PROJECT_DIR$/app/controllers/agency/agencies_controller.rb" />
       </list>
     </option>
   </component>
@@ -2720,8 +2713,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/agency/agencies_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.10575793" vertical-offset="0" max-vertical-offset="851">
-          <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
+        <state vertical-scroll-proportion="0.25381905" vertical-offset="0" max-vertical-offset="851">
+          <caret line="12" column="41" selection-start-line="12" selection-start-column="41" selection-end-line="12" selection-end-column="41" />
           <folding />
         </state>
       </provider>
