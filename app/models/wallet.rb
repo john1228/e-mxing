@@ -2,6 +2,8 @@ class Wallet < ActiveRecord::Base
   belongs_to :user
   has_many :wallet_logs
   attr_accessor :action
+
+
   after_update :create_wallet_log
 
   def as_json

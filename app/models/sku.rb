@@ -135,7 +135,7 @@ class Sku < ActiveRecord::Base
 
   protected
   def offline
-    self.status = 0 if store.eql?(0)
+    # self.status = 0 if store.eql?(0)
   end
 
   def injection

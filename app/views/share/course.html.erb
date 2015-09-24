@@ -51,32 +51,33 @@
         <% end %></samp></a>
     <a href="http://www.e-mxing.com/download" class="address"><samp class="Arrow"></samp><%= @sku.address %></a>
 
-    <div class="Time">
-      <ul>
-        <li>
-          <div class="Time-tie"><samp class="Time-pol"><%= @expired_date.month %>
-            .<%= @expired_date.day %></samp><samp class="tdeqa"><%= @expired_date.year %></samp>
-          </div>
-          <div class="Time-teu">有效期截止</div>
-        </li>
-        <li>
-          <div class="Time-tie"><samp class="Time-pol"><%= @course.during %></samp><samp class="tdeqa">分钟</samp></div>
-          <div class="Time-teu">课程时长</div>
-        </li>
-        <samp class="clear"></samp>
-      </ul>
-      <samp class="clear"></samp></div>
+
   </div>
 </div>
+<div class="Time">
+  <ul>
+    <li>
+      <div class="Time-tie"><samp class="Time-pol"><%= @expired_date.month %>
+        .<%= @expired_date.day %></samp><samp class="tdeqa"><%= @expired_date.year %></samp>
+      </div>
+      <div class="Time-teu">有效期截止</div>
+    </li>
+    <li>
+      <div class="Time-tie"><samp class="Time-pol"><%= @course.during %></samp><samp class="tdeqa">分钟</samp></div>
+      <div class="Time-teu">课程时长</div>
+    </li>
+    <samp class="clear"></samp>
+  </ul>
+  <samp class="clear"></samp></div>
 <div class="Coursecontent">
   <h1>课程内容</h1>
   <h4>
-    <%= @sku.course.intro %>
+    <%= simple_format @sku.course.intro %>
   </h4>
 </div>
 <div class="Coursecontent">
   <h1>特殊说明</h1>
-  <h4><%= @sku.course.special %> </h4>
+  <h4><%= simple_format @sku.course.special %> </h4>
 </div>
 <div class="Equipment">
   <ul>
