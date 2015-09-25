@@ -26,7 +26,7 @@ class Service<User
         sale: {
             amount: in_the_sale.count,
             sold: in_the_sale.sum(:orders_count),
-            floor_price: (in_the_sale.order(selling_price: :desc).first.selling_price.to_i rescue 0)
+            floor_price: (in_the_sale.order(selling_price: :asc).first.selling_price.to_i rescue 0)
         }
     }
   end
