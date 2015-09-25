@@ -3,7 +3,6 @@ class ChangeColumn < ActiveRecord::Migration
     add_index :profiles, :name
     add_index :profiles, :address
     add_index :skus, :seller_id
-    add_index :profiles, :user_id
     add_index :service_members, :service_id
     add_index :service_members, :coach_id
     add_index :likes, [:liked_id, :like_type]
