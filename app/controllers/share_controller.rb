@@ -35,6 +35,7 @@ class ShareController < ApplicationController
 
   def agency
     service = Service.find_by_mxid(10023)
+    response.headers['Access-Control-Allow-Origin'] = '*'
     render json: Success.new(service: service.detail)
   end
 
