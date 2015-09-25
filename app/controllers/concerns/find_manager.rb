@@ -49,18 +49,6 @@ module FindManager
 
   def shows
     TypeShow.order(id: :desc).page(params[:page]||1).collect { |show| show.as_json }
-
-    TypeShow.all.map { |show|
-      News.create(
-          tag: News::TAG[2],
-          title: show.title,
-          cover: show.cover,
-          content: show.content,
-          created_at: show.created_at,
-          updated_at: show.updated_at
-      )
-    }
-
   end
 
   def ranks
