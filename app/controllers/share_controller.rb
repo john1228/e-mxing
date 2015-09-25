@@ -33,6 +33,12 @@ class ShareController < ApplicationController
   end
 
 
+  def agency
+    service = Service.find_by_mxid(10023)
+    render json: service.detail
+  end
+
+
   def course
     sku = params[:id]
     @sku = Sku.find_by(sku: sku)
