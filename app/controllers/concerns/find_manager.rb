@@ -40,7 +40,7 @@ module FindManager
   end
 
   def news
-    News.order(id: :desc).page(params[:page]||1).collect { |news| news.as_json }
+    News.where(tag: News::TAG[0]).order(id: :desc).page(params[:page]||1).collect { |news| news.as_json }
   end
 
   def activities
