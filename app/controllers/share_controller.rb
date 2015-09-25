@@ -34,8 +34,8 @@ class ShareController < ApplicationController
 
 
   def agency
-    service = Service.find_by_mxid(10023)
-    render json: {service: service}
+    service = Service.first #.find_by_mxid(10023)
+    render json: {service: service.detail}
   end
 
 
