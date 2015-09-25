@@ -49,7 +49,7 @@ class Service<User
         intro: profile.signature,
         coach: {
             amount: coaches.count,
-            item: coaches.map { |coach| coach.summary_json.merge(likes: coach.likes.count) }
+            item: coaches.map { |coach| coach.summary_json.merge(likes: coach.likes.count, background: (coach.photos.first.thumb.url rescue '')) }
         },
         dynamics: dynamics.count,
         course: {
