@@ -6,7 +6,7 @@ class NewsCoverUploader < CarrierWave::Uploader::Base
   process :store_dimensions
 
   def store_dir
-    "images/#{model.class.to_s.underscore}"
+    'images/news'
   end
 
   version :thumb do
