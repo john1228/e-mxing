@@ -251,12 +251,12 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../agency/app/assets/javascripts/js/sb-admin-2.js" afterPath="$PROJECT_DIR$/../agency/app/assets/javascripts/js/sb-admin-2.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../agency/app/assets/stylesheets/css/sb-admin.css.scss" afterPath="$PROJECT_DIR$/../agency/app/assets/stylesheets/css/sb-admin.css.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../agency/app/models/service.rb" afterPath="$PROJECT_DIR$/../agency/app/models/service.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/share_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/share_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../agency/app/views/coaches/show.html.erb" afterPath="$PROJECT_DIR$/../agency/app/views/coaches/show.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../agency/app/views/profile/show.html.erb" afterPath="$PROJECT_DIR$/../agency/app/views/profile/show.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/app/assets/javascripts/stars.js.coffee" afterPath="$PROJECT_DIR$/../photo/app/assets/javascripts/stars.js.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../agency/app/controllers/students_controller.rb" afterPath="$PROJECT_DIR$/../agency/app/controllers/students_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../agency/app/views/finance/transfer.html.erb" afterPath="$PROJECT_DIR$/../agency/app/views/finance/transfer.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/type_show.rb" afterPath="$PROJECT_DIR$/app/models/type_show.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../agency/app/views/finance/withdraw.html.erb" afterPath="$PROJECT_DIR$/../agency/app/views/finance/withdraw.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/app/assets/javascripts/works.js.coffee" afterPath="$PROJECT_DIR$/../photo/app/assets/javascripts/works.js.coffee" />
     </list>
@@ -309,98 +309,18 @@
       <file leaf-file-name="group.html.erb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../agency/app/views/students/group.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-23.185184" vertical-offset="2128" max-vertical-offset="3222">
-              <caret line="153" column="75" selection-start-line="153" selection-start-column="75" selection-end-line="153" selection-end-column="75" />
+            <state vertical-scroll-proportion="-24.518518" vertical-offset="1912" max-vertical-offset="3222">
+              <caret line="143" column="52" selection-start-line="143" selection-start-column="52" selection-end-line="143" selection-end-column="52" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="coaches_controller.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../agency/app/controllers/coaches_controller.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="792">
-              <caret line="12" column="12" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="service.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/service.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="324" max-vertical-offset="2034">
-              <caret line="51" column="142" selection-start-line="51" selection-start-column="104" selection-end-line="51" selection-end-column="142" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="share_controller.rb" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/controllers/share_controller.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.64042306" vertical-offset="121" max-vertical-offset="1116">
-              <caret line="37" column="57" selection-start-line="37" selection-start-column="57" selection-end-line="37" selection-end-column="57" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="gyms.rake" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/tasks/gyms.rake">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="36" max-vertical-offset="900">
-              <caret line="35" column="2" selection-start-line="35" selection-start-column="2" selection-end-line="35" selection-end-column="2" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="students_controller.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../agency/app/controllers/students_controller.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="648">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mass_message_groups_controller.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../agency/app/controllers/mass_message_groups_controller.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="450">
-              <caret line="6" column="102" selection-start-line="6" selection-start-column="102" selection-end-line="6" selection-end-column="102" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="find_manager.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/concerns/find_manager.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="419" max-vertical-offset="3042">
-              <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="track.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/track.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="576">
-              <caret line="0" column="14" selection-start-line="0" selection-start-column="14" selection-end-line="0" selection-end-column="32" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="type_show.rb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="type_show.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/models/type_show.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="360">
-              <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.020833334" vertical-offset="0" max-vertical-offset="864">
+              <caret line="1" column="44" selection-start-line="1" selection-start-column="44" selection-end-line="1" selection-end-column="44" />
               <folding />
             </state>
           </provider>
@@ -461,10 +381,10 @@
         <option value="$PROJECT_DIR$/config/routes.rb" />
         <option value="$PROJECT_DIR$/app/models/news.rb" />
         <option value="$PROJECT_DIR$/app/controllers/concerns/find_manager.rb" />
-        <option value="$PROJECT_DIR$/app/models/type_show.rb" />
-        <option value="$PROJECT_DIR$/../agency/app/views/students/group.html.erb" />
         <option value="$PROJECT_DIR$/app/models/service.rb" />
         <option value="$PROJECT_DIR$/app/controllers/share_controller.rb" />
+        <option value="$PROJECT_DIR$/../agency/app/views/students/group.html.erb" />
+        <option value="$PROJECT_DIR$/app/models/type_show.rb" />
       </list>
     </option>
   </component>
@@ -2667,34 +2587,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/type_show.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="360">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../agency/app/views/students/group.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-23.185184" vertical-offset="2128" max-vertical-offset="3222">
-          <caret line="153" column="75" selection-start-line="153" selection-start-column="75" selection-end-line="153" selection-end-column="75" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/tasks/gyms.rake">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="36" max-vertical-offset="900">
           <caret line="35" column="2" selection-start-line="35" selection-start-column="2" selection-end-line="35" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../agency/app/controllers/coaches_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="792">
-          <caret line="12" column="12" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
           <folding />
         </state>
       </provider>
@@ -2709,8 +2605,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/share_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.64042306" vertical-offset="121" max-vertical-offset="1116">
+        <state vertical-scroll-proportion="0.0" vertical-offset="103" max-vertical-offset="1116">
           <caret line="37" column="57" selection-start-line="37" selection-start-column="57" selection-end-line="37" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../agency/app/controllers/coaches_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="792">
+          <caret line="12" column="12" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../agency/app/views/students/group.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-24.518518" vertical-offset="1912" max-vertical-offset="3222">
+          <caret line="143" column="52" selection-start-line="143" selection-start-column="52" selection-end-line="143" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/type_show.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.020833334" vertical-offset="0" max-vertical-offset="864">
+          <caret line="1" column="44" selection-start-line="1" selection-start-column="44" selection-end-line="1" selection-end-column="44" />
           <folding />
         </state>
       </provider>
