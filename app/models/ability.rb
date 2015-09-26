@@ -24,6 +24,9 @@ class Ability
         can [:read, :create, :update], AdminUser
         can :read, ActiveAdmin::Page, :name => 'Dashboard'
       when AdminUser::ROLE[:operator]
+        can :manage, Banner
+        can :manage, Sku
+        can :manage, Coupon
         can :read, Enthusiast
         can :read, Service
         can :read, ServiceDynamic
