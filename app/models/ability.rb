@@ -34,6 +34,7 @@ class Ability
         can :manage, Report
         can :manage, Feedback
         can :manage, Overview
+        can :read, Order
         can :manage, Gallery
         can :manage, Activity
         can :manage, ActiveAdmin::Page, :name => 'Message'

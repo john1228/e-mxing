@@ -35,8 +35,57 @@ class ShareController < ApplicationController
 
   def agency
     service = Service.find_by_mxid(10023)
+    in_the_sale = Sku.online.where(seller_id: service.coaches.pluck(:id)<<service.id)
+    detail = {
+        mxid: service.profile.mxid,
+        name: service.profile.name,
+        avatar: {
+            thumb: service.profile.avatar.thumb.url,
+            origin: service.profile.avatar.url
+        },
+        views: service.views,
+        address: service.profile.address,
+        coordinate: {
+            lng: service.place.lonlat.x,
+            lat: service.place.lonlat.y
+        },
+        coach: {
+            amount: service.coaches.count,
+            item: service.coaches.limit(10).map { |coach| coach.summary_json.merge(
+                likes: coach.likes.count,
+                background: (coach.photos.first.thumb.url rescue ''),
+                dynamics: coach.dynamic.count,
+                course: Sku.online.where('skus.sku LIKE ?', 'CC%').where(seller_id: coach.id).count,
+                score: coach.score
+            ) }
+        },
+        course: {
+            amount: in_the_sale.count,
+            item: in_the_sale.order(updated_at: :desc).limit(10).map { |item|
+              {
+                  name: item.course_name,
+                  cover: item.course_cover,
+                  selling: item.selling_price.to_i,
+                  sold: item.orders_count,
+                  score: item.score,
+                  during: item.course.during,
+                  comment: {
+                      amount: item.comments_count,
+                      item: item.comments.limit(1).map { |comment|
+                        {
+                            content: comment.content,
+                            created: comment.created_at.localtime.strftime('%Y-%m-%d')
+                        }
+                      }
+                  }
+              }
+            }
+        },
+        photowall: photos
+    }
+
     response.headers['Access-Control-Allow-Origin'] = '*'
-    render json: Success.new(service: service.detail)
+    render json: Success.new(service: detail)
   end
 
 

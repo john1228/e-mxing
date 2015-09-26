@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150917124636) do
+ActiveRecord::Schema.define(version: 20150925130149) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -453,6 +453,8 @@ ActiveRecord::Schema.define(version: 20150917124636) do
     t.datetime "updated_at", null: false
   end
 
+  add_index "likes", ["liked_id", "like_type"], name: "index_likes_on_liked_id_and_like_type", using: :btree
+
   create_table "mass_message_groups", force: :cascade do |t|
     t.integer  "service_id"
     t.string   "name"
@@ -569,6 +571,8 @@ ActiveRecord::Schema.define(version: 20150917124636) do
     t.integer "service",                   default: [],           array: true
   end
 
+  add_index "profiles", ["address"], name: "index_profiles_on_address", using: :btree
+  add_index "profiles", ["name"], name: "index_profiles_on_name", using: :btree
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
 
   create_table "recommends", force: :cascade do |t|
@@ -621,6 +625,9 @@ ActiveRecord::Schema.define(version: 20150917124636) do
     t.datetime "updated_at", null: false
   end
 
+  add_index "service_members", ["coach_id"], name: "index_service_members_on_coach_id", using: :btree
+  add_index "service_members", ["service_id"], name: "index_service_members_on_service_id", using: :btree
+
   create_table "settings", force: :cascade do |t|
     t.integer "user_id"
     t.integer "stealth"
@@ -660,6 +667,7 @@ ActiveRecord::Schema.define(version: 20150917124636) do
   end
 
   add_index "skus", ["coordinate"], name: "index_skus_on_coordinate", using: :gist
+  add_index "skus", ["seller_id"], name: "index_skus_on_seller_id", using: :btree
   add_index "skus", ["sku"], name: "index_skus_on_sku", unique: true, using: :btree
 
   create_table "tracks", force: :cascade do |t|
@@ -704,6 +712,7 @@ ActiveRecord::Schema.define(version: 20150917124636) do
     t.datetime "updated_at"
     t.string   "sns",                    default: ""
     t.string   "device",                 default: ""
+    t.integer  "views",                  default: 14000
   end
 
   add_index "users", ["mobile", "sns"], name: "index_users_on_mobile_and_sns", unique: true, using: :btree
