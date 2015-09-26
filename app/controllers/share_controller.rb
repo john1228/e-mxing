@@ -54,7 +54,7 @@ class ShareController < ApplicationController
             item: service.coaches.limit(10).map { |coach| coach.summary_json.merge(
                 likes: coach.likes.count,
                 background: (coach.photos.first.thumb.url rescue ''),
-                dynamics: coach.dynamic.count,
+                dynamics: coach.dynamics.count,
                 course: Sku.online.where('skus.sku LIKE ?', 'CC%').where(seller_id: coach.id).count,
                 score: coach.score
             ) }
