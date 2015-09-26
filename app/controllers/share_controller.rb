@@ -51,13 +51,18 @@ class ShareController < ApplicationController
         },
         coach: {
             amount: service.coaches.count,
-            item: service.coaches.limit(10).map { |coach| coach.summary_json.merge(
-                likes: coach.likes.count,
-                background: (coach.photos.first.thumb.url rescue ''),
-                dynamics: coach.dynamics.count,
-                course: Sku.online.where('skus.sku LIKE ?', 'CC%').where(seller_id: coach.id).count,
-                score: coach.score
-            ) }
+            item: service.coaches.limit(10).map { |coach|
+              {
+                  mxid: coach.profile.mxid,
+                  name: coach.profile.name,
+                  avatar: coach.profile.avatar,
+                  background: (coach.photos.first.thumb.url rescue ''),
+                  score: coach.score,
+                  likes: coach.likes.count,
+                  dynamics: coach.dynamics.count,
+                  course: Sku.online.where('skus.sku LIKE ?', 'CC%').where(seller_id: coach.id).count
+              }
+            }
         },
         course: {
             amount: in_the_sale.count,
@@ -74,7 +79,11 @@ class ShareController < ApplicationController
                       item: item.comments.limit(1).map { |comment|
                         {
                             content: comment.content,
-                            created: comment.created_at.localtime.strftime('%Y-%m-%d')
+                            created: comment.created_at.localtime.strftime('%Y-%m-%d'),
+                            user: {
+                                name: comment.user.profile.name,
+                                avatar: comment.user.profile.avatar
+                            }
                         }
                       }
                   }
