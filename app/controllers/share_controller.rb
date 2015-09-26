@@ -67,6 +67,7 @@ class ShareController < ApplicationController
               {
                   name: item.course_name,
                   cover: item.course_cover,
+                  market: item.market_price,
                   selling: item.selling_price.to_i,
                   sold: item.orders_count,
                   score: item.score,
