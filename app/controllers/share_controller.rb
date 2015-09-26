@@ -39,10 +39,7 @@ class ShareController < ApplicationController
     detail = {
         mxid: service.profile.mxid,
         name: service.profile.name,
-        avatar: {
-            thumb: service.profile.avatar.thumb.url,
-            origin: service.profile.avatar.url
-        },
+        avatar: service.profile.avatar.thumb.url,
         views: service.views,
         address: service.profile.address,
         coordinate: {
@@ -92,7 +89,6 @@ class ShareController < ApplicationController
         },
         photowall: service.photos.map { |photo| photo.photo.thumb.url }
     }
-
     response.headers['Access-Control-Allow-Origin'] = '*'
     render json: Success.new(service: detail)
   end
