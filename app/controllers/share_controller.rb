@@ -72,6 +72,11 @@ class ShareController < ApplicationController
                   sold: item.orders_count,
                   score: item.score,
                   during: item.course.during,
+                  exp: {
+                      year: Date.today.next_day(item.course.exp).year,
+                      month: Date.today.next_day(item.course.exp).month,
+                      day: Date.today.next_day(item.course.exp).day
+                  },
                   comment: {
                       amount: item.comments_count,
                       item: item.comments.limit(1).map { |comment|
