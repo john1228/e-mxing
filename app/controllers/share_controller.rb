@@ -81,7 +81,7 @@ class ShareController < ApplicationController
               }
             }
         },
-        photowall: photos
+        photowall: service.photos.map { |photo| photo.thumb.url }
     }
 
     response.headers['Access-Control-Allow-Origin'] = '*'
