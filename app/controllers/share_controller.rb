@@ -85,7 +85,7 @@ class ShareController < ApplicationController
                             created: comment.created_at.localtime.strftime('%Y-%m-%d'),
                             user: {
                                 name: comment.user.profile.name,
-                                avatar: comment.user.profile.avatar
+                                avatar: comment.user.profile.avatar.thumb.url
                             }
                         }
                       }
