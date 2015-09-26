@@ -99,7 +99,13 @@ class Sku < ActiveRecord::Base
   end
 
   def score
-    Comment.where('sku LIKE ?', sku[0, sku.rindex('-')] + '%').average(:score).to_f.round(2)
+    comments = Comment.where('sku LIKE ?', sku[0, sku.rindex('-')] + '%')
+
+    if comments.present?
+      comments.average(:score).to_f.round(2)
+    else
+      4
+    end
   end
 
   def image_comments
