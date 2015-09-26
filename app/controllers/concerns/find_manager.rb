@@ -49,6 +49,14 @@ module FindManager
 
   def shows
     News.where(tag: News::TAG[2]).order(id: :desc).page(params[:page]||1).collect { |show| show.as_json }
+    TypeShow.all.map { |show|
+      News.create(
+          title: show.title,
+          cover: show.cover,
+          content: show.content,
+          tag: News::TAG[2]
+      )
+    }
   end
 
   def ranks

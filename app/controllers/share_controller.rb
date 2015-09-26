@@ -52,7 +52,7 @@ class ShareController < ApplicationController
               {
                   mxid: coach.profile.mxid,
                   name: coach.profile.name,
-                  avatar: coach.profile.avatar,
+                  avatar: coach.profile.avatar.thumb.url,
                   background: (coach.photos.first.thumb.url rescue ''),
                   score: coach.score,
                   likes: coach.likes.count,
