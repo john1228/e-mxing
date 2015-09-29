@@ -347,12 +347,12 @@ input, textarea, select {
   margin-right: 20px;
   text-indent: -9999px;
   overflow: hidden;
-  background: asset_data_url('home/iosbut.png') no-repeat -194px 0;
+  // background: asset_data_url('home/iosbut.png') no-repeat -194px 0;
 }
 
-.bnbut a.ios {
-  background-position: 0 0;
-}
+// .bnbut a.ios {
+//   background-position: 0 0;
+// }
 
 .bnbut i.codebut {
   display: block;
