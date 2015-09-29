@@ -340,19 +340,22 @@ input, textarea, select {
   z-index: 99
 }
 
-.bnbut a {
-  display: inline-block;
-  width: 180px;
-  height: 60px;
-  margin-right: 20px;
-  text-indent: -9999px;
-  overflow: hidden;
-  // background: asset_data_url('home/iosbut.png') no-repeat -194px 0;
-}
+// .bnbut a {
+//   display: inline-block;
+//   width: 180px;
+//   height: 60px;
+//   margin-right: 20px;
+//   text-indent: -9999px;
+//   overflow: hidden;
+//   background: asset_data_url('home/iosbut.png') no-repeat -194px 0;
+// }
 
 // .bnbut a.ios {
 //   background-position: 0 0;
 // }
+.bnbut a.android{
+  
+}
 
 .bnbut i.codebut {
   display: block;
