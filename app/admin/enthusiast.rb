@@ -37,7 +37,10 @@ ActiveAdmin.register Enthusiast do
     User.find(ids).each { |user|
       user.dynamics.destroy_all
       user.dynamic_comments.destroy_all
+      user.likes.destroy
       Rails.cache.delete(user.token)
+      Like.find_by(liked_id: user.id,like_type: Like::PERSON).destroy rescue ''
+      Like.where(user_id: user.id).delete_all
       Blacklist.create(user_id: user.id)
     }
     redirect_to collection_path, alert: '拉黑成功'
