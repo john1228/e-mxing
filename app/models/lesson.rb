@@ -50,7 +50,7 @@ class Lesson < ActiveRecord::Base
   private
   def build_code
     self.code = (1..available).map { |index|
-      'L'+('%05d' % user_id) + ('%04d' % order_id) + ('%02d' % index)
+      'L' + Time.now.to_i.to_s + index.to_s + %w'0 1 2 3 4 5 6 7 8 9'.sample(2).join
     }
   end
 end

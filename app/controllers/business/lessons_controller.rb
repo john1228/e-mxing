@@ -14,7 +14,7 @@ module Business
 
     def update
       begin
-        lesson = Lesson.where('? = ANY (code)', params[:code]).take
+        lesson = Lesson.where('? = ANY (code)', params[:code].upcase).take
         if lesson.present?
           sku = Sku.find_by(sku: lesson.sku)
           if sku.seller_id.eql?(@coach.id)
