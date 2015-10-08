@@ -30,7 +30,7 @@ class ShareController < ApplicationController
     #@photos = @service.service_photos.order(id: :desc).take(8)
     #@courses = Course.where(status: Course::STATUS[:online], coach_id: @service.coaches.pluck(:id)).take(4)
     #render layout: false
-    redirect_to "http://axure,e-mxing.com/share?tid=#{params[:id]}&type=agency"
+    redirect_to "http://axure.e-mxing.com/share/?tid=#{params[:id]}&type=agency"
   end
 
 
