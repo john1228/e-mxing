@@ -25,78 +25,85 @@ class ShareController < ApplicationController
   end
 
   def service
-    @service = Service.find_by_mxid(params[:id])
-    @coaches = @service.coaches.take(8)
-    @photos = @service.service_photos.order(id: :desc).take(8)
-    @courses = Course.where(status: Course::STATUS[:online], coach_id: @service.coaches.pluck(:id)).take(4)
-    render layout: false
+    #@service = Service.find_by_mxid(params[:id])
+    #@coaches = @service.coaches.take(8)
+    #@photos = @service.service_photos.order(id: :desc).take(8)
+    #@courses = Course.where(status: Course::STATUS[:online], coach_id: @service.coaches.pluck(:id)).take(4)
+    #render layout: false
+    redirect_to "http://axure,e-mxing.com/share?tid=#{params[:id]}&type=agency"
   end
 
 
-  def agency
-    service = Service.find_by_mxid(10023)
-    in_the_sale = Sku.online.where(seller_id: service.coaches.pluck(:id)<<service.id)
-    detail = {
-        mxid: service.profile.mxid,
-        name: service.profile.name,
-        avatar: service.profile.avatar.thumb.url,
-        views: service.views,
-        address: service.profile.address,
-        coordinate: {
-            lng: service.place.lonlat.x,
-            lat: service.place.lonlat.y
-        },
-        coach: {
-            amount: service.coaches.count,
-            item: service.coaches.limit(10).map { |coach|
-              {
-                  mxid: coach.profile.mxid,
-                  name: coach.profile.name,
-                  avatar: coach.profile.avatar.thumb.url,
-                  background: (coach.photos.first.thumb.url rescue ''),
-                  score: coach.score,
-                  likes: coach.likes.count,
-                  dynamics: coach.dynamics.count,
-                  course: Sku.online.where('skus.sku LIKE ?', 'CC%').where(seller_id: coach.id).count
-              }
-            }
-        },
-        course: {
-            amount: in_the_sale.count,
-            item: in_the_sale.order(updated_at: :desc).limit(10).map { |item|
-              {
-                  name: item.course_name,
-                  cover: item.course_cover,
-                  market: item.market_price,
-                  selling: item.selling_price.to_i,
-                  sold: item.orders_count,
-                  score: item.score,
-                  during: item.course.during,
-                  exp: {
-                      year: Date.today.next_day(item.course.exp).year,
-                      month: Date.today.next_day(item.course.exp).month,
-                      day: Date.today.next_day(item.course.exp).day
-                  },
-                  comment: {
-                      amount: item.comments_count,
-                      item: item.comments.limit(1).map { |comment|
-                        {
-                            content: comment.content,
-                            created: comment.created_at.localtime.strftime('%Y-%m-%d'),
-                            user: {
-                                name: comment.user.profile.name,
-                                avatar: comment.user.profile.avatar.thumb.url
+  def show
+    case params[:type]
+      when 'agency'
+        service = Service.find_by_mxid(params[:tid])
+        in_the_sale = Sku.online.where(seller_id: service.coaches.pluck(:id)<<service.id)
+        detail = {
+            mxid: service.profile.mxid,
+            name: service.profile.name,
+            avatar: service.profile.avatar.thumb.url,
+            views: service.views,
+            address: service.profile.address,
+            coordinate: {
+                lng: service.place.lonlat.x,
+                lat: service.place.lonlat.y
+            },
+            coach: {
+                amount: service.coaches.count,
+                item: service.coaches.limit(10).map { |coach|
+                  {
+                      mxid: coach.profile.mxid,
+                      name: coach.profile.name,
+                      avatar: coach.profile.avatar.thumb.url,
+                      background: (coach.photos.first.thumb.url rescue ''),
+                      score: coach.score,
+                      likes: coach.likes.count,
+                      dynamics: coach.dynamics.count,
+                      course: Sku.online.where('skus.sku LIKE ?', 'CC%').where(seller_id: coach.id).count
+                  }
+                }
+            },
+            course: {
+                amount: in_the_sale.count,
+                item: in_the_sale.order(updated_at: :desc).limit(10).map { |item|
+                  {
+                      name: item.course_name,
+                      cover: item.course_cover,
+                      market: item.market_price,
+                      selling: item.selling_price.to_i,
+                      sold: item.orders_count,
+                      score: item.score,
+                      during: item.course.during,
+                      exp: {
+                          year: Date.today.next_day(item.course.exp).year,
+                          month: Date.today.next_day(item.course.exp).month,
+                          day: Date.today.next_day(item.course.exp).day
+                      },
+                      comment: {
+                          amount: item.comments_count,
+                          item: item.comments.limit(1).map { |comment|
+                            {
+                                content: comment.content,
+                                created: comment.created_at.localtime.strftime('%Y-%m-%d'),
+                                user: {
+                                    name: comment.user.profile.name,
+                                    avatar: comment.user.profile.avatar.thumb.url
+                                }
                             }
-                        }
+                          }
                       }
                   }
-              }
-            }
-        },
-        photowall: service.photos.map { |photo| photo.photo.thumb.url }
-    }
-    response.headers['Access-Control-Allow-Origin'] = '*'
-    render json: Success.new(service: detail)
+                }
+            },
+            photowall: service.photos.map { |photo| photo.photo.thumb.url }
+        }
+        response.headers['Access-Control-Allow-Origin'] = '*'
+        render json: Success.new(service: detail)
+      else
+        render text: '无效的信息'
+    end
+
   end
 
 
