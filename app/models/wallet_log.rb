@@ -10,7 +10,7 @@ class WalletLog < ActiveRecord::Base
         id: created_at.strftime('%Y%m%d' + '%04d' % id),
         action: action_name,
         balance: balance.to_f.round(2),
-        created_at: created_at.to_i
+        created: created_at.to_i
     }
   end
 end
