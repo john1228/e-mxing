@@ -30,7 +30,7 @@ class ShareController < ApplicationController
     #@photos = @service.service_photos.order(id: :desc).take(8)
     #@courses = Course.where(status: Course::STATUS[:online], coach_id: @service.coaches.pluck(:id)).take(4)
     #render layout: false
-    redirect_to "http://axure.e-mxing.com/share/?tid=#{params[:id]}&type=agency"
+    redirect_to "http://share.e-mxing.com/?tid=#{params[:id]}&type=agency"
   end
 
 
@@ -38,6 +38,7 @@ class ShareController < ApplicationController
     case params[:type]
       when 'agency'
         service = Service.find_by_mxid(params[:tid])
+        service.update(views: service.views + 1)
         in_the_sale = Sku.online.where(seller_id: service.coaches.pluck(:id)<<service.id)
         detail = {
             mxid: service.profile.mxid,
