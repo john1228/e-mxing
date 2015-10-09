@@ -44,7 +44,7 @@ class Ability
         can :manage, ActiveAdmin::Page, :name => 'HitAndOnline'
         can :manage, Retention
         can :manage, ActiveAdmin::Page, :name => 'Dashboard'
-        can :manage, Dynamic
+        can :manage, DynamicImage
       when AdminUser::ROLE[:partner]
         can :manage, Transaction
         can :read, Withdraw
