@@ -18,10 +18,10 @@ ActiveAdmin.register Withdraw do
     column('提交时间') { |withdraw| withdraw.created_at.strftime('%Y-%m-%d %H:%M:%S') }
   end
 
-  batch_action '处理' do |ids|
-    Withdraw.where(id: ids).update_all(status: Withdraw::STATUS['已处理'])
-    redirect_to collection_path, alert: '处理成功'
-  end
+  batch_action '处理', if: proc { can? '处理', Withdraw } do |ids|
+                     Withdraw.where(id: ids).update_all(status: Withdraw::STATUS['已处理'])
+                     redirect_to collection_path, alert: '处理成功'
+                   end
 
   controller do
     def people
