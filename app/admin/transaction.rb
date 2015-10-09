@@ -7,7 +7,7 @@ ActiveAdmin.register Transaction do
   csv do
     column('公众号') { |transaction| Service.find_by(id: Order.find_by(no: transaction.order_no).service_id).profile.name }
     column('地址') { |transaction| Service.find_by(id: Order.find_by(no: transaction.order_no).service_id).profile.address }
-    column('私教') { |transaction| Coach.find_by(id: Order.find_by(no: transaction.order_no).service_id).profile.name rescue '' }
+    column('私教') { |transaction| Coach.find_by(id: Order.find_by(no: transaction.order_no).coach_id).profile.name rescue '' }
     column('订单号') { |transaction| transaction.order_no }
     column('下单时间') { |transaction| Order.find_by(no: transaction.order_no).created_at.localtime.strftime('%Y-%m-%d %H:%M:%S') }
     column('支付UID') { |transaction| transaction.buyer_id }
