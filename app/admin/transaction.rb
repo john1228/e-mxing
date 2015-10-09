@@ -10,6 +10,8 @@ ActiveAdmin.register Transaction do
     column('私教') { |transaction| Coach.find_by(id: Order.find_by(no: transaction.order_no).coach_id).profile.name rescue '' }
     column('订单号') { |transaction| transaction.order_no }
     column('下单时间') { |transaction| Order.find_by(no: transaction.order_no).created_at.localtime.strftime('%Y-%m-%d %H:%M:%S') }
+    column('支付流水') { |transaction| transaction.no }
+    column('支付类型') { |transaction| transaction.source }
     column('支付UID') { |transaction| transaction.buyer_id }
     column('支付账户') { |transaction| transaction.buyer_email }
     column('支付金额') { |transaction| transaction.price.to_i }
