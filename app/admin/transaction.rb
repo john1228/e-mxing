@@ -5,11 +5,11 @@ ActiveAdmin.register Transaction do
   filter :order_no, label: '订单号'
   filter :created_at, label: '支付时间'
   csv do
-    column('公众号') { |transaction| Service.find_by(id: Order.find_by(no: transaction.order_no).service_id).profile.name }
-    column('地址') { |transaction| Service.find_by(id: Order.find_by(no: transaction.order_no).service_id).profile.address }
+    column('公众号') { |transaction| Service.find_by(id: Order.find_by(no: transaction.order_no).service_id).profile.name rescue '' }
+    column('地址') { |transaction| Service.find_by(id: Order.find_by(no: transaction.order_no).service_id).profile.address rescue '' }
     column('私教') { |transaction| Coach.find_by(id: Order.find_by(no: transaction.order_no).coach_id).profile.name rescue '' }
     column('订单号') { |transaction| transaction.order_no }
-    column('下单时间') { |transaction| Order.find_by(no: transaction.order_no).created_at.localtime.strftime('%Y-%m-%d %H:%M:%S') }
+    column('下单时间') { |transaction| Order.find_by(no: transaction.order_no).created_at.localtime.strftime('%Y-%m-%d %H:%M:%S') rescue '' }
     column('支付流水') { |transaction| transaction.no }
     column('支付类型') { |transaction| transaction.source }
     column('支付UID') { |transaction| transaction.buyer_id }
