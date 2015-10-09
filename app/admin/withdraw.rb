@@ -1,5 +1,6 @@
 ActiveAdmin.register Withdraw do
   menu label: '提现申请'
+  config.batch_actions = proc { current_admin_user.role.eql?(AdminUser::ROLE[:super]) ? true : false }
   filter :name, label: '名字'
   filter :account, label: '账户'
   actions :index
@@ -18,7 +19,7 @@ ActiveAdmin.register Withdraw do
     column('提交时间') { |withdraw| withdraw.created_at.strftime('%Y-%m-%d %H:%M:%S') }
   end
 
-  batch_action '处理', if: proc { !current_admin_user.role.eql?(AdminUser::ROLE[:super]) } do |ids|
+  batch_action '处理' do |ids|
     Withdraw.where(id: ids).update_all(status: Withdraw::STATUS['已处理'])
     redirect_to collection_path, alert: '处理成功'
   end
