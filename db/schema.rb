@@ -464,6 +464,7 @@ ActiveRecord::Schema.define(version: 20150925130149) do
   end
 
   create_table "mass_messages", force: :cascade do |t|
+    t.integer  "service_id"
     t.integer  "user_id",    default: [],              array: true
     t.string   "content"
     t.datetime "created_at",              null: false
