@@ -47,6 +47,7 @@ class Ability
       when AdminUser::ROLE[:partner]
         can :manage, Transaction
         can :read, Withdraw
+        can :read, ActiveAdmin::Page, :name => 'Dashboard'
       else
         cannot :manage, :all
     end
