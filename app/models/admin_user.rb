@@ -5,5 +5,5 @@ class AdminUser < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   belongs_to :service
 
-  ROLE = {super: 0, service: 1, cms: 2, market: 3, operator: 4}
+  ROLE = {super: 0, service: 1, cms: 2, market: 3, operator: 4, partner: 5}
 end
