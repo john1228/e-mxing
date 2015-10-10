@@ -67,7 +67,7 @@ module UserAble
         identity: identity||profile.identity,
         interests: (interest.join(',') rescue nil)||profile.interests,
         service: service||profile.interests,
-        mobile: contact||profile.mobile
+        mobile: mobile.to_s.length.eql?(13) ? mobile : contact||profile.mobile
     }
     update_params = update_params.merge(avatar: update_avatar) if update_avatar.present?
     profile.update(update_params)
