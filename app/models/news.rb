@@ -1,5 +1,5 @@
 class News < ActiveRecord::Base
-  TAG = %w'训练课 饮食控 私教 机构'
+  TAG = %w'健身知识 你问我打 热门场馆 金牌私教'
   mount_uploader :cover, NewsCoverUploader
 
 
