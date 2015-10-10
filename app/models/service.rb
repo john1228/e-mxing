@@ -13,7 +13,7 @@ class Service<User
     in_the_sale = Sku.online.where(seller_id: coaches.pluck(:id)<<id)
     top_sellers = in_the_sale.where('skus.sku LIKE ?', 'CC%').order(orders_count: :desc).order(id: :asc).pluck(:seller_id).uniq[0, 3]
     tops = coaches.where(id: top_sellers)
-    tops + coaches.order(id: :desc).take(3-tops.length) unless tops.length.eql?(3)
+    tops += coaches.order(id: :desc).take(3-tops.length) unless tops.length.eql?(3)
     {
         mxid: profile.mxid,
         name: profile.name,
