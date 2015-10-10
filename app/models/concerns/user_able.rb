@@ -66,11 +66,10 @@ module UserAble
         often: often||profile.often,
         identity: identity||profile.identity,
         interests: (interest.join(',') rescue nil)||profile.interests,
-        service: service,
-        mobile: mobile
+        service: service||profile.interests,
+        mobile: contact||profile.mobile
     }
     update_params = update_params.merge(avatar: update_avatar) if update_avatar.present?
-    update_params = update_params.merge(mobile: contact) if contact.present?
     profile.update(update_params)
   end
 end
