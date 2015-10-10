@@ -8,12 +8,6 @@ module Discovery
                       item.as_json.merge(user: item.user.profile.summary_json)
                     }
                 }]
-        render json: Success.new(news: [{
-                                            tag: params[:tag],
-                                            item: Dynamic.joins(:dynamic_images).where('? = ANY (dynamic_images.tag)', params[:tag]).uniq.order(id: :desc).page(params[:page]||1).map { |item|
-                                              item.as_json.merge(user: item.user.profile.summary_json)
-                                            }
-                                        }])
       else
         data = TAGS.map { |tag|
           {
