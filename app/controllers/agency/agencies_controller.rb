@@ -1,12 +1,12 @@
 module Agency
   class AgenciesController < BaseController
     def list
-      city = URI.decode(request.headers[:city]) rescue '上海'
+      # city = URI.decode(request.headers[:city]) rescue '上海'
       page = (params[:page]||1).to_i
       agencies = Service.select("users.id,st_distance(places.lonlat, 'POINT(#{params[:lng]||0} #{params[:lat]||0})') as distance").
           joins(:profile, :place).
           where('profiles.name LIKE ? or profiles.address LIKE ?', "%#{params[:keyword]||''}%", "%#{params[:keyword]||''}%").
-          where('profiles.address LIKE ?', "%#{city}%").
+          # where('profiles.address LIKE ?', "%#{city}%").
           order('distance asc').
           order(id: :desc).
           page(page)
