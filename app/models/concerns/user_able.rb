@@ -58,8 +58,8 @@ module UserAble
     update_params = {
         name: name||profile.name,
         gender: gender||profile.gender,
-        signature: signature||'这家伙很懒,什么也没留下',
-        birthday: birthday||'',
+        signature: signature||profile.signature,
+        birthday: birthday||profile.birthday,
         address: address||profile.address,
         target: target||profile.target,
         skill: skill||profile.skill,
