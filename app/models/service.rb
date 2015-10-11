@@ -41,7 +41,7 @@ class Service<User
             thumb: profile.avatar.thumb.url,
             origin: profile.avatar.url
         },
-        views: rand(10000) + 10000,
+        views: views,
         address: profile.address,
         coordinate: {
             lng: place.lonlat.x,
