@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-  include UserAble
   has_one :profile, dependent: :destroy
   has_many :photos, dependent: :destroy
   has_many :dynamics, dependent: :destroy
@@ -53,6 +52,14 @@ class User < ActiveRecord::Base
         profile.as_json.merge(likes: likes.count, mobile: mobile)
       when 2
         profile.as_json.merge(likes: likes.count, mobile: profile.mobile)
+    end
+  end
+  private
+  def encrypted_password
+    unless password_was.eql?(password)
+      salt_arr = %w"a b c d e f g h i j k l m n o p q r s t u v w x y z 0 1 2 3 4 5 6 7 8 9"
+      self.salt = salt_arr.sample(18).join
+      self.password = Digest::MD5.hexdigest("#{password}|#{self.salt}")
     end
   end
 end

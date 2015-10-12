@@ -1,5 +1,4 @@
 "zh-CN":
-
   activerecord:
       models:
         service: '服务号'

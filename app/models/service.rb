@@ -1,5 +1,5 @@
 class Service<User
-  default_scope { joins(:profile).where('profiles.identity' => 2) }
+  default_scope { includes(:profile).where('profiles.identity' => 2) }
   after_save :location
   has_many :service_members, dependent: :destroy
   has_many :service_photos, foreign_key: :user_id, dependent: :destroy
@@ -8,6 +8,8 @@ class Service<User
   has_many :service_members, dependent: :destroy
   has_many :coaches, through: :service_members
   alias_attribute :service_id, :id
+  accepts_nested_attributes_for :profile
+  
 
   def as_json
     in_the_sale = Sku.online.where(seller_id: coaches.pluck(:id)<<id)

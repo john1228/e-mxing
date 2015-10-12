@@ -1,65 +1,79 @@
-﻿<%= form_for([:admin, @service], html: {class: "form-horizontal"}) do |f| %>
-    <%= f.hidden_field(:identity, value: 2) %>
+﻿<%= semantic_form_for([:admin, @service], html: {class: 'form-horizontal'}) do |f| %>
     <%= f.hidden_field(:mobile, value: SecureRandom.uuid) %>
     <%= f.hidden_field(:sns, value: SecureRandom.uuid) %>
-    <fieldset class="inputs">
-      <legend><span>添加服务号</span></legend>
-      <div class="form-group form-group-sm">
-        <label class="col-sm-2 control-label" for="service_name">服务号名称</label>
+    <%= f.semantic_fields_for :profile do |p| %>
+        <%= p.hidden_field(:identity) %>
+        <fieldset class="inputs">
+          <legend><span>添加服务号</span></legend>
+          <% if p.object.errors.present? %>
+              <div class="alert alert-danger alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <% p.object.errors.each { |k, v| %>
+                    <%= v %><br/>
+                <% } %>
+              </div>
+          <% end %>
+          <div class="form-group form-group-sm">
+            <label class="col-sm-2 control-label" for="service_name">服务号名称</label>
 
-        <div class="col-sm-10">
-          <%= f.text_field :name, class: 'form-control', placeholder: '请輸入您到服务号名称', value: (f.object.profile.name rescue '') %>
-        </div>
-      </div>
-      <div class="form-group form-group-sm">
-        <label class="col-sm-2 control-label" for="service_avatar">头像</label>
+            <div class="col-sm-10">
+              <%= p.text_field :name, class: 'form-control', placeholder: '请輸入您到服务号名称' %>
+            </div>
+          </div>
+          <div class="form-group form-group-sm">
+            <label class="col-sm-2 control-label" for="service_avatar">头像</label>
 
-        <div class="col-sm-10">
-          <%= f.file_field :avatar %>
-        </div>
-      </div>
-      <div class="form-group form-group-sm">
-        <label class="col-sm-2 control-label" for="service_signature">简介</label>
+            <div class="col-sm-10">
+              <%= p.file_field :avatar %>
+            </div>
+          </div>
+          <div class="form-group form-group-sm">
+            <label class="col-sm-2 control-label" for="service_signature">简介</label>
 
-        <div class="col-sm-10">
-          <%= f.text_field :signature, class: 'form-control', placeholder: '服务号简介', value: (f.object.profile.signature rescue '') %>
-        </div>
-      </div>
-      <div class="form-group form-group-sm">
-        <label class="col-sm-2 control-label" for="service_address">地址</label>
+            <div class="col-sm-10">
+              <%= p.text_field :signature, class: 'form-control', placeholder: '服务号简介' %>
+            </div>
+          </div>
 
-        <div class="col-sm-10">
-          <%= f.text_field :address, class: 'form-control', placeholder: '服务号地址', value: (f.object.profile.address rescue '') %>
-        </div>
-      </div>
+          <div class="form-group form-group-sm">
+            <label class="col-sm-2 control-label" for="service_address">地址</label>
 
-      <div class="form-group form-group-sm">
-        <label class="col-sm-2 control-label" for="service_interests">健身服务</label>
+            <div class="col-md-10 form-inline">
+              <select name="service[profile_attributes][province]" id="service_profile_attributes_province"></select>
+              <select name="service[profile_attributes][city]" id="service_profile_attributes_city"></select>
+              <%= p.text_field :address, class: 'form-control', placeholder: '服务号地址' %>
+            </div>
+          </div>
 
-        <div class="col-sm-10">
-          <%= f.select(:interest, INTERESTS['items'].map { |item| [item['name'], item['id']] }, {selected: (f.object.profile.interests.split(',') rescue []), include_hidden: false}, {multiple: true}) %>
-        </div>
-      </div>
+          <div class="form-group form-group-sm">
+            <label class="col-sm-2 control-label" for="service_interests">健身服务</label>
 
-      <div class="form-group form-group-sm">
-        <label class="col-sm-2 control-label" for="service_address">提供服务</label>
+            <div class="col-sm-10">
+              <%= p.select(:hobby, INTERESTS['items'].map { |item| [item['name'], item['id']] }, {include_hidden: false}, {multiple: true}) %>
+            </div>
+          </div>
 
-        <div class="col-sm-10">
-          <%= f.select :service, [['停车', 1], ['WIFI', 2], ['淋浴', 3], ['餐饮', 4]], {selected: (f.object.profile.service rescue []), include_hidden: false}, {multiple: true} %>
-        </div>
-      </div>
+          <div class="form-group form-group-sm">
+            <label class="col-sm-2 control-label" for="service_address">提供服务</label>
 
-      <div class="form-group form-group-sm">
-        <label class="col-sm-2 control-label" for="service_address">联系电话</label>
+            <div class="col-sm-10">
+              <%= p.select :service, [['停车', 1], ['WIFI', 2], ['淋浴', 3], ['餐饮', 4]], {include_hidden: false}, {multiple: true} %>
+            </div>
+          </div>
 
-        <div class="col-sm-10">
-          <%= f.text_field :contact, class: 'form-control', placeholder: '请输入联系电话', value: (f.object.profile.mobile rescue '') %>
-        </div>
-      </div>
-    </fieldset>
-    <%= f.submit('提交') %>
+          <div class="form-group form-group-sm">
+            <label class="col-sm-2 control-label" for="service_address">联系电话</label>
+
+            <div class="col-sm-10">
+              <%= p.text_field :mobile, class: 'form-control', placeholder: '请输入联系电话' %>
+            </div>
+          </div>
+        </fieldset>
+        <%= f.submit('提交') %>
+    <% end %>
 <% end %>
 <script type="text/javascript">
-    $('#service_interest').multiselect();
-    $('#service_service').multiselect();
+    new PCAS("service[profile_attributes][province]", "service[profile_attributes][city]", '<%=@service.profile.province%>', '<%=@service.profile.city%>');
+    $('#service_profile_attributes_hobby').multiselect();
+    $('#service_profile_attributes_service').multiselect();
 </script>

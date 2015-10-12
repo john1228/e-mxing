@@ -1,9 +1,9 @@
 ActiveAdmin.register Service do
-  menu label: '服务号', if: proc { !current_admin_user.role.eql?(AdminUser::ROLE[:service]) }
+  menu label: '工作室', if: proc { !current_admin_user.role.eql?(AdminUser::ROLE[:service]) }
 
-  permit_params :mobile, :sns, :identity, :name, :contact, :password, :avatar, :signature, :address, interest: [], service: []
+  permit_params :mobile, :sns, profile_attributes: [:id, :name, :avatar, :signature, :province, :city, :address, :identity, :mobile, hobby: [], service: []]
   filter :profile_name, label: '名称', as: :string
-  before_action :adjust, only: [:create, :update]
+
 
   csv do
     column('美型号') { |service| service.profile.mxid }
@@ -18,13 +18,6 @@ ActiveAdmin.register Service do
     column('课程数量') { |service| Sku.where(seller_id: service.coaches.pluck(:id)<< service.id).count }
     column('注册日期') { |service| service.created_at.localtime.strftime('%Y-%m-%d') }
   end
-
-  controller do
-    def adjust
-      params[:service][:interests] = (params[:service][:interest].join(',') rescue '')
-    end
-  end
-
 
   index title: '服务号' do
     column '美型号' do |service|

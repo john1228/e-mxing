@@ -6,6 +6,7 @@
 #= require jquery-ui
 #= require jquery-ui-timepicker-addon
 #= require admin/jquery.flot
+#= require admin/PCASClass
 jQuery ->
   $('a.fancybox').fancybox(
     {

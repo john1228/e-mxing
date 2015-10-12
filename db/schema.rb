@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150925130149) do
+ActiveRecord::Schema.define(version: 20151012021411) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -570,6 +570,9 @@ ActiveRecord::Schema.define(version: 20150925130149) do
     t.string  "interests",     limit: 255, default: ""
     t.string  "mobile",        limit: 255, default: ""
     t.integer "service",                   default: [],           array: true
+    t.integer "hobby",                     default: [],           array: true
+    t.string  "province"
+    t.string  "city"
   end
 
   add_index "profiles", ["address"], name: "index_profiles_on_address", using: :btree
