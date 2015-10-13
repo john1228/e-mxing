@@ -4,29 +4,17 @@ ActiveAdmin.register ServiceMember do
   belongs_to :service
   navigation_menu :service
   permit_params :service_id,
-                coach_attributes: [:id, :mobile, :password, :signature, :name, :avatar, :gender, :identity, :birthday,
-                                   :address, :target, :skill, :often, interest: []]
-  before_filter :update_coach, only: :update
+                coach_attributes: [:id, :mobile, :password, profile_attributes: [:id, :name, :avatar, :birthday, :gender, :signature, :identity, hobby: []]]
   controller do
-    def update_coach
-      member = ServiceMember.find_by(id: params[:id])
-      coach = member.coach
-      update_params = {
-          name: params[:service_member][:coach_attributes][:name],
-          birthday: params[:service_member][:coach_attributes][:birthday],
-          address: params[:service_member][:coach_attributes][:address],
-          target: params[:service_member][:coach_attributes][:target],
-          skill: params[:service_member][:coach_attributes][:target],
-          often: params[:service_member][:coach_attributes][:target],
-          interest: params[:service_member][:coach_attributes][:interest]
-      }
-      avatar = params[:service_member][:coach_attributes][:avatar]
-      update_params = update_params.merge(avatar: avatar) unless avatar.blank?
-      coach.update(update_params)
+    def new
+      @service = Service.find_by(id: params[:service_id])
+      @service_member = @service.service_members.new
+      @service_member.build_coach
+      @service_member.coach.build_profile
     end
   end
 
-  index title: '旗下私教' do
+  index do
     selectable_column
     column '昵称' do |member|
       "#{member.coach.profile.name}"
@@ -39,6 +27,7 @@ ActiveAdmin.register ServiceMember do
     end
     actions
   end
+
   show title: '私教' do
     coach = service_member.coach
     tabs do

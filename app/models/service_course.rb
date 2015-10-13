@@ -1,7 +1,7 @@
 class ServiceCourse < ActiveRecord::Base
   self.inheritance_column = nil
   STATUS = {offline: 0, online: 1}
-  attr_accessor :agency, :market_price, :selling_price, :store, :limit, :limit_time
+  attr_accessor :agency, :coach, :market_price, :selling_price, :store, :limit, :limit_time
   after_create :generate_sku
   after_update :online_or_offline
   validates_presence_of :name, :type, :style, :during, :proposal, :exp, :intro
@@ -22,17 +22,18 @@ class ServiceCourse < ActiveRecord::Base
     agencies.each { |agency|
       Sku.create(
           sku: 'SC'+'-' + '%06d' % id + '-' + '%06d' % (agency.id),
+          service_id: agency.id,
           course_id: id,
           course_type: type,
           course_name: name,
 
           seller: agency.profile.name,
-          seller_id: agency.id,
+          seller_id: coach||agency.id,
           market_price: market_price,
           selling_price: selling_price,
           store: store,
           limit: limit,
-          address: agency.profile.address||'',
+          address: (agency.profile.province.to_s + agency.profile.city.to_s + agency.profile.address.to_s),
           coordinate: (agency.place.lonlat rescue 'POINT(0 0)')
       )
     }

@@ -1,112 +1,81 @@
-﻿<%= semantic_form_for([:admin, @service, @service_member], html: {class: "form-horizontal"}) do |f| %>
+﻿<%= semantic_form_for([:admin, @service, @service_member], html: {class: 'form-horizontal'}) do |f| %>
     <fieldset class="inputs">
       <legend><span>添加教练</span></legend>
-      <%= f.fields_for :coach, f.object.coach||Coach.new do |coach| %>
-          <% if f.object.coach.present? %>
-              <% if f.object.coach.errors.full_messages.present? %>
-                  <div class="alert alert-danger" role="alert">
-                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                    <span class="sr-only">Error:</span>
-                    该手机号已注册美型账号，如需转换身份，请联系.美型：帅兵，美型号:10022，微信号: 1654828
-                  </div>
-              <% end %>
+      <%= f.semantic_fields_for :coach do |c| %>
+          <% if f.object.coach.errors.full_messages.present? %>
+              <div class="alert alert-danger alert-dismissable" style="text-align: center">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <% f.object.coach.errors.each { |k, v| %>
+                    <%= v %><br/>
+                <% } %>
+              </div>
           <% end %>
-          <% if coach.object.new_record? %>
-              <%= coach.hidden_field(:identity, value: 1) %>
+          <% if c.object.new_record? %>
               <div class="form-group form-group-sm">
                 <label class="col-sm-2 control-label" for="service_name">登录名</label>
 
                 <div class="col-sm-10">
-                  <%= coach.text_field :mobile, class: 'form-control', placeholder: '请输入登录用户名,请使用手机号' %>
+                  <%= c.text_field :mobile, class: 'form-control', placeholder: '请输入登录用户名,请使用手机号' %>
                 </div>
               </div>
               <div class="form-group form-group-sm">
                 <label class="col-sm-2 control-label" for="service_avatar">密码</label>
 
                 <div class="col-sm-10">
-                  <%= coach.password_field :password, class: 'form-control', placeholder: '请输入登录密码' %>
+                  <%= c.password_field :password, class: 'form-control', placeholder: '请输入登录密码' %>
                 </div>
               </div>
           <% end %>
-          <div class="form-group form-group-sm">
-            <label class="col-sm-2 control-label" for="service_signature">昵称</label>
+          <%= c.semantic_fields_for :profile do |p| %>
+              <%= p.hidden_field(:identity, value: 1) %>
+              <div class="form-group form-group-sm">
+                <label class="col-sm-2 control-label" for="service_signature">昵称</label>
 
-            <div class="col-sm-10">
-              <%= coach.text_field :name, class: 'form-control', placeholder: '请输入教练昵称', value: (coach.object.profile.name rescue '') %>
-            </div>
-          </div>
-          <div class="form-group form-group-sm">
-            <label class="col-sm-2 control-label" for="service_signature">头像</label>
+                <div class="col-sm-10">
+                  <%= p.text_field :name, class: 'form-control', placeholder: '请输入教练昵称', required: true %>
+                </div>
+              </div>
+              <div class="form-group form-group-sm">
+                <label class="col-sm-2 control-label" for="service_signature">头像</label>
 
-            <div class="col-sm-10">
-              <%= coach.file_field :avatar %>
-            </div>
-          </div>
-          <div class="form-group form-group-sm">
-            <label class="col-sm-2 control-label" for="service_address">生日</label>
+                <div class="col-sm-10">
+                  <%= p.file_field :avatar %>
+                </div>
+              </div>
+              <div class="form-group form-group-sm">
+                <label class="col-sm-2 control-label" for="service_address">生日</label>
 
-            <div class="col-sm-10">
-              <%= coach.date_field :birthday, class: 'form-control', placeholder: '请输入教练生日', value: (coach.object.profile.birthday rescue '') %>
-            </div>
-          </div>
-          <div class="form-group form-group-sm">
-            <label class="col-sm-2 control-label" for="service_address">性别</label>
+                <div class="col-sm-10">
+                  <%= p.text_field :birthday, class: 'datepicker', placeholder: '请输入教练生日' %>
+                </div>
+              </div>
+              <div class="form-group form-group-sm">
+                <label class="col-sm-2 control-label" for="service_address">性别</label>
 
-            <div class="col-sm-10">
-              <%= coach.select(:gender, [['男', 0], ['女', 1]], {selected: (coach.object.profile.gender rescue 1)}) %>
-            </div>
-          </div>
-          <div class="form-group form-group-sm">
-            <label class="col-sm-2 control-label" for="service_signature">签名</label>
+                <div class="col-sm-10">
+                  <%= p.select(:gender, [['男', 0], ['女', 1]]) %>
+                </div>
+              </div>
+              <div class="form-group form-group-sm">
+                <label class="col-sm-2 control-label" for="service_signature">签名</label>
 
-            <div class="col-sm-10">
-              <%= coach.text_field :signature, class: 'form-control', placeholder: '请输入教练签名', value: (coach.object.profile.signature rescue '') %>
-            </div>
-          </div>
+                <div class="col-sm-10">
+                  <%= p.text_field :signature, class: 'form-control', placeholder: '请输入教练签名' %>
+                </div>
+              </div>
 
-          <div class="form-group form-group-sm">
-            <label class="col-sm-2 control-label" for="service_address">所在城市</label>
+              <div class="form-group form-group-sm">
+                <label class="col-sm-2 control-label" for="service_interests">健身服务</label>
 
-            <div class="col-sm-10">
-              <%= coach.text_field :address, class: 'form-control', placeholder: '请输入教练地址', value: (coach.object.profile.address rescue '') %>
-            </div>
-          </div>
-
-          <div class="form-group form-group-sm">
-            <label class="col-sm-2 control-label" for="service_address">健身目标</label>
-
-            <div class="col-sm-10">
-              <%= coach.text_field :target, class: 'form-control', placeholder: '请输入健身目标', value: (coach.object.profile.target rescue '') %>
-            </div>
-          </div>
-
-          <div class="form-group form-group-sm">
-            <label class="col-sm-2 control-label" for="service_address">擅长领域</label>
-
-            <div class="col-sm-10">
-              <%= coach.text_field :skill, class: 'form-control', placeholder: '请输入擅长领域', value: (coach.object.profile.skill rescue '') %>
-            </div>
-          </div>
-
-          <div class="form-group form-group-sm">
-            <label class="col-sm-2 control-label" for="service_address">常去场馆</label>
-
-            <div class="col-sm-10">
-              <%= coach.text_field :often, class: 'form-control', placeholder: '请输入常去场馆', value: (coach.object.profile.often rescue '') %>
-            </div>
-          </div>
-
-          <div class="form-group form-group-sm">
-            <label class="col-sm-2 control-label" for="service_interests">健身服务</label>
-
-            <div class="col-sm-10">
-              <%= coach.select(:interest, INTERESTS['items'].map { |item| [item['name'], item['id']] }, {selected: (coach.object.profile.interests.split(',') rescue []), include_hidden: false}, {multiple: true}) %>
-            </div>
-          </div>
+                <div class="col-sm-10">
+                  <%= p.select(:hobby, INTERESTS['items'].map { |item| [item['name'], item['id']] }, {include_hidden: false}, {multiple: true}) %>
+                </div>
+              </div>
+          <% end %>
       <% end %>
     </fieldset>
     <%= f.submit('提交') %>
 <% end %>
 <script type="text/javascript">
-    $('#service_member_coach_attributes_interest').multiselect();
+    $('#service_member_coach_attributes_profile_attributes_hobby').multiselect();
 </script>

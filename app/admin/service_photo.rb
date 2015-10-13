@@ -6,22 +6,27 @@ ActiveAdmin.register ServicePhoto do
 
   permit_params :photo
 
-  index title: '照片墙', as: :grid, columns: 5 do |photo|
-    div for: photo do
-      resource_selection_cell photo
-      div link_to(image_tag(photo.photo.share.url), photo.photo.url, popup: true, height: 140)
+  controller do
+    def index
+      @service = Service.find_by(id: params[:service_id])
+      @photos = @service.photos
+      render layout: 'active_admin'
     end
-  end
 
-  show do
-    div image_tag(service_photo.photo.thumb.url)
-  end
-
-
-  form html: {enctype: 'multipart/form-data'} do |f|
-    f.inputs '上传照片' do
-      f.input :photo, label: '照片', as: :file, hint: f.object.photo.present? ? image_tag(f.object.photo.url(:thumb)) : content_tag(:span, '未上传照片')
+    def create
+      service = Service.find_by(id: params[:service_id])
+      service.photos.create(photo: params[:file_data], loc: params[:file_id])
+      render json: {}
     end
-    f.actions
+
+    def delete
+      service = Service.find_by(id: params[:service_id])
+      photo = service.photos.find_by(id: params[:key])
+      if photo.destroy
+        render json: {}
+      else
+        render json: {}
+      end
+    end
   end
 end

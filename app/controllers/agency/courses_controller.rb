@@ -5,7 +5,7 @@ module Agency
       render json: Success.new(
                  courses: Sku.online.
                      select("skus.*, st_distance(skus.coordinate, 'POINT(#{params[:lng]||(user.place.lonlat.x rescue 0)} #{params[:lat]||(user.place.lonlat.y rescue 0)})') as distance").
-                     where(seller_id: @agency.coaches.pluck(:id) << @agency.id).
+                     where(sevice_id: @agency.id).
                      order(id: :desc).page(params[:page]||1)
              )
     end

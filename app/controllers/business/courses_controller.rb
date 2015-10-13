@@ -10,7 +10,7 @@ module Business
     def create
       image = []
       (0..8).each { |index| image << params[index.to_s.to_sym] if params[index.to_s.to_sym].present? }
-      course = @coach.courses.new(new_params.merge(status: Course::STATUS[:online], image: image))
+      course = ServiceCourse.new(new_params.merge(coach: @coach.id, status: Course::STATUS[:online], image: image))
       if course.save
         render json: Success.new
       else

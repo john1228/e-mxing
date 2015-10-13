@@ -7,6 +7,8 @@
 #= require jquery-ui-timepicker-addon
 #= require admin/jquery.flot
 #= require admin/PCASClass
+#= require admin/fileinput_locale_zh
+#= require admin/fileinput
 jQuery ->
   $('a.fancybox').fancybox(
     {

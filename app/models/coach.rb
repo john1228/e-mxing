@@ -1,5 +1,5 @@
 class Coach<User
-  default_scope { joins(:profile).where('profiles.identity' => 1) }
+  default_scope { includes(:profile).where('profiles.identity' => 1) }
   scope :recommended, -> { joins(:recommend).order('recommends.id desc') }
   has_many :coach_docs, dependent: :destroy
   has_many :coach_dynamics, foreign_key: :user_id, dependent: :destroy
@@ -15,7 +15,9 @@ class Coach<User
   has_one :service_member, dependent: :destroy
   has_one :service, through: :service_member
   has_one :recommend, -> { where(type: Recommend::TYPE[:person]) }, foreign_key: :recommended_id
+  accepts_nested_attributes_for :profile
   validates_uniqueness_of :mobile, message: '该手机号已经注册'
+  validates_format_of :mobile, with: /^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/, multiline: true, message: '无效到手机号码'
 
   def score
     if comments.blank?
@@ -91,8 +93,7 @@ class Coach<User
 
   private
   def _skill
-    interests_ary = profile.interests.split(',') rescue []
-    choose_interests = INTERESTS['items'].select { |item| interests_ary.include?(item['id'].to_s) }
+    choose_interests = INTERESTS['items'].select { |item| hobby.include?(item['id']) }
     choose_interests.collect { |choose| choose['name'] }
   end
 end

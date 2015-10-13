@@ -1,41 +1,26 @@
 namespace :migration do
   desc '课程转移'
   task :course => :environment do
-
     Course.all.map { |course|
-      service = course.coach.service rescue nil
+      coach = Coach.find_by(id: course.coach_id)
+      service = coach.service rescue nil
       if service.present?
-        if course.image.blank?
-          image = CoursePhoto.where(course_id: course.id).map { |photo| photo.photo }
-          course.update(image: image)
-        end
-      else
-        course.update(status: 0)
-      end
-    }
-
-
-    Course.all.map { |course|
-      service = course.coach.service rescue nil
-      sku = Sku.where('course_id = ? and sku LIKE ?', course.id, 'CC%')
-      if course.image.first.present? && sku.blank? && service.present?
-        Sku.create(
-            sku: 'CC'+'-' + '%06d' % course.id + '-' + '%06d' % (service.id),
-            course_id: course.id,
-            course_type: course.type,
-            course_name: course.name,
-            course_cover: course.cover,
-            course_guarantee: course.guarantee,
-            seller: course.coach.profile.name,
-            seller_id: course.coach.id,
+        ServiceCourse.create(
+            name: course.name,
+            image: course.image,
+            type: course.type,
+            style: course.style,
+            during: course.during,
+            proposal: course.proposal,
+            exp: course.exp,
+            intro: course.intro,
+            specia: '',
+            agency: service.id,
+            coach: coach.id,
             market_price: course.price,
             selling_price: course.price,
-            address: service.profile.address||'',
-            coordinate: (service.place.lonlat rescue 'POINT(0 0)'),
-            comments_count: 0,
-            orders_count: 0,
-            concerns_count: 0,
-            status: course.status
+            store: -1,
+            limit: -1
         )
       end
     }

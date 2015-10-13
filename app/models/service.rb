@@ -9,7 +9,7 @@ class Service<User
   has_many :coaches, through: :service_members
   alias_attribute :service_id, :id
   accepts_nested_attributes_for :profile
-  
+
 
   def as_json
     in_the_sale = Sku.online.where(seller_id: coaches.pluck(:id)<<id)
@@ -65,7 +65,11 @@ class Service<User
         service: _service,
         facility: profile.service,
         contact: profile.mobile,
-        photowall: photos
+        photowall: photos.map { |photo| {
+            no: photo.id,
+            thumb: photo.photo.thumb.url,
+            original: photo.photo.url
+        } }
     }
 
     detail = detail.merge(showtime: {
@@ -78,8 +82,7 @@ class Service<User
 
   private
   def _service
-    interests_ary = profile.interests.split(',') rescue []
-    choose_interests = INTERESTS['items'].select { |item| interests_ary.include?(item['id'].to_s) }
+    choose_interests = INTERESTS['items'].select { |item| hobby.include?(item['id']) }
     choose_interests.collect { |choose| choose['name'] }
   end
 

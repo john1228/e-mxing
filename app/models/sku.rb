@@ -4,6 +4,7 @@ class Sku < ActiveRecord::Base
   scope :service_courses, -> { where('sku LIKE ?', 'SC%') }
   scope :recommended, -> { joins(:recommend).order('recommends.id desc') }
   has_one :recommend, -> { where(type: Recommend::TYPE[:course]).order(id: :desc) }, foreign_key: :recommended_id
+  belongs_to :course, class_name: ServiceCourse, foreign_key: :course_id
 
   before_save :offline
   before_create :injection
@@ -36,7 +37,7 @@ class Sku < ActiveRecord::Base
         market: market_price.to_i,
         selling: selling_price.to_i,
         store: store||-1,
-        score: score == 0 ? 4 : score,
+        score: score,
         type: course.type,
         style: course.style,
         during: course.during,
@@ -46,13 +47,13 @@ class Sku < ActiveRecord::Base
             mxid: seller_user.profile.mxid,
             name: seller_user.profile.name,
             avatar: seller_user.profile.avatar.thumb.url,
-            mobile: seller_user.is_a?(Coach) ? seller_user.mobile : seller_user.profile.mobile,
+            mobile: seller_user.profile.identity.eql?(1) ? seller_user.mobile : agency.profile.mobile,
             identity: seller_user.profile.identity,
             tags: seller_user.profile.tags
         },
         address: [{
                       name: address,
-                      agency: seller_user.is_a?(Coach) ? seller_user.service.profile.name : seller_user.profile.name,
+                      agency: agency.profile.name,
                       coordinate: {
                           lng: coordinate.x,
                           lat: coordinate.y
@@ -60,7 +61,7 @@ class Sku < ActiveRecord::Base
                   }],
         intro: course.intro,
         special: course.special,
-        service: seller_user.is_a?(Service) ? seller_user.profile.service : seller_user.service.profile.service,
+        service: agency.profile.service,
         buyers: {
             count: orders_count,
             items: buyers
@@ -100,7 +101,6 @@ class Sku < ActiveRecord::Base
 
   def score
     comments = Comment.where('sku LIKE ?', sku[0, sku.rindex('-')] + '%')
-
     if comments.present?
       comments.average(:score).to_f.round(2)
     else
@@ -130,13 +130,12 @@ class Sku < ActiveRecord::Base
     }
   end
 
+  def agency
+    Service.find_by(id: seller_id)
+  end
+
   def seller_user
-    if sku.start_with?('SC')
-      user = Service.find_by(id: seller_id)
-    else
-      user = Coach.find_by(id: seller_id)
-    end
-    user
+    User.find_by(id: seller_id)
   end
 
   protected

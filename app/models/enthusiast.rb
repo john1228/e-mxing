@@ -40,8 +40,7 @@ class Enthusiast<User
 
   private
   def _hobby
-    interests_ary = profile.interests.split(',') rescue []
-    choose_interests = INTERESTS['items'].select { |item| interests_ary.include?(item['id'].to_s) }
+    choose_interests = INTERESTS['items'].select { |item| hobby.include?(item['id']) }
     choose_interests.collect { |choose| choose['name'] }
   end
 end

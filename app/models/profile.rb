@@ -16,6 +16,12 @@ class Profile < ActiveRecord::Base
   validates_presence_of :hobby, if: Proc.new { |profile| profile.identity.eql?(2) }, message: '服务项目不能为空'
   validates_presence_of :mobile, if: Proc.new { |profile| profile.identity.eql?(2) }, message: '联系电话不能为空'
 
+  validates_presence_of :name, if: Proc.new { |profile| profile.identity.eql?(1) }, message: '名字不能为空'
+  validates_presence_of :avatar, if: Proc.new { |profile| profile.identity.eql?(1) }, message: '头像不能为空'
+  validates_presence_of :birthday, if: Proc.new { |profile| profile.identity.eql?(1) }, message: '生日不能为空'
+  validates_presence_of :gender, if: Proc.new { |profile| profile.identity.eql?(1) }, message: '性别不能为空'
+  validates_presence_of :hobby, if: Proc.new { |profile| profile.identity.eql?(1) }, message: '健身服务不能为空'
+
 
   TAGS = %w(会员 认证 私教)
   BASE_NO = 10000
@@ -37,8 +43,7 @@ class Profile < ActiveRecord::Base
   end
 
   def interests_string
-    interests_ary = interests.split(',')
-    choose_interests = INTERESTS['items'].select { |item| interests_ary.include?(item['id'].to_s) }
+    choose_interests = INTERESTS['items'].select { |item| hobby.include?(item['id']) }
     choose_interests.collect { |choose| choose['name'] }.join(',')
   end
 

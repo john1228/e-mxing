@@ -1,7 +1,7 @@
 "zh-CN":
   activerecord:
       models:
-        service: '服务号'
+        service: '工作室'
         service_photo: '照片'
         service_dynamic: '动态'
         service_member: '私教'

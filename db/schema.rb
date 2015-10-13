@@ -668,6 +668,7 @@ ActiveRecord::Schema.define(version: 20151012021411) do
     t.datetime  "created_at",                                                                            null: false
     t.datetime  "updated_at",                                                                            null: false
     t.integer   "status",                                                                    default: 0
+    t.integer   "service_id"
   end
 
   add_index "skus", ["coordinate"], name: "index_skus_on_coordinate", using: :gist

@@ -2,7 +2,7 @@
     <%= f.hidden_field(:mobile, value: SecureRandom.uuid) %>
     <%= f.hidden_field(:sns, value: SecureRandom.uuid) %>
     <%= f.semantic_fields_for :profile do |p| %>
-        <%= p.hidden_field(:identity) %>
+        <%= p.hidden_field(:identity, value: 2) %>
         <fieldset class="inputs">
           <legend><span>添加服务号</span></legend>
           <% if p.object.errors.present? %>

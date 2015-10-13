@@ -114,6 +114,8 @@ Rails.application.routes.draw do
   post '/admin/services/:id/message' => 'admin/services#message', as: :service_message
 
 
+  post '/admin/services/:service_id/service_photos/:id' => 'admin/service_photos#delete', as: :delete_service_photo
+
   get '/admin/orders/:id/user' => 'admin/orders#user', as: :order_user
   #推荐私教
   get '/admin/coaches/:id/recommend' => 'admin/coaches#recommend', as: :recommend_coach

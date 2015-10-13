@@ -39,6 +39,11 @@ ActiveAdmin.register Service do
   end
 
   controller do
+    def new
+      @service = Service.new
+      @service.build_profile
+    end
+
     def chat
       @service = Service.find_by(id: params[:id])
       render layout: false
