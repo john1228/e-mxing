@@ -14,7 +14,7 @@ namespace :migration do
             proposal: course.proposal,
             exp: course.exp,
             intro: course.intro,
-            specia: '',
+            special: '',
             agency: service.id,
             coach: coach.id,
             market_price: course.price,
