@@ -6,7 +6,7 @@ namespace :migration do
       coach = Coach.find_by(id: course.coach_id)
       service = coach.service rescue nil
       if service.present?
-        service_course = ServiceCourse.create(
+        ServiceCourse.create(
             name: course.name,
             image: course.image,
             type: course.type,
@@ -23,8 +23,7 @@ namespace :migration do
             store: -1,
             limit: -1,
         )
-        service_course.reload
-        new_sku = Sku.where("sku LIKE 'SC%'").find_by(course_id: service_course.id)
+        new_sku = Sku.where("sku LIKE 'SC%'").where(service_id: service.id, seller_id: coach.id, name: course.name).last
         new_sku.update_attributes(course_guarantee: old_sku.course_guarantee, comments_count: old_sku.comments_count, orders_count: old_sku.orders_count, concerns_count: old_sku.concerns_count)
 
         OrderItem.where(sku: old_sku.sku).update_all(sku: new_sku.sku, cover: new_sku.course_cover)
