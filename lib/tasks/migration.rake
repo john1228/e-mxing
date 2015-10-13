@@ -23,6 +23,7 @@ namespace :migration do
             store: -1,
             limit: -1,
         )
+        service_course.reload
         new_sku = Sku.where("sku LIKE 'SC%'").find_by(course_id: service_course.id)
         new_sku.update_attributes(course_guarantee: old_sku.course_guarantee, comments_count: old_sku.comments_count, orders_count: old_sku.orders_count, concerns_count: old_sku.concerns_count)
 
