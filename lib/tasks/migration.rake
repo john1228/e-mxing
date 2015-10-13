@@ -2,10 +2,11 @@ namespace :migration do
   desc '课程转移'
   task :course => :environment do
     Course.all.map { |course|
+      old_sku = Sku.where("sku LIKE 'CC%'").where(course_id: course.id)
       coach = Coach.find_by(id: course.coach_id)
       service = coach.service rescue nil
       if service.present?
-        ServiceCourse.create(
+        service_course = ServiceCourse.create(
             name: course.name,
             image: course.image,
             type: course.type,
@@ -20,72 +21,15 @@ namespace :migration do
             market_price: course.price,
             selling_price: course.price,
             store: -1,
-            limit: -1
+            limit: -1,
         )
+        new_sku = Sku.where("sku LIKE 'SC%'").where(course_id: service_course.id)
+        new_sku.update_attributes(course_guarantee: old_sku.course_guarantee, comments_count: old_sku.comments_count, orders_count: old_sku.orders_count, concerns_count: old_sku.concerns_count)
+
+        OrderItem.where(sku: old_sku.sku).update_all(sku: new_sku.sku, cover: new_sku.course_cover)
+        Lesson.where(sku: old_sku.sku).update_all(sku: new_sku.sku)
+        Appointment.where(sku: old_sku.sku).update_all(sku: new_sku.sku)
       end
-    }
-  end
-
-  desc '订单转移'
-  task :order => :environment do
-    OrderItem.where(sku: nil).map { |item|
-      sku = Sku.find_by(course_id: item.course_id)
-      if sku.present?
-        item.update(price: sku.selling_price, sku: sku.sku)
-      end
-    }
-  end
-
-  desc '订单数量'
-  task :orders_count => :environment do
-    Sku.all.each { |sku|
-      sku.update(orders_count: (OrderItem.joins(:order).where(orders: {status: 2}, sku: 'CC-000088-001147').sum(:amount) + rand(100)))
-    }
-  end
-
-  desc '课时转移'
-  task :lesson => :environment do
-    Lesson.where(sku: nil).map { |lesson|
-      course = Course.find_by(id: lesson.course_id)
-      order = lesson.order
-      if course.present?
-        lesson.update(sku: Sku.find_by(course_id: course.id).sku, code: (1..lesson.available).map { |index|
-                                                                  'L'+('%05d' % lesson.user_id) +('%04d' % order.id) + '%02d' % index
-                                                                })
-      end
-    }
-  end
-
-  desc '预约转移'
-  task :appointment => :environment do
-    Lesson.all.map { |lesson|
-      index = 0
-      lesson.appointments.where(sku: nil).map { |appointment|
-        appointment.update(sku: lesson.sku, code: lesson.code[index])
-        index = index + 1
-      }
-    }
-  end
-
-
-  desc '预约转移'
-  task :concerned => :environment do
-    Concerned.where(sku: nil).map { |item|
-      sku = Sku.find_by(course_id: item.course_id)
-      if sku.present?
-        item.update(sku: sku.sku)
-      else
-        item.destroy
-      end
-    }
-  end
-
-
-  desc ''
-  task :comment => :environment do
-    Comment.where(sku: nil).each { |item|
-      image = CommentImage.where(comment_id: item.id).map { |image| image.image }
-      item.update(image: image) if image.present?
     }
   end
 end
