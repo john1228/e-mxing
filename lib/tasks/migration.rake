@@ -2,7 +2,7 @@ namespace :migration do
   desc '课程转移'
   task :course => :environment do
     Course.all.map { |course|
-      old_sku = Sku.where("sku LIKE 'CC%'").where(course_id: course.id)
+      old_sku = Sku.where("sku LIKE 'CC%'").where(course_id: course.id).first
       coach = Coach.find_by(id: course.coach_id)
       service = coach.service rescue nil
       if service.present?
