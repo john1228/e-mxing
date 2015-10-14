@@ -275,8 +275,8 @@
       <file leaf-file-name="migration.rake" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/tasks/migration.rake">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6510501" vertical-offset="677" max-vertical-offset="1314">
-              <caret line="60" column="50" selection-start-line="60" selection-start-column="50" selection-end-line="60" selection-end-column="50" />
+            <state vertical-scroll-proportion="0.82552505" vertical-offset="677" max-vertical-offset="1368">
+              <caret line="66" column="9" selection-start-line="66" selection-start-column="9" selection-end-line="66" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -2678,8 +2678,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/tasks/migration.rake">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6510501" vertical-offset="677" max-vertical-offset="1314">
-          <caret line="60" column="50" selection-start-line="60" selection-start-column="50" selection-end-line="60" selection-end-column="50" />
+        <state vertical-scroll-proportion="0.82552505" vertical-offset="677" max-vertical-offset="1368">
+          <caret line="66" column="9" selection-start-line="66" selection-start-column="9" selection-end-line="66" selection-end-column="9" />
           <folding />
         </state>
       </provider>

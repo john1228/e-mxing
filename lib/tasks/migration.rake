@@ -57,11 +57,14 @@ namespace :migration do
 
   task :update_cc => :environment do
     OrderItem.where("sku LIKE 'CC%'").each { |item|
-      sku = Sku.find_by(:seller_id => item.order.coach_id, course_name: item.name)
-      item.order.update(service_id: sku.service_id)
-      item.update(sku: sku.sku)
-      Lesson.where(sku: item.sku).update_all(sku: sku.sku)
-      Appointment.where(sku: item.sku).update_all(sku: sku.sku)
+      begin
+        sku = Sku.find_by(seller_id: item.order.coach_id, course_name: item.name)
+        item.order.update(service_id: sku.service_id)
+        item.update(sku: sku.sku)
+        Lesson.where(sku: item.sku).update_all(sku: sku.sku)
+        Appointment.where(sku: item.sku).update_all(sku: sku.sku)
+      rescue
+      end
     }
   end
 
