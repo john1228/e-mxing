@@ -1,9 +1,9 @@
 namespace :migration do
   desc '课程转移'
   task :course => :environment do
-    Course.all.map { |course|
+    Course.where(name: ["or你", "咯女", "测试", "阿卡丽", "12", "举重", "x x y y", "bu tu", "好好计划", "剑道"]).map { |course|
       coach = Coach.find_by(id: course.coach_id)
-      service = coach.service rescue nil
+      service = coach.service
       if service.present?
         ServiceCourse.create(
             name: course.name,
