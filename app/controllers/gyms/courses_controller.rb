@@ -6,13 +6,12 @@ module Gyms
                  courses: Sku.online.
                      select("skus.*, st_distance(skus.coordinate, 'POINT(#{params[:lng]||(user.place.lonlat.x rescue 0)} #{params[:lat]||(user.place.lonlat.y rescue 0)})') as distance").
                      where(seller_id: @coach.id).
-                     where("sku LIKE 'CC%'").
                      order(id: :desc).page(params[:page]||1)
              )
     end
 
     def show
-      course = Course.find_by(id: params[:id], status: Course::STATUS[:online])
+      course = Sku.online.find_by(id: params[:id])
       if course.blank?
         render json: Failure.new('您查看到课程已下架')
       else
@@ -32,7 +31,7 @@ module Gyms
     end
 
     def coach
-      coach = Course.find_by(id: params[:id]).coach
+      coach = Coach.find_by(id: Sku.find_by(id: params[:id]).seller_id)
       render json: Success.new(coach: {
                                    mxid: coach.profile.mxid,
                                    name: coach.profile.name||'',

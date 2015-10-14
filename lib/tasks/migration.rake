@@ -34,7 +34,7 @@ namespace :migration do
       service = coach.service rescue nil
       if service.present?
         new_sku = Sku.where("sku LIKE 'SC%'").where(service_id: service.id, seller_id: coach.id, course_name: course.name).last
-        new_sku.update_attributes(course_guarantee: old_sku.course_guarantee, comments_count: old_sku.comments_count, orders_count: old_sku.orders_count, concerns_count: old_sku.concerns_count)
+        new_sku.update_attributes(status: old_sku.status, course_guarantee: old_sku.course_guarantee, comments_count: old_sku.comments_count, orders_count: old_sku.orders_count, concerns_count: old_sku.concerns_count)
 
         OrderItem.where(sku: old_sku.sku).update_all(sku: new_sku.sku, cover: new_sku.course_cover)
         Lesson.where(sku: old_sku.sku).update_all(sku: new_sku.sku)
