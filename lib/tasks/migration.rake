@@ -55,4 +55,13 @@ namespace :migration do
     }
   end
 
+  task :update_cc => :environment do
+    OrderItem.where("sku LIKE 'CC%'").each { |item|
+      sku = Sku.find_by(service_id: item.order.service_id, :seller_id => item.order.coach_id, course_name: item.name)
+      item.update(sku: sku.sku)
+      Lesson.where(sku: item.sku).update_all(sku: sku.sku)
+      Appointment.where(sku: item.sku).update_all(sku: sku.sku)
+    }
+  end
+
 end
