@@ -28,6 +28,7 @@ class Sku < ActiveRecord::Base
   end
 
   def detail
+    service = Service.find_by(id: service_id)
     json_hash = {
         sku: sku,
         name: course.name,
@@ -47,13 +48,13 @@ class Sku < ActiveRecord::Base
             mxid: seller_user.profile.mxid,
             name: seller_user.profile.name,
             avatar: seller_user.profile.avatar.thumb.url,
-            mobile: seller_user.profile.identity.eql?(1) ? seller_user.mobile : agency.profile.mobile,
+            mobile: seller_user.profile.identity.eql?(1) ? seller_user.mobile : service.profile.mobile,
             identity: seller_user.profile.identity,
             tags: seller_user.profile.tags
         },
         address: [{
                       name: address,
-                      agency: agency.profile.name,
+                      agency: service.profile.name,
                       coordinate: {
                           lng: coordinate.x,
                           lat: coordinate.y
@@ -61,7 +62,7 @@ class Sku < ActiveRecord::Base
                   }],
         intro: course.intro,
         special: course.special,
-        service: agency.profile.service,
+        service: service.profile.service,
         buyers: {
             count: orders_count,
             items: buyers
@@ -128,10 +129,6 @@ class Sku < ActiveRecord::Base
           avatar: user.profile.avatar.thumb.url
       }
     }
-  end
-
-  def agency
-    Service.find_by(id: seller_id)
   end
 
   def seller_user

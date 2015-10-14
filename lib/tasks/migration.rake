@@ -45,7 +45,7 @@ namespace :migration do
 
   task :sku => :environment do
     Sku.where("sku LIKE 'SC%'").where(service_id: nil).map { |sku|
-      sku.update(service_id: sku.seller_id)
+      sku.update(service_id: sku.seller_id  )
     }
   end
 end
