@@ -9,7 +9,7 @@ module Business
                        type: sku.course_type,
                        style: sku.course.style,
                        during: sku.course.during,
-                       price: sku.course.selling_price,
+                       price: sku.selling_price,
                        exp: sku.course.exp,
                        proposal: sku.course.proposal,
                        intro: sku.course.intro,
