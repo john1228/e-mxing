@@ -71,17 +71,17 @@ namespace :migration do
   end
 
   task :update_other => :environment do
-    Comment.where("sku LIKE 'CC%'").each { |item|
+    Concerned.where("sku LIKE 'CC%'").each { |item|
       sku = item.sku.split('-')
       course = Course.find_by(id: sku[1])
       item.destroy if course.nil?
 
       begin
         sku = Sku.find_by(seller_id: course.coach_id, course_name: course.name)
-        Comment.where(sku: item.sku).update_all(sku: sku.sku)
         Concerned.where(sku: item.sku).update_all(sku: sku.sku)
       rescue
       end
     }
+    //
   end
 end

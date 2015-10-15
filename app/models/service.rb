@@ -82,7 +82,7 @@ class Service<User
 
   private
   def _service
-    choose_interests = INTERESTS['items'].select { |item| hobby.include?(item['id']) }
+    choose_interests = INTERESTS['items'].select { |item| profile.hobby.include?(item['id']) }
     choose_interests.collect { |choose| choose['name'] }
   end
 
