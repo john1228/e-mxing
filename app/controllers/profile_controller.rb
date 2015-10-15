@@ -26,7 +26,7 @@ class ProfileController < ApiController
     if profile.update(profile_params)
       render json: {code: 1}
     else
-      render json: {code: 0, message: "修改失败#{profile.errors}"}
+      render json: {code: 0, message: "修改失败#{profile.errors.message}"}
     end
   end
 

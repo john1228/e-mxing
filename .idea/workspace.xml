@@ -366,8 +366,8 @@
       <file leaf-file-name="profile_controller.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/profile_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4375" vertical-offset="0" max-vertical-offset="864">
-              <caret line="21" column="5" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.5833333" vertical-offset="0" max-vertical-offset="864">
+              <caret line="28" column="67" selection-start-line="28" selection-start-column="67" selection-end-line="28" selection-end-column="67" />
               <folding />
             </state>
           </provider>
@@ -2723,8 +2723,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/profile_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4375" vertical-offset="0" max-vertical-offset="864">
-          <caret line="21" column="5" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
+        <state vertical-scroll-proportion="0.5833333" vertical-offset="0" max-vertical-offset="864">
+          <caret line="28" column="67" selection-start-line="28" selection-start-column="67" selection-end-line="28" selection-end-column="67" />
           <folding />
         </state>
       </provider>
