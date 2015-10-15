@@ -14,7 +14,10 @@ module Business
                        proposal: sku.course.proposal,
                        intro: sku.course.intro,
                        guarantee: sku.course_guarantee,
-                       address: sku.address,
+                       address: {
+                           venues: sku.service.profile.name,
+                           address: sku.address
+                       },
                        images: sku.course.image.map { |image| image.thumb.url },
                        purchased: sku.orders_count,
                        concerns: sku.concerns_count
@@ -30,7 +33,7 @@ module Business
       if course.save
         render json: Success.new
       else
-        render json: Failure.new('课程添加失败')
+        render json: Failure.new("课程添加失败:#{course.errors.messages.values.join('')}")
       end
     end
 
@@ -55,7 +58,7 @@ module Business
     private
     def new_params
       permit_params = params.permit(:name, :type, :style, :during, :exp, :proposal, :intro, :guarantee)
-      permit_params.merge(price: params[:price])
+      permit_params.merge(selling_price: params[:price], market_price: params[:price])
     end
 
     def update_params

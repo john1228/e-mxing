@@ -5,6 +5,7 @@ class Sku < ActiveRecord::Base
   scope :recommended, -> { joins(:recommend).order('recommends.id desc') }
   has_one :recommend, -> { where(type: Recommend::TYPE[:course]).order(id: :desc) }, foreign_key: :recommended_id
   belongs_to :course, class_name: ServiceCourse, foreign_key: :course_id
+  belongs_to :service
 
   before_save :offline
   before_create :injection

@@ -3,6 +3,7 @@ class Withdraw < ActiveRecord::Base
   before_create :reduce
   STATUS ={'未处理' => 0, '已处理' => 1}
 
+  validates_numericality_of :amount, greater_than_or_equal_to: 200
   private
   def reduce
     begin
