@@ -1,9 +1,9 @@
 namespace :migration do
   desc '课程转移'
   task :course => :environment do
-    Course.where(name: ["or你", "咯女", "测试", "阿卡丽", "12", "举重", "x x y y", "bu tu", "好好计划", "剑道"]).map { |course|
+    Course.all.map { |course|
       coach = Coach.find_by(id: course.coach_id)
-      service = coach.service
+      service = coach.service rescue nil
       if service.present?
         ServiceCourse.create(
             name: course.name,
@@ -13,7 +13,7 @@ namespace :migration do
             during: course.during,
             proposal: course.proposal,
             exp: course.exp,
-            intro: course.intro,
+            intro: course.intro||'暂无介绍',
             special: '',
             agency: service.id,
             coach: coach.id,
@@ -63,9 +63,25 @@ namespace :migration do
         item.update(sku: sku.sku)
         Lesson.where(sku: item.sku).update_all(sku: sku.sku)
         Appointment.where(sku: item.sku).update_all(sku: sku.sku)
+        Comment.where(sku: item.sku).update_all(sku: sku.sku)
+        Concerned.where(sku: item.sku).update_all(sku: sku.sku)
       rescue
       end
     }
   end
 
+  task :update_other => :environment do
+    Comment.where("sku LIKE 'CC%'").each { |item|
+      sku = item.sku.split('-')
+      course = Course.find_by(id: sku[1])
+      item.destroy if course.nil?
+
+      begin
+        sku = Sku.find_by(seller_id: course.coach_id, course_name: course.name)
+        Comment.where(sku: item.sku).update_all(sku: sku.sku)
+        Concerned.where(sku: item.sku).update_all(sku: sku.sku)
+      rescue
+      end
+    }
+  end
 end

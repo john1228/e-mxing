@@ -76,14 +76,7 @@ class Sku < ActiveRecord::Base
     json_hash = json_hash.merge(limit_time: {start: course.limit_start.strftime('%Y-%m-%d %H:%M'), end: course.limit_end.strftime('%Y-%m-%d %H:%M')}) if course.has_attribute?(:limit_start)&&course.limit_start.present?
     json_hash
   end
-
-  def course
-    if sku.start_with?('SC')
-      ServiceCourse.find_by(id: course_id)
-    else
-      Course.find_by(id: course_id)
-    end
-  end
+  
 
   def related_sellers
     Sku.where('sku LIKE ? and course_id=?', sku[0, 2] + '%', course_id).map { |sku|

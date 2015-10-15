@@ -17,7 +17,7 @@ ActiveAdmin.register Order do
     column('订单编号', :no)
     column('服务号') { |order|
       sku = Sku.find_by(sku: order.order_item.sku)
-      link_to(sku.seller_user.profile.name, order_user_path(sku.seller_id), class: 'fancybox', data: {'fancybox-type' => 'ajax'})
+      link_to(sku.seller_user.profile.name||' ', order_user_path(sku.seller_id), class: 'fancybox', data: {'fancybox-type' => 'ajax'})
     }
     column('买家') { |order|
       link_to(order.user.profile.name, order_user_path(order.user_id), class: 'fancybox', data: {'fancybox-type' => 'ajax'})
