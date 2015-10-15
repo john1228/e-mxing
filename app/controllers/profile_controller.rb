@@ -11,7 +11,7 @@ class ProfileController < ApiController
                  message: '您到注册信息已过期,请重新注册'
              }
     else
-      user = User.new(mobile: mobile, password: params[:password],device: params[:device],profile_attributes:{name: params[:name]})
+      user = User.new(mobile: mobile, password: params[:password], device: params[:device], profile_attributes: {name: params[:name]})
       if user.save
         Rails.cache.write(user.token, user)
         render json: {code: 1, data: {user: user.summary_json}}
@@ -22,15 +22,17 @@ class ProfileController < ApiController
   end
 
   def update
-    if @user.profile.update(profile_params)
+    profile = @user.profile
+    if profile.update(profile_params)
       render json: {code: 1}
     else
-      render json: {code: 0, message: '修改失败'}
+      render json: {code: 0, message: "修改失败#{profile.errors}"}
     end
   end
 
   private
   def profile_params
-    params.permit(:name, :birthday, :avatar, :signature, :gender, :birthday, :address, :interests, :target, :skill, :often)
+    permit_params = params.permit(:name, :birthday, :avatar, :signature, :gender, :birthday, :address, :interests, :target, :skill, :often)
+    permit_params.merge(hobby: params[:interests].split(','))
   end
 end
