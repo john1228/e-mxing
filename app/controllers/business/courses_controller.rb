@@ -14,10 +14,10 @@ module Business
                        proposal: sku.course.proposal,
                        intro: sku.course.intro,
                        guarantee: sku.course_guarantee,
-                       address: {
-                           venues: sku.service.profile.name,
-                           address: sku.address
-                       },
+                       address: [{
+                                     venues: sku.service.profile.name,
+                                     address: sku.address
+                                 }],
                        images: sku.course.image.map { |image| image.thumb.url },
                        purchased: sku.orders_count,
                        concerns: sku.concerns_count
