@@ -27,12 +27,13 @@ class ServiceCourse < ActiveRecord::Base
           course_type: type,
           course_name: name,
 
-          seller: agency.profile.name,
+          seller: (Coach.find_by(id: coach.id).id rescue agency.profile.name),
           seller_id: coach||agency.id,
           market_price: market_price,
           selling_price: selling_price,
           store: store,
           limit: limit,
+          status: status,
           address: (agency.profile.province.to_s + agency.profile.city.to_s + agency.profile.address.to_s),
           coordinate: (agency.place.lonlat rescue 'POINT(0 0)')
       )
