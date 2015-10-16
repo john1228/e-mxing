@@ -82,10 +82,16 @@ class Sku < ActiveRecord::Base
   def related_sellers
     Sku.where('sku LIKE ? and course_id=?', sku[0, 2] + '%', course_id).map { |sku|
       seller_user = sku.seller_user
+      phone = /^((\d{11})|^((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$)$/
+      if phone.match(seller_user.mobile).blank?
+        tel = sku.service.profile.mobile if phone.match(sku.service.profile.mobile).present?
+      else
+        tel = seller_user.mobile
+      end
       {
-          seller: seller_user.is_a?(Service) ? seller_user.profile.name : seller_user.service.profile.name,
+          seller: sku.service.profile.name,
           address: sku.address,
-          tel: seller_user.is_a?(Service) ? seller_user.profile.mobile : seller_user.mobile,
+          tel: tel.to_s,
           coordinate: {
               lng: sku.coordinate.x,
               lat: sku.coordinate.y
