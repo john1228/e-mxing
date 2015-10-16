@@ -62,3 +62,4 @@ gem 'rqrcode'
 gem 'rqrcode_png'
 
 gem 'actionpack-page_caching'
+gem 'apn_on_rails'

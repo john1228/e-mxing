@@ -5,8 +5,10 @@ ActiveAdmin.register Withdraw do
   filter :account, label: '账户'
   actions :index
   scope('0-全部', :all, default: true)
-  scope('1-未处理', :unprocessed) { |scope| scope.where(status: Withdraw::STATUS['未处理']) }
-  scope('2-已处理', :processed) { |scope| scope.where(status: Withdraw::STATUS['已处理']) }
+  scope('1-提现请求', :requests) { |scope| scope.where(status: Withdraw::STATUS['提现请求']) }
+  scope('2-处理中', :processing) { |scope| scope.where(status: Withdraw::STATUS['已处理']) }
+  scope('3-处理完成', :success) { |scope| scope.where(status: Withdraw::STATUS['成功']) }
+  scope('4-处理失败', :failure) { |scope| scope.where(status: Withdraw::STATUS['失败']) }
   index do
     selectable_column
     column('申请人') do |withdraw|
@@ -22,6 +24,18 @@ ActiveAdmin.register Withdraw do
     Withdraw.where(id: ids).update_all(status: Withdraw::STATUS['已处理'])
     redirect_to collection_path, alert: '处理成功'
   end
+
+  batch_action '成功', if: proc { current_admin_user.role.eql?(AdminUser::ROLE[:super]) ? true : false } do
+    Withdraw.where(id: ids).update_all(status: Withdraw::STATUS['成功'])
+    redirect_to collection_path, alert: '处理成功'
+  end
+
+
+  batch_action '失败', if: proc { current_admin_user.role.eql?(AdminUser::ROLE[:super]) ? true : false } do
+    Withdraw.where(id: ids).each { |withdraw| withdraw.update(status: Withdraw::STATUS['失败']) }
+    redirect_to collection_path, alert: '处理成功'
+  end
+
   controller do
     def people
       @user = User.find_by(id: params[:id])

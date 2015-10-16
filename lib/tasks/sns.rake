@@ -11,4 +11,8 @@ namespace :sns do
     userinfo_response = conn.get 'user/get_user_info ', access_token: code, oauth_consumer_key: oauth_consumer_key, openid: openid
     puts userinfo_response.body
   end
+
+  task :apns => :environment do
+    APN.notify_async('39d4bacfc99ed2b7c45591d6e373719dabb4349568912ecad578d37e1d10ece7', {alert: 'Hello, World!', sound: true, badge: 99})
+  end
 end

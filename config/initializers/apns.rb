@@ -1,0 +1,9 @@
+APN.root = 'config/certs' # root to certificates folder
+APN.certificate_name = 'apn_production.pem' # certificate filename
+APN.host = 'gateway.push.apple.com'
+APN.password = 'emxing'
+APN.pool_size = 1 # number of connections on the pool
+APN.pool_timeout = 5 # timeout in seconds for connection pool
+APN.logger = Logger.new(File.join(Rails.root, 'log', 'apns.log'))
+APN.truncate_alert = true # enable the truncation of the alert for notifications that exceed the max allowed bytes
+APN.backend = :sidekiq # use sidekiq backend

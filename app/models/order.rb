@@ -86,7 +86,7 @@ class Order < ActiveRecord::Base
                         exp: Date.today.next_day(course.exp), contact_name: contact_name, contact_phone: contact_phone) if lessons.blank?
           #钱的處理
           unless course.guarantee.eql?(Course::GUARANTEE)
-            service = course.coach.service
+            service = sku_info.service
             if service.blank?
               errors.add(:service, '该课程到私教没有服务号，无法购买')
               return false
