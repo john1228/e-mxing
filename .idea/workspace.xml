@@ -237,7 +237,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../agency/config/puma.rb" afterPath="$PROJECT_DIR$/../agency/config/puma.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/app/assets/javascripts/resumes.js.coffee" afterPath="$PROJECT_DIR$/../photo/app/assets/javascripts/resumes.js.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../agency/config/routes.rb" afterPath="$PROJECT_DIR$/../agency/config/routes.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/config/routes.rb" afterPath="$PROJECT_DIR$/../photo/config/routes.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../agency/app/views/profile/show.html.erb" afterPath="$PROJECT_DIR$/../agency/app/views/profile/show.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../agency/lib/tasks/sns.rake" afterPath="$PROJECT_DIR$/../agency/lib/tasks/sns.rake" />
@@ -302,11 +301,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="group_photos_controller.rb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="group_photos_controller.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/group_photos_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="108" max-vertical-offset="864">
-              <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
+            <state vertical-scroll-proportion="0.7383721" vertical-offset="140" max-vertical-offset="936">
+              <caret line="36" column="44" selection-start-line="36" selection-start-column="44" selection-end-line="36" selection-end-column="44" />
               <folding />
             </state>
           </provider>
@@ -322,10 +321,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="routes.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="routes.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/routes.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.49709302" vertical-offset="756" max-vertical-offset="5022">
+            <state vertical-scroll-proportion="0.0" vertical-offset="756" max-vertical-offset="5022">
               <caret line="61" column="62" selection-start-line="61" selection-start-column="62" selection-end-line="61" selection-end-column="62" />
               <folding />
             </state>
@@ -439,8 +438,8 @@
         <option value="$PROJECT_DIR$/../agency/app/views/profile/show.html.erb" />
         <option value="$PROJECT_DIR$/../agency/app/assets/javascripts/js/PCASClass.js" />
         <option value="$PROJECT_DIR$/../agency/app/views/profile/edit.html.erb" />
-        <option value="$PROJECT_DIR$/app/controllers/group_photos_controller.rb" />
         <option value="$PROJECT_DIR$/config/routes.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/group_photos_controller.rb" />
       </list>
     </option>
   </component>
@@ -2737,18 +2736,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/group_photos_controller.rb">
+    <entry file="file://$PROJECT_DIR$/config/routes.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="108" max-vertical-offset="864">
-          <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="756" max-vertical-offset="5022">
+          <caret line="61" column="62" selection-start-line="61" selection-start-column="62" selection-end-line="61" selection-end-column="62" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/routes.rb">
+    <entry file="file://$PROJECT_DIR$/app/controllers/group_photos_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.49709302" vertical-offset="756" max-vertical-offset="5022">
-          <caret line="61" column="62" selection-start-line="61" selection-start-column="62" selection-end-line="61" selection-end-column="62" />
+        <state vertical-scroll-proportion="0.7383721" vertical-offset="140" max-vertical-offset="936">
+          <caret line="36" column="44" selection-start-line="36" selection-start-column="44" selection-end-line="36" selection-end-column="44" />
           <folding />
         </state>
       </provider>
