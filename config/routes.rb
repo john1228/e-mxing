@@ -74,6 +74,7 @@ Rails.application.routes.draw do
   get 'deploy/service' => 'deploy#service'
   get 'deploy/city' => 'deploy#city'
   get 'deploy/online' => 'deploy#online'
+  get 'deploy/ads' => 'deploy#ads'
   #系统接口
   post 'feedback' => 'system#feedback'
   post 'report' => 'system#report'

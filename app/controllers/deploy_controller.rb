@@ -20,6 +20,13 @@ class DeployController < ApplicationController
            }
   end
 
+  def ads
+    render json: Success.new(
+               boot: Banner.boot,
+               app: Banner.app
+           )
+  end
+
   def ver
     version = VERSION[params[:device].downcase][params[:app].downcase]
     render json: Success.new(ver: version['ver'], force: version['force'].to_i, url: version['url'], info: version['info'].split("\n"))
