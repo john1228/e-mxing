@@ -29,7 +29,7 @@ class GroupPhotosController < ApiController
     end
   end
 
-  def delete
+  def destroy
     group = Group.find_by(id: params[:group_id])
     render json: Failure.new('该群不存在') if group.blank?
     if group.owner.eql?(@user.id)

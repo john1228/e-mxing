@@ -59,7 +59,7 @@ Rails.application.routes.draw do
   #群組相冊
   get 'group_photos' => 'group_photos#index'
   post 'group_photos' => 'group_photos#create'
-  delete 'group_photos/:group_id/:id' => 'group_photos#delete'
+  delete 'group_photos/:group_id/:id' => 'group_photos#destroy'
   #获取用户信息
   get 'friends' => 'friends#index'
   post 'friends' => 'friends#create'
