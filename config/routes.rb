@@ -59,7 +59,7 @@ Rails.application.routes.draw do
   #群組相冊
   get 'group_photos' => 'group_photos#index'
   post 'group_photos' => 'group_photos#create'
-  delete 'group_photos/:group_id/:id' => 'group_photos#destroy'
+  delete 'group_photos/:group_id/:id' => 'group_photos#delete'
   #获取用户信息
   get 'friends' => 'friends#index'
   post 'friends' => 'friends#create'
@@ -69,7 +69,7 @@ Rails.application.routes.draw do
   #配置文件
   get 'deploy/ver' => 'deploy#ver'
   get 'deploy/icon' => 'deploy#icon'
-  get 'deploy/banner' => 'deploy#banner'
+  get 'deploy/banner' => 'deploy#banners'
   get 'deploy/json' => 'deploy#json'
   get 'deploy/service' => 'deploy#service'
   get 'deploy/city' => 'deploy#city'

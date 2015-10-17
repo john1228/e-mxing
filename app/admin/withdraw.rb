@@ -20,18 +20,18 @@ ActiveAdmin.register Withdraw do
     column('提现金额', :amount)
     column('提交时间') { |withdraw| withdraw.created_at.strftime('%Y-%m-%d %H:%M:%S') }
   end
-  batch_action '处理', if: proc { current_admin_user.role.eql?(AdminUser::ROLE[:super]) ? true : false } do
+  batch_action '处理', if: proc { current_admin_user.role.eql?(AdminUser::ROLE[:super]) ? true : false } do |ids|
     Withdraw.where(id: ids).update_all(status: Withdraw::STATUS['已处理'])
     redirect_to collection_path, alert: '处理成功'
   end
 
-  batch_action '成功', if: proc { current_admin_user.role.eql?(AdminUser::ROLE[:super]) ? true : false } do
+  batch_action '成功', if: proc { current_admin_user.role.eql?(AdminUser::ROLE[:super]) ? true : false } do |ids|
     Withdraw.where(id: ids).update_all(status: Withdraw::STATUS['成功'])
     redirect_to collection_path, alert: '处理成功'
   end
 
 
-  batch_action '失败', if: proc { current_admin_user.role.eql?(AdminUser::ROLE[:super]) ? true : false } do
+  batch_action '失败', if: proc { current_admin_user.role.eql?(AdminUser::ROLE[:super]) ? true : false } do |ids|
     Withdraw.where(id: ids).each { |withdraw| withdraw.update(status: Withdraw::STATUS['失败']) }
     redirect_to collection_path, alert: '处理成功'
   end

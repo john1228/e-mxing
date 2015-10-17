@@ -20,7 +20,7 @@ class Withdraw < ActiveRecord::Base
   end
 
   def refund
-    if status.eql?(STATUS['失败']) && status_was.eql?(status)
+    if status.eql?(STATUS['失败']) && !status.eql?(status_was)
       wallet = Wallet.find_or_create_by(user_id: coach_id)
       wallet.with_lock do
         wallet.balance = wallet.balance + amount

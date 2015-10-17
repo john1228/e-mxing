@@ -132,10 +132,12 @@ ActiveRecord::Schema.define(version: 20151012021411) do
   end
 
   create_table "banners", force: :cascade do |t|
-    t.string "image"
-    t.string "url"
-    t.date   "start_date"
-    t.date   "end_date"
+    t.string  "image"
+    t.string  "url"
+    t.date    "start_date"
+    t.date    "end_date"
+    t.integer "type"
+    t.integer "link_id"
   end
 
   create_table "black_lists", force: :cascade do |t|
@@ -673,6 +675,7 @@ ActiveRecord::Schema.define(version: 20151012021411) do
 
   add_index "skus", ["coordinate"], name: "index_skus_on_coordinate", using: :gist
   add_index "skus", ["seller_id"], name: "index_skus_on_seller_id", using: :btree
+  add_index "skus", ["service_id"], name: "index_skus_on_service_id", using: :btree
   add_index "skus", ["sku"], name: "index_skus_on_sku", unique: true, using: :btree
 
   create_table "tracks", force: :cascade do |t|
