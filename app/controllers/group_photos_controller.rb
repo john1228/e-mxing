@@ -33,10 +33,10 @@ class GroupPhotosController < ApiController
     group = Group.find_by(id: params[:group_id])
     render json: Failure.new('该群不存在') if group.blank?
     if group.owner.eql?(@user.id)
-      group.destroy_all(id: params[:id])
-      render json: {code: 1}
+      GroupPhoto.where(id: params[:id]).destroy_all
+      render json: Success.new
     else
-      render json: {code: 0, message: '您不是群主，不能进行此操作'}
+      render json: Failure.new('您不是群主，不能进行此操作')
     end
   end
 end

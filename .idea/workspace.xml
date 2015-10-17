@@ -215,48 +215,34 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/profile/thumb_2015/06/01/3df5d85a-c35a-4fc4-89d0-86ae82286c07.jpg" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/profile/thumb_2015/07/07/b81ac4bd-5289-4aed-9671-c39aa361e879.jpg" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../agency/.idea/.rakeTasks" afterPath="$PROJECT_DIR$/../agency/.idea/.rakeTasks" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/migrate/20151012021411_change_column_for_profile.rb" afterPath="$PROJECT_DIR$/db/migrate/20151012021411_change_column_for_profile.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../agency/Gemfile.lock" afterPath="$PROJECT_DIR$/../agency/Gemfile.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/Gemfile.lock" afterPath="$PROJECT_DIR$/../photo/Gemfile.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../agency/Gemfile" afterPath="$PROJECT_DIR$/../agency/Gemfile" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/Gemfile" afterPath="$PROJECT_DIR$/../photo/Gemfile" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../agency/app/assets/javascripts/js/PCASClass.js" afterPath="$PROJECT_DIR$/../agency/app/assets/javascripts/js/PCASClass.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../agency/app/views/layouts/_header.html.erb" afterPath="$PROJECT_DIR$/../agency/app/views/layouts/_header.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../agency/app/views/layouts/_sidebar.html.erb" afterPath="$PROJECT_DIR$/../agency/app/views/layouts/_sidebar.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/home/about.html.erb" afterPath="$PROJECT_DIR$/app/views/home/about.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/app/assets/stylesheets/active_admin.css.scss" afterPath="$PROJECT_DIR$/../photo/app/assets/stylesheets/active_admin.css.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../agency/app/views/layouts/admin.html.erb" afterPath="$PROJECT_DIR$/../agency/app/views/layouts/admin.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../agency/.idea/agency.iml" afterPath="$PROJECT_DIR$/../agency/.idea/agency.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../agency/app/assets/javascripts/application.js" afterPath="$PROJECT_DIR$/../agency/app/assets/javascripts/application.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../agency/app/controllers/application_controller.rb" afterPath="$PROJECT_DIR$/../agency/app/controllers/application_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/app/assets/javascripts/appointments.js.coffee" afterPath="$PROJECT_DIR$/../photo/app/assets/javascripts/appointments.js.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/admin/banner.rb" afterPath="$PROJECT_DIR$/app/admin/banner.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/banner.rb" afterPath="$PROJECT_DIR$/app/models/banner.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/app/assets/javascripts/comments.js.coffee" afterPath="$PROJECT_DIR$/../photo/app/assets/javascripts/comments.js.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/home/contact.html.erb" afterPath="$PROJECT_DIR$/app/views/home/contact.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/home/dynamic.html.erb" afterPath="$PROJECT_DIR$/app/views/home/dynamic.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../agency/app/views/profile/edit.html.erb" afterPath="$PROJECT_DIR$/../agency/app/views/profile/edit.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/home/index.html.erb" afterPath="$PROJECT_DIR$/app/views/home/index.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/home/join.html.erb" afterPath="$PROJECT_DIR$/app/views/home/join.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/mxing.iml" afterPath="$PROJECT_DIR$/.idea/mxing.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/group_photos_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/group_photos_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/.idea/photo.iml" afterPath="$PROJECT_DIR$/../photo/.idea/photo.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../agency/app/models/profile.rb" afterPath="$PROJECT_DIR$/../agency/app/models/profile.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../agency/app/controllers/profile_controller.rb" afterPath="$PROJECT_DIR$/../agency/app/controllers/profile_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../agency/config/puma.rb" afterPath="$PROJECT_DIR$/../agency/config/puma.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/app/assets/javascripts/resumes.js.coffee" afterPath="$PROJECT_DIR$/../photo/app/assets/javascripts/resumes.js.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../agency/config/routes.rb" afterPath="$PROJECT_DIR$/../agency/config/routes.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/config/routes.rb" afterPath="$PROJECT_DIR$/../photo/config/routes.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="$PROJECT_DIR$/db/schema.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../agency/app/views/profile/show.html.erb" afterPath="$PROJECT_DIR$/../agency/app/views/profile/show.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../agency/lib/tasks/sns.rake" afterPath="$PROJECT_DIR$/../agency/lib/tasks/sns.rake" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/app/assets/javascripts/stars.js.coffee" afterPath="$PROJECT_DIR$/../photo/app/assets/javascripts/stars.js.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../agency/app/models/withdraw.rb" afterPath="$PROJECT_DIR$/../agency/app/models/withdraw.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/admin/withdraw.rb" afterPath="$PROJECT_DIR$/app/admin/withdraw.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/withdraw.rb" afterPath="$PROJECT_DIR$/app/models/withdraw.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/app/assets/javascripts/works.js.coffee" afterPath="$PROJECT_DIR$/../photo/app/assets/javascripts/works.js.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="mxing.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -315,20 +301,30 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="group_photos_controller.rb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="group_photos_controller.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/group_photos_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="176" max-vertical-offset="864">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.7645349" vertical-offset="158" max-vertical-offset="864">
+              <caret line="38" column="47" selection-start-line="38" selection-start-column="47" selection-end-line="38" selection-end-column="47" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="routes.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="group.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/group.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="846">
+              <caret line="0" column="6" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="6" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="routes.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/routes.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.49709302" vertical-offset="756" max-vertical-offset="5022">
+            <state vertical-scroll-proportion="0.0" vertical-offset="756" max-vertical-offset="5022">
               <caret line="61" column="61" selection-start-line="61" selection-start-column="61" selection-end-line="61" selection-end-column="61" />
               <folding />
             </state>
@@ -360,16 +356,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="684">
               <caret line="14" column="19" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="services_controller.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../agency/app/controllers/services_controller.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="144">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -413,7 +399,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/../agency/app/controllers/report_controller.rb" />
         <option value="$PROJECT_DIR$/app/admin/service_photo.rb" />
         <option value="$PROJECT_DIR$/app/views/admin/service_photos/index.html.erb" />
         <option value="$PROJECT_DIR$/config/initializers/carrierwave.rb" />
@@ -464,6 +449,7 @@
         <option value="$PROJECT_DIR$/../agency/app/assets/javascripts/js/PCASClass.js" />
         <option value="$PROJECT_DIR$/../agency/app/views/profile/edit.html.erb" />
         <option value="$PROJECT_DIR$/config/routes.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/group_photos_controller.rb" />
       </list>
     </option>
   </component>
@@ -2368,14 +2354,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/config/certs/developer.pem">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1350">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/initializers/apns.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="252">
@@ -2760,18 +2738,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/group_photos_controller.rb">
+    <entry file="file://$PROJECT_DIR$/config/routes.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="864">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="756" max-vertical-offset="5022">
+          <caret line="61" column="61" selection-start-line="61" selection-start-column="61" selection-end-line="61" selection-end-column="61" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/routes.rb">
+    <entry file="file://$PROJECT_DIR$/app/models/group.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.49709302" vertical-offset="756" max-vertical-offset="5022">
-          <caret line="61" column="61" selection-start-line="61" selection-start-column="61" selection-end-line="61" selection-end-column="61" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="846">
+          <caret line="0" column="6" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/group_photos_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7645349" vertical-offset="158" max-vertical-offset="864">
+          <caret line="38" column="47" selection-start-line="38" selection-start-column="47" selection-end-line="38" selection-end-column="47" />
           <folding />
         </state>
       </provider>
