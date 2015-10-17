@@ -69,7 +69,7 @@ Rails.application.routes.draw do
   #配置文件
   get 'deploy/ver' => 'deploy#ver'
   get 'deploy/icon' => 'deploy#icon'
-  get 'deploy/banner' => 'deploy#banners'
+  get 'deploy/banner' => 'deploy#banner'
   get 'deploy/json' => 'deploy#json'
   get 'deploy/service' => 'deploy#service'
   get 'deploy/city' => 'deploy#city'

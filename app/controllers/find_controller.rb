@@ -25,6 +25,8 @@ class FindController < ApiController
   end
 
   def list
+    logger.info request.headers[:apns_token]
+
     case params[:type]
       when 'dynamics'
         data = {dynamics: dynamics}
