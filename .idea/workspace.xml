@@ -230,7 +230,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/app/assets/javascripts/appointments.js.coffee" afterPath="$PROJECT_DIR$/../photo/app/assets/javascripts/appointments.js.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/app/assets/javascripts/comments.js.coffee" afterPath="$PROJECT_DIR$/../photo/app/assets/javascripts/comments.js.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../agency/app/views/profile/edit.html.erb" afterPath="$PROJECT_DIR$/../agency/app/views/profile/edit.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/group_photos_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/group_photos_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/.idea/photo.iml" afterPath="$PROJECT_DIR$/../photo/.idea/photo.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../agency/app/models/profile.rb" afterPath="$PROJECT_DIR$/../agency/app/models/profile.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../agency/app/controllers/profile_controller.rb" afterPath="$PROJECT_DIR$/../agency/app/controllers/profile_controller.rb" />
@@ -241,6 +240,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../agency/app/views/profile/show.html.erb" afterPath="$PROJECT_DIR$/../agency/app/views/profile/show.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../agency/lib/tasks/sns.rake" afterPath="$PROJECT_DIR$/../agency/lib/tasks/sns.rake" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/app/assets/javascripts/stars.js.coffee" afterPath="$PROJECT_DIR$/../photo/app/assets/javascripts/stars.js.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/users_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/users_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../agency/app/models/withdraw.rb" afterPath="$PROJECT_DIR$/../agency/app/models/withdraw.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/app/assets/javascripts/works.js.coffee" afterPath="$PROJECT_DIR$/../photo/app/assets/javascripts/works.js.coffee" />
     </list>
@@ -301,11 +301,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="group_photos_controller.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="group_photos_controller.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/group_photos_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7383721" vertical-offset="140" max-vertical-offset="936">
+            <state vertical-scroll-proportion="0.0" vertical-offset="140" max-vertical-offset="936">
               <caret line="36" column="44" selection-start-line="36" selection-start-column="44" selection-end-line="36" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="users_controller.rb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/controllers/users_controller.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.13081396" vertical-offset="0" max-vertical-offset="1530">
+              <caret line="5" column="27" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -389,7 +399,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/admin/service_photo.rb" />
         <option value="$PROJECT_DIR$/app/views/admin/service_photos/index.html.erb" />
         <option value="$PROJECT_DIR$/config/initializers/carrierwave.rb" />
         <option value="$PROJECT_DIR$/app/controllers/gyms/courses_controller.rb" />
@@ -440,6 +449,7 @@
         <option value="$PROJECT_DIR$/../agency/app/views/profile/edit.html.erb" />
         <option value="$PROJECT_DIR$/config/routes.rb" />
         <option value="$PROJECT_DIR$/app/controllers/group_photos_controller.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/users_controller.rb" />
       </list>
     </option>
   </component>
@@ -2344,14 +2354,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../agency/app/views/layouts/admin.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.333333" vertical-offset="0" max-vertical-offset="738">
-          <caret line="14" column="154" selection-start-line="14" selection-start-column="154" selection-end-line="14" selection-end-column="154" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../local/rvm/gems/ruby-2.1.4/gems/apn_sender-2.0.1/lib/apn/sender_daemon.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="324" max-vertical-offset="1458">
@@ -2746,8 +2748,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/group_photos_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7383721" vertical-offset="140" max-vertical-offset="936">
+        <state vertical-scroll-proportion="0.0" vertical-offset="140" max-vertical-offset="936">
           <caret line="36" column="44" selection-start-line="36" selection-start-column="44" selection-end-line="36" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/users_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.13081396" vertical-offset="0" max-vertical-offset="1530">
+          <caret line="5" column="27" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="27" />
           <folding />
         </state>
       </provider>

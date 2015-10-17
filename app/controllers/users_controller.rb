@@ -2,6 +2,9 @@ class UsersController < ApiController
 
   def login
     login_user = User.find_by(mobile: params[:username])
+
+    logger.info "苹果推送token值:#{request.headers[:apns_token]}"
+
     if login_user.nil?
       render json: Failure.new('该用户还未注册')
     else
