@@ -25,10 +25,6 @@ class FindController < ApiController
   end
 
   def list
-    request.headers.each { |k, v|
-      logger.info "请求头部#{k}-#{v}"
-    }
-
     case params[:type]
       when 'dynamics'
         data = {dynamics: dynamics}
