@@ -87,9 +87,9 @@ class Service<User
   end
 
   def location
-    if address.present?
+    unless profile.address.eql?(profile.address_was)
       conn = Faraday.new(:url => 'http://api.map.baidu.com')
-      address_summary = address.match(/(.+?)[弄号]/)
+      address_summary = profile.province.to_s + profile.city.to_s + address.match(/(.+?)[弄号]/)
       result = conn.get '/geocoder/v2/', address: address_summary.blank? ? address : address_summary, output: 'json', ak: '61Vl2dO7CKCt0rvLKQiePGT5'
       json_string = JSON.parse(result.body)
       bd_lng = json_string['result']['location']['lng']

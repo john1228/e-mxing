@@ -149,7 +149,7 @@
       <ConfigurationWrapper RunnerId="RubyDebugRunner" />
       <method />
     </configuration>
-    <configuration default="false" name="profile" type="RubyRunConfigurationType" factoryName="Ruby" temporary="true">
+    <configuration default="false" name="profiles" type="RubyRunConfigurationType" factoryName="Ruby" temporary="true">
       <module name="mxing" />
       <RUBY_RUN_CONFIG NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
       <RUBY_RUN_CONFIG NAME="WORK DIR" VALUE="$MODULE_DIR$/lib/tasks" />
