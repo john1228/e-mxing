@@ -721,6 +721,7 @@ ActiveRecord::Schema.define(version: 20151012021411) do
     t.string   "sns",                    default: ""
     t.string   "device",                 default: ""
     t.integer  "views",                  default: 14000
+    t.integer  "status",                 default: 1
   end
 
   add_index "users", ["mobile", "sns"], name: "index_users_on_mobile_and_sns", unique: true, using: :btree

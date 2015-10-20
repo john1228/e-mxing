@@ -4,9 +4,10 @@ class ChangeColumnForProfile < ActiveRecord::Migration
     # add_column :profiles, :province, :string
     # add_column :profiles, :city, :string
     # add_column :skus, :service_id, :integer
-    add_index :skus, :service_id
-
-    add_column :banners, :type, :integer
-    add_column :banners, :link_id, :integer
+    # add_index :skus, :service_id
+    #
+    # add_column :banners, :type, :integer
+    # add_column :banners, :link_id, :integer
+    add_column :users, :status, :integer, default: 1
   end
 end
