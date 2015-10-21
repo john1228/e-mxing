@@ -32,7 +32,8 @@ class Order < ActiveRecord::Base
       end
     end
     #限制数量
-    if sku_info.limit > 0 && (sku_info.limit_detect(user_id) + order_item.amount) > sku_info.limit
+    sku_limit = sku_info.limit||-1
+    if sku_limit > 0 && (sku_info.limit_detect(user_id) + order_item.amount) > sku_limit
       errors.add(:limit, '购买数量超出限制')
       return false
     end
