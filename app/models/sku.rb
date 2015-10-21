@@ -14,7 +14,7 @@ class Sku < ActiveRecord::Base
     {
         sku: sku,
         name: course_name,
-        seller: seller,
+        seller: seller_user.profile.name,
         cover: course_cover,
         selling: selling_price.to_i,
         guarantee: course_guarantee,
