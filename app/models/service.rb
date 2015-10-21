@@ -20,7 +20,7 @@ class Service<User
         mxid: profile.mxid,
         name: profile.name,
         avatar: profile.avatar.thumb.url,
-        address: profile.province + profile.city + profile.address,
+        address: profile.province.to_s + profile.city.to_s + profile.address.to_s,
         distance: (attributes['distance']||0).to_i,
         coach: {
             amount: coaches.count,
