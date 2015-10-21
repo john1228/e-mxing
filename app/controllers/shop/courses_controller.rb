@@ -57,11 +57,13 @@ module Shop
     def pre_order
       amount = params[:amount].to_i
       sku = Sku.find_by(sku: params[:sku])
-      if sku.store==0
+      sku_store = sku.store||-1
+      sku_limit = sku.limit||-1
+      if sku_store==0
         render json: Failure.new('库存不足')
-      elsif sku.store>0 && sku.store < amount
+      elsif sku_store>0 && sku_store < amount
         render json: Failure.new('库存不足')
-      elsif sku.limit > 0 && (sku.limit_detect(@user.id) + amount) > sku.limit
+      elsif sku_limit > 0 && (sku.limit_detect(@user.id) + amount) > sku_limit
         render json: Failure.new('已超出每人购买数量')
       else
         render json: Success.new(coupons: @user.wallet.valid_coupons(params[:sku], amount))
