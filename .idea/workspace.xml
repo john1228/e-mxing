@@ -284,21 +284,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="service.rb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="service.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../agency/app/models/service.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="738">
-              <caret line="25" column="70" selection-start-line="25" selection-start-column="70" selection-end-line="25" selection-end-column="70" />
+            <state vertical-scroll-proportion="0.294049" vertical-offset="0" max-vertical-offset="857">
+              <caret line="14" column="114" selection-start-line="14" selection-start-column="114" selection-end-line="14" selection-end-column="114" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="service.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="service.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/service.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.663944" vertical-offset="1249" max-vertical-offset="2106">
-              <caret line="101" column="70" selection-start-line="101" selection-start-column="70" selection-end-line="101" selection-end-column="70" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1249" max-vertical-offset="2106">
+              <caret line="90" column="114" selection-start-line="90" selection-start-column="22" selection-end-line="90" selection-end-column="114" />
               <folding />
             </state>
           </provider>
@@ -377,7 +377,7 @@
     </leaf>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../agency" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -431,8 +431,8 @@
         <option value="$PROJECT_DIR$/app/models/coach.rb" />
         <option value="$PROJECT_DIR$/../agency/app/controllers/students_controller.rb" />
         <option value="$PROJECT_DIR$/../agency/app/views/students/index.html.erb" />
-        <option value="$PROJECT_DIR$/../agency/app/models/service.rb" />
         <option value="$PROJECT_DIR$/app/models/service.rb" />
+        <option value="$PROJECT_DIR$/../agency/app/models/service.rb" />
       </list>
     </option>
   </component>
@@ -2763,18 +2763,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../agency/app/models/service.rb">
+    <entry file="file://$PROJECT_DIR$/app/models/service.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="738">
-          <caret line="25" column="70" selection-start-line="25" selection-start-column="70" selection-end-line="25" selection-end-column="70" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1249" max-vertical-offset="2106">
+          <caret line="90" column="114" selection-start-line="90" selection-start-column="22" selection-end-line="90" selection-end-column="114" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/service.rb">
+    <entry file="file://$PROJECT_DIR$/../agency/app/models/service.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.663944" vertical-offset="1249" max-vertical-offset="2106">
-          <caret line="101" column="70" selection-start-line="101" selection-start-column="70" selection-end-line="101" selection-end-column="70" />
+        <state vertical-scroll-proportion="0.294049" vertical-offset="0" max-vertical-offset="857">
+          <caret line="14" column="114" selection-start-line="14" selection-start-column="114" selection-end-line="14" selection-end-column="114" />
           <folding />
         </state>
       </provider>
