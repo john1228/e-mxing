@@ -218,12 +218,12 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/Gemfile" afterPath="$PROJECT_DIR$/../photo/Gemfile" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/app/assets/stylesheets/active_admin.css.scss" afterPath="$PROJECT_DIR$/../photo/app/assets/stylesheets/active_admin.css.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/app/assets/javascripts/appointments.js.coffee" afterPath="$PROJECT_DIR$/../photo/app/assets/javascripts/appointments.js.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/coach.rb" afterPath="$PROJECT_DIR$/app/models/coach.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/app/assets/javascripts/comments.js.coffee" afterPath="$PROJECT_DIR$/../photo/app/assets/javascripts/comments.js.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../agency/app/views/coaches/index.html.erb" afterPath="$PROJECT_DIR$/../agency/app/views/coaches/index.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/.idea/photo.iml" afterPath="$PROJECT_DIR$/../photo/.idea/photo.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/app/assets/javascripts/resumes.js.coffee" afterPath="$PROJECT_DIR$/../photo/app/assets/javascripts/resumes.js.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/config/routes.rb" afterPath="$PROJECT_DIR$/../photo/config/routes.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/sku.rb" afterPath="$PROJECT_DIR$/app/models/sku.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/app/assets/javascripts/stars.js.coffee" afterPath="$PROJECT_DIR$/../photo/app/assets/javascripts/stars.js.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/app/assets/javascripts/works.js.coffee" afterPath="$PROJECT_DIR$/../photo/app/assets/javascripts/works.js.coffee" />
     </list>
@@ -274,11 +274,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="group.html.erb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../agency/app/views/students/group.html.erb">
+      <file leaf-file-name="coach.rb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/models/coach.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-26.036144" vertical-offset="71" max-vertical-offset="3582">
-              <caret line="124" column="37" selection-start-line="124" selection-start-column="37" selection-end-line="124" selection-end-column="37" />
+            <state vertical-scroll-proportion="0.6511085" vertical-offset="594" max-vertical-offset="1908">
+              <caret line="64" column="28" selection-start-line="64" selection-start-column="28" selection-end-line="64" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -324,21 +324,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="profile.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/profile.rb">
+      <file leaf-file-name="sku.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/sku.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="457" max-vertical-offset="1800">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1586" max-vertical-offset="2772">
+              <caret line="131" column="7" selection-start-line="131" selection-start-column="7" selection-end-line="131" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="courses_controller.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/gyms/courses_controller.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1188">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sku.rb" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/models/sku.rb">
+      <file leaf-file-name="profiles_controller.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/gyms/profiles_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.9146919" vertical-offset="1586" max-vertical-offset="2772">
-              <caret line="131" column="7" selection-start-line="131" selection-start-column="7" selection-end-line="131" selection-end-column="7" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="234">
+              <caret line="0" column="5" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -364,16 +374,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_data.html.erb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../agency/app/views/coaches/_data.html.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-20.666666" vertical-offset="0" max-vertical-offset="846">
-              <caret line="31" column="36" selection-start-line="31" selection-start-column="36" selection-end-line="31" selection-end-column="36" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="Git.Settings">
@@ -382,7 +382,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/../agency/app/views/message/new.html.erb" />
         <option value="$PROJECT_DIR$/../agency/lib/tasks/mob.rake" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/share/dynamic.css.scss" />
         <option value="$PROJECT_DIR$/../agency/app/assets/stylesheets/css/sb-admin.css.scss" />
@@ -433,6 +432,7 @@
         <option value="$PROJECT_DIR$/app/models/service.rb" />
         <option value="$PROJECT_DIR$/app/controllers/shop/courses_controller.rb" />
         <option value="$PROJECT_DIR$/app/models/sku.rb" />
+        <option value="$PROJECT_DIR$/app/models/coach.rb" />
       </list>
     </option>
   </component>
@@ -644,6 +644,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="models" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mxing" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mxing" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="controllers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -667,6 +685,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="shop" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mxing" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mxing" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controllers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gyms" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2330,22 +2370,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../agency/app/views/coaches/_form.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="17.333334" vertical-offset="936" max-vertical-offset="3006">
-          <caret line="26" column="21" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20151012021411_change_column_for_profile.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="342">
-          <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../agency/app/controllers/coaches_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="7" max-vertical-offset="936">
@@ -2438,14 +2462,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="857">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/gyms/profiles_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="234">
-          <caret line="0" column="5" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
           <folding />
         </state>
       </provider>
@@ -2737,8 +2753,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/sku.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9146919" vertical-offset="1586" max-vertical-offset="2772">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1586" max-vertical-offset="2772">
           <caret line="131" column="7" selection-start-line="131" selection-start-column="7" selection-end-line="131" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/gyms/courses_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1188">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/gyms/profiles_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="234">
+          <caret line="0" column="5" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/coach.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6511085" vertical-offset="594" max-vertical-offset="1908">
+          <caret line="64" column="28" selection-start-line="64" selection-start-column="28" selection-end-line="64" selection-end-column="28" />
           <folding />
         </state>
       </provider>

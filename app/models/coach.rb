@@ -61,8 +61,8 @@ class Coach<User
         },
         skill: _skill,
         course: {
-            amount: Sku.online.where('skus.sku LIKE ?', 'CC%').where(seller_id: id).count,
-            item: Sku.online.where('skus.sku LIKE ?', 'CC%').where(seller_id: id).order(updated_at: :desc).take(2)
+            amount: Sku.online.where(seller_id: id).count,
+            item: Sku.online.where(seller_id: id).order(updated_at: :desc).take(2)
         },
         comment: {
             amount: comments.count,
