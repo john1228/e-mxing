@@ -39,8 +39,8 @@ class Order < ActiveRecord::Base
     self.no = "#{Time.now.to_i}#{user_id}#{%w'0 1 2 3 4 5 6 7 8 9'.sample(3).join('')}"
     self.total = sku_info.selling_price*order_item.amount
     self.no = "#{Time.now.to_i}#{user_id}#{%w'0 1 2 3 4 5 6 7 8 9'.sample(3).join('')}"
-    self.service_id = course.is_a?(ServiceCourse) ? sku_info.seller_id : course.coach.service.id
-    self.coach_id = sku_info.seller_id if course.is_a?(Course)
+    self.service_id = sku_info.service_id
+    self.coach_id = sku_info.seller_id unless sku_info.service_id.eql?(sku_info.seller_id)
     if using_coupon.present?
       self.pay_amount = using_coupon.discount > total ? 0 : (total-using_coupon.discount)
     else
