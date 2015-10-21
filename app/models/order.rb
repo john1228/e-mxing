@@ -81,38 +81,22 @@ class Order < ActiveRecord::Base
         #现在只购买一个课程,逻辑遵循一个课时走
         sku_info = Sku.find_by(sku: order_item.sku)
         course = sku_info.course
-        if course.is_a?(Course)
-          Lesson.create(order_id: id, sku: order_item.sku, coach_id: sku_info.seller_id, user: user, available: order_item.amount, used: 0,
-                        exp: Date.today.next_day(course.exp), contact_name: contact_name, contact_phone: contact_phone) if lessons.blank?
-          #钱的處理
-          unless course.guarantee.eql?(Course::GUARANTEE)
-            service = sku_info.service
-            if service.blank?
-              errors.add(:service, '该课程到私教没有服务号，无法购买')
-              return false
-            else
-              wallet = Wallet.find_or_create_by(user: service)
-              wallet.with_lock do
-                wallet.balance += total
-                wallet.action = WalletLog::ACTIONS['卖课收入']
-                wallet.save
-              end
-            end
+
+        Lesson.create(order_id: id, sku: order_item.sku, user: user, coach_id: sku_info.service_id.eql?(sku_info.seller_id) ? 0 : sku_info.seller_id, available: order_item.amount, used: 0,
+                      exp: Date.today.next_day(course.exp), contact_name: contact_name, contact_phone: contact_phone) if lessons.blank?
+        #钱的處理
+        wallet = Wallet.find_or_create_by(user_id: sku_info.service_id)
+        unless course.guarantee.eql?(Course::GUARANTEE)
+          wallet.with_lock do
+            wallet.balance += total
+            wallet.action = WalletLog::ACTIONS['卖课收入']
+            wallet.save
           end
+        end
+        unless sku_info.service_id.eql?(sku_info.seller_id)
+          coach = Coach.find(sku_info.seller_id)
           MessageJob.perform_later(sku_info.seller_id, MESSAGE['订单'] % [user.profile.name, sku_info.course_name, no])
-          SmsJob.perform_later(course.coach.mobile, SMS['订单'], [user.profile.name, sku_info.course_name, no])
-        else
-          Lesson.create(order_id: id, sku: order_item.sku, user: user, available: order_item.amount, used: 0,
-                        exp: Date.today.next_day(course.exp), contact_name: contact_name, contact_phone: contact_phone) if lessons.blank?
-          #钱的處理
-          wallet = Wallet.find_or_create_by(user_id: sku_info.seller_id)
-          unless course.guarantee.eql?(Course::GUARANTEE)
-            wallet.with_lock do
-              wallet.balance += total
-              wallet.action = WalletLog::ACTIONS['卖课收入']
-              wallet.save
-            end
-          end
+          SmsJob.perform_later(coach.mobile, SMS['订单'], [user.profile.name, sku_info.course_name, no])
         end
         Sku.where('sku LIKE ?', order_item.sku[0, order_item.sku.rindex('-')] + '%').update_all("orders_count =  orders_count + #{order_item.amount}")
       #结算
