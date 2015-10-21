@@ -39,6 +39,7 @@ class Sku < ActiveRecord::Base
         market: market_price.to_i,
         selling: selling_price.to_i,
         store: store||-1,
+        limit: limit||-1,
         score: score,
         type: course.type,
         style: course.style,

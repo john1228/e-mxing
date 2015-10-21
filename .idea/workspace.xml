@@ -219,10 +219,10 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/app/assets/stylesheets/active_admin.css.scss" afterPath="$PROJECT_DIR$/../photo/app/assets/stylesheets/active_admin.css.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/app/assets/javascripts/appointments.js.coffee" afterPath="$PROJECT_DIR$/../photo/app/assets/javascripts/appointments.js.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/app/assets/javascripts/comments.js.coffee" afterPath="$PROJECT_DIR$/../photo/app/assets/javascripts/comments.js.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/order.rb" afterPath="$PROJECT_DIR$/app/models/order.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/.idea/photo.iml" afterPath="$PROJECT_DIR$/../photo/.idea/photo.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/app/assets/javascripts/resumes.js.coffee" afterPath="$PROJECT_DIR$/../photo/app/assets/javascripts/resumes.js.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/config/routes.rb" afterPath="$PROJECT_DIR$/../photo/config/routes.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/sku.rb" afterPath="$PROJECT_DIR$/app/models/sku.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/app/assets/javascripts/stars.js.coffee" afterPath="$PROJECT_DIR$/../photo/app/assets/javascripts/stars.js.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/app/assets/javascripts/works.js.coffee" afterPath="$PROJECT_DIR$/../photo/app/assets/javascripts/works.js.coffee" />
     </list>
@@ -323,11 +323,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sku.rb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="sku.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/models/sku.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1861" max-vertical-offset="2772">
-              <caret line="119" column="6" selection-start-line="119" selection-start-column="6" selection-end-line="119" selection-end-column="6" />
+            <state vertical-scroll-proportion="0.4568528" vertical-offset="378" max-vertical-offset="2790">
+              <caret line="41" column="25" selection-start-line="41" selection-start-column="25" selection-end-line="41" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -343,10 +343,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="order.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="order.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/order.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.061611373" vertical-offset="1208" max-vertical-offset="2106">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1208" max-vertical-offset="2106">
               <caret line="70" column="136" selection-start-line="70" selection-start-column="136" selection-end-line="70" selection-end-column="136" />
               <folding />
             </state>
@@ -425,13 +425,13 @@
         <option value="$PROJECT_DIR$/app/controllers/shop/buyers_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/agency/agencies_controller.rb" />
         <option value="$PROJECT_DIR$/../agency/app/views/report/course.html.erb" />
-        <option value="$PROJECT_DIR$/app/models/sku.rb" />
         <option value="$PROJECT_DIR$/../agency/app/views/profiles/show.html.erb" />
         <option value="$PROJECT_DIR$/../agency/app/controllers/report_controller.rb" />
         <option value="$PROJECT_DIR$/../agency/app/views/report/_order_table.html.erb" />
         <option value="$PROJECT_DIR$/../agency/app/views/report/_sale_table.html.erb" />
         <option value="$PROJECT_DIR$/app/controllers/shop/courses_controller.rb" />
         <option value="$PROJECT_DIR$/app/models/order.rb" />
+        <option value="$PROJECT_DIR$/app/models/sku.rb" />
       </list>
     </option>
   </component>
@@ -2694,14 +2694,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/sku.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1861" max-vertical-offset="2772">
-          <caret line="119" column="6" selection-start-line="119" selection-start-column="6" selection-end-line="119" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/shop/courses_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="576" max-vertical-offset="1764">
@@ -2712,8 +2704,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/order.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.061611373" vertical-offset="1208" max-vertical-offset="2106">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1208" max-vertical-offset="2106">
           <caret line="70" column="136" selection-start-line="70" selection-start-column="136" selection-end-line="70" selection-end-column="136" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/sku.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4568528" vertical-offset="378" max-vertical-offset="2790">
+          <caret line="41" column="25" selection-start-line="41" selection-start-column="25" selection-end-line="41" selection-end-column="25" />
           <folding />
         </state>
       </provider>
