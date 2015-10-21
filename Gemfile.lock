@@ -105,6 +105,9 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    anemone (0.7.2)
+      nokogiri (>= 1.3.0)
+      robotex (>= 1.0.0)
     apn_sender (2.0.1)
       activesupport (>= 3.1)
       connection_pool
@@ -249,6 +252,7 @@ GEM
     rgeo-activerecord (2.1.1)
       activerecord (~> 4.2)
       rgeo (~> 0.3)
+    robotex (1.0.0)
     rqrcode (0.6.0)
       chunky_png
     rqrcode_png (0.1.5)
@@ -312,6 +316,7 @@ DEPENDENCIES
   active_skin
   activeadmin!
   activerecord-postgis-adapter (= 3.0.0.beta2)
+  anemone
   apn_sender
   bootstrap-datetimepicker-rails
   bootstrap-multiselect-rails

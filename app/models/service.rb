@@ -20,7 +20,7 @@ class Service<User
         mxid: profile.mxid,
         name: profile.name,
         avatar: profile.avatar.thumb.url,
-        address: profile.address,
+        address: profile.province + profile.city + profile.address,
         distance: (attributes['distance']||0).to_i,
         coach: {
             amount: coaches.count,
@@ -100,9 +100,7 @@ class Service<User
         place.update(lonlat: gcj_02(bd_lng, bd_lat))
       end
       #更新机构课程课程的地址
-      coach_ids = coaches.pluck(:id)
-      Sku.where(seller_id: coach_ids).where('sku LIKE ?', 'CC%').update_all(address: address, coordinate: gcj_02(bd_lng, bd_lat))
-      Sku.where(seller_id: id).where('sku LIKE ?', 'SC%').update_all(address: address, coordinate: gcj_02(bd_lng, bd_lat))
+      Sku.where(service_id: id).update_all(address: (province.to_s + city.to_s + address.to_s), coordinate: gcj_02(bd_lng, bd_lat))
     end
   end
 
