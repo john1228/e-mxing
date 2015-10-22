@@ -6,9 +6,8 @@ module Shop
       case params[:type]
         when 'course'
           render json: Success.new(
-                     course: Sku.select("skus.*, st_distance(skus.coordinate, 'POINT(#{params[:lng]} #{params[:lat]})') as distance").where('address LIKE ?', city + '%').recommended.page(params[:page]||1).map { |sku|
-                       sku.as_json.merge(store: sku.store)
-                     }
+                     course: Sku.select("skus.*, st_distance(skus.coordinate, 'POINT(#{params[:lng]} #{params[:lat]})') as distance").
+                         where('address LIKE ?', city + '%').recommended.page(params[:page]||1)
                  )
         when 'coach'
           services = Profile.where('address LIKE ? AND IDENTITY=2', city + '%').pluck(:user_id)
@@ -26,9 +25,8 @@ module Shop
                      }
                  )
         when 'buy'
-          render json: Success.new(course: Sku.online.select("skus.*, st_distance(skus.coordinate, 'POINT(#{params[:lng]} #{params[:lat]})') as distance").where('address LIKE ? AND status=1', city + '%').order(orders_count: :desc).order(id: :desc).page(params[:page]||1).map { |sku|
-                                     sku.as_json.merge(buyers: sku.orders_count)
-                                   })
+          render json: Success.new(course: Sku.online.select("skus.*, st_distance(skus.coordinate, 'POINT(#{params[:lng]} #{params[:lat]})') as distance").
+                                       where('address LIKE ? AND status=1', city + '%').order(orders_count: :desc).order(id: :desc).page(params[:page]||1))
         else
           render json: Failure.new('非法请求')
       end
