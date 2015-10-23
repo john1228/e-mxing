@@ -76,21 +76,25 @@ namespace :crawl do
         if li.css('strong.term').text.eql?('运动分类:')
           li.css('a').map { |category|
             item_list_url = 'http://www.dianping.com'+category['href']
-            Anemone.crawl(item_list_url, options) do |items_page|
-              items_page.on_every_page do |page|
-                shop_list_page = Nokogiri::HTML(page.body)
-                shop_list_page.css('div.pic a').map { |detail_url|
-                  _detail_url = 'http://www.dianping.com'+ detail_url['href']
-                  Anemone.crawl(item_list_url, options) do |detail|
+            Anemone.crawl(item_list_url, options) do |list|
+              list.on_every_page do |item|
+                shop_list_page = Nokogiri::HTML(item.body)
+                shop_list_page.css('div.pic a').map { |detail|
+                  cover = detail.css('img')[0]['src']
+                  puts cover
+                  _detail_url = 'http://www.dianping.com'+ detail['href']
+                  Anemone.crawl(_detail_url, options) do |detail|
+                    list.on_every_page do |item|
+                      shop = Nokogiri::HTML(item.body)
+                      city = shop.css('div.city').text
+                      base_info = shop.css('div.base_info')
+                      name = base_info.css('h1.shop')[0].text
+                      address = base_info.css('')
 
+                    end
                   end
                 }
                 break
-                # category_list_page.css('div.tit a').map { |detail_url|
-                #   _detail_url = 'http://www.dianping.com'+ detail_url['href']
-                #   Anemone.crawl(_detail_url, options) do | |
-                #   end
-                # }
               end
             end
           }

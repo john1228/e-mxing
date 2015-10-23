@@ -15,7 +15,8 @@ jQuery ->
       padding: 0,
       autoScale: true
     }
-  )
-  $("input.datetimepicker").datetimepicker
+  );
+  $("input.datetimepicker").datetimepicker({
     stepMinute: 30
     dateFormat: "yy-mm-dd"
+  })
