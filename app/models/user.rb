@@ -21,6 +21,8 @@ class User < ActiveRecord::Base
 
   accepts_nested_attributes_for :profile
 
+  before_save :encrypted_password
+
   TYPE=[['健身爱好者', 0], ['私教', 1], ['商家', 2]]
   class<<self
     def find_by_mxid(mxid)
