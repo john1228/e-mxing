@@ -8,10 +8,12 @@ class BannerUploader < CarrierWave::Uploader::Base
     "images/#{model.class.to_s.underscore}"
   end
 
-
+  version :thumb do
+    process :resize_to_fit => [750, 1334]
+  end
 
   version :thumb do
-    process :resize_to_fit => [1038, 180]
+    process :resize_to_fit => [750, 180]
   end
 
   def filename

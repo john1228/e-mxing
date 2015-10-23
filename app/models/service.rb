@@ -8,7 +8,7 @@ class Service<User
   has_many :service_members, dependent: :destroy
   has_many :coaches, through: :service_members
   alias_attribute :service_id, :id
-  accepts_nested_attributes_for :profile
+
 
 
   def as_json

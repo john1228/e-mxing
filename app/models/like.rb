@@ -3,7 +3,7 @@ class Like < ActiveRecord::Base
   belongs_to :user
   DYNAMIC = 1
   PERSON = 2
-  
+
   def as_json
     {
         user: user.summary_json,
@@ -13,10 +13,18 @@ class Like < ActiveRecord::Base
 
   private
   def within_month
-    liked = Like.where(user_id: user_id, liked_id: liked_id, like_type: Like::PERSON, created_at: Time.now.at_beginning_of_month..Time.now).take
-    if liked.present?
-      errors.add('exist', '用户已存在')
-      return false
+    if like_type.eql?(DYNAMIC)
+      liked = Like.where(user_id: user_id, liked_id: liked_id, like_type: DYNAMIC).take
+      if liked.present?
+        errors.add('exist', '您已经对')
+        return false
+      end
+    elsif like_type.eql?(PERSON)
+      liked = Like.where(user_id: user_id, liked_id: liked_id, like_type: PERSON, created_at: Time.now.at_beginning_of_month..Time.now).take
+      if liked.present?
+        errors.add('exist', '您本月已经对该用户点过赞')
+        return false
+      end
     end
   end
 end

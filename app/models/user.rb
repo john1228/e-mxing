@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
   has_many :concerns, class_name: Concerned, dependent: :destroy
   has_one :setting, dependent: :destroy
 
+  accepts_nested_attributes_for :profile
 
   TYPE=[['健身爱好者', 0], ['私教', 1], ['商家', 2]]
   class<<self

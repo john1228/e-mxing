@@ -4,7 +4,9 @@ class Withdraw < ActiveRecord::Base
   after_update :refund
   STATUS ={'提现请求' => 0, '已处理' => 1, '成功' => 2, '失败' => 3}
 
-  validates_numericality_of :amount, greater_than_or_equal_to: 200
+  validates_numericality_of :amount, greater_than_or_equal_to: 200,message: '提现金额不能少于200元'
+  validates_presence_of :account,message: '请填写支付宝账户'
+  validates_presence_of :name,message: '请填写支付宝账户对应的实名'
   private
   def reduce
     begin
