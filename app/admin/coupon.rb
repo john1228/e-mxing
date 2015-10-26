@@ -1,6 +1,7 @@
 ActiveAdmin.register Coupon do
   menu label: '优惠券', parent: '运营'
   permit_params :name, :limit_category, :limit_ext, :min, :discount, :start_date, :end_date, :info, :amount
+  actions :index, :show, :new, :create, :update, :edit
   filter :name, label: '优惠券名称'
   index do
     selectable_column

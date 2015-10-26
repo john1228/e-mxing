@@ -196,6 +196,28 @@
       <ConfigurationWrapper RunnerId="RubyRunner" />
       <method />
     </configuration>
+    <configuration default="false" name="crawl" type="RubyRunConfigurationType" factoryName="Ruby" temporary="true">
+      <module name="mxing" />
+      <RUBY_RUN_CONFIG NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
+      <RUBY_RUN_CONFIG NAME="WORK DIR" VALUE="$MODULE_DIR$/lib/tasks" />
+      <RUBY_RUN_CONFIG NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RUBY_RUN_CONFIG NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RUBY_RUN_CONFIG NAME="myPassParentEnvs" VALUE="true" />
+      <envs />
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="true" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />
+      <RUBY_RUN_CONFIG NAME="SCRIPT_PATH" VALUE="$MODULE_DIR$/lib/tasks/crawl.rb" />
+      <RUBY_RUN_CONFIG NAME="SCRIPT_ARGS" VALUE="" />
+      <RunnerSettings RunnerId="RubyDebugRunner" />
+      <ConfigurationWrapper RunnerId="RubyDebugRunner" />
+      <method />
+    </configuration>
   </component>
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
@@ -242,6 +264,7 @@
     <orderEntry type="library" scope="PROVIDED" name="connection_pool (v2.1.3, RVM: ruby-2.1.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="daemons (v1.2.3, RVM: ruby-2.1.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="devise (v3.4.1, RVM: ruby-2.1.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="domain_name (v0.5.25, RVM: ruby-2.1.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="erubis (v2.7.0, RVM: ruby-2.1.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="execjs (v2.4.0, RVM: ruby-2.1.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="fancybox2-rails (v0.2.8, RVM: ruby-2.1.4) [gem]" level="application" />
@@ -255,6 +278,7 @@
     <orderEntry type="library" scope="PROVIDED" name="has_scope (v0.6.0, RVM: ruby-2.1.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="hike (v1.2.3, RVM: ruby-2.1.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="hitimes (v1.2.2, RVM: ruby-2.1.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="http-cookie (v1.0.2, RVM: ruby-2.1.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="i18n (v0.7.0, RVM: ruby-2.1.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="inherited_resources (v1.6.0, RVM: ruby-2.1.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="jbuilder (v2.2.12, RVM: ruby-2.1.4) [gem]" level="application" />
@@ -273,6 +297,7 @@
     <orderEntry type="library" scope="PROVIDED" name="multi_json (v1.11.0, RVM: ruby-2.1.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="multipart-post (v2.0.0, RVM: ruby-2.1.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="nokogiri (v1.6.6.2, RVM: ruby-2.1.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="ntlm-http (v0.1.1, RVM: ruby-2.1.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="orm_adapter (v0.5.0, RVM: ruby-2.1.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="pg (v0.18.1, RVM: ruby-2.1.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="polyamorous (v1.1.0@70cce2, RVM: ruby-2.1.4) [gem]" level="application" />
@@ -313,7 +338,9 @@
     <orderEntry type="library" scope="PROVIDED" name="turbolinks (v2.5.3, RVM: ruby-2.1.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="tzinfo (v1.2.2, RVM: ruby-2.1.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="uglifier (v2.7.1, RVM: ruby-2.1.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="unf (v0.1.4, RVM: ruby-2.1.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="warden (v1.2.3, RVM: ruby-2.1.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="webrobots (v0.1.1, RVM: ruby-2.1.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="whenever (v0.9.4, RVM: ruby-2.1.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ya2yaml (v0.31, RVM: ruby-2.1.4) [gem]" level="application" />
   </component>
