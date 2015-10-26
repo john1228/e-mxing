@@ -37,8 +37,9 @@ namespace :crawl do
         category_page = Nokogiri::HTML(agent.get(_category_url).body)
         next_page_url = ((host + category_page.css('div.page a.next')[0]['href']) rescue nil)
         while next_page_url.present?
+          puts "当前页码:#{next_page_url}"
           next_page = Nokogiri::HTML(agent.get(next_page_url).body)
-          shop << next_page.css('div.pic a').map { |a|
+          shop += next_page.css('div.pic a').map { |a|
             {
                 url: host + a['href'],
                 avatar: a.css('img')[0]['data-src']
