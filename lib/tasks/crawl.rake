@@ -23,6 +23,7 @@ namespace :crawl do
 # * Windows IE 9
 # * Windows Mozilla
     agent = Mechanize.new { |agent| agent.user_agent_alias = 'Linux Mozilla' }
+
     %W"http://www.dianping.com/beijing/sports".map { |city|
       #抓取运动分类
       city_page = open(city)
@@ -30,7 +31,7 @@ namespace :crawl do
       page = Nokogiri::HTML(open(city))
       items = page.css('li.term-list-item').select { |li| li if li.css('strong.term').text.eql?('运动分类:') }
       category = items.first.css('a').map { |a| host + a['href'] }
-
+      sleep(1)
       category.each { |_category_url|
         category_page = Nokogiri::HTML(agent.get(_category_url).body)
         shop = category_page.css('div.pic a').map { |a|
@@ -39,6 +40,7 @@ namespace :crawl do
               avatar: a.css('img')[0]['data-src']
           }
         }
+        sleep(1)
         shop.map { |shop|
           detail = Nokogiri::HTML(agent.get(shop[:url]).body)
           base_info = detail.css('div#basic-info')
@@ -67,6 +69,7 @@ namespace :crawl do
               service: base_info.css('div.other p.info-indent').select { |item| item.css('span.info-name').text.start_with?('分类标签') }.map { |item| item['span.item'].text.trim.chomp },
               photo: photos
           )
+          sleep(1)
         }
       }
     }
