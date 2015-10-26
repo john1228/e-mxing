@@ -225,7 +225,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/config/routes.rb" afterPath="$PROJECT_DIR$/../photo/config/routes.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/app/assets/javascripts/stars.js.coffee" afterPath="$PROJECT_DIR$/../photo/app/assets/javascripts/stars.js.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../photo/app/assets/javascripts/works.js.coffee" afterPath="$PROJECT_DIR$/../photo/app/assets/javascripts/works.js.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="mxing.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -278,8 +277,8 @@
       <file leaf-file-name="crawl.rake" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/tasks/crawl.rake">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.063981" vertical-offset="380" max-vertical-offset="1476">
-              <caret line="71" column="18" selection-start-line="71" selection-start-column="18" selection-end-line="71" selection-end-column="18" />
+            <state vertical-scroll-proportion="0.2748815" vertical-offset="632" max-vertical-offset="1548">
+              <caret line="48" column="11" selection-start-line="48" selection-start-column="11" selection-end-line="48" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -2573,8 +2572,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/tasks/crawl.rake">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.063981" vertical-offset="380" max-vertical-offset="1476">
-          <caret line="71" column="18" selection-start-line="71" selection-start-column="18" selection-end-line="71" selection-end-column="18" />
+        <state vertical-scroll-proportion="0.2748815" vertical-offset="632" max-vertical-offset="1548">
+          <caret line="48" column="11" selection-start-line="48" selection-start-column="11" selection-end-line="48" selection-end-column="11" />
           <folding />
         </state>
       </provider>

@@ -33,13 +33,20 @@ namespace :crawl do
       category = items.first.css('a').map { |a| host + a['href'] }
       sleep(1)
       category.each { |_category_url|
+        shop = []
         category_page = Nokogiri::HTML(agent.get(_category_url).body)
-        shop = category_page.css('div.pic a').map { |a|
-          {
-              url: host + a['href'],
-              avatar: a.css('img')[0]['data-src']
+        next_page_url = ((host + category_page.css('div.page a.next')[0]['href']) rescue nil)
+        while next_page_url.present?
+          next_page = Nokogiri::HTML(agent.get(next_page_url).body)
+          shop << next_page.css('div.pic a').map { |a|
+            {
+                url: host + a['href'],
+                avatar: a.css('img')[0]['data-src']
+            }
           }
-        }
+          next_page_url = ((host + next_page.css('div.page a.next')[0]['href']) rescue nil)
+          sleep(1)
+        end
         sleep(1)
         shop.map { |shop|
           detail = Nokogiri::HTML(agent.get(shop[:url]).body)
@@ -48,10 +55,6 @@ namespace :crawl do
           base_info.css('div.other p.J-park').remove
           base_info.css('div.other p.J-feature').remove
           base_info.css('div.other p.J-Contribution').remove
-          {
-
-              other: base_info.css('div.other p.info-indent').map { |other| {name: other.css('span.info-name')[0].text, value: other.css('span.item').map { |span| span.text }} },
-          }
           begin
             photo = Nokogiri::HTML(agent.get(URI.encode(shop[:url] + '/photos/tag-环境')).body)
             photos = photo.css('div.img a img').map { |image|
@@ -61,16 +64,17 @@ namespace :crawl do
             photos = []
           end
           CrawlDatum.create(
-              name: (base_info.css('h1.shop-name')[0].text).trim.chomp,
+              name: (base_info.css('h1.shop-name')[0].text).lstrip.rstrip.chop,
               avatar: shop[:avatar],
-              address: base_info.css('div.address a')[0].text + base_info.css('div.address span.item')[0].text.trim.chomp,
-              tel: base_info.css('p.tel span.item').map { |span| span.text.trim.chomp },
-              business: base_info.css('div.other p.info-indent').select { |item| item.css('span.info-name').text.start_with?('营业时间') }[0]['span.item'].text.trim.chomp,
-              service: base_info.css('div.other p.info-indent').select { |item| item.css('span.info-name').text.start_with?('分类标签') }.map { |item| item['span.item'].text.trim.chomp },
+              address: base_info.css('div.address a')[0].text + base_info.css('div.address span.item')[0].text.lstrip.rstrip.chop,
+              tel: base_info.css('p.tel span.item').map { |span| span.text.lstrip.rstrip.chop },
+              business: base_info.css('div.other p.info-indent').select { |item| item.css('span.info-name').text.start_with?('营业时间') }[0]['span.item'].text.lstrip.rstrip.chop,
+              service: base_info.css('div.other p.info-indent').select { |item| item.css('span.info-name').text.start_with?('分类标签') }.map { |item| item['span.item'].text.lstrip.rstrip.chop },
               photo: photos
           )
           sleep(1)
         }
+
       }
     }
   end
