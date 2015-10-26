@@ -64,15 +64,19 @@ namespace :crawl do
           rescue
             photos = []
           end
-          CrawlDatum.create(
-              name: (base_info.css('h1.shop-name')[0].text).lstrip.rstrip.chop,
-              avatar: shop[:avatar],
-              address: base_info.css('div.address a')[0].text + base_info.css('div.address span.item')[0].text.lstrip.rstrip.chop,
-              tel: base_info.css('p.tel span.item').map { |span| span.text.lstrip.rstrip.chop },
-              business: base_info.css('div.other p.info-indent').select { |item| item.css('span.info-name').text.start_with?('营业时间') }.map { |item| item['span.item'].text.lstrip.rstrip.chop }.join,
-              service: base_info.css('div.other p.info-indent').select { |item| item.css('span.info-name').text.start_with?('分类标签') }.map { |item| item['span.item'].text.lstrip.rstrip.chop },
-              photo: photos
-          ) rescue ''
+          begin
+            CrawlDatum.create(
+                name: (base_info.css('h1.shop-name')[0].text).lstrip.rstrip.chop,
+                avatar: shop[:avatar],
+                address: base_info.css('div.address a')[0].text + base_info.css('div.address span.item')[0].text.lstrip.rstrip.chop,
+                tel: base_info.css('p.tel span.item').map { |span| span.text.lstrip.rstrip.chop },
+                business: base_info.css('div.other p.info-indent').select { |item| item.css('span.info-name').text.start_with?('营业时间') }.map { |item| item['span.item'].text.lstrip.rstrip.chop }.join,
+                service: base_info.css('div.other p.info-indent').select { |item| item.css('span.info-name').text.start_with?('分类标签') }.map { |item| item['span.item'].text.lstrip.rstrip.chop },
+                photo: photos
+            )
+          rescue Exception => exp
+            puts "保存数据失败:#{exp.message}"
+          end
           sleep(2)
         }
 
