@@ -46,7 +46,7 @@ namespace :crawl do
             }
           }
           next_page_url = ((host + next_page.css('div.page a.next')[0]['href']) rescue nil)
-          sleep(1)
+          sleep(2)
         end
         sleep(1)
         shop.map { |shop|
@@ -69,11 +69,11 @@ namespace :crawl do
               avatar: shop[:avatar],
               address: base_info.css('div.address a')[0].text + base_info.css('div.address span.item')[0].text.lstrip.rstrip.chop,
               tel: base_info.css('p.tel span.item').map { |span| span.text.lstrip.rstrip.chop },
-              business: base_info.css('div.other p.info-indent').select { |item| item.css('span.info-name').text.start_with?('营业时间') }[0]['span.item'].text.lstrip.rstrip.chop,
+              business: base_info.css('div.other p.info-indent').select { |item| item.css('span.info-name').text.start_with?('营业时间') }.map { |item| item['span.item'].text.lstrip.rstrip.chop }.join,
               service: base_info.css('div.other p.info-indent').select { |item| item.css('span.info-name').text.start_with?('分类标签') }.map { |item| item['span.item'].text.lstrip.rstrip.chop },
               photo: photos
-          )
-          sleep(1)
+          ) rescue ''
+          sleep(2)
         }
 
       }
