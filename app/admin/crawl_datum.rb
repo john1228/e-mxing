@@ -10,6 +10,7 @@ ActiveAdmin.register CrawlDatum do
     end
     column '地址', :address
     column '营业时间', :business
+    column '联系电话', :tel
     column '提供服务' do |crawl_datum|
       crawl_datum.service.join('|')
     end
