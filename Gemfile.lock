@@ -1,24 +1,24 @@
 GIT
   remote: git://github.com/activerecord-hackery/polyamorous.git
-  revision: 70cce201d397f373c1c831126b1d87779b8ac9af
+  revision: 6e2e1cc5d0b53e4d8f02aa5286e6d11aa91f5ac3
   specs:
-    polyamorous (1.1.0)
+    polyamorous (1.2.0)
       activerecord (>= 3.0)
 
 GIT
   remote: git://github.com/activerecord-hackery/ransack.git
-  revision: 65c59b09667b750df46386ebc865cff74889f49f
+  revision: 33ba135150a5ea2e1636c12ff495f2d0126c032f
   specs:
-    ransack (1.6.4)
+    ransack (1.7.0)
       actionpack (>= 3.0)
       activerecord (>= 3.0)
       activesupport (>= 3.0)
       i18n
-      polyamorous (~> 1.1)
+      polyamorous (~> 1.2)
 
 GIT
   remote: git://github.com/carrierwaveuploader/carrierwave.git
-  revision: 37cf31d34fa411db20e99cc654195020b06202c3
+  revision: 49fdad1ec6ca9bb0883b6e193ea64e036e7b48a0
   specs:
     carrierwave (0.10.0)
       activemodel (>= 3.2.0)
@@ -28,17 +28,17 @@ GIT
 
 GIT
   remote: git://github.com/galetahub/ckeditor.git
-  revision: 0efddf9a46bbba4aeda562ec0ea77af738404418
+  revision: f116fa1db4a116f6baeb9906ec9425bf417a69f5
   specs:
-    ckeditor (4.1.1)
+    ckeditor (4.1.4)
       cocaine
       orm_adapter (~> 0.5.0)
 
 GIT
   remote: git://github.com/gregbell/active_admin.git
-  revision: e3a7354c0196743e2462bdc27c591e8285d110b0
+  revision: ba285ea2fc23ade108ed582134cae8c641f910a4
   specs:
-    activeadmin (1.0.0.pre1)
+    activeadmin (1.0.0.pre2)
       arbre (~> 1.0, >= 1.0.2)
       bourbon
       coffee-rails
@@ -46,7 +46,7 @@ GIT
       formtastic_i18n
       inherited_resources (~> 1.6)
       jquery-rails
-      jquery-ui-rails (~> 5.0)
+      jquery-ui-rails
       kaminari (~> 0.15)
       rails (>= 3.2, < 5.0)
       ransack (~> 1.3)
@@ -54,7 +54,7 @@ GIT
 
 GIT
   remote: git://github.com/justinfrench/formtastic.git
-  revision: cdb3e81e34d0512b28761055ac7834def98870cd
+  revision: 9d937af461e150c26f071b91463b44a014648ad5
   specs:
     formtastic (3.2.0.pre)
       actionpack (>= 3.2.13)
@@ -85,7 +85,7 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.1)
-    active_skin (0.0.8)
+    active_skin (0.0.12)
     activejob (4.2.1)
       activesupport (= 4.2.1)
       globalid (>= 0.3.0)
@@ -114,15 +114,15 @@ GEM
       daemons
     arbre (1.0.3)
       activesupport (>= 3.0.0)
-    arel (6.0.0)
-    autoprefixer-rails (5.1.11)
+    arel (6.0.3)
+    autoprefixer-rails (6.0.3)
       execjs
       json
     bcrypt (3.1.10)
     bootstrap-datetimepicker-rails (0.0.11)
     bootstrap-multiselect-rails (0.9.9)
       rails (>= 4.0.0)
-    bootstrap-sass (3.3.4.1)
+    bootstrap-sass (3.3.5)
       autoprefixer-rails (>= 5.0.0.1)
       sass (>= 3.2.19)
     bourbon (3.2.4)
@@ -130,8 +130,23 @@ GEM
       thor
     builder (3.2.2)
     cancan (1.6.10)
-    celluloid (0.16.0)
-      timers (~> 4.0.0)
+    celluloid (0.17.2)
+      celluloid-essentials
+      celluloid-extras
+      celluloid-fsm
+      celluloid-pool
+      celluloid-supervision
+      timers (>= 4.1.1)
+    celluloid-essentials (0.20.5)
+      timers (>= 4.1.1)
+    celluloid-extras (0.20.5)
+      timers (>= 4.1.1)
+    celluloid-fsm (0.20.5)
+      timers (>= 4.1.1)
+    celluloid-pool (0.20.5)
+      timers (>= 4.1.1)
+    celluloid-supervision (0.20.5)
+      timers (>= 4.1.1)
     chronic (0.10.2)
     chunky_png (1.3.4)
     climate_control (0.0.3)
@@ -141,13 +156,13 @@ GEM
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
-    coffee-script (2.3.0)
+    coffee-script (2.4.1)
       coffee-script-source
       execjs
-    coffee-script-source (1.9.1)
-    connection_pool (2.1.3)
+    coffee-script-source (1.9.1.1)
+    connection_pool (2.2.0)
     daemons (1.2.3)
-    devise (3.4.1)
+    devise (3.5.2)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
@@ -157,25 +172,24 @@ GEM
     domain_name (0.5.25)
       unf (>= 0.0.5, < 1.0.0)
     erubis (2.7.0)
-    execjs (2.4.0)
+    execjs (2.6.0)
     fancybox2-rails (0.2.8)
       railties (>= 3.1.0, < 5.0)
-    faraday (0.9.1)
+    faraday (0.9.2)
       multipart-post (>= 1.2, < 3)
-    formtastic_i18n (0.2.0)
-    geokit (1.9.0)
-      multi_json (>= 1.3.2)
+    formtastic_i18n (0.4.1)
+    geokit (1.10.0)
     geokit-rails (2.1.0)
       geokit (~> 1.5)
       rails (>= 3.0)
-    globalid (0.3.3)
+    globalid (0.3.6)
       activesupport (>= 4.1.0)
     harmonious_dictionary (0.0.1)
     has_scope (0.6.0)
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
     hike (1.2.3)
-    hitimes (1.2.2)
+    hitimes (1.2.3)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
     i18n (0.7.0)
@@ -184,23 +198,23 @@ GEM
       has_scope (~> 0.6.0.rc)
       railties (>= 3.2, < 5)
       responders
-    jbuilder (2.2.12)
+    jbuilder (2.3.2)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
-    jquery-rails (4.0.3)
+    jquery-rails (4.0.5)
       rails-dom-testing (~> 1.0)
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     jquery-timepicker-addon-rails (1.4.1)
       railties (>= 3.1)
-    jquery-ui-rails (5.0.3)
+    jquery-ui-rails (5.0.5)
       railties (>= 3.2.16)
-    json (1.8.2)
+    json (1.8.3)
     kaminari (0.16.3)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
-    libv8 (3.16.14.7)
-    loofah (2.0.1)
+    libv8 (3.16.14.13)
+    loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
@@ -213,11 +227,11 @@ GEM
       nokogiri (~> 1.4)
       ntlm-http (~> 0.1, >= 0.1.1)
       webrobots (>= 0.0.9, < 0.2)
-    mime-types (2.4.3)
-    mini_magick (4.0.1)
+    mime-types (2.6.2)
+    mini_magick (4.3.6)
     mini_portile (0.6.2)
-    minitest (5.5.1)
-    multi_json (1.11.0)
+    minitest (5.8.2)
+    multi_json (1.11.2)
     multipart-post (2.0.0)
     net-http-digest_auth (1.4)
     net-http-persistent (2.9.4)
@@ -226,9 +240,8 @@ GEM
     ntlm-http (0.1.1)
     orm_adapter (0.5.0)
     pg (0.18.1)
-    puma (2.11.1)
-      rack (>= 1.1, < 2.0)
-    rack (1.6.0)
+    puma (2.14.0)
+    rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.1)
@@ -244,7 +257,7 @@ GEM
       sprockets-rails
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
-    rails-dom-testing (1.0.6)
+    rails-dom-testing (1.0.7)
       activesupport (>= 4.2.0.beta, < 5.0)
       nokogiri (~> 1.6.0)
       rails-deprecated_sanitizer (>= 1.0.1)
@@ -257,19 +270,18 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rake (10.4.2)
     rdoc (4.2.0)
-      json (~> 1.4)
     redis (3.2.1)
-    redis-namespace (1.5.1)
+    redis-namespace (1.5.2)
       redis (~> 3.0, >= 3.0.4)
-    ref (1.0.5)
+    ref (2.0.0)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
-    rgeo (0.3.20)
+    rgeo (0.4.0)
     rgeo-activerecord (2.1.1)
       activerecord (~> 4.2)
       rgeo (~> 0.3)
     robotex (1.0.0)
-    rqrcode (0.6.0)
+    rqrcode (0.7.0)
       chunky_png
     rqrcode_png (0.1.5)
       chunky_png
@@ -283,38 +295,38 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
-    sidekiq (3.3.3)
-      celluloid (>= 0.16.0)
-      connection_pool (>= 2.1.1)
-      json
-      redis (>= 3.0.6)
-      redis-namespace (>= 1.3.1)
+    sidekiq (3.5.1)
+      celluloid (~> 0.17.2)
+      connection_pool (~> 2.2, >= 2.2.0)
+      json (~> 1.0)
+      redis (~> 3.2, >= 3.2.1)
+      redis-namespace (~> 1.5, >= 1.5.2)
     sidekiq-status (0.5.4)
       sidekiq (>= 2.7)
-    spring (1.3.3)
-    sprockets (2.12.3)
+    spring (1.4.0)
+    sprockets (2.12.4)
       hike (~> 1.2)
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
-    sprockets-rails (2.2.4)
+    sprockets-rails (2.3.3)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
     streamio-ffmpeg (1.0.0)
-    therubyracer (0.12.1)
+    therubyracer (0.12.2)
       libv8 (~> 3.16.14.0)
       ref
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (1.4.1)
-    timers (4.0.1)
+    timers (4.1.1)
       hitimes
     turbolinks (2.5.3)
       coffee-rails
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
-    uglifier (2.7.1)
+    uglifier (2.7.2)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     unf (0.1.4)
@@ -377,3 +389,6 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
   whenever
   ya2yaml
+
+BUNDLED WITH
+   1.10.6
