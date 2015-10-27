@@ -20,7 +20,8 @@ class CreateServiceCourses < ActiveRecord::Migration
       t.string :image, array: true, default: []
 
       t.timestamps null: false
+      t.text :intro
     end
-    rename_column :service_courses,:info,:intro
+    #rename_column :service_courses,:info,:intro
   end
 end
