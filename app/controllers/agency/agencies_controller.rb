@@ -3,8 +3,7 @@ module Agency
     def list
       # city = URI.decode(request.headers[:city]) rescue '上海'
       page = (params[:page]||1).to_i
-      agencies = User.select("users.*,st_distance(places.lonlat, 'POINT(#{params[:lng]||0} #{params[:lat]||0})') as distance").
-          joins(:profile, :place).
+      agencies = Service.joins(:place).select("users.*,st_distance(places.lonlat, 'POINT(#{params[:lng]||0} #{params[:lat]||0})') as distance").
           where('profiles.name LIKE ? or profiles.address LIKE ?', "%#{params[:keyword]||''}%", "%#{params[:keyword]||''}%").
           # where('profiles.address LIKE ?', "%#{city}%").
           order('distance asc').

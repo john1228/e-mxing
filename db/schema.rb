@@ -18,12 +18,12 @@ ActiveRecord::Schema.define(version: 20151026041638) do
   enable_extension "postgis"
 
   create_table "active_admin_comments", force: :cascade do |t|
-    t.string   "namespace"
+    t.string   "namespace",     limit: 255
     t.text     "body"
-    t.string   "resource_id",   null: false
-    t.string   "resource_type", null: false
+    t.string   "resource_id",   limit: 255, null: false
+    t.string   "resource_type", limit: 255, null: false
     t.integer  "author_id"
-    t.string   "author_type"
+    t.string   "author_type",   limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -36,12 +36,15 @@ ActiveRecord::Schema.define(version: 20151026041638) do
     t.string   "title"
     t.string   "cover"
     t.string   "address"
-    t.string   "time"
-    t.string   "url"
     t.integer  "group_id"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.text     "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.date     "start_date"
+    t.date     "end_date"
+    t.integer  "activity_type"
+    t.integer  "theme"
+    t.integer  "pos",           default: 0
   end
 
   create_table "address_coordinates", force: :cascade do |t|
@@ -61,16 +64,16 @@ ActiveRecord::Schema.define(version: 20151026041638) do
   end
 
   create_table "admin_users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
+    t.string   "email",                  limit: 255, default: "", null: false
+    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",                      default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
+    t.string   "current_sign_in_ip",     limit: 255
+    t.string   "last_sign_in_ip",        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "role"
@@ -81,8 +84,8 @@ ActiveRecord::Schema.define(version: 20151026041638) do
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "ads", force: :cascade do |t|
-    t.string "image"
-    t.string "url"
+    t.string "image",     limit: 255
+    t.string "url",       limit: 255
     t.date   "from_date"
     t.date   "end_date"
   end
@@ -94,25 +97,32 @@ ActiveRecord::Schema.define(version: 20151026041638) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "appoint_logs", force: :cascade do |t|
-    t.integer  "appointment_id"
-    t.integer  "status"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+  create_table "appointment_settings", force: :cascade do |t|
+    t.integer  "coach_id"
+    t.date     "start_date"
+    t.string   "time"
+    t.integer  "address_id"
+    t.boolean  "repeat"
+    t.string   "course_name"
+    t.string   "course_type"
+    t.integer  "place"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
-
-  add_index "appoint_logs", ["appointment_id", "status"], name: "index_appoint_logs_on_appointment_id_and_status", unique: true, using: :btree
 
   create_table "appointments", force: :cascade do |t|
     t.integer  "coach_id"
     t.integer  "user_id"
     t.integer  "course_id"
-    t.integer  "lesson_id"
     t.integer  "amount"
-    t.integer  "status",     default: 0
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.integer  "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "sku"
+    t.string   "code"
   end
+
+  add_index "appointments", ["code"], name: "index_appointments_on_code", unique: true, using: :btree
 
   create_table "auto_logins", force: :cascade do |t|
     t.integer  "user_id"
@@ -122,10 +132,18 @@ ActiveRecord::Schema.define(version: 20151026041638) do
   end
 
   create_table "banners", force: :cascade do |t|
-    t.string "image"
-    t.string "url"
-    t.date   "start_date"
-    t.date   "end_date"
+    t.string  "image"
+    t.string  "url"
+    t.date    "start_date"
+    t.date    "end_date"
+    t.integer "type"
+    t.integer "link_id"
+  end
+
+  create_table "black_lists", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "blacklists", force: :cascade do |t|
@@ -142,8 +160,9 @@ ActiveRecord::Schema.define(version: 20151026041638) do
   end
 
   create_table "checks", force: :cascade do |t|
-    t.integer "user_id"
-    t.date    "date",    default: '2015-10-27'
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "ckeditor_assets", force: :cascade do |t|
@@ -174,14 +193,12 @@ ActiveRecord::Schema.define(version: 20151026041638) do
 
   create_table "comments", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "course_id"
     t.string   "content"
-    t.integer  "prof"
-    t.integer  "comm"
-    t.integer  "punc"
-    t.integer  "space"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "score"
+    t.string   "sku"
+    t.string   "image",      default: [],              array: true
   end
 
   create_table "companies", force: :cascade do |t|
@@ -211,6 +228,7 @@ ActiveRecord::Schema.define(version: 20151026041638) do
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "sku"
   end
 
   create_table "coupons", force: :cascade do |t|
@@ -220,12 +238,15 @@ ActiveRecord::Schema.define(version: 20151026041638) do
     t.text     "info"
     t.date     "start_date"
     t.date     "end_date"
-    t.integer  "limit_category", default: 1
-    t.integer  "limit_ext",      default: 0
-    t.integer  "min",            default: 0
+    t.string   "limit_category"
+    t.string   "limit_ext"
+    t.string   "min"
     t.boolean  "active"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.string   "code",           default: [],              array: true
+    t.integer  "amount",         default: 0
+    t.integer  "lock_version",   default: 0
     t.integer  "used",           default: 0
   end
 
@@ -240,6 +261,13 @@ ActiveRecord::Schema.define(version: 20151026041638) do
   end
 
   add_index "course_abstracts", ["coordinate"], name: "index_course_abstracts_on_coordinate", using: :gist
+
+  create_table "course_addresses", force: :cascade do |t|
+    t.integer  "course_id"
+    t.integer  "address_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "course_photos", force: :cascade do |t|
     t.integer  "course_id"
@@ -257,19 +285,20 @@ ActiveRecord::Schema.define(version: 20151026041638) do
     t.integer  "price"
     t.string   "exp"
     t.integer  "proposal"
-    t.integer  "guarantee",         default: 0
     t.text     "intro"
-    t.string   "address"
     t.boolean  "customized"
     t.string   "custom_mxid"
     t.string   "custom_mobile"
     t.integer  "top"
-    t.integer  "status",            default: 1
+    t.integer  "status",            default: 0
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "address",           default: [],              array: true
+    t.integer  "guarantee",         default: 0
     t.integer  "comments_count",    default: 0
     t.integer  "concerns_count",    default: 0
     t.integer  "order_items_count", default: 0
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.text     "special",           default: ""
     t.string   "image",             default: [],              array: true
   end
 
@@ -300,7 +329,7 @@ ActiveRecord::Schema.define(version: 20151026041638) do
   create_table "dynamic_comments", force: :cascade do |t|
     t.integer  "dynamic_id"
     t.integer  "user_id"
-    t.string   "content"
+    t.string   "content",    limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -309,32 +338,37 @@ ActiveRecord::Schema.define(version: 20151026041638) do
 
   create_table "dynamic_films", force: :cascade do |t|
     t.integer  "dynamic_id"
-    t.string   "cover"
-    t.string   "film"
-    t.string   "title"
+    t.string   "cover",      limit: 255
+    t.string   "film",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "title"
   end
 
   create_table "dynamic_images", force: :cascade do |t|
     t.integer  "dynamic_id"
-    t.string   "image"
-    t.integer  "width"
-    t.integer  "height"
+    t.string   "image",      limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "tag",        default: [], array: true
+    t.integer  "width"
+    t.integer  "height"
+    t.string   "tag",                    default: [], array: true
   end
 
   create_table "dynamics", force: :cascade do |t|
     t.integer  "user_id"
     t.text     "content"
-    t.integer  "top"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "top",        default: 0
   end
 
-  add_index "dynamics", ["user_id"], name: "index_dynamics_on_user_id", using: :btree
+  create_table "expiries", force: :cascade do |t|
+    t.integer  "coach_id"
+    t.date     "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "feedbacks", force: :cascade do |t|
     t.integer  "user_id"
@@ -359,16 +393,16 @@ ActiveRecord::Schema.define(version: 20151026041638) do
   create_table "gallery_images", force: :cascade do |t|
     t.integer "gallery_id"
     t.string  "image"
-    t.text    "caption",    default: ""
+    t.text    "caption"
   end
 
   create_table "group_members", force: :cascade do |t|
     t.integer  "group_id"
     t.integer  "user_id"
-    t.integer  "tag",        default: 1
+    t.integer  "tag"
     t.string   "tag_name"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "group_photos", force: :cascade do |t|
@@ -391,10 +425,10 @@ ActiveRecord::Schema.define(version: 20151026041638) do
     t.string   "name"
     t.string   "interests"
     t.text     "intro"
-    t.string   "easemob_id"
-    t.integer  "owner"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "easemob_id"
+    t.integer  "owner"
   end
 
   create_table "hit_reports", force: :cascade do |t|
@@ -419,9 +453,11 @@ ActiveRecord::Schema.define(version: 20151026041638) do
     t.integer "course_id"
     t.integer "available"
     t.integer "used"
+    t.date    "exp"
+    t.string  "order_no"
     t.string  "contact_name"
     t.string  "contact_phone"
-    t.date    "exp"
+    t.string  "sku"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -453,12 +489,11 @@ ActiveRecord::Schema.define(version: 20151026041638) do
   create_table "news", force: :cascade do |t|
     t.string   "title"
     t.string   "cover"
-    t.string   "url"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.text     "content"
     t.integer  "cover_width"
     t.integer  "cover_height"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
     t.string   "tag",          default: ""
   end
 
@@ -484,11 +519,12 @@ ActiveRecord::Schema.define(version: 20151026041638) do
     t.string   "name"
     t.integer  "type"
     t.string   "cover"
-    t.integer  "price"
+    t.string   "price"
     t.integer  "amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "during"
+    t.string   "sku"
   end
 
   add_index "order_items", ["order_id"], name: "index_order_items_on_order_id", using: :btree
@@ -504,9 +540,10 @@ ActiveRecord::Schema.define(version: 20151026041638) do
     t.string   "pay_type"
     t.decimal  "total"
     t.decimal  "pay_amount",    default: 0.0
-    t.integer  "status"
+    t.string   "status"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
+    t.integer  "service_id"
   end
 
   create_table "overviews", force: :cascade do |t|
@@ -518,9 +555,10 @@ ActiveRecord::Schema.define(version: 20151026041638) do
 
   create_table "photos", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "photo"
+    t.string   "photo",      limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "loc"
   end
 
   create_table "places", force: :cascade do |t|
@@ -534,24 +572,35 @@ ActiveRecord::Schema.define(version: 20151026041638) do
 
   create_table "profiles", force: :cascade do |t|
     t.integer "user_id"
-    t.string  "signature",     default: ""
-    t.string  "name",          default: ""
-    t.string  "avatar",        default: ""
-    t.integer "gender",        default: 0
-    t.integer "identity",      default: 0
-    t.date    "birthday",      default: '1999-10-27'
-    t.string  "address",       default: ""
-    t.string  "target",        default: ""
-    t.string  "skill",         default: ""
-    t.string  "often_stadium", default: ""
-    t.string  "interests",     default: ""
-    t.string  "mobile",        default: ""
+    t.string  "signature",     limit: 255, default: ""
+    t.string  "name",          limit: 255, default: ""
+    t.string  "avatar",        limit: 255, default: ""
+    t.integer "gender",                    default: 0
+    t.integer "identity",                  default: 0
+    t.date    "birthday",                  default: '1999-03-20'
+    t.string  "address",       limit: 255, default: ""
+    t.string  "target",        limit: 255, default: ""
+    t.string  "skill",         limit: 255, default: ""
+    t.string  "often_stadium", limit: 255, default: ""
+    t.string  "interests",     limit: 255, default: ""
+    t.string  "mobile",        limit: 255, default: ""
+    t.integer "service",                   default: [],           array: true
+    t.integer "hobby",                     default: [],           array: true
+    t.string  "province"
+    t.string  "city"
   end
 
   add_index "profiles", ["address"], name: "index_profiles_on_address", using: :btree
-  add_index "profiles", ["identity"], name: "index_profiles_on_identity", using: :btree
   add_index "profiles", ["name"], name: "index_profiles_on_name", using: :btree
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
+
+  create_table "recommends", force: :cascade do |t|
+    t.integer  "type"
+    t.integer  "recommended_id"
+    t.text     "recommended_tip"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
 
   create_table "reports", force: :cascade do |t|
     t.integer  "report_type"
@@ -577,8 +626,7 @@ ActiveRecord::Schema.define(version: 20151026041638) do
     t.integer  "during"
     t.integer  "proposal"
     t.integer  "exp"
-    t.integer  "guarantee",   default: 0
-    t.text     "intro"
+    t.text     "intro",       default: ""
     t.text     "special",     default: ""
     t.integer  "service",     default: [],              array: true
     t.datetime "limit_start"
@@ -606,10 +654,10 @@ ActiveRecord::Schema.define(version: 20151026041638) do
 
   create_table "showtimes", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "title"
-    t.string   "cover"
-    t.string   "film"
-    t.string   "intro"
+    t.string   "title",      limit: 255
+    t.string   "cover",      limit: 255
+    t.string   "film",       limit: 255
+    t.string   "intro",      limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -625,49 +673,48 @@ ActiveRecord::Schema.define(version: 20151026041638) do
     t.integer   "seller_id"
     t.decimal   "market_price"
     t.decimal   "selling_price"
-    t.integer   "store",                                                                     default: -1
-    t.integer   "limit",                                                                     default: -1
+    t.integer   "store"
+    t.integer   "limit"
     t.string    "address"
     t.geography "coordinate",       limit: {:srid=>4326, :type=>"point", :geographic=>true}
     t.integer   "comments_count",                                                            default: 0
     t.integer   "orders_count",                                                              default: 0
     t.integer   "concerns_count",                                                            default: 0
+    t.datetime  "created_at",                                                                            null: false
+    t.datetime  "updated_at",                                                                            null: false
     t.integer   "status",                                                                    default: 0
-    t.datetime  "created_at",                                                                             null: false
-    t.datetime  "updated_at",                                                                             null: false
+    t.integer   "service_id"
   end
 
   add_index "skus", ["coordinate"], name: "index_skus_on_coordinate", using: :gist
   add_index "skus", ["seller_id"], name: "index_skus_on_seller_id", using: :btree
+  add_index "skus", ["service_id"], name: "index_skus_on_service_id", using: :btree
   add_index "skus", ["sku"], name: "index_skus_on_sku", unique: true, using: :btree
 
   create_table "tracks", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "track_type"
-    t.integer  "coach_id"
-    t.string   "name"
-    t.string   "intro"
-    t.string   "address"
-    t.integer  "places"
-    t.integer  "free_places"
     t.datetime "start"
-    t.string   "during"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
+    t.text     "intro"
+    t.string   "address"
+    t.integer  "places"
+    t.integer  "free_places", default: 0
+    t.integer  "coach_id"
+    t.integer  "during",      default: 60
   end
 
   create_table "transactions", force: :cascade do |t|
     t.string   "no"
     t.string   "order_no"
     t.string   "source"
-    t.string   "buyer_id"
-    t.string   "buyer_email"
+    t.string   "buyer"
     t.decimal  "price"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
-
-  add_index "transactions", ["no", "source"], name: "index_transactions_on_no_and_source", unique: true, using: :btree
 
   create_table "type_shows", force: :cascade do |t|
     t.string   "title"
@@ -679,15 +726,15 @@ ActiveRecord::Schema.define(version: 20151026041638) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "mobile",     default: ""
-    t.string   "sns",        default: ""
-    t.string   "password"
-    t.string   "salt"
-    t.string   "device",     default: ""
+    t.string   "mobile",     limit: 255, default: ""
+    t.string   "password",   limit: 255
+    t.string   "salt",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "views",      default: 14000
-    t.integer  "status",     default: 1
+    t.string   "sns",                    default: ""
+    t.string   "device",                 default: ""
+    t.integer  "views",                  default: 14000
+    t.integer  "status",                 default: 1
   end
 
   add_index "users", ["mobile", "sns"], name: "index_users_on_mobile_and_sns", unique: true, using: :btree
@@ -695,7 +742,7 @@ ActiveRecord::Schema.define(version: 20151026041638) do
   create_table "wallet_logs", force: :cascade do |t|
     t.integer  "wallet_id"
     t.integer  "action"
-    t.decimal  "balance"
+    t.integer  "balance"
     t.string   "coupons"
     t.integer  "bean"
     t.datetime "created_at", null: false
@@ -705,18 +752,19 @@ ActiveRecord::Schema.define(version: 20151026041638) do
   create_table "wallets", force: :cascade do |t|
     t.integer "user_id"
     t.decimal "balance",      default: 0.0
-    t.integer "coupons"
     t.integer "bean",         default: 0
-    t.integer "lock_version", default: 0
+    t.integer "coupons",      default: [],  array: true
+    t.integer "lock_version"
   end
 
   create_table "withdraws", force: :cascade do |t|
     t.integer  "coach_id"
-    t.string   "name"
     t.string   "account"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+    t.string   "name",       default: ""
     t.decimal  "amount",     default: 0.0
+    t.integer  "status",     default: 0
   end
 
 end

@@ -2,7 +2,7 @@ module Mine
   class ConcernsController < BaseController
     def index
       render json: Success.new(
-                 concerned: @user.concerns.order(id: :desc).page(params[:page]||1)
+                 concerned: Sku.joins(:concerneds).select("st_distance(skus.coordinate, 'POINT(#{params[:lng]} #{params[:lat]})') as distance").where(concerneds: {user_id: @user.id}).order('concerneds.id desc').page(params[:page]||1)
              )
     end
 

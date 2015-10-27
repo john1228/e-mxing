@@ -1,5 +1,5 @@
 class Service<User
-  default_scope { includes(:profile).where('profiles.identity' => 2) }
+  default_scope { joins(:profile).where('profiles.identity' => 2) }
   after_save :location
   has_many :service_members, dependent: :destroy
   has_many :service_photos, foreign_key: :user_id, dependent: :destroy

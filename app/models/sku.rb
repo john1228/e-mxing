@@ -1,4 +1,5 @@
 class Sku < ActiveRecord::Base
+  self.primary_key = :sku
   scope :online, -> { where(status: 1) }
   scope :coach_courses, -> { where('sku LIKE ?', 'CC%') }
   scope :service_courses, -> { where('sku LIKE ?', 'SC%') }
@@ -6,6 +7,7 @@ class Sku < ActiveRecord::Base
   has_one :recommend, -> { where(type: Recommend::TYPE[:course]).order(id: :desc) }, foreign_key: :recommended_id
   belongs_to :course, class_name: ServiceCourse, foreign_key: :course_id
   belongs_to :service
+  has_many :concerneds, foreign_key: :sku
 
   before_save :offline
   before_create :injection
