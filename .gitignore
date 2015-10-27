@@ -15,6 +15,7 @@
 /log/*.log
 /tmp
 /.idea/*.xml
+/.idea/*.iml
 /public/images
 /public/apk
 /public/uploads
