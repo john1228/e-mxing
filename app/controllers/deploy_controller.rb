@@ -15,15 +15,28 @@ class DeployController < ApplicationController
     render json: {
                code: 1,
                data: {
-                   banners: Banner.valid.collect { |banner| banner.as_json }
+                   banners: Banner.app.map { |item| {
+                       type: item.type,
+                       image: item.image.app.url,
+                       url: item.url,
+                       link_id: item.link_id,
+                       start_date: item.start_date.strftime('%Y-%m-%d'),
+                       end_date: item.end_date.strftime('%Y-%m-%d'),
+                   } },
                }
            }
   end
 
   def ads
     render json: Success.new(
-               boot: Banner.boot,
-               app: Banner.app
+               boot: Banner.boot.map { |item| {
+                   type: item.type,
+                   image: item.image.boot.url,
+                   url: item.url,
+                   link_id: item.link_id,
+                   start_date: item.start_date.strftime('%Y-%m-%d'),
+                   end_date: item.end_date.strftime('%Y-%m-%d'),
+               } }
            )
   end
 

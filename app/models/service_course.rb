@@ -27,7 +27,7 @@ class ServiceCourse < ActiveRecord::Base
           course_type: type,
           course_name: name,
 
-          seller: (Coach.find_by(id: coach.id).id rescue agency.profile.name),
+          seller: (Profile.find_by(user_id: coach).name rescue agency.profile.name),
           seller_id: coach||agency.id,
           market_price: market_price,
           selling_price: selling_price,

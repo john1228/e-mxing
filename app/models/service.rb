@@ -9,8 +9,6 @@ class Service<User
   has_many :coaches, through: :service_members
   alias_attribute :service_id, :id
 
-
-
   def as_json
     in_the_sale = Sku.online.where(seller_id: coaches.pluck(:id)<<id)
     top_sellers = in_the_sale.where('skus.sku LIKE ?', 'CC%').order(orders_count: :desc).order(id: :asc).pluck(:seller_id).uniq[0, 3]

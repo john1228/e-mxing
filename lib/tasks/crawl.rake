@@ -91,7 +91,6 @@ namespace :crawl do
             puts "保存数据失败:#{exp.message}"
           end
         }
-
       }
     }
   end

@@ -1,5 +1,4 @@
 # encoding: utf-8
-
 class BannerUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
   storage :file
@@ -8,12 +7,12 @@ class BannerUploader < CarrierWave::Uploader::Base
     "images/#{model.class.to_s.underscore}"
   end
 
-  version :thumb do
+  version :boot do
     process :resize_to_fit => [750, 1334]
   end
 
-  version :thumb do
-    process :resize_to_fit => [750, 180]
+  version :app do
+    process :resize_to_fit => [722, 122]
   end
 
   def filename

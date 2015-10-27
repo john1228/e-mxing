@@ -3,9 +3,9 @@ class LikeController < ApiController
   def index
     case params[:type]
       when 'dynamic'
-        likes = Like.where(liked_id: params[:id], like_type: Like::DYNAMIC).page(params[:page]||1)
+        likes = Like.where(liked_id: params[:id], like_type: Like::DYNAMIC).order(id: :desc).page(params[:page]||1)
       when 'person'
-        likes = Like.where(liked_id: params[:id], like_type: Like::PERSON).page(params[:page]||1)
+        likes = Like.where(liked_id: params[:id], like_type: Like::PERSON).order(id: :desc).page(params[:page]||1)
     end
     render json: Success.new(like: likes)
   end
