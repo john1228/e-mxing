@@ -4,7 +4,7 @@ ActiveAdmin.register Banner do
 
   index title: '广告列表' do
     selectable_column
-    column('图片', :image) { |banner| link_to(image_tag(banner.image.url(:thumb), height: 130), admin_banner_path(banner)) }
+    column('图片', :image) { |banner| link_to(image_tag(banner.image.url(:app), height: 130), admin_banner_path(banner)) }
     column('链接', :url) { |banner| link_to(banner.url, banner.url) }
     column('起始时间', :start_date) { |banner| banner.start_date }
     column('结束时间', :end_date) { |banner| banner.end_date }
