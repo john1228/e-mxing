@@ -11,7 +11,7 @@
 <section class="mincon">
   <dl>
     <dt>
-    <div style="width: 100%;height: 0;padding-bottom: 100%; background: url(<%=@user.profile.avatar.thumb.url%>);background-size: cover;"></div>
+    <div style="width: 100%;height: 0;padding-bottom: 100%; background: url(<%=@user.profile.avatar.url%>);background-size: cover;"></div>
     </dt>
     <dd>
       <h3><%= @user.profile.name %></h3><span><%= @created_string %></span>
@@ -29,12 +29,12 @@
           <ul class="imglist ">
             <% @dynamic_images.map { |image| %>
                 <li>
-                  <div style="width: 100%;height: 0;padding-bottom: 100%; background: url(<%=image.image.thumb.url%>);background-size: cover;"></div>
+                  <div style="width: 100%;height: 0;padding-bottom: 100%; background: url(<%=image.image.url%>);background-size: cover;"></div>
                 </li>
             <% } %>
           </ul>
       <% elsif @dynamic_images.count==1 %>
-          <div class="mximgcon"><%= image_tag(@dynamic_images.first.image.thumb.url, width: 327) %></div>
+          <div class="mximgcon"><%= image_tag(@dynamic_images.first.image.url, width: 327) %></div>
       <% end %>
       <% if @dynamic_film.present? %>
           <div class="video" id="HLSPlayer">
@@ -57,7 +57,7 @@
                 var vHeight = 400;                   //播放器宽度设置
                 var vPlayer = "<%=asset_path('HLSPlayer.swf')%>?v=1.5"; //播放器文件
                 var vHLSset = "<%=asset_path('HLS.swf')%>";             //HLS配置
-                var vPic = "<%=@dynamic_film.cover.thumb.url%>";    //视频缩略图
+                var vPic = "<%=@dynamic_film.cover.url%>";    //视频缩略图
                 var vCssurl = "<%=asset_path('share/mini', type: :stylesheet )%>";     //移动端CSS应用文件
                 var vHLSurl = "<%=@dynamic_film.film.hls%>";
                 //-->
@@ -72,7 +72,7 @@
   <% @comments.map { |comment|
     comment_user = comment.user %>
       <li>
-        <div class="imgbox"><%= image_tag(comment_user.profile.avatar.thumb.url) %></div>
+        <div class="imgbox"><%= image_tag(comment_user.profile.avatar.url) %></div>
         <div class="con "><i></i>
           <h5><%= comment_user.profile.name %></h5><em><%= comment.show_time_string %></em>
 

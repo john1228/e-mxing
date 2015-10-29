@@ -10,7 +10,7 @@ class Comment < ActiveRecord::Base
         score: score,
         images: image.map { |item|
           {
-              thumb: item.thumb.url,
+              thumb: item.url,
               original: item.url
           }
         },

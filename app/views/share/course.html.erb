@@ -18,7 +18,7 @@
 <!-- 代码 开始 -->
 <div class="container-fluid text-center">
   <div class="header"><%= image_tag(@sku.course_cover,
-                                    'data-slideshow' => "#{@course.image.map { |item| item.thumb.url }.join('|')}",
+                                    'data-slideshow' => "#{@course.image.map { |item| item.url }.join('|')}",
                                     class: 'headerImg') %></div>
   <div class="toix-txt">
     <div class="toix-pocx">美型担保</div>
@@ -42,7 +42,7 @@
     <samp class="clear"></samp></div>
   <div class="adtre">
     <a href="http://www.e-mxing.com/download" class="Address-Headportrait">
-      <samp class="Headportrait"><%= image_tag(@sku.seller_user.profile.avatar.thumb.url) %></samp>
+      <samp class="Headportrait"><%= image_tag(@sku.seller_user.profile.avatar.url) %></samp>
       <samp class="Name">
         <% if @sku.sku.start_with?('CC') %>
             <%= @sku.seller %>-<%= @sku.seller_user.service.profile.name %>
@@ -113,7 +113,7 @@
 <div class="Purchase "><samp class="Purchase-Buy">已购</samp>
   <% @buyers.each do |buyer| %>
       <a href="http://www.e-mxing.com/download">
-        <%= image_tag(buyer.profile.avatar.thumb.url) %>
+        <%= image_tag(buyer.profile.avatar.url) %>
       </a>
   <% end %><samp class="Arrow arltop"></samp> <samp class="clear"></samp></div>
 <div class="Number"><samp class="Arrow Numbertop"></samp><%= @comment_count %>秀</div>
@@ -121,10 +121,10 @@
   <% @image_comments.each do |image_comment| %>
       <a href="http://www.e-mxing.com/download">
         <div class="Recommend-txt">
-          <h1 class="Recommend-txt-top"><samp><%= image_tag(image_comment.image.first.thumb.url) %></samp>
+          <h1 class="Recommend-txt-top"><samp><%= image_tag(image_comment.image.first.url) %></samp>
 
             <div class="Recommend-txt-tx">
-              <img src="img/icon.png " alt=" "/><%= image_tag(image_comment.user.profile.avatar.thumb.url) %></div>
+              <img src="img/icon.png " alt=" "/><%= image_tag(image_comment.user.profile.avatar.url) %></div>
           </h1>
           <h2 class="poir "><%= image_comment.user.profile.name %></h2>
 

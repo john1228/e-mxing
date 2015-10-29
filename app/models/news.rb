@@ -6,7 +6,7 @@ class News < ActiveRecord::Base
   def as_json
     {
         title: title,
-        cover: cover.thumb.url,
+        cover: cover.url,
         width: cover_width,
         height: cover_height,
         content: Nokogiri::HTML(content).inner_text[0, 200],

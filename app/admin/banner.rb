@@ -15,7 +15,7 @@ ActiveAdmin.register Banner do
     panel '' do
       attributes_table_for banner do
         row '图片' do
-          image_tag(banner.image.url(:thumb), height: 65)
+          image_tag(banner.image.url, height: 65)
         end
         row '链接地址' do
           link_to(banner.url, banner.url)

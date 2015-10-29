@@ -6,7 +6,7 @@ class Photo < ActiveRecord::Base
   def as_json
     {
         no: id,
-        thumb: photo.thumb.url,
+        thumb: photo.url,
         original: photo.url
     }
   end

@@ -12,10 +12,10 @@
     }
 </style>
 <div class="container">
-  <%= link_to(image_tag(image_first.image.thumb.url, width: '100%',height: 'auto'), image_first.image.url, class: 'fancybox', rel: gallery, title: image_first.caption) %>
+  <%= link_to(image_tag(image_first.image.url, width: '100%',height: 'auto'), image_first.image.url, class: 'fancybox', rel: gallery, title: image_first.caption) %>
 </div>
 <div class="hidden">
   <% images[1, images.size].each do |image| %>
-      <%= link_to(image_tag(image.image.thumb.url, width: 220), image.image.url, class: 'fancybox', rel: gallery, title: image.caption) %>
+      <%= link_to(image_tag(image.image.url, width: 220), image.image.url, class: 'fancybox', rel: gallery, title: image.caption) %>
   <% end %>
 </div>

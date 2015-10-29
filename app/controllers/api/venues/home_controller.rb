@@ -2,15 +2,10 @@ module Api
   module Venues
     class HomeController < ApplicationController
       def index
-        page = (params[:page]||1).to_i
-        agencies = Service.joins(:place).select("users.*,st_distance(places.lonlat, 'POINT(#{params[:lng]||0} #{params[:lat]||0})') as distance").
-            where('profiles.name LIKE ? or profiles.address LIKE ?', "%#{params[:keyword]||''}%", "%#{params[:keyword]||''}%").
-            # where('profiles.address LIKE ?', "%#{city}%").
+        venues = Service.joins(:place).select("users.*,st_distance(places.lonlat, 'POINT(#{params[:lng]||0} #{params[:lat]||0})') as distance").
             order('distance asc').
-            order(id: :desc).
-            page(page)
-        agencies = Service.select("users.id,st_distance(places.lonlat, 'POINT(#{params[:lng]} #{params[:lat]})') as distance").joins(:profile, :place).order('distance asc').take(3) if agencies.blank?&&page.eql?(1)
-        render json: Success.new(venues: agencies)
+            order(id: :desc).page(params[:page]||1)
+        render json: Success.new(venues: venues)
       end
 
       def boutique
@@ -19,6 +14,13 @@ module Api
                )
       end
 
+      def search
+        venues = Service.joins(:place).select("users.*,st_distance(places.lonlat, 'POINT(#{params[:lng]||0} #{params[:lat]||0})') as distance").
+            where('profiles.name LIKE ? or profiles.address LIKE ?', "%#{params[:keyword]||''}%", "%#{params[:keyword]||''}%")
+        venues.where('? = ANY (profiles.tag_1)', params[:tag]) if params[:tag].present?
+        venues.where(profiles: [auth: params[:auth]]) if params[:auth].present?
+        render json: Success.new(venues: venues.order('distance asc').order(id: :desc).page(params[:page]||1))
+      end
 
       def profile
         def show
@@ -26,6 +28,10 @@ module Api
           venues.update(views: venues.views + 1)
           render json: Success.new(coach: venues.detail)
         end
+      end
+
+      def tag
+        render tag: Success.new(tag: [])
       end
     end
   end

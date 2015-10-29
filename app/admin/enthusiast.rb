@@ -23,7 +23,7 @@ ActiveAdmin.register Enthusiast do
       link_to(truncate("#{enthusiast.profile.name}"), admin_enthusiast_path(enthusiast))
     end
     column '头像' do |enthusiast|
-      link_to(image_tag(enthusiast.profile.avatar.thumb.url, height: 70), admin_enthusiast_path(enthusiast))
+      link_to(image_tag(enthusiast.profile.avatar.url, height: 70), admin_enthusiast_path(enthusiast))
     end
     column ' 注册时间' do |enthusiast|
       truncate(enthusiast.created_at.localtime.strftime('%Y-%m-%d %H:%M:%S'))
@@ -80,7 +80,7 @@ ActiveAdmin.register Enthusiast do
   sidebar '用户资料', only: :show do
     attributes_table_for enthusiast.profile do
       row('昵称') { |profile| profile.name }
-      row('头像') { |profile| image_tag(profile.avatar.thumb.url) }
+      row('头像') { |profile| image_tag(profile.avatar.url) }
       row('签名') { |profile| profile.signature }
       row('性别') { |profile| profile.gender }
       row('生日') { |profile| profile.birthday.strftime('%Y-%m-%d') rescue Date.today.prev_year(15) }

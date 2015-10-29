@@ -36,7 +36,7 @@ class Sku < ActiveRecord::Base
         sku: sku,
         name: course.name,
         cover: course_cover,
-        images: course.image.map { |item| {thumb: item.thumb.url, original: item.url} },
+        images: course.image.map { |item| {thumb: item.url, original: item.url} },
         guarantee: course.guarantee,
         market: market_price.to_i,
         selling: selling_price.to_i,
@@ -51,7 +51,7 @@ class Sku < ActiveRecord::Base
         seller: {
             mxid: seller_user.profile.mxid,
             name: seller_user.profile.name,
-            avatar: seller_user.profile.avatar.thumb.url,
+            avatar: seller_user.profile.avatar.url,
             mobile: seller_user.profile.identity.eql?(1) ? seller_user.mobile : service.profile.mobile,
             identity: seller_user.profile.identity,
             tags: seller_user.profile.tags
@@ -131,7 +131,7 @@ class Sku < ActiveRecord::Base
       {
           mxid: user.profile.mxid,
           name: user.profile.name,
-          avatar: user.profile.avatar.thumb.url
+          avatar: user.profile.avatar.url
       }
     }
   end

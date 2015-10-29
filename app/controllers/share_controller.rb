@@ -43,7 +43,7 @@ class ShareController < ApplicationController
         detail = {
             mxid: service.profile.mxid,
             name: service.profile.name,
-            avatar: service.profile.avatar.thumb.url,
+            avatar: service.profile.avatar.url,
             views: service.views,
             address: service.profile.address,
             coordinate: {
@@ -56,8 +56,8 @@ class ShareController < ApplicationController
                   {
                       mxid: coach.profile.mxid,
                       name: coach.profile.name,
-                      avatar: coach.profile.avatar.thumb.url,
-                      background: (coach.photos.first.thumb.url rescue ''),
+                      avatar: coach.profile.avatar.url,
+                      background: (coach.photos.first.url rescue ''),
                       score: coach.score,
                       likes: coach.likes.count,
                       dynamics: coach.dynamics.count,
@@ -89,7 +89,7 @@ class ShareController < ApplicationController
                                 created: comment.created_at.localtime.strftime('%Y-%m-%d'),
                                 user: {
                                     name: comment.user.profile.name,
-                                    avatar: comment.user.profile.avatar.thumb.url
+                                    avatar: comment.user.profile.avatar.url
                                 }
                             }
                           }

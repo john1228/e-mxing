@@ -15,10 +15,10 @@ class Group < ActiveRecord::Base
         no: id,
         easemob_id: easemob_id,
         name: name,
-        avatar: group_photos.first.present? ? group_photos.first.photo.thumb.url : '',
+        avatar: group_photos.first.present? ? group_photos.first.photo.url : '',
         photos: group_photos.collect { |photo| {
             no: photo.id,
-            thumb: photo.photo.thumb.url,
+            thumb: photo.photo.url,
             original: photo.photo.url}
         },
         owner: User.find_by_mxid(owner).profile.summary_json,
@@ -32,7 +32,7 @@ class Group < ActiveRecord::Base
         no: id,
         easemob_id: easemob_id,
         name: name,
-        avatar: group_photos.first.present? ? group_photos.first.photo.thumb.url : '',
+        avatar: group_photos.first.present? ? group_photos.first.photo.url : '',
         owner: User.find_by_mxid(owner).profile.summary_json,
         interests: interests,
         intro: intro

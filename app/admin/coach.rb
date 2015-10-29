@@ -79,7 +79,7 @@ ActiveAdmin.register Coach do
   sidebar '用户资料', only: :show do
     attributes_table_for coach.profile do
       row('昵称') { |profile| profile.name }
-      row('头像') { |profile| image_tag(profile.avatar.thumb.url) }
+      row('头像') { |profile| image_tag(profile.avatar.url) }
       row('签名') { |profile| profile.signature }
       row('性别') { |profile| profile.gender }
       row('生日') { |profile| (profile.birthday||Date.today.prev_year(15)).strftime('%Y-%m-%d') }

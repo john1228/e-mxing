@@ -59,7 +59,7 @@ class Profile < ActiveRecord::Base
     {
         mxid: mxid,
         name: HarmoniousDictionary.clean(name||''),
-        avatar: avatar.thumb.url,
+        avatar: avatar.url,
         gender: gender||1,
         age: age.eql?(0) ? 16 : age,
         true_age: age,
@@ -74,7 +74,7 @@ class Profile < ActiveRecord::Base
     {
         mxid: mxid,
         name: name||'',
-        avatar: avatar.thumb.url,
+        avatar: avatar.url,
         signature: HarmoniousDictionary.clean(signature),
         gender: gender||1,
         identity: identity,

@@ -11,10 +11,10 @@ ActiveAdmin.register Dynamic do
       dynamic.user.profile.name
     end
     column('发布者头像') do |dynamic|
-      image_tag(dynamic.user.profile.avatar.thumb.url,height: 50)
+      image_tag(dynamic.user.profile.avatar.url,height: 50)
     end
     column('发布内容') do |dynamic|
-      image_tag(dynamic.dynamic_images.first.image.thumb.url,width:50)
+      image_tag(dynamic.dynamic_images.first.image.url,width:50)
     end
     column('发布内容') do |dynamic|
       dynamic.content
@@ -27,7 +27,7 @@ ActiveAdmin.register Dynamic do
         paginated_collection(dynamic.dynamic_comments.page(params[:comment_page]), param_name: :comment_page) do
           table_for(collection, class: 'index_table') do
             column('用户') { |comment|
-              div image_tag(comment.user.profile.avatar.thumb.url)
+              div image_tag(comment.user.profile.avatar.url)
               div style: '' do
                 comment.user.profile.name
               end
@@ -46,7 +46,7 @@ ActiveAdmin.register Dynamic do
         table do
           tr do
             for dynamic_image in dynamic.dynamic_images
-              image_tag(dynamic_image.image.thumb.url)
+              image_tag(dynamic_image.image.url)
             end
           end
         end

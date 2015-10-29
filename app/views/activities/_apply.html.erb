@@ -4,7 +4,7 @@
        apply_user = apply.user
   %>
       <dl>
-        <dt><%= image_tag(apply_user.profile.avatar.thumb.url) %></dt>
+        <dt><%= image_tag(apply_user.profile.avatar.url) %></dt>
         <dd>
           <h3><%= apply_user.profile.name %></h3><span>6.5km</span>
           <% if apply_user.profile.gender.eql?(1) %>

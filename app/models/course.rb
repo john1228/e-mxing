@@ -25,14 +25,14 @@ class Course < ActiveRecord::Base
         intro: intro,
         guarantee: guarantee,
         address: school_addresses,
-        images: image.map { |image| image.thumb.url },
+        images: image.map { |image| image.url },
         purchased: order_items_count,
         concerns: concerns_count
     }
   end
 
   def cover
-    image.first.thumb.url
+    image.first.url
   end
 
   def school_addresses

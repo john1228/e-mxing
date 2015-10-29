@@ -12,7 +12,7 @@ ActiveAdmin.register News do
       news.tag
     end
     column '封面', :title do |news|
-      image_tag(news.cover.thumb.url, width: 69)
+      image_tag(news.cover.url, width: 69)
     end
     column '链接地址' do |news|
       link_to('详情', news_detail_path(news))
@@ -25,7 +25,7 @@ ActiveAdmin.register News do
       attributes_table_for news do
         row('标题') { news.title }
         row('分类') { news.tag }
-        row('封面') { image_tag(news.cover.thumb.url, width: 69*2) }
+        row('封面') { image_tag(news.cover.url, width: 69*2) }
         row('链接') { link_to('详情', news_detail_path(news)) }
       end
     end

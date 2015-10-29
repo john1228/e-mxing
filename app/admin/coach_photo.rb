@@ -8,12 +8,12 @@ ActiveAdmin.register CoachPhoto do
   index title: '照片墙', as: :grid, columns: 5 do |photo|
     div for: photo do
       resource_selection_cell photo
-      div link_to(image_tag(photo.photo.thumb.url, height: 140), photo.photo.url, popup: ['original_image', 'height=700,width=900'])
+      div link_to(image_tag(photo.photo.url, height: 140), photo.photo.url, popup: ['original_image', 'height=700,width=900'])
     end
   end
 
   show do
-    div image_tag(coach_photo.photo.thumb.url)
+    div image_tag(coach_photo.photo.url)
   end
 
 

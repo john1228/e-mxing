@@ -4,7 +4,7 @@
         uploadUrl: "/admin/services/<%=@service.id%>/service_photos",
         allowedFileExtensions: ["jpg", "jpeg", "png", "gif"],
         initialPreview: <%=raw @photos.map{|photo|
-          "#{image_tag(photo.photo.thumb.url,width: '240px')}"
+          "#{image_tag(photo.photo.url,width: '240px')}"
         }%>,
         initialPreviewConfig: [<%=raw @photos.map{|photo|%>
             {

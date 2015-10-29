@@ -2336,7 +2336,7 @@
             for (i = 0; i < self.loadedImages.length; i++) {
                 config = self.loadedImages[i];
                 $img = config.img;
-                $thumb = config.thumb;
+                $thumb = config;
                 pid = config.pid;
                 ind = config.ind;
                 params = {id: pid, 'index': ind};

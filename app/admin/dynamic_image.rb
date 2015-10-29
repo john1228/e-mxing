@@ -11,10 +11,10 @@ ActiveAdmin.register DynamicImage do
       image.dynamic.user.profile.name
     end
     column('发布者头像') do |image|
-      image_tag(image.dynamic.user.profile.avatar.thumb.url,height: 50)
+      image_tag(image.dynamic.user.profile.avatar.url,height: 50)
     end
     column('图片') do |image|
-      image_tag(image.image.thumb.url,width:50)
+      image_tag(image.image.url,width:50)
     end
     column('发布内容') do |image|
       image.dynamic.content

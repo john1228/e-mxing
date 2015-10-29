@@ -9,7 +9,7 @@ class ServiceCourse < ActiveRecord::Base
   mount_uploaders :image, ImagesUploader
 
   def cover
-    image.first.thumb.url
+    image.first.url
   end
 
   def type_name

@@ -35,7 +35,7 @@ module Gyms
       render json: Success.new(coach: {
                                    mxid: coach.profile.mxid,
                                    name: coach.profile.name||'',
-                                   avatar: coach.profile.avatar.thumb.url,
+                                   avatar: coach.profile.avatar.url,
                                    gender: coach.profile.gender||1,
                                    age: coach.profile.age,
                                    signature: coach.profile.signature,

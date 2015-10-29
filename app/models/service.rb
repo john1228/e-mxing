@@ -17,7 +17,7 @@ class Service<User
     {
         mxid: profile.mxid,
         name: profile.name,
-        avatar: profile.avatar.thumb.url,
+        avatar: profile.avatar.url,
         address: profile.province.to_s + profile.city.to_s + profile.address.to_s,
         distance: (attributes['distance']||0).to_i,
         coach: {
@@ -38,7 +38,7 @@ class Service<User
         mxid: profile.mxid,
         name: profile.name,
         avatar: {
-            thumb: profile.avatar.thumb.url,
+            thumb: profile.avatar.url,
             origin: profile.avatar.url
         },
         views: views,
@@ -65,7 +65,7 @@ class Service<User
         contact: profile.mobile,
         photowall: photos.map { |photo| {
             no: photo.id,
-            thumb: photo.photo.thumb.url,
+            thumb: photo.photo.url,
             original: photo.photo.url
         } }
     }

@@ -27,7 +27,7 @@ ActiveAdmin.register Service do
       link_to("#{service.profile.name}", admin_service_path(service))
     end
     column '头像' do |service|
-      link_to(image_tag(service.profile.avatar.thumb.url, height: 70), admin_service_path(service))
+      link_to(image_tag(service.profile.avatar.url, height: 70), admin_service_path(service))
     end
     column '健身服务' do |service|
       truncate(service.profile.interests_string)
@@ -171,7 +171,7 @@ ActiveAdmin.register Service do
           attributes_table_for service do
             row('美型号') { service.profile.mxid }
             row('昵称') { service.profile.name }
-            row('头像') { image_tag(service.profile.avatar.thumb.url, height: 70) }
+            row('头像') { image_tag(service.profile.avatar.url, height: 70) }
             row('介绍') { truncate(service.profile.signature) }
             row('服务') { service.profile.interests_string }
             row('地址') { service.profile.address }

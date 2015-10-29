@@ -39,7 +39,7 @@ class Coach<User
         mxid: profile.mxid,
         name: HarmoniousDictionary.clean(profile.name),
         avatar: {
-            thumb: profile.avatar.thumb.url,
+            thumb: profile.avatar.url,
             origin: profile.avatar.url
         },
         tag: profile.tags,

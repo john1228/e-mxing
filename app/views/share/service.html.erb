@@ -109,7 +109,7 @@
     });
 </script>
 <section class="page page1">
-  <div class="tx"><%= image_tag(@service.profile.avatar.thumb.url) %></div>
+  <div class="tx"><%= image_tag(@service.profile.avatar.url) %></div>
   <div class="pgbox01">
     <div class="mxzt">
       <h3><%= @service.profile.name %></h3>
@@ -135,7 +135,7 @@
        coach = @coaches[index]
        if coach.present?
   %>
-          <p class="tx<%= (index+1) %>"><%= image_tag(coach.profile.avatar.thumb.url) %></p>
+          <p class="tx<%= (index+1) %>"><%= image_tag(coach.profile.avatar.url) %></p>
       <% else %>
           <p class="tx<%= (index+1) %>"><%= image_tag("share/service/coach/#{index+1}.png") %></p>
       <% end %>

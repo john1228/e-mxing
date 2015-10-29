@@ -6,7 +6,7 @@ class Enthusiast<User
         mxid: profile.mxid,
         name: profile.name,
         avatar: {
-            thumb: profile.avatar.thumb.url,
+            thumb: profile.avatar.url,
             origin: profile.avatar.url
         },
         tag: profile.tags,
@@ -25,8 +25,8 @@ class Enthusiast<User
               id: dynamic.id,
               content: dynamic.content
           }
-          json_str = json_str.merge(image: dynamic.dynamic_images.first.image.thumb.url) if dynamic.dynamic_images.present?
-          json_str = json_str.merge(film: dynamic.dynamic_film.cover.thumb.url) if dynamic.dynamic_film.present?
+          json_str = json_str.merge(image: dynamic.dynamic_images.first.image.url) if dynamic.dynamic_images.present?
+          json_str = json_str.merge(film: dynamic.dynamic_film.cover.url) if dynamic.dynamic_film.present?
           json_str
         }
     }

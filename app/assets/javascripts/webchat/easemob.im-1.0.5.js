@@ -1430,7 +1430,7 @@ connection.prototype.handleMessage = function(msginfo){
 				url : msgBody.url,
 				secret : msgBody.secret,
 				filename : msgBody.filename,
-				thumb : msgBody.thumb,
+				thumb : msgBody,
 				thumb_secret : msgBody.thumb_secret,
 				file_length : msgBody.file_length||'',
 				width : rwidth,

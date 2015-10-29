@@ -18,7 +18,7 @@ module Business
                                      venues: sku.service.profile.name,
                                      address: sku.address
                                  }],
-                       images: sku.course.image.map { |image| image.thumb.url },
+                       images: sku.course.image.map { |image| image.url },
                        purchased: sku.orders_count,
                        concerns: sku.concerns_count
                    }

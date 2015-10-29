@@ -4,7 +4,7 @@ class TypeShow < ActiveRecord::Base
   def as_json
     {
         title: title,
-        cover: cover.thumb.url,
+        cover: cover.url,
         url: $host + "/type_shows/#{id}",
         created_at: created_at.to_i
     }

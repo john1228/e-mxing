@@ -11,12 +11,12 @@ ActiveAdmin.register Photo do
   index title: '照片墙', as: :grid, columns: 5 do |photo|
     div for: photo do
       resource_selection_cell photo
-      div link_to(image_tag(photo.photo.thumb.url, height: 70), photo.photo.url, popup: true)
+      div link_to(image_tag(photo.photo.url, height: 70), photo.photo.url, popup: true)
     end
   end
 
   show do
-    div image_tag(photo.photo.thumb.url)
+    div image_tag(photo.photo.url)
   end
 
 
