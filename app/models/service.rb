@@ -92,18 +92,11 @@ class Service<User
     bd_lng = json_string['result']['location']['lng']
     bd_lat = json_string['result']['location']['lat']
     if place.nil?
-      create_place(lonlat: gcj_02(bd_lng, bd_lat))
+      create_place(lonlat: "POINT(#{bd_lng} #{bd_lat})")
     else
-      place.update(lonlat: gcj_02(bd_lng, bd_lat))
+      place.update(lonlat: "POINT(#{bd_lng} #{bd_lat})")
     end
     #更新机构课程课程的地址
     Sku.where(service_id: id).update_all(address: profile.province.to_s + profile.city.to_s + profile.address.to_s, coordinate: gcj_02(bd_lng, bd_lat))
-  end
-
-  def gcj_02(bd_lng, bd_lat)
-    x, y = bd_lng - 0.0065, bd_lat - 0.006
-    z = Math.sqrt(x * x + y * y) - 0.00002 * Math.sin(y * Math::PI)
-    theta = Math.atan2(y, x) - 0.000003 * Math.cos(x * Math::PI)
-    "POINT(#{z * Math.cos(theta)} #{z * Math.sin(theta)})"
   end
 end

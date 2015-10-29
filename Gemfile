@@ -18,6 +18,7 @@ gem 'spring', group: :development
 gem 'execjs'
 gem 'therubyracer'
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
+gem 'carrierwave-qiniu', github: 'huobazi/carrierwave-qiniu'
 gem 'devise'
 gem 'puma'
 

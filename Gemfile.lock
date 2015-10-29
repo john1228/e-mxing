@@ -28,7 +28,7 @@ GIT
 
 GIT
   remote: git://github.com/galetahub/ckeditor.git
-  revision: f116fa1db4a116f6baeb9906ec9425bf417a69f5
+  revision: a69dcdbe0babbd49085e9dc17efffc63297ab0b4
   specs:
     ckeditor (4.1.4)
       cocaine
@@ -36,7 +36,7 @@ GIT
 
 GIT
   remote: git://github.com/gregbell/active_admin.git
-  revision: ba285ea2fc23ade108ed582134cae8c641f910a4
+  revision: 9005b67e6f2a584f2c0d129b81cbd049a94f0344
   specs:
     activeadmin (1.0.0.pre2)
       arbre (~> 1.0, >= 1.0.2)
@@ -53,8 +53,16 @@ GIT
       sass-rails
 
 GIT
+  remote: git://github.com/huobazi/carrierwave-qiniu.git
+  revision: 56a9c52bcc1160533167d8df1817049c7916b4d9
+  specs:
+    carrierwave-qiniu (0.1.8.2)
+      carrierwave
+      qiniu (~> 6.4.2)
+
+GIT
   remote: git://github.com/justinfrench/formtastic.git
-  revision: 9d937af461e150c26f071b91463b44a014648ad5
+  revision: 4a2aca9d99475319f838d2a7461ef93a3dc8c1da
   specs:
     formtastic (3.2.0.pre)
       actionpack (>= 3.2.13)
@@ -148,7 +156,7 @@ GEM
     celluloid-supervision (0.20.5)
       timers (>= 4.1.1)
     chronic (0.10.2)
-    chunky_png (1.3.4)
+    chunky_png (1.3.5)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.7)
@@ -227,7 +235,7 @@ GEM
       nokogiri (~> 1.4)
       ntlm-http (~> 0.1, >= 0.1.1)
       webrobots (>= 0.0.9, < 0.2)
-    mime-types (2.6.2)
+    mime-types (2.4.3)
     mini_magick (4.3.6)
     mini_portile (0.6.2)
     minitest (5.8.2)
@@ -235,12 +243,18 @@ GEM
     multipart-post (2.0.0)
     net-http-digest_auth (1.4)
     net-http-persistent (2.9.4)
+    netrc (0.10.3)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
     ntlm-http (0.1.1)
     orm_adapter (0.5.0)
     pg (0.18.1)
     puma (2.14.0)
+    qiniu (6.4.2)
+      json (~> 1.8)
+      mime-types (~> 2.4.3)
+      rest-client (~> 1.7.3)
+      ruby-hmac (~> 0.4)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -270,12 +284,16 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rake (10.4.2)
     rdoc (4.2.0)
+      json (~> 1.4)
     redis (3.2.1)
     redis-namespace (1.5.2)
       redis (~> 3.0, >= 3.0.4)
     ref (2.0.0)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
+    rest-client (1.7.3)
+      mime-types (>= 1.16, < 3.0)
+      netrc (~> 0.7)
     rgeo (0.4.0)
     rgeo-activerecord (2.1.1)
       activerecord (~> 4.2)
@@ -286,6 +304,7 @@ GEM
     rqrcode_png (0.1.5)
       chunky_png
       rqrcode
+    ruby-hmac (0.4.0)
     sass (3.2.19)
     sass-rails (4.0.5)
       railties (>= 4.0.0, < 5.0)
@@ -295,7 +314,7 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
-    sidekiq (3.5.1)
+    sidekiq (3.5.2)
       celluloid (~> 0.17.2)
       connection_pool (~> 2.2, >= 2.2.0)
       json (~> 1.0)
@@ -355,6 +374,7 @@ DEPENDENCIES
   bootstrap-sass
   cancan
   carrierwave!
+  carrierwave-qiniu!
   ckeditor!
   coffee-rails (~> 4.0.0)
   devise

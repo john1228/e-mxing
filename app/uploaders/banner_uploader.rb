@@ -1,20 +1,21 @@
 # encoding: utf-8
 class BannerUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
-  storage :file
+  storage :qiniu
 
   def store_dir
     "images/#{model.class.to_s.underscore}"
   end
 
-  version :boot do
-    process :resize_to_fit => [750, 1334]
+  def boot
+    url + '-bb'
   end
 
-  version :app do
-    process :resize_to_fit => [722, 122]
+  def app
+    url + '-ab'
   end
 
+  
   def filename
     "#{Time.now.strftime('%Y/%m/%d')}/#{secure_token}.#{file.extension}" if original_filename
   end

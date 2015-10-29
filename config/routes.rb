@@ -260,6 +260,14 @@ Rails.application.routes.draw do
     post 'coupons' => 'coupons#update'
     get 'coupons/help' => 'coupons#help'
   end
+
+  namespace :api do
+    namespace :venues do
+      get '/' => 'home#index'
+    end
+  end
+
+
   #数据上传
   post 'active' => 'upload#active'
   post 'auto_login' => 'upload#auto_login'

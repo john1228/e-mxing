@@ -1,16 +1,12 @@
 # encoding: utf-8
 class ImagesUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
-  storage :file
+  storage :qiniu
 
   after :store, :update_model
 
   def store_dir
     'images/course'
-  end
-
-  version :thumb do
-    process :resize_to_fit => [750, 750]
   end
 
   def filename
@@ -29,9 +25,9 @@ class ImagesUploader < CarrierWave::Uploader::Base
 
   def update_model(args)
     if model.is_a?(Course)
-      Sku.where('sku LIKE ? ', 'CC' + '-' + '%06d' % model.id + '%').update_all(course_cover: model.image.first.thumb.url)
+      Sku.where('sku LIKE ? ', 'CC' + '-' + '%06d' % model.id + '%').update_all(course_cover: model.image.first.url)
     elsif model.is_a?(ServiceCourse)
-      Sku.where('sku LIKE ? ', 'SC' + '-' + '%06d' % model.id + '%').update_all(course_cover: model.image.first.thumb.url)
+      Sku.where('sku LIKE ? ', 'SC' + '-' + '%06d' % model.id + '%').update_all(course_cover: model.image.first.url)
     end
   end
 end

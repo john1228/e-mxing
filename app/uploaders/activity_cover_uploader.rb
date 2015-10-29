@@ -2,8 +2,7 @@
 
 class ActivityCoverUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
-  storage :file
-  process :resize_to_limit => [1080, 420]
+  storage :qiniu
 
   def store_dir
     "images/#{model.class.to_s.underscore}"

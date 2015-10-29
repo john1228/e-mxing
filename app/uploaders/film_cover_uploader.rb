@@ -2,20 +2,12 @@
 
 class FilmCoverUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
-  storage :file
+  storage :qiniu
 
   def store_dir
     "images/#{model.class.to_s.underscore}"
   end
 
-  def default_url
-    "#{$host}/images/default/cover.png"
-  end
-
-
-  version :thumb do
-    process :resize_to_fit => [200, 200]
-  end
 
 
   def filename

@@ -61,12 +61,14 @@ module FindManager
             week: Date.today.strftime('%U').to_i,
             items: week_rank.map { |k, v|
               user = User.find_by(id: k)
-              {user: user.summary_json, likes: v} if user.present? }
+              {user: user.summary_json, likes: v} if user.present?
+            }
         },
         month: {
             items: month_rank.map { |k, v|
               user = User.find_by(id: k)
-              {user: user.summary_json, likes: v} if user.present? }
+              {user: user.summary_json, likes: v} if user.present?
+            }
         }
     }
   end

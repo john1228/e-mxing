@@ -2,7 +2,7 @@
 class CkeditorPictureUploader < CarrierWave::Uploader::Base
   include Ckeditor::Backend::CarrierWave
   include CarrierWave::MiniMagick
-  storage :file
+  storage :qiniu
   process :read_dimensions
 
   def store_dir
@@ -16,7 +16,6 @@ class CkeditorPictureUploader < CarrierWave::Uploader::Base
   version :thumb do
     process :resize_to_fit => [118, 100]
   end
-
 
   version :content do
     process :resize_to_limit => [800, 800]

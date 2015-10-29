@@ -9,15 +9,6 @@ class ProfileUploader < CarrierWave::Uploader::Base
   end
 
 
-  def default_url
-    "#{$host}/images/default/user.png"
-  end
-
-
-  version :thumb do
-    process :resize_to_fit => [180, 180]
-  end
-
   def filename
     "#{Time.now.strftime('%Y/%m/%d')}/#{secure_token}.#{file.extension}" if original_filename
   end

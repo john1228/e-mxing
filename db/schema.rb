@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151026041638) do
+ActiveRecord::Schema.define(version: 20151029031350) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,22 +45,6 @@ ActiveRecord::Schema.define(version: 20151026041638) do
     t.integer  "activity_type"
     t.integer  "theme"
     t.integer  "pos",           default: 0
-  end
-
-  create_table "address_coordinates", force: :cascade do |t|
-    t.integer   "address_id"
-    t.geography "lonlat",     limit: {:srid=>4326, :type=>"point", :geographic=>true}
-  end
-
-  add_index "address_coordinates", ["lonlat"], name: "index_address_coordinates_on_lonlat", using: :gist
-
-  create_table "addresses", force: :cascade do |t|
-    t.integer  "coach_id"
-    t.string   "venues"
-    t.string   "city"
-    t.string   "address"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "admin_users", force: :cascade do |t|
@@ -148,13 +132,6 @@ ActiveRecord::Schema.define(version: 20151026041638) do
 
   create_table "blacklists", force: :cascade do |t|
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "captchas", force: :cascade do |t|
-    t.string   "mobile"
-    t.string   "captcha"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -249,18 +226,6 @@ ActiveRecord::Schema.define(version: 20151026041638) do
     t.integer  "lock_version",   default: 0
     t.integer  "used",           default: 0
   end
-
-  create_table "course_abstracts", force: :cascade do |t|
-    t.integer   "course_id"
-    t.integer   "address_id"
-    t.integer   "coach_id"
-    t.integer   "coach_gender"
-    t.integer   "course_price"
-    t.integer   "course_type"
-    t.geography "coordinate",   limit: {:srid=>4326, :type=>"point", :geographic=>true}
-  end
-
-  add_index "course_abstracts", ["coordinate"], name: "index_course_abstracts_on_coordinate", using: :gist
 
   create_table "course_addresses", force: :cascade do |t|
     t.integer  "course_id"
@@ -363,13 +328,6 @@ ActiveRecord::Schema.define(version: 20151026041638) do
     t.integer  "top",        default: 0
   end
 
-  create_table "expiries", force: :cascade do |t|
-    t.integer  "coach_id"
-    t.date     "date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "feedbacks", force: :cascade do |t|
     t.integer  "user_id"
     t.text     "content"
@@ -383,17 +341,6 @@ ActiveRecord::Schema.define(version: 20151026041638) do
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "galleries", force: :cascade do |t|
-    t.integer "user_id"
-    t.string  "tag"
-  end
-
-  create_table "gallery_images", force: :cascade do |t|
-    t.integer "gallery_id"
-    t.string  "image"
-    t.text    "caption"
   end
 
   create_table "group_members", force: :cascade do |t|
@@ -495,6 +442,7 @@ ActiveRecord::Schema.define(version: 20151026041638) do
     t.integer  "cover_width"
     t.integer  "cover_height"
     t.string   "tag",          default: ""
+    t.string   "tag_1",        default: [],              array: true
   end
 
   create_table "online_reports", force: :cascade do |t|
@@ -588,6 +536,8 @@ ActiveRecord::Schema.define(version: 20151026041638) do
     t.integer "hobby",                     default: [],           array: true
     t.string  "province"
     t.string  "city"
+    t.integer "auth",                      default: 0
+    t.string  "tag",                       default: [],           array: true
   end
 
   add_index "profiles", ["address"], name: "index_profiles_on_address", using: :btree
@@ -691,36 +641,12 @@ ActiveRecord::Schema.define(version: 20151026041638) do
   add_index "skus", ["service_id"], name: "index_skus_on_service_id", using: :btree
   add_index "skus", ["sku"], name: "index_skus_on_sku", unique: true, using: :btree
 
-  create_table "tracks", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "track_type"
-    t.datetime "start"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "name"
-    t.text     "intro"
-    t.string   "address"
-    t.integer  "places"
-    t.integer  "free_places", default: 0
-    t.integer  "coach_id"
-    t.integer  "during",      default: 60
-  end
-
   create_table "transactions", force: :cascade do |t|
     t.string   "no"
     t.string   "order_no"
     t.string   "source"
     t.string   "buyer"
     t.decimal  "price"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "type_shows", force: :cascade do |t|
-    t.string   "title"
-    t.string   "cover"
-    t.string   "url"
-    t.text     "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

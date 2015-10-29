@@ -19,7 +19,7 @@ class DynamicsController < ApiController
   end
 
   def latest
-    latest = @user.dynamics.latest
+    latest = @user.dynamics.order(id: :desc).first
     if latest.nil?
       render json: {code: 0, message: '还未发布动态'}
     else

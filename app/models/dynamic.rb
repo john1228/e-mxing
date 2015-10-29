@@ -9,16 +9,9 @@ class Dynamic < ActiveRecord::Base
 
   accepts_nested_attributes_for :dynamic_images
   accepts_nested_attributes_for :dynamic_film
-
-  attr_accessor :img_1, :img_2, :img_3, :img_4, :img_5, :img_6, :img_7, :img_8
   validates_presence_of :user_id
 
   TOP = 1
-  class<<self
-    def latest
-      order(id: :desc).first
-    end
-  end
 
   def as_json
     json_hash = {
@@ -33,19 +26,10 @@ class Dynamic < ActiveRecord::Base
             item: dynamic_comments.order(id: :desc).limit(2).collect { |comment| comment.as_json }
         }
     }
-    json_hash = json_hash.merge({
-                                    images: dynamic_images.collect { |dynamic_image|
-                                      {
-                                          thumb: dynamic_image.image.thumb.url,
-                                          original: dynamic_image.image.url,
-                                          width: dynamic_image.width,
-                                          height: dynamic_image.height
-                                      }
-                                    }
-                                }) unless dynamic_images.blank?
+    json_hash = json_hash.merge({images: dynamic_images.collect { |dynamic_image| dynamic_image.image.url }}) unless dynamic_images.blank?
     json_hash = json_hash.merge({
                                     film: {
-                                        cover: dynamic_film.cover.thumb.url,
+                                        cover: dynamic_film.cover.url,
                                         film: dynamic_film.film.hls
                                     }
                                 }) unless dynamic_film.blank?
@@ -60,17 +44,5 @@ class Dynamic < ActiveRecord::Base
         content: HarmoniousDictionary.clean(content||''),
         image: image.present? ? image.thumb.url : ''
     }
-  end
-
-  private
-  def check_images
-    dynamic_images.create(image: img_1) unless img_1.blank?
-    dynamic_images.create(image: img_2) unless img_2.blank?
-    dynamic_images.create(image: img_3) unless img_3.blank?
-    dynamic_images.create(image: img_4) unless img_4.blank?
-    dynamic_images.create(image: img_5) unless img_5.blank?
-    dynamic_images.create(image: img_6) unless img_6.blank?
-    dynamic_images.create(image: img_7) unless img_7.blank?
-    dynamic_images.create(image: img_8) unless img_8.blank?
   end
 end
