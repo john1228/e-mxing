@@ -35,7 +35,7 @@ class Coach<User
   end
 
   def detail
-    detail = {
+    {
         mxid: profile.mxid,
         name: HarmoniousDictionary.clean(profile.name),
         avatar: profile.avatar.url||'',
@@ -46,14 +46,14 @@ class Coach<User
         likes: likes.count,
         dynamics: dynamics.count,
         signature: profile.signature,
-        address: service.profile.address,
-        coordinate: {
-            lng: service.place.lonlat.x,
-            lat: service.place.lonlat.y
-        },
         service: {
             mxid: service.profile.mxid,
             name: service.profile.name,
+            address: service.profile.address,
+            coordinate: {
+                lng: service.place.lonlat.x,
+                lat: service.place.lonlat.y
+            },
         },
         skill: _skill,
         course: {
@@ -66,12 +66,6 @@ class Coach<User
         },
         contact: mobile
     }
-
-    detail = detail.merge(showtime: {
-                              cover: showtime.dynamic_film.cover.url,
-                              film: showtime.dynamic_film.film.hls
-                          }) if showtime.present?
-    detail
   end
 
   def addresses
