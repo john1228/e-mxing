@@ -1,11 +1,15 @@
 module Api
   class RecommendController < ApplicationController
+
     def gyms
-      city = URI.decode(request.headers[:city]) rescue '上海'
-      render json Success.new(
-                      gyms: Profile.gyms.joins(:place, :user).select("profiles.id,profiles.name, st_distance(skus.coordinate, 'POINT(#{params[:lng]} #{params[:lat]})') as distance").
-                          where('city = ?', city).order(distance: :desc).order(id: :desc).page(params[:page]||1)
-                  )
+      #city = URI.decode(request.headers[:city]) rescue '上海'
+      render json: Success.new(
+                 gyms: Profile.gyms.joins(:place, :user).
+                     select("profiles.id,profiles.name,profiles.avatar,profiles.gender,profiles.birthday,profiles.signature,profiles.identity, st_distance(places.lonlat, 'POINT(#{params[:lng]||0} #{params[:lat]||0})') as distance").
+                     order('distance desc').order(id: :desc).page(params[:page]||1).map { |profile|
+                   profile.summary_json.merge(distance: profile.attributes['distance'])
+                 }
+             )
     end
 
     def boutique
@@ -45,13 +49,13 @@ module Api
                          week: Date.today.strftime('%U').to_i,
                          items: week_rank.map { |k, v|
                            user = User.find_by(id: k)
-                           {user: user.summary_json, likes: v} if user.present?
+                           {user: user, likes: v} if user.present?
                          }
                      },
                      month: {
                          items: month_rank.map { |k, v|
                            user = User.find_by(id: k)
-                           {user: user.summary_json, likes: v} if user.present?
+                           {user: user, likes: v} if user.present?
                          }
                      }
                  }

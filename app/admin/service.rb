@@ -1,5 +1,5 @@
 ActiveAdmin.register Service do
-  menu label: '工作室', if: proc { !current_admin_user.role.eql?(AdminUser::ROLE[:service]) }
+  menu label: '工作室', priority: 2, if: proc { !current_admin_user.role.eql?(AdminUser::ROLE[:service]) }
 
   permit_params :mobile, :sns, profile_attributes: [:id, :name, :avatar, :signature, :province, :city, :address, :identity, :mobile, hobby: [], service: []]
   filter :profile_name, label: '名称', as: :string

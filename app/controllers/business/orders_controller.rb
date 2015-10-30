@@ -8,7 +8,7 @@ module Business
                                      pay_type: order.pay_type,
                                      pay_amount: order.pay_amount,
                                      status: order.status,
-                                     user: order.user.profile.summary_json
+                                     user: order.user.profile
                                  }
                                })
     end
@@ -31,7 +31,7 @@ module Business
                        pay_type: order.pay_type,
                        pay_amount: order.pay_amount,
                        status: order.status,
-                       user: order.user.profile.summary_json,
+                       user: order.user.profile,
                        created: order.updated_at.to_i
                    }
                )

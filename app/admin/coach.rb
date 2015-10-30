@@ -1,15 +1,15 @@
 ActiveAdmin.register Coach do
-  menu label: '私教', priority: 4
+  menu label: '私教', priority: 3
   filter :profile_name, label: '昵称', as: :string
   filter :profile_address, label: '城市', as: :string
 
   csv do
     column('美型号') { |coach| coach.profile.mxid }
     column('名字') { |coach| coach.profile.name }
-    column('性别') { |coach| (coach.profile.identity.eql?(1) ? '女' : '男') rescue '男' }
+    column('性别') { |coach| (coach.profile.gender.eql?(1) ? '女' : '男') rescue '男' }
     column('注册手机号') { |coach| coach.mobile }
     column('照片墙数量') { |coach| coach.photos.count }
-    column('课程数量') { |coach| Sku.where(seller_id: coach.id).where('sku like ?', 'CC%').count }
+    column('课程数量') { |coach| Sku.where(seller_id: coach.id).count }
     column('注册时间') { |coach| coach.created_at.localtime.strftime('%Y-%m-%d') }
     column('所属机构') { |coach| coach.service.profile.name }
     column('所属机构号') { |coach| coach.service.profile.mxid }

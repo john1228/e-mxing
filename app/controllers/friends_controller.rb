@@ -2,7 +2,7 @@ class FriendsController < ApiController
   def index
     begin
       ids = params[:mxids].split(',').collect { |mxid| mxid.to_i - 10000 }
-      render json: Success.new(profiles: Profile.where(id: ids).collect { |profile| profile.as_json })
+      render json: Success.new(profiles: Profile.where(id: ids))
     rescue Exception => exp
       render json: Failure.new(exp.message)
     end

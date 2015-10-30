@@ -38,11 +38,7 @@ class Coach<User
     detail = {
         mxid: profile.mxid,
         name: HarmoniousDictionary.clean(profile.name),
-        avatar: {
-            thumb: profile.avatar.url,
-            origin: profile.avatar.url
-        },
-        tag: profile.tags,
+        avatar: profile.avatar.url||'',
         gender: profile.gender||1,
         age: profile.age,
         photowall: photos,
@@ -72,7 +68,6 @@ class Coach<User
     }
 
     detail = detail.merge(showtime: {
-                              id: showtime.id,
                               cover: showtime.dynamic_film.cover.url,
                               film: showtime.dynamic_film.film.hls
                           }) if showtime.present?
@@ -95,7 +90,6 @@ class Coach<User
 
   private
   def _skill
-    choose_interests = INTERESTS['items'].select { |item| profile.hobby.include?(item['id']) }
-    choose_interests.collect { |choose| choose['name'] }
+    INTERESTS['items'].map { |item| item['name'] if profile.hobby.include?(item['id']) }.compact
   end
 end

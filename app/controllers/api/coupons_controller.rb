@@ -1,19 +1,5 @@
 module Api
-  class CouponsController < ApiController
-    def index
-      @user = Rails.cache.fetch(request.headers[:token])
-      render json: Success.new(
-                 coupon: Coupon.where('end_date >= ? and active=? and amount > used', Date.today, true).order(end_date: :asc).
-                     page(params[:page]||1).map { |coupon|
-                   if @user.blank?
-                     coupon.as_json.merge(have: 0)
-                   else
-                     coupon.as_json.merge(have: @user.wallet.coupons.include?(coupon.id) ? 1 : 0)
-                   end
-                 }
-             )
-    end
-
+  class CouponsController < ApplicationController
     def update
       wallet = @user.wallet
       if wallet.coupons.include?(params[:id].to_i)

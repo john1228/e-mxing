@@ -43,10 +43,6 @@ class Profile < ActiveRecord::Base
     choose_interests.collect { |choose| choose['name'] }.join(',')
   end
 
-  def tags
-    [0, identity.eql?(2) ? 1 : 0, identity.eql?(1) ? 1 : 0]
-  end
-
   def mxid
     BASE_NO + id
   end
@@ -57,10 +53,8 @@ class Profile < ActiveRecord::Base
         name: HarmoniousDictionary.clean(name||''),
         avatar: avatar.url,
         gender: gender||1,
-        age: age.eql?(0) ? 16 : age,
         true_age: age,
         signature: HarmoniousDictionary.clean(signature),
-        tags: tags,
         identity: identity
     }
   end
@@ -74,7 +68,6 @@ class Profile < ActiveRecord::Base
         signature: HarmoniousDictionary.clean(signature),
         gender: gender||1,
         identity: identity,
-        age: age.eql?(0) ? 16 : age,
         true_age: age,
         birthday: birthday||Date.today.prev_year(16),
         address: address,
@@ -82,9 +75,7 @@ class Profile < ActiveRecord::Base
         target: HarmoniousDictionary.clean(target),
         skill: skill,
         often: HarmoniousDictionary.clean(often_stadium),
-        interests: interests,
-
-        tags: tags
+        interests: hobby.join(',')
     }
   end
 end

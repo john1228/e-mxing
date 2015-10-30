@@ -1,5 +1,5 @@
 ActiveAdmin.register Enthusiast do
-  menu label: '用户', priority: 4
+  menu label: '健身爱好者', priority: 4
   filter :profile_name, label: '昵称', as: :string
   filter :mobile, label: '注册手机号'
   filter :created_at, label: '注册时间'
