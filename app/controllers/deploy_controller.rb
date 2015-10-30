@@ -47,9 +47,6 @@ class DeployController < ApplicationController
 
 
   def online
-    params.each { |k, v|
-      logger.info "#{k}::#{v}"
-    }
     render json: Success.new('host' => 'http://www.e-mxing.com/', 're-request' => 1)
   end
 

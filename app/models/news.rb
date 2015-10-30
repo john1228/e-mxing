@@ -1,5 +1,5 @@
 class News < ActiveRecord::Base
-  TAG = %w'健身知识 你问我答 热门场馆 金牌私教'
+  enum tag: {knowledge: '健身知识', question: '你问我答',venues: '热门场馆',gyms: '金牌私教'}
   mount_uploader :cover, NewsCoverUploader
 
 

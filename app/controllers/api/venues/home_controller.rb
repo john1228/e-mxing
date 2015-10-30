@@ -22,14 +22,6 @@ module Api
         render json: Success.new(venues: venues.order('distance asc').order(id: :desc).page(params[:page]||1))
       end
 
-      def profile
-        def show
-          venues = Service.find_by_mxid(params[:mxid])
-          venues.update(views: venues.views + 1)
-          render json: Success.new(coach: venues.detail)
-        end
-      end
-
       def tag
         render tag: Success.new(tag: [])
       end

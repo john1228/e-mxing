@@ -1,7 +1,7 @@
 ActiveAdmin.register News do
   menu label: '新闻', parent: '运营'
   filter :title, label: '标题'
-  permit_params :id,:tag, :title, :cover, :content
+  permit_params :id, :tag, :title, :cover, :content
 
   index title: '新闻列表' do
     selectable_column

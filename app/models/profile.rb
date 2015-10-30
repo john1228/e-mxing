@@ -1,27 +1,23 @@
 class Profile < ActiveRecord::Base
   include ProfileAble
-  scope :enthusiasts, -> { where(identity: 0) }
-  scope :gyms, -> { where(identity: 1) }
-  scope :service, -> { where(identity: 2) }
-
+  enum identity: [:enthusiast, :gyms, :service]
   belongs_to :user
   has_one :place, through: :user
   alias_attribute :often, :often_stadium
-  validates_presence_of :name, if: Proc.new { |profile| profile.identity.eql?(2) }, message: '名字不能为空'
-  validates_presence_of :avatar, if: Proc.new { |profile| profile.identity.eql?(2) }, message: '头像不能为空'
-  validates_presence_of :signature, if: Proc.new { |profile| profile.identity.eql?(2) }, message: '介绍不能为空'
-  validates_presence_of :province, if: Proc.new { |profile| profile.identity.eql?(2) }, message: '省份不能为空'
-  validates_presence_of :city, if: Proc.new { |profile| profile.identity.eql?(2) }, message: '城市不能为空'
-  validates_presence_of :address, if: Proc.new { |profile| profile.identity.eql?(2) }, message: '详细地址不能为空'
-  validates_presence_of :hobby, if: Proc.new { |profile| profile.identity.eql?(2) }, message: '服务项目不能为空'
-  validates_presence_of :mobile, if: Proc.new { |profile| profile.identity.eql?(2) }, message: '联系电话不能为空'
+  validates_presence_of :name, if: Proc.new { |profile| profile.service? }, message: '名字不能为空'
+  validates_presence_of :avatar, if: Proc.new { |profile| profile.service? }, message: '头像不能为空'
+  validates_presence_of :signature, if: Proc.new { |profile| profile.service? }, message: '介绍不能为空'
+  validates_presence_of :province, if: Proc.new { |profile| profile.service? }, message: '省份不能为空'
+  validates_presence_of :city, if: Proc.new { |profile| profile.service? }, message: '城市不能为空'
+  validates_presence_of :address, if: Proc.new { |profile| profile.service? }, message: '详细地址不能为空'
+  validates_presence_of :hobby, if: Proc.new { |profile| profile.service? }, message: '服务项目不能为空'
+  validates_presence_of :mobile, if: Proc.new { |profile| profile.service? }, message: '联系电话不能为空'
 
-  validates_presence_of :name, if: Proc.new { |profile| profile.identity.eql?(1) }, message: '名字不能为空'
-  validates_presence_of :avatar, if: Proc.new { |profile| profile.identity.eql?(1) }, message: '头像不能为空'
-  validates_presence_of :birthday, if: Proc.new { |profile| profile.identity.eql?(1) }, message: '生日不能为空'
-  validates_presence_of :gender, if: Proc.new { |profile| profile.identity.eql?(1) }, message: '性别不能为空'
-  validates_presence_of :hobby, if: Proc.new { |profile| profile.identity.eql?(1) }, message: '健身服务不能为空'
-
+  validates_presence_of :name, if: Proc.new { |profile| profile.gyms? }, message: '名字不能为空'
+  validates_presence_of :avatar, if: Proc.new { |profile| profile.gyms? }, message: '头像不能为空'
+  validates_presence_of :birthday, if: Proc.new { |profile| profile.gyms? }, message: '生日不能为空'
+  validates_presence_of :gender, if: Proc.new { |profile| profile.gyms? }, message: '性别不能为空'
+  validates_presence_of :hobby, if: Proc.new { |profile| profile.gyms? }, message: '健身服务不能为空'
 
   TAGS = %w(会员 认证 私教)
   BASE_NO = 10000

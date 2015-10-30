@@ -263,8 +263,16 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :venues do
-      get '/' => 'home#index'
+      get '' => 'home#index'
     end
+    get '' => 'home#index'
+    get 'search' => 'home#search'
+    #首页入口
+    get '/boutique' => 'recommend#boutique'
+    get '/gyms' => 'recommend#gyms'
+    get '/talent' => 'recommend#gyms'
+    get '/knowledge' => 'recommend#gyms'
+    get '/coupon' => 'recommend#coupon'
   end
 
 

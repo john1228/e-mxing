@@ -7,15 +7,6 @@ class BannerUploader < CarrierWave::Uploader::Base
     "images/#{model.class.to_s.underscore}"
   end
 
-  def boot
-    url + '-bb'
-  end
-
-  def app
-    url + '-ab'
-  end
-
-  
   def filename
     "#{Time.now.strftime('%Y/%m/%d')}/#{secure_token}.#{file.extension}" if original_filename
   end

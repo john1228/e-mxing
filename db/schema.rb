@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151029031350) do
+ActiveRecord::Schema.define(version: 20151029100550) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -634,12 +634,19 @@ ActiveRecord::Schema.define(version: 20151029031350) do
     t.datetime  "updated_at",                                                                            null: false
     t.integer   "status",                                                                    default: 0
     t.integer   "service_id"
+    t.string    "tag"
   end
 
   add_index "skus", ["coordinate"], name: "index_skus_on_coordinate", using: :gist
   add_index "skus", ["seller_id"], name: "index_skus_on_seller_id", using: :btree
   add_index "skus", ["service_id"], name: "index_skus_on_service_id", using: :btree
   add_index "skus", ["sku"], name: "index_skus_on_sku", unique: true, using: :btree
+
+  create_table "tags", force: :cascade do |t|
+    t.integer "tag"
+    t.string  "name"
+    t.string  "background"
+  end
 
   create_table "transactions", force: :cascade do |t|
     t.string   "no"

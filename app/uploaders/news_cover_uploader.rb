@@ -4,6 +4,7 @@ class NewsCoverUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
   storage :file
   process :store_dimensions
+  process :resize_to_limit => [1024, 1024]
 
   def store_dir
     'images/news'

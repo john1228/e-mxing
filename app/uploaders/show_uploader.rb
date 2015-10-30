@@ -1,12 +1,13 @@
 # encoding: utf-8
 class ShowUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
-  storage :file
+  storage :qiniu
+  process :resize_to_limit => [1024, 1024]
 
   def store_dir
     "images/#{model.class.to_s.underscore}"
   end
-  
+
   def filename
     "#{Time.now.strftime('%Y/%m/%d')}/#{secure_token}.#{file.extension}" if original_filename
   end

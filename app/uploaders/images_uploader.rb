@@ -2,13 +2,11 @@
 class ImagesUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
   storage :qiniu
-
+  process :resize_to_limit => [1024, 1024]
   after :store, :update_model
-
   def store_dir
     'images/course'
   end
-
   def filename
     "#{Time.now.strftime('%Y/%m/%d')}/#{secure_token}.#{file.extension}" if original_filename
   end
