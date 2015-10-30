@@ -17,7 +17,7 @@ class DeployController < ApplicationController
                data: {
                    banners: Banner.app.map { |item| {
                        type: item.type,
-                       image: item.image.app.url,
+                       image: item.image.url,
                        url: item.url,
                        link_id: item.link_id,
                        start_date: item.start_date.strftime('%Y-%m-%d'),
@@ -31,7 +31,7 @@ class DeployController < ApplicationController
     render json: Success.new(
                boot: Banner.boot.map { |item| {
                    type: item.type,
-                   image: item.image.boot.url,
+                   image: item.image.url,
                    url: item.url,
                    link_id: item.link_id,
                    start_date: item.start_date.strftime('%Y-%m-%d'),
@@ -52,15 +52,5 @@ class DeployController < ApplicationController
 
   def service
     render json: Success.new(phone: '021-62418505')
-  end
-
-
-  def city
-    render json: Success.new(
-               city: {
-                   opened: %w'北京 上海 南京',
-                   openning: %w'天津'
-               }
-           )
   end
 end

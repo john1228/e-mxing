@@ -6,11 +6,9 @@ class User < ActiveRecord::Base
   has_many :tracks, dependent: :destroy
   has_many :appointments, dependent: :destroy
   has_one :place, dependent: :destroy
-  has_one :showtime
   has_many :applies
   has_many :likes, -> { where(like_type: Like::PERSON) }, foreign_key: :liked_id, dependent: :destroy
   attr_accessor :new
-
   #v3
   has_one :wallet, dependent: :destroy
   has_many :orders, dependent: :destroy
@@ -18,6 +16,7 @@ class User < ActiveRecord::Base
   has_many :lessons, dependent: :destroy
   has_many :concerns, class_name: Concerned, dependent: :destroy
   has_one :setting, dependent: :destroy
+
 
   accepts_nested_attributes_for :profile
   class<<self

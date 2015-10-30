@@ -34,7 +34,7 @@ class Service<User
 
   def detail
     in_the_sale = Sku.online.where(seller_id: coaches.pluck(:id)<<id)
-    detail = {
+    {
         mxid: profile.mxid,
         name: profile.name,
         avatar: {
@@ -65,18 +65,11 @@ class Service<User
         contact: profile.mobile,
         photowall: photos
     }
-
-    detail = detail.merge(showtime: {
-                              id: showtime.id,
-                              cover: showtime.dynamic_film.cover.url,
-                              film: showtime.dynamic_film.film.hls
-                          }) if showtime.present?
-    detail
   end
 
   private
   def _service
-    INTERESTS['items'].map { |item| item['name'] if profile.hobby.include?(item['id']) }.compact
+    INTERESTS['items'].map { |item| item['name'] if profile.hobby.include?(item['id']) }.compact!
   end
 
   def location

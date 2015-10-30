@@ -1,6 +1,6 @@
 class Profile < ActiveRecord::Base
   include ProfileAble
-  enum identity: [:enthusiast, :gyms, :service]
+  enum identity: {enthusiast: 0, gyms: 1, service: 2}
   belongs_to :user
   has_one :place, through: :user
   alias_attribute :often, :often_stadium
@@ -19,7 +19,6 @@ class Profile < ActiveRecord::Base
   validates_presence_of :gender, if: Proc.new { |profile| profile.gyms? }, message: '性别不能为空'
   validates_presence_of :hobby, if: Proc.new { |profile| profile.gyms? }, message: '健身服务不能为空'
 
-  TAGS = %w(会员 认证 私教)
   BASE_NO = 10000
   mount_uploader :avatar, ProfileUploader
 
@@ -39,8 +38,7 @@ class Profile < ActiveRecord::Base
   end
 
   def interests_string
-    choose_interests = INTERESTS['items'].select { |item| hobby.include?(item['id']) }
-    choose_interests.collect { |choose| choose['name'] }.join(',')
+    INTERESTS['items'].select { |item| item['name'] if hobby.include?(item['id']) }.compact!.join(',')
   end
 
   def mxid
@@ -55,7 +53,7 @@ class Profile < ActiveRecord::Base
         gender: gender||1,
         true_age: age,
         signature: HarmoniousDictionary.clean(signature),
-        identity: identity
+        identity: Profile.identities[identity]
     }
   end
 
@@ -67,7 +65,7 @@ class Profile < ActiveRecord::Base
         avatar: avatar.url,
         signature: HarmoniousDictionary.clean(signature),
         gender: gender||1,
-        identity: identity,
+        identity: Profile.identities[identity],
         true_age: age,
         birthday: birthday||Date.today.prev_year(16),
         address: address,

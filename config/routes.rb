@@ -26,9 +26,6 @@ Rails.application.routes.draw do
   post 'tracks/appoint' => 'tracks#appoint'
   put 'tracks' => 'tracks#update'
   delete 'tracks/:id' => 'tracks#destroy'
-  #视频秀
-  get 'showtime' => 'showtime#index'
-  post 'showtime' => 'showtime#update'
   #照片墙
   get 'photos' => 'photos#index'
   post 'photos' => 'photos#create'
@@ -64,8 +61,6 @@ Rails.application.routes.draw do
   get 'friends' => 'friends#index'
   post 'friends' => 'friends#create'
   get 'friends/search' => 'friends#find'
-  #服务号
-  get 'services/coaches' => 'services#coaches'
   #配置文件
   get 'deploy/ver' => 'deploy#ver'
   get 'deploy/icon' => 'deploy#icon'
@@ -114,26 +109,19 @@ Rails.application.routes.draw do
   post '/admin/coupons/:id/online' => 'admin/coupons#online', as: :online_coupon
   post '/admin/coupons/:id/offline' => 'admin/coupons#offline', as: :offline_coupon
   post '/admin/services/:id/message' => 'admin/services#message', as: :service_message
-
-
   post '/admin/services/:service_id/service_photos/:id' => 'admin/service_photos#delete', as: :delete_service_photo
-
   get '/admin/orders/:id/user' => 'admin/orders#user', as: :order_user
-  #推荐私教
   get '/admin/coaches/:id/recommend' => 'admin/coaches#recommend', as: :recommend_coach
-  post '/admin/coaches/:id/recommend' => 'admin/coaches#recommend_result', as: :submit_recommend_coach, defaults: {format: 'js'}
+  post '/admin/coaches/:id/recommend' => 'admin/coaches#recommend_result', as: :submit_recommend_coach, defaults: {format: 'js'} #推荐私教
   delete '/admin/coaches/:id/recommend' => 'admin/coaches#cancel_recommend', as: :cancel_recommend_coach
-  #推荐课程
-  post '/admin/skus/:id/recommend' => 'admin/skus#recommend', as: :recommend_course
+  post '/admin/skus/:id/recommend' => 'admin/skus#recommend', as: :recommend_course #推荐课程
   delete '/admin/skus/:id/recommend' => 'admin/skus#cancel_recommend', as: :cancel_recommend_course
 
   get 'download' => 'download#index'
   get 'download/:package' => 'download#index'
 
   get 'orders/pay' => 'orders#pay'
-
   get 'webchat' => 'webchat#index'
-
   get 'share/:id/dynamics' => 'share#dynamic'
   get 'share/:id/service' => 'share#service'
   get 'share/:id/course' => 'share#course'
@@ -264,6 +252,8 @@ Rails.application.routes.draw do
   namespace :api do
     get '' => 'home#index'
     get 'search' => 'home#search'
+    #领取优惠券
+    post 'coupons' => 'coupons#update'
     #首页入口
     get '/boutique' => 'recommend#boutique'
     get '/gyms' => 'recommend#gyms'
@@ -278,6 +268,8 @@ Rails.application.routes.draw do
     end
     namespace :gyms do
       get 'profile' => 'profile#show'
+      get 'courses' => 'courses#index'
+      get 'comments' => 'comments#index'
     end
   end
 

@@ -2,7 +2,7 @@ class Enthusiast<User
   default_scope { joins(:profile).where('profiles.identity' => 0) }
 
   def detail
-    detail = {
+    {
         mxid: profile.mxid,
         name: profile.name,
         avatar: {
@@ -30,12 +30,6 @@ class Enthusiast<User
           json_str
         }
     }
-    detail = detail.merge(showtime: {
-                              id: showtime.id,
-                              cover: showtime.dynamic_film.cover.url,
-                              film: showtime.dynamic_film.film.hls
-                          }) if showtime.present?
-    detail
   end
 
   private

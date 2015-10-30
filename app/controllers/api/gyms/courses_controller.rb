@@ -21,7 +21,6 @@ module Api
           render json: Success.new(comments: {items: {}})
         end
       end
-
     end
   end
 end

@@ -8,7 +8,7 @@ module Discovery
                 }]
       else
         data = News.tags.map { |tag, value|
-          tag_data = News.method(tag.to_sym).call
+          tag_data = News.send(tag.to_sym)
           {
               tag: value,
               item: tag_data.order(id: :desc).take(2)
