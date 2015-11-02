@@ -2,7 +2,7 @@ ActiveAdmin.register DynamicImage do
   menu label: '动态图片'
   actions :index
   filter :tag, label: '标记'
-  index title: '动态' do
+  index  do
     selectable_column
      column('发布者') do |image|
       image.dynamic.user.profile.mxid

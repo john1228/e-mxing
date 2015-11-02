@@ -8,7 +8,7 @@ ActiveAdmin.register Photo do
 
   permit_params :user_id, :photo
 
-  index title: '照片墙', as: :grid, columns: 5 do |photo|
+  index do |photo|
     div for: photo do
       resource_selection_cell photo
       div link_to(image_tag(photo.photo.url, height: 70), photo.photo.url, popup: true)

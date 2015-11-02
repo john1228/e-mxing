@@ -6,7 +6,7 @@ ActiveAdmin.register Course do
   scope('0-全部', :all, default: true)
   scope('1-在线', :unprocessed) { |scope| scope.where(status: Course::STATUS[:online]) }
   scope('2-下线', :processed) { |scope| scope.where(status: Course::STATUS[:offline]) }
-  index title: '在线课程' do
+  index do
     selectable_column
     column '名称', :name
     column '类型', :type

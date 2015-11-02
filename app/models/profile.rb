@@ -37,6 +37,10 @@ class Profile < ActiveRecord::Base
     end
   end
 
+  def tags
+    [0, service? ? 1 : 0, gyms? ? 1 : 0]
+  end
+
   def interests_string
     INTERESTS['items'].select { |item| item['name'] if hobby.include?(item['id']) }.compact!.join(',')
   end
@@ -56,7 +60,6 @@ class Profile < ActiveRecord::Base
         identity: Profile.identities[identity]
     }
   end
-
 
   def as_json
     {

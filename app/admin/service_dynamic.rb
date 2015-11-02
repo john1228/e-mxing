@@ -7,7 +7,7 @@ ActiveAdmin.register ServiceDynamic do
 
   filter :content, label: '内容'
 
-  index title: '动态' do
+  index do
     selectable_column
     column('内容') { |dynamic| dynamic.content }
     column('图片') { |dynamic| image_tag(dynamic.dynamic_images.first.image.url, height: 70) unless dynamic.dynamic_images.blank? }

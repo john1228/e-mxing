@@ -2,7 +2,7 @@ ActiveAdmin.register Dynamic do
   menu label: '动态'
   actions :index
   scope('0-带图动态', :image, default: true){|scope| scope.joins(:dynamic_images).uniq.order(id: :desc)} 
-  index title: '动态' do
+  index  do
     selectable_column
      column('发布者') do |dynamic|
       dynamic.user.profile.mxid

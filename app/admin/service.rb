@@ -19,7 +19,7 @@ ActiveAdmin.register Service do
     column('注册日期') { |service| service.created_at.localtime.strftime('%Y-%m-%d') }
   end
 
-  index title: '服务号' do
+  index do
     column '美型号' do |service|
       link_to("#{service.profile.mxid}", admin_service_path(service))
     end

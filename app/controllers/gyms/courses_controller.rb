@@ -25,11 +25,7 @@ module Gyms
                                  ))
       end
     end
-
-    def buy
-      render json: Failure.new('您使用到版本已')
-    end
-
+    
     def coach
       coach = Coach.find_by(id: Sku.find_by(id: params[:id]).seller_id)
       render json: Success.new(coach: {

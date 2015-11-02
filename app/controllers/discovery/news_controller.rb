@@ -14,8 +14,8 @@ module Discovery
               item: tag_data.order(id: :desc).take(2)
           } if tag_data.present?
         }
+        data.compact!
       end
-      data.compact!
       render json: Success.new(news: data)
     end
   end

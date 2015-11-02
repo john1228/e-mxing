@@ -3,7 +3,7 @@ ActiveAdmin.register News do
   filter :title, label: '标题'
   permit_params :id, :tag, :title, :cover, :content
 
-  index title: '新闻列表' do
+  index  do
     selectable_column
     column '标题', :title do |news|
       truncate(news.title)

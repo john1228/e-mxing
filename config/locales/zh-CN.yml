@@ -35,6 +35,7 @@
         withdraw: '提现'
         service_course: '体验课'
         sku: '课程'
+        tag: '标签'
       attributes:
         service_course:
           name: '名称'
@@ -55,4 +56,15 @@
           seller: '卖家'
           address: '卖家地址'
           status: '状态'
+        tag:
+          type: '类型'
+          name: '名字'
+          background: '背景图'
+  enums:
+    tag:
+      tag:
+        venues: '场馆'
+        course: '课程'
+        dynamic: '动态'
+        news: '新闻'
 

@@ -271,6 +271,9 @@ Rails.application.routes.draw do
       get 'courses' => 'courses#index'
       get 'comments' => 'comments#index'
     end
+    namespace :fan do
+      get 'profile' => 'profile#show'
+    end
   end
 
 
