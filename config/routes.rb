@@ -234,6 +234,8 @@ Rails.application.routes.draw do
     post 'alipay' => 'alipay#callback'
     post 'jd' => 'jd#callback'
     post 'webchat' => 'webchat#callback'
+    get 'qiniu' => 'qiniu#callback'
+    post 'qiniu' => 'qiniu#callback'
   end
 
   namespace :shop do

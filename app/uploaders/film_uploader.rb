@@ -16,7 +16,12 @@ class FilmUploader < CarrierWave::Uploader::Base
   def filename
     "#{Time.now.strftime('%Y/%m/%d')}/#{secure_token}.#{file.extension}" if original_filename
   end
-  
+
+
+  def qiniu_async_ops
+    commands = []
+  end
+
   private
   # def slice(args)
   #   VideoProcessJob.perform_later(file.path, store_path, file.extension)
