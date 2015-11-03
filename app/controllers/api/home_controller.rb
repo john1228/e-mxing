@@ -6,7 +6,7 @@ module Api
                    online_courses = Sku.online.where(course_type: category.item).order(selling_price: :asc)
                    {
                        tag: category.name,
-                       backgournd: category.background,
+                       backgournd: category.background.url,
                        amount: online_courses.count,
                        lowest: online_courses.first.selling_price
                    }
