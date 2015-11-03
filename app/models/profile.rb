@@ -1,6 +1,6 @@
 class Profile < ActiveRecord::Base
   include ProfileAble
-  enum identity: {enthusiast: 0, gyms: 1, service: 2}
+  enum identity: [:enthusiast, :coach, :service]
   belongs_to :user
   has_one :place, through: :user
   alias_attribute :often, :often_stadium

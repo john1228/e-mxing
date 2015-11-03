@@ -252,6 +252,7 @@ Rails.application.routes.draw do
   namespace :api do
     get '' => 'home#index'
     get 'search' => 'home#search'
+    get 'hot' => 'home#hot_key'
     #领取优惠券
     post 'coupons' => 'coupons#update'
     #首页入口
