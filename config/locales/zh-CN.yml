@@ -36,6 +36,7 @@
       service_course: '体验课'
       sku: '课程'
       tag: '标签'
+      category: '分类'
     attributes:
       service_course:
         name: '名称'
@@ -59,6 +60,10 @@
       tag:
         tag: '类型'
         name: '名字'
+        background: '背景图'
+      category:
+        name: '名称'
+        item: '条目'
         background: '背景图'
   enums:
     tag:

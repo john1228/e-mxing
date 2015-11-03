@@ -8,16 +8,15 @@ ActiveAdmin.register Category do
     column :name
     column :item
     column :background
+    actions
   end
 
   show do
     attributes_table_for :category do
-      row('分类名') { category.name }
-      row('包含') { category.item }
-      row('背景图') { category.background }
+      row :name
+      row :item
+      row :background
     end
   end
   form partial: 'form'
-
-
 end
