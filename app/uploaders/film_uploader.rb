@@ -1,9 +1,8 @@
 # encoding: utf-8
 
 class FilmUploader < CarrierWave::Uploader::Base
-
-  storage :file
-  after :store, :slice
+  storage :qiniu
+  #after :store, :slice
 
   def store_dir
     'videos'
@@ -17,11 +16,11 @@ class FilmUploader < CarrierWave::Uploader::Base
   def filename
     "#{Time.now.strftime('%Y/%m/%d')}/#{secure_token}.#{file.extension}" if original_filename
   end
-
+  
   private
-  def slice(args)
-    VideoProcessJob.perform_later(file.path, store_path, file.extension)
-  end
+  # def slice(args)
+  #   VideoProcessJob.perform_later(file.path, store_path, file.extension)
+  # end
 
   protected
   def secure_token

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151029100550) do
+ActiveRecord::Schema.define(version: 20151102081103) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,15 @@ ActiveRecord::Schema.define(version: 20151029100550) do
     t.integer  "pos",           default: 0
   end
 
+  create_table "activity_comments", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "h_activity_id"
+    t.string   "content"
+    t.string   "image",         default: [],              array: true
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
   create_table "admin_users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
     t.string   "encrypted_password",     limit: 255, default: "", null: false
@@ -77,8 +86,11 @@ ActiveRecord::Schema.define(version: 20151029100550) do
   create_table "applies", force: :cascade do |t|
     t.integer  "activity_id"
     t.integer  "user_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.string   "name"
+    t.integer  "gender",      default: 0
+    t.string   "phone"
   end
 
   create_table "appointment_settings", force: :cascade do |t|
@@ -376,6 +388,33 @@ ActiveRecord::Schema.define(version: 20151029100550) do
     t.datetime "updated_at", null: false
     t.string   "easemob_id"
     t.integer  "owner"
+  end
+
+  create_table "h_activities", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "title"
+    t.string   "cover"
+    t.datetime "start"
+    t.datetime "end"
+    t.datetime "enroll"
+    t.string   "address"
+    t.string   "gather"
+    t.integer  "limit"
+    t.integer  "integer"
+    t.text     "stay"
+    t.text     "insurance"
+    t.text     "tip"
+    t.text     "bak"
+    t.integer  "apply_count"
+    t.integer  "view_count"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "h_activity_intros", force: :cascade do |t|
+    t.string "title"
+    t.string "instruction"
+    t.string "image",       default: [], array: true
   end
 
   create_table "hit_reports", force: :cascade do |t|

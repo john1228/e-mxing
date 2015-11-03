@@ -35,6 +35,14 @@ ActiveAdmin.register ServiceDynamic do
     end
   end
 
+  controller do
+    def new
+      @service = Service.find(params[:service_id])
+      @service_dynamic = @service.service_dynamics.new
+      8.times { @service_dynamic.dynamic_images.build}
+    end
+  end
+
   sidebar '评论 ', only: :show do
   end
 

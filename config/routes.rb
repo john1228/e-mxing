@@ -277,6 +277,22 @@ Rails.application.routes.draw do
   end
 
 
+  namespace :h5 do
+    get 'login' => 'login#mobile'
+    namespace :activity do
+      get '/' => 'home#index'
+      get '/:id' => 'home#show'
+      get '/:id/comments' => 'comments#index'
+      post '/:id/comments' => 'comments#create'
+      namespace :mine do
+        get '/join' => 'home#join'
+        get '/release' => 'home#release'
+        post '' => 'home#create'
+        get '/:id/applies' => 'applies#index'
+      end
+    end
+  end
+
   #数据上传
   post 'active' => 'upload#active'
   post 'auto_login' => 'upload#auto_login'

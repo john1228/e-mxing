@@ -42,7 +42,7 @@ class Profile < ActiveRecord::Base
   end
 
   def interests_string
-    INTERESTS['items'].select { |item| item['name'] if hobby.include?(item['id']) }.compact!.join(',')
+    INTERESTS['items'].map { |item| item['name'] if hobby.include?(item['id']) }.compact!.join(',')
   end
 
   def mxid

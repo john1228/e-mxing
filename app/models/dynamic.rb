@@ -1,7 +1,5 @@
 class Dynamic < ActiveRecord::Base
   belongs_to :user
-  after_save :check_images
-
   has_many :dynamic_images, dependent: :destroy
   has_one :dynamic_film, dependent: :destroy
   has_many :dynamic_comments, dependent: :destroy
@@ -9,9 +7,6 @@ class Dynamic < ActiveRecord::Base
 
   accepts_nested_attributes_for :dynamic_images
   accepts_nested_attributes_for :dynamic_film
-  validates_presence_of :user_id
-
-  TOP = 1
 
   def as_json
     json_hash = {
