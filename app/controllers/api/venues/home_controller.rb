@@ -16,7 +16,8 @@ module Api
                                        coach_count: venue.coaches.count,
                                        sale: venue.courses.online.count,
                                        tag: venue.profile.tag,
-                                       auth: venue.profile.auth
+                                       auth: venue.profile.auth,
+                                       floor: (venue.courses.online.order(selling_price: :asc).first.selling_price rescue ''),
                                    }
                                  })
       end
@@ -43,7 +44,8 @@ module Api
                                        coach_count: venue.coaches.count,
                                        sale: venue.courses.online.count,
                                        tag: venue.profile.tag,
-                                       auth: venue.profile.auth
+                                       auth: venue.profile.auth,
+                                       floor: (venue.courses.online.order(selling_price: :asc).first.selling_price rescue ''),
                                    }
                                  })
       end

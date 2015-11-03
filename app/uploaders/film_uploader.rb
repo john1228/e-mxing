@@ -9,7 +9,7 @@ class FilmUploader < CarrierWave::Uploader::Base
   end
 
   def hls
-    $hls_host + filename
+    url
   end
 
 
@@ -20,6 +20,7 @@ class FilmUploader < CarrierWave::Uploader::Base
 
   def qiniu_async_ops
     commands = []
+    commands << [{persistentOps: 'avthumb/m3u8/segtime/15/video_240k'}]
   end
 
   private
