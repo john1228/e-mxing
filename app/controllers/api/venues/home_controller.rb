@@ -14,7 +14,7 @@ module Api
                                        address: venue.profile.province.to_s + venue.profile.city.to_s + venue.profile.address.to_s,
                                        distance: venue.attributes['distance'].to_i,
                                        coach: venue.coaches.count,
-                                       sale: venues.courses.online.count,
+                                       sale: venue.courses.online.count,
                                        tag: tag,
                                        auth: auth
                                    }

@@ -1,16 +1,14 @@
 module Api
   class HomeController < ApplicationController
     def index
-      group_sku = Sku.online.where.not(tag: nil).group(:tag).count
       render json: Success.new(
-                 group_sku.map { |k, v|
-                   tag = Tag.course.find_by(name: k)
-                   lowest = Sku.online.where(tag: k).order(selling_price: :asc).first
+                 tag: Category.all.map { |category|
+                   online_courses = Sku.online.where(course_type: category.item).order(selling_price: :asc)
                    {
-                       name: k,
-                       background: tag.background,
-                       amount: v,
-                       floor_price: lowest.selling_price
+                       tag: category.name,
+                       backgournd: category.background,
+                       amount: online_courses.count,
+                       lowest: online_courses.first.selling_price
                    }
                  }
              )

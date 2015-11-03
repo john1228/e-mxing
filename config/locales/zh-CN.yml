@@ -64,7 +64,6 @@
     tag:
       tag:
         venues: '场馆'
-        course: '课程'
         dynamic: '动态'
         news: '新闻'
     profile:
