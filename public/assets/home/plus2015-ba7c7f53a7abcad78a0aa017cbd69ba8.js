@@ -1,0 +1,1 @@
+!function(n){n.extend({qReport:function(e){function t(){var n=[];for(var e in o)n.push(o[e]+"-"+u[e][0]+"-"+u[e][1]+"_"+o[e])}var o={},u=n.extend({1:[0,519487],2:[0,519488],3:[0,519489]},e||{}),i=null;return function(n,e){u[n]&&(o[n]=(o[n]||0)+(e||1),i&&window.clearTimeout(i),i=window.setTimeout(t,500))}}()})}(jQuery);
