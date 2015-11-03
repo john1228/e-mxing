@@ -295,6 +295,11 @@ Rails.application.routes.draw do
       end
     end
   end
+  #废弃的接口，暂时不删除
+  #-----
+  get 'showtime' => 'discard/showtime#show'
+  get 'services/coaches' => 'services#coaches'
+  #------
 
   #数据上传
   post 'active' => 'upload#active'

@@ -13,10 +13,10 @@ module Api
                                        background: (venue.photos.first.photo.url rescue ''),
                                        address: venue.profile.province.to_s + venue.profile.city.to_s + venue.profile.address.to_s,
                                        distance: venue.attributes['distance'].to_i,
-                                       coach: venue.coaches.count,
+                                       coach_count: venue.coaches.count,
                                        sale: venue.courses.online.count,
-                                       tag: tag,
-                                       auth: auth
+                                       tag: venue.profile.tag,
+                                       auth: venue.profile.auth
                                    }
                                  })
       end
@@ -33,10 +33,6 @@ module Api
         venues.where('? = ANY (profiles.tag_1)', params[:tag]) if params[:tag].present?
         venues.where(profiles: [auth: params[:auth]]) if params[:auth].present?
         render json: Success.new(venues: venues.order('distance asc').order(id: :desc).page(params[:page]||1))
-      end
-
-      def tag
-        render tag: Success.new(tag: [])
       end
     end
   end

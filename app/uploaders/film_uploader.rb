@@ -9,7 +9,7 @@ class FilmUploader < CarrierWave::Uploader::Base
   end
 
   def hls
-    $hls_host + file.path.gsub("#{Rails.root}/public/#{store_dir}", '').gsub(file.extension, 'm3u8')
+    $hls_host + filename
   end
 
 
