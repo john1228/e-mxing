@@ -41,7 +41,7 @@ class Coach<User
         avatar: profile.avatar.url||'',
         gender: profile.gender||1,
         age: profile.age,
-        photowall: photos,
+        photowall: photos.map { |photo| {url: photo.photo.url} },
         score: score,
         likes: likes.count,
         dynamics: dynamics.count,

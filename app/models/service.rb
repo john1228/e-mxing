@@ -63,7 +63,7 @@ class Service<User
         service: _service,
         facility: profile.service,
         contact: profile.mobile,
-        photowall: photos
+        photowall: photos.map { |photo| {url: photo.photo.url} }
     }
   end
 

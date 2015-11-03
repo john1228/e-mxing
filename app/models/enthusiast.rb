@@ -5,17 +5,14 @@ class Enthusiast<User
     {
         mxid: profile.mxid,
         name: profile.name,
-        avatar: {
-            thumb: profile.avatar.url,
-            origin: profile.avatar.url
-        },
+        avatar: profile.avatar.url,
         tag: profile.tags,
         gender: profile.gender||1,
         age: profile.age,
         address: profile.address,
         signature: profile.signature,
         likes: likes.count,
-        photowall: photos,
+        photowall: photos.map{|photo| {no: photo.id, url: photo.url}},
         target: profile.target,
         hobby: _hobby,
         often: profile.often_stadium,
