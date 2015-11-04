@@ -64,7 +64,21 @@ module Api
     def venues
       venues = Service.joins(:place).select("users.*,st_distance(places.lonlat, 'POINT(#{params[:lng]||0} #{params[:lat]||0})') as distance").
           order('distance asc').order(id: :desc).take(2)
-      render json: Success.new(venues: venues)
+      render json: Success.new(venues: venues.map { |venue|
+                                 {
+                                     mxid: venue.profile.mxid,
+                                     name: venue.profile.name,
+                                     avatar: venue.profile.avatar.url,
+                                     background: (venue.photos.first.photo.url rescue ''),
+                                     address: venue.profile.province.to_s + venue.profile.city.to_s + venue.profile.address.to_s,
+                                     distance: venue.attributes['distance'].to_i,
+                                     coach_count: venue.coaches.count,
+                                     sale: venue.courses.online.count,
+                                     tag: venue.profile.tag,
+                                     auth: venue.profile.auth,
+                                     floor: (venue.courses.online.order(selling_price: :asc).first.selling_price rescue ''),
+                                 }
+                               })
     end
   end
 end

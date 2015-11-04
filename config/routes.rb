@@ -259,7 +259,7 @@ Rails.application.routes.draw do
     get '/talent' => 'recommend#gyms'
     get '/knowledge' => 'recommend#gyms'
     get '/coupon' => 'recommend#coupon'
-    get '/venues' => 'recommend#venues'
+    get '/recommend/venues' => 'recommend#venues'
     namespace :venues do
       get '' => 'home#index'
       get 'profile' => 'profile#show'
