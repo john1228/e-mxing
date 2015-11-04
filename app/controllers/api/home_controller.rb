@@ -94,7 +94,7 @@ module Api
 
     def search_course(keyword, page)
       Sku.online.select("skus.*, st_distance(skus.coordinate, 'POINT(#{params[:lng]||0} #{params[:lat]||0})') as distance").
-          where('sku.course_name LIKE ? or sku.address LIKE ?', keyword, keyword).order('distance asc').order(id: :desc).page(page)
+          where('skus.course_name LIKE ? or skus.address LIKE ?', keyword, keyword).order('distance asc').order(id: :desc).page(page)
     end
 
     def search_knowledge(keyword, page)
