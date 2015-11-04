@@ -1,6 +1,5 @@
 module Api
   class RecommendController < ApplicationController
-
     def gyms
       #city = URI.decode(request.headers[:city]) rescue '上海'
       render json: Success.new(
@@ -60,6 +59,12 @@ module Api
                      }
                  }
              )
+    end
+
+    def venues
+      venues = Service.joins(:place).select("users.*,st_distance(places.lonlat, 'POINT(#{params[:lng]||0} #{params[:lat]||0})') as distance").
+          order('distance asc').order(id: :desc).take(2)
+      render json: Success.new(venues: venues)
     end
   end
 end

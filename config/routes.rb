@@ -194,10 +194,6 @@ Rails.application.routes.draw do
     get 'profile' => 'profiles#show'
   end
 
-  namespace :discovery do
-    get 'news' => 'news#index'
-    get 'images' => 'images#index'
-  end
 
   namespace :mine do
     #关注
@@ -263,6 +259,7 @@ Rails.application.routes.draw do
     get '/talent' => 'recommend#gyms'
     get '/knowledge' => 'recommend#gyms'
     get '/coupon' => 'recommend#coupon'
+    get '/venues' => 'recommend#venues'
     namespace :venues do
       get '' => 'home#index'
       get 'profile' => 'profile#show'
@@ -277,8 +274,20 @@ Rails.application.routes.draw do
     namespace :fan do
       get 'profile' => 'profile#show'
     end
+    namespace :dynamic do
+      get '/' => 'home#index'
+      post '/' => 'home#create'
+      get '/show' => 'home#show'
+      delete '/:id' => 'home#destroy'
+    end
   end
 
+  #发现
+  namespace :discovery do
+    get 'news' => 'news#index'
+    get 'images' => 'images#index'
+    get 'dynamics' => 'dynamics#index'
+  end
 
   namespace :h5 do
     get 'login' => 'login#mobile'

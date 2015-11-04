@@ -23,7 +23,7 @@ class DynamicsController < ApiController
     if latest.nil?
       render json: {code: 0, message: '还未发布动态'}
     else
-      render json: {code: 1, data: {dynamic: @user.dynamics.latest.summary_json}}
+      render json: {code: 1, data: {dynamic: latest.summary_json}}
     end
   end
 
