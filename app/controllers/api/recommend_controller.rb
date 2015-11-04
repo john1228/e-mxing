@@ -39,9 +39,9 @@ module Api
 
     def talent
       week_rank = (Rails.cache.fetch('week')||{})
-      week_rank.delete_if { |k, v| User.find_by(id: k).blank? }
+      week_rank.delete_if { |k,| User.find_by(id: k).blank? }
       month_rank = (Rails.cache.fetch('month')||{})
-      month_rank.delete_if { |k, v| User.find_by(id: k).blank? }
+      month_rank.delete_if { |k,| User.find_by(id: k).blank? }
       render json: Success.new(
                  talent: {
                      week: {

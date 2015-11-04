@@ -256,8 +256,8 @@ Rails.application.routes.draw do
     #首页入口
     get '/boutique' => 'recommend#boutique'
     get '/gyms' => 'recommend#gyms'
-    get '/talent' => 'recommend#gyms'
-    get '/knowledge' => 'recommend#gyms'
+    get '/talent' => 'recommend#talent'
+    get '/knowledge' => 'recommend#knowledge'
     get '/coupon' => 'recommend#coupon'
     get '/recommend/venues' => 'recommend#venues'
     namespace :venues do
