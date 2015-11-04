@@ -7,7 +7,7 @@ module Api
                    code: 1,
                    data: {
                        coaches: service.coaches.map { |coach|
-                         coach.summary_json
+                         coach.summary_json.merge(likes: coach.likes.count)
                        }
                    }
                }
