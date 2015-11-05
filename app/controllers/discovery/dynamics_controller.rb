@@ -7,7 +7,7 @@ module Discovery
                                      content: HarmoniousDictionary.clean(dynamic.content || ''),
                                      image: dynamic.dynamic_images.map { |image| {url: image.image.url} },
                                      film: {cover: (dynamic.dynamic_film.cover.url rescue ''), film: (dynamic.dynamic_film.film.hls rescue '')},
-                                     created: dynamic.created_at.localtime.strftime('%Y-%m-%d %H:%M:%S'),
+                                     created: dynamic.created_at.to_i,
                                      publisher: {
                                          mxid: dynamic.user.profile.mxid,
                                          name: dynamic.user.profile.name,

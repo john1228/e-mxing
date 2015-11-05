@@ -12,7 +12,7 @@ module Api
                          content: HarmoniousDictionary.clean(dynamic.content || ''),
                          image: dynamic.dynamic_images.map { |image| {url: image.image.url} },
                          film: {cover: (dynamic.dynamic_film.cover.url rescue ''), film: (dynamic.dynamic_film.film.hls rescue '')},
-                         created: dynamic.created_at.localtime.strftime('%Y-%m-%d %H:%M:%S'),
+                         created: dynamic.created_at.to_i,
                          likes: dynamic.likes.count,
                          like_user: dynamic.likes.includes(:user).order(id: :desc).limit(15).map { |like| {
                              user: {

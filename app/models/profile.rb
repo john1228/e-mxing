@@ -13,11 +13,11 @@ class Profile < ActiveRecord::Base
   validates_presence_of :hobby, if: Proc.new { |profile| profile.service? }, message: '服务项目不能为空'
   validates_presence_of :mobile, if: Proc.new { |profile| profile.service? }, message: '联系电话不能为空'
 
-  validates_presence_of :name, if: Proc.new { |profile| profile.gyms? }, message: '名字不能为空'
-  validates_presence_of :avatar, if: Proc.new { |profile| profile.gyms? }, message: '头像不能为空'
-  validates_presence_of :birthday, if: Proc.new { |profile| profile.gyms? }, message: '生日不能为空'
-  validates_presence_of :gender, if: Proc.new { |profile| profile.gyms? }, message: '性别不能为空'
-  validates_presence_of :hobby, if: Proc.new { |profile| profile.gyms? }, message: '健身服务不能为空'
+  validates_presence_of :name, if: Proc.new { |profile| profile.coach? }, message: '名字不能为空'
+  validates_presence_of :avatar, if: Proc.new { |profile| profile.coach? }, message: '头像不能为空'
+  validates_presence_of :birthday, if: Proc.new { |profile| profile.coach? }, message: '生日不能为空'
+  validates_presence_of :gender, if: Proc.new { |profile| profile.coach? }, message: '性别不能为空'
+  validates_presence_of :hobby, if: Proc.new { |profile| profile.coach? }, message: '健身服务不能为空'
 
   BASE_NO = 10000
   mount_uploader :avatar, ProfileUploader
