@@ -22,7 +22,7 @@ module Api
                                              lat: @coach.service.place.lonlat.y
                                          },
                                      },
-                                     fpg: _fitness_program,
+                                     fpg: @coach.profile._fitness_program,
                                      course: {
                                          amount: Sku.online.where(seller_id: @coach.id).count,
                                          item: Sku.online.where(seller_id: @coach.id).order(updated_at: :desc).take(2)
