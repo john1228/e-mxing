@@ -41,11 +41,11 @@ class User < ActiveRecord::Base
 
   def as_json
     case profile.identity
-      when 0
+      when 'enthusiast'
         profile.as_json.merge(likes: likes.count)
-      when 1
+      when 'coach'
         profile.as_json.merge(likes: likes.count, mobile: mobile)
-      when 2
+      when 'service'
         profile.as_json.merge(likes: likes.count, mobile: profile.mobile)
       else
     end

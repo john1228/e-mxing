@@ -17,9 +17,9 @@
       <h3><%= @user.profile.name %></h3><span><%= @created_string %></span>
 
       <p>
-        <% if @user.profile.identity.eql?(2) %>
+        <% if @user.profile.sevice? %>
             <i class="ico3 ">证</i>
-        <% elsif @user.profile.identity.eql?(1) %>
+        <% elsif @user.profile.coach? %>
             <i class="ico4 ">教</i>
         <% end %>
       </p>

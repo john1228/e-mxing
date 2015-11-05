@@ -21,7 +21,7 @@ module Api
                                  avatar: like.user.profile.avatar.url,
                                  age: like.user.profile.age,
                                  gender: like.user.profile.gender,
-                                 identity: like.user.profile.identity,
+                                 identity: Profile.identities[like.user.profile.identity],
                              },
                              created: like.created_at.localtime.strftime('%Y-%m-%d %H:%M:%S'),
                          } },
@@ -37,7 +37,7 @@ module Api
                                        avatar: comment.user.profile.avatar.url,
                                        age: comment.user.profile.age,
                                        gender: comment.user.profile.gender,
-                                       identity: comment.user.profile.identity,
+                                       identity: Profile.identities[comment.user.profile.identity],
                                    },
                                }
                              }
@@ -62,7 +62,7 @@ module Api
                                            avatar: dynamic.user.profile.avatar.url,
                                            age: dynamic.user.profile.age,
                                            gender: dynamic.user.profile.gender,
-                                           identity: dynamic.user.profile.identity,
+                                           identity: Profile.identities[dynamic.user.profile.identity],
                                        },
                                        likes: dynamic.likes.count,
                                        like_user: dynamic.likes.includes(:user).order(id: :desc).limit(15).map { |like| {
@@ -72,7 +72,7 @@ module Api
                                                avatar: like.user.profile.avatar.url,
                                                age: like.user.profile.age,
                                                gender: like.user.profile.gender,
-                                               identity: like.user.profile.identity,
+                                               identity: Profile.identities[like.user.profile.identity]
                                            },
                                            created: like.created_at.localtime.strftime('%Y-%m-%d %H:%M:%S'),
                                        } },
@@ -88,7 +88,7 @@ module Api
                                                      avatar: comment.user.profile.avatar.url,
                                                      age: comment.user.profile.age,
                                                      gender: comment.user.profile.gender,
-                                                     identity: comment.user.profile.identity,
+                                                     identity: Profile.identities[comment.user.profile.identity]
                                                  },
                                              }
                                            }
