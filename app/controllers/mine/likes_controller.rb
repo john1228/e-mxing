@@ -2,7 +2,7 @@ module Mine
   class LikesController < BaseController
     def most
       render json: Success.new(
-                 user: Like.select('likes.user_id,count(*) as like_count').
+                 like: Like.select('likes.user_id,count(*) as like_count').
                      where(liked_id: @user.id,).group(:user_id).
                      order('like_count desc').page(params[:page]||1).map { |like|
                    {
@@ -22,7 +22,7 @@ module Mine
 
     def latest
       render json: Success.new(
-                 user: Like.person.order(id: :desc).map { |like|
+                 like: Like.person.order(id: :desc).map { |like|
                    {
                        user: {
                            mxid: like.user.profile.mxid,
