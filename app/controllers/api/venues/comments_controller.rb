@@ -47,8 +47,8 @@ module Gyms
     end
 
     def create
-      venue = Service.find_by_mxid(params[:mxid])
-      comment = VenueComment.new(venue_comment_params.merge(venue_id: venue.id))
+
+      comment = VenueComment.new(venue_comment_params)
       if comment.save
         render json: Success.new
       else
@@ -58,7 +58,9 @@ module Gyms
 
     private
     def venue_comment_params
-      params.permit(:content, :score, image: [])
+      venue = Service.find_by_mxid(params[:mxid])
+      permit_params = params.permit(:content, :score)
+      permit_params.merge(venue_id: venue.id, image: (0..8).map { |index| params[index.to_s.to_sym] if params[index.to_s.to_sym].present? }.compact!)
     end
   end
 end
