@@ -6,9 +6,33 @@ module Api
                  coupon: Coupon.where('end_date >= ? and active=? and amount > used', Date.today, true).order(end_date: :asc).
                      page(params[:page]||1).map { |coupon|
                    if user.blank?
-                     coupon.as_json.merge(have: 0)
+                     {
+                         no: coupon.id,
+                         name: coupon.name,
+                         discount: coupon.discount.to_i,
+                         info: coupon.info,
+                         start_date: coupon.start_date,
+                         end_date: coupon.end_date,
+                         limit_category: coupon.limit_category,
+                         limit_ext: coupon.limit_ext,
+                         min: coupon.min.to_i,
+                         amount: coupon.amount,
+                         have: 0
+                     }
                    else
-                     coupon.as_json.merge(have: user.wallet.coupons.include?(coupon.id) ? 1 : 0)
+                     {
+                         no: coupon.id,
+                         name: coupon.name,
+                         discount: coupon.discount.to_i,
+                         info: coupon.info,
+                         start_date: coupon.start_date,
+                         end_date: coupon.end_date,
+                         limit_category: coupon.limit_category,
+                         limit_ext: coupon.limit_ext,
+                         min: coupon.min.to_i,
+                         amount: coupon.amount,
+                         have: user.wallet.coupons.include?(coupon.id) ? 1 : 0
+                     }
                    end
                  }
              )
