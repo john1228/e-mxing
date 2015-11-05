@@ -21,7 +21,7 @@ class Dynamic < ActiveRecord::Base
             item: dynamic_comments.order(id: :desc).limit(2).collect { |comment| comment.as_json }
         }
     }
-    json_hash = json_hash.merge({images: dynamic_images.collect { |dynamic_image| {url: dynamic_image.image.url} }}) unless dynamic_images.blank?
+    json_hash = json_hash.merge({images: dynamic_images.collect { |dynamic_image| {original: dynamic_image.image.url, thumb: dynamic_image.image.url, width: dynamic_image.width.to_id, height: dynamic_image.height.to_i} }}) unless dynamic_images.blank?
     json_hash = json_hash.merge({
                                     film: {
                                         cover: dynamic_film.cover.url,

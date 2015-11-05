@@ -11,6 +11,13 @@ module H5
         h_activity = HActivity.find(params[:id])
         render Success.new(activity: h_activity.as_json(include: :intro))
       end
+
+
+      private
+      def activity_params
+        params.permit(:title, :cover, :start, :end, :enroll, :address, :gather, :limit, :fee, :stay, :insurance, :tip, :bak,
+                      intro: [:title, :desc, :image])
+      end
     end
   end
 end
