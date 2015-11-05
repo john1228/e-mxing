@@ -224,6 +224,9 @@ Rails.application.routes.draw do
     put 'wallet' => 'wallet#exchange'
     #设置
     put 'setting' => 'setting#update'
+    #赞信息
+    get 'likes/most' => 'likes#most'
+    get 'likes/latest' => 'likes#latest'
   end
 
   namespace :callback do

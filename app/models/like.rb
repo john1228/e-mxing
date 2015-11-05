@@ -1,8 +1,7 @@
 class Like < ActiveRecord::Base
   before_save :within_month
   belongs_to :user
-  DYNAMIC = 1
-  PERSON = 2
+  enum like_type: {dynamic: 1, person: 2}
 
   def as_json
     {
@@ -13,14 +12,14 @@ class Like < ActiveRecord::Base
 
   private
   def within_month
-    if like_type.eql?(DYNAMIC)
-      liked = Like.where(user_id: user_id, liked_id: liked_id, like_type: DYNAMIC).take
+    if dynamic?
+      liked = Like.dynamic.find_by(user_id: user_id, liked_id: liked_id)
       if liked.present?
-        errors.add('exist', '您已经对')
+        errors.add('exist', '您已经对该动态点过赞')
         return false
       end
-    elsif like_type.eql?(PERSON)
-      liked = Like.where(user_id: user_id, liked_id: liked_id, like_type: PERSON, created_at: Time.now.at_beginning_of_month..Time.now).take
+    elsif person?
+      liked = Like.person.where(user_id: user_id, liked_id: liked_id, created_at: Time.now.at_beginning_of_month..Time.now).take
       if liked.present?
         errors.add('exist', '您本月已经对该用户点过赞')
         return false

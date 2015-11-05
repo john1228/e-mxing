@@ -3,9 +3,11 @@ class LikeController < ApiController
   def index
     case params[:type]
       when 'dynamic'
-        likes = Like.where(liked_id: params[:id], like_type: Like::DYNAMIC).order(id: :desc).page(params[:page]||1)
+        likes = Like.dynamic.where(liked_id: params[:id]).order(id: :desc).page(params[:page]||1)
       when 'person'
-        likes = Like.where(liked_id: params[:id], like_type: Like::PERSON).order(id: :desc).page(params[:page]||1)
+        likes = Like.person.where(liked_id: params[:id]).order(id: :desc).page(params[:page]||1)
+      else
+        likes = []
     end
     render json: Success.new(like: likes)
   end
@@ -13,10 +15,11 @@ class LikeController < ApiController
   def create
     case params[:type]
       when 'dynamic'
-        Like.create(user_id: @user.id, liked_id: params[:no], like_type: Like::DYNAMIC)
+        Like.dynamic.create(user_id: @user.id, liked_id: params[:no])
       when 'person'
         user = User.find_by_mxid(params[:mxid])
-        user.likes.create(user_id: @user.id)
+        Like.person.create(user_id: @user.id, liked_id: user.id)
+      else
     end
     render json: Success.new
   end
