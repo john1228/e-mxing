@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151103090702) do
+ActiveRecord::Schema.define(version: 20151105110513) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -715,6 +715,16 @@ ActiveRecord::Schema.define(version: 20151103090702) do
   end
 
   add_index "users", ["mobile", "sns"], name: "index_users_on_mobile_and_sns", unique: true, using: :btree
+
+  create_table "venue_comments", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "venue_id"
+    t.integer  "score"
+    t.string   "content"
+    t.string   "image",      default: [],              array: true
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
 
   create_table "wallet_logs", force: :cascade do |t|
     t.integer  "wallet_id"

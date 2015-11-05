@@ -227,6 +227,8 @@ Rails.application.routes.draw do
     #赞信息
     get 'likes/most' => 'likes#most'
     get 'likes/latest' => 'likes#latest'
+    #优惠券信息
+    get 'coupons' => 'coupons#index'
   end
 
   namespace :callback do
