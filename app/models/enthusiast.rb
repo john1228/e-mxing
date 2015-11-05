@@ -12,17 +12,11 @@ class Enthusiast<User
         address: profile.address,
         signature: profile.signature,
         likes: likes.count,
-        photowall: photos.map{|photo| {no: photo.id, url: photo.url}},
+        photowall: photos.map { |photo| {no: photo.id, url: photo.url} },
         target: profile.target,
-        hobby: _hobby,
+        fpg: profile._fitness_program,
         often: profile.often_stadium,
         skill: profile.skill
     }
-  end
-
-  private
-  def _hobby
-    choose_interests = INTERESTS['items'].select { |item| profile.hobby.include?(item['id']) }
-    choose_interests.collect { |choose| choose['name'] }
   end
 end

@@ -64,7 +64,7 @@ class Service<User
             item: in_the_sale.order(updated_at: :desc).take(2)
         },
         open: '8:30-21:30',
-        service: _service,
+        service: profile._fitness_program,
         facility: profile.service,
         contact: profile.mobile,
         photowall: photos.map { |photo| {url: photo.photo.url} }
@@ -72,9 +72,6 @@ class Service<User
   end
 
   private
-  def _service
-    INTERESTS['items'].map { |item| item['name'] if profile.hobby.include?(item['id']) }.compact!
-  end
 
   def location
     if profile.changed?

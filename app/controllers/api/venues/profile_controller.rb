@@ -27,7 +27,7 @@ module Api
                                          item: venue.courses.online.order(updated_at: :desc).take(2)
                                      },
                                      open: '8:30-21:30',
-                                     service: (INTERESTS['items'].map { |item| item['name'] if venue.profile.hobby.include?(item['id']) }.compact! rescue []),
+                                     fpg: venue.profile._fitness_program,
                                      facility: venue.profile.service,
                                      contact: venue.profile.mobile,
                                      photowall: venue.photos.map { |photo| {url: photo.photo.url} }

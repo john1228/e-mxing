@@ -79,4 +79,8 @@ class Profile < ActiveRecord::Base
         interests: hobby.join(',')
     }
   end
+
+  def _fitness_program
+    INTERESTS['items'].map { |item| item['name'] if profile.hobby.include?(item['id']) }.compact!
+  end
 end

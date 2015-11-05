@@ -55,7 +55,8 @@ class Coach<User
                 lat: service.place.lonlat.y
             },
         },
-        skill: _skill,
+        skill: skill,
+        fpg: _fitness_program,
         course: {
             amount: Sku.online.where(seller_id: id).count,
             item: Sku.online.where(seller_id: id).order(updated_at: :desc).take(2)
@@ -80,10 +81,5 @@ class Coach<User
           }
       ]
     end
-  end
-
-  private
-  def _skill
-    INTERESTS['items'].map { |item| item['name'] if profile.hobby.include?(item['id']) }.compact!
   end
 end
