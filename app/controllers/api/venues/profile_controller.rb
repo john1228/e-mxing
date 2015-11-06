@@ -8,7 +8,7 @@ module Api
                                      mxid: venue.profile.mxid,
                                      name: venue.profile.name,
                                      avatar: venue.profile.avatar.url,
-                                     views: views,
+                                     views: venue.views,
                                      address: venue.profile.province.to_s + venue.profile.city.to_s + venue.profile.address.to_s,
                                      coordinate: {
                                          lng: venue.place.lonlat.x,

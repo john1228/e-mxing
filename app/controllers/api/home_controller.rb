@@ -86,6 +86,7 @@ module Api
       render json: Success.new(key: %w'综合训练 瑜伽 力量 跆拳道 有氧操 羽毛球')
     end
 
+
     protected
     def search_venues(keyword, page)
       Service.joins(:place).select("users.*,st_distance(places.lonlat, 'POINT(#{params[:lng]||0} #{params[:lat]||0})') as distance").

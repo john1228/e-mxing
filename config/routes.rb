@@ -287,7 +287,9 @@ Rails.application.routes.draw do
     end
     namespace :course do
       get '/' => 'home#index'
-      get 'search' => ''
+      get 'search' => 'home/search'
+      get 'comments' => 'comments#index'
+      post 'comments' => 'comments#create'
     end
   end
 
