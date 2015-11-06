@@ -38,7 +38,7 @@ class Profile < ActiveRecord::Base
   end
 
   def tags
-    [0, service? ? 1 : 0, gyms? ? 1 : 0]
+    [0, service? ? 1 : 0, coach? ? 1 : 0]
   end
 
   def interests_string
