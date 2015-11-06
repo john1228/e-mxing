@@ -29,6 +29,8 @@ ActiveAdmin.register News do
     end
 
     def submit_recommend
+      news = News.find(params[:id])
+      news.update(tag_1: params[:tag_1])
       render layout: false
     end
   end
