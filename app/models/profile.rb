@@ -81,6 +81,6 @@ class Profile < ActiveRecord::Base
   end
 
   def _fitness_program
-    INTERESTS['items'].map { |item| item['name'] if profile.hobby.include?(item['id']) }.compact!
+    INTERESTS['items'].map { |item| item['name'] if hobby.include?(item['id']) }.compact!
   end
 end

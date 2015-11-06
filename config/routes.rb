@@ -285,6 +285,10 @@ Rails.application.routes.draw do
       get '/show' => 'home#show'
       delete '/:id' => 'home#destroy'
     end
+    namespace :course do
+      get '/' => 'home#index'
+      get 'search' => ''
+    end
   end
 
   #发现
