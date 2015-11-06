@@ -29,7 +29,7 @@ module Api
         venue = Service.find_by_mxid(params[:mxid])
         comments = VenueComment.where(venue_id: venue.id)
         render json: Success.new({
-                                     count: comments.count,
+                                     amount: comments.count,
                                      item: comments.order(id: :desc).limit(2).map { |comment|
                                        {
                                            user: {

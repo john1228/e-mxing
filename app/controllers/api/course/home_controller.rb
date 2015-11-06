@@ -58,6 +58,9 @@ module Api
           render json: Failure.new('您查看到课程已下架')
         else
           user = Rails.cache.fetch(request.headers[:token])
+          concerned = nil
+          limit = nil
+          sku_limit = nil
           if user.present?
             concerned = Concerned.find_by(sku: params[:sku], user: user).present? ? 1 : 0
             sku_limit = sku.limit || -1
