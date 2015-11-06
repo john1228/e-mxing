@@ -292,6 +292,9 @@ Rails.application.routes.draw do
       get '/' => 'home#index'
       get 'show' => 'home#show'
       get 'search' => 'home/search'
+      post 'coupons' => 'home/coupons'
+      put 'coupons' => 'home#confirm_order'
+
       get 'comments' => 'comments#index'
       post 'comments' => 'comments#create'
     end
