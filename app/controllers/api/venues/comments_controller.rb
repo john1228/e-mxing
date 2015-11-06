@@ -58,9 +58,10 @@ module Api
 
       private
       def venue_comment_params
+        user = Rails.cache.fetch(request.headers[:token])
         venue = Service.find_by_mxid(params[:mxid])
         permit_params = params.permit(:content, :score)
-        permit_params.merge(venue_id: venue.id, image: (0..8).map { |index| params[index.to_s.to_sym] if params[index.to_s.to_sym].present? }.compact!)
+        permit_params.merge(user_id: user.id, venue_id: venue.id, image: (0..8).map { |index| params[index.to_s.to_sym] if params[index.to_s.to_sym].present? }.compact!)
       end
     end
   end
