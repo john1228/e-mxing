@@ -1,6 +1,6 @@
 module Api
   module Fan
-    class ProfilesController < BaseController
+    class ProfilesController < ApplicationController
       def show
         enthusiast = Enthusiast.find_by_mxid(params[:mxid])
         if enthusiast.present?
