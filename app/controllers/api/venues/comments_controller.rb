@@ -15,7 +15,7 @@ module Api
                                                avatar: comment.user.profile.avatar.url,
                                                age: comment.user.profile.age,
                                                gender: comment.user.profile.gender.to_i,
-                                               identity: comment.user.profile.identiy,
+                                               identity: comment.user.profile.identity,
                                            },
                                            content: comment.content,
                                            image: comment.image.map { |image| image.url },

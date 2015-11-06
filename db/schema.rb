@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151105110513) do
+ActiveRecord::Schema.define(version: 20151106092736) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -686,6 +686,14 @@ ActiveRecord::Schema.define(version: 20151105110513) do
   add_index "skus", ["seller_id"], name: "index_skus_on_seller_id", using: :btree
   add_index "skus", ["service_id"], name: "index_skus_on_service_id", using: :btree
   add_index "skus", ["sku"], name: "index_skus_on_sku", unique: true, using: :btree
+
+  create_table "strategies", force: :cascade do |t|
+    t.string   "user_id"
+    t.string   "category"
+    t.string   "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "tags", force: :cascade do |t|
     t.integer "tag"
