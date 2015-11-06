@@ -270,6 +270,9 @@ Rails.application.routes.draw do
       get 'profile' => 'profile#show'
       get 'coaches' => 'coaches#index'
       get 'courses' => 'courses#index'
+      get 'comments' => 'comments#index'
+      get 'comments/latest' => 'comments#latest'
+      post 'comments' => 'comments#create'
     end
     namespace :gyms do
       get 'profile' => 'profile#show'

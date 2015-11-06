@@ -47,7 +47,6 @@ module Gyms
     end
 
     def create
-
       comment = VenueComment.new(venue_comment_params)
       if comment.save
         render json: Success.new
