@@ -117,6 +117,10 @@ Rails.application.routes.draw do
   post '/admin/skus/:id/recommend' => 'admin/skus#recommend', as: :recommend_course #推荐课程
   delete '/admin/skus/:id/recommend' => 'admin/skus#cancel_recommend', as: :cancel_recommend_course
 
+  get '/admin/news/:id/recommend' => 'admin/news#recommend', as: :recommend_news
+  post '/admin/news/:id/recommend' => 'admin/news#submit_recommend', as: :submit_recommend_news, defaults: {format: 'js'}
+
+
   get 'download' => 'download#index'
   get 'download/:package' => 'download#index'
 

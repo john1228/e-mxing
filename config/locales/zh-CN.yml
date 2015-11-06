@@ -71,6 +71,12 @@
         venues: '场馆'
         dynamic: '动态'
         news: '新闻'
+    news:
+      tag:
+        knowledge: '健身知识'
+        question: '你问我答'
+        venues: '热门场馆'
+        gyms: '金牌私教'
     profile:
       identity:
         enthusiast: '健身爱好者'

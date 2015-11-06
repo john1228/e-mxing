@@ -3,13 +3,13 @@ ActiveAdmin.register News do
   filter :title, label: '标题'
   permit_params :id, :tag, :title, :cover, :content
 
-  index  do
+  index do
     selectable_column
     column '标题', :title do |news|
       truncate(news.title)
     end
     column '分类', :title do |news|
-      news.tag
+      I18n.t(news.tag, scope: [:enums, :news, :tag])
     end
     column '封面', :title do |news|
       image_tag(news.cover.url, width: 69)
@@ -17,7 +17,20 @@ ActiveAdmin.register News do
     column '链接地址' do |news|
       link_to('详情', news_detail_path(news))
     end
-    actions
+    actions do |news|
+      link_to('推荐', recommend_news_path(news), class: 'fancybox', data: {'fancybox-type' => 'ajax'})
+    end
+  end
+
+  controller do
+    def recommend
+      @news = News.find(params[:id])
+      render layout: false
+    end
+
+    def submit_recommend
+      render layout: false
+    end
   end
 
   show title: '新闻详情' do

@@ -1,0 +1,17 @@
+﻿<div class="panel">
+  <h3>推荐</h3>
+  <%= form_tag(submit_recommend_news_path(@news), remote: true) do %>
+      <table style='padding: 20px'>
+        <tr>
+          <th>推荐理由</th>
+          <td> <%= text_area_tag :tip, '', rows: 10, cols: 50 %></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <%= submit_tag('提交') %>
+          </td>
+        </tr>
+      </table>
+  <% end %>
+</div>
