@@ -24,6 +24,29 @@ module Api
                  )
         end
 
+        def latest
+          strategy = Strategy.find(params[:id])
+          render json: Success.new(
+                     comment: {
+                         amount: strategy.comment_count,
+                         item: strategy.comments.limit(3).map { |comment|
+                           {
+                               user: {
+                                   mxid: comment.user.profile.mxid,
+                                   name: comment.user.profile.name,
+                                   avatar: comment.user.profile.avatar.url,
+                                   age: comment.user.profile.age,
+                                   gender: comment.user.profile.gender.to_i,
+                                   identity: comment.user.profile.identity,
+                               },
+                               content: comment.content,
+                               created: comment.created_at.localtime.strftime('%Y-%m-%d %H:%M:%S')
+                           }
+                         }
+                     }
+                 )
+        end
+
         def create
           strategy_comment = StrategyComment.new(comment_params)
           if strategy_comment.save

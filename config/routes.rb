@@ -312,6 +312,7 @@ Rails.application.routes.draw do
         get '' => 'home#index'
         post '' => 'home#create'
         get '/comments' => 'comments#index'
+        get '/comments/latest' => 'comments#latest'
         post '/comments' => 'comments#create'
       end
     end
