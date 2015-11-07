@@ -35,6 +35,6 @@ class News < ActiveRecord::Base
 
 
   def category_news(category, sub_category)
-    where('? = ANY(tag_1) and tag = ?', category, sub_category).order(id: :desc)
+    where('? = ANY(tag_1) AND tag = ?', category, sub_category).order(id: :desc)
   end
 end
