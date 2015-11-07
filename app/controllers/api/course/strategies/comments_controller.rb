@@ -2,7 +2,7 @@ module Api
   module Course
     module Strategies
       class CommentsController < ApplicationController
-        before_filter :auth_user, only: create
+        before_filter :auth_user, only: :create
 
         def index
           comments = StrategyComment.where(strategy_id: params[:id]).page(params[:page]||1)
