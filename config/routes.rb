@@ -307,6 +307,13 @@ Rails.application.routes.draw do
 
       get 'news' => 'news#index'
       get 'news/top' => 'news#top'
+
+      namespace :strategies do
+        get '' => 'home#index'
+        post '' => 'home#create'
+        get '/comments' => 'comments#index'
+        post '/comments' => 'comments#create'
+      end
     end
   end
 
