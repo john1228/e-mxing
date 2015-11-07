@@ -104,7 +104,6 @@ module Api
         end
       end
 
-
       private
       def order_params
         params.permit(:sku, :amount, :coupon, :pay_type, :contact_name, :contact_phone)

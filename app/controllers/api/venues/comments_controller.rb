@@ -18,7 +18,7 @@ module Api
                                                identity: comment.user.profile.identity,
                                            },
                                            content: comment.content,
-                                           image: comment.image.map { |image| image.url },
+                                           images: comment.image.map { |image| image.url },
                                            created: comment.created_at.localtime.strftime('%Y-%m-%d %H:%M:%S')
                                        }
                                      }
@@ -41,7 +41,7 @@ module Api
                                                identity: comment.user.profile.identity,
                                            },
                                            content: comment.content,
-                                           image: comment.image.map { |image| image.url },
+                                           images: comment.image.map { |image| image.url },
                                            created: comment.created_at.localtime.strftime('%Y-%m-%d %H:%M:%S')
                                        }
                                      }
