@@ -58,7 +58,7 @@ module Api
 
         private
         def comment_params
-          params.permit(:content)
+          params.permit(:content).merge(user_id: @user.id, strategy_id: params[:id])
         end
 
         def auth_user
