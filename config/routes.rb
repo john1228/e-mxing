@@ -298,8 +298,8 @@ Rails.application.routes.draw do
     namespace :course do
       get '/' => 'home#index'
       get 'show' => 'home#show'
-      get 'search' => 'home/search'
-      post 'coupons' => 'home/coupons'
+      get 'search' => 'home#search'
+      post 'coupons' => 'home#coupons'
       put 'coupons' => 'home#confirm_order'
 
       get 'comments' => 'comments#index'

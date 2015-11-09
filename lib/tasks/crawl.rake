@@ -1,14 +1,6 @@
 namespace :crawl do
   task :dianping => :environment do
     host = 'http://www.dianping.com'
-    options = {:accept_cookies => true,
-               :depth_limit => 1,
-               :read_timeout => 20,
-               :retry_limit => 0,
-               :verbose => true,
-               :discard_page_bodies => true,
-               :user_agent => 'Mozilla...'}
-
     # * Linux Firefox (3.6.1)
     # * Linux Konqueror (3)
     # * Linux Mozilla
@@ -80,7 +72,7 @@ namespace :crawl do
               puts "#{index}:#{value}"
               tab_info = tab_infos[index]
               if value.eql?('环境')
-                photo = tab_info.css('div.container a img').map { |image| host + image['src'] }
+                photo = tab_info.css('div.container a img').map { |image| image['src'].gsub('100c100', '1000c1000') }
               elsif value.eql?('品牌故事')
                 intro = tab_info.css('div.info p.J_all')[0].text
               end
