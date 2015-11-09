@@ -2,7 +2,7 @@ module Api
   module Course
     module Strategies
       class StrategiesController < ApplicationController
-        before_filter :auth_user
+        before_filter :auth_user, only: :create
 
         def index
           render json: Success.new(
