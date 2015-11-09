@@ -16,9 +16,9 @@ ActiveAdmin.register CrawlDatum do
     end
     column '照片' do |crawl_datum|
       render partial: 'photo', locals: {photo: crawl_datum.photo}
-      # crawl_datum.photo.each { |photo|
-      #   image_tag(photo)
-      # }
+    end
+    column '介绍' do |crawl_datum|
+      crawl_datum.intro
     end
   end
 end
