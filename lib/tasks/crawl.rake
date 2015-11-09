@@ -9,29 +9,25 @@ namespace :crawl do
                :discard_page_bodies => true,
                :user_agent => 'Mozilla...'}
 
-# * Linux Firefox (3.6.1)
-# * Linux Konqueror (3)
-# * Linux Mozilla
-# * Mac Firefox (3.6)
-# * Mac Mozilla
-# * Mac Safari (5)
-# * Mac Safari 4
-# * Mechanize (default)
-# * Windows IE 6
-# * Windows IE 7
-# * Windows IE 8
-# * Windows IE 9
-# * Windows Mozilla
+    # * Linux Firefox (3.6.1)
+    # * Linux Konqueror (3)
+    # * Linux Mozilla
+    # * Mac Firefox (3.6)
+    # * Mac Mozilla
+    # * Mac Safari (5)
+    # * Mac Safari 4
+    # * Mechanize (default)
+    # * Windows IE 6
+    # * Windows IE 7
+    # * Windows IE 8
+    # * Windows IE 9
+    # * Windows Mozilla
 
 
     agent = Mechanize.new { |agent| agent.user_agent_alias = 'Linux Mozilla' }
 
+
     %W"http://www.dianping.com/beijing/sports".map { |city|
-      # Anemone.crawl(city, options) do |anemone|
-      #   anemone.on_pages_like(city) do |page|
-      #     puts page.url
-      #   end
-      # end
       #抓取运动分类
       page = Nokogiri::HTML(open(city))
       items = page.css('li.term-list-item').select { |li| li if li.css('strong.term').text.eql?('运动分类:') }
@@ -60,8 +56,8 @@ namespace :crawl do
           sleep(10)
         end
         sleep(10)
-        shop.map { |shop|
-          detail = Nokogiri::HTML(agent.get(shop[:url]).body)
+        shop.map { |shop_info|
+          detail = Nokogiri::HTML(agent.get(shop_info[:url]).body)
           sleep(10)
           base_info = detail.css('div#basic-info')
           base_info.css('h1.shop-name a').remove
@@ -69,22 +65,24 @@ namespace :crawl do
           base_info.css('div.other p.J-feature').remove
           base_info.css('div.other p.J-Contribution').remove
           begin
-            photo = Nokogiri::HTML(agent.get(URI.encode(shop[:url] + '/photos/tag-环境')).body)
-            sleep(10)
-            photos = photo.css('div.img a img').map { |image|
-              image['src']
-            }
-          rescue
-            photos = []
-          end
-          begin
+            shop_name = (base_info.css('h1.shop-name')[0].text).lstrip.rstrip.chop
+            avatar = shop[:avatar]
+            address = base_info.css('div.address a')[0].text.lstrip.rstrip + base_info.css('div.address span.item')[0].text.lstrip.rstrip
+            tel = base_info.css('p.tel span.item')[0].textmap { |span| span.text.lstrip.rstrip }
+            business = base_info.css('div.other p.info-indent').select { |item| item.css('span.info-name').text.start_with?('营业时间') }.map { |item| item.css('span.item').text.lstrip.rstrip }.join
+            service = base_info.css('div.other p.info-indent').select { |item| item.css('span.info-name').text.start_with?('分类标签') }.map { |item| item.css('span.item').text.lstrip.rstrip }
+            intro = ''
+
+
+
+
             CrawlDatum.create(
-                name: (base_info.css('h1.shop-name')[0].text).lstrip.rstrip.chop,
-                avatar: shop[:avatar],
-                address: base_info.css('div.address a')[0].text + base_info.css('div.address span.item')[0].text.lstrip.rstrip.chop,
-                tel: base_info.css('p.tel span.item').map { |span| span.text.lstrip.rstrip.chop },
-                business: base_info.css('div.other p.info-indent').select { |item| item.css('span.info-name').text.start_with?('营业时间') }.map { |item| item.css('span.item').text.lstrip.rstrip.chop }.join,
-                service: base_info.css('div.other p.info-indent').select { |item| item.css('span.info-name').text.start_with?('分类标签') }.map { |item| item.css('span.item').text.lstrip.rstrip.chop },
+                name: shop_name,
+                avatar: avatar,
+                address: address,
+                tel: tel,
+                business: business,
+                service: service,
                 photo: photos
             )
           rescue Exception => exp
