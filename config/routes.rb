@@ -291,6 +291,9 @@ Rails.application.routes.draw do
       post '/' => 'home#create'
       get '/show' => 'home#show'
       delete '/:id' => 'home#destroy'
+
+      get 'comments' => 'comments#index'
+      post 'comments' => 'comments#create'
     end
     namespace :course do
       get '/' => 'home#index'

@@ -75,24 +75,7 @@ module Api
                                                identity: Profile.identities[like.user.profile.identity]
                                            },
                                            created: like.created_at.localtime.strftime('%Y-%m-%d %H:%M:%S'),
-                                       } },
-                                       comments: {
-                                           count: dynamic.dynamic_comments.count,
-                                           item: dynamic.dynamic_comments.order(id: :desc).limit(2).collect { |comment|
-                                             {
-                                                 content: HarmoniousDictionary.clean(comment.content),
-                                                 created: comment.created_at.localtime.strftime('%Y-%m-%d %H:%M:%S'),
-                                                 user: {
-                                                     mxid: comment.user.profile.mxid,
-                                                     name: comment.user.profile.name,
-                                                     avatar: comment.user.profile.avatar.url,
-                                                     age: comment.user.profile.age,
-                                                     gender: comment.user.profile.gender,
-                                                     identity: Profile.identities[comment.user.profile.identity]
-                                                 },
-                                             }
-                                           }
-                                       }
+                                       } }
                                    })
         else
           render json: Failure.new('您查看到内容已删除')
