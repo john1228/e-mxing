@@ -48,7 +48,7 @@ module Api
       end
 
       def show
-        dynamic = Dynamic.find(id: params[:id])
+        dynamic = Dynamic.find(params[:id])
         if dynamic.present?
           render json: Success.new(dynamic: {
                                        id: dynamic.id,

@@ -30,17 +30,19 @@ namespace :crawl do
     base_info = Nokogiri::HTML(agent.get('http://www.dianping.com/shop/18968550').body)
     tab_titles = base_info.css('div#shop-tabs h2.mod-title a').map { |a| a.text.lstrip.rstrip }
     tab_infos =Nokogiri::HTML(base_info.css('div#shop-tabs script').text).css('div.J-panel')
+    photo = nil
+    intro = nil
     tab_titles.each_with_index { |value, index|
       puts "#{index}:#{value}"
       tab_info = tab_infos[index]
       if value.eql?('环境')
-        photos = tab_info.css('div.container a img').map { |image| host + image['src'] }
+        photo = tab_info.css('div.container a img').map { |image| host + image['src'] }
       elsif value.eql?('品牌故事')
         intro = tab_info.css('div.info p.J_all')[0].text
       end
     }
 
-    puts "图片:#{photos}"
+    puts "图片:#{photo}"
     puts "介绍:#{intro}"
 
     #
