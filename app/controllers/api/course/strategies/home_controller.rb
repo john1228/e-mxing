@@ -1,8 +1,8 @@
 module Api
   module Course
     module Strategies
-      class StrategiesController < ApplicationController
-        before_filter :auth_user, only: :create
+      class HomeController < ApplicationController
+        before_filter :auth_user, except: :index
 
         def index
           render json: Success.new(
@@ -18,7 +18,24 @@ module Api
                                identity: strategy.user.profile.identity,
                            },
                            content: strategy.content,
-                           created: strategy.created_at.strftime('%Y-%m-%d %H:%M:%S')
+                           created: strategy.created_at.strftime('%Y-%m-%d %H:%M:%S'),
+                           comment: {
+                               amount: strategy.comment_count,
+                               item: strategy.comments.limit(3).map { |comment|
+                                 {
+                                     user: {
+                                         mxid: comment.user.profile.mxid,
+                                         name: comment.user.profile.name,
+                                         avatar: comment.user.profile.avatar.url,
+                                         age: comment.user.profile.age,
+                                         gender: comment.user.profile.gender.to_i,
+                                         identity: comment.user.profile.identity,
+                                     },
+                                     content: comment.content,
+                                     created: comment.created_at.localtime.strftime('%Y-%m-%d %H:%M:%S')
+                                 }
+                               }
+                           }
                        }
                      }
                  )

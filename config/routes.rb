@@ -302,9 +302,6 @@ Rails.application.routes.draw do
       get 'comments' => 'comments#index'
       post 'comments' => 'comments#create'
 
-      get 'strategies' => 'strategies#index'
-      post 'strategies' => 'strategies#create'
-
       get 'news' => 'news#index'
       get 'news/top' => 'news#top'
 
