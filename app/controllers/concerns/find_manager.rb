@@ -4,7 +4,7 @@ module FindManager
   def dynamics
     Dynamic.order(id: :desc).includes(:user, :dynamic_images, :dynamic_film).page(params[:page]||1).collect { |dynamic|
       {
-          dynamic: dynamic.as_json,
+          dynamices: dynamic.as_json,
           user: dynamic.user.profile.summary_json
       }
     }

@@ -26,11 +26,12 @@ namespace :crawl do
 
     agent = Mechanize.new { |agent| agent.user_agent_alias = 'Linux Mozilla' }
 
-    slee(10)
+    sleep(10)
     base_info = Nokogiri::HTML(agent.get('http://www.dianping.com/shop/18968550').body)
-    tab_titles = base_info.css('div#shop_tabs h2 a').map { |a| a.text.lstrip.rstrip }
-    tab_infos = base_info.css('div#shop_tabs div')
+    tab_titles = base_info.css('div#shop-tabs h2.mod-title a').map { |a| a.text.lstrip.rstrip }
+    tab_infos =Nokogiri::HTML(base_info.css('div#shop-tabs script').text).css('div.J-panel')
     tab_titles.each_with_index { |value, index|
+      puts "#{index}:#{value}"
       tab_info = tab_infos[index]
       if value.eql?('环境')
         photos = tab_info.css('div.container a img').map { |image| host + image['src'] }
@@ -39,7 +40,7 @@ namespace :crawl do
       end
     }
 
-    puts "图片:#{photos.to_s}"
+    puts "图片:#{photos}"
     puts "介绍:#{intro}"
 
     #

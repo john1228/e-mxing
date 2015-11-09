@@ -286,7 +286,7 @@ Rails.application.routes.draw do
     namespace :fan do
       get 'profile' => 'profile#show'
     end
-    namespace :dynamic do
+    namespace :dynamics do
       get '/' => 'home#index'
       post '/' => 'home#create'
       get '/show' => 'home#show'

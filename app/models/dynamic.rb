@@ -3,7 +3,7 @@ class Dynamic < ActiveRecord::Base
   has_many :dynamic_images, dependent: :destroy
   has_one :dynamic_film, dependent: :destroy
   has_many :dynamic_comments, dependent: :destroy
-  has_many :likes, -> { where(like_type: Like.like_types[:dynamic]) }, foreign_key: :liked_id, dependent: :destroy
+  has_many :likes, -> { where(like_type: Like.like_types[:dynamices]) }, foreign_key: :liked_id, dependent: :destroy
 
   accepts_nested_attributes_for :dynamic_images
   accepts_nested_attributes_for :dynamic_film

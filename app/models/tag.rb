@@ -1,5 +1,5 @@
 class Tag < ActiveRecord::Base
-  enum tag: [:venues, :dynamic, :news]
+  enum tag: [:venues, :dynamices, :news]
   mount_uploader :background, ImagesUploader
 
   class << self
