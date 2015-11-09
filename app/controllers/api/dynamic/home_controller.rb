@@ -1,7 +1,7 @@
 module Api
   module Dynamic
     class HomeController < ApplicationController
-      before_filter :fetch_user, only: :show
+      before_filter :fetch_user, only: [:show, :index]
       before_filter :auth_user, only: [:create, :destroy]
 
       def index
