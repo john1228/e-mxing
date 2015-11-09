@@ -11,7 +11,7 @@ class DynamicsController < ApiController
   def show
     dynamic = Dynamic.find_by(id: params[:id])
     if dynamic.present?
-      render json: Success.new(dynamices: dynamic)
+      render json: Success.new(dynamic: dynamic)
     else
       render json: Failure.new('您查看到内容已删除')
     end

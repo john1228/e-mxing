@@ -6,7 +6,7 @@ module Api
 
       def index
         render json: Success.new(
-                   dynamices: @user.dynamics.order(created_at: :desc).page(params[:page]||1).map { |dynamic|
+                   dynamic: @user.dynamics.order(created_at: :desc).page(params[:page]||1).map { |dynamic|
                      {
                          id: dynamic.id,
                          content: HarmoniousDictionary.clean(dynamic.content || ''),
@@ -50,7 +50,7 @@ module Api
       def show
         dynamic = Dynamic.find(id: params[:id])
         if dynamic.present?
-          render json: Success.new(dynamices: {
+          render json: Success.new(dynamic: {
                                        id: dynamic.id,
                                        content: HarmoniousDictionary.clean(dynamic.content || ''),
                                        image: dynamic.dynamic_images.map { |image| {url: image.image.url} },
@@ -87,7 +87,7 @@ module Api
         (0...10).each { |image_index| dynamic.dynamic_images.build(image: params["#{image_index}"]) if params["#{image_index}"].present? }
         dynamic.build_dynamic_film(cover: params[:cover], film: params[:film]) if params[:film].present?&&params[:cover].present?
         if dynamic.save
-          render json: Success.new(dynamices: {
+          render json: Success.new(dynamic: {
                                        id: dynamic.id,
                                        content: HarmoniousDictionary.clean(dynamic.content || ''),
                                        image: dynamic.dynamic_images.map { |image| {url: image.image.url} },

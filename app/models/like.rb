@@ -1,7 +1,7 @@
 class Like < ActiveRecord::Base
   before_save :within_month
   belongs_to :user
-  enum like_type: {dynamices: 1, person: 2}
+  enum like_type: {dynamic: 1, person: 2}
 
   def as_json
     {

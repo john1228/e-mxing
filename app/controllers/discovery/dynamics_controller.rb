@@ -1,7 +1,7 @@
 module Discovery
   class DynamicsController < ApplicationController
     def index
-      render json: Success.new(dynamices: Dynamic.order(id: :desc).includes(:user).page(params[:page]||1).map { |dynamic|
+      render json: Success.new(dynamic: Dynamic.order(id: :desc).includes(:user).page(params[:page]||1).map { |dynamic|
                                  {
                                      id: dynamic.id,
                                      content: HarmoniousDictionary.clean(dynamic.content || ''),
