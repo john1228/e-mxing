@@ -6,7 +6,7 @@ module Api
 
       def index
         render json: Success.new(
-                   dynamics: @user.dynamics.order(created_at: :desc).page(params[:page]||1).map { |dynamic|
+                   dynamic: @user.dynamics.order(created_at: :desc).page(params[:page]||1).map { |dynamic|
                      {
                          id: dynamic.id,
                          content: HarmoniousDictionary.clean(dynamic.content || ''),
