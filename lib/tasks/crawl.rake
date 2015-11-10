@@ -49,18 +49,19 @@ namespace :crawl do
         end
         sleep(10)
         shop.map { |shop_info|
-          detail = Nokogiri::HTML(agent.get(shop_info[:url]).body)
-          sleep(10)
-          base_info = detail.css('div#basic-info')
-          base_info.css('h1.shop-name a').remove
-          base_info.css('div.other p.J-park').remove
-          base_info.css('div.other p.J-feature').remove
-          base_info.css('div.other p.J-Contribution').remove
           begin
+            detail = Nokogiri::HTML(agent.get(shop_info[:url]).body)
+            sleep(10)
+            base_info = detail.css('div#basic-info')
+            base_info.css('h1.shop-name a').remove
+            base_info.css('div.other p.J-park').remove
+            base_info.css('div.other p.J-feature').remove
+            base_info.css('div.other p.J-Contribution').remove
+            #begin
             shop_name = (base_info.css('h1.shop-name')[0].text).lstrip.rstrip.chop
-            avatar = shop[:avatar]
+            avatar = shop_info[:avatar]
             address = base_info.css('div.address a')[0].text.lstrip.rstrip + base_info.css('div.address span.item')[0].text.lstrip.rstrip
-            tel = base_info.css('p.tel span.item')[0].textmap { |span| span.text.lstrip.rstrip }
+            tel = base_info.css('p.tel span.item').map { |span| span.text.lstrip.rstrip }.join(',')
             business = base_info.css('div.other p.info-indent').select { |item| item.css('span.info-name').text.start_with?('营业时间') }.map { |item| item.css('span.item').text.lstrip.rstrip }.join
             service = base_info.css('div.other p.info-indent').select { |item| item.css('span.info-name').text.start_with?('分类标签') }.map { |item| item.css('span.item').text.lstrip.rstrip }
 
@@ -77,8 +78,6 @@ namespace :crawl do
                 intro = tab_info.css('div.info p.J_all')[0].text
               end
             }
-
-
             CrawlDatum.create(
                 name: shop_name,
                 avatar: avatar,
