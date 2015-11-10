@@ -1,7 +1,7 @@
 module Api
   module Course
     class HomeController < ApplicationController
-      before_action :verify_auth_token, only: [:pre_order, :confirm_order]
+      before_action :verify_auth_token, only: [:coupons, :confirm_order]
 
       def index
         city = URI.decode(request.headers[:city]) rescue '上海'
