@@ -3,7 +3,7 @@ namespace :rank do
   task :week => :environment do
     start_date = Time.now.at_beginning_of_week
     end_date = Time.now.tomorrow.at_beginning_of_day
-    ranks = Like.where(like_type: Like::PERSON, created_at: start_date..end_date).group(:liked_id).limit(50).order('count_id desc').count(:id)
+    ranks = Like.person.where(created_at: start_date..end_date).group(:liked_id).limit(50).order('count_id desc').count(:id)
     Rails.cache.write('week', ranks)
   end
 
@@ -11,7 +11,7 @@ namespace :rank do
   task :month => :environment do
     start_date = Time.now.at_beginning_of_month
     end_date = Time.now.at_beginning_of_day
-    ranks = Like.where(like_type: Like::PERSON, created_at: start_date..end_date).group(:liked_id).limit(50).order('count_id desc').count(:id)
+    ranks = Like.person.where(created_at: start_date..end_date).group(:liked_id).limit(50).order('count_id desc').count(:id)
     Rails.cache.write('month', ranks)
   end
 end
