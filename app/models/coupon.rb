@@ -4,9 +4,9 @@ class Coupon < ActiveRecord::Base
   STATUS = {offline: 0, online: 1}
   TYPE = {general: 1, gyms: 2, course: 3, service: 4}
   validates_presence_of :name, :limit_category, :start_date, :end_date, :discount, :min, :amount
-  validates_presence_of :limit_ext, if: Proc.new { |coupon|
-                                    coupon.limit_category.eql?(TYPE[:gyms])||coupon.limit_category.eql?(TYPE[:course])||coupon.limit_category.eql?(TYPE[:service])
-                                  }
+  validates_presence_of :limit_ext, if: Proc.new { |coupon| coupon.limit_category.eql?(TYPE[:gyms])||coupon.limit_category.eql?(TYPE[:course])||coupon.limit_category.eql?(TYPE[:service]) }
+
+  enum limit_category: {general: '1', gyms: '2', course: '3', service: '4'}
 
   def as_json
     {
