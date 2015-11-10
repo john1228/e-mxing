@@ -16,10 +16,6 @@ class FilmUploader < CarrierWave::Uploader::Base
     "#{Time.now.strftime('%Y/%m/%d')}/#{secure_token}.#{file.extension}" if original_filename
   end
 
-  def qiniu_async_ops
-    'avthumb/m3u8/vb/500k/t/10'
-  end
-  
   protected
   def secure_token
     var = :"@#{mounted_as}_secure_token"

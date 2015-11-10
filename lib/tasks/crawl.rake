@@ -21,39 +21,39 @@ namespace :crawl do
 
     %W"http://www.dianping.com/beijing/sports".map { |city|
       #抓取运动分类
-      page = Nokogiri::HTML(open(city))
-      items = page.css('li.term-list-item').select { |li| li if li.css('strong.term').text.eql?('运动分类:') }
-      category = items.first.css('a').map { |a| host + a['href'] }
-      sleep(10)
+      #page = Nokogiri::HTML(open(city))
+      #items = page.css('li.term-list-item').select { |li| li if li.css('strong.term').text.eql?('运动分类:') }
+      #category = items.first.css('a').map { |a| host + a['href'] }
+      #sleep(10)
+      category = []
       category.each { |_category_url|
-        shop = []
-        category_page = Nokogiri::HTML(agent.get(_category_url).body)
-        shop += category_page.css('div.pic a').map { |a|
-          {
-              url: host + a['href'],
-              avatar: a.css('img')[0]['data-src']
-          }
-        }
-        next_page_url = ((host + category_page.css('div.page a.next')[0]['href']) rescue nil)
-        while next_page_url.present?
-          puts "当前页码:#{next_page_url}"
-          next_page = Nokogiri::HTML(agent.get(next_page_url).body)
-          shop += next_page.css('div.pic a').map { |a|
-            {
-                url: host + a['href'],
-                avatar: a.css('img')[0]['data-src']
-            }
-          }
-          next_page_url = ((host + next_page.css('div.page a.next')[0]['href']) rescue nil)
-          sleep(10)
-        end
+        shop = [{avatar: 'http://i1.s1.dpfile.com/pc/c69e579ef5afb9c858773e5a19c729d8(249x249)/thumb.jpg', url: 'http://www.dianping.com/shop/13704445'}]
+        # category_page = Nokogiri::HTML(agent.get(_category_url).body)
+        # shop += category_page.css('div.pic a').map { |a|
+        #   {
+        #       url: host + a['href'],
+        #       avatar: a.css('img')[0]['data-src']
+        #   }
+        # }
+        # next_page_url = ((host + category_page.css('div.page a.next')[0]['href']) rescue nil)
+        # while next_page_url.present?
+        #   puts "当前页码:#{next_page_url}"
+        #   next_page = Nokogiri::HTML(agent.get(next_page_url).body)
+        #   shop += next_page.css('div.pic a').map { |a|
+        #     {
+        #         url: host + a['href'],
+        #         avatar: a.css('img')[0]['data-src']
+        #     }
+        #   }
+        #   next_page_url = ((host + next_page.css('div.page a.next')[0]['href']) rescue nil)
+        #   sleep(10)
+        # end
         sleep(10)
         shop.map { |shop_info|
           begin
             detail = Nokogiri::HTML(agent.get(shop_info[:url]).body)
             sleep(10)
             base_info = detail.css('div#basic-info')
-            base_info.css('h1.shop-name a').remove
             base_info.css('div.other p.J-park').remove
             base_info.css('div.other p.J-feature').remove
             base_info.css('div.other p.J-Contribution').remove

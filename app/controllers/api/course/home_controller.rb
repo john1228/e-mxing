@@ -79,7 +79,7 @@ module Api
         end
       end
 
-      def pre_order
+      def coupons
         amount = params[:amount].to_i
         sku = Sku.find_by(sku: params[:sku])
         sku_store = sku.store||-1

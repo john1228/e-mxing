@@ -1,0 +1,20 @@
+﻿<%= semantic_form_for([:admin, @crawl_data], html: {class: 'form-horizontal'}) do |f| %>
+    <fieldset class="inputs">
+      <legend><span>数据详情</span></legend>
+      <% if f.object.errors.full_messages.present? %>
+          <div class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            <%= f.object.errors.full_messages %>
+          </div>
+      <% end %>
+      <div class="form-group form-group-sm">
+        <label class="col-sm-2 control-label" for="service_interests">名称:</label>
+
+        <div class="col-sm-10">
+          <%= f.text_field(:name, class: 'form-control', placeholder: '请输入课程名称') %>
+        </div>
+      </div>
+    </fieldset>
+    <%= f.submit('提交') %>
+<% end %>
