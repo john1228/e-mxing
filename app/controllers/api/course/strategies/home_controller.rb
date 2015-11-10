@@ -15,7 +15,7 @@ module Api
                                avatar: strategy.user.profile.avatar.url,
                                age: strategy.user.profile.age,
                                gender: strategy.user.profile.gender.to_i,
-                               identity: strategy.user.profile.identity,
+                               identity: strategy.user.profile.identity_value ,
                            },
                            content: strategy.content,
                            created: strategy.created_at.strftime('%Y-%m-%d %H:%M:%S'),
@@ -29,7 +29,7 @@ module Api
                                          avatar: comment.user.profile.avatar.url,
                                          age: comment.user.profile.age,
                                          gender: comment.user.profile.gender.to_i,
-                                         identity: comment.user.profile.identity,
+                                         identity: comment.user.profile.identity_value ,
                                      },
                                      content: comment.content,
                                      created: comment.created_at.localtime.strftime('%Y-%m-%d %H:%M:%S')

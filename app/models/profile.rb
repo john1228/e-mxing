@@ -45,6 +45,10 @@ class Profile < ActiveRecord::Base
     INTERESTS['items'].map { |item| item['name'] if hobby.include?(item['id']) }.compact!.join(',')
   end
 
+  def identity_value
+    Profile.identities[identity]
+  end
+
   def mxid
     BASE_NO + id
   end

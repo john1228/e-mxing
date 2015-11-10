@@ -14,7 +14,7 @@ module Discovery
                                          avatar: dynamic.user.profile.avatar.url,
                                          age: dynamic.user.profile.age,
                                          gender: dynamic.user.profile.gender,
-                                         identity: Profile.identities[dynamic.user.profile.identity]
+                                         identity: dynamic.user.profile.identity_value
                                      },
                                      likes: dynamic.likes.count,
                                      like_user: dynamic.likes.includes(:user).order(id: :desc).limit(15).map { |like| {
@@ -24,7 +24,7 @@ module Discovery
                                              avatar: like.user.profile.avatar.url,
                                              age: like.user.profile.age,
                                              gender: like.user.profile.gender,
-                                             identity: Profile.identities[like.user.profile.identity]
+                                             identity: like.user.profile.identity_value
                                          },
                                          created: like.created_at.localtime.strftime('%Y-%m-%d %H:%M:%S'),
                                      } },
@@ -40,7 +40,7 @@ module Discovery
                                                    avatar: comment.user.profile.avatar.url,
                                                    age: comment.user.profile.age,
                                                    gender: comment.user.profile.gender,
-                                                   identity: Profile.identities[comment.user.profile.identity]
+                                                   identity: comment.user.profile.identity_value
                                                },
                                            }
                                          }

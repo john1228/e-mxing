@@ -12,7 +12,7 @@ module Mine
                            avatar: like.user.profile.avatar.url,
                            age: like.user.profile.age,
                            gender: like.user.profile.gender,
-                           identity: Profile.identities[like.user.profile.identity]
+                           identity: like.user.profile.identity_value
                        },
                        count: like.attributes['like_count']
                    }
@@ -30,7 +30,7 @@ module Mine
                            avatar: like.user.profile.avatar.url,
                            age: like.user.profile.age,
                            gender: like.user.profile.gender,
-                           identity: Profile.identities[like.user.profile.identity]
+                           identity: like.user.profile.identity_value
                        },
                        created: like.created_at.localtime.strftime('%Y-%m-%d %H:%M:%S')
                    }
