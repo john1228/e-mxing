@@ -48,6 +48,7 @@ namespace :crawl do
         sleep(10)
         shop.map { |shop_info|
           detail = Nokogiri::HTML(agent.get(shop_info[:url]).body)
+          puts "当前店铺地址:#{shop_info[:url]}"
           sleep(10)
           base_info = detail.css('div#basic-info')
           base_info.css('h1.shop-name a').remove
@@ -65,14 +66,11 @@ namespace :crawl do
             item_text = item.css('span.item').text.lstrip.rstrip
             item_text[0, item_text.index('(')]
           }
-
           tab_titles = detail.css('div#shop-tabs h2.mod-title a').map { |a| a.text.lstrip.rstrip }
           tab_infos = Nokogiri::HTML(detail.css('div#shop-tabs script').text).css('div.J-panel')
           photo = nil
           intro = nil
-          puts tab_titles
           tab_titles.each_with_index { |value, index|
-            puts "#{index}:#{value}"
             tab_info = tab_infos[index]
             if value.eql?('环境')
               photo = tab_info.css('div.container a img').map { |image| image['src'].gsub('100c100', '1000c1000') }
