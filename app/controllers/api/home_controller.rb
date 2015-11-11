@@ -1,9 +1,10 @@
 module Api
   class HomeController < ApplicationController
     def index
+      city = URI.decode(request.headers[:city]) rescue '上海'
       render json: Success.new(
                  tag: Category.all.map { |category|
-                   online_courses = Sku.online.where(course_type: category.item).order(selling_price: :asc)
+                   online_courses = Sku.online.where(course_type: category.item).where('address LIKE ?', '%'+ city + '%').order(selling_price: :asc)
                    {
                        tag: category.name,
                        bg: category.background.url,

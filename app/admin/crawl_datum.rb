@@ -1,6 +1,8 @@
 ActiveAdmin.register CrawlDatum do
   menu label: '抓取数据'
   config.filters = false
+  permit_params :name, :avatar, :address, :business, service: [], photo: []
+
 
   index do
     selectable_column
@@ -20,5 +22,17 @@ ActiveAdmin.register CrawlDatum do
     column '介绍' do |crawl_datum|
       crawl_datum.intro
     end
+    actions
   end
+
+
+  batch_action :apply do |ids|
+    CrawlDatum.find(ids).each { |crawl_data|
+      begin
+
+      end
+    }
+  end
+
+  form partial: 'form'
 end

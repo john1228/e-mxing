@@ -17,80 +17,82 @@ namespace :crawl do
 
 
     agent = Mechanize.new { |agent| agent.user_agent_alias = 'Linux Mozilla' }
-
-
     %W"http://www.dianping.com/beijing/sports".map { |city|
       #抓取运动分类
-      #page = Nokogiri::HTML(open(city))
-      #items = page.css('li.term-list-item').select { |li| li if li.css('strong.term').text.eql?('运动分类:') }
-      #category = items.first.css('a').map { |a| host + a['href'] }
-      #sleep(10)
-      category = []
+      page = Nokogiri::HTML(open(city))
+      items = page.css('li.term-list-item').select { |li| li if li.css('strong.term').text.eql?('运动分类:') }
+      category = items.first.css('a').map { |a| host + a['href'] }
+      sleep(10)
       category.each { |_category_url|
-        shop = [{avatar: 'http://i1.s1.dpfile.com/pc/c69e579ef5afb9c858773e5a19c729d8(249x249)/thumb.jpg', url: 'http://www.dianping.com/shop/13704445'}]
-        # category_page = Nokogiri::HTML(agent.get(_category_url).body)
-        # shop += category_page.css('div.pic a').map { |a|
-        #   {
-        #       url: host + a['href'],
-        #       avatar: a.css('img')[0]['data-src']
-        #   }
-        # }
-        # next_page_url = ((host + category_page.css('div.page a.next')[0]['href']) rescue nil)
-        # while next_page_url.present?
-        #   puts "当前页码:#{next_page_url}"
-        #   next_page = Nokogiri::HTML(agent.get(next_page_url).body)
-        #   shop += next_page.css('div.pic a').map { |a|
-        #     {
-        #         url: host + a['href'],
-        #         avatar: a.css('img')[0]['data-src']
-        #     }
-        #   }
-        #   next_page_url = ((host + next_page.css('div.page a.next')[0]['href']) rescue nil)
-        #   sleep(10)
-        # end
+        shop = []
+        category_page = Nokogiri::HTML(agent.get(_category_url).body)
+        shop += category_page.css('div.pic a').map { |a|
+          {
+              url: host + a['href'],
+              avatar: a.css('img')[0]['data-src']
+          }
+        }
+        next_page_url = ((host + category_page.css('div.page a.next')[0]['href']) rescue nil)
+        while next_page_url.present?
+          puts "当前页码:#{next_page_url}"
+          next_page = Nokogiri::HTML(agent.get(next_page_url).body)
+          shop += next_page.css('div.pic a').map { |a|
+            {
+                url: host + a['href'],
+                avatar: a.css('img')[0]['data-src']
+            }
+          }
+          next_page_url = ((host + next_page.css('div.page a.next')[0]['href']) rescue nil)
+          sleep(10)
+        end
         sleep(10)
         shop.map { |shop_info|
-          begin
-            detail = Nokogiri::HTML(agent.get(shop_info[:url]).body)
-            sleep(10)
-            base_info = detail.css('div#basic-info')
-            base_info.css('div.other p.J-park').remove
-            base_info.css('div.other p.J-feature').remove
-            base_info.css('div.other p.J-Contribution').remove
-            #begin
-            shop_name = (base_info.css('h1.shop-name')[0].text).lstrip.rstrip.chop
-            avatar = shop_info[:avatar]
-            address = base_info.css('div.address a')[0].text.lstrip.rstrip + base_info.css('div.address span.item')[0].text.lstrip.rstrip
-            tel = base_info.css('p.tel span.item').map { |span| span.text.lstrip.rstrip }.join(',')
-            business = base_info.css('div.other p.info-indent').select { |item| item.css('span.info-name').text.start_with?('营业时间') }.map { |item| item.css('span.item').text.lstrip.rstrip }.join
-            service = base_info.css('div.other p.info-indent').select { |item| item.css('span.info-name').text.start_with?('分类标签') }.map { |item| item.css('span.item').text.lstrip.rstrip }
+          detail = Nokogiri::HTML(agent.get(shop_info[:url]).body)
+          sleep(10)
+          base_info = detail.css('div#basic-info')
+          base_info.css('h1.shop-name a').remove
+          base_info.css('div.other p.J-park').remove
+          base_info.css('div.other p.J-park').remove
+          base_info.css('div.other p.J-feature').remove
+          base_info.css('div.other p.J-Contribution').remove
+          #begin
+          shop_name = (base_info.css('h1.shop-name')[0].text).lstrip.rstrip
+          avatar = shop_info[:avatar]
+          address = base_info.css('div.address a')[0].text.lstrip.rstrip + base_info.css('div.address span.item')[0].text.lstrip.rstrip
+          tel = base_info.css('p.tel span.item').map { |span| span.text.lstrip.rstrip }.join(',')
+          business = base_info.css('div.other p.info-indent').select { |item| item.css('span.info-name').text.start_with?('营业时间') }.map { |item| item.css('span.item').text.lstrip.rstrip }.join
+          service = base_info.css('div.other p.info-indent').select { |item| item.css('span.info-name').text.start_with?('分类标签') }.map { |item|
+            item_text = item.css('span.item').text.lstrip.rstrip
+            item_text[0, item_text.index('(')]
+          }
 
-            tab_titles = base_info.css('div#shop-tabs h2.mod-title a').map { |a| a.text.lstrip.rstrip }
-            tab_infos =Nokogiri::HTML(base_info.css('div#shop-tabs script').text).css('div.J-panel')
-            photo = nil
-            intro = nil
-            tab_titles.each_with_index { |value, index|
-              puts "#{index}:#{value}"
-              tab_info = tab_infos[index]
-              if value.eql?('环境')
-                photo = tab_info.css('div.container a img').map { |image| image['src'].gsub('100c100', '1000c1000') }
-              elsif value.eql?('品牌故事')
-                intro = tab_info.css('div.info p.J_all')[0].text
-              end
-            }
-            CrawlDatum.create(
-                name: shop_name,
-                avatar: avatar,
-                address: address,
-                tel: tel,
-                business: business,
-                service: service,
-                photo: photo,
-                intro: intro
-            )
-          rescue Exception => exp
-            puts "保存数据失败:#{exp.message}"
-          end
+          tab_titles = detail.css('div#shop-tabs h2.mod-title a').map { |a| a.text.lstrip.rstrip }
+          tab_infos = Nokogiri::HTML(detail.css('div#shop-tabs script').text).css('div.J-panel')
+          photo = nil
+          intro = nil
+          puts tab_titles
+          tab_titles.each_with_index { |value, index|
+            puts "#{index}:#{value}"
+            tab_info = tab_infos[index]
+            if value.eql?('环境')
+              photo = tab_info.css('div.container a img').map { |image| image['src'].gsub('100c100', '1000c1000') }
+            elsif value.eql?('品牌故事')
+              intro = tab_info.css('div.info p.J_all')[0].text
+            end
+          }
+          CrawlDatum.create(
+              name: shop_name,
+              avatar: avatar,
+              province: '北京市',
+              city: '北京市',
+              area: address[0, (address.index('区')||address.index('县')) + 1],
+              address: address[(address.index('区')||address.index('县')) + 1, address.length],
+              tel: tel,
+              business: business,
+              service: service,
+              photo: photo,
+              intro: intro
+          )
         }
       }
     }

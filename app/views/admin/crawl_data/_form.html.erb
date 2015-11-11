@@ -1,4 +1,4 @@
-﻿<%= semantic_form_for([:admin, @crawl_data], html: {class: 'form-horizontal'}) do |f| %>
+﻿<%= semantic_form_for([:admin, @crawl_datum], html: {class: 'form-horizontal', role: 'form'}) do |f| %>
     <fieldset class="inputs">
       <legend><span>数据详情</span></legend>
       <% if f.object.errors.full_messages.present? %>
@@ -15,6 +15,57 @@
           <%= f.text_field(:name, class: 'form-control', placeholder: '请输入课程名称') %>
         </div>
       </div>
+      <div class="form-group form-group-sm">
+        <label class="col-sm-2 control-label" for="service_interests">头像:</label>
+
+        <div class="col-sm-10">
+          <%= f.file_field(:avatar) %>
+          <%= image_tag(f.object.avatar) %>
+        </div>
+      </div>
+      <div class="form-group form-group-sm">
+        <label class="col-sm-2 control-label" for="service_interests">地址:</label>
+
+        <div class="col-md-10 form-inline">
+          <select name="crawl_datum[province]" id="crawl_datum_province"></select>
+          <select name="crawl_datum[city]" id="crawl_datum_city"></select>
+          <select name="crawl_datum[area]" id="crawl_datum_area"></select>
+          <%= f.text_field :address, class: 'form-control', placeholder: '详细地址' %>
+          <p>
+            <span style="color: #ff0000"><%= (f.object.address) %></span>
+          </p>
+        </div>
+      </div>
+      <div class="form-group form-group-sm">
+        <label class="col-sm-2 control-label" for="service_interests">营业时间:</label>
+
+        <div class="col-sm-10">
+          <%= f.text_field(:business, class: 'form-control', placeholder: '请输入课程名称') %>
+          <span style="color: #ff0000"><%= (f.object.business) %></span>
+        </div>
+      </div>
+      <div class="form-group form-group-sm">
+        <label class="col-sm-2 control-label" for="service_interests">提供服务:</label>
+
+        <div class="col-sm-10">
+          <%= f.select(:service, INTERESTS['items'].map { |item| [item['name'], item['id']] }, {include_hidden: false}, {multiple: true}) %>
+          <span style="color: #ff0000"><%= (f.object.service.join('|')) %></span>
+        </div>
+      </div>
+      <div class="form-group form-group-sm">
+        <label class="col-sm-2 control-label" for="service_interests">照片:</label>
+
+        <div class="col-sm-10">
+          <% f.object.photo.each { |photo| %>
+              <%= file_field_tag('crawl_datum[photo][]') %>
+              <%= image_tag(photo, size: '100x100') %>
+          <% } %>
+        </div>
+      </div>
     </fieldset>
     <%= f.submit('提交') %>
 <% end %>
+<script>
+    new PCAS("crawl_datum[province]", "crawl_datum[city]", "crawl_datum[area]");
+    $("#crawl_datum_service").multiselect();
+</script>

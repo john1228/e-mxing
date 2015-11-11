@@ -80,6 +80,10 @@
     profile:
       identity:
         enthusiast: '健身爱好者'
+  active_admin:
+    batch_actions:
+      labels:
+        apply: '通过'
 
 
 

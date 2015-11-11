@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151109131722) do
+ActiveRecord::Schema.define(version: 20151111034947) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,8 @@ ActiveRecord::Schema.define(version: 20151109131722) do
     t.datetime "updated_at"
     t.integer  "role"
     t.integer  "service_id"
+    t.string   "status"
+    t.integer  "client_id"
   end
 
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
@@ -175,6 +177,14 @@ ActiveRecord::Schema.define(version: 20151109131722) do
 
   add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
   add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
+
+  create_table "clients", force: :cascade do |t|
+    t.string   "name"
+    t.string   "tel"
+    t.string   "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "coach_docs", force: :cascade do |t|
     t.integer "coach_id"
@@ -296,6 +306,8 @@ ActiveRecord::Schema.define(version: 20151109131722) do
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.text     "intro",      default: ""
+    t.string   "province",   default: ""
+    t.string   "city",       default: ""
   end
 
   create_table "devices", force: :cascade do |t|
@@ -344,7 +356,8 @@ ActiveRecord::Schema.define(version: 20151109131722) do
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "top",        default: 0
+    t.integer  "top",            default: 0
+    t.integer  "comments_count", default: 0
   end
 
   create_table "feedbacks", force: :cascade do |t|
@@ -566,24 +579,26 @@ ActiveRecord::Schema.define(version: 20151109131722) do
 
   create_table "profiles", force: :cascade do |t|
     t.integer "user_id"
-    t.string  "signature",     limit: 255, default: ""
-    t.string  "name",          limit: 255, default: ""
-    t.string  "avatar",        limit: 255, default: ""
-    t.integer "gender",                    default: 0
-    t.integer "identity",                  default: 0
-    t.date    "birthday",                  default: '1999-03-20'
-    t.string  "address",       limit: 255, default: ""
-    t.string  "target",        limit: 255, default: ""
-    t.string  "skill",         limit: 255, default: ""
-    t.string  "often_stadium", limit: 255, default: ""
-    t.string  "interests",     limit: 255, default: ""
-    t.string  "mobile",        limit: 255, default: ""
-    t.integer "service",                   default: [],           array: true
-    t.integer "hobby",                     default: [],           array: true
+    t.string  "signature",           limit: 255, default: ""
+    t.string  "name",                limit: 255, default: ""
+    t.string  "avatar",              limit: 255, default: ""
+    t.integer "gender",                          default: 0
+    t.integer "identity",                        default: 0
+    t.date    "birthday",                        default: '1999-03-20'
+    t.string  "address",             limit: 255, default: ""
+    t.string  "target",              limit: 255, default: ""
+    t.string  "skill",               limit: 255, default: ""
+    t.string  "often_stadium",       limit: 255, default: ""
+    t.string  "interests",           limit: 255, default: ""
+    t.string  "mobile",              limit: 255, default: ""
+    t.integer "service",                         default: [],           array: true
+    t.integer "hobby",                           default: [],           array: true
     t.string  "province"
     t.string  "city"
-    t.integer "auth",                      default: 0
-    t.string  "tag",                       default: [],           array: true
+    t.integer "auth",                            default: 0
+    t.string  "tag",                             default: [],           array: true
+    t.string  "business_hour_start"
+    t.string  "business_hour_end"
   end
 
   add_index "profiles", ["address"], name: "index_profiles_on_address", using: :btree
@@ -720,6 +735,22 @@ ActiveRecord::Schema.define(version: 20151109131722) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "user_registrations", force: :cascade do |t|
+    t.integer  "reg_type"
+    t.string   "avatar"
+    t.string   "name"
+    t.integer  "gender"
+    t.integer  "service_id"
+    t.integer  "client_id"
+    t.string   "mobile"
+    t.integer  "source"
+    t.datetime "birthday"
+    t.string   "address"
+    t.string   "remark"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "mobile",     limit: 255, default: ""
     t.string   "password",   limit: 255
@@ -730,6 +761,9 @@ ActiveRecord::Schema.define(version: 20151109131722) do
     t.string   "device",                 default: ""
     t.integer  "views",                  default: 14000
     t.integer  "status",                 default: 1
+    t.integer  "client_id"
+    t.string   "state"
+    t.integer  "score",                  default: 0
   end
 
   add_index "users", ["mobile", "sns"], name: "index_users_on_mobile_and_sns", unique: true, using: :btree
