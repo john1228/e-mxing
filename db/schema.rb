@@ -301,13 +301,16 @@ ActiveRecord::Schema.define(version: 20151111034947) do
     t.string   "address"
     t.string   "tel"
     t.string   "business"
-    t.string   "service",                              array: true
-    t.string   "photo",                                array: true
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-    t.text     "intro",      default: ""
-    t.string   "province",   default: ""
-    t.string   "city",       default: ""
+    t.string   "service",                                  array: true
+    t.string   "photo",                                    array: true
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.text     "intro",          default: ""
+    t.string   "province",       default: ""
+    t.string   "city",           default: ""
+    t.string   "area",           default: ""
+    t.string   "service_change", default: [],              array: true
+    t.string   "photo_change",   default: [],              array: true
   end
 
   create_table "devices", force: :cascade do |t|

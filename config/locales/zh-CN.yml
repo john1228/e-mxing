@@ -37,7 +37,7 @@
       sku: '课程'
       tag: '标签'
       category: '分类'
-      crawl_data: '抓取数据'
+      crawl_datum: '抓取数据'
     attributes:
       service_course:
         name: '名称'

@@ -2,7 +2,7 @@ ActiveAdmin.register CrawlDatum do
   menu label: '抓取数据'
   config.filters = false
   permit_params :name, :avatar, :address, :business, service: [], photo: []
-
+  actions :index, :show, :edit, :update, :destroy
 
   index do
     selectable_column
