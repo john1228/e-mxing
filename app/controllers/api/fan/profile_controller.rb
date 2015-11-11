@@ -14,7 +14,7 @@ module Api
                                        address: enthusiast.profile.address,
                                        signature: enthusiast.profile.signature,
                                        likes: enthusiast.likes.count,
-                                       photowall: enthusiast.photos.map { |photo| {no: photo.id, url: photo.url} },
+                                       photowall: enthusiast.photos.map { |photo| {no: photo.id, url: photo.photo.url} },
                                        fpg: enthusiast.profile._fitness_program,
                                    })
         else
