@@ -1,7 +1,7 @@
 ActiveAdmin.register CrawlDatum do
   menu label: '抓取数据'
   config.filters = false
-  permit_params :name, :avatar, :address, :business, service: [], photo: []
+  permit_params :name, :avatar, :address, :business, service_change: [], photo_change: []
   actions :index, :show, :edit, :update, :destroy
 
   index do
@@ -28,9 +28,20 @@ ActiveAdmin.register CrawlDatum do
 
   batch_action :apply do |ids|
     CrawlDatum.find(ids).each { |crawl_data|
-      begin
-
-      end
+      service = Service.new(mobile: SecureRandom.uuid, sns: SecureRandom.uuid, profile_attributes: {
+                                               name: crawl_data.name,
+                                               avatar: crawl_data.url,
+                                               province: crawl_data.province,
+                                               city: crawl_data.city,
+                                               area: crawl_data.area,
+                                               address: crawl_data.address,
+                                               signature: crawl_data.intro,
+                                               service: crawl_data.service_change,
+                                               mobile: crawl_data.tel,
+                                               business: crawl_data.business,
+                                           })
+      service.reload
+      service.photos.create(crawl_data.photo.map{|photo|})
     }
   end
 
