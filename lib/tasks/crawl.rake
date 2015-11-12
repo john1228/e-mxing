@@ -75,7 +75,7 @@ namespace :crawl do
             if value.eql?('环境')
               photo = tab_info.css('div.container a img').map { |image| image['src'].gsub('100c100', '1000c1000') }
             elsif value.eql?('品牌故事')
-              intro = tab_info.css('div.info p.J_all')[0].text
+              intro = (tab_info.css('div.info p.J_all')[0].text rescue tab_info.css('div.info p.J_short')[0].text)
             end
           }
           CrawlDatum.create(

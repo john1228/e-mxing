@@ -53,7 +53,7 @@ class Sku < ActiveRecord::Base
             name: seller_user.profile.name,
             avatar: seller_user.profile.avatar.url,
             mobile: seller_user.profile.identity.eql?(1) ? seller_user.mobile : service.profile.mobile,
-            identity: seller_user.profile.identity,
+            identity: seller_user.profile.identity_value,
             tags: seller_user.profile.tags
         },
         address: [{
