@@ -17,7 +17,7 @@ ActiveAdmin.register CrawlDatum do
       crawl_datum.service.join('|')
     end
     column '照片' do |crawl_datum|
-      render partial: 'photo', locals: {photo: crawl_datum.photo}
+      render partial: 'photo', locals: {photo: crawl_datum.photo||[]}
     end
     column '介绍' do |crawl_datum|
       crawl_datum.intro
