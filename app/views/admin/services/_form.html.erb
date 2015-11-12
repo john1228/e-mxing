@@ -3,6 +3,7 @@
     <%= f.hidden_field(:sns, value: SecureRandom.uuid) %>
     <%= f.semantic_fields_for :profile do |p| %>
         <%= p.hidden_field(:identity, value: 'service') %>
+        <%= p.hidden_field(:auth, value: 1) %>
         <fieldset class="inputs">
           <legend><span>添加服务号</span></legend>
           <% if p.object.errors.present? %>

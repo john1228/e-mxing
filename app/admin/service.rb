@@ -1,7 +1,7 @@
 ActiveAdmin.register Service do
   menu label: '工作室', priority: 2, if: proc { !current_admin_user.role.eql?(AdminUser::ROLE[:service]) }
 
-  permit_params :mobile, :sns, profile_attributes: [:id, :name, :avatar, :signature, :province, :city, :address, :identity, :mobile, hobby: [], service: []]
+  permit_params :mobile, :sns, profile_attributes: [:id, :name, :avatar, :auth, :signature, :province, :city, :address, :identity, :mobile, hobby: [], service: []]
   filter :profile_name, label: '名称', as: :string
 
 
@@ -18,6 +18,9 @@ ActiveAdmin.register Service do
     column('课程数量') { |service| Sku.where(seller_id: service.coaches.pluck(:id)<< service.id).count }
     column('注册日期') { |service| service.created_at.localtime.strftime('%Y-%m-%d') }
   end
+
+  scope('0-认证工作室', :authorized, default: true)
+  scope('1-未认证工作室', :unauthorized)
 
   index do
     column '美型号' do |service|

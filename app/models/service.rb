@@ -1,5 +1,8 @@
 class Service<User
   default_scope { joins(:profile).where('profiles.identity' => 2) }
+  scope :authorized, -> { where(profiles: {auth: 1}) }
+  scope :unauthorized, -> { where(profiles: {auth: 0}) }
+
   after_save :location
   has_many :service_members, dependent: :destroy
   has_many :service_photos, foreign_key: :user_id, dependent: :destroy
