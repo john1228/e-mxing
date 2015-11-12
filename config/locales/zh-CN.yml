@@ -66,6 +66,17 @@
         name: '名称'
         item: '条目'
         background: '背景图'
+      crawl_datum:
+        name: '工作室名称'
+        avatar: '头像'
+        province: '身份'
+        city: '城市'
+        area: '区/县'
+        address: '详细地址'
+        business: '营业时间'
+        service_replace: '提供服务'
+        photo_replace: '照片墙'
+        intro: '官方介绍'
   enums:
     tag:
       tag:
