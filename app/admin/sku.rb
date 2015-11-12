@@ -12,7 +12,6 @@ ActiveAdmin.register Sku do
 
   scope('0-私教课程', :coach_courses)
   scope('1-机构课程', :service_courses)
-  scope('2-已推荐', :recommended, default: true)
 
   index do
     column(:course_name)
