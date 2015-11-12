@@ -3,7 +3,6 @@ class User < ActiveRecord::Base
   has_many :photos, dependent: :destroy
   has_many :dynamics, dependent: :destroy
   has_many :dynamic_comments, dependent: :destroy
-  has_many :tracks, dependent: :destroy
   has_many :appointments, dependent: :destroy
   has_one :place, dependent: :destroy
   has_many :applies

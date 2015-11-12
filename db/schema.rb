@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151111034947) do
+ActiveRecord::Schema.define(version: 20151112071027) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -602,6 +602,8 @@ ActiveRecord::Schema.define(version: 20151111034947) do
     t.string  "tag",                             default: [],           array: true
     t.string  "business_hour_start"
     t.string  "business_hour_end"
+    t.string  "area"
+    t.string  "business"
   end
 
   add_index "profiles", ["address"], name: "index_profiles_on_address", using: :btree

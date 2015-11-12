@@ -21,7 +21,6 @@ class Profile < ActiveRecord::Base
 
   BASE_NO = 10000
   mount_uploader :avatar, ProfileUploader
-
   class << self
     def find_by_mxid(mxid)
       find_by(id: mxid.to_i - BASE_NO)
