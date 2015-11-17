@@ -29,8 +29,8 @@ class LoginController < ApplicationController
         user = User.find_by(sns: sns_key)
         if user.nil?
           user = User.new(
-              mobile: SecureRandom.uuid, sns: sns_key, name: user_info['nickname'], avatar: user_info['figureurl_qq_1'],
-              birthday: "#{user_info['figureurl_qq_1']}", gender: user_info['gender'].eql?('男') ? 0 : 1, new: 1
+              mobile: SecureRandom.uuid, sns: sns_key, profile_attributes: {name: user_info['nickname'], avatar: user_info['figureurl_qq_1'],
+                                                                            birthday: "#{user_info['figureurl_qq_1']}", gender: user_info['gender'].eql?('男') ? 0 : 1, new: 1}
           )
           user.save
         end
@@ -76,6 +76,7 @@ class LoginController < ApplicationController
           user.save
         end
         user
+      else
     end
   end
 end

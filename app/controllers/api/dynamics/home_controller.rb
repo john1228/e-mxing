@@ -1,7 +1,7 @@
 module Api
   module Dynamics
     class HomeController < ApplicationController
-      before_filter :fetch_user, only: [:show, :index]
+      before_filter :fetch_user, only: :index
       before_filter :auth_user, only: [:create, :destroy]
 
       def index
