@@ -51,8 +51,8 @@ class LoginController < ApplicationController
         user = User.find_by(sns: sns_key)
         if user.nil?
           user = User.new(
-              mobile: SecureRandom.uuid, sns: sns_key, name: user_info['nickname'], avatar: user_info['headimgurl'],
-              signature: '', gender: user_info['sex'].eql?('1') ? 0 : 1, address: "#{user_info['province']}#{user_info['city']}", new: 1
+              mobile: SecureRandom.uuid, sns: sns_key, profile_attributes: {name: user_info['nickname'], avatar: user_info['headimgurl'],
+                                                                            signature: '', gender: user_info['sex'].eql?('1') ? 0 : 1, address: "#{user_info['province']}#{user_info['city']}", new: 1}
           )
           user.save
         end
@@ -70,8 +70,8 @@ class LoginController < ApplicationController
         user = User.find_by(sns: sns_key)
         if user.nil?
           user = User.new(
-              mobile: SecureRandom.uuid, sns: sns_key, name: user_info['screen_name'], avatar: user_info['avatar_hd'],
-              signature: user_info['description'], gender: user_info['gender'].eql?('m') ? 0 : 1, address: user_info['location'], new: 1
+              mobile: SecureRandom.uuid, sns: sns_key, profile_attributes: {name: user_info['screen_name'], avatar: user_info['avatar_hd'],
+                                                                            signature: user_info['description'], gender: user_info['gender'].eql?('m') ? 0 : 1, address: user_info['location'], new: 1}
           )
           user.save
         end
