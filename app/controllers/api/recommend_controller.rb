@@ -62,7 +62,15 @@ module Api
                      month: {
                          items: month_rank.map { |k, v|
                            user = User.find_by(id: k)
-                           {user: user, likes: v} if user.present?
+                           {
+                               user: user.as_json.merge(
+                                   photowall: user.photos.map { |photo|
+                                     {
+                                         url: photo.photo.url
+                                     }
+                                   }),
+                               likes: v
+                           } if user.present?
                          }
                      }
                  }

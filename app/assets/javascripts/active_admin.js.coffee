@@ -11,11 +11,8 @@
 #= require admin/fileinput
 jQuery -> $('a.fancybox').fancybox(
   {
-    'overlayShow': true,
-    'showCloseButton': true,
-    'overlayColor': "#000000",
-    'overlayOpacity': 0.8,
-    'onComplete': $('#fancybox-outer, #fancybox-content').corner('10px')
+    modal: false,
+    scrolling: false
   }
 );
 $("input.datetimepicker").datetimepicker({

@@ -1,17 +1,140 @@
-﻿<div class="panel">
-  <h3>推荐</h3>
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        background-color: #000;
+        margin: 0;
+        padding: 0;
+        font-family: "微软雅黑";
+    }
+
+    li {
+        list-style-type: none;
+    }
+
+    .wrapper {
+        min-width: 480px;
+        max-width: 500px;
+        background-color: #fff;
+    }
+
+    .header {
+        height: 40px;
+        line-height: 40px;
+        padding: 0 15px;
+        background-color: #fbfbfb;
+        border-bottom: 1px solid #e8e8e8;
+        color: #5c6676;
+        font-size: 14px;
+    }
+
+    .main {
+        padding: 20px;
+    }
+
+    .main h3 {
+        color: #21486a;
+        font-size: 14px;
+        font-weight: 400;
+    }
+
+    .main ul {
+        margin-top: 10px;
+    }
+
+    .main ul li {
+        width: 33.3333%;
+        float: left;
+        height: 30px;
+        line-height: 30px;
+        font-size: 12px;
+    }
+
+    .main ul li input {
+        margin-right: 5px;
+        position: relative;
+        top: 3px;
+    }
+
+    .title {
+        margin-top: 15px;
+    }
+
+    .clear {
+        clear: both;
+    }
+
+    .submitBtn {
+        width: 100%;
+        height: 40px;
+        line-height: 40px;
+        background-color: #1fbba6;
+        text-align: center;
+        display: block;
+        color: #fff;
+        text-decoration: none;
+    }
+</style>
+
+<body>
+<div class="wrapper">
+  <div class="header">
+    推荐
+  </div>
   <%= form_tag(submit_recommend_news_path(@news), remote: true) do %>
-      <table style='padding: 20px'>
-        <% Category.pluck(:name).each { |name| %>
-            <tr>
-              <td><%= check_box_tag('tag_1[]', name) %><%= name %></td>
-            </tr>
-        <% } %>
-        <tr>
-          <td>
-            <%= submit_tag('提交') %>
-          </td>
-        </tr>
-      </table>
+      <div class="main">
+        <h3>首页资讯</h3>
+        <ul>
+          <li>
+            <label>
+              <input type="checkbox" value="场馆秀">场馆秀
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="checkbox" value="涨知识">涨知识
+            </label>
+          </li>
+          <p class="clear"></p>
+        </ul>
+        <h3 class="title">首页课程分类资讯</h3>
+        <ul>
+          <% Category.pluck(:name).each do |category_name| %>
+              <li>
+                <label>
+                  <input type="checkbox" value="<%= category_name %>-场馆推荐"><%= category_name %>-场馆推荐
+                </label>
+              </li>
+              <li>
+                <label>
+                  <input type="checkbox" value="<%= category_name %>-私教专访"><%= category_name %>-私教专访
+                </label>
+              </li>
+              <li>
+                <label>
+                  <input type="checkbox" value="<%= category_name %>-玩转"><%= category_name %>-玩转
+                </label>
+              </li>
+          <% end %>
+          <p class="clear"></p>
+        </ul>
+
+        <h3 class="title">首页课程分类资讯</h3>
+        <ul>
+
+        </ul>
+      </div>
+      <%= submit_tag('提交', class: 'submitBtn') %>
   <% end %>
 </div>
+</body>
+</html>

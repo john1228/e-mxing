@@ -22,17 +22,6 @@ ActiveAdmin.register News do
     end
   end
 
-  batch_action :recommend, form: {
-                             type: %w[Offensive Spam Other],
-                             reason: :text,
-                             notes: :textarea,
-                             hide: :checkbox,
-                             date: :datepicker
-                         } do |ids, inputs|
-    redirect_to collection_path, notice: [ids, inputs].to_s
-  end
-
-
   controller do
     def recommend
       @news = News.find(params[:id])

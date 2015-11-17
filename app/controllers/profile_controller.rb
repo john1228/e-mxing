@@ -24,7 +24,7 @@ class ProfileController < ApiController
   def update
     profile = @user.profile
     if profile.update(profile_params)
-      render json: {code: 1}
+      render json: Success.new(profile: profile)
     else
       render json: {code: 0, message: "修改失败:#{profile.errors.messages.values.join(';')}"}
     end
