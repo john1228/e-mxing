@@ -19,9 +19,7 @@ ActiveAdmin.register Service do
     column('注册日期') { |service| service.created_at.localtime.strftime('%Y-%m-%d') }
   end
 
-  actions :index, :new, :create, :edit, :update
-
-
+  actions :index, :new, :create, :edit, :update, :show
   scope('0-认证工作室', :authorized, default: true)
   scope('1-未认证工作室', :unauthorized)
 
@@ -117,6 +115,8 @@ ActiveAdmin.register Service do
           #扫码推送消息
           follow_users = Follow.includes(:user).where(service_id: service.id).map { |item| item.user.profile.mxid }
           PushMessageJob.perform_later(service.profile.mxid, follow_users, params[:message])
+        else
+
       end
       redirect_to admin_service_path(service), alert: '消息已发送'
     end
