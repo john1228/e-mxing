@@ -16,6 +16,8 @@ ActiveAdmin.register Coupon do
           '私教'
         when '4'
           '课程'
+        else
+          ''
       end
     }
     column('最小金额', :min)
