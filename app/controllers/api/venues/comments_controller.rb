@@ -17,6 +17,7 @@ module Api
                                                gender: comment.user.profile.gender.to_i,
                                                identity: comment.user.profile.identity_value,
                                            },
+                                           score: comment.score,
                                            content: comment.content,
                                            images: comment.image.map { |image| image.url },
                                            created: comment.created_at.localtime.strftime('%Y-%m-%d %H:%M:%S')

@@ -42,7 +42,7 @@ ActiveAdmin.register CrawlDatum do
       end
       row :intro
       row :photo_replace do
-        render partial: 'photo', locals: {photo: crawl_datum.photo_replace.blank? ? crawl_datum.photo : crawl_datum.photo_replace.map { |item| item.url }}
+        render partial: 'photo', locals: {photo: crawl_datum.photo_replace.blank? ? crawl_datum.photo||[] : crawl_datum.photo_replace.map { |item| item.url }}
       end
     end
   end
