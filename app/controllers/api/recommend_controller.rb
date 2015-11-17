@@ -48,7 +48,15 @@ module Api
                          week: Date.today.strftime('%U').to_i,
                          items: week_rank.map { |k, v|
                            user = User.find_by(id: k)
-                           {user: user, likes: v} if user.present?
+                           {
+                               user: user.as_json.merge(
+                                   photowall: user.photos.map { |photo|
+                                     {
+                                         url: photo.photo.url
+                                     }
+                                   }),
+                               likes: v
+                           } if user.present?
                          }
                      },
                      month: {
