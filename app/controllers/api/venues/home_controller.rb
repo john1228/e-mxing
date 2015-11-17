@@ -15,7 +15,7 @@ module Api
                                        distance: venue.attributes['distance'].to_i,
                                        coach_count: venue.coaches.count,
                                        sale: venue.courses.online.count,
-                                       tag: venue.profile.tag,
+                                       tags: venue.profile.tags,
                                        auth: venue.profile.auth,
                                        floor: (venue.courses.online.order(selling_price: :asc).first.selling_price rescue ''),
                                    }
@@ -43,7 +43,7 @@ module Api
                                        distance: venue.attributes['distance'].to_i,
                                        coach_count: venue.coaches.count,
                                        sale: venue.courses.online.count,
-                                       tag: venue.profile.tag,
+                                       tags: venue.profile.tags,
                                        auth: venue.profile.auth,
                                        floor: (venue.courses.online.order(selling_price: :asc).first.selling_price rescue ''),
                                    }

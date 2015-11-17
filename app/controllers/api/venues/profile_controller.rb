@@ -15,6 +15,7 @@ module Api
                                            lng: venue.place.lonlat.x,
                                            lat: venue.place.lonlat.y
                                        },
+                                       tags: venue.profile.tags,
                                        intro: venue.profile.signature,
                                        coach: {
                                            amount: venue.coaches.count,

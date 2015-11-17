@@ -60,7 +60,8 @@ class Profile < ActiveRecord::Base
         gender: gender||1,
         true_age: age,
         signature: HarmoniousDictionary.clean(signature),
-        identity: Profile.identities[identity]
+        identity: Profile.identities[identity],
+        tags: tags
     }
   end
 

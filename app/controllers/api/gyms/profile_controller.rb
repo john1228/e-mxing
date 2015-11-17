@@ -8,6 +8,7 @@ module Api
                                      avatar: @coach.profile.avatar.url,
                                      gender: @coach.profile.gender.to_i,
                                      age: @coach.profile.age,
+                                     tags: @coach.profile.tags,
                                      photowall: @coach.photos.map { |photo| {url: photo.photo.url} },
                                      score: @coach.score,
                                      likes: @coach.likes.count,
