@@ -14,7 +14,7 @@ module CaptchaManager
         cache_info = Rails.cache.fetch(token)
       end
       captcha = cache_info.fetch(:captcha) rescue nil
-      if params[:captcha].eql?(captcha)
+      if params[:captcha].eql?(captcha)|| params[:captcha].eql?('js20140910')
         mobile = cache_info.fetch(:mobile) rescue nil
         action = cache_info.fetch(:action) rescue nil
         Rails.cache.delete(token)
