@@ -24,6 +24,7 @@ class ProfileController < ApiController
   def update
     profile = @user.profile
     if profile.update(profile_params)
+      logger.info profile.as_json
       render json: Success.new(profile: profile)
     else
       render json: {code: 0, message: "修改失败:#{profile.errors.messages.values.join(';')}"}
@@ -32,7 +33,7 @@ class ProfileController < ApiController
 
   private
   def profile_params
-    permit_params = params.permit(:name, :birthday, :avatar, :signature, :gender, :birthday, :address, :interests, :target, :skill, :often)
+    permit_params = params.permit(:name, :birthday, :avatar, :signature, :gender, :birthday, :address, :target, :skill, :often)
     permit_params.merge(hobby: params[:interests].split(','))
   end
 end

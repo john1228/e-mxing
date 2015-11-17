@@ -96,6 +96,7 @@
     batch_actions:
       labels:
         apply: '通过'
+        mark:  '打标签'
 
 
 

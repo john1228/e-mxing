@@ -20,12 +20,18 @@ ActiveAdmin.register DynamicImage do
       image.dynamic.content
     end
     column('发布时间') { |image| image.created_at.localtime.strftime('%Y-%m-%d %H:%M:%S') }
+    column('标签') { |image| image.tag.join('|') }
   end
-  
-  Tag.dynamics.pluck(:name).each do |item|
-    batch_action item do |ids|
-      DynamicImage.where(id: ids).update_all("tag = array_append(tag,'#{params[:batch_action]}')")
-      redirect_to collection_path, alert: '标记成功'
+
+  form_lambda = lambda do
+    tags = Tag.dynamics.pluck(:name).map do |tag|
+      [tag, tag]
     end
+    {tag: tags}
+  end
+  batch_action :mark, form: form_lambda do |ids|
+    inputs = JSON.parse(params[:batch_action_inputs])
+    DynamicImage.where(id: ids).update_all("tag = array_append(tag,'#{inputs['tag']}')")
+    redirect_to collection_path, alert: '标记成功'
   end
 end
