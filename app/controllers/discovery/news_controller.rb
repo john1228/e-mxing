@@ -4,11 +4,11 @@ module Discovery
       if params[:tag].present?
         data = [{
                     tag: params[:tag],
-                    item: News.where(tag: params[:tag]).order(id: :desc).page(params[:page]||1)
+                    item: News.where('? = ANY(tag_1)', params[:tag]).order(id: :desc).page(params[:page]||1)
                 }]
       else
         data = News.tags.map { |tag, value|
-          tag_data = News.send(tag.to_sym)
+          tag_data = News.where('? = ANY(tag_1)', tag)
           {
               tag: value,
               item: tag_data.order(id: :desc).take(2)

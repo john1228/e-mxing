@@ -96,12 +96,12 @@
         <ul>
           <li>
             <label>
-              <input type="checkbox" value="场馆秀">场馆秀
+              <input type="checkbox" value="场馆秀" name="tag[]">场馆秀
             </label>
           </li>
           <li>
             <label>
-              <input type="checkbox" value="涨知识">涨知识
+              <input type="checkbox" value="涨知识" name="tag[]">涨知识
             </label>
           </li>
           <p class="clear"></p>
@@ -111,26 +111,45 @@
           <% Category.pluck(:name).each do |category_name| %>
               <li>
                 <label>
-                  <input type="checkbox" value="<%= category_name %>-场馆推荐"><%= category_name %>-场馆推荐
+                  <input type="checkbox" value="<%= category_name %>-场馆推荐" name="tag[]"><%= category_name %>-场馆推荐
                 </label>
               </li>
               <li>
                 <label>
-                  <input type="checkbox" value="<%= category_name %>-私教专访"><%= category_name %>-私教专访
+                  <input type="checkbox" value="<%= category_name %>-私教专访" name="tag[]"><%= category_name %>-私教专访
                 </label>
               </li>
               <li>
                 <label>
-                  <input type="checkbox" value="<%= category_name %>-玩转"><%= category_name %>-玩转
+                  <input type="checkbox" value="<%= category_name %>-玩转" name="tag[]"><%= category_name %>-玩转
                 </label>
               </li>
           <% end %>
           <p class="clear"></p>
         </ul>
 
-        <h3 class="title">首页课程分类资讯</h3>
+        <h3 class="title">发现频道</h3>
         <ul>
-
+          <li>
+            <label>
+              <input type="checkbox" value="健身知识" name="tag[]">健身知识
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="checkbox" value="你问我答" name="tag[]">你问我答
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="checkbox" value="热门场馆" name="tag[]">热门场馆
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="checkbox" value="金牌私教" name="tag[]">金牌私教
+            </label>
+          </li>
         </ul>
       </div>
       <%= submit_tag('提交', class: 'submitBtn') %>

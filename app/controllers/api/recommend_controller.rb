@@ -13,13 +13,13 @@ module Api
 
     def boutique
       render json: Success.new(
-                 venues: News.order(id: :desc).page(params[:page]||1)
+                 venues: News.where('? = ANY(tag_1)','场馆秀').order(id: :desc).page(params[:page]||1)
              )
     end
 
     def knowledge
       render json: Success.new(
-                 knowledge: News.order(id: :desc).page(params[:page]||1)
+                 knowledge: News.where('? = ANY(tag_1)','涨知识').order(id: :desc).page(params[:page]||1)
              )
     end
 

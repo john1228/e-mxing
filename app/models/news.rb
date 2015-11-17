@@ -1,20 +1,20 @@
 class News < ActiveRecord::Base
   enum tag: {knowledge: '健身知识', question: '你问我答', venues: '热门场馆', gyms: '金牌私教'}
   mount_uploader :cover, NewsCoverUploader
-  
+
   class<<self
     def top_news(category)
       [{
            name: '场馆推荐',
-           tip: (category_news(category, tags[:venues]).first.title rescue '')
+           tip: (category_news(category, '场馆推荐').first.title rescue '')
        },
        {
            name: '私教专访',
-           tip: (category_news(category, tags[:gyms]).first.title rescue '')
+           tip: (category_news(category, '私教专访').first.title rescue '')
        },
        {
            name: "玩转#{category}",
-           tip: (category_news(category, tags[:knowledge]).first.title rescue '')
+           tip: (category_news(category, '玩转').first.title rescue '')
        },
        {
            name: '玩家攻略',
@@ -23,7 +23,7 @@ class News < ActiveRecord::Base
     end
 
     def category_news(category, sub_category)
-      where('? = ANY(tag_1) AND tag = ?', category, sub_category).order(id: :desc)
+      where('? = ANY(tag_1)', "#{category}-#{sub_category}").order(id: :desc)
     end
   end
 

@@ -30,7 +30,7 @@ ActiveAdmin.register News do
 
     def submit_recommend
       news = News.find(params[:id])
-      news.update(tag_1: params[:tag_1])
+      news.update(tag_1: params[:tag])
       render layout: false
     end
   end
