@@ -29,6 +29,7 @@ module Discovery
         } if Dynamic.joins(:dynamic_images).where('? = ANY (dynamic_images.tag)', tag).present?
       }
       data.compact!
+      data
     end
   end
 end
