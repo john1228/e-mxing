@@ -20,11 +20,12 @@ class Lesson < ActiveRecord::Base
 
   def detail
     sku_info = Sku.find_by(sku: sku)
+
     json_hash = {
         id: id,
         course: sku_info.course.name,
         seller: sku_info.seller,
-        seller_type: sku.start_with?('CC') ? 'coach' : 'service',
+        seller_type: sku_info.seller_user.profile.identity,
         available: available,
         used: appointments.pluck(:code),
         during: sku_info.course.during,
