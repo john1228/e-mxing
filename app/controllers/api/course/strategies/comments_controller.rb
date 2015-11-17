@@ -5,7 +5,7 @@ module Api
         before_filter :auth_user, only: :create
 
         def index
-          comments = StrategyComment.where(strategy_id: params[:id]).page(params[:page]||1)
+          comments = StrategyComment.where(strategy_id: params[:id]).order(id: :desc).page(params[:page]||1)
           render json: Success.new(
                      comment: comments.map { |comment|
                        {
@@ -15,7 +15,7 @@ module Api
                                avatar: comment.user.profile.avatar.url,
                                age: comment.user.profile.age,
                                gender: comment.user.profile.gender.to_i,
-                               identity: comment.user.profile.identity_value ,
+                               identity: comment.user.profile.identity_value,
                            },
                            content: comment.content,
                            created: comment.created_at.localtime.strftime('%Y-%m-%d %H:%M:%S')
@@ -37,7 +37,7 @@ module Api
                                    avatar: comment.user.profile.avatar.url,
                                    age: comment.user.profile.age,
                                    gender: comment.user.profile.gender.to_i,
-                                   identity: comment.user.profile.identity_value ,
+                                   identity: comment.user.profile.identity_value,
                                },
                                content: comment.content,
                                created: comment.created_at.localtime.strftime('%Y-%m-%d %H:%M:%S')
