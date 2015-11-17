@@ -81,7 +81,7 @@
     tag:
       tag:
         venues: '场馆'
-        dynamic: '动态'
+        dynamics: '动态'
         news: '新闻'
     news:
       tag:

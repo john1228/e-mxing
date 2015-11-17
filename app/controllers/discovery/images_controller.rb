@@ -20,7 +20,7 @@ module Discovery
     end
 
     def all_image
-      data = TAGS.map { |tag|
+      data = Tag.dynamics.map { |tag|
         {
             tag: tag,
             item: Dynamic.joins(:dynamic_images).where('? = ANY (dynamic_images.tag)', tag).uniq.order(id: :desc).take(3).map { |item|
