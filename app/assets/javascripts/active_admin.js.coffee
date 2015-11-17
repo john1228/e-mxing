@@ -11,9 +11,9 @@
 #= require admin/fileinput
 jQuery -> $('a.fancybox').fancybox(
   {
-    modal: true,
-    scrolling: false,
-    autoScale: true
+    padding: 0,
+    autoScale: true,
+    scrolling: false
   }
 );
 $("input.datetimepicker").datetimepicker({

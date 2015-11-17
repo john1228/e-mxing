@@ -19,10 +19,14 @@ ActiveAdmin.register Service do
     column('注册日期') { |service| service.created_at.localtime.strftime('%Y-%m-%d') }
   end
 
+  actions :index, :new, :create, :edit, :update
+
+
   scope('0-认证工作室', :authorized, default: true)
   scope('1-未认证工作室', :unauthorized)
 
   index do
+    selectable_column
     column '美型号' do |service|
       link_to("#{service.profile.mxid}", admin_service_path(service))
     end
@@ -38,7 +42,9 @@ ActiveAdmin.register Service do
     column '服务号介绍' do |service|
       truncate(service.profile.signature)
     end
-    actions
+    actions do
+      link_to('标签')
+    end
   end
 
   controller do
