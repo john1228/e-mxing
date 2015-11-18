@@ -10,7 +10,7 @@
 #= require admin/fileinput_locale_zh
 #= require admin/fileinput
 $ ->
-  $('a.fancybox').fancybox
+  $('.fancybox').fancybox
     padding: 0
     type: 'ajax'
     closeBtn: true
