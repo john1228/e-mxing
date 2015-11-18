@@ -10,15 +10,11 @@
 #= require admin/fileinput_locale_zh
 #= require admin/fileinput
 $ ->
-  $('.fancybox').fancybox
+  $('a.fancybox').fancybox({
     padding: 0
     type: 'ajax'
     closeBtn: true
     height: 'auto'
     scrolling: false
     arrows: false
-    helpers:
-      overlay:
-        css:
-          'background': 'rgb(58, 42, 45, 0.15)'
-  return
+  })

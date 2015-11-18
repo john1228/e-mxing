@@ -17,18 +17,10 @@ ActiveAdmin.register News do
     column '链接地址' do |news|
       link_to('详情', news_detail_path(news), class: 'fancybox', data: {'fancybox-type' => 'ajax'})
     end
-    actions
+    actions do |news|
+      link_to('标签', recommend_news_path(news), class: 'fancybox', data: {'fancybox-type' => 'ajax'})
+    end
   end
-
-  form_lambda = lambda do
-    items = Category.pluck(:name)
-
-  end
-
-  batch_action :mark, form: form_lambda do |ids|
-    redirect_to collection_path, alert: '标记成功'
-  end
-
 
   controller do
     def recommend
