@@ -32,7 +32,6 @@ class LikeController < ApiController
       else
         render json: Failure.new('无效的请求')
     end
-    render json: Success.new
   end
 
   def count

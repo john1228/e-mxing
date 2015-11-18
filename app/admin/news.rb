@@ -17,9 +17,7 @@ ActiveAdmin.register News do
     column '链接地址' do |news|
       link_to('详情', news_detail_path(news), class: 'fancybox', data: {'fancybox-type' => 'ajax'})
     end
-    actions do |news|
-      link_to('推荐', recommend_news_path(news), class: 'fancybox', data: {'fancybox-type' => 'ajax'})
-    end
+    actions
   end
 
   form_lambda = lambda do
@@ -32,6 +30,11 @@ ActiveAdmin.register News do
 
 
   controller do
+
+    def index
+
+    end
+
     def recommend
       @news = News.find(params[:id])
       render layout: false
