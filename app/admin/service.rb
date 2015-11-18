@@ -1,5 +1,6 @@
 ActiveAdmin.register Service do
   menu label: '工作室', priority: 2, if: proc { !current_admin_user.role.eql?(AdminUser::ROLE[:service]) }
+  config.batch_actions = false
 
   permit_params :mobile, :sns, profile_attributes: [:id, :name, :avatar, :auth, :signature, :province, :city, :address, :identity, :mobile, hobby: [], service: []]
   filter :profile_name, label: '名称', as: :string
@@ -40,10 +41,9 @@ ActiveAdmin.register Service do
     column '服务号介绍' do |service|
       truncate(service.profile.signature)
     end
-    actions do
-      link_to('标签')
-    end
+    actions
   end
+
 
   controller do
     def new

@@ -21,7 +21,8 @@ ActiveAdmin.register News do
   end
 
   form_lambda = lambda do
-    Category.pluck(:name)
+    items = Category.pluck(:name)
+
   end
 
   batch_action :mark, form: form_lambda do |ids|
@@ -30,11 +31,6 @@ ActiveAdmin.register News do
 
 
   controller do
-
-    def index
-
-    end
-
     def recommend
       @news = News.find(params[:id])
       render layout: false
