@@ -4,7 +4,7 @@ module Api
       def index
         venues = Service.joins(:place).select("users.*,st_distance(places.lonlat, 'POINT(#{params[:lng]||0} #{params[:lat]||0})') as distance")
         venues = venues.where('? = ANY (profiles.tag)', params[:tag]) if params[:tag].present?
-        venues = venues.where(profiles: [auth: params[:auth]]) if params[:auth].present?
+        venues = venues.where(profiles: {auth: params[:auth]}) if params[:auth].present?
         venues = venues.where('profiles.name LIKE ? or profiles.address LIKE ?', "%#{params[:keyword]||''}%", "%#{params[:keyword]||''}%") if params[:keyword].present?
         render json: Success.new(venues: venues.order('distance asc').order(id: :desc).page(params[:page]||1).map { |venue|
                                    {
