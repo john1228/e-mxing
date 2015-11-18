@@ -31,6 +31,7 @@ ActiveAdmin.register AdminUser do
             '市场管理员'
           when AdminUser::ROLE[:operator]
             '运营管理员'
+          else
         end
       }
       row('服务号') { |admin_user|

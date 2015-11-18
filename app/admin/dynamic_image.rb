@@ -27,11 +27,10 @@ ActiveAdmin.register DynamicImage do
     tags = Tag.dynamics.pluck(:name).map do |tag|
       [tag, tag]
     end
-    {tag: tags}
+    {'标记' => tags}
   end
-  batch_action :mark, form: form_lambda do |ids|
-    inputs = JSON.parse(params[:batch_action_inputs])
-    DynamicImage.where(id: ids).update_all("tag = array_append(tag,'#{inputs['tag']}')")
+  batch_action :mark, form: form_lambda do |selection, inputs|
+    DynamicImage.where(id: selection).update_all("tag = array_append(tag,'#{inputs['标记']}')")
     redirect_to collection_path, alert: '标记成功'
   end
 end

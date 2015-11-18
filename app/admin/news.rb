@@ -22,6 +22,15 @@ ActiveAdmin.register News do
     end
   end
 
+  form_lambda = lambda do
+    Category.pluck(:name)
+  end
+
+  batch_action :mark, form: form_lambda do |ids|
+    redirect_to collection_path, alert: '标记成功'
+  end
+
+
   controller do
     def recommend
       @news = News.find(params[:id])
