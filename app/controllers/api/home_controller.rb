@@ -104,7 +104,7 @@ module Api
     end
 
     def search_user(keyword, page)
-      Profile.joins(:user).where.not('identity <> ?', Profile.identities[:service]).where('profiles.name LIKE ?', "%#{keyword}%").page(page)
+      Profile.joins(:user).where('identity <> ?', Profile.identities[:service]).where('profiles.name LIKE ?', "%#{keyword}%").page(page)
     end
   end
 end
