@@ -15,10 +15,10 @@ ActiveAdmin.register News do
       image_tag(news.cover.url, width: 69)
     end
     column '链接地址' do |news|
-      link_to('详情', news_detail_path(news), class: 'fancybox', data: {'fancybox-type' => 'ajax'})
+      link_to('详情', news_detail_path(news), class: 'fancybox')
     end
     actions do |news|
-      link_to('标签', recommend_news_path(news), class: 'fancybox', data: {'fancybox-type' => 'ajax'})
+      link_to('标签', recommend_news_path(news), class: 'fancybox')
     end
   end
 
