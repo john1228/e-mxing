@@ -1,14 +1,13 @@
-#= require active_admin/base
 #= require bootstrap
 #= require bootstrap-multiselect
+#= require active_admin/base
+#= require jquery-ui
 #= require jquery-ui-timepicker-addon
 #= require admin/jquery.flot
 #= require admin/PCASClass
-#= require admin/fileinput_locale_zh
-#= require admin/fileinput
 #= require fancybox
 $ ->
-  $('.fancybox').fancybox
+  $('a.fancybox').fancybox
     padding: 0
     type: 'ajax'
     closeBtn: true
