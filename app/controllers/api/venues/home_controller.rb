@@ -18,6 +18,7 @@ module Api
                                        coach_count: venue.coaches.count,
                                        sale: venue.courses.online.count,
                                        tags: venue.profile.tags,
+                                       tag: venue.profile.tag,
                                        auth: venue.profile.auth,
                                        floor: (venue.courses.online.order(selling_price: :asc).first.selling_price rescue ''),
                                    }
