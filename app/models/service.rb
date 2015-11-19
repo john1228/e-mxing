@@ -90,7 +90,7 @@ class Service<User
         place.update(lonlat: "POINT(#{bd_lng} #{bd_lat})")
       end
       #更新机构私教的地址
-      coaches.
+      coaches.each { |coach| coach.profile.update(province: province, city: city, area: area, address: address) }
       #更新机构课程课程的地址
       Sku.where(service_id: id).update_all(address: profile.province.to_s + profile.city.to_s + profile.area.to_s + profile.address.to_s, coordinate: gcj_02(bd_lng, bd_lat))
     end
