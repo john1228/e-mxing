@@ -1,8 +1,8 @@
 module ProfileAble
   extend ActiveSupport::Concern
   included do
-    #after_create :regist_to_easemob
-    #after_destroy :delete_from_easemob
+    after_create :regist_to_easemob
+    after_destroy :delete_from_easemob
   end
   private
   def regist_to_easemob
