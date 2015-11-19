@@ -91,7 +91,7 @@ module Api
         elsif sku_limit > 0 && (sku.limit_detect(@user.id) + amount) > sku_limit
           render json: Failure.new('已超出每人购买数量')
         else
-          render json: Success.new(coupons: Coupon.where(id: @user.wallet.coupons, limit_category: Coupon::TYPE[:general]).where('end_date > ?', Date.today))
+          render json: Success.new(coupons: Coupon.where(id: @user.wallet.coupons, limit_category: Coupon::TYPE[:general]).where('end_date >= ?', Date.today))
         end
       end
 
