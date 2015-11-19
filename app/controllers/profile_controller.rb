@@ -23,6 +23,7 @@ class ProfileController < ApiController
 
   def update
     profile = @user.profile
+    logger.info profile_params
     if profile.update(profile_params)
       render json: Success.new(profile: @user.profile.reload)
     else
@@ -33,6 +34,7 @@ class ProfileController < ApiController
   private
   def profile_params
     permit_params = params.permit(:name, :birthday, :avatar, :signature, :gender, :birthday, :address, :target, :skill, :often)
-    permit_params.merge(hobby: params[:interests].split(',')) if params[:interests].present?
+    permit_params = permit_params.merge(hobby: params[:interests].split(',')) if params[:interests].present?
+    permit_params
   end
 end
