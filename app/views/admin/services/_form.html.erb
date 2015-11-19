@@ -5,7 +5,7 @@
         <%= p.hidden_field(:identity, value: 'service') %>
         <%= p.hidden_field(:auth, value: 1) %>
         <fieldset class="inputs">
-          <legend><span>添加服务号</span></legend>
+          <legend><span>服务号信息</span></legend>
           <% if p.object.errors.present? %>
               <div class="alert alert-danger alert-dismissable">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -42,6 +42,7 @@
             <div class="col-md-10 form-inline">
               <select name="service[profile_attributes][province]" id="service_profile_attributes_province"></select>
               <select name="service[profile_attributes][city]" id="service_profile_attributes_city"></select>
+              <select name="service[profile_attributes][area]" id="service_profile_attributes_area"></select>
               <%= p.text_field :address, class: 'form-control', placeholder: '服务号地址' %>
             </div>
           </div>
@@ -74,7 +75,7 @@
     <% end %>
 <% end %>
 <script type="text/javascript">
-    new PCAS("service[profile_attributes][province]", "service[profile_attributes][city]", '<%=@service.profile.province%>', '<%=@service.profile.city%>');
+    new PCAS("service[profile_attributes][province]", "service[profile_attributes][city]", "service[profile_attributes][area]", '<%=@service.profile.province%>', '<%=@service.profile.city%>', '<%=@service.profile.area%>');
     $('#service_profile_attributes_hobby').multiselect();
     $('#service_profile_attributes_service').multiselect();
 </script>

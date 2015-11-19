@@ -13,18 +13,17 @@ $skinActiveColor: orangered;
 $skinHeaderBck: black;
 $panelHeaderBck: orangered;
 @import "bootstrap-sprockets";
-@import "bootstrap";
 @import "bootstrap-multiselect";
 @import "active_admin/mixins";
 @import "active_admin/base";
 @import "active_skin";
 @import "fancybox";
 @import "admin/fileinput";
-
-// Overriding any non-variable SASS must be done after the fact.
-// For example, to change the default status-tag color:
-//
-//   .status_tag { background: #6090DB; }
+@import "bootstrap";
+$icon-font-path: "bootstrap-sass/assets/fonts/bootstrap/";
+.nav li a {
+  text-decoration: none
+}
 
 .cke_chrome {
   width: 79.5% !important;
@@ -83,3 +82,4 @@ $panelHeaderBck: orangered;
   filter: progid:DXImageTransform.Microsoft.gradient(GradientType=1, startColorstr=#80000000, endColorstr=#80000000);
   cursor: pointer;
 }
+

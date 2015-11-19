@@ -26,32 +26,7 @@ module Api
         end
         render json: Success.new(course: courses)
       end
-
-      def search
-        city = URI.decode(request.headers[:city]) rescue '上海'
-        category = Category.find_by(name: params[:cat])
-        keyword = params[:keyword]
-        courses = Sku.online.select("skus.*, st_distance(skus.coordinate, 'POINT(#{params[:lng]||0} #{params[:lat]||0})') as distance").
-            where('address Like ?', '%' + city + '%').where('course_name like ? or address like ?', "%#{keyword}%", "%#{keyword}%")
-        case params[:sort]
-          when 'smart'
-            courses = courses.order(id: :desc).page(params[:page]||1)
-          when 'fresh-asc'
-            courses = courses.order(updated_at: :desc).order(id: :desc).page(params[:page]||1)
-          when 'distance-asc'
-            courses = courses.order('distance asc').order(id: :desc).page(params[:page]||1)
-          when 'evaluate-asc'
-            courses = courses.order(orders_count: :desc).order(id: :desc).page(params[:page]||1)
-          when 'price-asc'
-            courses = courses.order(selling_price: :asc).order(id: :desc).page(params[:page]||1)
-          when 'price-desc'
-            courses = courses.order(selling_price: :desc).order(id: :desc).page(params[:page]||1)
-          else
-            courses = []
-        end
-        render json: Success.new(course: courses)
-      end
-
+      
       def show
         sku = Sku.find_by(sku: params[:sku])
         if sku.recommend.blank?&&sku.status.eql?(0)

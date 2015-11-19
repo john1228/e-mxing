@@ -152,23 +152,14 @@
 <% end %>
 <script type="text/javascript">
     $('#service_course_type').multiselect();
-    $('#service_course_limit_time').multiselect();
     $('#service_course_during').multiselect();
     $('#service_course_exp').multiselect();
     $('#service_course_service').multiselect();
     $('#service_course_agency').multiselect();
     $('#service_course_limit').multiselect();
-    $('#service_course_during').multiselect();
-    var value = $("#service_course_limit_time").val()
-    if (value == 1) {
-        $('#limit_start').show();
-        $('#limit_end').show();
-    } else {
-        $('#limit_start').val('');
-        $('#limit_end').val('');
-        $('#limit_start').hide();
-        $('#limit_end').hide();
-    }
+    $('#limit_start').hide();
+    $('#limit_end').hide();
+    
     $(function () {
                 $("#service_course_limit_time").change(function () {
                     var value = $("#service_course_limit_time").val()

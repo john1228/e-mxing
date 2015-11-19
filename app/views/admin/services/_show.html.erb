@@ -1,0 +1,83 @@
+﻿<ul class="nav nav-tabs">
+  <li class="active"><a href="#0" data-toggle="tab">账户余额</a></li>
+  <li><a href="#1" data-toggle="tab">详细资料</a></li>
+</ul>
+
+<div class="tab-content">
+  <div class="tab-pane active" id="0">
+    <div class="panel">
+      <h3>账户余额</h3>
+
+      <div class="panel_contents">
+        <div class="attributes_table">
+          <table border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <th>余额</th>
+              <td>
+                <%= @service.wallet.balance %>元
+              </td>
+            </tr>
+            <tr>
+              <th><a class="fancybox button" data-fancybox-type="ajax" href="/admin/services/398/withdraw">提现</a></th>
+              <td><a class="fancybox button" data-fancybox-type="ajax" href="/admin/services/398/transfer">转账</a></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="tab-pane" id="1">
+    <div class="panel">
+      <h3>详细资料</h3>
+
+      <div class="panel_contents">
+        <div class="attributes_table service" id="attributes_table_service_398">
+          <table border="0" cellspacing="0" cellpadding="0">
+            <tr class="row row-">
+              <th>美型号</th>
+              <td><%= @service.profile.mxid %></td>
+            </tr>
+            <tr class="row row-">
+              <th>昵称</th>
+              <td><%= @service.profile.name %></td>
+            </tr>
+            <tr class="row row-">
+              <th>头像</th>
+              <td>
+                <img height="70" src="<%= @service.profile.avatar.url %>"/>
+              </td>
+            </tr>
+            <tr class="row row-">
+              <th>介绍</th>
+              <td><%= @service.profile.signature %></td>
+            </tr>
+            <tr class="row row-">
+              <th>服务</th>
+              <td><%= @service.profile.interests_string %></td>
+            </tr>
+            <tr class="row row-">
+              <th>省份</th>
+              <td><%= @service.profile.province %></td>
+            </tr>
+            <tr class="row row-">
+              <th>城市</th>
+              <td><%= @service.profile.city %></td>
+            </tr>
+            <tr class="row row-">
+              <th>区域</th>
+              <td><%= @service.profile.area %></td>
+            </tr>
+            <tr class="row row-">
+              <th>详细地址</th>
+              <td><%= @service.profile.address %></td>
+            </tr>
+            <tr class="row row-">
+              <th>联系电话</th>
+              <td><%= @service.profile.mobile %></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
