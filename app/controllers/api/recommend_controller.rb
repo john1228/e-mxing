@@ -1,10 +1,11 @@
 module Api
   class RecommendController < ApplicationController
     def gyms
-      #city = URI.decode(request.headers[:city]) rescue '上海'
+      city = URI.decode(request.headers[:city]) rescue '上海'
       render json: Success.new(
                  gyms: Profile.coach.joins(:place, :user).
                      select("profiles.id,profiles.name,profiles.avatar,profiles.gender,profiles.birthday,profiles.signature,profiles.identity, st_distance(places.lonlat, 'POINT(#{params[:lng]||0} #{params[:lat]||0})') as distance").
+                     where('profiles.city = ?', city).
                      order('distance asc').order(id: :desc).page(params[:page]||1).map { |profile|
                    profile.summary_json.merge(distance: profile.attributes['distance'])
                  }
@@ -13,13 +14,13 @@ module Api
 
     def boutique
       render json: Success.new(
-                 venues: News.where('? = ANY(tag_1)','场馆秀').order(id: :desc).page(params[:page]||1)
+                 venues: News.where('? = ANY(tag_1)', '场馆秀').order(id: :desc).page(params[:page]||1)
              )
     end
 
     def knowledge
       render json: Success.new(
-                 knowledge: News.where('? = ANY(tag_1)','涨知识').order(id: :desc).page(params[:page]||1)
+                 knowledge: News.where('? = ANY(tag_1)', '涨知识').order(id: :desc).page(params[:page]||1)
              )
     end
 
