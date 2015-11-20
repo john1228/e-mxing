@@ -27,7 +27,7 @@
               </div>
           <% end %>
           <%= c.semantic_fields_for :profile do |p| %>
-              <%= p.hidden_field(:identity, value: 1) %>
+              <%= p.hidden_field(:identity, value: Profile.identities[:coach]) %>
               <div class="form-group form-group-sm">
                 <label class="col-sm-2 control-label" for="service_signature">昵称</label>
 
