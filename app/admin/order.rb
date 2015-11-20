@@ -9,8 +9,6 @@ ActiveAdmin.register Order do
   filter :contact_phone, label: '联系电话'
   filter :created_at, label: '订单日期'
   filter :pay_type, label: '支付方式', as: :select, collection: Order::PAY_TYPE
-  #filter :service_id, label: '服务号', as: :select, collection: Service.where(id: Order.pluck(:service_id).uniq).pluck('profiles.name', :id)
-  #filter :coach_id, label: '私教', as: :select, collection: Coach.where(id: Order.pluck(:coach_id).uniq).pluck('profiles.name', :id)
   actions :index, :show
 
   index do

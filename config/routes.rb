@@ -120,6 +120,9 @@ Rails.application.routes.draw do
   get '/admin/news/:id/recommend' => 'admin/news#recommend', as: :recommend_news
   post '/admin/news/:id/recommend' => 'admin/news#submit_recommend', as: :submit_recommend_news, defaults: {format: 'js'}
 
+  get 'admin/news/:id/mark' => 'admin/news#mark', as: :mark_news
+  post 'admin/news/:id/mark' => 'admin/news#mark_result', as: :submit_mark_news
+
 
   get 'download' => 'download#index'
   get 'download/:package' => 'download#index'

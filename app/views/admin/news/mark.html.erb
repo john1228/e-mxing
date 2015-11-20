@@ -1,0 +1,64 @@
+﻿<%= form_tag(submit_mark_news_path(@news), class: "form-horizontal") do %>
+    <div class="modal-header">
+      <h3 class="title">标签</h3>
+    </div>
+    <div class=" modal-body">
+      <div class="checkbox-group">
+        <h4 class="title">发现</h4>
+        <% Tag.news.pluck(:name) do |tag| %>
+            <ul>
+              <li>
+                <label>
+                  <input type="checkbox" name="tag[]" value="<%= tag %>"><%= tag %>
+                </label>
+              </li>
+            </ul>
+        <% end %>
+      </div>
+      <div class=" checkbox-group">
+        <h4 class="title">首页</h4>
+        <ul>
+          <li>
+            <label>
+              <input type="checkbox" name="tag[]" value="场馆秀">场馆秀
+            </label>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <label>
+              <input type="checkbox" name="tag[]" value="涨知识">涨知识
+            </label>
+          </li>
+        </ul>
+      </div>
+      <div class="checkbox-group">
+        <h4 class="title">课程</h4>
+        <% Category.pluck(:name).map do |category| %>
+            <ul>
+              <li>
+                <label>
+                  <input type="checkbox" name="tag[]" value="<%= category %>-场馆推荐"><%= category %>-场馆推荐
+                </label>
+              </li>
+            </ul>
+            <ul>
+              <li>
+                <label>
+                  <input type="checkbox" name="tag[]" value="<%= category %>-私教专访"><%= category %>-私教专访
+                </label>
+              </li>
+            </ul>
+            <ul>
+              <li>
+                <label>
+                  <input type="checkbox" name="tag[]" value="<%= category %>-玩转<%= category %>"><%= category %>
+                  -玩转<%= category %>
+                </label>
+              </li>
+            </ul>
+        <% end %>
+      </div>
+    </div>
+    <div class="modal-footer"><%= submit_tag('确定') %></div>
+<% end %>

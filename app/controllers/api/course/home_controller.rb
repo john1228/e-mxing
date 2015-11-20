@@ -32,7 +32,7 @@ module Api
         category = Category.find_by(name: params[:cat])
         keyword = params[:keyword]
         courses = Sku.online.select("skus.*, st_distance(skus.coordinate, 'POINT(#{params[:lng]||0} #{params[:lat]||0})') as distance").
-            where('address Like ?', '%'+ city + '%').
+            where('address LIKE ?', '%'+ city + '%').
             where(course_type: category.item).
             where('address LIKE ? or course_name LIKE ?', "%#{keyword}%", "%#{keyword}%")
         case params[:sort]

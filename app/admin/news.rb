@@ -15,35 +15,35 @@ ActiveAdmin.register News do
       image_tag(news.cover.url, width: 69)
     end
     column '链接地址' do |news|
-      link_to('详情', news_detail_path(news), class: 'fancybox')
+      link_to('详情', news_detail_path(news))
     end
     actions do |news|
-      render 'mark'
+      link_to_modal "标签", mark_news_path(news), rel: 'model:open'
     end
   end
 
   controller do
-    def recommend
+    def mark
       @news = News.find(params[:id])
       render layout: false
     end
 
-    def submit_recommend
+    def mark_result
       news = News.find(params[:id])
       news.update(tag_1: params[:tag])
-      render layout: false
+      redirect_to collection_path, alert: '标记成功'
     end
   end
 
-  show title: '新闻详情' do
-    panel '' do
+  show title: ' 新闻详情 ' do
+    panel ' ' do
       attributes_table_for news do
-        row('标题') { news.title }
-        row('分类') { news.tag }
-        row('封面') { image_tag(news.cover.url, width: 69*2) }
-        row('链接') { link_to('详情', news_detail_path(news)) }
+        row(' 标题 ') { news.title }
+        row(' 分类 ') { news.tag }
+        row(' 封面 ') { image_tag(news.cover.url, width: 69*2) }
+        row(' 链接 ') { link_to(' 详情 ', news_detail_path(news)) }
       end
     end
   end
-  form partial: 'form'
+  form partial: ' form '
 end

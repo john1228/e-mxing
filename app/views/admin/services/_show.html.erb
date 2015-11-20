@@ -18,8 +18,11 @@
               </td>
             </tr>
             <tr>
-              <th><a class="fancybox button" data-fancybox-type="ajax" href="/admin/services/398/withdraw">提现</a></th>
-              <td><a class="fancybox button" data-fancybox-type="ajax" href="/admin/services/398/transfer">转账</a></td>
+              <th></th>
+              <td>
+                <%= link_to_modal "转账", "#transfer", class: 'button' %>
+                <%= link_to_modal "提现", "#withdraw", class: 'button' %>
+              </td>
             </tr>
           </table>
         </div>
@@ -80,4 +83,58 @@
       </div>
     </div>
   </div>
+</div>
+
+
+<div id="transfer" style="display: none; min-height: 100px;max-height: 600px z-index: 900 ">
+
+  <%= form_tag(service_transfer_path(@service), remote: true, class: "form-horizontal") do %>
+      <fieldset class="inputs">
+        <legend><span>提现</span></legend>
+        <div class="form-group form-group-sm">
+          <label class="col-sm-2 control-label" for="service_interests">支付宝实名</label>
+
+          <div class="col-sm-10">
+            <%= select_tag(:coach, options_for_select(@service.coaches.includes(:profile).pluck('profiles.name', :id)), {include_blank: false}) %>
+          </div>
+        </div>
+        <div class="form-group form-group-sm">
+          <label class="col-sm-2 control-label" for="service_interests">金额</label>
+
+          <div class="col-sm-10">
+            <%= number_field_tag(:amount, nil, min: 200, max: @service.wallet.balance) %>
+          </div>
+        </div>
+      </fieldset>
+      <%= submit_tag('提交') %>
+  <% end %>
+</div>
+<div id="withdraw" style="display: none;">
+  <%= form_tag(service_withdraw_path(@service), remote: true, class: "form-horizontal") do %>
+      <fieldset class="inputs">
+        <legend><span>提现</span></legend>
+        <div class="form-group form-group-sm">
+          <label class="col-sm-2 control-label" for="service_interests">支付宝实名</label>
+
+          <div class="col-sm-10">
+            <%= text_field_tag :name, '', class: 'form-control', placeholder: '请输入新闻标题' %>
+          </div>
+        </div>
+        <div class="form-group form-group-sm">
+          <label class="col-sm-2 control-label" for="service_interests">支付宝账户</label>
+
+          <div class="col-sm-10">
+            <%= text_field_tag :account, '', class: 'form-control', placeholder: '请输入新闻标题' %>
+          </div>
+        </div>
+        <div class="form-group form-group-sm">
+          <label class="col-sm-2 control-label" for="service_interests">金额</label>
+
+          <div class="col-sm-10">
+            <%= number_field_tag(:amount, nil, min: 200, max: @service.wallet.balance) %>
+          </div>
+        </div>
+      </fieldset>
+      <%= submit_tag('提交') %>
+  <% end %>
 </div>

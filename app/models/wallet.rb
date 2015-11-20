@@ -9,7 +9,7 @@ class Wallet < ActiveRecord::Base
   def as_json
     {
         balance: balance.to_f.round(2),
-        coupons: coupons.size,
+        coupons: Coupon.where('end_date >= ?', Date.today).where(id: coupons).count,
         bean: bean
     }
   end

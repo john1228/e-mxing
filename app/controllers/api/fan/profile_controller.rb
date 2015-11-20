@@ -8,6 +8,7 @@ module Api
                                        mxid: enthusiast.profile.mxid,
                                        name: enthusiast.profile.name,
                                        avatar: enthusiast.profile.avatar.url,
+                                       identity: enthusiast.profile.identity_value,
                                        tags: enthusiast.profile.tags,
                                        gender: enthusiast.profile.gender||1,
                                        age: enthusiast.profile.age,

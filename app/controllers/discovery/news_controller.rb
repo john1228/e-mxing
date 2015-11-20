@@ -7,10 +7,10 @@ module Discovery
                     item: News.where('? = ANY(tag_1)', params[:tag]).order(id: :desc).page(params[:page]||1)
                 }]
       else
-        data = News.tags.map { |tag, value|
+        data = Tag.news.pluck(:name).map { |tag|
           tag_data = News.where('? = ANY(tag_1)', tag)
           {
-              tag: value,
+              tag: tag,
               item: tag_data.order(id: :desc).take(2)
           } if tag_data.present?
         }

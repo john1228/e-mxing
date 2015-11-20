@@ -15,6 +15,7 @@ module Api
                                            lng: venue.place.lonlat.x,
                                            lat: venue.place.lonlat.y
                                        },
+                                       identity: venue.profile.identity_value,
                                        tags: venue.profile.tags,
                                        intro: venue.profile.signature,
                                        coach: {
@@ -32,7 +33,7 @@ module Api
                                        fpg: venue.profile._fitness_program,
                                        facility: venue.profile.service,
                                        contact: venue.profile.mobile,
-                                       photowall: venue.photos.map { |photo| {url: photo.photo.url} }
+                                       photowall: venue.photos.map { |photo| {id: photo.id, url: photo.photo.url} }
                                    })
         else
           render json: Failure.new('您查看的场地不存在')
