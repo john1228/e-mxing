@@ -30,8 +30,11 @@ module Api
       def search
         city = URI.decode(request.headers[:city]) rescue '上海'
         category = Category.find_by(name: params[:cat])
+        keyword = params[:keyword]
         courses = Sku.online.select("skus.*, st_distance(skus.coordinate, 'POINT(#{params[:lng]||0} #{params[:lat]||0})') as distance").
-            where('address Like ?', '%'+ city + '%').where(course_type: category.item)
+            where('address Like ?', '%'+ city + '%').
+            where(course_type: category.item).
+            where('address LIKE ? or course_name LIKE ?', "%#{keyword}%", "%#{keyword}%")
         case params[:sort]
           when 'smart'
             courses = courses.order(id: :desc).page(params[:page]||1)
