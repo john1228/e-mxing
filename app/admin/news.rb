@@ -45,5 +45,5 @@ ActiveAdmin.register News do
       end
     end
   end
-  form partial: ' form '
+  form partial: 'form'
 end

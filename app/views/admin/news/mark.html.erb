@@ -5,7 +5,7 @@
     <div class=" modal-body">
       <div class="checkbox-group">
         <h4 class="title">发现</h4>
-        <% Tag.news.pluck(:name) do |tag| %>
+        <% Tag.news.pluck(:name).map do |tag| %>
             <ul>
               <li>
                 <label>
