@@ -103,7 +103,7 @@ ActiveAdmin.register Service do
     def mark_result
       service = Service.find(params[:id])
       service.profile.update(tag: params[:tag])
-      edirect_to collection_path, alert: '标记成功'
+      redirect_to collection_path, alert: '标记成功'
     end
   end
 
