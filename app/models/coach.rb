@@ -18,7 +18,7 @@ class Coach<User
 
   validates_presence_of :mobile, message: '请填写手机号'
   validates_uniqueness_of :mobile, message: '该手机号已经注册'
-  validates_format_of :mobile, with: /^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/, multiline: true, message: '无效到手机号码'
+  validates_format_of :mobile, with: /^(0|86|17951)?(13[0123456789]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/, multiline: true, message: '无效到手机号码'
   validates_presence_of :password, message: '请输入手机号码'
 
   def score

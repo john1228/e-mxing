@@ -10,7 +10,7 @@ ActiveAdmin.register ServiceMember do
       @service = Service.find_by(id: params[:service_id])
       @service_member = @service.service_members.new
       @service_member.build_coach
-      @service_member.coach.build_profile
+      @service_member.coach.profile = Profile.coach.new
     end
   end
 
