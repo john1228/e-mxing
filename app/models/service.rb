@@ -77,22 +77,20 @@ class Service<User
   private
 
   def location
-    if profile.changed?
-      conn = Faraday.new(:url => 'http://api.map.baidu.com')
-      address_summary = ((profile.province.to_s + profile.city.to_s + profile.area.to_s + profile.address.to_s).match(/(.+?)[弄号]/)).to_s
-      result = conn.get '/geocoder/v2/', address: address_summary, output: 'json', ak: '61Vl2dO7CKCt0rvLKQiePGT5'
-      json_string = JSON.parse(result.body)
-      bd_lng = json_string['result']['location']['lng']
-      bd_lat = json_string['result']['location']['lat']
-      if place.nil?
-        create_place(lonlat: "POINT(#{bd_lng} #{bd_lat})")
-      else
-        place.update(lonlat: "POINT(#{bd_lng} #{bd_lat})")
-      end
-      #更新机构私教的地址
-      coaches.each { |coach| coach.profile.update(province: province, city: city, area: area, address: address) }
-      #更新机构课程课程的地址
-      Sku.where(service_id: id).update_all(address: profile.province.to_s + profile.city.to_s + profile.area.to_s + profile.address.to_s, coordinate: gcj_02(bd_lng, bd_lat))
+    conn = Faraday.new(:url => 'http://api.map.baidu.com')
+    address_summary = ((profile.province.to_s + profile.city.to_s + profile.area.to_s + profile.address.to_s).match(/(.+?)[弄号]/)).to_s
+    result = conn.get '/geocoder/v2/', address: address_summary, output: 'json', ak: '61Vl2dO7CKCt0rvLKQiePGT5'
+    json_string = JSON.parse(result.body)
+    bd_lng = json_string['result']['location']['lng']
+    bd_lat = json_string['result']['location']['lat']
+    if place.nil?
+      create_place(lonlat: "POINT(#{bd_lng} #{bd_lat})")
+    else
+      place.update(lonlat: "POINT(#{bd_lng} #{bd_lat})")
     end
+    #更新机构私教的地址
+    coaches.each { |coach| coach.profile.update(province: province, city: city, area: area, address: address) }
+    #更新机构课程课程的地址
+    Sku.where(service_id: id).update_all(address: profile.province.to_s + profile.city.to_s + profile.area.to_s + profile.address.to_s, coordinate: gcj_02(bd_lng, bd_lat))
   end
 end
