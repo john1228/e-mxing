@@ -5,7 +5,7 @@ module Api
       render json: Success.new(
                  gyms: Profile.coach.joins(:place, :user).
                      select("profiles.id,profiles.name,profiles.avatar,profiles.gender,profiles.birthday,profiles.signature,profiles.identity, st_distance(places.lonlat, 'POINT(#{params[:lng]||0} #{params[:lat]||0})') as distance").
-                     where('profiles.city = ?', "#{city}市").
+                     where('profiles.city LIKE ?', "#{city}%").
                      order('distance asc').order(id: :desc).page(params[:page]||1).map { |profile|
                    profile.summary_json.merge(distance: profile.attributes['distance'])
                  }
