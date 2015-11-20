@@ -10,14 +10,30 @@
       <thead>
       <tr>
         <th class="col col-">订单编号</th>
-        <th class="col col-">昵称</th>
-        <th class="col col-">头像</th>
-        <th class="col col-">健身服务</th>
-        <th class="col col-">服务号介绍</th>
-        <th class="col col-actions"></th>
+        <th class="col col-">买家</th>
+        <th class="col col-">联系方式</th>
+        <th class="col col-">商品</th>
+        <th class="col col-">数量</th>
+        <th class="col col-">金额</th>
       </tr>
       </thead>
       <tbody>
+      <% Order.where(coach_id: @service_member.coach_id).map { |order| %>
+          <tr class="odd" id="service_398">
+            <td class="col col-"><a href="/admin/services/398">10391</a></td>
+            <td class="col col-"><a href="/admin/services/398">db健身工作室</a></td>
+            <td class="col col-">
+              <a href="/admin/services/398"><img src="http://7xl2f5.com1.z0.glb.clouddn.com/images/profile/u_2441056542_3276897695_fm_21_gp_0.jpg" alt="U 2441056542 3276897695 fm 21 gp 0" height="70"></a>
+            </td>
+            <td class="col col-">足球,体操,力量,登山,综合训练,跳绳,滑冰,保龄球,...</td>
+            <td class="col col-">上的分解落实到上的分解落实到上的分解落实到上的分解落实...</td>
+            <td class="col col-actions">
+              <div class="table_actions">
+                <a class="view_link member_link" href="/admin/services/398">查看</a><a class="edit_link member_link" href="/admin/services/398/edit">编辑</a>
+              </div>
+            </td>
+          </tr>
+      <% } %>
       <tr class="odd" id="service_398">
         <td class="col col-"><a href="/admin/services/398">10391</a></td>
         <td class="col col-"><a href="/admin/services/398">db健身工作室</a></td>

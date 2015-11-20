@@ -122,6 +122,8 @@ Rails.application.routes.draw do
 
   get 'admin/news/:id/mark' => 'admin/news#mark', as: :mark_news
   post 'admin/news/:id/mark' => 'admin/news#mark_result', as: :submit_mark_news
+  get 'admin/services/:id/mark' => 'admin/services#mark', as: :mark_service
+  post 'admin/services/:id/mark' => 'admin/services#mark_result', as: :submit_mark_service
 
 
   get 'download' => 'download#index'

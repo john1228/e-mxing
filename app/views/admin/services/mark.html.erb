@@ -1,0 +1,19 @@
+﻿<%= form_tag(submit_mark_service_path(@service), class: "form-horizontal") do %>
+    <div class="modal-header">
+      <h3 class="title">标签</h3>
+    </div>
+    <div class=" modal-body">
+      <div class="checkbox-group">
+        <% Tag.venues.pluck(:name).map do |tag| %>
+            <ul>
+              <li>
+                <label>
+                  <input type="checkbox" name="tag[]" value="<%= tag %>"><%= tag %>
+                </label>
+              </li>
+            </ul>
+        <% end %>
+      </div>
+    </div>
+    <div class="modal-footer"><%= submit_tag('确定') %></div>
+<% end %>

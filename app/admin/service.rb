@@ -1,5 +1,6 @@
 ActiveAdmin.register Service do
   menu label: '工作室', priority: 2, if: proc { !current_admin_user.role.eql?(AdminUser::ROLE[:service]) }
+  config.batch_actions = false
 
   permit_params :mobile, :sns, profile_attributes: [:id, :name, :avatar, :auth, :signature, :province, :city, :area, :address, :identity, :mobile, hobby: [], service: []]
   filter :profile_name, label: '名称', as: :string
@@ -40,15 +41,9 @@ ActiveAdmin.register Service do
     column '服务号介绍' do |service|
       truncate(service.profile.signature)
     end
-    actions
-  end
-
-  form_lambda = lambda do
-    {'标记' => Tag.venues.pluck(:name)}
-  end
-  batch_action :mark, form: form_lambda do |selection, inputs|
-    DynamicImage.where(id: selection).update_all("tag = array_append(tag,'#{inputs['标记']}')")
-    redirect_to collection_path, alert: '标记成功'
+    actions do |service|
+      link_to_modal "标签", mark_service_path(service), rel: 'model:open'
+    end
   end
 
   controller do
@@ -98,6 +93,17 @@ ActiveAdmin.register Service do
         @errors = exp.message
       end
       render layout: false
+    end
+
+    def mark
+      @service = Service.find(params[:id])
+      render layout: false
+    end
+
+    def mark_result
+      service = Service.find(params[:id])
+      service.profile.update(tag: params[:tag])
+      edirect_to collection_path, alert: '标记成功'
     end
   end
 
