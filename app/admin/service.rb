@@ -1,6 +1,5 @@
 ActiveAdmin.register Service do
   menu label: '工作室', priority: 2, if: proc { !current_admin_user.role.eql?(AdminUser::ROLE[:service]) }
-  config.batch_actions = false
 
   permit_params :mobile, :sns, profile_attributes: [:id, :name, :avatar, :auth, :signature, :province, :city, :area, :address, :identity, :mobile, hobby: [], service: []]
   filter :profile_name, label: '名称', as: :string
@@ -44,16 +43,18 @@ ActiveAdmin.register Service do
     actions
   end
 
+  form_lambda = lambda do
+    {'标记' => Tag.venues.pluck(:name)}
+  end
+  batch_action :mark, form: form_lambda do |selection, inputs|
+    DynamicImage.where(id: selection).update_all("tag = array_append(tag,'#{inputs['标记']}')")
+    redirect_to collection_path, alert: '标记成功'
+  end
 
   controller do
     def new
       @service = Service.new
       @service.build_profile
-    end
-
-    def chat
-      @service = Service.find_by(id: params[:id])
-      render layout: false
     end
 
     def withdraw
@@ -97,28 +98,6 @@ ActiveAdmin.register Service do
         @errors = exp.message
       end
       render layout: false
-    end
-
-    def message
-      service = Service.find_by(id: params[:id])
-      case params[:target].to_i
-        when 1
-          #全部推送消息
-          order_users = Order.includes(:user).where(service_id: service.id, status: Order::STATUS[:pay]).map { |item| item.user.profile.mxid }
-          follow_users = Follow.includes(:user).where(service_id: service.id).map { |item| item.user.profile.mxid }
-          PushMessageJob.perform_later(service.profile.mxid, (order_users+follow_users).uniq, params[:message])
-        when 2
-          #购课需要推送消息
-          order_users = Order.includes(:user).where(service_id: service.id, status: Order::STATUS[:pay]).map { |item| item.user.profile.mxid }
-          PushMessageJob.perform_later(service.profile.mxid, order_users, params[:message])
-        when 3
-          #扫码推送消息
-          follow_users = Follow.includes(:user).where(service_id: service.id).map { |item| item.user.profile.mxid }
-          PushMessageJob.perform_later(service.profile.mxid, follow_users, params[:message])
-        else
-
-      end
-      redirect_to admin_service_path(service), alert: '消息已发送'
     end
   end
 

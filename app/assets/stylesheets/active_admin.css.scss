@@ -17,12 +17,15 @@ $panelHeaderBck: orangered;
 @import "active_admin/mixins";
 @import "active_admin/base";
 @import "active_skin";
-@import "fancybox";
-@import "admin/fileinput";
 @import "bootstrap";
+@import "jquery.modal";
 $icon-font-path: "bootstrap-sass/assets/fonts/bootstrap/";
 .nav li a {
   text-decoration: none
+}
+
+#title_bar {
+  z-index: 0;
 }
 
 .cke_chrome {

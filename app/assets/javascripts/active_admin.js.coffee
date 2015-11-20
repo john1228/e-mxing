@@ -1,23 +1,21 @@
+#= require active_admin/base
+#= require bootstrap
+#= require bootstrap-multiselect
+#= require fancybox
 #= require jquery
 #= require jquery-ui
 #= require jquery-ui-timepicker-addon
-#= require bootstrap-sprockets
-#= require bootstrap
-#= require bootstrap-multiselect
-#= require admin/bootstrap-tab
-#= require fancybox
-#= require admin/PCASClass
-#= require admin/fileinput_locale_zh
-#= require admin/fileinput
+#= require admin/jquery.flot
+#= require jquery.modal
+jQuery ->
+  $('a.fancybox').fancybox(
+    {
+      padding: 0,
+      autoScale: true
+    }
+  )
 $ ->
-  $('a.fancybox').fancybox({
-    padding: 0
-    type: 'ajax'
-    closeBtn: true
-    height: 'auto'
-    scrolling: false
-    arrows: false
+  $("input.datetimepicker").datetimepicker({
+    stepMinute: 30
+    dateFormat: "yy-mm-dd"
   });
-  $("input.datetimepicker").datetimepicker
-  stepMinute: 30
-  dateFormat: "yy-mm-dd"

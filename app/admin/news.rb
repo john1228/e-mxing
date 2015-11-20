@@ -18,7 +18,7 @@ ActiveAdmin.register News do
       link_to('详情', news_detail_path(news), class: 'fancybox')
     end
     actions do |news|
-      link_to('标签', recommend_news_path(news), class: 'fancybox')
+      render 'mark'
     end
   end
 
