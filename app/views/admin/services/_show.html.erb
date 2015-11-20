@@ -94,7 +94,6 @@
         <th class="col col-">商品</th>
         <th class="col col-">数量</th>
         <th class="col col-">金额</th>
-        <th class="col col-"></th>
       </tr>
       </thead>
       <tbody>
@@ -106,11 +105,6 @@
             <td class="col col-"><%= order.order_item.name %></td>
             <td class="col col-"><%= order.order_item.amount %></td>
             <td class="col col-"><%= order.total %></td>
-            <td class="col col-actions">
-              <div class="table_actions">
-                <a class="view_link member_link" href="/admin/services/398">查看</a><a class="edit_link member_link" href="/admin/services/398/edit">编辑</a>
-              </div>
-            </td>
           </tr>
       <% end %>
       </tbody>

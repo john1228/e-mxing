@@ -29,7 +29,7 @@ module Api
           render json: Success.new(
                      comment: {
                          amount: strategy.comment_count,
-                         item: strategy.comments.limit(3).map { |comment|
+                         item: strategy.comments.order(id: :desc).limit(3).map { |comment|
                            {
                                user: {
                                    mxid: comment.user.profile.mxid,

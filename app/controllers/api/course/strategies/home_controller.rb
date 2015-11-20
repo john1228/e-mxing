@@ -15,13 +15,13 @@ module Api
                                avatar: strategy.user.profile.avatar.url,
                                age: strategy.user.profile.age,
                                gender: strategy.user.profile.gender.to_i,
-                               identity: strategy.user.profile.identity_value ,
+                               identity: strategy.user.profile.identity_value,
                            },
                            content: strategy.content,
                            created: strategy.created_at.strftime('%Y-%m-%d %H:%M:%S'),
                            comment: {
                                amount: strategy.comment_count,
-                               item: strategy.comments.limit(3).map { |comment|
+                               item: strategy.comments.order(id: :desc).limit(3).map { |comment|
                                  {
                                      user: {
                                          mxid: comment.user.profile.mxid,
@@ -29,7 +29,7 @@ module Api
                                          avatar: comment.user.profile.avatar.url,
                                          age: comment.user.profile.age,
                                          gender: comment.user.profile.gender.to_i,
-                                         identity: comment.user.profile.identity_value ,
+                                         identity: comment.user.profile.identity_value,
                                      },
                                      content: comment.content,
                                      created: comment.created_at.localtime.strftime('%Y-%m-%d %H:%M:%S')

@@ -19,7 +19,7 @@
       </tr>
       </thead>
       <tbody>
-      <% Order.where(coach_id: @service_member.coach_id).each_with_index do |order, index| %>
+      <% Order.where(coach_id: @service_member.coach_id).page(params[:page]||1).each_with_index do |order, index| %>
           <tr class="<%= index.even? ? 'even' : 'odd' %>">
             <td class="col col-"><%= order.no %></td>
             <td class="col col-"><%= order.contact_name %></td>
