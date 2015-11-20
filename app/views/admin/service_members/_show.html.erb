@@ -15,113 +15,25 @@
         <th class="col col-">商品</th>
         <th class="col col-">数量</th>
         <th class="col col-">金额</th>
+        <th class="col col-"></th>
       </tr>
       </thead>
       <tbody>
-      <% Order.where(coach_id: @service_member.coach_id).map { |order| %>
-          <tr class="odd" id="service_398">
-            <td class="col col-"><a href="/admin/services/398">10391</a></td>
-            <td class="col col-"><a href="/admin/services/398">db健身工作室</a></td>
-            <td class="col col-">
-              <a href="/admin/services/398"><img src="http://7xl2f5.com1.z0.glb.clouddn.com/images/profile/u_2441056542_3276897695_fm_21_gp_0.jpg" alt="U 2441056542 3276897695 fm 21 gp 0" height="70"></a>
-            </td>
-            <td class="col col-">足球,体操,力量,登山,综合训练,跳绳,滑冰,保龄球,...</td>
-            <td class="col col-">上的分解落实到上的分解落实到上的分解落实到上的分解落实...</td>
+      <% Order.where(coach_id: @service_member.coach_id).each_with_index do |order, index| %>
+          <tr class="<%= index.even? ? 'even' : 'odd' %>">
+            <td class="col col-"><%= order.no %></td>
+            <td class="col col-"><%= order.contact_name %></td>
+            <td class="col col-"><%= order.contact_phone %></td>
+            <td class="col col-"><%= order.order_item.name %></td>
+            <td class="col col-"><%= order.order_item.amount %></td>
+            <td class="col col-"><%= order.total %></td>
             <td class="col col-actions">
               <div class="table_actions">
                 <a class="view_link member_link" href="/admin/services/398">查看</a><a class="edit_link member_link" href="/admin/services/398/edit">编辑</a>
               </div>
             </td>
           </tr>
-      <% } %>
-      <tr class="odd" id="service_398">
-        <td class="col col-"><a href="/admin/services/398">10391</a></td>
-        <td class="col col-"><a href="/admin/services/398">db健身工作室</a></td>
-        <td class="col col-">
-          <a href="/admin/services/398"><img src="http://7xl2f5.com1.z0.glb.clouddn.com/images/profile/u_2441056542_3276897695_fm_21_gp_0.jpg" alt="U 2441056542 3276897695 fm 21 gp 0" height="70"></a>
-        </td>
-        <td class="col col-">足球,体操,力量,登山,综合训练,跳绳,滑冰,保龄球,...</td>
-        <td class="col col-">上的分解落实到上的分解落实到上的分解落实到上的分解落实...</td>
-        <td class="col col-actions">
-          <div class="table_actions">
-            <a class="view_link member_link" href="/admin/services/398">查看</a><a class="edit_link member_link" href="/admin/services/398/edit">编辑</a>
-          </div>
-        </td>
-      </tr>
-      <tr class="even" id="service_386">
-        <td class="col col-selectable">
-          <div class="resource_selection_cell">
-            <input id="batch_action_item_386" value="386" class="collection_selection" name="collection_selection[]" type="checkbox">
-          </div>
-        </td>
-        <td class="col col-"><a href="/admin/services/386">10379</a></td>
-        <td class="col col-"><a href="/admin/services/386">杨浦信息技术大厦</a></td>
-        <td class="col col-">
-          <a href="/admin/services/386"><img src="http://7xl2f5.com1.z0.glb.clouddn.com/images/profile/2015/11/06/5bd69438-fa8a-4e61-8965-9b7d34b08c8a.jpg" alt="5bd69438 fa8a 4e61 8965 9b7d34b08c8a" height="70"></a>
-        </td>
-        <td class="col col-">综合训练</td>
-        <td class="col col-">上海市杨浦区控江路1555号上海信息技术大厦A5F 5</td>
-        <td class="col col-actions">
-          <div class="table_actions">
-            <a class="view_link member_link" href="/admin/services/386">查看</a><a class="edit_link member_link" href="/admin/services/386/edit">编辑</a>
-          </div>
-        </td>
-      </tr>
-      <tr class="odd" id="service_373">
-        <td class="col col-selectable">
-          <div class="resource_selection_cell">
-            <input id="batch_action_item_373" value="373" class="collection_selection" name="collection_selection[]" type="checkbox">
-          </div>
-        </td>
-        <td class="col col-"><a href="/admin/services/373">10366</a></td>
-        <td class="col col-"><a href="/admin/services/373">长宁店</a></td>
-        <td class="col col-">
-          <a href="/admin/services/373"><img src="http://7xl2f5.com1.z0.glb.clouddn.com/images/profile/2015/09/24/507aa86f-0541-401b-8a11-24a4d58e1fd8.png" alt="507aa86f 0541 401b 8a11 24a4d58e1fd8" height="70"></a>
-        </td>
-        <td class="col col-">力量,登山,综合训练,跳绳,滑冰,保龄球</td>
-        <td class="col col-">为什么介绍不能为空</td>
-        <td class="col col-actions">
-          <div class="table_actions">
-            <a class="view_link member_link" href="/admin/services/373">查看</a><a class="edit_link member_link" href="/admin/services/373/edit">编辑</a>
-          </div>
-        </td>
-      </tr>
-      <tr class="even" id="service_370">
-        <td class="col col-selectable">
-          <div class="resource_selection_cell">
-            <input id="batch_action_item_370" value="370" class="collection_selection" name="collection_selection[]" type="checkbox">
-          </div>
-        </td>
-        <td class="col col-"><a href="/admin/services/370">10363</a></td>
-        <td class="col col-"><a href="/admin/services/370">全数据测试0922店</a></td>
-        <td class="col col-">
-          <a href="/admin/services/370"><img src="http://7xl2f5.com1.z0.glb.clouddn.com/images/profile/2015/09/22/0990b6b3-d74b-4486-8889-07355e4ab985.bmp" alt="0990b6b3 d74b 4486 8889 07355e4ab985" height="70"></a>
-        </td>
-        <td class="col col-">足球,体操,力量,登山,综合训练</td>
-        <td class="col col-">妹子穿短裙就穿短裙吧，天热我能理解，但是为什么要穿打底...</td>
-        <td class="col col-actions">
-          <div class="table_actions">
-            <a class="view_link member_link" href="/admin/services/370">查看</a><a class="edit_link member_link" href="/admin/services/370/edit">编辑</a>
-          </div>
-        </td>
-      </tr>
-      <tr class="odd" id="service_368">
-        <td class="col col-selectable">
-          <div class="resource_selection_cell">
-            <input id="batch_action_item_368" value="368" class="collection_selection" name="collection_selection[]" type="checkbox">
-          </div>
-        </td>
-        <td class="col col-"><a href="/admin/services/368">10361</a></td>
-        <td class="col col-"><a href="/admin/services/368">没有背景图没有头像测试店</a></td>
-        <td class="col col-"><a href="/admin/services/368"><img src="" height="70"></a></td>
-        <td class="col col-"></td>
-        <td class="col col-">德国和葡萄牙的比赛刚开始，勒夫在场边已经开始了一天的劳...</td>
-        <td class="col col-actions">
-          <div class="table_actions">
-            <a class="view_link member_link" href="/admin/services/368">查看</a><a class="edit_link member_link" href="/admin/services/368/edit">编辑</a>
-          </div>
-        </td>
-      </tr>
+      <% end %>
       </tbody>
     </table>
   </div>

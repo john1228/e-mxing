@@ -1,6 +1,7 @@
 ﻿<ul class="nav nav-tabs">
   <li class="active"><a href="#0" data-toggle="tab">账户余额</a></li>
   <li><a href="#1" data-toggle="tab">详细资料</a></li>
+  <li><a href="#2" data-toggle="tab">订单</a></li>
 </ul>
 
 <div class="tab-content">
@@ -82,6 +83,38 @@
         </div>
       </div>
     </div>
+  </div>
+  <div class="tab-pane" id="2">
+    <table id="index_table_services" class="index_table index" paginator="true" border="0" cellpadding="0" cellspacing="0">
+      <thead>
+      <tr>
+        <th class="col col-">订单编号</th>
+        <th class="col col-">买家</th>
+        <th class="col col-">联系方式</th>
+        <th class="col col-">商品</th>
+        <th class="col col-">数量</th>
+        <th class="col col-">金额</th>
+        <th class="col col-"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% Order.where(service_id: @service.id).each_with_index do |order, index| %>
+          <tr class="<%= index.even? ? 'even' : 'odd' %>">
+            <td class="col col-"><%= order.no %></td>
+            <td class="col col-"><%= order.contact_name %></td>
+            <td class="col col-"><%= order.contact_phone %></td>
+            <td class="col col-"><%= order.order_item.name %></td>
+            <td class="col col-"><%= order.order_item.amount %></td>
+            <td class="col col-"><%= order.total %></td>
+            <td class="col col-actions">
+              <div class="table_actions">
+                <a class="view_link member_link" href="/admin/services/398">查看</a><a class="edit_link member_link" href="/admin/services/398/edit">编辑</a>
+              </div>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
   </div>
 </div>
 
