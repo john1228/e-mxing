@@ -28,9 +28,7 @@ ActiveAdmin.register Enthusiast do
     column ' 注册时间' do |enthusiast|
       truncate(enthusiast.created_at.localtime.strftime('%Y-%m-%d %H:%M:%S'))
     end
-    actions do |enthusiast|
-      link_to '成为私教', pre_transfer_path(enthusiast), class: 'fancybox', data: {'fancybox-type' => 'ajax'}
-    end
+    actions
   end
 
   batch_action '拉黑' do |ids|
@@ -39,7 +37,7 @@ ActiveAdmin.register Enthusiast do
       user.dynamic_comments.destroy_all
       user.likes.destroy
       Rails.cache.delete(user.token)
-      Like.find_by(liked_id: user.id,like_type: Like::PERSON).destroy rescue ''
+      Like.find_by(liked_id: user.id, like_type: Like::PERSON).destroy rescue ''
       Like.where(user_id: user.id).delete_all
       Blacklist.create(user_id: user.id)
     }
@@ -59,7 +57,7 @@ ActiveAdmin.register Enthusiast do
         enthusiast.profile.update(identity: 1)
         ServiceMember.create(service_id: params[:service_id], coach_id: enthusiast.id)
       rescue
-        @errors = '转换失败'
+        @errors = '身份转换失败'
       end
       render layout: false
     end
