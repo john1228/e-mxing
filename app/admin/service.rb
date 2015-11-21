@@ -41,6 +41,9 @@ ActiveAdmin.register Service do
     column '服务号介绍' do |service|
       truncate(service.profile.signature)
     end
+    column '标签' do |service|
+      (service.profile.tag||[]).join('|')
+    end
     actions do |service|
       link_to_modal "标签", mark_service_path(service), rel: 'model:open'
     end
