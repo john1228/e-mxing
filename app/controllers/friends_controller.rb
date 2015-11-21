@@ -22,7 +22,7 @@ class FriendsController < ApiController
   def find
     case params[:type]
       when 'person'
-        result = User.joins(:profile).where('profiles.identity<>2  AND profiles.name  ~* ? or profiles.id=?', params[:keyword], (params[:keyword].to_i-Profile::BASE_NO))
+        result = User.joins(:profile).where("profiles.identity <> 2").where('profiles.name  ~* ? or profiles.id=?', params[:keyword], (params[:keyword].to_i-Profile::BASE_NO))
       when 'service'
         result = Service.joins(:profile).where('profiles.name  ~* ? or profiles.id=?', params[:keyword], (params[:keyword].to_i-Profile::BASE_NO))
       when 'group'
