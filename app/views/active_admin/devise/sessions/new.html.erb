@@ -1,7 +1,6 @@
 <div id="login">
-  <h2><%= render_or_call_method_or_proc_on(self, active_admin_application.site_title) %> <%= title t('active_admin.devise.login.title') %></h2>
+  <h2 style="font-size: 1.4em;line-height: 25px"><%= render_or_call_method_or_proc_on(self, active_admin_application.site_title) %> <%= title t('active_admin.devise.login.title') %></h2>
   <% scope = Devise::Mapping.find_scope!(resource_name) %>
-
   <%= form_for(resource, as: resource_name, url: send(:"#{scope}_session_path"), html: {id: "session_new", class: 'form-horizontal', role: 'form'}) do |f| %>
       <div class="form-group">
         <label for="firstname" class="col-sm-2 control-label">邮箱</label>

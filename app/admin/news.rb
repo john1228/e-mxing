@@ -17,6 +17,9 @@ ActiveAdmin.register News do
     column '链接地址' do |news|
       link_to('详情', news_detail_path(news))
     end
+    column '标签' do |news|
+      news.tag_1.join('|')
+    end
     actions do |news|
       link_to_modal "标签", mark_news_path(news), rel: 'model:open'
     end

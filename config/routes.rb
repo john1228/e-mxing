@@ -93,13 +93,6 @@ Rails.application.routes.draw do
   post 'activities/:id' => 'activities#group', as: :join_in_group_of_activity
   get 'activities' => 'activities#mine'
   #后台路由配置
-  get '/admin/services/:id/chat' => 'admin/services#chat', as: :chat_with_service
-  get '/admin/enthusiasts/:id/transfer' => 'admin/enthusiasts#transfer', as: :pre_transfer
-  post '/admin/enthusiasts/:id/transfer' => 'admin/enthusiasts#transfer_result', as: :summit_transfer, defaults: {format: 'js'}
-  get '/admin/services/:id/transfer' => 'admin/services#transfer', as: :transfer
-  post '/admin/services/:id/transfer' => 'admin/services#transfer_result', as: :service_transfer, defaults: {format: 'js'}
-  get '/admin/services/:id/withdraw' => 'admin/services#withdraw', as: :withdraw
-  post '/admin/services/:id/withdraw' => 'admin/services#withdraw_result', as: :service_withdraw, defaults: {format: 'js'}
   get '/admin/withdraws/:id/people' => 'admin/withdraws#people', as: :withdraw_people
   post '/admin/message/push' => 'admin/message#push', as: :push_message
   post '/admin/:type/version' => 'admin/version#update', as: :update_version
@@ -119,12 +112,16 @@ Rails.application.routes.draw do
 
   get '/admin/news/:id/recommend' => 'admin/news#recommend', as: :recommend_news
   post '/admin/news/:id/recommend' => 'admin/news#submit_recommend', as: :submit_recommend_news, defaults: {format: 'js'}
-
+  #打标签
   get 'admin/news/:id/mark' => 'admin/news#mark', as: :mark_news
   post 'admin/news/:id/mark' => 'admin/news#mark_result', as: :submit_mark_news
   get 'admin/services/:id/mark' => 'admin/services#mark', as: :mark_service
   post 'admin/services/:id/mark' => 'admin/services#mark_result', as: :submit_mark_service
-
+  #服务号转账和提现
+  get '/admin/services/:id/transfer' => 'admin/services#transfer', as: :transfer
+  post '/admin/services/:id/transfer' => 'admin/services#transfer_result', as: :service_transfer, defaults: {format: 'js'}
+  get '/admin/services/:id/withdraw' => 'admin/services#withdraw', as: :withdraw
+  post '/admin/services/:id/withdraw' => 'admin/services#withdraw_result', as: :service_withdraw, defaults: {format: 'js'}
 
   get 'download' => 'download#index'
   get 'download/:package' => 'download#index'

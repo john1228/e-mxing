@@ -58,12 +58,13 @@ ActiveAdmin.register Service do
     end
 
     def withdraw_result
+      @result = '提现成功'
       service = Service.find_by(id: params[:id])
       withdraw = Withdraw.new(coach_id: service.id, name: params[:name], account: params[:account], amount: params[:amount])
       if withdraw.save
         @errors = nil
       else
-        @errors = withdraw.errors.messages
+        @result = withdraw.errors.messages
       end
       render layout: false
     end
@@ -74,23 +75,20 @@ ActiveAdmin.register Service do
     end
 
     def transfer_result
+      @result = '转账成功'
       service = Service.find_by(id: params[:id])
       coach = service.coaches.find_by(id: params[:coach])
       coach_wallet = Wallet.find_or_create_by(user: coach)
       service_wallet = Wallet.find_or_create_by(user: service)
       begin
-        coach_wallet.with_lock do
-          coach_wallet.balance = coach_wallet.balance + BigDecimal(params[:amount])
-          coach_wallet.action = WalletLog::ACTIONS['转账']
-          coach_wallet.save
-        end
-        service_wallet.with_lock do
-          service_wallet.balance = service_wallet.balance - BigDecimal(params[:amount])
-          service_wallet.action = WalletLog::ACTIONS['转账']
-          service_wallet.save
-        end
+        coach_wallet.balance = coach_wallet.balance + BigDecimal(params[:amount])
+        coach_wallet.action = WalletLog::ACTIONS['转账']
+        coach_wallet.save
+        service_wallet.balance = service_wallet.balance - BigDecimal(params[:amount])
+        service_wallet.action = WalletLog::ACTIONS['转账']
+        service_wallet.save
       rescue Exception => exp
-        @errors = exp.message
+        @result = exp.message
       end
       render layout: false
     end
@@ -122,9 +120,6 @@ ActiveAdmin.register Service do
         end
         li role: 'presentation' do
           link_to('私教', admin_service_service_members_path(service))
-        end
-        li role: 'presentation' do
-          link_to('聊天', chat_with_service_path(service))
         end
         li role: 'presentation' do
           link_to('修改密码', edit_admin_admin_user_path(current_admin_user))
