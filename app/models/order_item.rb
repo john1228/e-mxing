@@ -3,7 +3,6 @@ class OrderItem < ActiveRecord::Base
   belongs_to :order
 
   def as_json
-    sku_info = Sku.find_by(sku: sku)
     {
         sku: sku,
         name: name,
@@ -11,8 +10,7 @@ class OrderItem < ActiveRecord::Base
         type: type,
         price: price,
         during: during,
-        amount: amount,
-        guarantee: sku_info.course.guarantee
+        amount: amount
     }
   end
 end
