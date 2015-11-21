@@ -5,6 +5,7 @@ module Api
 
       def index
         city = URI.decode(request.headers[:city]) rescue '上海'
+        logger.info "当前城市:#{city}"
         category = Category.find_by(name: params[:cat])
         courses = Sku.online.select("skus.*, st_distance(skus.coordinate, 'POINT(#{params[:lng]||0} #{params[:lat]||0})') as distance").
             where('address Like ?', '%'+ city + '%').where(course_type: category.item)
