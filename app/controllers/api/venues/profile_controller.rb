@@ -10,7 +10,7 @@ module Api
                                        name: venue.profile.name,
                                        avatar: venue.profile.avatar.url,
                                        views: venue.views,
-                                       address: venue.profile.province.to_s + venue.profile.city.to_s + venue.profile.address.to_s,
+                                       address: venue.profile.province.to_s + venue.profile.city.to_s + venue.profile.area.to_s + venue.profile.address.to_s,
                                        coordinate: {
                                            lng: venue.place.lonlat.x,
                                            lat: venue.place.lonlat.y
