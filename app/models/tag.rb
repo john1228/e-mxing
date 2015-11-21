@@ -1,6 +1,5 @@
 class Tag < ActiveRecord::Base
   enum tag: [:venues, :dynamics, :news]
-  mount_uploader :background, ImagesUploader
 
   class << self
     def tags_for_select
