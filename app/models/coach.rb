@@ -22,11 +22,12 @@ class Coach<User
   validates_presence_of :password, message: '请输入手机号码'
 
   def score
-    if comments.blank?
-      4
-    else
-      comments.average(:score)
-    end
+    score = if comments.blank?
+              4
+            else
+              comments.average(:score)
+            end
+    score.round(1)
   end
 
   def comments
