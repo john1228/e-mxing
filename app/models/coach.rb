@@ -30,7 +30,7 @@ class Coach<User
   end
 
   def comments
-    sku_array = Sku.online.where('skus.sku LIKE ?', 'CC%').where(seller_id: id).pluck(:sku)
+    sku_array = Sku.online.where(seller_id: id).pluck(:sku)
     Comment.where(sku: sku_array).order(id: :desc)
   end
 
