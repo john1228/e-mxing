@@ -13,7 +13,7 @@ module Api
                                        avatar: venue.profile.avatar.url,
                                        bg: (venue.photos.first.photo.url rescue ''),
                                        identity: venue.profile.identity_value,
-                                       address: venue.profile.province.to_s + venue.profile.city.to_s + venue.profile.address.to_s,
+                                       address: venue.profile.province.to_s + venue.profile.city.to_s + venue.profile.area.to_s + venue.profile.address.to_s,
                                        distance: venue.attributes['distance'].to_i,
                                        coach_count: venue.coaches.count,
                                        sale: venue.courses.online.count,
