@@ -8,12 +8,6 @@ ActiveAdmin.register_page 'Version' do
       tab '1-苹果' do
         render partial: 'ios', locals: {ios: VERSION['ios']}
       end
-      tab '2-图库分类' do
-        render partial: 'tag', locals: {tags: TAGS}
-      end
-      tab '3-开通城市' do
-        render partial: 'city', locals: {city: CITY}
-      end
     end
 
   end
@@ -39,26 +33,7 @@ ActiveAdmin.register_page 'Version' do
           rescue => err
             message = err.message
           end
-        when 'tag'
-          TAGS['all'] = params[:all].split(',')
-          TAGS['opened'] = params[:opened]
-          begin
-            File.open(Rails.root.to_s + '/config/deploy_config/gallery.yml', 'w') { |f|
-              f.puts TAGS.ya2yaml
-            }
-          rescue => err
-            message = err.message
-          end
-        when 'city'
-          CITY['opened'] = params[:opened].split(',')
-          CITY['opened'] = params[:opening].split(',')
-          begin
-            File.open(Rails.root.to_s + '/config/deploy_config/city.yml', 'w') { |f|
-              f.puts CITY.ya2yaml
-            }
-          rescue => err
-            message = err.message
-          end
+        else
       end
 
       redirect_to admin_version_path, alert: message

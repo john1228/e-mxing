@@ -6,7 +6,7 @@ module Api
         render json: {
                    code: 1,
                    data: {
-                       coaches: service.coaches.map { |coach|
+                       coaches: service.coaches.page(params[:page]||1).map { |coach|
                          coach.summary_json.merge(likes: coach.likes.count)
                        }
                    }
