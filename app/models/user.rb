@@ -15,9 +15,10 @@ class User < ActiveRecord::Base
   has_many :lessons, dependent: :destroy
   has_many :concerns, class_name: Concerned, dependent: :destroy
   has_one :setting, dependent: :destroy
-
-
   accepts_nested_attributes_for :profile
+
+  before_create :build_default_wallet
+
   class<<self
     def find_by_mxid(mxid)
       includes(:profile).where('profiles.id' => ((mxid.to_i - 10000))).first
@@ -58,5 +59,10 @@ class User < ActiveRecord::Base
       self.salt = salt_arr.sample(18).join
       self.password = Digest::MD5.hexdigest("#{password}|#{self.salt}")
     end
+  end
+
+  def build_default_wallet
+    build_wallet
+    true
   end
 end
