@@ -14,7 +14,7 @@ class News < ActiveRecord::Base
        },
        {
            name: "玩转#{category}",
-           tip: (category_news(category, '玩转').first.title rescue '')
+           tip: (category_news(category, "玩转#{category}").first.title rescue '')
        },
        {
            name: '玩家攻略',

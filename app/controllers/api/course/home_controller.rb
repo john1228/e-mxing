@@ -15,6 +15,8 @@ module Api
             courses = courses.order(updated_at: :desc).order(id: :desc).page(params[:page]||1)
           when 'distance-asc'
             courses = courses.order('distance asc').order(id: :desc).page(params[:page]||1)
+          when 'sale-desc'
+            courses = courses.order(orders_count: :desc).order(id: :desc).page(params[:page]||1)
           when 'evaluate-asc'
             courses = courses.order(orders_count: :desc).order(id: :desc).page(params[:page]||1)
           when 'price-asc'
@@ -42,6 +44,8 @@ module Api
             courses = courses.order(updated_at: :desc).order(id: :desc).page(params[:page]||1)
           when 'distance-asc'
             courses = courses.order('distance asc').order(id: :desc).page(params[:page]||1)
+          when 'sale-desc'
+            courses = courses.order(orders_count: :desc).order(id: :desc).page(params[:page]||1)
           when 'evaluate-asc'
             courses = courses.order(orders_count: :desc).order(id: :desc).page(params[:page]||1)
           when 'price-asc'
