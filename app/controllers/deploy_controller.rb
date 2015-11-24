@@ -22,7 +22,7 @@ class DeployController < ApplicationController
                        link_id: item.link_id,
                        start_date: item.start_date.strftime('%Y-%m-%d'),
                        end_date: item.end_date.strftime('%Y-%m-%d'),
-                   } },
+                   } }
                }
            }
   end
@@ -30,6 +30,14 @@ class DeployController < ApplicationController
   def ads
     render json: Success.new(
                boot: Banner.boot.map { |item| {
+                   type: item.type,
+                   image: item.image.url,
+                   url: item.url,
+                   link_id: item.link_id,
+                   start_date: item.start_date.strftime('%Y-%m-%d'),
+                   end_date: item.end_date.strftime('%Y-%m-%d'),
+               } },
+               app: Banner.app.map { |item| {
                    type: item.type,
                    image: item.image.url,
                    url: item.url,

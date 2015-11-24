@@ -58,6 +58,7 @@ class Profile < ActiveRecord::Base
         name: HarmoniousDictionary.clean(name||''),
         avatar: avatar.url,
         gender: gender||1,
+        age: age,
         true_age: age,
         signature: HarmoniousDictionary.clean(signature),
         identity: Profile.identities[identity],
