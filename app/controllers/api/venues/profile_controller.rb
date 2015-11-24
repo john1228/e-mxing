@@ -27,22 +27,7 @@ module Api
                                        dynamics: venue.dynamics.count,
                                        course: {
                                            amount: venue.courses.online.count,
-                                           item: venue.courses.online.order(updated_at: :desc).take(2).map { |comment|
-                                             {
-                                                 user: {
-                                                     mxid: comment.user.profile.mxid,
-                                                     name: comment.user.profile.name,
-                                                     avatar: comment.user.profile.avatar.url,
-                                                     age: comment.user.profile.age,
-                                                     gender: comment.user.profile.gender.to_i,
-                                                     identity: comment.user.profile.identity_value,
-                                                 },
-                                                 score: comment.score,
-                                                 content: comment.content,
-                                                 images: comment.image.map { |image| {url: image.url} },
-                                                 created: comment.created_at.localtime.strftime('%Y-%m-%d %H:%M:%S')
-                                             }
-                                           }
+                                           item: venue.courses.online.order(updated_at: :desc).take(2)
                                        },
                                        open: '8:30-21:30',
                                        fpg: venue.profile._fitness_program,
