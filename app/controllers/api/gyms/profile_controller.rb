@@ -31,7 +31,22 @@ module Api
                                      },
                                      comment: {
                                          amount: @coach.comments.count,
-                                         item: @coach.comments.take(2).map{}
+                                         item: @coach.comments.take(2).map { |comment|
+                                           {
+                                               user: {
+                                                   mxid: comment.user.profile.mxid,
+                                                   name: comment.user.profile.name,
+                                                   avatar: comment.user.profile.avatar.url,
+                                                   age: comment.user.profile.age,
+                                                   gender: comment.user.profile.gender.to_i,
+                                                   identity: comment.user.profile.identity_value,
+                                               },
+                                               score: comment.score,
+                                               content: comment.content,
+                                               images: comment.image.map { |image| {url: image.url} },
+                                               created: comment.created_at.localtime.strftime('%Y-%m-%d %H:%M:%S')
+                                           }
+                                         }
                                      },
                                      contact: @coach.mobile
                                  })
