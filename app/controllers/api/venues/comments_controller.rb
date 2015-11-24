@@ -19,7 +19,7 @@ module Api
                                            },
                                            score: comment.score,
                                            content: comment.content,
-                                           images: comment.image.map { |image| image.url },
+                                           images: comment.image.map { |image| {url: image.url} },
                                            created: comment.created_at.localtime.strftime('%Y-%m-%d %H:%M:%S')
                                        }
                                      }
