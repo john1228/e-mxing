@@ -31,7 +31,7 @@ module Api
                                      },
                                      comment: {
                                          amount: @coach.comments.count,
-                                         item: @coach.comments.take(2)
+                                         item: @coach.comments.take(2).map{}
                                      },
                                      contact: @coach.mobile
                                  })
