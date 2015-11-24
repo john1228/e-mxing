@@ -26,8 +26,8 @@ class Dynamic < ActiveRecord::Base
                                       {
                                           original: dynamic_image.image.url,
                                           thumb: dynamic_image.image.url,
-                                          width: dynamic_image.width.to_i,
-                                          height: dynamic_image.height.to_i
+                                          width: dynamic_image.width||320,
+                                          height: dynamic_image.height||320
                                       }
                                     }
                                 }) unless dynamic_images.blank?
