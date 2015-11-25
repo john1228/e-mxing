@@ -41,7 +41,7 @@ namespace :migration do
   end
 
   task :profile => :environment do
-    Profile.service.where('address LIKE ?', '上海市%').each { |profile|
+    Profile.service.where('address LIKE ?', '北京市%').each { |profile|
       address = profile.address
       puts address
       begin
