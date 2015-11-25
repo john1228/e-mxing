@@ -44,17 +44,21 @@ namespace :migration do
     Profile.service.where('address LIKE ?', '%省%').each { |profile|
       address = profile.address
       puts address
-      province = address[0, address.index('省')+1]
-      city = address[address.index('省')+1, address.index('市')-address.index('省')]
-      area = address.index('区')
-      if area.blank?
-        area = ''
-        detail_address = address[address.index('市')+1, address.length]
-      else
-        area = address[address.index('市')+1, address.index('区')-address.index('市')]
-        detail_address = address[address.index('区')+1, address.length]
+      begin
+        province = address[0, address.index('省')+1]
+        city = address[address.index('省')+1, address.index('市')-address.index('省')]
+        area = address.index('区')
+        if area.blank?
+          area = ''
+          detail_address = address[address.index('市')+1, address.length]
+        else
+          area = address[address.index('市')+1, address.index('区')-address.index('市')]
+          detail_address = address[address.index('区')+1, address.length]
+        end
+        profile.update(province: province, city: city, area: area, address: detail_address, hobby: profile.interests.split(','))
+      rescue Exception => exp
+        puts exp.message
       end
-      profile.update(province: province, city: city, area: area, address: detail_address, hobby: profile.interests.split(','))
     }
   end
 
