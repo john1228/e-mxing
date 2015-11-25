@@ -12,7 +12,7 @@ ActiveAdmin.register Category do
   end
 
   show do
-    attributes_table_for :category do
+    attributes_table :category do
       row :name
       row :item
       row :background

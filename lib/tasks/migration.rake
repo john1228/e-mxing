@@ -45,7 +45,8 @@ namespace :migration do
       address = profile.address
       puts address
       begin
-        province = '江苏省'
+        address = profile.address
+        province = '北京市'
         city = address[0, address.index('市')+1]
         area = address.index('区')
         if area.blank?
