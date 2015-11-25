@@ -41,11 +41,11 @@ namespace :migration do
   end
 
   task :profile => :environment do
-    Profile.service.where('address LIKE ?', '天津市%').each { |profile|
+    Profile.service.where('address LIKE ?', '南京市%').each { |profile|
       address = profile.address
       puts address
       begin
-        province = '天津市'
+        province = '江苏省'
         city = address[0, address.index('市')+1]
         area = address.index('区')
         if area.blank?
