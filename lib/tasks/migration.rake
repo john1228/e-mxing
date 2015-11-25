@@ -74,6 +74,7 @@ namespace :migration do
     results = Coach.all.map { |coach|
       profile = coach.profile
       if profile.update(
+          name: '一个私教',
           province: coach.service.profile.province,
           city: coach.service.profile.city,
           area: coach.service.profile.area,

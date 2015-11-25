@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151112071027) do
+ActiveRecord::Schema.define(version: 20151125171355) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,6 +73,12 @@ ActiveRecord::Schema.define(version: 20151112071027) do
     t.integer  "service_id"
     t.string   "status"
     t.integer  "client_id"
+    t.string   "name"
+    t.string   "birthday"
+    t.integer  "gender",                             default: 0
+    t.string   "mobile"
+    t.string   "remark"
+    t.string   "avatar"
   end
 
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
@@ -135,7 +141,7 @@ ActiveRecord::Schema.define(version: 20151112071027) do
     t.date    "start_date"
     t.date    "end_date"
     t.integer "type"
-    t.integer "link_id"
+    t.string  "link_id",    default: ""
   end
 
   create_table "black_lists", force: :cascade do |t|
@@ -495,6 +501,29 @@ ActiveRecord::Schema.define(version: 20151112071027) do
     t.datetime "updated_at",              null: false
   end
 
+  create_table "membership_card_abstracts", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "service_id"
+    t.integer  "client_id"
+    t.integer  "card_type"
+    t.float    "price"
+    t.integer  "count"
+    t.integer  "days"
+    t.boolean  "has_valid_extend_information"
+    t.integer  "valid_days"
+    t.integer  "latest_delay_days"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.string   "remark"
+  end
+
+  create_table "membership_cards", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "card_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "news", force: :cascade do |t|
     t.string   "title"
     t.string   "cover"
@@ -740,6 +769,14 @@ ActiveRecord::Schema.define(version: 20151112071027) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "transfers", force: :cascade do |t|
+    t.integer  "service_id"
+    t.integer  "coach_id"
+    t.integer  "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "user_registrations", force: :cascade do |t|
     t.integer  "reg_type"
     t.string   "avatar"
@@ -754,6 +791,8 @@ ActiveRecord::Schema.define(version: 20151112071027) do
     t.string   "remark"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "province"
+    t.string   "city"
   end
 
   create_table "users", force: :cascade do |t|
@@ -769,6 +808,7 @@ ActiveRecord::Schema.define(version: 20151112071027) do
     t.integer  "client_id"
     t.string   "state"
     t.integer  "score",                  default: 0
+    t.integer  "service_id"
   end
 
   add_index "users", ["mobile", "sns"], name: "index_users_on_mobile_and_sns", unique: true, using: :btree
