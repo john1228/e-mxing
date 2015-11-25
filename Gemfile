@@ -65,3 +65,5 @@ gem 'actionpack-page_caching'
 gem 'apn_sender', require: 'apn'
 gem 'mechanize'
 gem 'jquery-modal-rails'
+
+gem "aasm"

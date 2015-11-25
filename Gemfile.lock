@@ -70,6 +70,7 @@ GIT
 GEM
   remote: https://ruby.taobao.org/
   specs:
+    aasm (4.4.1)
     actionmailer (4.2.1)
       actionpack (= 4.2.1)
       actionview (= 4.2.1)
@@ -364,6 +365,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  aasm
   actionpack-page_caching
   actionpack-xml_parser
   active_skin

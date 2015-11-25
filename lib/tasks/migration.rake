@@ -26,6 +26,24 @@ namespace :migration do
     }
   end
 
+  task :order_item => :environment do
+    OrderItem.where('sku LIKE ?', 'CC%').each { |item|
+      puts item.sku
+      old_sku = Sku.find_by(sku: item.sku)
+      new_sku = Sku.where("sku LIKE ?", 'SC%').find_by(
+          seller_id: old_sku.seller_id,
+          course_name: old_sku.course_name,
+          selling_price: old_sku.selling_price,
+          course_type: old_sku.course.type
+      )
+      new_sku.update(course_cover: old_sku.course_cover)
+      item.update(sku: new_sku.sku)
+      Lesson.where(sku: item.sku).update_all(sku: new_sku.sku)
+      Appointment.where(sku: item.sku).update_all(sku: new_sku.sku)
+      Comment.where(sku: item.sku).update_all(sku: new_sku.sku)
+      Concerned.where(sku: item.sku).update_all(sku: new_sku.sku)
+    }
+  end
 
   task :relation => :environment do
     Course.all.map { |course|

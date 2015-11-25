@@ -124,6 +124,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" scope="PROVIDED" name="aasm (v4.4.1, RVM: ruby-2.1.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="actionmailer (v4.2.1, RVM: ruby-2.1.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="actionpack (v4.2.1, RVM: ruby-2.1.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="actionpack-page_caching (v1.0.2, RVM: ruby-2.1.4) [gem]" level="application" />
@@ -250,6 +251,7 @@
     <orderEntry type="library" scope="PROVIDED" name="uglifier (v2.7.2, RVM: ruby-2.1.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="unf (v0.1.4, RVM: ruby-2.1.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="unf_ext (v0.0.7.1, RVM: ruby-2.1.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="uuidtools (v2.1.5, RVM: ruby-2.1.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="warden (v1.2.3, RVM: ruby-2.1.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="webrobots (v0.1.1, RVM: ruby-2.1.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="whenever (v0.9.4, RVM: ruby-2.1.4) [gem]" level="application" />
