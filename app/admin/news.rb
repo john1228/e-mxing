@@ -36,13 +36,11 @@ ActiveAdmin.register News do
   end
 
   show title: ' 新闻详情 ' do
-    panel ' ' do
-      attributes_table news do
-        row(' 标题 ') { news.title }
-        row(' 标签 ') { news.tag_1.join('|') }
-        row(' 封面 ') { image_tag(news.cover.url, width: 69*2) }
-        row(' 链接 ') { link_to(' 详情 ', news_detail_path(news)) }
-      end
+    attributes_table do
+      row(' 标题 ') { news.title }
+      row(' 标签 ') { news.tag_1.join('|') }
+      row(' 封面 ') { image_tag(news.cover.url, width: 69*2) }
+      row(' 链接 ') { link_to(' 详情 ', news_detail_path(news)) }
     end
   end
   form partial: 'form'
