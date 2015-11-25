@@ -38,7 +38,6 @@ class Ability
         can :manage, Feedback
         can :manage, Overview
         can :read, Order
-        can :manage, Gallery
         can :manage, Activity
         can :manage, ActiveAdmin::Page, :name => 'Message'
         can :manage, ActiveAdmin::Page, :name => 'HitAndOnline'
