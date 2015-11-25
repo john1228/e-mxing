@@ -54,7 +54,7 @@ namespace :migration do
         area = address[address.index('市')+1, address.index('区')-address.index('市')]
         detail_address = address[address.index('区')+1, address.length]
       end
-      profile.update(province: province, city: city, area: area, address: detail_address)
+      profile.update(province: province, city: city, area: area, address: detail_address, hobby: profile.interests.split(','))
     }
   end
 
