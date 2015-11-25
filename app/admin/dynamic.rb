@@ -1,20 +1,24 @@
 ActiveAdmin.register Dynamic do
   menu label: '动态'
   actions :index
-  scope('0-带图动态', :image, default: true){|scope| scope.joins(:dynamic_images).uniq.order(id: :desc)} 
-  index  do
+  config.filters = false
+  scope('0-带图动态', :image, default: true) { |scope| scope.joins(:dynamic_images).uniq.order(id: :desc) }
+  index do
     selectable_column
-     column('发布者') do |dynamic|
+    column('编号') do |dynamic|
+      dynamic.id
+    end
+    column('发布者') do |dynamic|
       dynamic.user.profile.mxid
     end
     column('发布者名称') do |dynamic|
       dynamic.user.profile.name
     end
     column('发布者头像') do |dynamic|
-      image_tag(dynamic.user.profile.avatar.url,height: 50)
+      image_tag(dynamic.user.profile.avatar.url, height: 50)
     end
     column('发布内容') do |dynamic|
-      image_tag(dynamic.dynamic_images.first.image.url,width:50)
+      image_tag(dynamic.dynamic_images.first.image.url, width: 50)
     end
     column('发布内容') do |dynamic|
       dynamic.content
