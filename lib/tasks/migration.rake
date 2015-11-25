@@ -5,7 +5,7 @@ namespace :migration do
       coach = Coach.find_by(id: course.coach_id)
       service = coach.service rescue nil
       if service.present?
-        ServiceCourse.create(
+        course = ServiceCourse.create(
             name: course.name,
             image: course.image,
             type: course.type,
@@ -13,7 +13,7 @@ namespace :migration do
             during: course.during,
             proposal: course.proposal,
             exp: course.exp,
-            intro: course.intro||'暂无介绍',
+            intro: course.intro.blank? ? '暂无介绍' : course.intro,
             special: '',
             agency: service.id,
             coach: coach.id,
@@ -37,6 +37,24 @@ namespace :migration do
       Appointment.where(sku: item.sku).update_all(sku: new_sku.sku)
       Comment.where(sku: item.sku).update_all(sku: new_sku.sku)
       Concerned.where(sku: item.sku).update_all(sku: new_sku.sku)
+    }
+  end
+
+  task :profile => :environment do
+    Profile.service.where('address LIKE ?', '%省%').each { |profile|
+      address = profile.address
+      puts address
+      province = address[0, address.index('省')+1]
+      city = address[address.index('省')+1, address.index('市')-address.index('省')]
+      area = address.index('区')
+      if area.blank?
+        area = ''
+        detail_address = address[address.index('市')+1, address.length]
+      else
+        area = address[address.index('市')+1, address.index('区')-address.index('市')]
+        detail_address = address[address.index('区')+1, address.length]
+      end
+      profile.update(province: province, city: city, area: area, address: detail_address)
     }
   end
 
