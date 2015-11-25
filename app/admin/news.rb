@@ -8,9 +8,6 @@ ActiveAdmin.register News do
     column '标题', :title do |news|
       truncate(news.title)
     end
-    column '分类', :title do |news|
-      I18n.t(news.tag, scope: [:enums, :news, :tag])
-    end
     column '封面', :title do |news|
       image_tag(news.cover.url, width: 69)
     end
