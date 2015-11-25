@@ -40,7 +40,7 @@ ActiveAdmin.register News do
 
   show title: ' 新闻详情 ' do
     panel ' ' do
-      attributes_table_for news do
+      attributes_table news do
         row(' 标题 ') { news.title }
         row(' 分类 ') { news.tag }
         row(' 封面 ') { image_tag(news.cover.url, width: 69*2) }

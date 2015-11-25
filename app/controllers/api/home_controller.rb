@@ -3,7 +3,7 @@ module Api
     def index
       city = URI.decode(request.headers[:city]) rescue '上海'
       render json: Success.new(
-                 tag: Category.all.map { |category|
+                 tag: Category.order(updated_at: :desc).all.map { |category|
                    online_courses = Sku.online.where(course_type: category.item).where('address LIKE ?', '%'+ city + '%').order(selling_price: :asc)
                    {
                        tag: category.name,

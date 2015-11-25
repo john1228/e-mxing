@@ -45,6 +45,8 @@ class Ability
         can :manage, Retention
         can :manage, ActiveAdmin::Page, :name => 'Dashboard'
         can :manage, DynamicImage
+        can :manage, Category
+        can :manage, Tag
       when AdminUser::ROLE[:partner]
         can :manage, Transaction
         can :read, Withdraw

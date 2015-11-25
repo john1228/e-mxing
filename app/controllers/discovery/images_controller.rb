@@ -63,7 +63,7 @@ module Discovery
     end
 
     def all_image
-      data = Tag.dynamics.pluck(:name).map { |tag|
+      data = Tag.dynamics.order(updated_at: :desc).pluck(:name).map { |tag|
         {
             tag: tag,
             item: Dynamic.joins(:dynamic_images).where('? = ANY (dynamic_images.tag)', tag).uniq.order(id: :desc).take(3).map { |dynamic|
