@@ -5,7 +5,6 @@
   config.qiniu_bucket = 'emxing'
   config.qiniu_bucket_domain = '7xl2f5.com1.z0.glb.clouddn.com'
   config.qiniu_block_size = 4*1024*1024
-  config.asset_host = 'http://stage.e-mxing.com'
   #config.qiniu_bucket_private= true #default is false
   #config.qiniu_protocol      = "http"
   #config.qiniu_up_host       = 'http://up.qiniug.com' #七牛上传海外服务器,国内使用可以不要这行配置
