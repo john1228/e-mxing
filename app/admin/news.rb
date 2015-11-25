@@ -15,7 +15,7 @@ ActiveAdmin.register News do
       link_to('详情', news_detail_path(news))
     end
     column '标签' do |news|
-      (news.tag_1||[]).join('|')
+      news.tag_1.join('|') rescue ''
     end
     actions do |news|
       link_to_modal "标签", mark_news_path(news), rel: 'model:open'
@@ -39,7 +39,7 @@ ActiveAdmin.register News do
     panel ' ' do
       attributes_table news do
         row(' 标题 ') { news.title }
-        row(' 分类 ') { news.tag }
+        row(' 标签 ') { news.tag_1.join('|') }
         row(' 封面 ') { image_tag(news.cover.url, width: 69*2) }
         row(' 链接 ') { link_to(' 详情 ', news_detail_path(news)) }
       end
