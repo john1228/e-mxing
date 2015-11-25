@@ -59,7 +59,7 @@ namespace :migration do
                        city: city,
                        area: area,
                        address: detail_address,
-                       hobby: profile.interests.split(','),
+                       hobby: profile.interests.blank? ? [30] : profile.interests.split(','),
                        mobile: profile.mobile.blank? ? '021-62418505' : profile.mobile,
                        signature: profile.signature.blank? ? '暂无简介' : profile.signature,
         )
