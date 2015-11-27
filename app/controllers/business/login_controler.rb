@@ -23,7 +23,7 @@ module Business
         submit_password = Digest::MD5.hexdigest("#{params[:password]}|#{coach.salt}")
         if coach.password.eql?(submit_password)
           Rails.cache.write("gyms-#{coach.token}", coach)
-          render json: Success.new({coach: coach.as_json(token: coach.token)})
+          render json: Success.new({coach: coach.as_json.merge(token: coach.token)})
         else
           render json: Failure.new('您输入的密码不正确')
         end
