@@ -54,6 +54,7 @@ ActiveAdmin.register Sku do
     Sku.where(sku: ids).each { |sku|
       sku.course.update(status: ServiceCourse::STATUS[:offline])
     }
+    redirect_to collection_path, alert: '下架成功'
   end
 
   show title: '课程详情' do
