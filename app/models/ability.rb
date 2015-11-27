@@ -21,6 +21,7 @@ class Ability
         can :manage, ServiceDynamic
         can :manage, ServiceMember
         can :manage, ServicePhoto
+        can :manage, ServiceCourse
         can [:read, :create, :update], AdminUser
         can :read, ActiveAdmin::Page, :name => 'Dashboard'
       when AdminUser::ROLE[:operator]
@@ -28,7 +29,7 @@ class Ability
         can :manage, Sku
         can :manage, Coupon
         can :read, Enthusiast
-        can :read, Service
+        can :manage, Service
         can :read, ServiceDynamic
         can :read, ServiceMember
         can :read, ServicePhoto
