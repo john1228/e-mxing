@@ -1,6 +1,5 @@
 ActiveAdmin.register Sku do
   menu label: '全部课程', parent: '商品管理'
-  config.batch_actions = false
   actions :index, :show, :recommend, :cancel_recommend
   filter :course_type
   filter :course_name
@@ -14,6 +13,7 @@ ActiveAdmin.register Sku do
   scope('1-机构课程', :service_courses)
 
   index do
+    selectable_column
     column(:course_name)
     column('课程封面') { |sku| image_tag(sku.course_cover, width: 50, height: 50) }
     column(:market_price)
@@ -48,6 +48,12 @@ ActiveAdmin.register Sku do
         end
       end
     end
+  end
+
+  batch_action :offline do |ids|
+    Sku.where(sku: ids).each { |sku|
+      sku.course.update(status: ServiceCourse::STATUS[:offline])
+    }
   end
 
   show title: '课程详情' do

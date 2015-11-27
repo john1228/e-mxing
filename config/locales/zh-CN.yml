@@ -97,6 +97,7 @@
       labels:
         apply: '通过'
         mark:  '打标签'
+        offline: '下架'
 
 
 

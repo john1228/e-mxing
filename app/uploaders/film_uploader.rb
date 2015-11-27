@@ -1,14 +1,15 @@
 # encoding: utf-8
 
 class FilmUploader < CarrierWave::Uploader::Base
-  storage :qiniu
-  #after :store, :slice #avthumb/m3u8/vb/500k/t/10
+  storage :file
+  after :store, :slice
+
   def store_dir
-    'videos'
+    "videos/#{model.class.to_s.underscore}"
   end
 
   def hls
-    url[0, url.rindex('.')] + '.m3u8'
+    $hls_host + file.path.gsub("#{Rails.root}/public/#{store_dir}", '').gsub(file.extension, 'm3u8')
   end
 
 
@@ -16,9 +17,15 @@ class FilmUploader < CarrierWave::Uploader::Base
     "#{Time.now.strftime('%Y/%m/%d')}/#{secure_token}.#{file.extension}" if original_filename
   end
 
+  private
+  def slice(args)
+    VideoProcessJob.perform_later(file.path, store_path, file.extension)
+  end
+
   protected
   def secure_token
     var = :"@#{mounted_as}_secure_token"
     model.instance_variable_get(var) or model.instance_variable_set(var, SecureRandom.uuid)
   end
+
 end
