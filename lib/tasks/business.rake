@@ -5,7 +5,7 @@ namespace :business do
   desc '登录'
   task :login do
     conn = Faraday.new(:url => host)
-    response = conn.post '/business/login', username: 15026637572, password: 'qwerty'
+    response = conn.post '/business/login', username: 18221058659, password: '123456'
     puts response.body
   end
 
