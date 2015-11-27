@@ -71,23 +71,10 @@ namespace :migration do
   end
 
   task :coach => :environment do
-    results = Coach.all.map { |coach|
-      profile = coach.profile
-      if profile.update(
-          name: '一个私教',
-          province: coach.service.profile.province,
-          city: coach.service.profile.city,
-          area: coach.service.profile.area,
-          address: coach.service.profile.address,
-          hobby: profile.interests.blank? ? [30] : profile.interests.split(','),
-          birthday: profile.birthday.blank? ? '1985-8-8' : profile.birthday
-      )
-        nil
-      else
-        profile.errors.messages
-      end
+    ServiceCourse.where(id: [277, 282, 290, 294, 303, 304, 311, 362, 363]).map { |service_course|
+      sku = Sku.find_by(course_id: service_course.id)
+      course = Course.where(coach_id: sku.seller_id, name: sku.course_name)
+      course.last.status
     }
-    results.compact!
-    puts results
   end
 end

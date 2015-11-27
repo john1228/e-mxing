@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_one :place, dependent: :destroy
   has_many :applies
   has_many :likes, -> { where(like_type: Like.like_types[:person]) }, foreign_key: :liked_id, dependent: :destroy
+  has_many :liked, class: Like, dependent: :destroy
   attr_accessor :new
   #v3
   has_one :wallet, dependent: :destroy
