@@ -9,9 +9,9 @@
 // Active Admin's got SASS!
 //= require jquery-ui
 //= require jquery-ui-timepicker-addon.css
-$skinActiveColor: orangered;
-$skinHeaderBck: black;
-$panelHeaderBck: orangered;
+$skinActiveColor: #2d6da3;
+$skinHeaderBck: #234969;
+$panelHeaderBck: #2d6da3;
 @import "bootstrap-sprockets";
 @import "bootstrap-multiselect";
 @import "active_admin/mixins";
@@ -138,3 +138,6 @@ $icon-font-path: "bootstrap-sass/assets/fonts/bootstrap/";
   cursor: pointer;
 }
 
+body.active_admin {
+  font-family: "Microsoft Yahei", "微软雅黑";
+}

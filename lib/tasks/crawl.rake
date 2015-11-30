@@ -17,7 +17,7 @@ namespace :crawl do
 
 
     agent = Mechanize.new { |agent| agent.user_agent_alias = 'Linux Mozilla' }
-    %W"http://www.dianping.com/tianjin/sports".map { |city|
+    %W"http://www.dianping.com/hangzhou/sports".map { |city|
       #抓取运动分类
       page = Nokogiri::HTML(open(city))
       items = page.css('li.term-list-item').select { |li| li if li.css('strong.term').text.eql?('运动分类:') }
@@ -82,8 +82,8 @@ namespace :crawl do
             CrawlDatum.create(
                 name: shop_name,
                 avatar: avatar,
-                province: '天津市',
-                city: '天津市',
+                province: '浙江省',
+                city: '杭州市',
                 area: address[0, (address.index('区')||address.index('县')) + 1],
                 address: address[(address.index('区')||address.index('县')) + 1, address.length],
                 tel: tel,

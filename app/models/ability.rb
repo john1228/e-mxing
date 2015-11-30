@@ -47,6 +47,7 @@ class Ability
         can :manage, DynamicImage
         can :manage, Category
         can :manage, Tag
+        can :manage, CrawlDatum
       when AdminUser::ROLE[:partner]
         can :manage, Transaction
         can :read, Withdraw

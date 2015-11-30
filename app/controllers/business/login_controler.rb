@@ -1,22 +1,5 @@
 module Business
-  class LoginController < BaseController
-    def update
-      if params[:password].present?
-        if @coach.password.eql?(Digest::MD5.hexdigest("#{params[:password]}|#{@coach.salt}"))
-          if @coach.update(password: params[:new_password])
-            Rails.cache.write("#{@coach.token}|gyms", @coach.reload)
-            render json: {code: 1}
-          else
-            render json: {code: 0, message: '更新密码失败'}
-          end
-        else
-          render json: {code: 0, message: '您输入到原密码错误'}
-        end
-      else
-        render json: {code: 0, message: '请输入原密码'}
-      end
-    end
-
+  class LoginController < ApplicationController
     def mobile
       coach = Coach.find_by(mobile: params[:username])
       if coach.present?
