@@ -18,7 +18,7 @@ class ServiceCourse < ActiveRecord::Base
 
 
   def offline
-    update(status: STATUS[:online])
+    update(status: STATUS[:offline])
   end
 
   private
@@ -49,9 +49,7 @@ class ServiceCourse < ActiveRecord::Base
     if status.eql?(STATUS[:online])
       Sku.where("sku LIKE 'SC%' and course_id = #{id}").map { |item| item.update(status: STATUS[:online], course_cover: cover) }
     else
-      Sku.where("sku LIKE 'SC%' and course_id = #{id}").update_all(status: STATUS[:offline])
-      #移除爆款列表
-      Recommend.delete_all(recommended_id: Sku.where("sku LIKE 'SC%' and course_id = #{id}").pluck(:id), type: Recommend::TYPE[:course])
+      Sku.where(course_id: id).update_all(status: STATUS[:offline])
     end
   end
 end
