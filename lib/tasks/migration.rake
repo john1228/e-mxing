@@ -9,6 +9,7 @@ namespace :migration do
       if data_hash['Photo'].present?
         photos = data_hash['Photo'].gsub('[', '')
         photos = photos.gsub(']', '')
+        photos = photos.gsub('"', '')
         photos = photos.split(',')
       end
       CrawlDatum.create(
