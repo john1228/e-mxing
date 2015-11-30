@@ -4,7 +4,20 @@ namespace :migration do
     csv_text = File.read("#{Rails.root}/" + 'crawl-data-2015-11-30-1.csv')
     csv = CSV.parse(csv_text, :headers => true)
     csv.each do |row|
-      CrawlDatum.create(row.to_hash)
+      data_hash = row.to_hash
+      CrawlDatum.create(
+          name: data_hash['Id'],
+          avatar: data_hash['Avatar'],
+          address: data_hash['Address'],
+          tel: data_hash['Tel'],
+          business: data_hash['Business'],
+          service: data_hash['Service'],
+          photo: data_hash['Photo'],
+          intro: data_hash['Intro'],
+          province: data_hash['province'],
+          city: data_hash['city'],
+          area: data_hash['area']
+      )
     end
   end
 end
