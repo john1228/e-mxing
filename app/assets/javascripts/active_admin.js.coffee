@@ -7,6 +7,7 @@
 #= require jquery-ui-timepicker-addon
 #= require admin/jquery.flot
 #= require admin/PCASClass
+#= require admin/ajaxfileupload
 #= require jquery.modal
 jQuery ->
   $('a.fancybox').fancybox(

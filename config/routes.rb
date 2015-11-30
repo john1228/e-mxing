@@ -122,6 +122,9 @@ Rails.application.routes.draw do
   post '/admin/services/:id/transfer' => 'admin/services#transfer_result', as: :service_transfer, defaults: {format: 'js'}
   get '/admin/services/:id/withdraw' => 'admin/services#withdraw', as: :withdraw
   post '/admin/services/:id/withdraw' => 'admin/services#withdraw_result', as: :service_withdraw, defaults: {format: 'js'}
+  #服务号照片墙管理
+  post '/admin/services/:service_id/photos' => 'admin/service_photos#upload', as: :service_photo_upload
+  delete '/admin/services/:service_id/photos/:id' => 'admin/service_photos#destroy', as: :service_photo_delete
 
   get 'download' => 'download#index'
   get 'download/:package' => 'download#index'

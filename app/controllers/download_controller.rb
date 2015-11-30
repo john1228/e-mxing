@@ -2,6 +2,7 @@ class DownloadController < ApplicationController
   def index
     package = params[:package]
     ua = request.env['HTTP_USER_AGENT'].downcase
+    logger.info ua
     if package.eql?('b')
       if ua.include?('micromessenger')
         if ua.include?('iphone')
@@ -9,7 +10,6 @@ class DownloadController < ApplicationController
         else
           redirect_to 'http://a.app.qq.com/o/simple.jsp?pkgname=com.mx.mx_b_app'
         end
-
       elsif ua.include?('iphone')||ua.include?('ipod')||ua.include?('ipad')
         redirect_to 'https://51.emxing.sinaapp.com'
       else

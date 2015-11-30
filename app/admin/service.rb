@@ -8,10 +8,10 @@ ActiveAdmin.register Service do
 
   csv do
     column('美型号') { |service| service.profile.mxid }
-    column('地区') { |service| service.profile.address[0, service.profile.address.index('市')] rescue '' }
+    column('城市') { |service| service.profile.city }
     column('名称') { |service| service.profile.name }
     column('服务项目') { |service| service.profile.interests_string }
-    column('地址') { |service| service.profile.address }
+    column('详细地址') { |service| service.profile.address }
     column('联系方式') { |service| service.profile.mobile }
     column('照片数量') { |service| service.photos.count }
     column('私教数量') { |service| service.coaches.count }
