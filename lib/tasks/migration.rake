@@ -10,7 +10,7 @@ namespace :migration do
         photos = data_hash['Photo'].gsub('[', '')
         photos = photos.gsub(']', '')
         photos = photos.gsub('"', '')
-        photos = photos.split(',')
+        photos = photos.split(',').map { |item| item.lstrip }
       end
       CrawlDatum.create(
           name: data_hash['Name'],
