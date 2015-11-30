@@ -47,8 +47,8 @@ module Business
     end
 
     def destroy
-      course = Sku.find_by(id: params[:id])
-      if course.update(status: 0)
+      sku = Sku.find_by(sku: params[:id])
+      if sku.course.offline
         render json: Success.new
       else
         render json: Failure.new('删除课程失败')

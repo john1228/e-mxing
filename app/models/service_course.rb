@@ -16,6 +16,11 @@ class ServiceCourse < ActiveRecord::Base
     (INTERESTS['items'].detect { |item| item['id']==type })['name']
   end
 
+
+  def offline
+    update(status: STATUS[:online])
+  end
+
   private
   def generate_sku
     agencies = Service.where(id: agency)
