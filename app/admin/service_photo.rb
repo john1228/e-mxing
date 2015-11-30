@@ -16,9 +16,11 @@ ActiveAdmin.register ServicePhoto do
 
     def upload
       service = Service.find_by(id: params[:service_id])
-      photo = service.photos.new(photo: params[:image])
-      if photo.save
-        logger.info photo.id
+      photo = service.photos.find_by(loc: params[:loc])
+      if photo.present?
+        photo.update(photo: params[:image])
+      else
+        service.photos.create(photo: params[:image], loc: params[:loc])
       end
       redirect_to admin_service_service_photos_path(service)
     end

@@ -33,69 +33,77 @@
           <samp>添加照片</samp>
       <% end %>
       <input type="file" class="image-uploader" name="image">
+      <input type="hidden" value="0">
     </div>
 <% end %>
 
 <%= form_tag(service_photo_upload_path(@service), multipart: true) do %>
-    <div class="dynamic-uploader pull-left" id="image">
-      <% if @photos[0].blank? %>
+    <div class="dynamic-uploader pull-left" id="image" style="background-image: url(<%=@photos[1].photo.url rescue ''%>);background-size: cover">
+      <% if @photos[1].blank? %>
           <samp>添加照片</samp>
       <% end %>
       <input type="file" class="image-uploader" name="image">
+      <input type="hidden" value="1">
     </div>
 <% end %>
 
 <%= form_tag(service_photo_upload_path(@service), multipart: true) do %>
-    <div class="dynamic-uploader pull-left" id="image">
-      <% if @photos[0].blank? %>
+    <div class="dynamic-uploader pull-left" id="image" style="background-image: url(<%=@photos[2].photo.url rescue ''%>);background-size: cover">
+      <% if @photos[2].blank? %>
           <samp>添加照片</samp>
       <% end %>
       <input type="file" class="image-uploader" name="image">
+      <input type="hidden" value="2">
     </div>
 <% end %>
 
 <%= form_tag(service_photo_upload_path(@service), multipart: true) do %>
-    <div class="dynamic-uploader pull-left" id="image">
-      <% if @photos[0].blank? %>
+    <div class="dynamic-uploader pull-left" id="image" style="background-image: url(<%=@photos[3].photo.url rescue ''%>);background-size: cover">
+      <% if @photos[3].blank? %>
           <samp>添加照片</samp>
       <% end %>
       <input type="file" class="image-uploader" name="image">
+      <input type="hidden" value="3">
     </div>
 <% end %>
 
 <%= form_tag(service_photo_upload_path(@service), multipart: true) do %>
-    <div class="dynamic-uploader pull-left" id="image">
-      <% if @photos[0].blank? %>
+    <div class="dynamic-uploader pull-left" id="image" style="background-image: url(<%=@photos[4].photo.url rescue ''%>);background-size: cover">
+      <% if @photos[4].blank? %>
           <samp>添加照片</samp>
       <% end %>
       <input type="file" class="image-uploader" name="image">
+      <input type="hidden" value="4">
     </div>
 <% end %>
 
 <%= form_tag(service_photo_upload_path(@service), multipart: true) do %>
-    <div class="dynamic-uploader pull-left" id="image">
-      <% if @photos[0].blank? %>
+    <div class="dynamic-uploader pull-left" id="image" style="background-image: url(<%=@photos[5].photo.url rescue ''%>);background-size: cover">
+      <% if @photos[5].blank? %>
           <samp>添加照片</samp>
       <% end %>
       <input type="file" class="image-uploader" name="image">
+      <input type="hidden" value="5">
     </div>
 <% end %>
 
 <%= form_tag(service_photo_upload_path(@service), multipart: true) do %>
-    <div class="dynamic-uploader pull-left" id="image">
-      <% if @photos[0].blank? %>
+    <div class="dynamic-uploader pull-left" id="image" style="background-image: url(<%=@photos[6].photo.url rescue ''%>);background-size: cover">
+      <% if @photos[6].blank? %>
           <samp>添加照片</samp>
       <% end %>
       <input type="file" class="image-uploader" name="image">
+      <input type="hidden" value="6">
     </div>
 <% end %>
 
 <%= form_tag(service_photo_upload_path(@service), multipart: true) do %>
-    <div class="dynamic-uploader pull-left" id="image">
-      <% if @photos[0].blank? %>
+    <div class="dynamic-uploader pull-left" id="image" style="background-image: url(<%=@photos[7].photo.url rescue ''%>);background-size: cover">
+      <% if @photos[7].blank? %>
           <samp>添加照片</samp>
       <% end %>
       <input type="file" class="image-uploader" name="image">
+      <input type="hidden" value="7">
     </div>
 <% end %>
 <script>
