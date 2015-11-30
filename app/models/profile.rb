@@ -41,7 +41,9 @@ class Profile < ActiveRecord::Base
   end
 
   def interests_string
-    INTERESTS['items'].map { |item| item['name'] if hobby.include?(item['id']) }.compact!.join(',')
+    hobby_name = INTERESTS['items'].map { |item| item['name'] if hobby.include?(item['id']) }
+    hobby_name.compact!
+    hobby_name.join(',')
   end
 
   def identity_value
