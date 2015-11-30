@@ -5,6 +5,12 @@ namespace :migration do
     csv = CSV.parse(csv_text, :headers => true)
     csv.each do |row|
       data_hash = row.to_hash
+      photos = nil
+      if data_hash['Photo'].present?
+        photos = data_hash['Photo'].gsub('[', '')
+        photos = photos.gsub(']', '')
+        photos = photos.split(',')
+      end
       CrawlDatum.create(
           name: data_hash['Name'],
           avatar: data_hash['Avatar'],
@@ -12,7 +18,7 @@ namespace :migration do
           tel: data_hash['Tel'],
           business: data_hash['Business'],
           service: data_hash['Service'],
-          photo: data_hash['Photo'],
+          photo: photos,
           intro: data_hash['Intro'],
           province: data_hash['Province'],
           city: data_hash['City'],
