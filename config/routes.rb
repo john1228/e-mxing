@@ -144,10 +144,11 @@ Rails.application.routes.draw do
 
 
   namespace :business do
-    get '' => 'home#index'
     #登录
     post 'login' => 'login#mobile'
-    put 'login' => 'home#update'
+    
+    get '' => 'home#index'
+    put '' => 'home#update'
     #地址管理
     get 'addresses' => 'addresses#index'
     get 'lessons' => 'lessons#index'
