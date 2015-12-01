@@ -20,6 +20,10 @@ $panelHeaderBck: #2d6da3;
 @import "bootstrap";
 @import "jquery.modal";
 $icon-font-path: "bootstrap-sass/assets/fonts/bootstrap/";
+#header #tabs li {
+  font-size: 16px;
+}
+
 .nav li a {
   text-decoration: none
 }
@@ -141,3 +145,4 @@ $icon-font-path: "bootstrap-sass/assets/fonts/bootstrap/";
 body.active_admin {
   font-family: "Microsoft Yahei", "微软雅黑";
 }
+

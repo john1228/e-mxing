@@ -4,8 +4,8 @@ module Business
     def index
       render json: Success.new(
                  balance: @coach.wallet.balance.to_f.round(2),
-                 order: Order.pay.where(coach_id: coach.id).count,
-                 appoint: Appointment.where(coach_id: coach.id).count
+                 order: Order.pay.where(coach_id: @coach.id).count,
+                 appoint: Appointment.where(coach_id: @coach.id).count
              )
     end
 
