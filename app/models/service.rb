@@ -66,7 +66,7 @@ class Service<User
             amount: in_the_sale.count,
             item: in_the_sale.order(updated_at: :desc).take(2)
         },
-        open: business,
+        open: profile.business,
         service: profile._fitness_program,
         facility: profile.service,
         contact: profile.mobile,
