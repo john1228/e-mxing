@@ -19,7 +19,7 @@ class HomeController < ApplicationController
   end
 
   def dynamic
-    @type_shows = News.gyms.order(id: :desc).take(10)
+    @type_shows = News.order(id: :desc).take(10)
     render layout: false
   end
 
