@@ -10,7 +10,8 @@ module Business
                                        token: coach.token,
                                        balance: coach.wallet.balance.to_f.round(2),
                                        order: Order.where(coach_id: coach.id).count,
-                                       appoint: Appointment.where(coach_id: coach.id).count
+                                       appoint: Appointment.where(coach_id: coach.id).count,
+                                       comment: Comment.where(sku: Sku.where(seller_id: coach.id).pluck(:sku)).count
                                    )})
         else
           render json: Failure.new('您输入的密码不正确')

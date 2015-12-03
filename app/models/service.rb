@@ -13,6 +13,7 @@ class Service<User
 
   has_many :courses, class_name: Sku
 
+  has_one :profile, foreign_key: :user_id, dependent: :destroy
   alias_attribute :service_id, :id
 
   def as_json

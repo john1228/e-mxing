@@ -1,4 +1,5 @@
 class Enthusiast<User
+  has_one :profile, foreign_key: :user_id
   default_scope { joins(:profile).where('profiles.identity' => 0) }
 
   def detail
@@ -19,4 +20,6 @@ class Enthusiast<User
         skill: profile.skill
     }
   end
+
+  undef as_json
 end

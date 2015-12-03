@@ -39,18 +39,18 @@ class User < ActiveRecord::Base
     end
     login_info.merge(new: new.present? ? 1 : 0)
   end
-
-  def as_json
-    case profile.identity
-      when 'enthusiast'
-        profile.as_json.merge(likes: likes.count)
-      when 'coach'
-        profile.as_json.merge(likes: likes.count, mobile: mobile)
-      when 'service'
-        profile.as_json.merge(likes: likes.count, mobile: profile.mobile)
-      else
-    end
-  end
+  #
+  # def as_json
+  #   case profile.identity
+  #     when 'enthusiast'
+  #       profile.as_json.merge(likes: likes.count)
+  #     when 'coach'
+  #       profile.as_json.merge(likes: likes.count, mobile: mobile)
+  #     when 'service'
+  #       profile.as_json.merge(likes: likes.count, mobile: profile.mobile)
+  #     else
+  #   end
+  # end
 
   before_save :encrypted_password
   private

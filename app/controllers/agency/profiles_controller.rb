@@ -3,10 +3,10 @@ module Agency
     def show
       @agency.update(views: @agency.views + 1)
       render json: Success.new(coach: @agency.detail.merge(avatar: {
-                                                               original: @coach.profile.avatar.url,
-                                                               thumb: @coach.profile.avatar.url
+                                                               original: @agency.profile.avatar.url,
+                                                               thumb: @agency.profile.avatar.url
                                                            },
-                                                           photowall: @coach.photos.map { |photo|
+                                                           photowall: @agency.photos.map { |photo|
                                                              {
                                                                  no: photo.id,
                                                                  original: photo.photo.url,
