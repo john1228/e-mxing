@@ -1,18 +1,18 @@
 class Lesson < ActiveRecord::Base
+  before_create :build_code
+  #self.primary_key = 'sku'
   belongs_to :user
   belongs_to :coach
-  belongs_to :course
   belongs_to :order
   has_many :appointments
-  before_create :build_code
+  belongs_to :course, class: Sku, foreign_key: :sku
 
   def as_json
-    sku_info = Sku.find_by(sku: sku)
     {
         id: id,
-        course: sku_info.course_name,
+        course: course.course_name,
         student: user.profile.name,
-        seller: sku_info.seller,
+        seller: course.seller,
         available: available,
         used: appointments.pluck(:code)
     }

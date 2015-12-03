@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151125172800) do
+ActiveRecord::Schema.define(version: 20151203092120) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -120,10 +120,11 @@ ActiveRecord::Schema.define(version: 20151125172800) do
     t.integer  "course_id"
     t.integer  "amount"
     t.integer  "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.string   "sku"
     t.string   "code"
+    t.integer  "lesson_id",  default: 0
   end
 
   add_index "appointments", ["code"], name: "index_appointments_on_code", unique: true, using: :btree
@@ -475,6 +476,7 @@ ActiveRecord::Schema.define(version: 20151125172800) do
     t.string  "contact_name"
     t.string  "contact_phone"
     t.string  "sku"
+    t.string  "code",          default: [], array: true
   end
 
   create_table "likes", force: :cascade do |t|
@@ -501,6 +503,15 @@ ActiveRecord::Schema.define(version: 20151125172800) do
     t.string   "content"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+  end
+
+  create_table "members", force: :cascade do |t|
+    t.integer  "coach_id"
+    t.string   "name"
+    t.string   "avatar"
+    t.string   "mobile"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "membership_card_abstracts", force: :cascade do |t|

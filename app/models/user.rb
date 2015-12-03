@@ -39,7 +39,7 @@ class User < ActiveRecord::Base
     end
     login_info.merge(new: new.present? ? 1 : 0)
   end
- 
+
   def as_json
     case profile.identity
       when 'enthusiast'

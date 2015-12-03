@@ -4,7 +4,6 @@ class Coach<User
   has_many :coach_docs, dependent: :destroy
   has_many :coach_dynamics, foreign_key: :user_id, dependent: :destroy
   has_many :coach_photos, foreign_key: :user_id, dependent: :destroy
-  has_many :coach_tracks, foreign_key: :user_id, dependent: :destroy
 
 
   has_many :orders, dependent: :destroy
@@ -16,6 +15,8 @@ class Coach<User
   has_one :service, through: :service_member
   has_one :recommend, -> { where(type: Recommend::TYPE[:person]) }, foreign_key: :recommended_id
 
+  has_many :members, dependent: :destroy
+  
   validates_presence_of :mobile, message: '请填写手机号'
   validates_uniqueness_of :mobile, message: '该手机号已经注册'
   validates_format_of :mobile, with: /^(0|86|17951)?(13[0123456789]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/, multiline: true, message: '无效到手机号码'

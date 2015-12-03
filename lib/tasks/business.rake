@@ -53,7 +53,7 @@ namespace :business do
   desc ''
   task :coach_course do
     conn = Faraday.new(:url => 'http://www.e-mxing.com')
-    conn.headers[:token] = '3aca6cc84657b8d0b2f42c3821ce0ba6'
+    conn.headers[:token] = '02e74f10e0327ad868d138f2b4fdd6f0'
     response = conn.get '/business/courses'
     puts response.body
   end
