@@ -1,7 +1,6 @@
 module Business
   class CoursesController < BaseController
     def index
-      logger.info('私教课程数量:' + Sku.online.where(seller_id: @coach.id).order(id: :desc).page(params[:page]||1).count)
       render json: Success.new(
                  courses: Sku.online.where(seller_id: @coach.id).order(id: :desc).page(params[:page]||1).map { |sku|
                    {
