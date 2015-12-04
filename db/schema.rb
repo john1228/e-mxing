@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151203092120) do
+ActiveRecord::Schema.define(version: 20151203141627) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -195,6 +195,12 @@ ActiveRecord::Schema.define(version: 20151203092120) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "clocks", force: :cascade do |t|
+    t.integer  "coach_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "coach_docs", force: :cascade do |t|
     t.integer "coach_id"
     t.string  "image"
@@ -370,6 +376,18 @@ ActiveRecord::Schema.define(version: 20151203092120) do
     t.datetime "updated_at"
     t.integer  "top",            default: 0
     t.integer  "comments_count", default: 0
+  end
+
+  create_table "face_to_faces", force: :cascade do |t|
+    t.integer  "sku_id"
+    t.string   "name"
+    t.string   "avatar"
+    t.string   "mobile"
+    t.string   "amount"
+    t.integer  "pay_amount"
+    t.integer  "pay_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "feedbacks", force: :cascade do |t|
@@ -675,6 +693,19 @@ ActiveRecord::Schema.define(version: 20151203092120) do
     t.decimal "day_one"
     t.decimal "day_three"
     t.decimal "day_seven"
+  end
+
+  create_table "schedules", force: :cascade do |t|
+    t.integer  "coach_id"
+    t.integer  "user_id"
+    t.integer  "sku_id"
+    t.string   "user_name"
+    t.date     "date"
+    t.string   "start"
+    t.string   "end"
+    t.integer  "people_count"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "service_courses", force: :cascade do |t|
