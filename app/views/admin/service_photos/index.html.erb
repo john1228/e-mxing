@@ -33,7 +33,7 @@
           <samp>添加照片</samp>
       <% end %>
       <input type="file" class="image-uploader" name="image">
-      <input type="hidden" value="7">
+      <input type="hidden" value="<%= @photos[0].id rescue 0 %>" name="id">
     </div>
 <% end %>
 
@@ -43,7 +43,7 @@
           <samp>添加照片</samp>
       <% end %>
       <input type="file" class="image-uploader" name="image">
-      <input type="hidden" value="6" name="loc">
+      <input type="hidden" value="<%= @photos[1].id rescue 0 %>" name="id">
     </div>
 <% end %>
 
@@ -53,7 +53,7 @@
           <samp>添加照片</samp>
       <% end %>
       <input type="file" class="image-uploader" name="image">
-      <input type="hidden" value="5" name="loc">
+      <input type="hidden" value="<%= @photos[2].id rescue 0 %>" name="id">
     </div>
 <% end %>
 
@@ -63,7 +63,7 @@
           <samp>添加照片</samp>
       <% end %>
       <input type="file" class="image-uploader" name="image">
-      <input type="hidden" value="4" name="loc">
+      <input type="hidden" value="<%= @photos[3].id rescue 0 %>" name="id">
     </div>
 <% end %>
 
@@ -73,7 +73,7 @@
           <samp>添加照片</samp>
       <% end %>
       <input type="file" class="image-uploader" name="image">
-      <input type="hidden" value="4" name="loc">
+      <input type="hidden" value="<%= @photos[4].id rescue 0 %>" name="id">
     </div>
 <% end %>
 
@@ -83,7 +83,7 @@
           <samp>添加照片</samp>
       <% end %>
       <input type="file" class="image-uploader" name="image">
-      <input type="hidden" value="2" name="loc">
+      <input type="hidden" value="<%= @photos[5].id rescue 7 %>" name="id">
     </div>
 <% end %>
 
@@ -93,7 +93,7 @@
           <samp>添加照片</samp>
       <% end %>
       <input type="file" class="image-uploader" name="image">
-      <input type="hidden" value="1" name="loc">
+      <input type="hidden" value="<%= @photos[6].id rescue 0 %>" name="id">
     </div>
 <% end %>
 
@@ -103,7 +103,7 @@
           <samp>添加照片</samp>
       <% end %>
       <input type="file" class="image-uploader" name="image">
-      <input type="hidden" value="0" name="loc">
+      <input type="hidden" value="<%= @photos[7].id rescue 0 %>" name="id">
     </div>
 <% end %>
 <script>
