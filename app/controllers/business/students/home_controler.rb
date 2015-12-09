@@ -24,7 +24,7 @@ module Business
                          signature: HarmoniousDictionary.clean(user_profile.signature),
                          identity: Profile.identities[user_profile.identity],
                          tags: user_profile.tags,
-                         contact: lesson.where('available > used and user_id=?', lesson.user_id).map { |user_lesson|
+                         contact: Lesson.where('available > used and user_id=?', lesson.user_id).map { |user_lesson|
                            {
                                name: user_lesson.order.contact_name,
                                mobile: user_lesson.order.contact_phone
