@@ -31,6 +31,7 @@ class ServiceCourse < ActiveRecord::Base
           course_id: id,
           course_type: type,
           course_name: name,
+          course_during: during,
 
           seller: (Profile.find_by(user_id: coach).name rescue agency.profile.name),
           seller_id: coach||agency.id,

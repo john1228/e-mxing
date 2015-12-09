@@ -146,21 +146,48 @@ Rails.application.routes.draw do
   namespace :business do
     #登录
     post 'login' => 'login#mobile'
-    
-    get '' => 'home#index'
-    put '' => 'home#update'
+    namespace :courses do
+      get '/' => 'home#index'
+      post '/' => 'courses#create'
+      put '/' => 'courses#update'
+      delete ':id' => 'courses#destroy'
+    end
+
+    namespace :face_to_faces do
+
+    end
+    namespace :integrals do
+      get '/' => 'home#show'
+      get 'detail' => 'home#detail'
+
+    end
+    namespace :reports do
+
+    end
+    namespace :schedules do
+      get '/' => 'home#index'
+      post '/' => 'home#create'
+      post 'off' => 'home#set_off'
+
+      get 'courses/mine' => 'courses#mine'
+      get 'courses/student' => 'courses#student'
+    end
+    namespace :students do
+      get 'member' => 'home#member'
+      get 'mxing' => 'home#mxing'
+      post '/' => 'home#create'
+
+      get ':mxid/courses' => 'courses#index'
+    end
+
+    get '/' => 'home#index'
+    put '/' => 'home#update'
     #地址管理
     get 'addresses' => 'addresses#index'
     get 'lessons' => 'lessons#index'
     get 'lessons/records' => 'lessons#records'
     get 'lessons/show' => 'lessons#show'
     post 'lessons' => 'lessons#update'
-    #课程
-    get 'courses' => 'courses#index'
-    get 'courses/:type' => 'courses#index'
-    post 'courses' => 'courses#create'
-    put 'courses' => 'courses#update'
-    delete 'courses/:id' => 'courses#destroy'
     #预约
     get 'appointments' => 'appointments#index'
     get 'appointments/show' => 'appointments#show'

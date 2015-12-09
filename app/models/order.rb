@@ -21,8 +21,8 @@ class Order < ActiveRecord::Base
     sku_info = Sku.find_by(sku: sku)
     course = sku_info.course
     #产品购买
-    build_order_item(sku: sku, name: course.name, type: course.type, during: course.during,
-                     cover: course.cover, price: sku_info.selling_price, amount: amount)
+    build_order_item(sku: sku, name: sku_info.course_name, type: sku_info.course_type, during: sku_info.course_during,
+                     cover: sku_info.course_cover, price: sku_info.selling_price, amount: amount)
     #校验优惠券
     if coupon.present?
       using_coupon = Coupon.find_by(id: coupon)

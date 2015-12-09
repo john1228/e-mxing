@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151203141627) do
+ActiveRecord::Schema.define(version: 20151208092211) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -532,7 +532,7 @@ ActiveRecord::Schema.define(version: 20151203141627) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "membership_card_abstracts", force: :cascade do |t|
+  create_table "membership_card_types", force: :cascade do |t|
     t.string   "name"
     t.integer  "service_id"
     t.integer  "client_id"
@@ -543,9 +543,9 @@ ActiveRecord::Schema.define(version: 20151203141627) do
     t.boolean  "has_valid_extend_information"
     t.integer  "valid_days"
     t.integer  "latest_delay_days"
+    t.string   "remark"
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
-    t.string   "remark"
   end
 
   create_table "membership_cards", force: :cascade do |t|
@@ -774,6 +774,7 @@ ActiveRecord::Schema.define(version: 20151203141627) do
     t.integer   "status",                                                                    default: 0
     t.integer   "service_id"
     t.string    "tag"
+    t.integer   "course_during"
   end
 
   add_index "skus", ["coordinate"], name: "index_skus_on_coordinate", using: :gist
@@ -875,8 +876,10 @@ ActiveRecord::Schema.define(version: 20151203141627) do
     t.integer  "balance"
     t.string   "coupons"
     t.integer  "bean"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.string   "source",     default: ""
+    t.integer  "integral",   default: 0
   end
 
   create_table "wallets", force: :cascade do |t|
@@ -885,6 +888,7 @@ ActiveRecord::Schema.define(version: 20151203141627) do
     t.integer "bean",         default: 0
     t.integer "coupons",      default: [],  array: true
     t.integer "lock_version"
+    t.integer "integral",     default: 0
   end
 
   create_table "withdraws", force: :cascade do |t|

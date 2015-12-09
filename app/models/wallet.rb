@@ -1,8 +1,7 @@
 class Wallet < ActiveRecord::Base
   belongs_to :user
   has_many :wallet_logs
-  attr_accessor :action
-
+  attr_accessor :action, :source
 
   after_update :create_wallet_log
 
@@ -23,17 +22,13 @@ class Wallet < ActiveRecord::Base
 
   private
   def create_wallet_log
-    coupons_change
-    if coupons.size > coupons_was.size
-      coupons_change = coupons - coupons_was #增加优惠券
-    else
-      coupons_change = coupons_was - coupons #减少优惠券
-    end
     wallet_logs.create(
         action: action,
-        balance: (balance-balance_was),
-        coupons: coupons_change,
-        bean: bean - bean_was
+        balance: balance_was - balance,
+        integral: integral_was - integral,
+        coupons: coupons.size > coupons_was.size ? (coupons - coupons_was) : (coupons_was - coupons),
+        bean: bean - bean_was,
+        source: source
     )
   end
 end

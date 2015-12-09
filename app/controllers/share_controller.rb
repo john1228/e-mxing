@@ -75,7 +75,7 @@ class ShareController < ApplicationController
                       selling: item.selling_price.to_i,
                       sold: item.orders_count,
                       score: item.score,
-                      during: item.course.during,
+                      during: item.course_during,
                       exp: {
                           year: Date.today.next_day(item.course.exp).year,
                           month: Date.today.next_day(item.course.exp).month,
@@ -112,7 +112,7 @@ class ShareController < ApplicationController
     sku = params[:id]
     @sku = Sku.find_by(sku: sku)
     @course = @sku.course
-    @services = sku.start_with?('CC') ? @sku.seller_user.service.profile.service : @sku.seller_user.profile.service
+    @services = (sku.start_with?('CC') ? @sku.seller_user.service.profile.service : @sku.seller_user.profile.service)||[]
     @buyers = User.where(id: Order.includes(:order_item).where('orders.status = ? and order_items.sku LIKE ?', Order::STATUS[:pay], sku[0, sku.rindex('-')] + '%').order(id: :desc).limit(5).pluck(:user_id))
     @comment_count = @sku.comments.count
     @image_comments = @sku.image_comments.take(5)

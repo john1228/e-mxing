@@ -14,23 +14,23 @@ class Sku < ActiveRecord::Base
   before_save :offline
   before_create :injection
 
-  def as_json
-    {
-        sku: sku,
-        name: course_name,
-        seller: seller_user.profile.name,
-        cover: course_cover,
-        selling: selling_price.to_i,
-        guarantee: course_guarantee,
-        address: address,
-        store: store||-1,
-        distance: attributes['distance']||0,
-        coordinate: {
-            lng: coordinate.x,
-            lat: coordinate.y
-        }
-    }
-  end
+  # def as_json
+  #   {
+  #       sku: sku,
+  #       name: course_name,
+  #       seller: seller_user.profile.name,
+  #       cover: course_cover,
+  #       selling: selling_price.to_i,
+  #       guarantee: course_guarantee,
+  #       address: address,
+  #       store: store||-1,
+  #       distance: attributes['distance']||0,
+  #       coordinate: {
+  #           lng: coordinate.x,
+  #           lat: coordinate.y
+  #       }
+  #   }
+  # end
 
   def detail
     service = Service.find_by(id: service_id)
@@ -45,9 +45,9 @@ class Sku < ActiveRecord::Base
         store: store||-1,
         limit: limit||-1,
         score: score,
-        type: course.type,
+        type: course_type,
         style: course.style,
-        during: course.during,
+        during: course_during,
         exp: Date.today.next_day(course.exp).strftime('%Y-%m-%d'),
         proposal: course.proposal,
         seller: {

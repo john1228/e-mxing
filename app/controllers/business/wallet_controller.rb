@@ -10,7 +10,14 @@ module Business
     end
 
     def detail
-      render json: Success.new(detail: @coach.wallet.wallet_logs.where.not(balance: 0).page(params[:page]||1))
+      render json: Success.new(detail: @coach.wallet.wallet_logs.where('balance <> 0').page(params[:page]||1).map { |log|
+                                 {
+                                     id: log.id_string,
+                                     action: log.action_name,
+                                     balance: log.balance.to_f.round(2),
+                                     created: log.created_at.to_i
+                                 }
+                               })
     end
 
     def withdraw

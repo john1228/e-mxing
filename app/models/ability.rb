@@ -12,9 +12,14 @@ class Ability
         can [:read, :create, :update], ServiceMember, service: user.service
         can :manage, ServicePhoto, service: user.service
       when AdminUser::ROLE[:cms]
-        can :manage, TypeShow
+        can :manage, Coach
+        can :manage, DynamicImage
+        can :manage, ServiceCourse
+        can :manage, Category
+        can :manage, Banner
+        can :manage, Tag
         can :manage, Activity
-        can :manage, News
+        can :manage, ActiveAdmin::Page, :name => 'Message'
         can :read, ActiveAdmin::Page, :name => 'Dashboard'
       when AdminUser::ROLE[:market]
         can [:read, :create, :update], Service
@@ -48,6 +53,7 @@ class Ability
         can :manage, Category
         can :manage, Tag
         can :manage, CrawlDatum
+        can :manage, News
       when AdminUser::ROLE[:partner]
         can :manage, Transaction
         can :read, Withdraw

@@ -18,6 +18,10 @@ module Business
         end
       end
 
+      def set_off
+        #设置休息
+      end
+
       private
       def schedule_params
         params.permit(:sku, :date, :start, :end, :user_name, :mobile, :people_count)

@@ -7,12 +7,19 @@ class WalletLog < ActiveRecord::Base
     ACTIONS.key(action)
   end
 
-  def as_json
-    {
-        id: created_at.strftime('%Y%m%d' + '%04d' % id),
-        action: action_name,
-        balance: balance.to_f.round(2),
-        created: created_at.to_i
-    }
+  def created_format
+    created_at.strftime('%Y%m%d' + '%04d' % id)
   end
+
+  def id_string
+    created_at.strftime('%Y%m%d' + '%04d' % id)
+  end
+  # def as_json
+  #   {
+  #       id: created_at.strftime('%Y%m%d' + '%04d' % id),
+  #       action: action_name,
+  #       balance: balance.to_f.round(2),
+  #       created: created_at.to_i
+  #   }
+  # end
 end

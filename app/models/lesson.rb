@@ -28,7 +28,7 @@ class Lesson < ActiveRecord::Base
         seller_type: sku_info.seller_user.profile.identity,
         available: available,
         used: appointments.pluck(:code),
-        during: sku_info.course.during,
+        during: sku_info.course_during,
         exp: exp,
         class_time: '',
         address: sku_info.related_sellers,
