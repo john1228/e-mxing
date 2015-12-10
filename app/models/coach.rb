@@ -19,6 +19,7 @@ class Coach<User
   has_many :members, dependent: :destroy
   has_many :schedules, dependent: :destroy
   has_many :clocks, dependent: :destroy
+  has_many :set_offs, dependent: :destroy
 
 
   validates_presence_of :mobile, message: '请填写手机号'

@@ -102,7 +102,7 @@ module Api
       end
 
       def confirm_order
-        order = @user.orders.new(order_params.merge(status: Order::STATUS[:unpaid]))
+        order = @user.orders.new(order_params)
         if order.save
           render json: Success.new(order: order)
         else
@@ -113,6 +113,18 @@ module Api
       private
       def order_params
         params.permit(:sku, :amount, :coupon, :pay_type, :contact_name, :contact_phone)
+        permit_params = params.permit(:contact_name, :contact_phone, :pay_type)
+        sku = Sku.find(params[:sku])
+        permit_params.merge(order_item_attributes: {
+                                name: sku.course_name,
+                                type: sku.course_type,
+                                cover: sku.course_cover,
+                                amount: params[:amount],
+                                during: sku.course_during,
+                                price: sku.selling_price,
+                                sku: sku.id
+                            }
+        )
       end
 
       def verify_auth_token

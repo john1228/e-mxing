@@ -169,8 +169,8 @@ Rails.application.routes.draw do
       post '/' => 'home#create'
       post 'off' => 'home#set_off'
 
-      get 'courses/mine' => 'courses#mine'
-      get 'courses/student' => 'courses#student'
+      get 'mine/course' => 'courses#mine'
+      get 'student/course' => 'courses#student'
     end
     namespace :students do
       get 'member' => 'home#member'
@@ -389,6 +389,8 @@ Rails.application.routes.draw do
   get 'find/:type/:tag' => 'find#list'
   #签到
   post 'sign' => 'system#sign'
+
+  get 'wap/qrcode' => 'wap#qrcode'
 
 end
 

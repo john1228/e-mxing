@@ -21,9 +21,29 @@ module Business
 
 
       def create
-        #Order.transaction do
-
-        #end
+        sku = Sku.find(params[:sku])
+        order = Order.new(
+            contact_name: params[:name],
+            contact_phone: params[:mobile],
+            pay_type: 1,
+            pay_amount: params[:pay_amount],
+            order_item_attributes: {
+                name: sku.course_name,
+                type: sku.course_type,
+                cover: sku.course_cover,
+                amount: params[:amount],
+                during: sku.course_during,
+                price: sku.selling_price,
+                sku: sku.id
+            },
+            giveaway: params[:giveaway]
+        )
+        if order.save
+          #美型支付
+          #扫码支付
+        else
+          render json: Failure.new('下单失败:' + order.errors.messages.values.join(';'))
+        end
       end
 
       private

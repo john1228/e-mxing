@@ -66,6 +66,12 @@
         name: '名称'
         item: '条目'
         background: '背景图'
+      set_off:
+        coach_id: '私教'
+        start: '开始时间'
+        end: '结束时间'
+        repeat: '是否重复'
+        week: '星期'
 #      crawl_datum:
 #        name: '工作室名称'
 #        avatar: '头像'
