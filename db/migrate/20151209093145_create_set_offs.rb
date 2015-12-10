@@ -7,5 +7,9 @@ class CreateSetOffs < ActiveRecord::Migration
       t.boolean :repeat
       t.integer :week, array: true, default: []
     end
+
+
+    add_column :wallets, :lock_version, :integer, default: 0
+    add_column :skus, :lock_version, :integer, default: 0
   end
 end
