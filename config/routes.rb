@@ -391,6 +391,7 @@ Rails.application.routes.draw do
   post 'sign' => 'system#sign'
 
   get 'wap/qrcode' => 'wap#qrcode'
-
+  get 'wap/alipay' => 'wap#alipay'
+  get 'wap/pay' => 'wap#pay', as: :pay_order
 end
 

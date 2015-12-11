@@ -9,7 +9,7 @@ class Sku < ActiveRecord::Base
   belongs_to :service
   has_many :concerneds, foreign_key: :sku
 
-  has_many :lessons, dependent: :destroy
+  has_many :lessons, dependent: :destroy, foreign_key: :sku
 
   before_save :offline
   before_create :injection

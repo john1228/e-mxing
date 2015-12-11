@@ -17,9 +17,8 @@ class Order < ActiveRecord::Base
   alias_attribute :coupon, :coupons
   validate :validate_coupon, if: Proc.new { |order| order.coupon.present? }
   validate :validate_amount
-
   accepts_nested_attributes_for :order_item
-
+  enum order_type: [:platform, :face_to_face]
   protected
   #检验验证码
   def validate_coupon

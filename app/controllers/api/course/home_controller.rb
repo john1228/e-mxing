@@ -102,7 +102,7 @@ module Api
       end
 
       def confirm_order
-        order = @user.orders.new(order_params)
+        order = @user.orders.platform.new(order_params)
         if order.save
           render json: Success.new(order: order)
         else

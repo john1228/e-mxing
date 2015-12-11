@@ -22,7 +22,7 @@ module Business
 
       def create
         sku = Sku.find(params[:sku])
-        order = Order.new(
+        order = Order.face_to_face.new(
             contact_name: params[:name],
             contact_phone: params[:mobile],
             pay_type: 1,
@@ -40,7 +40,9 @@ module Business
         )
         if order.save
           #美型支付
-          #扫码支付
+
+          #支付宝
+
         else
           render json: Failure.new('下单失败:' + order.errors.messages.values.join(';'))
         end

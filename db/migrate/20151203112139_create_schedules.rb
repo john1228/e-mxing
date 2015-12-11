@@ -3,7 +3,7 @@ class CreateSchedules < ActiveRecord::Migration
     create_table :schedules do |t|
       t.references :coach
       t.references :user
-      t.references :sku
+      t.string :sku_id
       t.date :date
       t.string :start
       t.string :end

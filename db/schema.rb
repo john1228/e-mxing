@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151209093145) do
+ActiveRecord::Schema.define(version: 20151211031324) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -614,6 +614,8 @@ ActiveRecord::Schema.define(version: 20151209093145) do
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.integer  "service_id"
+    t.integer  "order_type"
+    t.integer  "giveaway"
   end
 
   create_table "overviews", force: :cascade do |t|
@@ -698,14 +700,14 @@ ActiveRecord::Schema.define(version: 20151209093145) do
   create_table "schedules", force: :cascade do |t|
     t.integer  "coach_id"
     t.integer  "user_id"
-    t.integer  "sku_id"
+    t.string   "sku_id",       default: ""
     t.string   "user_name"
     t.date     "date"
     t.string   "start"
     t.string   "end"
     t.integer  "people_count"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "service_courses", force: :cascade do |t|
@@ -735,14 +737,6 @@ ActiveRecord::Schema.define(version: 20151209093145) do
 
   add_index "service_members", ["coach_id"], name: "index_service_members_on_coach_id", using: :btree
   add_index "service_members", ["service_id"], name: "index_service_members_on_service_id", using: :btree
-
-  create_table "set_offs", force: :cascade do |t|
-    t.integer "coach_id"
-    t.string  "start"
-    t.string  "end"
-    t.boolean "repeat"
-    t.integer "week",     default: [], array: true
-  end
 
   create_table "settings", force: :cascade do |t|
     t.integer "user_id"
