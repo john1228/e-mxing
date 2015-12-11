@@ -67,3 +67,5 @@ gem 'mechanize'
 gem 'jquery-modal-rails'
 
 gem "aasm"
+
+gem 'alipay'

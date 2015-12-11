@@ -2,7 +2,7 @@ module Business
   module Students
     class CoursesController < BaseController
       def index
-        user = User.find_by_mxid(params[:student])
+        user = User.find_by_mxid(params[:mxid])
         if user.blank?
           render json: Failure.new('您查看到用户不存在')
         else
