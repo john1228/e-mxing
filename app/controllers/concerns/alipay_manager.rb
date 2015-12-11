@@ -27,17 +27,17 @@ module AlipayManager
         body: options[:body]
     }
     query_params = query_params.sort.to_h
-    query_params[:sign] = Digest::MD5.hexdigest(hash_to_params(query_params) + secret)
+    query_params[:sign] = Digest::MD5.hexdigest(hash_to_url(query_params) + secret)
     query_params[:sign_type] = 'MD5'
     query_params
   end
 
   def hash_to_params(hash)
-    hash.map { |key, value| "#{key}=#{value.to_s}" }.join("&")
+    str = hash.map { |key, value| "#{key}=#{value.to_s}" }.join("&")
   end
 
   def hash_to_url(hash)
-    hash.map { |key, value| "#{key}=#{CGI.escape(value.to_s)}" }.join("&")
+    str = hash.map { |key, value| "#{key}=#{CGI.escape(value.to_s)}" }.join("&")
   end
 
 end

@@ -8,29 +8,41 @@ class Sku < ActiveRecord::Base
   belongs_to :course, class_name: ServiceCourse, foreign_key: :course_id
   belongs_to :service
   has_many :concerneds, foreign_key: :sku
-
   has_many :lessons, dependent: :destroy, foreign_key: :sku
 
   before_save :offline
   before_create :injection
 
-  # def as_json
-  #   {
-  #       sku: sku,
-  #       name: course_name,
-  #       seller: seller_user.profile.name,
-  #       cover: course_cover,
-  #       selling: selling_price.to_i,
-  #       guarantee: course_guarantee,
-  #       address: address,
-  #       store: store||-1,
-  #       distance: attributes['distance']||0,
-  #       coordinate: {
-  #           lng: coordinate.x,
-  #           lat: coordinate.y
-  #       }
-  #   }
-  # end
+  def name
+    course_name
+  end
+
+  def cover
+    course_cover
+  end
+
+  def during
+    course_during
+  end
+
+
+  def as_json
+    {
+        sku: sku,
+        name: course_name,
+        seller: seller_user.profile.name,
+        cover: course_cover,
+        selling: selling_price.to_i,
+        guarantee: course_guarantee,
+        address: address,
+        store: store||-1,
+        distance: attributes['distance']||0,
+        coordinate: {
+            lng: coordinate.x,
+            lat: coordinate.y
+        }
+    }
+  end
 
   def detail
     service = Service.find_by(id: service_id)

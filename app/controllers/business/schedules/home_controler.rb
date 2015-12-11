@@ -6,7 +6,7 @@ module Business
                    schedule: @coach.schedules.where(date: params[:date]).map { |schedule|
                      schedule.as_json(
                          only: [:id, :start, :end, :user_name, :people_count],
-                         include: {course: {only: [:course_name, :course_cover]}}
+                         include: {course: {only: :id, methods: [:name, :cover, :during]}}
                      )
                    }
                )

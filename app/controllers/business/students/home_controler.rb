@@ -27,7 +27,8 @@ module Business
                          contact: Lesson.where('available > used and user_id=?', lesson.user_id).map { |user_lesson|
                            {
                                name: user_lesson.order.contact_name,
-                               mobile: user_lesson.order.contact_phone
+                               mobile: user_lesson.order.contact_phone,
+                               course_name: user_lesson.course.name
                            }
                          }
 
