@@ -26,7 +26,7 @@ module Business
         if params[:batch].eql?('1')
           batch_start = Date.parse(params[:batch_start])
           batch_end = Date.parse(params[:batch_end])
-          batch_days = params[:batch_days].split(',').map { |week_day| week_day.to_id }
+          batch_days = params[:batch_days].split(',').map { |week_day| week_day.to_i }
           (batch_start..batch_end).each { |day|
             if batch_days.include?(day.wday)
               set_off_ary << {date: day, start: params[:start], end: params[:end]}

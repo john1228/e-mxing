@@ -1,6 +1,8 @@
 module Business
   module FaceToFaces
     class HomeController < BaseController
+      include AlipayManager
+
       def courses
         render json: Success.new(
                    course: Sku.online.where(seller_id: @coach.id).order(id: :desc).page(params[:page]||1).map { |sku|
@@ -40,9 +42,20 @@ module Business
         )
         if order.save
           #美型支付
-
-          #支付宝
-
+          if pay_method.eql?('mxing')
+            @qrcode = RQRCode::QRCode.new("http://github.com/", :size => 4, :level => :h)
+            render layout: false
+          elsif pay_method.eql?('alipay')
+            #支付宝
+            params = {
+                :out_trade_no => '2012113000001',
+                :subject => '测试订单',
+                :total_fee => '0.1'
+            }
+            redirect_to create_direct_pay_by_user_url(params)
+          else
+            render text: 'error'
+          end
         else
           render json: Failure.new('下单失败:' + order.errors.messages.values.join(';'))
         end
