@@ -10,6 +10,7 @@ class CreateSchedules < ActiveRecord::Migration
       t.string :user_name
       t.string :mobile
       t.integer :people_count
+      t.text :remark
       t.timestamps null: false
     end
   end

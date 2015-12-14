@@ -5,7 +5,7 @@ class WapController < ApplicationController
   def index
     render layout: false
   end
-  
+
   def qrcode
     @qrcode = RQRCode::QRCode.new("http://github.com/", :size => 4, :level => :h)
     render layout: false
@@ -21,6 +21,6 @@ class WapController < ApplicationController
         :subject => '测试订单',
         :total_fee => '0.1'
     }
-    redirect_to trade_create_by_user_url(params)
+    redirect_to create_direct_pay_by_user_url(params)
   end
 end

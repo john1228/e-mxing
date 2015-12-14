@@ -708,6 +708,7 @@ ActiveRecord::Schema.define(version: 20151211031324) do
     t.integer  "people_count"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.string   "remark",       default: ""
   end
 
   create_table "service_courses", force: :cascade do |t|
