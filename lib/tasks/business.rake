@@ -1,7 +1,7 @@
 namespace :business do
-  #host = 'http://stage.e-mxing.com'
-  host = 'http://localhost'
-  token = '02e74f10e0327ad868d138f2b4fdd6f0'
+  host = 'http://stage.e-mxing.com'
+  #host = 'http://localhost'
+  token = '3c59dc048e8850243be8079a5c74d079'
 
   task :login do
     conn = Faraday.new(:url => host)
@@ -40,7 +40,7 @@ namespace :business do
   task :schedules do
     conn = Faraday.new(:url => host)
     conn.headers[:token] = token
-    response = conn.get '/business/schedules'
+    response = conn.get '/business/schedules', date: Date.today
     puts response.body
   end
 

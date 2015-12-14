@@ -3,27 +3,42 @@ module Business
     class HomeController < BaseController
       def index
         render json: Success.new(
-                   courses: Sku.online.where(seller_id: @coach.id).order(id: :desc).page(params[:page]||1).map { |sku|
+                   courses: Sku.online.where(seller_id: @coach.id).order(id: :desc).page(params[:page]||1).map { |course|
                      {
-                         id: sku.id,
-                         name: sku.course_name,
-                         type: sku.course_type,
-                         style: sku.course.style,
-                         during: sku.course_during,
-                         price: sku.selling_price.to_i,
-                         exp: sku.course.exp,
-                         proposal: sku.course.proposal,
-                         intro: sku.course.intro,
-                         guarantee: sku.course_guarantee,
-                         address: [{
-                                       venues: sku.service.profile.name,
-                                       address: sku.address
-                                   }],
-                         images: sku.course.image.map { |image| image.url },
-                         purchased: sku.orders_count,
-                         concerns: sku.concerns_count
+                         id: course.id,
+                         name: course.course_name,
+                         cover: course.course_cover,
+                         price: course.selling_price,
+                         guarantee: course.course_guarantee,
+                         concerns: course.concerns_count
                      }
                    })
+      end
+
+      def show
+        course = Sku.online.find(params[:sku])
+        render json: Success.new(
+                   course: {
+                       id: course.id,
+                       name: course.course_name,
+                       image: course.image.map { |image| image.url },
+                       price: course.selling_price.to_i,
+                       guarantee: course.course_guarantee,
+                       score: course.score,
+                       type: course.course_type,
+                       style: course.course.style,
+                       exp: course.course.exp,
+                       during: course.course_during,
+                       proposal: course.course.proposal,
+                       intro: course.course.intro,
+                       special: course.course.special,
+                       service: course.service.profile.name,
+                       purchased: course.orders_count,
+                       concerns: course.concerns_count,
+                       address: course.address
+                   }
+               )
+
       end
 
 

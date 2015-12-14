@@ -2,6 +2,7 @@ class Comment < ActiveRecord::Base
   default_scope { order(id: :desc) }
   belongs_to :user
   belongs_to :coach
+  belongs_to :course, class: Sku, foreign_key: :sku
   mount_uploaders :image, ImagesUploader
   after_create :update_count
 
