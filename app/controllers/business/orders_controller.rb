@@ -36,7 +36,7 @@ module Business
                        giveaway: order.giveaway,
                        status: order.status,
                        user: order.user.profile,
-                       created: order.updated_at.to_i
+                       created: order.updated_at.localtime.strftime('%Y-%m-%d %H:%M:%S')
                    }
                )
 
