@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+  <meta content="yes" name="apple-mobile-web-app-capable">
+  <meta content="black" name="apple-mobile-web-app-status-bar-style">
+  <meta content="telephone=no" name="format-detection">
+  <meta content="email=no" name="format-detection">
+  <title></title>
+  <style>
+      *{padding: 0; margin: 0;}
+      html,body{min-width: 320px; max-width: 640px;  margin:0 auto;}
+      body{ background: #234969;font-family:Helvetica;}
+      li { list-style: none; }
+      img,input,button,a,select,textarea{margin:0;padding:0;resize:none;border:none;outline:none;}
+      ol,ul{list-style:none; padding: 0; margin: 0;}
+      h1,h2,h3,h4,h5,h6,p,em,i,b,em{font-size:100%;word-wrap:break-word;font-weight:normal;font-style:normal;}
+      a:active, a:focus{outline:none;}
+      a{text-decoration:none;}
+      img{display: block; max-width: 100%; height: auto;}
+      .fl{ float: left;}
+      .fr{ float: right;}
+      .cl{ clear: both;}
+      #wrap{ width:90%; margin: 0 auto; background: #fff; padding:20px 0; margin-top:20px; border-radius:10px;}
+      #header{ padding: 0 16px; position:relative;}
+      #header-left { width:100%; }
+      #header-left h3{ font-size: 16px; color: #333333; margin-bottom: 3px; }
+      #header-left h5{ font-size: 13px; color: #909aa8; margin-bottom: 3px;}
+
+      #header-right{ font-size: 36px; color: #ff572f; position: absolute; bottom:-5px; right:16px; font-weight: 100;}
+      #header-right span{ font-size: 15px;}
+
+      .branching{ height:20px; margin-top:20px; position: relative;}
+      .branching hr{ height:1px; border:none; border-top:1px dashed #c6cbd2;}
+
+      .branching-left{ width:15px; height: 15px; background: #234969;border-radius:50%; position:absolute; left: -7px; top: -7px;}
+      .branching-right{ width:15px; height: 15px; background: #234969;border-radius:50%; position:absolute;  right: -7px; top: -7px;}
+      .QR-code { width:280px; height: 325px; margin: 0 auto; overflow:hidden;}
+      .QR-code iframe{border: none; height:330px; }
+  </style>
+</head>
+
+<body>
+<div id="wrap">
+  <div id="header">
+    <div id="header-left">
+      <h3>ACMAX 体能训练-充值卡</h3>
+      <h5>购买数量x2，赠送金额 50元</h5>
+      <h5>当面付金额</h5>
+    </div>
+    <div id="header-right" >360<span>元</span></div>
+  </div>
+  <div class="branching">
+    <div class="branching-left"></div>
+    <hr>
+    <div class="branching-right"></div>
+  </div>
+  <div class="QR-code">
+    <div style=" margin-left: -262px; margin-top: -5px;">
+      <iframe src="<%=@url%>"  width="800" height="600" scrolling="no">
+      </iframe>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -59,11 +59,11 @@ module Business
       end
 
       def mxing
-
+        @qrcode = RQRCode::QRCode.new("http://news.163.com", :size => 20, :level => :l)
+        render layout: false
       end
 
       def alipay
-
       end
 
       private

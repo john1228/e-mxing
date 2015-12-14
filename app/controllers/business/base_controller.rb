@@ -1,6 +1,6 @@
 module Business
   class BaseController<ApplicationController
-    before_filter :verify_auth_token
+    before_filter :verify_auth_token, except: [:mxing, :alipay]
     private
     def verify_auth_token
       @coach = Rails.cache.fetch("gyms-#{request.headers[:token]}")

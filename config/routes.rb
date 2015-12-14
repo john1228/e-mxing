@@ -148,14 +148,17 @@ Rails.application.routes.draw do
     post 'login' => 'login#mobile'
     namespace :courses do
       get '/' => 'home#index'
-      post '/' => 'courses#create'
-      put '/' => 'courses#update'
-      delete ':id' => 'courses#destroy'
+      get '/:id' => 'home#show'
+      post '/' => 'home#create'
+      put '/' => 'home#update'
+      delete ':id' => 'home#destroy'
     end
 
     namespace :face_to_faces do
       get 'courses' => 'home#courses'
       post 'courses' => 'home#create'
+
+      get 'mxing' => 'home#mxing'
     end
     namespace :integrals do
       get '/' => 'home#show'

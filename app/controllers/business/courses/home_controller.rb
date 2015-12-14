@@ -16,7 +16,7 @@ module Business
       end
 
       def show
-        course = Sku.online.find(params[:sku])
+        course = Sku.online.find(params[:id])
         render json: Success.new(
                    course: {
                        id: course.id,
