@@ -21,6 +21,7 @@ class WapController < ApplicationController
         :subject => '测试订单',
         :total_fee => '0.1'
     }
-    redirect_to create_direct_pay_by_user_url(params)
+    @url = trade_create_by_user_url(params)
+    render layout: false
   end
 end

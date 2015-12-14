@@ -154,7 +154,8 @@ Rails.application.routes.draw do
     end
 
     namespace :face_to_faces do
-
+      get 'courses' => 'home#courses'
+      post 'courses' => 'home#create'
     end
     namespace :integrals do
       get '/' => 'home#show'
@@ -392,7 +393,7 @@ Rails.application.routes.draw do
 
   get 'wap/qrcode' => 'wap#qrcode'
   get 'wap/alipay' => 'wap#alipay'
-  post 'wap/pay' => 'wap#pay', as: :pay_order
+  get 'wap/pay' => 'wap#pay', as: :pay_order
 
 end
 

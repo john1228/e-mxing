@@ -40,12 +40,30 @@ module Business
         )
         if order.save
           #美型支付
-
+          if params[:pay_method].eql?('mxing')
+            @qrcode = RQRCode::QRCode.new("http://#{host}/mine/orders/show?no=#{order.no}", :size => 4, :level => :h)
+            render layout: false, action: :mxing
+          elsif params[:pay_method].eql?('alipay')
+            params = {
+                :out_trade_no => order.no,
+                :subject => "美型-订单编号#{order.no}",
+                :total_fee => order.pay_amount
+            }
+            @url = trade_create_by_user_url(params)
+            render layout: false, action: :alipay
+          end
           #支付宝
-
         else
           render json: Failure.new('下单失败:' + order.errors.messages.values.join(';'))
         end
+      end
+
+      def mxing
+
+      end
+
+      def alipay
+
       end
 
       private
