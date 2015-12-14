@@ -11,6 +11,7 @@ module Business
                        {
                            id: lesson.id,
                            course: lesson.course.course_name,
+                           cover: lesson.course.course_cover,
                            during: lesson.course.course_during,
                            available: lesson.available,
                            used: lesson.appointments.pluck(:code)
