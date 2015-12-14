@@ -19,6 +19,7 @@ class Coach<User
   has_many :members, dependent: :destroy
   has_many :schedules, dependent: :destroy
   has_many :clocks, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   validates_presence_of :mobile, message: '请填写手机号'
   validates_uniqueness_of :mobile, message: '该手机号已经注册'
@@ -32,11 +33,6 @@ class Coach<User
               comments.average(:score)
             end
     score.round(1)
-  end
-
-  def comments
-    sku_array = Sku.online.where(seller_id: id).pluck(:sku)
-    Comment.where(sku: sku_array).order(id: :desc)
   end
 
   def detail

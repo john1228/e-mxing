@@ -1,6 +1,7 @@
 class Comment < ActiveRecord::Base
   default_scope { order(id: :desc) }
   belongs_to :user
+  belongs_to :coach
   mount_uploaders :image, ImagesUploader
   after_create :update_count
 
