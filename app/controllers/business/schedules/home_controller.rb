@@ -29,11 +29,11 @@ module Business
           batch_days = params[:batch_days].split(',').map { |week_day| week_day.to_i }
           (batch_start..batch_end).each { |day|
             if batch_days.include?(day.wday)
-              set_off_ary << {date: day, start: params[:start], end: params[:end]}
+              set_off_ary << {date: day, start: params[:start], end: params[:end], coach_id: @coach.id}
             end
           }
         end
-        set_off_ary << {date: params[:date], start: params[:start], end: params[:end]}
+        set_off_ary << {date: params[:date], start: params[:start], end: params[:end], coach_id: @coach.id}
         Schedule.create(set_off_ary)
         render json: Success.new
       end

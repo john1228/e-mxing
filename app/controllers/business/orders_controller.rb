@@ -8,7 +8,9 @@ module Business
                                      pay_type: order.pay_type,
                                      pay_amount: order.pay_amount,
                                      status: order.status,
-                                     user: order.user.profile
+                                     user: order.user.profile,
+                                     type: order.order_type,
+                                     giveaway: order.giveaway,
                                  }
                                })
     end
@@ -30,6 +32,8 @@ module Business
                        bean: order.bean,
                        pay_type: order.pay_type,
                        pay_amount: order.pay_amount,
+                       type: order.order_type,
+                       giveaway: order.giveaway,
                        status: order.status,
                        user: order.user.profile,
                        created: order.updated_at.to_i
