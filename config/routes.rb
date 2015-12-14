@@ -180,6 +180,11 @@ Rails.application.routes.draw do
 
       get ':mxid/courses' => 'courses#index'
     end
+    #评论
+    get 'comments' => 'comments#index'
+    #打卡
+    get 'clocks' => 'clocks#index'
+    post 'clocks' => 'clocks#create'
 
     get '/' => 'home#index'
     put '/' => 'home#update'
@@ -202,10 +207,6 @@ Rails.application.routes.draw do
     get 'wallet/coupons' => 'wallet#coupons'
     get 'wallet/detail' => 'wallet#detail'
     post 'wallet' => 'wallet#withdraw'
-    #学员
-    get 'students' => 'students#index'
-    get 'students/courses' => 'students#courses'
-    post 'students/follow' => 'students#follow'
 
     post 'feedback' => 'system#feedback'
   end

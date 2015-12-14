@@ -1,0 +1,10 @@
+---
+- name: 'BMI计算器'
+  icon: 'http://7xnvtv.com2.z0.glb.qiniucdn.com/business/icon_BMI@2x.png'
+  url: 'http://h5.e-mxing.com/bmi'
+- name: '食物热量查询'
+  icon: 'http://7xnvtv.com2.z0.glb.qiniucdn.com/business/icon_food@2x.png'
+  url: 'http://h5.e-mxing.com/foodcal'
+- name: '运动热量查询'
+  icon: 'http://7xnvtv.com2.z0.glb.qiniucdn.com/business/icon_sport@2x.png'
+  url: 'http://h5.e-mxing.com/fitcal'
