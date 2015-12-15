@@ -177,6 +177,7 @@ Rails.application.routes.draw do
     namespace :students do
       get ':type' => 'home#index'
       post '/' => 'home#create'
+      delete ':type/:id' => 'home#destroy'
 
       get ':mxid/courses' => 'courses#index'
     end

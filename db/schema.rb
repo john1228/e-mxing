@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151214093837) do
+ActiveRecord::Schema.define(version: 20151215093552) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -780,6 +780,7 @@ ActiveRecord::Schema.define(version: 20151214093837) do
     t.integer   "service_id"
     t.string    "tag"
     t.integer   "course_during"
+    t.integer   "sku_type",                                                                  default: 0
   end
 
   add_index "skus", ["coordinate"], name: "index_skus_on_coordinate", using: :gist

@@ -54,6 +54,20 @@ module Business
         end
       end
 
+      def destroy
+        case params[:type]
+          when 'member'
+            member = @coach.members.find(params[:id])
+            if member.destroy
+              render json: Success.new
+            else
+              render json: Failure.new('删除失败:'+member.errors.messages.values.join(';'))
+            end
+          else
+            render json: Failure.new('无效的请求')
+        end
+      end
+
       private
       def member_params
         params.permit(:name, :avatar, :mobile)
