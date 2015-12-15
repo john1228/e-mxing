@@ -1,4 +1,4 @@
-class VideoProcessJob < ActiveJob::Base
+class   VideoProcessJob < ActiveJob::Base
   queue_as :default
 
   def perform(file_path, store_path, file_extension)

@@ -2,7 +2,7 @@ class MessageJob < ActiveJob::Base
   queue_as :default
 
   def perform(user_id, message)
-    profile = Profile.find_by(id: user_id)
+    profile = Profile.find_by(user_id: user_id)
     access_token = Rails.cache.fetch('mob')
     Faraday.post do |req|
       req.url "#{MOB['host']}/messages"
