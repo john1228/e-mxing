@@ -1,6 +1,5 @@
 module Business
   class HomeController < BaseController
-
     def index
       render json: Success.new(
                  balance: @coach.wallet.balance.to_f.round(2),
