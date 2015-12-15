@@ -50,7 +50,7 @@ module Business
         if member.save
           render json: Success.new
         else
-          render json: Failure.new(member.errors.messages.join(';'))
+          render json: Failure.new(member.errors.messages.values.join(';'))
         end
       end
 

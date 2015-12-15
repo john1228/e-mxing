@@ -187,8 +187,8 @@ Rails.application.routes.draw do
     post 'clocks' => 'clocks#create'
     #私教信息
     get '/' => 'home#index'
-    put '/' => 'home#password'
-    post '/' => 'home#update'
+    post '/' => 'home#password'
+    put '/' => 'home#update'
     #地址管理
     get 'addresses' => 'addresses#index'
     get 'lessons' => 'lessons#index'

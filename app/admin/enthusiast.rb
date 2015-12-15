@@ -37,9 +37,9 @@ ActiveAdmin.register Enthusiast do
       user.dynamic_comments.destroy_all
       user.likes.destroy
       Rails.cache.delete(user.token)
-      Like.find_by(liked_id: user.id, like_type: Like::PERSON).destroy rescue ''
-      Like.where(user_id: user.id).delete_all
-      StrategyComment.where(user_id: user.id).delete_all
+      Like.delete_all(liked_id: user.id, like_type: Like::PERSON)
+      Like.delete_all(user_id: user.id)
+      StrategyComment.delete_all(user_id: user.id)
       Blacklist.create(user_id: user.id)
     }
     redirect_to collection_path, alert: '拉黑成功'

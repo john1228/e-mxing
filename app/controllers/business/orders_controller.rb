@@ -8,7 +8,7 @@ module Business
                                          name: order.contact_name,
                                          phone: order.contact_phone
                                      },
-                                     item: [order.order_item],
+                                     items: [order.order_item],
                                      pay_amount: order.pay_amount,
                                      status: order.status,
                                      user: order.user.profile,
