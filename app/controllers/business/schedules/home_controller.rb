@@ -48,8 +48,13 @@ module Business
       end
 
       private
-      def schedule_params
-        permit_params = params.permit(:date, :start, :end, :user_name, :mobile, :people_count)
+      def platform_params
+        permit_params = params.permit(:date, :start, :mxid, :people_count)
+        permit_params.merge(sku_id: params[:sku], coach_id: @coach.id)
+      end
+
+      def member_params
+        permit_params = params.permit(:date, :start, :id, :people_count)
         permit_params.merge(sku_id: params[:sku], coach_id: @coach.id)
       end
     end

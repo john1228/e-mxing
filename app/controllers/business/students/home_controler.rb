@@ -5,7 +5,12 @@ module Business
       def member
         render json: Success.new(
                    member: @coach.members.order(id: :desc).page(params[:page]||1).map { |member|
-                     member.as_json(only: [:name, :mobile], methods: :avatar_url)
+                     {
+                         id: member.id,
+                         name: member.name,
+                         avatar: member.avatar.url,
+                         mobile: member.mobile
+                     }
                    }
                )
       end
