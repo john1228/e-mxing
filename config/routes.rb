@@ -157,27 +157,25 @@ Rails.application.routes.draw do
     namespace :face_to_faces do
       get 'courses' => 'home#courses'
       post 'courses' => 'home#create'
-
       get 'mxing' => 'home#mxing'
     end
+
     namespace :integrals do
       get '/' => 'home#show'
       get 'detail' => 'home#detail'
-
     end
     namespace :reports do
-
     end
     namespace :schedules do
       get '/' => 'home#index'
       post '/' => 'home#create'
       post 'off' => 'home#set_off'
-
+      delete ':id' => 'home#destroy'
       get 'mine/course' => 'courses#mine'
       get 'student/course' => 'courses#student'
     end
     namespace :students do
-      get '/:type' => 'home#index'
+      get ':type' => 'home#index'
       post '/' => 'home#create'
 
       get ':mxid/courses' => 'courses#index'
@@ -187,9 +185,10 @@ Rails.application.routes.draw do
     #打卡
     get 'clocks' => 'clocks#index'
     post 'clocks' => 'clocks#create'
-
+    #私教信息
     get '/' => 'home#index'
-    put '/' => 'home#update'
+    put '/' => 'home#password'
+    post '/' => 'home#update'
     #地址管理
     get 'addresses' => 'addresses#index'
     get 'lessons' => 'lessons#index'

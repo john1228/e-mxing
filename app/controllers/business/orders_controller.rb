@@ -4,8 +4,11 @@ module Business
       render json: Success.new(orders: @coach.orders.pay.page(params[:page]||1).collect { |order|
                                  {
                                      no: order.no,
-                                     items: [order.order_item],
-                                     pay_type: order.pay_type,
+                                     contact: {
+                                         name: order.contact_name,
+                                         phone: order.contact_phone
+                                     },
+                                     item: [order.order_item],
                                      pay_amount: order.pay_amount,
                                      status: order.status,
                                      user: order.user.profile,
@@ -30,7 +33,6 @@ module Business
                        },
                        coupons: order.coupons.blank? ? 0 : Coupon.where(id: order.coupons.split(',')).sum(:discount).to_i,
                        bean: order.bean,
-                       pay_type: order.pay_type,
                        pay_amount: order.pay_amount,
                        type: order.order_type,
                        giveaway: order.giveaway,

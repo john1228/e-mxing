@@ -10,21 +10,35 @@ module Business
              )
     end
 
-    def update
+    def password
       if params[:password].present?
         if @coach.password.eql?(Digest::MD5.hexdigest("#{params[:password]}|#{@coach.salt}"))
           if @coach.update(password: params[:new_password])
             Rails.cache.write("#{@coach.token}|gyms", @coach.reload)
-            render json: {code: 1}
+            render json: Success.new
           else
-            render json: {code: 0, message: '更新密码失败'}
+            render json: Failure.new("更新密码失败:#{@coach.erorrs.messages.values.join(';')}")
           end
         else
-          render json: {code: 0, message: '您输入到原密码错误'}
+          render json: Failure.new('您输入到原密码错误')
         end
       else
-        render json: {code: 0, message: '请输入原密码'}
+        render json: Failure.new('请输入原密码')
       end
+    end
+
+    def update
+      profile = @coach.profile
+      if profile.update(update_params)
+        render json: Success.new
+      else
+        render json: Failure.new('修改失败:'+profile.erorrs.messages.values.join(';'))
+      end
+    end
+
+    private
+    def update_params
+      params.permit(:name, :avatar, :gender, :birthday, :signature, :business)
     end
   end
 end

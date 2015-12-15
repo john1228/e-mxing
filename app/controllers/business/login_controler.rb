@@ -15,7 +15,7 @@ module Business
                                        identity: coach.profile.identity_value,
                                        age: coach.profile.age,
                                        birthday: coach.profile.birthday,
-                                       signatur: coach.profile.signature,
+                                       signature: coach.profile.signature,
                                        business: coach.profile.business,
                                        clock: coach.clocks.count
                                    })
