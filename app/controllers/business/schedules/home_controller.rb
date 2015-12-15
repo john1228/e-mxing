@@ -3,7 +3,7 @@ module Business
     class HomeController < BaseController
       def index
         render json: Success.new(
-                   schedule: @coach.schedules.where(date: params[:date]).map { |schedule|
+                   schedule: @coach.schedules.where(date: params[:date]).order(start: :asc).map { |schedule|
                      schedule.as_json(
                          only: [:id, :start, :end, :user_name, :people_count, :remark],
                          include: {course: {only: :id, methods: [:name, :cover, :during]}}
