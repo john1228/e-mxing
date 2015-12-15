@@ -21,7 +21,7 @@ module Business
                    course: {
                        id: course.id,
                        name: course.course_name,
-                       image: course.image.map { |image| image.url },
+                       image: course.course.image.map { |image| image.url },
                        price: course.selling_price.to_i,
                        guarantee: course.course_guarantee,
                        score: course.score,
