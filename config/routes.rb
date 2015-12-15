@@ -177,8 +177,7 @@ Rails.application.routes.draw do
       get 'student/course' => 'courses#student'
     end
     namespace :students do
-      get 'member' => 'home#member'
-      get 'mxing' => 'home#mxing'
+      get '/:type' => 'home#index'
       post '/' => 'home#create'
 
       get ':mxid/courses' => 'courses#index'
