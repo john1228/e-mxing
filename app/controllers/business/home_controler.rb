@@ -30,6 +30,8 @@ module Business
     def update
       profile = @coach.profile
       if profile.update(update_params)
+        @coach.reload
+        Rails.cache.write("gyms-#{@coach.token}", @coach)
         render json: Success.new(coach: {
                                      mxid: profile.mxid,
                                      name: profile.name,
