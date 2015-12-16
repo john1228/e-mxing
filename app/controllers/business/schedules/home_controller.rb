@@ -13,29 +13,39 @@ module Business
       end
 
       def create
-        schedule = Schedule.new(schedule_params)
-        if schedule.save
-          render json: Success.new
-        else
-          render json: Failure.new(schedule.errors.messages.values.join(';'))
-        end
-      end
-
-      def set_off
-        set_off_ary = []
-        if params[:batch].eql?('1')
-          batch_start = Date.parse(params[:batch_start])
-          batch_end = Date.parse(params[:batch_end])
-          batch_days = params[:batch_days].split(',').map { |week_day| week_day.to_i }
-          (batch_start..batch_end).each { |day|
-            if batch_days.include?(day.wday)
-              set_off_ary << {date: day, start: params[:start], end: params[:end], coach_id: @coach.id}
+        case params[:type]
+          when 'mine'
+            schedule = Schedule.member.new(member_params)
+            if schedule.save
+              render json: Success.new
+            else
+              render json: Failure.new(schedule.errors.messages.values.join(';'))
             end
-          }
+          when 'student'
+            schedule = Schedule.platform.new(platform_params)
+            if schedule.save
+              render json: Success.new
+            else
+              render json: Failure.new(schedule.errors.messages.values.join(';'))
+            end
+          when 'off'
+            set_off_ary = []
+            if params[:batch].eql?('1')
+              batch_start = Date.parse(params[:batch_start])
+              batch_end = Date.parse(params[:batch_end])
+              batch_days = params[:batch_days].split(',').map { |week_day| week_day.to_i }
+              (batch_start..batch_end).each { |day|
+                if batch_days.include?(day.wday)
+                  set_off_ary << {date: day, start: params[:start], end: params[:end], coach_id: @coach.id}
+                end
+              }
+            end
+            set_off_ary << {date: params[:date], start: params[:start], end: params[:end], coach_id: @coach.id}
+            Schedule.create(set_off_ary)
+            render json: Success.new
+          else
+            render Failure.new('无效的请求')
         end
-        set_off_ary << {date: params[:date], start: params[:start], end: params[:end], coach_id: @coach.id}
-        Schedule.create(set_off_ary)
-        render json: Success.new
       end
 
       def destroy
@@ -49,14 +59,24 @@ module Business
 
       private
       def platform_params
-        permit_params = params.permit(:date, :start, :mxid, :people_count)
+        permit_params = params.permit(:date, :start, :people_count)
         sku = Sku.find(params[:sku])
-        permit_params.merge(sku_id: params[:sku], coach_id: @coach.id, end: (Time.parse(params[:start], Date.parse(params[:date]) + sku.course_during)).strftime('%H:%M'))
+        user = User.find_by_mxid(params[:mxid])
+        permit_params.merge(
+            sku_id: params[:sku],
+            coach_id: @coach.id,
+            end: (Time.parse(params[:start], Date.parse(params[:date]) + sku.course_during)).strftime('%H:%M'),
+            user_id: user.id
+        )
       end
 
       def member_params
         permit_params = params.permit(:date, :start, :id, :people_count)
-        permit_params.merge(sku_id: params[:sku], coach_id: @coach.id)
+        permit_params.merge(
+            sku_id: params[:sku],
+            coach_id: @coach.id,
+            user_id: params[:id]
+        )
       end
     end
   end

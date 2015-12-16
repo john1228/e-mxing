@@ -168,8 +168,7 @@ Rails.application.routes.draw do
     end
     namespace :schedules do
       get '/' => 'home#index'
-      post '/' => 'home#create'
-      post 'off' => 'home#set_off'
+      post ':type' => 'home#create'
       delete ':id' => 'home#destroy'
       get 'mine/course' => 'courses#mine'
       get 'student/course' => 'courses#student'
