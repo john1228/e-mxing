@@ -50,7 +50,8 @@ module Business
       private
       def platform_params
         permit_params = params.permit(:date, :start, :mxid, :people_count)
-        permit_params.merge(sku_id: params[:sku], coach_id: @coach.id)
+        sku = Sku.find(params[:sku])
+        permit_params.merge(sku_id: params[:sku], coach_id: @coach.id, end: (Time.parse(params[:start], Date.parse(params[:date]) + sku.course_during)).strftime('%H:%M'))
       end
 
       def member_params
