@@ -41,7 +41,7 @@ module Business
         if order.save
           #美型支付
           if params[:pay_method].eql?('mxing')
-            @qrcode = RQRCode::QRCode.new("http://#{host}/mine/orders/show?no=#{order.no}", :size => 4, :level => :h)
+            @qrcode = RQRCode::QRCode.new("http://#{$host}/mine/orders/show?no=#{order.no}", :size => 4, :level => :h)
             render layout: false, action: :mxing
           elsif params[:pay_method].eql?('alipay')
             params = {
