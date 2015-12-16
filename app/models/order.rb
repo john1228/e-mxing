@@ -62,7 +62,7 @@ class Order < ActiveRecord::Base
 
   private
   def prepare
-    course = Sku.find_by(sku: sku)
+    course = Sku.find_by(sku: order_item.sku)
     self.no = "#{Time.now.to_i}#{user_id}#{%w'0 1 2 3 4 5 6 7 8 9'.sample(3).join('')}"
     if pay_amount.present?
       self.total = pay_amount
