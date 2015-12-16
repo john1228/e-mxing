@@ -22,7 +22,7 @@ module Business
 
       def create
         sku = Sku.find(params[:sku])
-        order = Order.face_to_face.new(
+        @order = Order.face_to_face.new(
             contact_name: params[:name],
             contact_phone: params[:mobile],
             pay_type: 1,
@@ -38,16 +38,16 @@ module Business
             },
             giveaway: params[:giveaway]
         )
-        if order.save
+        if @order.save
           #美型支付
           if params[:pay_method].eql?('mxing')
             @qrcode = RQRCode::QRCode.new("http://www.baidu.com", :size => 4, :level => :h)
             render layout: false, action: :mxing
           elsif params[:pay_method].eql?('alipay')
             params = {
-                :out_trade_no => order.no,
-                :subject => "美型-订单编号#{order.no}",
-                :total_fee => order.pay_amount
+                :out_trade_no => @order.no,
+                :subject => "美型-订单编号#{@order.no}",
+                :total_fee => @order.pay_amount
             }
             @url = trade_create_by_user_url(params)
             render layout: false, action: :alipay
@@ -57,15 +57,6 @@ module Business
           render json: Failure.new('下单失败:' + order.errors.messages.values.join(';'))
         end
       end
-
-      def mxing
-        @qrcode = RQRCode::QRCode.new("http://news.163.com", :size => 20, :level => :l)
-        render layout: false
-      end
-
-      def alipay
-      end
-
       private
       def face_to_face_params
         params.permit(:sku, :name, :mobile, :amount, :pay_amount, :giveaway)

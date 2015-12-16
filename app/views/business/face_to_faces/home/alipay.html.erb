@@ -46,11 +46,11 @@
 <div id="wrap">
   <div id="header">
     <div id="header-left">
-      <h3>ACMAX 体能训练-充值卡</h3>
-      <h5>购买数量x2，赠送金额 50元</h5>
+      <h3><%=@order.order_item.name%></h3>
+      <h5>购买数量x<%=@order.order_item.amount%>，赠送: <%=@order.order_item.amount%></h5>
       <h5>当面付金额</h5>
     </div>
-    <div id="header-right" >360<span>元</span></div>
+    <div id="header-right" ><%=@order.pay_amount%><span>元</span></div>
   </div>
   <div class="branching">
     <div class="branching-left"></div>
