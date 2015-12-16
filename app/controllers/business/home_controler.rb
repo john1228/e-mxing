@@ -30,7 +30,18 @@ module Business
     def update
       profile = @coach.profile
       if profile.update(update_params)
-        render json: Success.new
+        render json: Success.new(coach: {
+                                     mxid: profile.mxid,
+                                     name: profile.name,
+                                     avatar: profile.avatar.url,
+                                     gender: profile.gender,
+                                     identity: profile.identity_value,
+                                     age: profile.age,
+                                     birthday: profile.birthday,
+                                     signature: profile.signature,
+                                     business: profile.business,
+                                     clock: @coach.clocks.count
+                                 })
       else
         render json: Failure.new('修改失败:'+profile.errors.messages.values.join(';'))
       end

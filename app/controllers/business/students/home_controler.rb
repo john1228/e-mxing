@@ -5,7 +5,7 @@ module Business
         case params[:type]
           when 'member'
             render json: Success.new(
-                       member: @coach.members.order(id: :desc).page(params[:page]||1).map { |member|
+                       member: @coach.members.order(id: :desc).map { |member|
                          {
                              id: member.id,
                              name: member.name,
@@ -16,7 +16,7 @@ module Business
                    )
           when 'mxing'
             render json: Success.new(
-                       student: @coach.lessons.select('DISTINCT(user_id) user_id').where('available > used').page(params[:page]||1).map { |lesson|
+                       student: @coach.lessons.select('DISTINCT(user_id) user_id').where('available > used').map { |lesson|
                          user_profile = Profile.find_by(user_id: lesson.user_id)
                          {
                              mxid: user_profile.mxid,
