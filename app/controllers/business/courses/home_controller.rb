@@ -32,10 +32,11 @@ module Business
                        proposal: course.course.proposal,
                        intro: course.course.intro,
                        special: course.course.special,
-                       service: course.service.profile.name,
+                       venue: course.service.profile.name,
                        purchased: course.orders_count,
                        concerns: course.concerns_count,
-                       address: course.address
+                       address: course.address,
+                       service: course.service.profile.service
                    }
                )
 
