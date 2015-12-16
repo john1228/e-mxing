@@ -17,7 +17,7 @@ module Business
         if schedule.save
           render json: Success.new
         else
-          render json: Failure.new(schedule.errors.messages.join(';'))
+          render json: Failure.new(schedule.errors.messages.values.join(';'))
         end
       end
 
