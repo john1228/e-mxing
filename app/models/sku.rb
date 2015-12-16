@@ -10,6 +10,8 @@ class Sku < ActiveRecord::Base
   has_many :concerneds, foreign_key: :sku
   has_many :lessons, dependent: :destroy, foreign_key: :sku
 
+  has_one :membership_card, dependent: :destroy
+
   enum sku_type: [:course, :card]
 
   before_save :offline

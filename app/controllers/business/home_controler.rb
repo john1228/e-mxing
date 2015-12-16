@@ -32,7 +32,7 @@ module Business
       if profile.update(update_params)
         render json: Success.new
       else
-        render json: Failure.new('修改失败:'+profile.erorrs.messages.values.join(';'))
+        render json: Failure.new('修改失败:'+profile.errors.messages.values.join(';'))
       end
     end
 
