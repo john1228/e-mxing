@@ -39,21 +39,23 @@ class Order < ActiveRecord::Base
 
   #检验购买数量
   def validate_amount
-    course = Sku.find_by(sku: sku)
-    limit = course.limit.blank? ? -1 : course.limit
-    store = course.store.blank? ? -1 : course.store
-    if limit > 0
-      purchased = includes(:order_item)
-                      .where(status: [Order::STATUS[:unpaid], Order::STATUS[:pay], Order::STATUS[:finish]])
-                      .where('orders.user_id=? AND order_items.sku = ?', user, course.sku)
-                      .sum('order_items.amount')
-      if (purchased + amount) > limit
-        errors.add(:limit, '购买数量超出限制')
+    if user.present?
+      course = Sku.find_by(sku: sku)
+      limit = course.limit.blank? ? -1 : course.limit
+      store = course.store.blank? ? -1 : course.store
+      if limit > 0
+        purchased = includes(:order_item)
+                        .where(status: [Order::STATUS[:unpaid], Order::STATUS[:pay], Order::STATUS[:finish]])
+                        .where('orders.user_id=? AND order_items.sku = ?', user, course.sku)
+                        .sum('order_items.amount')
+        if (purchased + amount) > limit
+          errors.add(:limit, '购买数量超出限制')
+        end
       end
-    end
-    if store > 0
-      if amount > store
-        errors.add(:store, '库存不足')
+      if store > 0
+        if amount > store
+          errors.add(:store, '库存不足')
+        end
       end
     end
   end
