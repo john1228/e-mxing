@@ -28,7 +28,7 @@ module Business
     end
 
     def auto_login
-      coach = Rails.cache.fetch(request.headers[:token])
+      coach = Rails.cache.fetch("gyms-#{request.headers[:token]}")
       if coach.present?
         render json: Success.new(coach: {
                                      token: coach.token,
