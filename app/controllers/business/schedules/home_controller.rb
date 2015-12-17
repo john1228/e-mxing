@@ -5,8 +5,9 @@ module Business
         render json: Success.new(
                    schedule: @coach.schedules.where(date: params[:date]).order(start: :asc).map { |schedule|
                      schedule.as_json(
-                         only: [:id, :start, :end, :user_name, :people_count, :remark],
-                         include: {course: {only: :id, methods: [:name, :cover, :during]}}
+                         only: [:id, :start, :end, :people_count, :remark],
+                         include: {course: {only: :id, methods: [:name, :cover, :during]}},
+                         methods: :user_name
                      )
                    }
                )

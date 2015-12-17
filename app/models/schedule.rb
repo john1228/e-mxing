@@ -3,6 +3,14 @@ class Schedule < ActiveRecord::Base
   belongs_to :course, class: Sku, foreign_key: :sku_id
   enum user_type: [:platform, :member]
 
-  validates_presence_of :start,message: '未设置开始时间'
-  validates_presence_of :end,message: '未设置结束时间'
+  validates_presence_of :start, message: '未设置开始时间'
+  validates_presence_of :end, message: '未设置结束时间'
+
+  def user_name
+    if user_type.platform?
+      User.find(user_id).profile.name
+    elsif user_type.member?
+      Member.find(user_id).name
+    end
+  end
 end
