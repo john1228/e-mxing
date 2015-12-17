@@ -7,9 +7,9 @@ class Schedule < ActiveRecord::Base
   validates_presence_of :end, message: '未设置结束时间'
 
   def user_name
-    if user_type.platform?
+    if platform?
       User.find(user_id).profile.name
-    elsif user_type.member?
+    elsif member?
       Member.find(user_id).name
     end
   end

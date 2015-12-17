@@ -7,7 +7,6 @@ class CreateSchedules < ActiveRecord::Migration
       t.date :date
       t.string :start
       t.string :end
-      t.string :user_name
       t.string :mobile
       t.integer :people_count
       t.text :remark
