@@ -5,9 +5,8 @@ module Business
         render json: Success.new(
                    schedule: @coach.schedules.where(date: params[:date]).order(start: :asc).map { |schedule|
                      schedule.as_json(
-                         only: [:id, :start, :end, :people_count, :remark],
-                         include: {course: {only: :id, methods: [:name, :cover, :during]}},
-                         methods: :user_name
+                         only: [:id, :start, :end, :people_count, :user_name, :remark],
+                         include: {course: {only: :id, methods: [:name, :cover, :during]}}
                      )
                    }
                )
@@ -70,7 +69,8 @@ module Business
             sku_id: params[:sku],
             coach_id: @coach.id,
             end: (Time.parse(params[:start], Date.parse(params[:date]) + sku.course_during)).strftime('%H:%M'),
-            user_id: user.id
+            user_id: user.id,
+            user_name: user.profile.name
         )
 
       end
@@ -78,11 +78,13 @@ module Business
       def member_params
         permit_params = params.permit(:date, :start, :people_count)
         sku = Sku.find(params[:sku])
+        member = Member.find(params[:id])
         permit_params.merge(
             sku_id: params[:sku],
             coach_id: @coach.id,
             end: (Time.parse(params[:start], Date.parse(params[:date]) + sku.course_during)).strftime('%H:%M'),
-            user_id: params[:id]
+            user_id: member.id,
+            user_name: member.name
         )
       end
     end
