@@ -146,6 +146,8 @@ Rails.application.routes.draw do
   namespace :business do
     #登录
     post 'login' => 'login#mobile'
+    post 'login/auto' => 'login#auto_login'
+
     namespace :courses do
       get '/' => 'home#index'
       get '/:id' => 'home#show'

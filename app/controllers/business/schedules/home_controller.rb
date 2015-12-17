@@ -16,13 +16,16 @@ module Business
         case params[:type]
           when 'mine'
             schedule = Schedule.member.new(member_params)
+
             if schedule.save
               render json: Success.new
             else
               render json: Failure.new(schedule.errors.messages.values.join(';'))
             end
           when 'student'
+            logger "====#{platform_params.to_json}"
             schedule = Schedule.platform.new(platform_params)
+            logger "====#{schedule.to_json}"
             if schedule.save
               render json: Success.new
             else
@@ -68,6 +71,7 @@ module Business
             end: (Time.parse(params[:start], Date.parse(params[:date]) + sku.course_during)).strftime('%H:%M'),
             user_id: user.id
         )
+
       end
 
       def member_params

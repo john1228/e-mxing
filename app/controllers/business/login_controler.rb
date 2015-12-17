@@ -26,5 +26,26 @@ module Business
         render json: Failure.new('您还未注册为私教')
       end
     end
+
+    def auto_login
+      coach = Rails.cache.fetch(request.headers[:token])
+      if coach.present?
+        render json: Success.new(coach: {
+                                     token: coach.token,
+                                     mxid: coach.profile.mxid,
+                                     name: coach.profile.name,
+                                     avatar: coach.profile.avatar.url,
+                                     gender: coach.profile.gender,
+                                     identity: coach.profile.identity_value,
+                                     age: coach.profile.age,
+                                     birthday: coach.profile.birthday,
+                                     signature: coach.profile.signature,
+                                     business: coach.profile.business,
+                                     clock: coach.clocks.count
+                                 })
+      else
+        render json: Failure.new('您还没有登录')
+      end
+    end
   end
 end
