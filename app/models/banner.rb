@@ -3,6 +3,7 @@ class Banner < ActiveRecord::Base
   mount_uploader :image, BannerUploader
   scope :boot, -> { where(type: [11, 12, 13, 14, 15, 16]).where('start_date<=? AND end_date>=?', Date.today, Date.today).order(id: :desc) }
   scope :app, -> { where(type: [21, 22, 23, 24, 25, 26]).where('start_date<=? AND end_date>=?', Date.today, Date.today).order(id: :desc) }
+  scope :business, -> { where(type: [31, 32, 33, 34, 35, 36]).where('start_date<=? AND end_date>=?', Date.today, Date.today).order(id: :desc) }
 
   validates_presence_of :start_date
   validates_presence_of :end_date

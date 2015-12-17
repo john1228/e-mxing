@@ -157,7 +157,7 @@ Rails.application.routes.draw do
     end
 
     namespace :face_to_faces do
-      get 'courses' => 'home#courses'
+      get ':type' => 'home#index'
       post 'courses' => 'home#create'
       get 'mxing' => 'home#mxing'
     end
