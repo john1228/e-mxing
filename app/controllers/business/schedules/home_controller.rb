@@ -76,7 +76,7 @@ module Business
       end
 
       def member_params
-        permit_params = params.permit(:date, :start, :id, :people_count)
+        permit_params = params.permit(:date, :start, :people_count)
         sku = Sku.find(params[:sku])
         permit_params.merge(
             sku_id: params[:sku],
