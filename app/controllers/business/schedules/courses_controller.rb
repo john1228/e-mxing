@@ -16,32 +16,8 @@ module Business
       end
 
       def student
-        students_lesson = Lesson.where(coach_id: @coach.id).where('available > used').group(:user_id).count
         render json: Success.new(
-                   course: students_lesson.map { |k, v|
-                     user_profile = Profile.find_by(user_id: k)
-                     {
-                         student: {
-                             mxid: user_profile.mxid,
-                             name: user_profile.name,
-                             avatar: user_profile.avatar.url
-                         },
-                         course: {
-                             count: v,
-                             item: Lesson.where(user_id: k).map { |lesson|
-                               course = Sku.find(lesson.sku)
-                               {
-                                   id: course.id,
-                                   name: course.course_name,
-                                   cover: course.course_cover,
-                                   during: course.course_during,
-                                   available: lesson.available,
-                                   used: lesson.used
-                               }
-                             }
-                         }
-                     }
-                   }
+                   course: Lesson.classification_of_student(@coach)
                )
       end
     end

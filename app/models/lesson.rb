@@ -7,6 +7,38 @@ class Lesson < ActiveRecord::Base
   has_many :appointments
   belongs_to :course, class: Sku, foreign_key: :sku
 
+  class << self
+    def classification_of_student(coach)
+      coach_lessons = where(coach: coach).where('available > used')
+      classification = coach_lessons.group_by { |lesson| lesson.user_id }
+      classification_profiles = User.where(id: classification.keys)
+      classification.map { |user_id, lessons|
+        profile = classification_profiles.select { |profile| profile.user_id == user_id }
+        {
+            student: {
+                mxid: profile.mxid,
+                name: profile.name,
+                avatar: profile.avatar.url
+            },
+            course: {
+                count: lessons.size,
+                item: lessons.map { |lesson|
+                  {
+                      id: lesson.course.id,
+                      name: lesson.course.course_name,
+                      cover: lesson.course.course_cover,
+                      during: lesson.course.course_during,
+                      available: lesson.available,
+                      used: lesson.used
+                  }
+                }
+            }
+        }
+      }
+    end
+  end
+
+
   def as_json
     {
         id: id,
