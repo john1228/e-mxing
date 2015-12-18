@@ -13,7 +13,7 @@ class Lesson < ActiveRecord::Base
       classification = coach_lessons.group_by { |lesson| lesson.user_id }
       classification_profiles = Profile.where(id: classification.keys)
       classification.map { |user_id, lessons|
-        profile = classification_profiles.select { |profile| profile.user_id == user_id }
+        profile = classification_profiles.select { |profile| profile.user_id == user_id }.first
         {
             student: {
                 mxid: profile.mxid,
