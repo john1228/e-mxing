@@ -15,7 +15,6 @@ module Business
       def create
         case params[:type]
           when 'mine'
-            logger "====#{member_params.to_json}"
             schedule = Schedule.member.new(member_params)
             if schedule.save
               render json: Success.new
@@ -23,7 +22,6 @@ module Business
               render json: Failure.new(schedule.errors.messages.values.join(';'))
             end
           when 'student'
-            logger "====#{platform_params.to_json}"
             schedule = Schedule.platform.new(platform_params)
             if schedule.save
               render json: Success.new
