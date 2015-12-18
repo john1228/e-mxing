@@ -11,9 +11,8 @@ class Lesson < ActiveRecord::Base
     def classification_of_student(coach)
       coach_lessons = where(coach: coach).where('available > used')
       classification = coach_lessons.group_by { |lesson| lesson.user_id }
-      classification_profiles = Profile.where(id: classification.keys)
       classification.map { |user_id, lessons|
-        profile = classification_profiles.select { |profile| profile.user_id == user_id }.first
+        profile = Profile.find_by(user_id: user_id)
         {
             student: {
                 mxid: profile.mxid,
