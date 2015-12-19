@@ -76,6 +76,11 @@ class Service<User
         photowall: photos.map { |photo| {url: photo.photo.url} }
     }
   end
+  
+  def profile_address
+    profile.province||'' + profile.city||'' + profile.area||'' + profile.address|''
+  end
+
 
   private
 

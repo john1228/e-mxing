@@ -18,7 +18,7 @@ module Business
                    )
           when 'membership_cards'
             render json: Success.new(
-                       course: Sku.card.online.where(seller_id: @coach.id).order(id: :desc).page(params[:page]||1).map { |sku|
+                       card: Sku.card.online.where(seller_id: @coach.id).order(id: :desc).page(params[:page]||1).map { |sku|
                          {
                              id: sku.id,
                              name: sku.course_name,
