@@ -156,6 +156,11 @@ Rails.application.routes.draw do
       delete ':id' => 'home#destroy'
     end
 
+    namespace :membership_cards do
+      get '/' => 'home#index'
+      get '/:id' => 'home#show'
+    end
+
     namespace :face_to_faces do
       get ':type' => 'home#index'
       post 'courses' => 'home#create'

@@ -2,87 +2,43 @@ module Business
   module Courses
     class HomeController < BaseController
       def index
-        case params[:type]
-          when 'courses'
-            render json: Success.new(
-                       course: Sku.course.online.where(seller_id: @coach.id).order(id: :desc).page(params[:page]||1).map { |sku|
-                         {
-                             id: sku.id,
-                             name: sku.course_name,
-                             cover: sku.course_cover,
-                             during: sku.course_during,
-                             price: sku.selling_price.to_i
-                         }
-                       }
-                   )
-          when 'membership_cards'
-            render json: Success.new(
-                       course: Sku.card.online.where(seller_id: @coach.id).order(id: :desc).page(params[:page]||1).map { |sku|
-                         {
-                             id: sku.id,
-                             name: sku.course_name,
-                             cover: sku.course_cover,
-                             during: sku.course_during,
-                             price: sku.selling_price.to_i
-                         }
-                       }
-                   )
-          else
-            render json: Failure.new('无效的请求')
-        end
+        render json: Success.new(
+                   course: Sku.course.online.where(seller_id: @coach.id).order(id: :desc).page(params[:page]||1).map { |sku|
+                     {
+                         id: sku.id,
+                         name: sku.course_name,
+                         cover: sku.course_cover,
+                         during: sku.course_during,
+                         price: sku.selling_price.to_i
+                     }
+                   }
+               )
       end
 
       def show
-        case params[:type]
-          when 'courses'
-            course = Sku.course.online.find(params[:id])
-            render json: Success.new(
-                       course: {
-                           id: course.id,
-                           name: course.course_name,
-                           image: course.course.image.map { |image| image.url },
-                           price: course.selling_price.to_i,
-                           guarantee: course.course_guarantee,
-                           score: course.score,
-                           type: course.course_type,
-                           style: course.course.style,
-                           exp: course.course.exp,
-                           during: course.course_during,
-                           proposal: course.course.proposal,
-                           intro: course.course.intro,
-                           special: course.course.special,
-                           venue: course.service.profile.name,
-                           purchased: course.orders_count,
-                           concerns: course.concerns_count,
-                           address: course.address,
-                           service: course.service.profile.service
-                       }
-                   )
-          when 'membership_cards'
-            course = Sku.card.online.find(params[:id])
-            render json: Success.new(
-                       course: {
-                           id: course.id,
-                           name: course.course_name,
-                           image: course.product.image.map { |image| image.url },
-                           price: course.selling_price.to_i,
-                           score: course.score,
-                           type: course.course_type,
-                           style: course.course.style,
-                           intro: course.product.intro,
-                           special: course.product.special,
-                           venue: course.service.profile.name,
-                           purchased: course.orders_count,
-                           concerns: course.concerns_count,
-                           address: course.address,
-                           service: course.service.profile.service
-                       }
-                   )
-          else
-            render json: Failure.new('无效的请求')
-        end
-
-
+        course = Sku.course.online.find(params[:id])
+        render json: Success.new(
+                   course: {
+                       id: course.id,
+                       name: course.course_name,
+                       image: course.course.image.map { |image| image.url },
+                       price: course.selling_price.to_i,
+                       guarantee: course.course_guarantee,
+                       score: course.score,
+                       type: course.course_type,
+                       style: course.course.style,
+                       exp: course.course.exp,
+                       during: course.course_during,
+                       proposal: course.course.proposal,
+                       intro: course.course.intro,
+                       special: course.course.special,
+                       venue: course.service.profile.name,
+                       purchased: course.orders_count,
+                       concerns: course.concerns_count,
+                       address: course.address,
+                       service: course.service.profile.service
+                   }
+               )
       end
 
 
