@@ -3,6 +3,7 @@ class Product < ActiveRecord::Base
   has_one :sku, dependent: :destroy, foreign_key: :course_id
   attr_accessor :service_id, :market_price, :selling_price, :store, :limit
 
+  mount_uploader :image, ImagesUploader
   after_create :generate_sku
   private
   def generate_sku
