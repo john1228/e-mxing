@@ -10,7 +10,7 @@ class Sku < ActiveRecord::Base
   has_many :concerneds, foreign_key: :sku
   has_many :lessons, dependent: :destroy, foreign_key: :sku
 
-  belongs_to :product
+  belongs_to :product, class: Product, foreign_key: :course_id
 
   enum sku_type: [:course, :card]
 
