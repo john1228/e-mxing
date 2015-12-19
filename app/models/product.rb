@@ -1,7 +1,8 @@
 class Product < ActiveRecord::Base
+  self.inheritance_column = false
   has_one :sku, dependent: :destroy, foreign_key: :course_id
   attr_accessor :service_id, :market_price, :selling_price, :store, :limit
-  
+
   after_create :generate_sku
   private
   def generate_sku
