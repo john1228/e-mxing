@@ -26,7 +26,7 @@ module Business
                        score: course.score,
                        type: course.course_type,
                        style: course.course.style,
-                       intro: course.product.intro,
+                       intro: course.product.description,
                        special: course.product.special,
                        venue: course.service.profile.name,
                        purchased: course.orders_count,
