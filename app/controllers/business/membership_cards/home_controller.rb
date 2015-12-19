@@ -32,7 +32,9 @@ module Business
                        purchased: course.orders_count,
                        concerns: course.concerns_count,
                        address: course.address,
-                       service: course.service.profile.service
+                       service: course.service.profile.service,
+                       store: course.store,
+                       limit: course.limit
                    }
                )
       end
