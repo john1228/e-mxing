@@ -2,7 +2,7 @@ module Business
   class ClocksController < BaseController
     def index
       render json: Success.new(
-                 clock: @coach.clocks.page(params[:page]||1).map { |clock|
+                 clock: @coach.clocks.order(id: :desc).page(params[:page]||1).map { |clock|
                    {
                        created: clock.created_at.strftime('%Y-%m-%d %H:%M:%S')
                    }

@@ -194,7 +194,7 @@
   <div id="header">
     <div id="header-left">
       <h3><%= @order.order_item.name %></h3>
-      <h5>购买数量x<%= @order.order_item.amount %>，赠送: <%= @order.order_item.giveaway.to_i %></h5>
+      <h5>购买数量x<%= @order.order_item.amount %>，赠送: <%= @order.giveaway.to_i %></h5>
       <h5>当面付金额</h5>
     </div>
     <div id="header-right"><%= @order.pay_amount %><span>元</span></div>
