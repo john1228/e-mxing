@@ -3,7 +3,7 @@ module Business
     #获取线上学员列表
     def index
       render json: Success.new(
-                 comment: @coach.comments.order(id: :desc).map { |comment|
+                 comment: Comment.where(sku: Sku.where(seller_id: @coach.id).pluck(:id)).order(id: :desc).map { |comment|
                    {
                        user: {
                            mxid: comment.user.profile.mxid,

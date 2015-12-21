@@ -9,7 +9,8 @@ module Business
                          name: sku.course_name,
                          cover: sku.course_cover,
                          during: sku.course_during,
-                         price: sku.selling_price.to_i
+                         price: sku.selling_price.to_i,
+                         concerns: sku.concerns_count
                      }
                    }
                )
