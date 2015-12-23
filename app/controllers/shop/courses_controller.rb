@@ -91,7 +91,9 @@ module Shop
           price: sku.selling_price,
           sku: sku.id
       }
+      logger.info "过滤之前<<#{params}"
       params.permit(:contact_name, :contact_phone, :pay_type, order_item_attributes: [:name, :type, :cover, :amount, :during, :price, :sku])
+      logger.info "过滤之后<<#{params}"
     end
 
     def verify_auth_token
