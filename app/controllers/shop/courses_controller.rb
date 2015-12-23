@@ -71,7 +71,7 @@ module Shop
     end
 
     def confirm_order
-      order = @user.orders.new(order_params)
+      order = @user.orders.platform.new(order_params)
       if order.save
         render json: Success.new(order: order)
       else
@@ -82,16 +82,15 @@ module Shop
     private
     def order_params
       sku = Sku.find(params[:sku])
-      params.merge(order_item_attributes: {
-                       name: sku.course_name,
-                       type: sku.course_type,
-                       cover: sku.course_cover,
-                       amount: params[:amount],
-                       during: sku.course_during,
-                       price: sku.selling_price,
-                       sku: sku.id
-                   }
-      )
+      params[:order_item_attributes] = {
+          name: sku.course_name,
+          type: sku.course_type,
+          cover: sku.course_cover,
+          amount: params[:amount],
+          during: sku.course_during,
+          price: sku.selling_price,
+          sku: sku.id
+      }
       params.permit(:contact_name, :contact_phone, :pay_type, order_item_attributes: [:name, :type, :cover, :amount, :during, :price, :sku])
     end
 
