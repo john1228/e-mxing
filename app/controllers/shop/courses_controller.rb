@@ -72,7 +72,6 @@ module Shop
 
     def confirm_order
       order = @user.orders.platform.new(order_params)
-      logger.info "订单详细#{order.order_item.sku}"
       if order.save
         render json: Success.new(order: order)
       else

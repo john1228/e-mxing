@@ -40,7 +40,7 @@ class Order < ActiveRecord::Base
   #检验购买数量
   def validate_amount
     if user.present?
-      course = Sku.find(sku: order_item.sku)
+      course = Sku.find(order_item.sku)
       limit = course.limit.blank? ? -1 : course.limit
       store = course.store.blank? ? -1 : course.store
       if limit > 0
