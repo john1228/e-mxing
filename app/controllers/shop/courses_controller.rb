@@ -81,18 +81,18 @@ module Shop
 
     private
     def order_params
-      permit_params = params.permit(:contact_name, :contact_phone, :pay_type)
       sku = Sku.find(params[:sku])
-      permit_params.merge(order_item_attributes: {
-                              name: sku.course_name,
-                              type: sku.course_type,
-                              cover: sku.course_cover,
-                              amount: params[:amount],
-                              during: sku.course_during,
-                              price: sku.selling_price,
-                              sku: sku.id
-                          }
+      params.merge(order_item_attributes: {
+                       name: sku.course_name,
+                       type: sku.course_type,
+                       cover: sku.course_cover,
+                       amount: params[:amount],
+                       during: sku.course_during,
+                       price: sku.selling_price,
+                       sku: sku.id
+                   }
       )
+      params.permit(:contact_name, :contact_phone, :pay_type, order_item_attributes: [:name, :type, :cover, :amount, :during, :price, :sku])
     end
 
     def verify_auth_token
