@@ -71,7 +71,7 @@ module Shop
     end
 
     def confirm_order
-      order = @user.orders.new(order_params.merge(status: Order::STATUS[:unpaid]))
+      order = @user.orders.new(order_params)
       if order.save
         render json: Success.new(order: order)
       else
