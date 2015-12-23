@@ -72,6 +72,7 @@ module Shop
 
     def confirm_order
       order = @user.orders.platform.new(order_params)
+      logger.info "订单详细#{order.order_item.as_json}"
       if order.save
         render json: Success.new(order: order)
       else
@@ -91,9 +92,7 @@ module Shop
           price: sku.selling_price,
           sku: sku.id
       }
-      logger.info "过滤之前<<#{params}"
       params.permit(:contact_name, :contact_phone, :pay_type, order_item_attributes: [:name, :type, :cover, :amount, :during, :price, :sku])
-      logger.info "过滤之后<<#{params}"
     end
 
     def verify_auth_token
