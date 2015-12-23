@@ -127,14 +127,14 @@ class Order < ActiveRecord::Base
           end
           if coach_id.present?
             coach = Coach.find(coach_id)
-            MessageJob.perform_later(sku_info.seller_id, MESSAGE['订单'] % [coach.profile.name, sku.course_name, no])
+            MessageJob.perform_later(sku.seller_id, MESSAGE['订单'] % [coach.profile.name, sku.course_name, no])
             SmsJob.perform_later(coach.mobile, SMS['订单'], [coach.profile.name, sku.course_name, no])
           end
         when STATUS[:cancel]
           transaction do
             sku = Sku.find(order_item.sku)
             if sku.store.present? && sku.store > 0
-              Sku.where(course_id: sku.course_id).update_all("store: (sku_info.store + order_item.amount)")
+              Sku.where(course_id: sku.course_id).update_all("store = store + #{order_item.amount})")
             end
             if coupons.present? || bean.present?
               wallet = Wallet.find_by(user_id: :user_id)
