@@ -112,7 +112,6 @@ module Api
 
       private
       def order_params
-        params.permit(:sku, :amount, :coupon, :pay_type, :contact_name, :contact_phone)
         permit_params = params.permit(:contact_name, :contact_phone, :pay_type)
         sku = Sku.find(params[:sku])
         permit_params.merge(order_item_attributes: {
