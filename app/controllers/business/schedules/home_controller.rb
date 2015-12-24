@@ -59,7 +59,7 @@ module Business
 
       private
       def platform_params
-        permit_params = params.permit(:date, :start, :people_count)
+        permit_params = params.permit(:date, :start, :people_count, :remark)
         sku = Sku.find(params[:sku])
         user = User.find_by_mxid(params[:mxid])
         permit_params.merge(
