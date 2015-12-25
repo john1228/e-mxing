@@ -40,7 +40,7 @@ module Business
             contact_name: params[:name],
             contact_phone: params[:mobile],
             pay_type: 1,
-            custom_amount: params[:pay_amount],
+            custom_pay_amount: params[:pay_amount],
             order_item_attributes: {
                 name: sku.course_name,
                 type: sku.course_type,
