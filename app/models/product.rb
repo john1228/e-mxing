@@ -1,7 +1,10 @@
 class Product < ActiveRecord::Base
   self.inheritance_column = false
-  has_one :sku, dependent: :destroy, foreign_key: :course_id
   attr_accessor :service_id, :market_price, :selling_price, :store, :limit
+
+  def card_type
+    MembershipCardType.find(type)
+  end
 
   mount_uploaders :image, ImagesUploader
   after_create :generate_sku
