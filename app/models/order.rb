@@ -27,6 +27,7 @@ class Order < ActiveRecord::Base
       errors.add(:coupon, '无效的优惠券')
     else
       if user.wallet.coupons.include?(using_coupon.id)
+        course = Sku.find_by(sku: order_item.sku)
         errors.add(:coupon, '您使用的优惠券还未到使用时间') if using_coupon.start_date > Date.today
         errors.add(:coupon, '您使用的优惠券已经过期') if using_coupon.end_date < Date.today
         errors.add(:coupon, '无效的优惠券') unless using_coupon.limit_category.eql?(Coupon::TYPE[:general])
