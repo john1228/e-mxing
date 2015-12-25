@@ -24,7 +24,7 @@ module Business
                        image: course.product.image.map { |image| image.url },
                        price: course.selling_price.to_i,
                        score: course.score,
-                       card_type: course.product.card_type.card_type_value,
+                       card_type: course.product.card_type.card_type,
                        card_value: course.product.card_type.count,
                        valid_days: course.product.card_type.valid_days||0,
                        delay_days: course.product.card_type.delay_days||0,
