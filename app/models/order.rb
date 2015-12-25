@@ -67,7 +67,7 @@ class Order < ActiveRecord::Base
     if custom_pay_amount.present?
       self.total = custom_pay_amount
     else
-      self.total = course.selling_price*amount.to_i
+      self.total = course.selling_price * order_item.amount.to_i
     end
     self.service_id = course.service_id
     self.coach_id = course.seller_id if course.service_id != course.seller_id

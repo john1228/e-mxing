@@ -122,7 +122,7 @@ module Api
             price: sku.selling_price,
             sku: sku.id
         }
-        params.permit(:contact_name, :contact_phone, :pay_type, order_item_attributes: [:name, :type, :cover, :amount, :during, :price, :sku])
+        params.permit(:contact_name, :contact_phone, :pay_type, :coupons, order_item_attributes: [:name, :type, :cover, :amount, :during, :price, :sku])
       end
 
 
