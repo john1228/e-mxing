@@ -29,7 +29,7 @@ class Order < ActiveRecord::Base
       if user.wallet.coupons.include?(using_coupon.id)
         errors.add(:coupon, '您使用的优惠券还未到使用时间') if using_coupon.start_date > Date.today
         errors.add(:coupon, '您使用的优惠券已经过期') if using_coupon.end_date < Date.today
-        errors.add(:coupon, '无效的优惠券') unless using_coupon.limit_category.eql?(Coupon::Type[:general])
+        errors.add(:coupon, '无效的优惠券') unless using_coupon.limit_category.eql?(Coupon::TYPE[:general])
         errors.add(:coupon, '你订单的金额不满足使用该优惠券的条件') if (course.selling_price * amount) < using_coupon.min
       else
         errors.add(:coupon, '您还未拥有该优惠券')
