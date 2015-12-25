@@ -1,5 +1,4 @@
 class MembershipCardType < ActiveRecord::Base
-  enum card_type: [:deposit, :by_count, :by_time]
+  enum card_type: [:stored, :measured, :clocked]
   belongs_to :service
-
 end

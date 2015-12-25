@@ -90,7 +90,7 @@ ActiveAdmin.register Service do
         )
         service_wallet.update_attributes(
             action: WalletLog::ACTIONS['转账'],
-            balance: coach_wallet.balance - BigDecimal(params[:amount])
+            balance: service_wallet.balance - BigDecimal(params[:amount])
         )
       end
       render layout: false
