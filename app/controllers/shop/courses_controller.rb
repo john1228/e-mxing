@@ -91,7 +91,7 @@ module Shop
           price: sku.selling_price,
           sku: sku.id
       }
-      params.permit(:contact_name, :coupons, :contact_phone, :pay_type, order_item_attributes: [:name, :type, :cover, :amount, :during, :price, :sku])
+      params.permit(:contact_name, :coupon, :contact_phone, :pay_type, order_item_attributes: [:name, :type, :cover, :amount, :during, :price, :sku])
     end
 
     def verify_auth_token
