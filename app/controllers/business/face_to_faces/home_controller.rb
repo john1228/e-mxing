@@ -40,7 +40,7 @@ module Business
             contact_name: params[:name],
             contact_phone: params[:mobile],
             pay_type: 1,
-            pay_amount: params[:pay_amount],
+            custom_amount: params[:pay_amount],
             order_item_attributes: {
                 name: sku.course_name,
                 type: sku.course_type,
@@ -55,7 +55,7 @@ module Business
         if @order.save
           #美型支付
           if params[:pay_method].eql?('mxing')
-            @qrcode = RQRCode::QRCode.new(@order.no, :size => 4, :level => :h)
+            @qrcode = RQRCode::QRCode.new(@order.no, :size => 5, :level => :h)
             render layout: false, action: :mxing
           elsif params[:pay_method].eql?('alipay')
             params = {

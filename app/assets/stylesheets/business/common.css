@@ -1,0 +1,148 @@
+@charset "UTF-8";
+html {
+    margin: 0;
+    padding: 0;
+    -ms-text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    font-size: 12px;
+}
+
+body, ul, li, p, div, h1, h2, h3, h4, h5, h6, input, span {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+input, textarea {
+    border: 0;
+    -ms-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+img {
+    vertical-align: middle;
+    border: 0;
+    -webkit-touch-callout: none;
+}
+
+a {
+    text-decoration: none;
+    background: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+ul, li {
+    list-style: none;
+}
+
+.pdg-lf {
+    padding-left: 5px;
+}
+
+.mg-lf-rg {
+    margin: 0 14px;
+}
+
+.mgn-tp {
+    margin-top: 20px;
+}
+
+/*左右浮动*/
+.com-left {
+    float: left;
+}
+
+.com-right {
+    float: right;
+}
+
+.com-clear {
+    clear: both;
+}
+
+.com-none {
+    display: none;
+}
+
+/*定位*/
+.com-rt {
+    position: relative;
+}
+
+.com-al {
+    position: absolute;
+}
+
+.com-fx {
+    position: fixed
+}
+
+.com-text-rg {
+    text-align: right;
+}
+
+.com-text-ct {
+    text-align: center;
+}
+
+.com-text-lf {
+    text-align: left;
+}
+
+/*背景*/
+.bak-f1 {
+    background-color: #ffffff;
+}
+
+.bak-f2 {
+    background-color: #eaebf0;
+}
+
+.bak-f3 {
+    background-color: #ff572f;
+}
+
+/*字体颜色*/
+.font-color7 {
+    color: #ff623c;
+}
+
+.font-color8 {
+    color: #d0d1d6;
+}
+
+.font-color9 {
+    color: #333333;
+}
+
+/*字体大小*/
+.font-weight {
+    font-weight: bold;
+}
+
+.font-size1 {
+    font-size: 1.1rem;
+}
+
+.font-size3 {
+    font-size: 1.3rem;
+}
+
+.font-size15 {
+    font-size: 15px;
+}
+
+.font-size13 {
+    font-size: 13px;
+}
+
+/*a*/
+.a-underline {
+    text-decoration: underline
+}
+
+
+

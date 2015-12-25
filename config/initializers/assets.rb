@@ -4,6 +4,7 @@
 Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.precompile += %w(service.css
  ckeditor/*
+ business/*
  webchat/webim.css
  webchat/bootstrap.css
  wap/wap.css

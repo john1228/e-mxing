@@ -1,0 +1,459 @@
+@charset "UTF-8";
+@import url("common.css");
+
+body, ul, li, p, div, h1, h2, h3, h4, h5, h6, input, span {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+body {
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+input, textarea, button {
+    border: 0;
+    outline: none;
+    -ms-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/*banner*/
+.swiper-container {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+/*menu*/
+.menu-ul {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -o-box;
+    display: -ms-flexbox;
+    display: flex;
+    border-bottom: 1px solid #d0d1d6;
+}
+
+.menu-ul li {
+    flex: 1;
+    -moz-box-flex: 1;
+    -webkit-box-flex: 1;
+    -o-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    line-height: 43px;
+}
+
+.menu-ul li > a {
+    display: table;
+    margin: 0 auto;
+    height: 43px;
+}
+
+/*content*/
+.content-list {
+    margin-top: 1rem;
+}
+
+.content-list .list-ul {
+    font-size: 0;
+}
+
+.content-list .list-ul li {
+    box-sizing: border-box;
+    font-size: 1.1rem;
+    display: inline-block;
+    width: 50%;
+    border-right: 1px solid #eaebf0;
+    border-bottom: 1px solid #eaebf0;
+}
+
+.content-list .list-ul li:nth-of-type(2n) {
+    border-right: 0;
+}
+
+.content-list .list-ul li .list-a {
+    display: block;
+    color: #333;
+    margin: 10px;
+}
+
+.content-list .list-ul li .list-a p {
+    width: 100%;
+}
+
+.content-list .list-ul li .list-a p:first-child {
+    line-height: 1.5rem;
+}
+
+.content-list .list-ul li .list-a p:nth-of-type(2) {
+    line-height: 1.5rem;
+    margin-bottom: 10px;
+    color: #ff623c;
+}
+
+.content-list .list-ul li .list-a p:last-child {
+    text-align: center;
+}
+
+.content-list .list-ul li .list-a p img {
+    width: 100%;
+}
+
+/*exchange-list*/
+.exchange-list .list-ul li {
+    border-bottom: 1px solid #eaebf0;
+    height: 89px;
+}
+
+.exchange-list .list-ul li:last-child {
+    border-bottom: 0;
+}
+
+.exchange-list .list-ul li .list-a {
+    display: block;
+    height: 90px;
+    color: #333;
+}
+
+.exchange-list .list-ul li .list-a .list-img {
+    width: 35%;
+    text-align: center;
+    height: 69px;
+    line-height: 69px;
+    margin: 10px;
+    width: 130px;
+    font-size: 0;
+}
+
+.exchange-list .list-ul li .list-a .list-img img {
+    width: 100%;
+}
+
+.exchange-list .list-ul li .list-a .list-text {
+    padding: 16px 0 16px 150px;
+    font-size: 0;
+    height: 57px;
+}
+
+.exchange-list .list-ul li .list-a .list-text p:first-child {
+    font-size: 15px;
+    padding-bottom: 3px;
+}
+
+.exchange-list .list-ul li .list-a .list-text p:nth-of-type(2) {
+    font-size: 13px;
+    color: #ff572f;
+    padding-bottom: 1px;
+}
+
+.exchange-list .list-ul li .list-a .list-text p:last-child {
+    font-size: 13px;
+    color: #8d97a6;
+}
+
+/*details-head*/
+.details-head .head-img img {
+    width: 100%;
+}
+
+.details-head .head-text {
+    position: relative;
+    border-top: 1px solid #FFFFFF;
+    border-bottom: 1px solid #d0d1d6;
+    display: table;
+    height: 60px;
+    padding: 0 14px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.details-head .head-text .text-left {
+    padding: 12px 0;
+}
+
+.details-head .head-text .text-left p:last-child {
+    margin-top: 4px;
+}
+
+.details-head .head-text .text-left .text-a {
+    background: #ff603e;
+    color: #FFFFFF;
+    font-size: 9px;
+    margin-left: 5px;
+    border-radius: 2px;
+    padding: 1.5px 8px;
+    position: absolute;
+    top: 12px;
+}
+
+@media only screen and (min-width: 375px ) {
+    .details-head .head-text .text-left .text-a {
+        position: absolute;
+        top: 14px;
+    }
+}
+
+.details-head .head-text .head-button {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    margin-top: -15px;
+    color: #ff572f;
+    background-color: #FFFFFF;
+    border: 1px solid #ff572f;
+    border-radius: 3px;
+    width: 80px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+}
+
+/*introduction-content*/
+.details-content {
+    padding-top: 1rem;
+}
+
+.introduction-content {
+    padding: 14px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.introduction-content .p1 {
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.introduction-content .p2 {
+    line-height: 1.5rem;
+    font-size: 13px;
+    margin-bottom: 15px;
+    color: #aab1bc;
+}
+
+.introduction-content > img {
+    width: 100%;
+}
+
+/*conversion*/
+.conversion {
+    height: 46px;
+    line-height: 46px;
+    text-align: center;
+    font-size: 1.3rem;
+}
+
+.conversion-content {
+    margin-top: 14px;
+    width: 100%;
+}
+
+.conversion-ul {
+    padding: 0 14px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.conversion-ul li {
+    border-bottom: 1px solid #eaebf0;
+    height: 45px;
+    line-height: 45px;
+}
+
+.conversion-ul li.textarea {
+    border-bottom: 0;
+    height: 105px;
+}
+
+.conversion-ul li.textarea textarea {
+    width: 100%;
+    height: 85px;
+    margin-top: 10px;
+    resize: none;
+    padding: 0;
+    font-size: 1.3rem;
+}
+
+.conversion-ul li .conversion-label {
+    font-size: 1.3rem;
+}
+
+.conversion-ul li .conversion-ipt {
+    font-size: 1.3rem;
+    text-align: right;
+    padding-right: 10px;
+}
+
+.conversion-ul li #showCityPicker3 {
+    padding-right: 10px;
+}
+
+.btn-tijiao {
+    height: 45px;
+    line-height: 45px;
+    border-radius: 8px;
+    text-align: center;
+    color: #FFFFFF;
+    width: 100%;
+    font-size: 1.3rem;
+}
+
+.successful {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.successful .successful-img {
+    width: 26%;
+    margin: 37%;
+}
+
+/*联动*/
+.mui-btn {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42;
+    position: relative;
+    display: inline-block;
+    margin-bottom: 0;
+    padding: 6px 12px;
+    cursor: pointer;
+    -webkit-transition: all;
+    transition: all;
+    -webkit-transition-timing-function: linear;
+    transition-timing-function: linear;
+    -webkit-transition-duration: .2s;
+    transition-duration: .2s;
+    text-align: center;
+    vertical-align: top;
+    white-space: nowrap;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background-color: #fff;
+    background-clip: padding-box;
+}
+
+.mui-btn-blue {
+    color: #fff;
+    border: 1px solid #007aff;
+    background-color: #007aff;
+}
+
+.arrow:after {
+    content: "";
+    position: absolute;
+    border: 2px solid #c8c7cc;
+    border-width: 2px 2px 0 0;
+    height: 8px;
+    width: 8px;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    top: 15px;
+    right: 1px;
+}
+
+/*弹框*/
+.window {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(140, 141, 144, .3);
+}
+
+.window .window-con {
+    background: url(../img/window.png) no-repeat;
+    text-align: center;
+    background-size: cover;
+    border-radius: 8px;
+    width: 90%;
+    height: 80%;
+    margin: 10% 5%;
+    position: relative;
+}
+
+.window .window-con .window-img {
+    padding-top: 30%;
+}
+
+.window .window-con .window-img img {
+    width: 65%;
+}
+
+.window .window-con .window-text {
+    margin-top: 10%;
+}
+
+.window .window-con .window-text .window-ol {
+    text-align: left;
+    width: 80%;
+    padding-left: 0;
+    margin: 0 auto;
+}
+
+.window .window-con .window-text .window-ol li {
+    line-height: 1.5rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.window .window-con .window-text .window-ol li:last-child {
+    margin-bottom: 0;
+}
+
+.window .window-con .window-text .window-ol li .window-p1 {
+    font-size: 1rem;
+    width: 17px;
+    height: 17px;
+    line-height: 17px;
+    color: #FFFFFF;
+    background-color: #ff572f;
+    border-radius: 50%;
+    text-align: center;
+    float: left;
+}
+
+.window .window-con .window-text .window-ol li .window-p2 {
+    font-size: 1rem;
+    padding-left: 24px;
+}
+
+
+
+
+
+
+
+
+

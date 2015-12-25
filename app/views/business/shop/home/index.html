@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <meta name="msapplication-tap-highlight" content="no">
+    <title>积分商城</title>
+    <%= stylesheet_link_tag 'business/style', 'business/swiper.min','business/iconfont' %>
+</head>
+
+<body class="bak-f2">
+<!-- banner -->
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="images/banner.jpg" width="100%"></div>
+        <div class="swiper-slide"><img src="images/banner.jpg" width="100%"></div>
+        <div class="swiper-slide"><img src="images/banner.jpg" width="100%"></div>
+        <div class="swiper-slide"><img src="images/banner.jpg" width="100%"></div>
+    </div>
+    <div class="swiper-pagination"></div>
+</div>
+<ul class="menu-ul bak-f1">
+    <li class="com-text-ct"><a href="index.html" class="font-color9"><i class="icon iconfont com-left">&#xe601;</i>积分&nbsp;<font
+            class="font-color7">234积分</font></a></li>
+    <li class="com-text-ct"><a href="exchange.html" class="font-color9"><i class="icon iconfont com-left">
+        &#xe602;</i><font>兑换记录</font></a></li>
+</ul>
+
+<!-- content -->
+<div class="content-list bak-f1">
+    <ul class="list-ul">
+        <li>
+            <a href="details.html" class="list-a">
+                <p>电子京东E卡500元</p>
+
+                <p>234积分</p>
+
+                <p class="ban_img"><img src="images/banner.jpg"></p>
+            </a>
+        </li>
+        <li>
+            <a href="#" class="list-a">
+                <p>电子京东E卡500元</p>
+
+                <p>234积分</p>
+
+                <p class="ban_img"><img src="images/banner.jpg"></p>
+            </a>
+        </li>
+        <li>
+            <a href="#" class="list-a">
+                <p>电子京东E卡500元</p>
+
+                <p>234积分</p>
+
+                <p class="ban_img"><img src="images/banner2.png"></p>
+            </a>
+        </li>
+        <li>
+            <a href="#" class="list-a">
+                <p>电子京东E卡500元</p>
+
+                <p>234积分</p>
+
+                <p class="ban_img"><img src="images/banner.jpg"></p>
+            </a>
+        </li>
+        <li>
+            <a href="#" class="list-a">
+                <p>电子京东E卡500元</p>
+
+                <p>234积分</p>
+
+                <p class="ban_img"><img src="images/banner.jpg"></p>
+            </a>
+        </li>
+        <li>
+            <a href="#" class="list-a">
+                <p>电子京东E卡500元</p>
+
+                <p>234积分</p>
+
+                <p class="ban_img"><img src="images/banner.jpg"></p>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<!-- Swiper JS -->
+<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+<script src="js/swiper.min.js"></script>
+<script>
+    var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        paginationClickable: true
+    });
+    $(function () {
+        window.onload = window.onresize = function () {
+            var body_width = $("body").width();
+            var body_height = (body_width * (8 / 15) * 0.5) - 20;
+            $(".ban_img").css({
+                "width": body_width,
+                "height": body_height,
+                "vertical-align": "middle",
+                "display": "table-cell"
+            });
+        }
+    })
+</script>
+</body>
+</html>

@@ -187,6 +187,11 @@ Rails.application.routes.draw do
 
       get ':mxid/courses' => 'courses#index'
     end
+
+    namespace :shop do
+      get '/' => 'home#index'
+    end
+
     #评论
     get 'comments' => 'comments#index'
     #打卡
