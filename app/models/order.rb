@@ -11,7 +11,7 @@ class Order < ActiveRecord::Base
   has_one :order_item, dependent: :destroy
 
   has_one :lesson, dependent: :destroy
-  attr_accessor :item, :sku, :amount
+  attr_accessor :custom_pay_amount
   STATUS = {delete: -1, cancel: 0, unpaid: 1, pay: 2, complete: 4}
   PAY_TYPE = {alipay: 1, webchat: 2, jd: 3}
   alias_attribute :coupon, :coupons
@@ -64,8 +64,8 @@ class Order < ActiveRecord::Base
   def prepare
     course = Sku.find_by(sku: order_item.sku)
     self.no = "#{Time.now.to_i}#{user_id}#{%w'0 1 2 3 4 5 6 7 8 9'.sample(3).join('')}"
-    if pay_amount.present?
-      self.total = pay_amount
+    if custom_pay_amount.present?
+      self.total = custom_pay_amount
     else
       self.total = course.selling_price*amount.to_i
     end
