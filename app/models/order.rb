@@ -128,7 +128,7 @@ class Order < ActiveRecord::Base
           end
           if coach_id.present?
             coach = Coach.find(coach_id)
-            MessageJob.perform_later(sku.seller_id, MESSAGE['订单'] % [coach.profile.name, sku.course_name, no])
+            MessageJob.perform_later(sku.seller_id, MESSAGE['订单'] % [user.profile.name, sku.course_name, no])
             SmsJob.perform_later(coach.mobile, SMS['订单'], [user.profile.name, sku.course_name, no])
           end
         when STATUS[:cancel]
