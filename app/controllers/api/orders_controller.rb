@@ -7,6 +7,7 @@ module Api
       if order.blank?
         render json: Failure.new('您查看到订单不存在')
       else
+        seller = Sku.find(order.order_item.sku)
         render json: Success.new(
                    order: {
                        no: order.no,
