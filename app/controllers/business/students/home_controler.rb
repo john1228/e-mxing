@@ -16,7 +16,7 @@ module Business
                    )
           when 'mxing'
             render json: Success.new(
-                       student: @coach.lessons.select('DISTINCT(user_id) user_id').where('available > used').map { |lesson|
+                       student: @coach.lessons.includes(:user).select('DISTINCT(user_id) user_id').where('available > used').map { |lesson|
                          user_profile = Profile.find_by(user_id: lesson.user_id)
                          {
                              mxid: user_profile.mxid,

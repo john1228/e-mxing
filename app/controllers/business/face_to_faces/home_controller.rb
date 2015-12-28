@@ -23,8 +23,10 @@ module Business
                              id: sku.id,
                              name: sku.course_name,
                              cover: sku.course_cover,
-                             during: sku.course_during,
-                             price: sku.selling_price.to_i
+                             price: sku.selling_price.to_i,
+                             type: course.product.card_type.card_type,
+                             value: course.product.card_type.count,
+                             concerns: sku.concerns_count
                          }
                        }
                    )

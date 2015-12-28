@@ -8,8 +8,10 @@ module Business
                          id: sku.id,
                          name: sku.course_name,
                          cover: sku.course_cover,
-                         during: sku.course_during,
-                         price: sku.selling_price.to_i
+                         price: sku.selling_price.to_i,
+                         type: course.product.card_type.card_type,
+                         value: course.product.card_type.count,
+                         concerns: sku.concerns_count
                      }
                    }
                )
@@ -24,8 +26,8 @@ module Business
                        image: course.product.image.map { |image| image.url },
                        price: course.selling_price.to_i,
                        score: course.score,
-                       card_type: course.product.card_type.card_type  ,
-                       card_value: course.product.card_type.count,
+                       type: course.product.card_type.card_type,
+                       value: course.product.card_type.count,
                        valid_days: course.product.card_type.valid_days||0,
                        delay_days: course.product.card_type.latest_delay_days||0,
                        intro: course.product.description,
