@@ -190,7 +190,7 @@ Rails.application.routes.draw do
 
     namespace :shop do
       get '/' => 'home#index'
-      get '/home' => 'home#help'
+      get '/help' => 'home#help'
     end
 
     #评论
