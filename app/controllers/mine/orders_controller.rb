@@ -3,16 +3,16 @@ module Mine
     def index
       case params[:status]
         when '0'
-          order = @user.orders.where.not(status: Order::STATUS[:delete]).page(params[:page]||1)
+          orders = @user.orders.where.not(status: Order::STATUS[:delete]).page(params[:page]||1)
         when '1'
-          order = @user.orders.where(status: Order::STATUS[:unpaid]).page(params[:page]||1)
+          orders = @user.orders.where(status: Order::STATUS[:unpaid]).page(params[:page]||1)
         when '2'
-          order = @user.orders.where(status: Order::STATUS[:pay]).page(params[:page]||1)
+          orders = @user.orders.where(status: Order::STATUS[:pay]).page(params[:page]||1)
         else
-          order = []
+          orders = []
       end
       render json: Success.new(
-                 orders: order.collect { |order|
+                 orders: orders.collect { |order|
                    seller = Sku.find_by(sku: order.order_item.sku).seller_user
                    {
                        no: order.no,

@@ -190,6 +190,7 @@ Rails.application.routes.draw do
 
     namespace :shop do
       get '/' => 'home#index'
+      get '/home' => 'home#help'
     end
 
     #评论
@@ -318,6 +319,10 @@ Rails.application.routes.draw do
     get '/knowledge' => 'recommend#knowledge'
     get '/coupon' => 'recommend#coupon'
     get '/recommend/venues' => 'recommend#venues'
+
+    get 'orders/:no' => 'orders#show'
+    post 'orders' => 'orders#confirm'
+
     namespace :venues do
       get '' => 'home#index'
       get 'profile' => 'profile#show'
