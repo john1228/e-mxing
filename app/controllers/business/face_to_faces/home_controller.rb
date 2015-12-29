@@ -50,22 +50,22 @@ module Business
           default_discount = CoachDiscountDefault.new(discount: 80, giveaway_cash: 50, giveaway_count: 5, giveaway_day: 20) if default_discount.blank?
           product = Sku.find(params[:card]).product
           if product.card_type.stored?
-            render Success.new(
+            render json: Success.new(
                        discount: default_discount.discount,
                        giveaway: default_discount.giveaway_cash,
                    )
           elsif product.card_type.measured?
-            render Success.new(
+            render json: Success.new(
                        discount: default_discount.discount,
                        giveaway: default_discount.giveaway_count,
                    )
           elsif product.card_type.clocked
-            render Success.new(
+            render json: Success.new(
                        discount: default_discount.discount,
                        giveaway: default_discount.giveaway_day,
                    )
           else
-            render Success.new(
+            render json: Success.new(
                        discount: 100,
                        giveaway: 0
                    )
