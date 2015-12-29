@@ -40,7 +40,7 @@ module Business
 
       def discount
         coach_discount = CoachDiscount.find_by(coach_id: @coach.id, card_id: params[:card])
-        if discount.present?
+        if coach_discount.present?
           render json: Success.new(
                      discount: coach_discount.discount,
                      giveaway: coach_discount.giveaway
