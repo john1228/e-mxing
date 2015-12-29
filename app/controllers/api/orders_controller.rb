@@ -22,6 +22,7 @@ module Api
                        pay_type: order.pay_type,
                        pay_amount: order.pay_amount,
                        status: order.status,
+                       giveaway: order.giveaway,
                        created: order.updated_at.localtime.strftime('%Y-%m-%d %H:%M:%S')
                    }
                )
