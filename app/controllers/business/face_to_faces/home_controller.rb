@@ -36,48 +36,84 @@ module Business
       end
 
 
-      def create
-        sku = Sku.find(params[:sku])
-        @order = Order.face_to_face.new(
-            contact_name: params[:name],
-            contact_phone: params[:mobile],
-            pay_type: 1,
-            custom_pay_amount: params[:pay_amount],
-            order_item_attributes: {
-                name: sku.course_name,
-                type: sku.course_type,
-                cover: sku.course_cover,
-                amount: params[:amount],
-                during: sku.course_during,
-                price: sku.selling_price,
-                sku: sku.id
-            },
-            giveaway: params[:giveaway]
-        )
-        if @order.save
-          #美型支付
-          if params[:pay_method].eql?('mxing')
-            @qrcode = RQRCode::QRCode.new({no: @order.no}.to_json, :size => 2, :level => :l)
-            render layout: false, action: :mxing
-          elsif params[:pay_method].eql?('alipay')
-            params = {
-                :out_trade_no => @order.no,
-                :subject => "美型-订单编号#{@order.no}",
-                :total_fee => @order.pay_amount
-            }
-            @url = trade_create_by_user_url(params)
-            render layout: false, action: :alipay
-          end
-          #支付宝
+      def discount
+        coach_discount = CoachDiscount.find_by(coach_id: @coach.id, card_id: params[:card])
+        if discount.present?
+          render json: Success.new(
+                     discount: coach_discount.discount,
+                     giveaway: coach_discount.giveaway
+                 )
         else
-          render json: Failure.new('下单失败:' + order.errors.messages.values.join(';'))
+          default_discount = CoachDiscountDefault.where(coach_id: @coach.id)
+          default_discount = CoachDiscountDefault.new(discount: 80, giveaway_cash: 50, giveaway_count: 5, giveaway_day: 20) if default_discount.blank?
+          product = Sku.find(params[:card]).product
+          if product.card_type.stored?
+            render Success.new(
+                       discount: default_discount.discount,
+                       giveaway: default_discount.giveaway_cash,
+                   )
+          elsif product.card_type.measured?
+            render Success.new(
+                       discount: default_discount.discount,
+                       giveaway: default_discount.giveaway_count,
+                   )
+          elsif product.card_type.clocked
+            render Success.new(
+                       discount: default_discount.discount,
+                       giveaway: default_discount.giveaway_day,
+                   )
+          else
+            render Success.new(
+                       discount: 100,
+                       giveaway: 0
+                   )
+          end
         end
       end
+    end
 
-      private
-      def face_to_face_params
-        params.permit(:sku, :name, :mobile, :amount, :pay_amount, :giveaway)
+
+    def create
+      sku = Sku.find(params[:sku])
+      @order = Order.face_to_face.new(
+          contact_name: params[:name],
+          contact_phone: params[:mobile],
+          pay_type: 1,
+          custom_pay_amount: params[:pay_amount],
+          order_item_attributes: {
+              name: sku.course_name,
+              type: sku.course_type,
+              cover: sku.course_cover,
+              amount: params[:amount],
+              during: sku.course_during,
+              price: sku.selling_price,
+              sku: sku.id
+          },
+          giveaway: params[:giveaway]
+      )
+      if @order.save
+        #美型支付
+        if params[:pay_method].eql?('mxing')
+          @qrcode = RQRCode::QRCode.new({no: @order.no}.to_json, :size => 2, :level => :l)
+          render layout: false, action: :mxing
+        elsif params[:pay_method].eql?('alipay')
+          params = {
+              :out_trade_no => @order.no,
+              :subject => "美型-订单编号#{@order.no}",
+              :total_fee => @order.pay_amount
+          }
+          @url = trade_create_by_user_url(params)
+          render layout: false, action: :alipay
+        end
+        #支付宝
+      else
+        render json: Failure.new('下单失败:' + order.errors.messages.values.join(';'))
       end
+    end
+
+    private
+    def face_to_face_params
+      params.permit(:sku, :name, :mobile, :amount, :pay_amount, :giveaway)
     end
   end
 end
