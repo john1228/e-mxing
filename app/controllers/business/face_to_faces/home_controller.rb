@@ -70,50 +70,50 @@ module Business
           end
         end
       end
-    end
 
 
-    def create
-      sku = Sku.find(params[:sku])
-      @order = Order.face_to_face.new(
-          contact_name: params[:name],
-          contact_phone: params[:mobile],
-          pay_type: 1,
-          custom_pay_amount: params[:pay_amount],
-          order_item_attributes: {
-              name: sku.course_name,
-              type: sku.course_type,
-              cover: sku.course_cover,
-              amount: params[:amount],
-              during: sku.course_during,
-              price: sku.selling_price,
-              sku: sku.id
-          },
-          giveaway: params[:giveaway]
-      )
-      if @order.save
-        #美型支付
-        if params[:pay_method].eql?('mxing')
-          @qrcode = RQRCode::QRCode.new({no: @order.no}.to_json, :size => 2, :level => :l)
-          render layout: false, action: :mxing
-        elsif params[:pay_method].eql?('alipay')
-          params = {
-              :out_trade_no => @order.no,
-              :subject => "美型-订单编号#{@order.no}",
-              :total_fee => @order.pay_amount
-          }
-          @url = trade_create_by_user_url(params)
-          render layout: false, action: :alipay
+      def create
+        sku = Sku.find(params[:sku])
+        @order = Order.face_to_face.new(
+            contact_name: params[:name],
+            contact_phone: params[:mobile],
+            pay_type: 1,
+            custom_pay_amount: params[:pay_amount],
+            order_item_attributes: {
+                name: sku.course_name,
+                type: sku.course_type,
+                cover: sku.course_cover,
+                amount: params[:amount],
+                during: sku.course_during,
+                price: sku.selling_price,
+                sku: sku.id
+            },
+            giveaway: params[:giveaway]
+        )
+        if @order.save
+          #美型支付
+          if params[:pay_method].eql?('mxing')
+            @qrcode = RQRCode::QRCode.new({no: @order.no}.to_json, :size => 2, :level => :l)
+            render layout: false, action: :mxing
+          elsif params[:pay_method].eql?('alipay')
+            params = {
+                :out_trade_no => @order.no,
+                :subject => "美型-订单编号#{@order.no}",
+                :total_fee => @order.pay_amount
+            }
+            @url = trade_create_by_user_url(params)
+            render layout: false, action: :alipay
+          end
+          #支付宝
+        else
+          render json: Failure.new('下单失败:' + order.errors.messages.values.join(';'))
         end
-        #支付宝
-      else
-        render json: Failure.new('下单失败:' + order.errors.messages.values.join(';'))
       end
-    end
 
-    private
-    def face_to_face_params
-      params.permit(:sku, :name, :mobile, :amount, :pay_amount, :giveaway)
+      private
+      def face_to_face_params
+        params.permit(:sku, :name, :mobile, :amount, :pay_amount, :giveaway)
+      end
     end
   end
 end
