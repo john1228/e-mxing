@@ -43,8 +43,9 @@ module Api
       if order.blank?
         render json: Failure.new('您查看到订单不存在')
       else
-        if order.update(user: @user)
-          render json: Success.new
+        new_order = Order.new(order.attributes.except('id').merge('coupons' => params[:coupons]), order_item: order.order_item.attributes.except('id'))
+        if new_order.save
+          render json: Success.new(order: new_order)
         else
           render json: Failure.new('确认订单失败:' + order.errors.messags.values.joins(';'))
         end

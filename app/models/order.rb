@@ -15,8 +15,8 @@ class Order < ActiveRecord::Base
   STATUS = {delete: -1, cancel: 0, unpaid: 1, pay: 2, complete: 4}
   PAY_TYPE = {alipay: 1, webchat: 2, jd: 3}
   alias_attribute :coupon, :coupons
-  validate :validate_coupon, if: Proc.new { |order| order.coupon.present? }
-  validate :validate_amount
+  validate :validate_coupon, if: Proc.new { |order| order.coupon.present? }, on: :create
+  validate :validate_amount, on: :create
   accepts_nested_attributes_for :order_item
   enum order_type: [:platform, :face_to_face]
   protected

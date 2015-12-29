@@ -110,6 +110,10 @@ module Business
         end
       end
 
+      def paid
+        
+      end
+
       private
       def face_to_face_params
         params.permit(:sku, :name, :mobile, :amount, :pay_amount, :giveaway)

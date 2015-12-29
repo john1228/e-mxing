@@ -10,6 +10,8 @@ module AlipayManager
   PUBLIC_KEY = 'tf8rgraz2e5klukgllm39cxdmdsjr9jm'
   PRIVATE_KEY = 'MIICdQIBADANBgkqhkiG9w0BAQEFAASCAl8wggJbAgEAAoGBAKwmlDcBSgrurb8BU1Z0deWoOTAUp/V94LY0bYGfpBfXKUg76oRqNk5gMvKK869XGuB/mIB9a5HZzdHaqErKygNZTlPXBsmd+SBxCeb6N6cjc+HXgQM1vuS4FFWTq692X5KqPkyZhKLsbK/KcvdWLYnLu3NKjcZhjUEaF4P8TDzxAgMBAAECgYAMgjkezg8tQC6LxHLjw06Vw2V0YuvZYK4lTyXt10W7Hb04LHJb8MPFaiQJj6MpSHEBgwP3wiVA0cysxPCZjqai/RJQIAYwyvuq4NrANVczEkikRZtWJOSyB1yN4TRIz1d2WuF2bpr+UBQnYlgQ2ap373rzDjKtbCe9Y+l26LdPyQJBAOFzvRzadQb1W/Fh2CSUYvC2CBi74mjHSnT/jMOkTMuwZS+E9FWZrla+hTojdDIpPI5Bjm9UOEATNZMyGrzHxWsCQQDDefkyCeF7kqqPDSzTu/kttCTjBkweNJ+HAEoP4riX9ifeubRMAzSAC047nbiXa4pQIv2hnA/cLDn+TXG7eUITAkAExJfZRl13OjUpk7Iog+LbyF2/eCm/oYdXlhf6Az2EiUR6jstEDC39s6XJpvpMHUckkwpaHGPcJwvZAxRBrc/lAkBSWuIlNcp8wIcBK+DV99z8Z2gfCbkqBKutOe76EGALDdcwW/bdC4Cj7Z9xOHrbuKAWMRfAbbq03SE1xbUD8gtnAkBx/JK2pHyKQv8IG0CagEe5D/3COD09yoM4VYTDVU1letXn6ViNay9tWvUPdLaJM52pX8eBEr/taUo2mfm0Lelx'
   PAY_MODE = 1
+  NOTIFY_URL = 'http://stage.e-mxing.com/callback/alipay'
+  RETURN_URL = 'http://stage.e-mxing.com/business/face_to_faces/paid'
 
 
   def trade_create_by_user_url(params={})
@@ -19,7 +21,9 @@ module AlipayManager
         partner: PARTNER_ID,
         seller_email: PARTNER_EMAIL,
         payment_type: PAYMENT_TYPE,
-        qr_pay_mode: PAY_MODE
+        qr_pay_mode: PAY_MODE,
+        notify_url: NOTIFY_URL,
+        return_url: RETURN_URL
     }.merge(params)
     uri = URI(URL)
     uri.query = URI.encode_www_form(alipay_params.merge(sign_type: SIGN_TYPE, sign: sign(alipay_params)))
