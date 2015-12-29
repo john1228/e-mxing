@@ -7,12 +7,21 @@ module Api
       if order.blank?
         render json: Failure.new('您查看到订单不存在')
       else
-        seller = Sku.find(order.order_item.sku).seller_user
+        sku = Sku.find(order.order_item.sku)
+        seller = sku.seller_user
         render json: Success.new(
                    order: {
                        no: order.no,
                        coach: seller.profile.summary_json,
-                       items: [order.order_item],
+                       items: [{
+                                   sku: order.order_item.sku,
+                                   name: order.order_item.name,
+                                   type: order.order_item.type,
+                                   price: order.order_item.price,
+                                   amount: order.order_item.amount,
+                                   card: sku.product.present? ? 1 : 0,
+                                   card_type: (sku.product.card_type.card_type rescue '')
+                               }],
                        contact: {
                            name: order.contact_name,
                            phone: order.contact_phone
