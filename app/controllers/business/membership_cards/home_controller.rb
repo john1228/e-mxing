@@ -9,7 +9,7 @@ module Business
                          name: sku.course_name,
                          cover: sku.course_cover,
                          price: sku.selling_price.to_i,
-                         type: course.product.card_type.card_type_value,
+                         type: course.product.card_type.card_type,
                          value: course.product.card_type.count,
                          concerns: sku.concerns_count
                      }

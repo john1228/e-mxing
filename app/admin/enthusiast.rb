@@ -33,14 +33,15 @@ ActiveAdmin.register Enthusiast do
 
   batch_action '拉黑' do |ids|
     User.find(ids).each { |user|
-      user.dynamics.destroy_all
-      user.dynamic_comments.destroy_all
-      user.likes.destroy
       Rails.cache.delete(user.token)
+      Blacklist.create(user_id: user.id)
+      DynamicComment.delete_all(user_id: user.id)
+      Like.delete_all(liked_id: user.id)
+      Dynamic.delete_all(user_id: user.id)
       Like.delete_all(liked_id: user.id, like_type: Like::PERSON)
       Like.delete_all(user_id: user.id)
+      Strategy.delete_all(user_id: user.id)
       StrategyComment.delete_all(user_id: user.id)
-      Blacklist.create(user_id: user.id)
     }
     redirect_to collection_path, alert: '拉黑成功'
   end
