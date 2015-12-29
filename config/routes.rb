@@ -165,6 +165,7 @@ Rails.application.routes.draw do
       get ':type' => 'home#index'
       post 'courses' => 'home#create'
       get 'mxing' => 'home#mxing'
+      get ':card/discount' => 'home#discount'
     end
 
     namespace :integrals do
