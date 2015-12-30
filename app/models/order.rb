@@ -18,6 +18,7 @@ class Order < ActiveRecord::Base
   alias_attribute :coupon, :coupons
   validate :validate_coupon, if: Proc.new { |order| order.coupon.present? }, on: :create
   validate :validate_amount, on: :create
+  validate :validate_user, on: :update
   accepts_nested_attributes_for :order_item
   enum order_type: [:platform, :face_to_face]
   protected
@@ -101,11 +102,20 @@ class Order < ActiveRecord::Base
     end
   end
 
-  def check_user
+  def validate_user
     if status.eql?(STATUS[:pay])
       if user.blank?
-        phone_user = User.find_by(mobile: contact_phone)
-        self.user_id = phone_user.id if phone_user.present?
+        user = User.find_by(mobile: contact_phone)
+        if user.present?
+          self.user_id = user.id
+        else
+          user = User.new(mobile: contact_phone, password: '12345678', profile_attributes: {name: contact_name})
+          if user.save
+            self.user_id = user.id
+          else
+            errors.add(:user, '创建用户失败')
+          end
+        end
       end
     end
   end
