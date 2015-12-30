@@ -17,6 +17,7 @@ module Api
                                    sku: order.order_item.sku,
                                    name: order.order_item.name,
                                    type: order.order_item.type,
+                                   during: order.order_item.during,
                                    price: order.order_item.price,
                                    amount: order.order_item.amount,
                                    card: sku.product.present? ? 1 : 0,
@@ -43,7 +44,10 @@ module Api
       if order.blank?
         render json: Failure.new('您查看到订单不存在')
       else
-        new_order = Order.new(order.attributes.except('id').merge('coupons' => params[:coupons], user_id: @user.id))
+        new_order = Order.new(order.attributes.except('id').merge(
+                                  'coupons' => params[:coupons], user_id: @user.id,
+                                  'custom_pay_amount' => order.attributes['pay_amount']
+                              ))
         new_order.build_order_item(order.order_item.attributes.except('id'))
         if new_order.save
           render json: Success.new(order: new_order)
