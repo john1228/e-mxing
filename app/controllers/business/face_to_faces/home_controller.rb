@@ -104,7 +104,7 @@ module Business
                 :total_fee => @order.pay_amount
             }
             @url = trade_create_by_user_url(params)
-            logger.info "====#{@url}"
+            logger.info "====d#{@url}"
             render layout: false, action: :alipay
           end
           #支付宝
