@@ -17,7 +17,7 @@ class WapController < ApplicationController
 
   def pay
     params = {
-        :out_trade_no => '2012113000001',
+        :out_trade_no => '20121130000011',
         :subject => '测试订单',
         :total_fee => '0.1'
     }
