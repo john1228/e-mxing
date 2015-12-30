@@ -15,6 +15,7 @@ module Api
                        coach: seller.profile.summary_json,
                        items: [{
                                    sku: order.order_item.sku,
+                                   cover: order.order_item.cover,
                                    name: order.order_item.name,
                                    type: order.order_item.type,
                                    during: order.order_item.during,
