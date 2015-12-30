@@ -4,7 +4,7 @@ module Api
       city = URI.decode(request.headers[:city]) rescue '上海'
       render json: Success.new(
                  tag: Category.order(updated_at: :desc).all.map { |category|
-                   online_courses = Sku.online.where(course_type: category.item).where('address LIKE ?', '%'+ city + '%').order(selling_price: :asc)
+                   online_courses = Sku.online.course.where(course_type: category.item).where('address LIKE ?', '%'+ city + '%').order(selling_price: :asc)
                    {
                        tag: category.name,
                        bg: category.background.url,
@@ -95,7 +95,7 @@ module Api
     end
 
     def search_course(keyword, page)
-      Sku.online.select("skus.*, st_distance(skus.coordinate, 'POINT(#{params[:lng]||0} #{params[:lat]||0})') as distance").
+      Sku.online.course.select("skus.*, st_distance(skus.coordinate, 'POINT(#{params[:lng]||0} #{params[:lat]||0})') as distance").
           where('skus.course_name LIKE ? or skus.address LIKE ?', "%#{keyword}%", "%#{keyword}%").order('distance asc').order(id: :desc).page(page)
     end
 

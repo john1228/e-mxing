@@ -6,7 +6,7 @@ module Api
       def index
         city = URI.decode(request.headers[:city]) rescue '上海'
         category = Category.find_by(name: params[:cat])
-        courses = Sku.online.select("skus.*, st_distance(skus.coordinate, 'POINT(#{params[:lng]||0} #{params[:lat]||0})') as distance").
+        courses = Sku.online.course.select("skus.*, st_distance(skus.coordinate, 'POINT(#{params[:lng]||0} #{params[:lat]||0})') as distance").
             where('address Like ?', '%'+ city + '%').where(course_type: category.item)
         case params[:sort]
           when 'smart'
@@ -33,7 +33,7 @@ module Api
         city = URI.decode(request.headers[:city]) rescue '上海'
         category = Category.find_by(name: params[:cat])
         keyword = params[:keyword]
-        courses = Sku.online.select("skus.*, st_distance(skus.coordinate, 'POINT(#{params[:lng]||0} #{params[:lat]||0})') as distance").
+        courses = Sku.online.course.select("skus.*, st_distance(skus.coordinate, 'POINT(#{params[:lng]||0} #{params[:lat]||0})') as distance").
             where('address LIKE ?', '%'+ city + '%').
             where(course_type: category.item).
             where('address LIKE ? or course_name LIKE ?', "%#{keyword}%", "%#{keyword}%")

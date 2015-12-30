@@ -26,8 +26,8 @@ module Api
                                      },
                                      fpg: @coach.profile._fitness_program,
                                      course: {
-                                         amount: Sku.online.where(seller_id: @coach.id).count,
-                                         item: Sku.online.where(seller_id: @coach.id).order(updated_at: :desc).take(2)
+                                         amount: Sku.online.course.where(seller_id: @coach.id).count,
+                                         item: Sku.online.course.where(seller_id: @coach.id).order(updated_at: :desc).take(2)
                                      },
                                      comment: {
                                          amount: @coach.comments.count,
