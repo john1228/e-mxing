@@ -2,7 +2,6 @@ class Order < ActiveRecord::Base
   include OrderAble
   before_create :prepare
   after_save :backend #当订单完成支付时，生成课表
-  before_save :check_user
   default_scope { order(updated_at: :desc) }
   scope :unpaid, -> { where(status: STATUS[:unpaid]) }
   scope :pay, -> { where(status: STATUS[:pay]) }
