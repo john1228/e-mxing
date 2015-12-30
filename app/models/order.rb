@@ -2,6 +2,7 @@ class Order < ActiveRecord::Base
   include OrderAble
   before_create :prepare
   after_save :backend #当订单完成支付时，生成课表
+  before_save :check_user
   default_scope { order(updated_at: :desc) }
   scope :unpaid, -> { where(status: STATUS[:unpaid]) }
   scope :pay, -> { where(status: STATUS[:pay]) }
@@ -100,6 +101,15 @@ class Order < ActiveRecord::Base
     end
   end
 
+  def check_user
+    if status.eql?(STATUS[:pay])
+      if user.blank?
+        phone_user = User.find_by(mobile: contact_phone)
+        self.user_id = phone_user.id if phone_user.present?
+      end
+    end
+  end
+
   def backend
     unless status_was.eql?(status)
       case status
@@ -127,9 +137,15 @@ class Order < ActiveRecord::Base
             Sku.where(course_id: sku.course_id).update_all("orders_count =  orders_count + #{order_item.amount}")
           end
           if coach_id.present?
-            coach = Coach.find(coach_id)
-            MessageJob.perform_later(sku.seller_id, MESSAGE['订单'] % [user.profile.name, sku.course_name, no])
-            SmsJob.perform_later(coach.mobile, SMS['订单'], [user.profile.name, sku.course_name, no])
+            if @user.present?
+              coach = Coach.find(coach_id)
+              MessageJob.perform_later(sku.seller_id, MESSAGE['订单'] % [user.profile.name, sku.course_name, no])
+              SmsJob.perform_later(coach.mobile, SMS['订单'], [user.profile.name, sku.course_name, no])
+            else
+              coach = Coach.find(coach_id)
+              MessageJob.perform_later(sku.seller_id, MESSAGE['订单'] % [contact_name, sku.course_name, no])
+              SmsJob.perform_later(coach.mobile, SMS['订单'], [contact_name, sku.course_name, no])
+            end
           end
         when STATUS[:cancel]
           transaction do
