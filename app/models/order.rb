@@ -72,7 +72,8 @@ class Order < ActiveRecord::Base
       self.total = course.selling_price * order_item.amount.to_i
     end
     self.service_id = course.service_id
-    self.coach_id = course.seller_id if course.service_id != course.seller_id
+    self.seller_id = course.seller_id unless seller_id.blank?
+    self.coach_id = course.seller_id unless course.seller_id.eql?(course.service_id) #如果卖家是私教
 
     if coupon.present?
       using_coupon = Coupon.find(coupon)
@@ -159,7 +160,7 @@ class Order < ActiveRecord::Base
             end
           end
           if sku.card
-          #TODO:购卡处理
+            #TODO:购卡处理
           end
         when STATUS[:cancel]
           transaction do

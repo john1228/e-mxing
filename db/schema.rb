@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151215093552) do
+ActiveRecord::Schema.define(version: 20151231094111) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -165,6 +165,14 @@ ActiveRecord::Schema.define(version: 20151215093552) do
     t.datetime "updated_at"
   end
 
+  create_table "checkins", force: :cascade do |t|
+    t.integer  "card_id"
+    t.integer  "value"
+    t.string   "operator"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "checks", force: :cascade do |t|
     t.integer  "user_id"
     t.datetime "created_at", null: false
@@ -199,6 +207,21 @@ ActiveRecord::Schema.define(version: 20151215093552) do
     t.integer  "coach_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "coach_discount_defaults", force: :cascade do |t|
+    t.integer "coach_id"
+    t.integer "discount"
+    t.integer "giveaway_cash"
+    t.integer "giveaway_count"
+    t.integer "giveaway_day"
+  end
+
+  create_table "coach_discounts", force: :cascade do |t|
+    t.integer "coach_id"
+    t.string  "card_id"
+    t.integer "discount"
+    t.integer "giveaway"
   end
 
   create_table "coach_docs", force: :cascade do |t|
@@ -525,12 +548,35 @@ ActiveRecord::Schema.define(version: 20151215093552) do
   end
 
   create_table "members", force: :cascade do |t|
+    t.integer  "client_id"
+    t.integer  "service_id"
     t.integer  "coach_id"
+    t.integer  "user_id"
     t.string   "name"
     t.string   "avatar"
+    t.date     "birthday"
+    t.integer  "gender"
+    t.string   "province"
+    t.string   "city"
+    t.string   "area"
+    t.string   "address"
+    t.integer  "member_type", default: 0
+    t.integer  "origin"
     t.string   "mobile"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "remark"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  create_table "membership_card_logs", force: :cascade do |t|
+    t.integer  "membership_card_id"
+    t.integer  "market_price"
+    t.integer  "selling_price"
+    t.integer  "pay_type"
+    t.string   "seller"
+    t.string   "remark"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
   create_table "membership_card_types", force: :cascade do |t|
@@ -550,10 +596,18 @@ ActiveRecord::Schema.define(version: 20151215093552) do
   end
 
   create_table "membership_cards", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "card_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "client_id"
+    t.integer  "service_id"
+    t.integer  "coach_id"
+    t.integer  "member_id"
+    t.integer  "card_type"
+    t.string   "name"
+    t.integer  "value"
+    t.date     "valid_start"
+    t.date     "valid_end"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.string   "physical_card"
   end
 
   create_table "news", force: :cascade do |t|
@@ -617,6 +671,7 @@ ActiveRecord::Schema.define(version: 20151215093552) do
     t.integer  "service_id"
     t.integer  "order_type"
     t.integer  "giveaway"
+    t.integer  "seller_id"
   end
 
   create_table "overviews", force: :cascade do |t|
@@ -642,6 +697,23 @@ ActiveRecord::Schema.define(version: 20151215093552) do
   end
 
   add_index "places", ["lonlat"], name: "index_places_on_lonlat", using: :gist
+
+  create_table "product_props", force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "during"
+    t.integer "proposal"
+    t.string  "style"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string   "name"
+    t.string   "card_type_id"
+    t.string   "image",                     array: true
+    t.string   "description"
+    t.string   "special"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
 
   create_table "profiles", force: :cascade do |t|
     t.integer "user_id"

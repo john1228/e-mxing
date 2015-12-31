@@ -76,7 +76,7 @@ module Business
 
       def create
         sku = Sku.find(params[:sku])
-        @order = Order.face_to_face.new(
+        @order = @coach.order.face_to_face.new(
             contact_name: params[:name],
             contact_phone: params[:mobile],
             pay_type: 1,

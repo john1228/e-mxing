@@ -6,7 +6,7 @@ class Coach<User
   has_many :coach_photos, foreign_key: :user_id, dependent: :destroy
 
 
-  has_many :orders, dependent: :destroy
+  has_many :orders, dependent: :destroy, foreign_key: :seller_id
   has_many :courses, dependent: :destroy
   has_many :appointments, dependent: :destroy
   has_many :lessons, dependent: :destroy
@@ -20,7 +20,6 @@ class Coach<User
   has_many :schedules, dependent: :destroy
   has_many :clocks, dependent: :destroy
   has_many :comments, dependent: :destroy
-
 
 
   validates_presence_of :mobile, message: '请填写手机号'
