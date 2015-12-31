@@ -27,7 +27,7 @@ module Business
                              type: sku.product.card_type.card_type,
                              value: sku.product.card_type.value,
                              valid_days: sku.product.card_type.valid_days||0,
-                             delay_days: sku.product.card_type.latest_delay_days||0,
+                             delay_days: sku.product.card_type.delay_days||0,
                              concerns: sku.concerns_count
                          }
                        }
