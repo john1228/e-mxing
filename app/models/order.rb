@@ -129,33 +129,37 @@ class Order < ActiveRecord::Base
         when STATUS[:pay]
           #现在只购买一个课程,逻辑遵循一个课时走
           sku = Sku.find(order_item.sku)
-          course = sku.course
-          create_lesson(
-              sku: order_item.sku,
-              user_id: user_id,
-              coach_id: coach_id.blank? ? 0 : coach_id,
-              available: order_item.amount,
-              used: 0,
-              exp: Date.today.next_day(course.exp),
-              contact_name: contact_name, contact_phone: contact_phone
-          )
-          transaction do
-            #钱的處理
-            wallet = Wallet.find_or_create_by(user_id: sku.service_id)
-            wallet.update(action: WalletLog::ACTIONS['卖课收入'], balance: wallet.balance + total)
-            Sku.where(course_id: sku.course_id).update_all("orders_count =  orders_count + #{order_item.amount}")
-          end
-          if coach_id.present?
-            if @user.present?
-              coach = Coach.find(coach_id)
-              MessageJob.perform_later(sku.seller_id, MESSAGE['订单'] % [user.profile.name, sku.course_name, no])
-              SmsJob.perform_later(coach.mobile, SMS['订单'], [user.profile.name, sku.course_name, no])
-            else
-              coach = Coach.find(coach_id)
-              MessageJob.perform_later(sku.seller_id, MESSAGE['订单'] % [contact_name, sku.course_name, no])
-              SmsJob.perform_later(coach.mobile, SMS['订单'], [contact_name, sku.course_name, no])
+          if sku.course?
+            course = sku.course
+            create_lesson(
+                sku: order_item.sku,
+                user_id: user_id,
+                coach_id: coach_id.blank? ? 0 : coach_id,
+                available: order_item.amount + giveaway.to_i,
+                used: 0,
+                exp: Date.today.next_day(course.exp),
+                contact_name: contact_name, contact_phone: contact_phone
+            )
+            transaction do
+              #钱的處理
+              wallet = Wallet.find_or_create_by(user_id: sku.service_id)
+              wallet.update(action: WalletLog::ACTIONS['卖课收入'], balance: wallet.balance + total)
+              Sku.where(course_id: sku.course_id).update_all("orders_count =  orders_count + #{order_item.amount}")
+            end
+            if coach_id.present?
+              if @user.present?
+                coach = Coach.find(coach_id)
+                MessageJob.perform_later(sku.seller_id, MESSAGE['订单'] % [user.profile.name, sku.course_name, no])
+                SmsJob.perform_later(coach.mobile, SMS['订单'], [user.profile.name, sku.course_name, no])
+              else
+                coach = Coach.find(coach_id)
+                MessageJob.perform_later(sku.seller_id, MESSAGE['订单'] % [contact_name, sku.course_name, no])
+                SmsJob.perform_later(coach.mobile, SMS['订单'], [contact_name, sku.course_name, no])
+              end
             end
           end
+
+
         when STATUS[:cancel]
           transaction do
             sku = Sku.find(order_item.sku)
