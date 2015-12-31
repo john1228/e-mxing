@@ -3,14 +3,14 @@ module Business
     class HomeController < BaseController
       def index
         render json: Success.new(
-                     course: Sku.card.online.where(seller_id: @coach.service.id).order(id: :desc).page(params[:page]||1).map { |sku|
+                   course: Sku.card.online.where(seller_id: @coach.service.id).order(id: :desc).page(params[:page]||1).map { |sku|
                      {
                          id: sku.id,
                          name: sku.course_name,
                          cover: sku.course_cover,
                          price: sku.selling_price.to_i,
                          type: sku.product.card_type.card_type,
-                         value: sku.product.card_type.count,
+                         value: sku.product.card_type.value,
                          valid_days: sku.product.card_type.valid_days||0,
                          delay_days: sku.product.card_type.latest_delay_days||0,
                          concerns: sku.concerns_count
@@ -29,7 +29,7 @@ module Business
                        price: course.selling_price.to_i,
                        score: course.score,
                        type: course.product.card_type.card_type,
-                       value: course.product.card_type.count,
+                       value: course.product.card_type.value,
                        valid_days: course.product.card_type.valid_days||0,
                        delay_days: course.product.card_type.latest_delay_days||0,
                        intro: course.product.description,
