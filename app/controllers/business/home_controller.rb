@@ -3,7 +3,7 @@ module Business
     def index
       render json: Success.new(
                  balance: @coach.wallet.balance.to_f.round(2),
-                 order: Order.pay.where(coach_id: @coach.id).count,
+                 order: @coach.orders.pay.count,
                  appoint: Appointment.where(coach_id: @coach.id).count,
                  comment: Comment.where(sku: (Sku.where(seller_id: @coach.id).pluck(:sku)).uniq).count,
                  tool: TOOL
