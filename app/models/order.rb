@@ -173,7 +173,7 @@ class Order < ActiveRecord::Base
                     member_id: member.id,
                     card_type: sku.product.card_type.card_type,
                     name: sku.product.name,
-                    value: sku.product.card_type.value*order_item.amount + giveaway.to_i,
+                    value: sku.product.card_type.count*order_item.amount + giveaway.to_i,
                     open: Date.today,
                     valid_days: sku.product.card_type.valid_days,
                     delay_days: sku.product.card_type.delay_days
@@ -201,7 +201,7 @@ class Order < ActiveRecord::Base
                     member_id: member.id,
                     card_type: sku.product.card_type.card_type,
                     name: sku.product.name,
-                    value: sku.product.card_type.value*order_item.amount + giveaway.to_i,
+                    value: sku.product.card_type.count*order_item.amount + giveaway.to_i,
                     open: Date.today,
                     valid_days: sku.product.card_type.valid_days,
                     delay_days: sku.product.card_type.delay_days
