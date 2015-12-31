@@ -1,6 +1,7 @@
 module AlipayManager
   extend ActiveSupport::Concern
   URL = 'https://mapi.alipay.com/gateway.do'
+  FACE_TO_FACE_URL = ''
   PARTNER_ID = '2088712149046512'
   PARTNER_EMAIL = 'jianglei@e-mxing.com'
   PAYMENT_TYPE = '1'
@@ -28,6 +29,15 @@ module AlipayManager
     uri = URI(URL)
     uri.query = URI.encode_www_form(alipay_params.merge(sign_type: SIGN_TYPE, sign: sign(alipay_params)))
     uri.to_s
+  end
+
+  def face_to_face_url(params={})
+    alipay_params = {
+        appid: PARTNER_ID,
+        charset: INPUT_CHARSET,
+        timestamp: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
+        biz_content: params
+    }
   end
 
   private
