@@ -159,7 +159,7 @@ class Order < ActiveRecord::Base
               end
             end
           end
-          if sku.card
+          if sku.card?
             #TODO:购卡处理
           end
         when STATUS[:cancel]
