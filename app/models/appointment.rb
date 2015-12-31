@@ -42,7 +42,7 @@ class Appointment < ActiveRecord::Base
         MessageJob.perform_later(user.id, MESSAGE['消课'] % [sku_course.course_name, created_at.strftime('%Y%m%d')+'%05d' % id])
         SmsJob.perform_later(lesson.order.contact_phone, SMS['消课'], [sku_course.course_name, created_at.strftime('%Y%m%d')+'%05d' % id])
       when STATUS[:finish]
-
+      else
     end
   end
 end
