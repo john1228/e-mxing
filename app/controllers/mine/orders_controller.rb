@@ -20,6 +20,7 @@ module Mine
                        items: [order.order_item],
                        pay_type: order.pay_type,
                        pay_amount: order.pay_amount,
+                       giveaway: order.giveaway,
                        status: order.status,
                        created_at: order.updated_at.localtime.strftime('%Y-%m-%d %H:%M:%S')
                    }
@@ -46,6 +47,7 @@ module Mine
                        bean: order.bean,
                        pay_type: order.pay_type,
                        pay_amount: order.pay_amount,
+                       giveaway: order.giveaway,
                        status: order.status,
                        created: order.updated_at.localtime.strftime('%Y-%m-%d %H:%M:%S')
                    }
