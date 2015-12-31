@@ -179,7 +179,7 @@ class Order < ActiveRecord::Base
                     delay_days: sku.product.card_type.delay_days
                 )
                 #创建会员卡日志
-                membership_card.logs.build(
+                membership_card.logs.create(
                     market_price: sku.market_price,
                     selling_price: sku.selling_price,
                     pay_type: MembershipCardLog.pay_types['mx'],
@@ -189,7 +189,7 @@ class Order < ActiveRecord::Base
                 #创建会员
                 member = Member.mx.full.create(
                     client_id: service.client_id,
-                    service_id: service_id,
+                    service_id: service.id,
                     user_id: user_id,
                     name: contact_name,
                     mobile: contact_phone
@@ -207,7 +207,7 @@ class Order < ActiveRecord::Base
                     delay_days: sku.product.card_type.delay_days
                 )
                 #创建会员卡日志
-                membership_card.logs.build(
+                membership_card.logs.create(
                     market_price: sku.market_price,
                     selling_price: sku.selling_price,
                     pay_type: MembershipCardLog.pay_types['mx'],

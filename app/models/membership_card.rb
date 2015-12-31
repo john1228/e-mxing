@@ -1,4 +1,5 @@
 class MembershipCard < ActiveRecord::Base
-  belongs_to :user
-  belongs_to :card_type, class: MembershipCardType, foreign_key: :card_id
+  enum card_type: [:stored, :measured, :clocked, :coach]
+  belongs_to :member
+  has_many :logs, class: MembershipCardLog, dependent: :destroy
 end
