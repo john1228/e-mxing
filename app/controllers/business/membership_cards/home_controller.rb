@@ -3,7 +3,7 @@ module Business
     class HomeController < BaseController
       def index
         render json: Success.new(
-                   course: Sku.card.online.where(seller_id: @coach.service.id).order(id: :desc).page(params[:page]||1).map { |sku|
+                     course: Sku.card.online.where(seller_id: @coach.service.id).order(id: :desc).page(params[:page]||1).map { |sku|
                      {
                          id: sku.id,
                          name: sku.course_name,

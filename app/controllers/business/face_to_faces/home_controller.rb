@@ -59,7 +59,7 @@ module Business
                        discount: default_discount.discount,
                        giveaway: default_discount.giveaway_count,
                    )
-          elsif product.card_type.clocked
+          elsif product.card_type.clocked?
             render json: Success.new(
                        discount: default_discount.discount,
                        giveaway: default_discount.giveaway_day,
