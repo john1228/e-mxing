@@ -75,7 +75,7 @@ class Order < ActiveRecord::Base
       self.total = course.selling_price * order_item.amount.to_i
     end
     self.service_id = course.service_id
-    self.seller_id = course.seller_id unless seller_id.blank?
+    self.seller_id = course.seller_id if seller_id.blank?
     self.coach_id = course.seller_id unless course.seller_id.eql?(course.service_id) #如果卖家是私教
 
     if coupon.present?
