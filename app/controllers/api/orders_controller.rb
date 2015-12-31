@@ -46,7 +46,8 @@ module Api
         render json: Failure.new('您查看到订单不存在')
       else
         new_order = Order.new(order.attributes.except('id').merge(
-                                  'coupons' => params[:coupons], user_id: @user.id,
+                                  'coupons' => params[:coupons],
+                                  user_id: @user.id,
                                   'custom_pay_amount' => order.attributes['pay_amount']
                               ))
         new_order.build_order_item(order.order_item.attributes.except('id'))

@@ -1,5 +1,4 @@
 class Order < ActiveRecord::Base
-  include OrderAble
   before_create :prepare
   after_save :backend #当订单完成支付时，生成课表
   default_scope { order(updated_at: :desc) }
@@ -9,17 +8,21 @@ class Order < ActiveRecord::Base
   belongs_to :service
   belongs_to :coach
   has_one :order_item, dependent: :destroy
-
   has_one :lesson, dependent: :destroy
   attr_accessor :custom_pay_amount
+
   STATUS = {delete: -1, cancel: 0, unpaid: 1, pay: 2, complete: 4}
   PAY_TYPE = {alipay: 1, webchat: 2, jd: 3}
+
   alias_attribute :coupon, :coupons
+  accepts_nested_attributes_for :order_item
+  enum order_type: [:platform, :face_to_face]
+
   validate :validate_coupon, if: Proc.new { |order| order.coupon.present? }, on: :create
   validate :validate_amount, on: :create
   validate :validate_user, on: :update
-  accepts_nested_attributes_for :order_item
-  enum order_type: [:platform, :face_to_face]
+
+
   protected
   #检验验证码
   def validate_coupon
@@ -160,7 +163,80 @@ class Order < ActiveRecord::Base
             end
           end
           if sku.card?
-            #TODO:购卡处理
+            Order.transaction do
+              member = Member.find_by(user_id: user_id, service_id: sku.service_id)
+              if member.present?
+                #创建会员卡
+                membership_card = MembershipCard.create(
+                    client_id: service.client_id,
+                    service_id: service_id,
+                    member_id: member.id,
+                    card_type: sku.product.card_type.card_type,
+                    name: sku.product.name,
+                    value: sku.product.card_type.value*order_item.amount + giveaway.to_i,
+                    open: Date.today,
+                    valid_days: sku.product.card_type.valid_days,
+                    delay_days: sku.product.card_type.delay_days
+                )
+                #创建会员卡日志
+                membership_card.logs.build(
+                    market_price: sku.market_price,
+                    selling_price: sku.selling_price,
+                    pay_type: MembershipCardLog.pay_types['mx'],
+                    seller: coach.present? ? coach.profile.name : service.profile.name
+                )
+              else
+                #创建会员
+                member = Member.mx.full.create(
+                    client_id: service.client_id,
+                    service_id: service_id,
+                    user_id: user_id,
+                    name: contact_name,
+                    mobile: contact_phone
+                )
+                #创建会员卡
+                membership_card = MembershipCard.create(
+                    client_id: service.client_id,
+                    service_id: service_id,
+                    member_id: member.id,
+                    card_type: sku.product.card_type.card_type,
+                    name: sku.product.name,
+                    value: sku.product.card_type.value*order_item.amount + giveaway.to_i,
+                    open: Date.today,
+                    valid_days: sku.product.card_type.valid_days,
+                    delay_days: sku.product.card_type.delay_days
+                )
+                #创建会员卡日志
+                membership_card.logs.build(
+                    market_price: sku.market_price,
+                    selling_price: sku.selling_price,
+                    pay_type: MembershipCardLog.pay_types['mx'],
+                    seller: coach.present? ? coach.profile.name : service.profile.name
+                )
+              end
+            end
+
+
+            def create
+              @membership_card = MembershipCard.new(membership_card_params)
+              @membership_card.logs.build(membership_card_log_params)
+              if @membership_card.save
+                redirect_to membership_cards_path
+              else
+                render action: :new
+              end
+            end
+
+            protected
+            def membership_card_params
+              params.require(:membership_card).permit(:card_type, :service_id, :member_id, :name, :value, :valid_start, :valid_end, :physical_card)
+            end
+
+            def membership_card_log_params
+              params.permit(:market_price, :selling_price, :pay_type, :seller, :remark)
+            end
+
+
           end
         when STATUS[:cancel]
           transaction do
