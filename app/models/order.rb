@@ -49,7 +49,7 @@ class Order < ActiveRecord::Base
       limit = course.limit.blank? ? -1 : course.limit
       store = course.store.blank? ? -1 : course.store
       if limit > 0
-        purchased = includes(:order_item)
+        purchased = Order.includes(:order_item)
                         .where(status: [Order::STATUS[:unpaid], Order::STATUS[:pay], Order::STATUS[:finish]])
                         .where('orders.user_id=? AND order_items.sku = ?', user, course.sku)
                         .sum('order_items.amount')
