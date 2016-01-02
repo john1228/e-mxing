@@ -53,7 +53,7 @@ class Order < ActiveRecord::Base
                         .where(status: [Order::STATUS[:unpaid], Order::STATUS[:pay], Order::STATUS[:finish]])
                         .where('orders.user_id=? AND order_items.sku = ?', user, course.sku)
                         .sum('order_items.amount')
-        if (purchased + amount) > limit
+        if (purchased + order_item.amount) > limit
           errors.add(:limit, '购买数量超出限制')
         end
       end
