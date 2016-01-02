@@ -58,7 +58,7 @@ class Order < ActiveRecord::Base
         end
       end
       if store > 0
-        if amount > store
+        if order_item.amount > store
           errors.add(:store, '库存不足')
         end
       end
