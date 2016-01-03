@@ -17,11 +17,20 @@ module Mine
                    {
                        no: order.no,
                        coach: seller.profile.summary_json,
-                       items: [order.order_item],
+                       items: [{sku: order.order_item.sku,
+                                cover: order.order_item.cover,
+                                name: order.order_item.name,
+                                type: order.order_item.type,
+                                during: order.order_item.during,
+                                price: order.order_item.price,
+                                amount: order.order_item.amount,
+                                card: sku.product.present? ? 1 : 0,
+                                card_type: (sku.product.card_type.card_type rescue '')}],
                        pay_type: order.pay_type,
                        pay_amount: order.pay_amount,
                        giveaway: order.giveaway,
                        status: order.status,
+                       type: order.order_type,
                        created_at: order.updated_at.localtime.strftime('%Y-%m-%d %H:%M:%S')
                    }
                  }
@@ -38,7 +47,15 @@ module Mine
                    order: {
                        no: order.no,
                        coach: seller.profile.summary_json,
-                       items: [order.order_item],
+                       items: [{sku: order.order_item.sku,
+                                cover: order.order_item.cover,
+                                name: order.order_item.name,
+                                type: order.order_item.type,
+                                during: order.order_item.during,
+                                price: order.order_item.price,
+                                amount: order.order_item.amount,
+                                card: sku.product.present? ? 1 : 0,
+                                card_type: (sku.product.card_type.card_type rescue '')}],
                        contact: {
                            name: order.contact_name,
                            phone: order.contact_phone
