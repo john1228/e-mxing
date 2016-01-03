@@ -25,7 +25,7 @@ module Mine
                                 price: order.order_item.price,
                                 amount: order.order_item.amount,
                                 card: order.order_item.course.product.present? ? 1 : 0,
-                                card_type: (sku.product.card_type.card_type rescue '')}],
+                                card_type: (order.order_item.course.product.card_type.card_type rescue '')}],
                        pay_type: order.pay_type,
                        pay_amount: order.pay_amount,
                        giveaway: order.giveaway,
@@ -55,7 +55,7 @@ module Mine
                                 price: order.order_item.price,
                                 amount: order.order_item.amount,
                                 card: order.order_item.course.product.present? ? 1 : 0,
-                                card_type: (sku.product.card_type.card_type rescue '')}],
+                                card_type: (order.order_item.course.product.card_type.card_type rescue '')}],
                        contact: {
                            name: order.contact_name,
                            phone: order.contact_phone
