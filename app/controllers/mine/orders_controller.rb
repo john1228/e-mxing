@@ -66,6 +66,7 @@ module Mine
                        pay_amount: order.pay_amount,
                        giveaway: order.giveaway,
                        status: order.status,
+                       type: order.order_type,
                        created: order.updated_at.localtime.strftime('%Y-%m-%d %H:%M:%S')
                    }
                )
