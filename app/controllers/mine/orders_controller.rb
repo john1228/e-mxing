@@ -24,7 +24,7 @@ module Mine
                                 during: order.order_item.during,
                                 price: order.order_item.price,
                                 amount: order.order_item.amount,
-                                card: sku.product.present? ? 1 : 0,
+                                card: order.order_item.course.product.present? ? 1 : 0,
                                 card_type: (sku.product.card_type.card_type rescue '')}],
                        pay_type: order.pay_type,
                        pay_amount: order.pay_amount,
