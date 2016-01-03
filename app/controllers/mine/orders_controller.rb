@@ -3,11 +3,11 @@ module Mine
     def index
       case params[:status]
         when '0'
-          orders = @user.orders.where.not(status: Order::STATUS[:delete]).page(params[:page]||1)
+          orders = @user.orders.includes(:order_item).where.not(status: Order::STATUS[:delete]).page(params[:page]||1)
         when '1'
-          orders = @user.orders.where(status: Order::STATUS[:unpaid]).page(params[:page]||1)
+          orders = @user.orders.includes(:order_item).where(status: Order::STATUS[:unpaid]).page(params[:page]||1)
         when '2'
-          orders = @user.orders.where(status: Order::STATUS[:pay]).page(params[:page]||1)
+          orders = @user.orders.includes(:order_item).where(status: Order::STATUS[:pay]).page(params[:page]||1)
         else
           orders = []
       end
