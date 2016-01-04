@@ -8,23 +8,20 @@ class Product < ActiveRecord::Base
   validates_presence_of :name, message: '请输入出售卡的卡名'
   validates_presence_of :description, message: '请输入对卡的说明'
 
-  mount_uploaders :image, ImagesUploader
-  after_create :generate_sku
-
-
+  mount_uploaders :image, ProductImagesUploader
   accepts_nested_attributes_for :prop
 
-  private
-  def generate_sku
+  after_create :build_default_sku
+  protected
+  def build_default_sku
     service = Service.find(service_id)
-    Sku.card.create(
+    create_sku(
         sku: 'SM'+'-' + '%06d' % id + '-' + '%06d' % (service.id),
-        course_id: id,
         course_type: card_type_id,
         course_name: name,
         course_cover: image.first.url,
         seller: service.profile.name,
-        seller_id: seller_id||service.id,
+        seller_id: seller_id||service_id,
         service_id: service_id,
         market_price: market_price,
         selling_price: selling_price,
@@ -32,7 +29,8 @@ class Product < ActiveRecord::Base
         limit: limit,
         address: service.profile_address,
         coordinate: (service.place.lonlat rescue 'POINT(0 0)'),
-        status: Sku.statuses[:online]
+        status: 'online',
+        sku_type: 'card'
     )
   end
 end
