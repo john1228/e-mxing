@@ -3,11 +3,11 @@ module Mine
     def index
       case params[:status]
         when '0'
-          orders = @user.orders.includes(:order_item).where.not(status: Order::STATUS[:delete]).page(params[:page]||1)
+          orders = @me.orders.includes(:order_item).where.not(status: Order::STATUS[:delete]).page(params[:page]||1)
         when '1'
-          orders = @user.orders.includes(:order_item).where(status: Order::STATUS[:unpaid]).page(params[:page]||1)
+          orders = @me.orders.includes(:order_item).where(status: Order::STATUS[:unpaid]).page(params[:page]||1)
         when '2'
-          orders = @user.orders.includes(:order_item).where(status: Order::STATUS[:pay]).page(params[:page]||1)
+          orders = @me.orders.includes(:order_item).where(status: Order::STATUS[:pay]).page(params[:page]||1)
         else
           orders = []
       end
@@ -38,7 +38,7 @@ module Mine
     end
 
     def show
-      order = @user.orders.find_by(no: params[:no])
+      order = @me.orders.find_by(no: params[:no])
       if order.blank?
         render json: Failure.new('您查看到订单不存在')
       else
@@ -75,11 +75,11 @@ module Mine
     end
 
     def unprocessed
-      render json: Success.new(unprocessed: @user.orders.where(status: Order::STATUS[:unpaid]).count)
+      render json: Success.new(unprocessed: @me.orders.where(status: Order::STATUS[:unpaid]).count)
     end
 
     def cancel
-      order = @user.orders.find_by(no: params[:no])
+      order = @me.orders.find_by(no: params[:no])
       if order.status.eql?(Order::STATUS[:unpaid])
         if order.update(status: Order::STATUS[:cancel])
           render json: Success.new
@@ -92,7 +92,7 @@ module Mine
     end
 
     def delete
-      order = @user.orders.find_by(no: params[:no])
+      order = @me.orders.find_by(no: params[:no])
       if order.status.eql?(Order::STATUS[:cancel]||order.status.eql?(:complete))
         if order.update(status: Order::STATUS[:delete])
           render json: Success.new

@@ -4,11 +4,11 @@ module Mine
       case params[:list] #全部
         when 'all'
           render json: Success.new(
-                     lessons: @user.appointments.joins(:course).order(id: :desc).page(params[:page]||1).collect { |appointment| appointment.as_json('user') }
+                     lessons: @me.appointments.joins(:course).order(id: :desc).page(params[:page]||1).collect { |appointment| appointment.as_json('user') }
                  )
         when 'waiting'
           render json: Success.new(
-                     lessons: @user.appointments.joins(:course).where(status: Appointment::STATUS[:waiting]).order(id: :desc).page(params[:page]||1).collect { |appointment| appointment.as_json('user') }
+                     lessons: @me.appointments.joins(:course).where(status: Appointment::STATUS[:waiting]).order(id: :desc).page(params[:page]||1).collect { |appointment| appointment.as_json('user') }
                  )
         else
           render json: Success.new(lessons: [])
@@ -16,7 +16,7 @@ module Mine
     end
 
     def confirm
-      appointment = @user.appointments.find_by(id: params[:id], status: Appointment::STATUS[:waiting])
+      appointment = @me.appointments.find_by(id: params[:id], status: Appointment::STATUS[:waiting])
       if appointment.update(status: Appointment::STATUS[:confirm])
         render json: Success.new
       else
@@ -34,7 +34,7 @@ module Mine
         render json: Failure.new('未确认课时，不能评论')
       else
         appointment = Appointment.find_by(id: params[:id], status: Appointment::STATUS[:confirm])
-        comment = Comment.new(comment_params.merge(sku: appointment.sku, user: @user))
+        comment = Comment.new(comment_params.merge(sku: appointment.sku, user: @me))
         (0..8).map { |index| comment.comment_images.build(image: params[index.to_s.to_sym]) unless params[index.to_s.to_sym].blank? }
         if comment.save
           appointment.update(status: Appointment::STATUS[:finish])

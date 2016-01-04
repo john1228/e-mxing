@@ -17,7 +17,9 @@ class User < ActiveRecord::Base
   has_many :concerns, class_name: Concerned, dependent: :destroy
   has_one :setting, dependent: :destroy
   accepts_nested_attributes_for :profile
-
+  #membershipcards
+  has_many :members
+  has_many :cards, class: MembershipCard, through: :members
   before_create :build_default_wallet
 
   class<<self

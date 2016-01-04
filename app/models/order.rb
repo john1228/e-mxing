@@ -133,6 +133,13 @@ class Order < ActiveRecord::Base
         when STATUS[:pay]
           #现在只购买一个课程,逻辑遵循一个课时走
           sku = Sku.find(order_item.sku)
+          transaction do
+            #钱的處理
+            wallet = Wallet.find_or_create_by(user_id: sku.service_id)
+            wallet.update(action: WalletLog::ACTIONS['卖课收入'], balance: wallet.balance + total)
+            Sku.where(course_id: sku.course_id).update_all("orders_count =  orders_count + #{order_item.amount}")
+          end
+          
           if sku.course?
             course = sku.course
             create_lesson(
@@ -144,12 +151,7 @@ class Order < ActiveRecord::Base
                 exp: Date.today.next_day(course.exp),
                 contact_name: contact_name, contact_phone: contact_phone
             )
-            transaction do
-              #钱的處理
-              wallet = Wallet.find_or_create_by(user_id: sku.service_id)
-              wallet.update(action: WalletLog::ACTIONS['卖课收入'], balance: wallet.balance + total)
-              Sku.where(course_id: sku.course_id).update_all("orders_count =  orders_count + #{order_item.amount}")
-            end
+
             if coach_id.present?
               if @user.present?
                 coach = Coach.find(coach_id)

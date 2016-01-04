@@ -3,11 +3,11 @@ module Mine
     def index
       case params[:tag]
         when 'valid'
-          coupon = Coupon.where(id: @user.wallet.coupons).where('end_date >= ?', Date.today).page(params[:page]||1)
+          coupon = Coupon.where(id: @me.wallet.coupons).where('end_date >= ?', Date.today).page(params[:page]||1)
         when 'expired'
-          coupon = Coupon.where(id: @user.wallet.coupons).where('end_date < ?', Date.today).page(params[:page]||1)
+          coupon = Coupon.where(id: @me.wallet.coupons).where('end_date < ?', Date.today).page(params[:page]||1)
         when 'used'
-          coupon = Coupon.where(id: @user.orders.where.not(coupons: nil).pluck(:coupons)).page(params[:page]||1)
+          coupon = Coupon.where(id: @me.orders.where.not(coupons: nil).pluck(:coupons)).page(params[:page]||1)
         else
           coupon = []
       end

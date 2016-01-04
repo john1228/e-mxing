@@ -1,16 +1,16 @@
 module Mine
   class WalletController < BaseController
     def index
-      @user.create_wallet if @user.wallet.blank?
-      render json: Success.new(wallet: @user.wallet)
+      @me.create_wallet if @me.wallet.blank?
+      render json: Success.new(wallet: @me.wallet)
     end
 
     def coupons
-      render json: Success.new(coupons: Coupon.where(id: @user.wallet.coupons).page(params[:page]||1))
+      render json: Success.new(coupons: Coupon.where(id: @me.wallet.coupons).page(params[:page]||1))
     end
 
     def detail
-      render json: Success.new(detail: @user.wallet.wallet_logs.where('balance <> 0').page(params[:page]||1).map { |log|
+      render json: Success.new(detail: @me.wallet.wallet_logs.where('balance <> 0').page(params[:page]||1).map { |log|
                                  {
                                      id: log.id_string,
                                      action: log.action_name,
@@ -28,7 +28,7 @@ module Mine
         if coupon.blank?
           begin
             if coupon.update(used: (coupon.used + 1))
-              wallet = @user.wallet
+              wallet = @me.wallet
               wallet.with_lock do
                 wallet.coupons << coupon.id
                 wallet.action = WalletLog::ACTIONS['兑换']

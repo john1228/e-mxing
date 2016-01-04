@@ -285,6 +285,12 @@ Rails.application.routes.draw do
     get 'likes/latest' => 'likes#latest'
     #优惠券信息
     get 'coupons' => 'coupons#index'
+
+    namespace :cards do
+      get '/' => 'home#index'
+      get ':type' => 'home#index'
+      post ':id' => 'checkin#create'
+    end
   end
 
   namespace :callback do

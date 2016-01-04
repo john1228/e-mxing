@@ -27,6 +27,10 @@ class Profile < ActiveRecord::Base
     end
   end
 
+  def detail_address
+    province||'' + city|'' + area||'' + address||''
+  end
+
   def age
     if birthday.blank?
       0
