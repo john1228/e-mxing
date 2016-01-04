@@ -1,7 +1,7 @@
 class Wallet < ActiveRecord::Base
   belongs_to :user
   has_many :wallet_logs
-  attr_accessor :action, :source
+  attr_accessor :action, :source, :operator
 
   after_update :create_wallet_log
 
@@ -28,7 +28,8 @@ class Wallet < ActiveRecord::Base
         integral: integral_was - integral,
         coupons: coupons.size > coupons_was.size ? (coupons - coupons_was) : (coupons_was - coupons),
         bean: bean - bean_was,
-        source: source
+        source: source,
+        operator: operator
     )
   end
 end

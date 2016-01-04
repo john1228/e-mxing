@@ -180,10 +180,12 @@ class Order < ActiveRecord::Base
                 )
                 #创建会员卡日志
                 membership_card.logs.create(
-                    market_price: sku.market_price,
-                    selling_price: sku.selling_price,
-                    pay_type: MembershipCardLog.pay_types['mx'],
-                    seller: coach.present? ? coach.profile.name : service.profile.name
+                    action: 'buy',
+                    change_amount: sku.product.card_type.value*order_item.amount + giveaway.to_i,
+                    pay_amount: total,
+                    pay_type: 'mx',
+                    seller: coach.present? ? coach.profile.name : service.profile.name,
+                    operator: '美型'
                 )
               else
                 #创建会员
@@ -208,10 +210,12 @@ class Order < ActiveRecord::Base
                 )
                 #创建会员卡日志
                 membership_card.logs.create(
-                    market_price: sku.market_price,
-                    selling_price: sku.selling_price,
-                    pay_type: MembershipCardLog.pay_types['mx'],
-                    seller: coach.present? ? coach.profile.name : service.profile.name
+                    action: 'buy',
+                    change_amount: sku.product.card_type.value*order_item.amount + giveaway.to_i,
+                    pay_amount: total,
+                    pay_type: 'mx',
+                    seller: coach.present? ? coach.profile.name : service.profile.name,
+                    operator: '美型'
                 )
               end
             end
