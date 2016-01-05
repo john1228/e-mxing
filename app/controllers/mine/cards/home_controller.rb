@@ -2,7 +2,7 @@ module Mine
   module Cards
     class HomeController < BaseController
       def index
-        if params[:type].eql('expired')
+        if params[:type].eql?('expired')
           cards = @me.cards.find_all { |card| card.valid_end.eql?('已过期') }
         else
           cards = @me.cards

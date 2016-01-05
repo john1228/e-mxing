@@ -11,6 +11,32 @@ ActiveAdmin.register Order do
   filter :pay_type, label: '支付方式', as: :select, collection: Order::PAY_TYPE
   actions :index, :show
 
+  csv do
+    column('服务号') { |order| order.service.profile.name }
+    column('私教') { |order| order.coach.profile.name rescue '' }
+    column('订单编号') { |order| order.no }
+    column('买家') { |order| order.user.profile.name }
+    column('联系人') { |order| order.contact_name }
+    column('联系电话') { |order| order.contact_phone }
+    column('商品') { |order| order.order_item.name }
+    column('商品总价') { |order| order.total }
+    column('支付金额') { |order| order.pay_amount }
+    column('支付方式') { |order|
+      case order.pay_type.to_i
+        when 1
+          '支付宝'
+        when 2
+          '微信'
+        when 3
+          '京东'
+        else
+          ''
+      end
+    }
+    column('日期') { |order| order.updated_at.localtime.strftime('%Y-%m-%d %H:%M:%S') }
+  end
+
+
   index do
     column('订单编号', :no)
     column('服务号') { |order|
