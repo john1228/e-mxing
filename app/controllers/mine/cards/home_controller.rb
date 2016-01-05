@@ -3,13 +3,13 @@ module Mine
     class HomeController < BaseController
       def index
         if params[:type].eql?('expired')
-          cards = @me.cards.find_all { |card| card.valid_end.eql?('已过期') }
+          cards = @me.cards.order(id: :desc).find_all { |card| card.valid_end.eql?('已过期') }
         else
-          cards = @me.cards
+          cards = @me.cards.order(id: :desc)
         end
 
         render json: Success.new(
-                   cards: cards.order(id: :desc).map { |card|
+                   cards: cards.map { |card|
                      {
                          id: card.id,
                          name: card.name,
