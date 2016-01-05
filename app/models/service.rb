@@ -18,6 +18,8 @@ class Service<User
   has_many :card_types, class: MembershipCardType, dependent: :destroy
   alias_attribute :service_id, :id
 
+  has_many :orders
+
   def as_json
     in_the_sale = Sku.online.where(service_id: id)
     top_sellers = in_the_sale.where('skus.sku LIKE ?', 'CC%').order(orders_count: :desc).order(id: :asc).pluck(:seller_id).uniq[0, 3]

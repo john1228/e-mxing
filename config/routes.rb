@@ -289,6 +289,7 @@ Rails.application.routes.draw do
     namespace :cards do
       get '/' => 'home#index'
       get ':type' => 'home#index'
+      get ':mxid/cards' => 'home#service_card'
       post ':id' => 'checkin#create'
     end
   end

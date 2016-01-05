@@ -33,6 +33,7 @@ module Business
         @coach.reload
         Rails.cache.write("gyms-#{@coach.token}", @coach)
         render json: Success.new(coach: {
+                                     token: @coach.token,
                                      mxid: profile.mxid,
                                      name: profile.name,
                                      avatar: profile.avatar.url,
