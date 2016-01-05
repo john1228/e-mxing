@@ -35,7 +35,7 @@ module Mine
       def service_card
         service = Service.find_by_mxid(params[:mxid])
         cards = @me.cards.where(service: service)
-        render json: {
+        render json: Success.new(
                    cards: cards.order(id: :desc).map { |card|
                      {
                          id: card.id,
@@ -56,7 +56,7 @@ module Mine
                          }
                      }
                    }
-               }
+               )
       end
     end
   end
