@@ -285,11 +285,10 @@ Rails.application.routes.draw do
     get 'likes/latest' => 'likes#latest'
     #优惠券信息
     get 'coupons' => 'coupons#index'
-
+    get ':mxid/cards' => 'cards/home#service_card'
     namespace :cards do
       get '/' => 'home#index'
       get ':type' => 'home#index'
-      get ':mxid/cards' => 'home#service_card'
       post ':id' => 'checkin#create'
     end
   end
