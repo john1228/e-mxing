@@ -43,7 +43,7 @@ module Mine
                        }
                    )
           else
-            render json: Failure.new('签到失败:' +@card.errors.messages.values.join(';'))
+            render json: Failure.new('签到失败:' +card.errors.messages.values.join(';'))
           end
         else
           render json: Failure.new('无效的会员卡号')

@@ -139,7 +139,7 @@ class Order < ActiveRecord::Base
             wallet.update(action: WalletLog::ACTIONS['卖课收入'], balance: wallet.balance + total)
             Sku.where(course_id: sku.course_id).update_all("orders_count =  orders_count + #{order_item.amount}")
           end
-          
+
           if sku.course?
             course = sku.course
             create_lesson(
@@ -172,6 +172,7 @@ class Order < ActiveRecord::Base
                 membership_card = MembershipCard.create(
                     client_id: service.client_id,
                     service_id: service_id,
+                    order_id: id,
                     member_id: member.id,
                     card_type: sku.product.card_type.card_type,
                     name: sku.product.name,
@@ -202,6 +203,7 @@ class Order < ActiveRecord::Base
                 membership_card = MembershipCard.create(
                     client_id: service.client_id,
                     service_id: service_id,
+                    order_id: id,
                     member_id: member.id,
                     card_type: sku.product.card_type.card_type,
                     name: sku.product.name,

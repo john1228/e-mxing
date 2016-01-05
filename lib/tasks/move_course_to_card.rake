@@ -26,11 +26,15 @@ namespace :move_course_to_card do
             seller_id: sku_course.seller_id
         )
         if product.save
+          #更新关注数据
           Concerned.where(sku: sku_course.sku).update_all(sku: product.sku.id)
+          #更新订单数据
           OrderItem.where(sku: sku_course.sku).update_all(sku: product.sku.id)
         end
+        #把原来的课程更换城会员卡
+        Lesson.where(sku: sku_course.sku).map{|lesson|
 
-        Lesson.where(sku: sku_course.sku).update_all(sku: product.sku.id)
+        }
         Appointment.where(sku: sku_course.sku).update_all(sku: product.sku.id)
       end
     }
