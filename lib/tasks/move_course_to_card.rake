@@ -57,11 +57,14 @@ namespace :move_course_to_card do
                 member_id: member.id,
                 name: lesson.order.order_item.name,
                 value: lesson.available,
-                open: lesson.appointments.last.created_at,
+                open: (lesson.appointments.last.created_at rescue ''),
                 valid_days: lesson.order.order_item,
                 status: 'normal'
             )
             if membership_card.save
+              #创建充值日志
+
+              #创建签到日志
               lesson.appointments.each { |appointment|
                 membership_card.logs.mx.create(
                     change_amount: appointment.amount,

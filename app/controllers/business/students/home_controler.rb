@@ -46,7 +46,7 @@ module Business
 
 
       def create
-        member = @coach.members.new(member_params)
+        member = @coach.members.coach.new(member_params)
         if member.save
           render json: Success.new
         else
