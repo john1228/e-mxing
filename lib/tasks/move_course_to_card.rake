@@ -27,9 +27,9 @@ namespace :move_course_to_card do
               seller_id: sku_course.seller_id
           )
           product.build_prop(
-              during: sku_course.during,
+              during: sku_course.course.during,
               proposal: sku_course.course.proposal,
-              style: sku_course.style
+              style: sku_course.course.style
           )
           if product.save
             #更新关注数据
