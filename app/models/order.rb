@@ -95,7 +95,8 @@ class Order < ActiveRecord::Base
       store = course.store.blank? ? -1 : course.store
       #更新库存
       if store > 0
-        Sku.where(course_id: course.course_id).update_all(store: (course.store - order_item.amount))
+        #TODO: 连店销售 共享库存
+        course.update(store: (course.store - order_item.amount))
       end
       #更新
       if coupon.present?
