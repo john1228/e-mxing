@@ -14,6 +14,25 @@ class MembershipCard < ActiveRecord::Base
   end
 
   def card_value
+    #对储值卡进行特殊处理
+    if clocked?
+      if to_be_activated?
+        #开卡日期
+        created_date = Date.new(created_at.year, created_at.month, created_at.day)
+        #最晚开卡日
+        last_delay_date = created_date.next_day(delay_days)
+        clocked_value = (value - (Date.today-last_delay_date).numerator)
+      else
+        clocked_value = (value - (Date.today-open).numerator)
+      end
+      if clocked_value > 0
+        clocked_value
+      else
+        0
+      end
+    else
+      value
+    end
   end
 
   def checkin
@@ -59,21 +78,30 @@ class MembershipCard < ActiveRecord::Base
         last_delay_date = created_date.next_day(delay_days)
         #最晚的有效期
         last_valid_date = last_delay_date.next_day(valid_days)
-
-        if last_valid_date >= Date.today
-          last_valid_date
-        else
-          '已过期'
-        end
       else
-        open.next_day(valid_days)
+        last_valid_date = open.next_day(valid_days)
+      end
+      if last_valid_date >= Date.today
+        last_valid_date
+      else
+        '已过期'
       end
     else
       #期限卡以卡值计算
       if clocked?
-        if open.present?
-
+        if to_be_activated?
+          #开卡日期
+          created_date = Date.new(created_at.year, created_at.month, created_at.day)
+          #最晚开卡日
+          last_delay_date = created_date.next_day(delay_days)
+          last_valid_date = last_delay_date.next_day(value)
         else
+          last_valid_date = open.next_day(value)
+        end
+        if last_valid_date > Date.today
+          last_valid_date
+        else
+          '已过期'
         end
       else
         '永久'

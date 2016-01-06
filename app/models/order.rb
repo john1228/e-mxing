@@ -103,7 +103,7 @@ class Order < ActiveRecord::Base
         user_wallet = Wallet.find_by(user_id: user_id)
         user_wallet.update(action: WalletLog::ACTIONS['消费'], coupons: user_wallet.coupons - [coupon.to_i])
       end
-    end
+    end if user.present?
   end
 
   def validate_user
