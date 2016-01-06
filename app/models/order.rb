@@ -57,7 +57,7 @@ class Order < ActiveRecord::Base
           errors.add(:limit, '购买数量超出限制')
         end
       end
-      if store > 0
+      if store >= 0
         if order_item.amount > store
           errors.add(:store, '库存不足')
         end
