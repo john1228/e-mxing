@@ -54,7 +54,7 @@ module Api
         if new_order.save
           render json: Success.new(order: new_order)
         else
-          render json: Failure.new('确认订单失败:' + order.errors.messages.values.joins(';'))
+          render json: Failure.new('确认订单失败:' + order.errors.messages.values.join(';'))
         end
       end
     end
