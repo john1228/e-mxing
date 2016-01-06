@@ -52,7 +52,7 @@ class MembershipCard < ActiveRecord::Base
         if last_valid_date.present?
           if last_valid_date >= Date.today
             update(open: last_delay_date, status: 'normal')
-            logs.checkin.new.save
+            logs.checkin.new(service_id: service_id, remark: '美型APP签到').save
             return true
           else
             errors.add(expired: '该卡已过期')
@@ -61,7 +61,7 @@ class MembershipCard < ActiveRecord::Base
         end
       end
     elsif normal?
-      logs.checkin.new.save
+      logs.checkin.new(service_id: service_id, remark: '美型APP签到').save
       return true
     elsif disable?
       errors.add(expired: '该卡已过期')

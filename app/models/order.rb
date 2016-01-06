@@ -185,11 +185,13 @@ class Order < ActiveRecord::Base
                 #创建会员卡日志
                 membership_card.logs.create(
                     action: 'buy',
+                    service_id: service.id,
                     change_amount: sku.product.card_type.value*order_item.amount + giveaway.to_i,
                     pay_amount: total,
                     pay_type: 'mx',
                     seller: coach.present? ? coach.profile.name : service.profile.name,
-                    operator: '美型'
+                    operator: '美型',
+                    remark: '美型APP购买'
                 )
               else
                 #创建会员
@@ -216,11 +218,13 @@ class Order < ActiveRecord::Base
                 #创建会员卡日志
                 membership_card.logs.create(
                     action: 'buy',
+                    service_id: service.id,
                     change_amount: sku.product.card_type.value*order_item.amount + giveaway.to_i,
                     pay_amount: total,
                     pay_type: 'mx',
                     seller: coach.present? ? coach.profile.name : service.profile.name,
-                    operator: '美型'
+                    operator: '美型',
+                    remark: '美型APP购买'
                 )
               end
             end
