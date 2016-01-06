@@ -1,6 +1,6 @@
 namespace :move_course_to_card do
   task :move => :environment do
-    Sku.course.offset(43).order(updated_at: :desc).map { |sku_course|
+    Sku.course.where('updated_at < ?', Sku.find('SC-000332-000056').updated_at).order(updated_at: :desc).map { |sku_course|
       puts sku_course.sku
       #创建会员卡类型
       Sku.transaction do
@@ -53,6 +53,8 @@ namespace :move_course_to_card do
               )
             end
             membership_card = MembershipCard.course.new(
+                client_id: sku_course.service.client_id,
+                service_id: sku_course.service.id,
                 order_id: lesson.order_id,
                 member_id: member.id,
                 name: lesson.order.order_item.name,
