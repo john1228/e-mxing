@@ -1,6 +1,6 @@
 namespace :move_course_to_card do
   task :move => :environment do
-    Sku.course.offset(2).order(updated_at: :desc).map { |sku_course|
+    Sku.course.offset(43).order(updated_at: :desc).map { |sku_course|
       puts sku_course.sku
       #创建会员卡类型
       Sku.transaction do
@@ -44,7 +44,7 @@ namespace :move_course_to_card do
             user = lesson.user
             member = Member.find_by(user_id: user.id, service_id: sku_course.service_id)
             if member.blank?
-              member = Member.new(
+              member = Member.create(
                   client_id: sku_course.service.client_id,
                   service_id: sku_course.service.id,
                   user_id: user.id,
