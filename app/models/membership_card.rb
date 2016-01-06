@@ -13,6 +13,9 @@ class MembershipCard < ActiveRecord::Base
     end
   end
 
+  def card_value
+  end
+
   def checkin
     #未激活会员卡的处理
     if to_be_activated?
@@ -66,7 +69,15 @@ class MembershipCard < ActiveRecord::Base
         open.next_day(valid_days)
       end
     else
-      '永久'
+      #期限卡以卡值计算
+      if clocked?
+        if open.present?
+
+        else
+        end
+      else
+        '永久'
+      end
     end
   end
 end
