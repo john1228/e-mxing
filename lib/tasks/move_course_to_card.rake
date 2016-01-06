@@ -46,7 +46,7 @@ namespace :move_course_to_card do
             if member.blank?
               member = Member.new(
                   client_id: sku_course.service.client_id,
-                  service_id: sku_course.service.service.id,
+                  service_id: sku_course.service.id,
                   user_id: user.id,
                   name: lesson.contact_name,
                   mobile: lesson.contact_phone
