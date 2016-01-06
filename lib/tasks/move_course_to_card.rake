@@ -1,6 +1,7 @@
 namespace :move_course_to_card do
   task :move => :environment do
     Sku.course.offset(1).order(updated_at: :desc).map { |sku_course|
+      puts sku_course.sku
       #创建会员卡类型
       Sku.transaction do
         card_type = MembershipCardType.course.new(
