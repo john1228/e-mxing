@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151231094111) do
+ActiveRecord::Schema.define(version: 20160106114651) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -570,13 +570,15 @@ ActiveRecord::Schema.define(version: 20151231094111) do
 
   create_table "membership_card_logs", force: :cascade do |t|
     t.integer  "membership_card_id"
-    t.integer  "market_price"
-    t.integer  "selling_price"
     t.integer  "pay_type"
     t.string   "seller"
     t.string   "remark"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "action",             default: 0
+    t.integer  "change_amount"
+    t.integer  "pay_amount"
+    t.string   "operator"
   end
 
   create_table "membership_card_types", force: :cascade do |t|
@@ -585,11 +587,11 @@ ActiveRecord::Schema.define(version: 20151231094111) do
     t.integer  "client_id"
     t.integer  "card_type"
     t.float    "price"
-    t.integer  "count"
+    t.integer  "value"
     t.integer  "days"
     t.boolean  "has_valid_extend_information"
     t.integer  "valid_days"
-    t.integer  "latest_delay_days"
+    t.integer  "delay_days"
     t.string   "remark"
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
@@ -598,16 +600,18 @@ ActiveRecord::Schema.define(version: 20151231094111) do
   create_table "membership_cards", force: :cascade do |t|
     t.integer  "client_id"
     t.integer  "service_id"
-    t.integer  "coach_id"
+    t.integer  "order_id"
     t.integer  "member_id"
     t.integer  "card_type"
     t.string   "name"
     t.integer  "value"
-    t.date     "valid_start"
-    t.date     "valid_end"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.string   "physical_card"
+    t.integer  "delay_days",    default: 0
+    t.date     "open"
+    t.integer  "valid_days"
+    t.integer  "status",        default: 0
   end
 
   create_table "news", force: :cascade do |t|
@@ -687,6 +691,12 @@ ActiveRecord::Schema.define(version: 20151231094111) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "loc"
+  end
+
+  create_table "physical_cards", force: :cascade do |t|
+    t.integer "service_id"
+    t.string  "virtual_number"
+    t.string  "entity_number"
   end
 
   create_table "places", force: :cascade do |t|
@@ -884,6 +894,13 @@ ActiveRecord::Schema.define(version: 20151231094111) do
     t.datetime "updated_at"
   end
 
+  create_table "terminals", force: :cascade do |t|
+    t.string   "mxid"
+    t.string   "terminal"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "transactions", force: :cascade do |t|
     t.string   "no"
     t.string   "order_no"
@@ -958,6 +975,7 @@ ActiveRecord::Schema.define(version: 20151231094111) do
     t.datetime "updated_at",              null: false
     t.string   "source",     default: ""
     t.integer  "integral",   default: 0
+    t.string   "operator"
   end
 
   create_table "wallets", force: :cascade do |t|

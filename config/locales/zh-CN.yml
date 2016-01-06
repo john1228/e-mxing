@@ -38,6 +38,7 @@
       tag: '标签'
       category: '分类'
       crawl_datum: '抓取数据'
+      physical_card: '实体卡'
     attributes:
       service_course:
         name: '名称'
@@ -72,6 +73,10 @@
         end: '结束时间'
         repeat: '是否重复'
         week: '星期'
+      physical_card:
+        service_id: '机构'
+        virtual_number: '虚拟卡号'
+        entity_number: '实体卡号'
 #      crawl_datum:
 #        name: '工作室名称'
 #        avatar: '头像'
