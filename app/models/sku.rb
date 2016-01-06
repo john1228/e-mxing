@@ -29,7 +29,6 @@ class Sku < ActiveRecord::Base
     course_during
   end
 
-
   def as_json
     {
         sku: sku,

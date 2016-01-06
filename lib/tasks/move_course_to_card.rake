@@ -1,6 +1,6 @@
 namespace :move_course_to_card do
   task :move => :environment do
-    Sku.course.map { |sku_course|
+    Sku.course.limit(1).map { |sku_course|
       #创建会员卡类型
       card_type = MembershipCardType.course.new(
           name: sku_course.course.name,
@@ -39,18 +39,35 @@ namespace :move_course_to_card do
         #把原来的课程更换城会员卡
         Lesson.where(sku: sku_course.sku).map { |lesson|
           user = lesson.user
-          member = Member.new
-
+          member = Member.find_by(user_id: user.id, service_id: sku_course.service_id)
+          if member.blank?
+            member = Member.new(
+                client_id: sku_course.service.client_id,
+                service_id: sku_course.service.service.id,
+                user_id: user.id,
+                name: lesson.contact_name,
+                mobile: lesson.contact_phone
+            )
+          end
           membership_card = MembershipCard.course.new(
               order_id: lesson.order_id,
               member_id: member.id,
               name: lesson.order.order_item.name,
               value: lesson.available,
               open: lesson.appointment.last.created_at,
-              valid_days: lesson.order.order_item
+              valid_days: lesson.order.order_item,
+              status: 'normal'
           )
+          if membership_card.save
+            lesson.appointments.each { |appointment|
+              membership_card.logs.mx.create(
+                  change_amount: appointment.amount,
+                  operator: (appointment.coach.profile.name rescue ''),
+                  remark: "消课码-#{appointment.code}",
+              )
+            }
+          end
         }
-        Appointment.where(sku: sku_course.sku).update_all(sku: product.sku.id)
       end
     }
   end
