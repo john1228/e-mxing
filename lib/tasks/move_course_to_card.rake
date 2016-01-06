@@ -1,6 +1,6 @@
 namespace :move_course_to_card do
   task :move => :environment do
-    Sku.course.offset(1).order(updated_at: :desc).map { |sku_course|
+    Sku.course.offset(2).order(updated_at: :desc).map { |sku_course|
       puts sku_course.sku
       #创建会员卡类型
       Sku.transaction do
@@ -57,7 +57,7 @@ namespace :move_course_to_card do
                 member_id: member.id,
                 name: lesson.order.order_item.name,
                 value: lesson.available,
-                open: lesson.appointment.last.created_at,
+                open: lesson.appointments.last.created_at,
                 valid_days: lesson.order.order_item,
                 status: 'normal'
             )
