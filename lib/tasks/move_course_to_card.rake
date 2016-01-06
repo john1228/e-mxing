@@ -36,6 +36,7 @@ namespace :move_course_to_card do
             Concerned.where(sku: sku_course.sku).update_all(sku: product.sku.id)
             #更新订单数据
             OrderItem.where(sku: sku_course.sku).update_all(sku: product.sku.id)
+            product.sku.update(status: sku_course.status)
           end
           #把原来的课程更换城会员卡
           Lesson.where(sku: sku_course.sku).map { |lesson|
