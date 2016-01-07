@@ -11,8 +11,6 @@ class Sku < ActiveRecord::Base
   has_many :lessons, dependent: :destroy, foreign_key: :sku
 
   belongs_to :product, class: Product, foreign_key: :course_id
-
-  #enum sku_type: [:course, :card]
   enum course_type: [:stored, :measured, :clocked, :course]
 
   before_save :offline
