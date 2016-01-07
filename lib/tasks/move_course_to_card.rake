@@ -68,6 +68,7 @@ namespace :move_course_to_card do
               #创建签到日志
               lesson.appointments.each { |appointment|
                 membership_card.logs.mx.create(
+                    service_id: membership_card.service_id,
                     change_amount: appointment.amount,
                     operator: (appointment.coach.profile.name rescue ''),
                     remark: "消课码-#{appointment.code}",
