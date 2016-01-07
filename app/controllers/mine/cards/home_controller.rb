@@ -5,7 +5,7 @@ module Mine
         if params[:type].eql?('expired')
           cards = @me.cards.where.not(card_type: 'course').order(id: :desc).find_all { |card| card.valid_end.eql?('已过期') }
         else
-          cards = @me.cards.not(card_type: 'course').order(id: :desc)
+          cards = @me.cards.where.not(card_type: 'course').order(id: :desc)
         end
 
         render json: Success.new(
@@ -24,7 +24,8 @@ module Mine
                              mxid: card.service.profile.mxid,
                              name: card.service.profile.name,
                              avatar: card.service.profile.avatar.url,
-                             address: card.service.profile.detail_address,
+                             city: card.service.profile.city,
+                             address: (card.service.profile.area||"") + (card.service.profile.address||""),
                              mobile: card.service.profile.mobile
                          }
                      }
@@ -34,7 +35,7 @@ module Mine
 
       def service_card
         service = Service.find_by_mxid(params[:mxid])
-        cards = @me.cards.not(card_type: 'course').where(service: service)
+        cards = @me.cards.where.not(card_type: 'course').where(service: service)
         render json: Success.new(
                    cards: cards.order(id: :desc).map { |card|
                      {
@@ -51,7 +52,8 @@ module Mine
                              mxid: card.service.profile.mxid,
                              name: card.service.profile.name,
                              avatar: card.service.profile.avatar.url,
-                             address: card.service.profile.detail_address,
+                             city: card.service.profile.city,
+                             address: (card.service.profile.area||"") + (card.service.profile.address||""),
                              mobile: card.service.profile.mobile
                          }
                      }
