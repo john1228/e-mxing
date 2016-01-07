@@ -17,7 +17,7 @@ class Product < ActiveRecord::Base
     service = Service.find(service_id)
     create_sku(
         sku: 'SM'+'-' + '%06d' % id + '-' + '%06d' % (service.id),
-        course_type: card_type_id,
+        course_type: card_type.card_type,
         course_name: name,
         course_cover: (image.first.url rescue ''),
         seller: service.profile.name,

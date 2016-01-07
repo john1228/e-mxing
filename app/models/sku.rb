@@ -12,8 +12,8 @@ class Sku < ActiveRecord::Base
 
   belongs_to :product, class: Product, foreign_key: :course_id
 
-  enum sku_type: [:course, :card]
-  enum course_type: [:stored, :measured, :clocked]
+  #enum sku_type: [:course, :card]
+  enum course_type: [:stored, :measured, :clocked, :course]
 
   before_save :offline
   before_create :injection
