@@ -8,7 +8,7 @@ module Business
                          id: sku.id,
                          name: sku.course_name,
                          cover: sku.course_cover,
-                         during: sku.product.during,
+                         during: sku.product.prop.during,
                          price: sku.selling_price.floor
                      }
                    }
