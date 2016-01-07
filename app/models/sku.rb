@@ -47,142 +47,50 @@ class Sku < ActiveRecord::Base
   end
 
   def detail
-    if course?
-      json_hash = {
-          sku: sku,
-          name: course_name,
-          cover: course_cover,
-          images: course.image.map { |item| {url: item.url} },
-          guarantee: course.guarantee,
-          market: market_price.to_i,
-          selling: selling_price.to_i,
-          store: store||-1,
-          limit: limit||-1,
-          score: score,
-          type: course_type,
-          style: course.style,
-          during: course_during,
-          exp: Date.today.next_day(course.exp).strftime('%Y-%m-%d'),
-          proposal: course.proposal,
-          seller: {
-              mxid: seller_user.profile.mxid,
-              name: seller_user.profile.name,
-              avatar: seller_user.profile.avatar.url,
-              mobile: seller_user.profile.identity.eql?(1) ? seller_user.mobile : service.profile.mobile,
-              identity: seller_user.profile.identity_value,
-              tags: seller_user.profile.tags
-          },
-          address: [{
-                        name: address,
-                        agency: service.profile.name,
-                        coordinate: {
-                            lng: coordinate.x,
-                            lat: coordinate.y
-                        }
-                    }],
-          intro: course.intro,
-          special: course.special,
-          service: service.profile.service,
-          buyers: {
-              count: orders_count,
-              items: buyers
-          },
-          status: status,
-          comments: [
-              count: comments.count,
-              items: image_comments.take(5)
-          ]
-      }
-      json_hash = json_hash.merge(limit_time: {start: course.limit_start.strftime('%Y-%m-%d %H:%M'), end: course.limit_end.strftime('%Y-%m-%d %H:%M')}) if course.has_attribute?(:limit_start)&&course.limit_start.present?
-      json_hash
-    else
-      if store? || measured? || clocked?
-        {
-            sku: id,
-            name: course_name,
-            cover: course_cover,
-            market_price: market_price.floor,
-            selling_price: selling_price.floor,
-            store: store||-1,
-            limit: limit||-1,
-            score: score,
-            card_info: {
-                type: course_type,
-                image: product.image.map { |image| image.url },
-                description: product.description,
-                special: product.special,
-                value: product.card_type.value,
-                valid_days: product.card_type.valid_days,
-                delay_days: product.card_type.delay_days
-            },
-            seller: {
-                mxid: seller_user.profile.mxid,
-                name: seller_user.profile.name,
-                avatar: seller_user.profile.avatar.url,
-                mobile: seller_user.profile.identity.eql?(1) ? seller_user.mobile : service.profile.mobile,
-                identity: seller_user.profile.identity_value,
-                tags: seller_user.profile.tags
-            },
+
+    {
+        sku: sku,
+        name: course_name,
+        cover: course_cover,
+        images: product.images.map { |item| {url: item.url} },
+        market: market_price,
+        selling: selling_price,
+        store: store||-1,
+        limit: limit||-1,
+        type: product.card_type.value,
+        style: product.prop.style,
+        during: product.prop.during,
+        exp: Date.today.next_day(product.prop.exp).strftime('%Y-%m-%d'),
+        proposal: product.prop.proposal,
+        seller: {
+            mxid: seller_user.profile.mxid,
+            name: seller_user.profile.name,
+            avatar: seller_user.profile.avatar.url,
+            mobile: seller_user.profile.identity.eql?(1) ? seller_user.mobile : service.profile.mobile,
+            identity: seller_user.profile.identity_value,
+            tags: seller_user.profile.tags,
             address: [{
+                          name: address,
                           agency: service.profile.name,
-                          city: service.profile.city,
-                          addrss: (service.profile.area||"") + (service.profile.address||"")
+                          coordinate: {
+                              lng: coordinate.x,
+                              lat: coordinate.y
+                          }
                       }],
+            intro: product.description,
+            special: product.special,
+            service: service.profile.service,
             buyers: {
                 count: orders_count,
                 items: buyers
             },
-            comment: {
+            status: status,
+            comments: [
                 count: comments.count,
                 items: image_comments.take(5)
-            }
-        }
-      else
-        {
-            sku: sku,
-            name: course_name,
-            cover: course_cover,
-            images: product.images.map { |item| {url: item.url} },
-            market: market_price,
-            selling: selling_price,
-            store: store||-1,
-            limit: limit||-1,
-            type: product.card_type.value,
-            style: product.prop.style,
-            during: product.prop.during,
-            exp: Date.today.next_day(product.prop.exp).strftime('%Y-%m-%d'),
-            proposal: product.prop.proposal,
-            seller: {
-                mxid: seller_user.profile.mxid,
-                name: seller_user.profile.name,
-                avatar: seller_user.profile.avatar.url,
-                mobile: seller_user.profile.identity.eql?(1) ? seller_user.mobile : service.profile.mobile,
-                identity: seller_user.profile.identity_value,
-                tags: seller_user.profile.tags,
-                address: [{
-                              name: address,
-                              agency: service.profile.name,
-                              coordinate: {
-                                  lng: coordinate.x,
-                                  lat: coordinate.y
-                              }
-                          }],
-                intro: product.description,
-                special: product.special,
-                service: service.profile.service,
-                buyers: {
-                    count: orders_count,
-                    items: buyers
-                },
-                status: status,
-                comments: [
-                    count: comments.count,
-                    items: image_comments.take(5)
-                ]
-            },
-        }
-      end
-    end
+            ]
+        },
+    }
   end
 
 

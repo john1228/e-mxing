@@ -91,7 +91,7 @@ module Api
                                        card_info: {
                                            type: sku.course_type,
                                            image: sku.product.image.map { |image| image.url },
-                                           description: sku.product.description,
+                                           descript: sku.product.description,
                                            special: sku.product.special,
                                            value: sku.product.card_type.value,
                                            valid_days: sku.product.card_type.valid_days,
@@ -113,8 +113,9 @@ module Api
                                        address: [{
                                                      agency: sku.service.profile.name,
                                                      city: sku.service.profile.city,
-                                                     addrss: (sku.service.profile.area||"") + (sku.service.profile.address||"")
+                                                     address: (sku.service.profile.area||"") + (sku.service.profile.address||"")
                                                  }],
+                                       service: sku.service.profile.service,
                                        buyers: {
                                            count: sku.orders_count,
                                            items: sku.buyers
