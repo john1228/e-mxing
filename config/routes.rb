@@ -206,10 +206,10 @@ Rails.application.routes.draw do
     put '/' => 'home#update'
     #地址管理
     get 'addresses' => 'addresses#index'
-    get 'lessons' => 'lessons#index'
-    get 'lessons/records' => 'lessons#records'
-    get 'lessons/show' => 'lessons#show'
-    post 'lessons' => 'lessons#update'
+    # get 'lessons' => 'lessons#index'
+    # get 'lessons/records' => 'lessons#records'
+    # get 'lessons/show' => 'lessons#show'
+    # post 'lessons' => 'lessons#update'
     #预约
     get 'appointments' => 'appointments#index'
     get 'appointments/show' => 'appointments#show'
@@ -264,11 +264,11 @@ Rails.application.routes.draw do
     delete 'orders/:no/cancel' => 'orders#cancel'
     delete 'orders/:no/delete' => 'orders#delete'
     #课时
-    get 'lessons' => 'lessons#index'
-    get 'lessons/un_confirm' => 'lessons#un_confirm'
-    put 'lessons' => 'lessons#confirm'
-    post 'lessons/comment' => 'lessons#comment'
-    delete 'lessons/:id' => 'lessons#destroy'
+    # get 'lessons' => 'lessons#index'
+    # get 'lessons/un_confirm' => 'lessons#un_confirm'
+    # put 'lessons' => 'lessons#confirm'
+    # post 'lessons/comment' => 'lessons#comment'
+    # delete 'lessons/:id' => 'lessons#destroy'
     #V3课时
     get 'classes/:type' => 'classes#index'
     get 'classes/:type/detail' => 'classes#show'

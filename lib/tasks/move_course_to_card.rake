@@ -58,7 +58,8 @@ namespace :move_course_to_card do
                 order_id: lesson.order_id,
                 member_id: member.id,
                 name: lesson.order.order_item.name,
-                value: lesson.available,
+                value: sku_course.course.type,
+                supply_value: lesson.available,
                 open: (lesson.appointments.last.created_at rescue ''),
                 valid_days: lesson.order.order_item,
                 status: 'normal'

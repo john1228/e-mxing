@@ -16,29 +16,32 @@ module Business
       end
 
       def student
-        orders = Order.Or
-        # {
-        #     student: {
-        #         mxid: profile.mxid,
-        #         name: profile.name,
-        #         avatar: profile.avatar.url
-        #     },
-        #     course: {
-        #         count: lessons.size,
-        #         item: lessons.map { |lesson|
-        #           {
-        #               id: lesson.course.id,
-        #               name: lesson.course.course_name,
-        #               cover: lesson.course.course_cover,
-        #               during: lesson.course.course_during,
-        #               available: lesson.available,
-        #               used: lesson.used
-        #           }
-        #         }
-        #     }
-        # }
+        cards = MembershipCard.course.joins(:order)
+                    .where(orders: {coach_id: @coach.id, status: Order::STATUS[:pay]})
+                    .where('value > 0')
+        group_cards =cards.group_by { |card| card.member_id }
         render json: Success.new(
-                   course: Lesson.classification_of_student(@coach)
+                   course: group_cards.each { |member_id, group_items|
+                     mx_user_profile = Profile.find_by(user_id: Member.find(member_id).user_id)
+                     {
+                         student: {
+                             mxid: mx_user_profile.mxid,
+                             name: mx_user_profile.name,
+                             avatar: mx_user_profile.avatar.url,
+                         },
+                         course: group_items.map { |item|
+                           {
+                               id: item.id,
+                               name: item.name,
+                               type: item.value,
+                               cover: item.order.order_item.cover,
+                               during: item.order.order_item.cover,
+                               available: item.value,
+                               used: 0
+                           }
+                         }
+                     }
+                   }
                )
       end
     end

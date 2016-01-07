@@ -141,92 +141,67 @@ class Order < ActiveRecord::Base
             Sku.where(course_id: sku.course_id).update_all("orders_count =  orders_count + #{order_item.amount}")
           end
 
-          if sku.course?
-            course = sku.course
-            create_lesson(
-                sku: order_item.sku,
-                user_id: user_id,
-                coach_id: coach_id.blank? ? 0 : coach_id,
-                available: order_item.amount + giveaway.to_i,
-                used: 0,
-                exp: Date.today.next_day(course.exp),
-                contact_name: contact_name, contact_phone: contact_phone
-            )
 
-            if coach_id.present?
-              if @user.present?
-                coach = Coach.find(coach_id)
-                MessageJob.perform_later(sku.seller_id, MESSAGE['订单'] % [user.profile.name, sku.course_name, no])
-                SmsJob.perform_later(coach.mobile, SMS['订单'], [user.profile.name, sku.course_name, no])
-              else
-                coach = Coach.find(coach_id)
-                MessageJob.perform_later(sku.seller_id, MESSAGE['订单'] % [contact_name, sku.course_name, no])
-                SmsJob.perform_later(coach.mobile, SMS['订单'], [contact_name, sku.course_name, no])
-              end
-            end
-          end
-          if sku.card?
-            Order.transaction do
-              member = Member.find_by(user_id: user_id, service_id: sku.service_id)
-              if member.present?
-                #创建会员卡
-                membership_card = MembershipCard.create(
-                    client_id: service.client_id,
-                    service_id: service_id,
-                    order_id: id,
-                    member_id: member.id,
-                    card_type: sku.product.card_type.card_type,
-                    name: sku.product.name,
-                    value: sku.product.card_type.value*order_item.amount + giveaway.to_i,
-                    open: Date.today,
-                    valid_days: sku.product.card_type.valid_days,
-                    delay_days: sku.product.card_type.delay_days
-                )
-                #创建会员卡日志
-                membership_card.logs.create(
-                    action: 'buy',
-                    service_id: service.id,
-                    change_amount: sku.product.card_type.value*order_item.amount + giveaway.to_i,
-                    pay_amount: total,
-                    pay_type: 'mx',
-                    seller: coach.present? ? coach.profile.name : service.profile.name,
-                    operator: '美型',
-                    remark: '美型APP购买'
-                )
-              else
-                #创建会员
-                member = Member.mx.full.create(
-                    client_id: service.client_id,
-                    service_id: service.id,
-                    user_id: user_id,
-                    name: contact_name,
-                    mobile: contact_phone
-                )
-                #创建会员卡
-                membership_card = MembershipCard.create(
-                    client_id: service.client_id,
-                    service_id: service_id,
-                    order_id: id,
-                    member_id: member.id,
-                    card_type: sku.product.card_type.card_type,
-                    name: sku.product.name,
-                    value: sku.product.card_type.value*order_item.amount + giveaway.to_i,
-                    open: Date.today,
-                    valid_days: sku.product.card_type.valid_days,
-                    delay_days: sku.product.card_type.delay_days
-                )
-                #创建会员卡日志
-                membership_card.logs.create(
-                    action: 'buy',
-                    service_id: service.id,
-                    change_amount: sku.product.card_type.value*order_item.amount + giveaway.to_i,
-                    pay_amount: total,
-                    pay_type: 'mx',
-                    seller: coach.present? ? coach.profile.name : service.profile.name,
-                    operator: '美型',
-                    remark: '美型APP购买'
-                )
-              end
+          Order.transaction do
+            member = Member.find_by(user_id: user_id, service_id: sku.service_id)
+            if member.present?
+              #创建会员卡
+              membership_card = MembershipCard.create(
+                  client_id: service.client_id,
+                  service_id: service_id,
+                  order_id: id,
+                  member_id: member.id,
+                  card_type: sku.product.card_type.card_type,
+                  name: sku.product.name,
+                  value: sku.product.card_type.value*order_item.amount + giveaway.to_i,
+                  open: Date.today,
+                  valid_days: sku.product.card_type.valid_days,
+                  delay_days: sku.product.card_type.delay_days
+              )
+              #创建会员卡日志
+              membership_card.logs.create(
+                  action: 'buy',
+                  service_id: service.id,
+                  change_amount: sku.product.card_type.value*order_item.amount + giveaway.to_i,
+                  pay_amount: total,
+                  pay_type: 'mx',
+                  seller: coach.present? ? coach.profile.name : service.profile.name,
+                  operator: '美型',
+                  remark: '美型APP购买'
+              )
+            else
+              #创建会员
+              member = Member.mx.full.create(
+                  client_id: service.client_id,
+                  service_id: service.id,
+                  user_id: user_id,
+                  name: contact_name,
+                  mobile: contact_phone
+              )
+              #创建会员卡
+              membership_card = MembershipCard.create(
+                  client_id: service.client_id,
+                  service_id: service_id,
+                  order_id: id,
+                  member_id: member.id,
+                  card_type: sku.product.card_type.card_type,
+                  name: sku.product.name,
+                  value: sku.product.card_type.value*order_item.amount + giveaway.to_i,
+                  open: Date.today,
+                  valid_days: sku.product.card_type.valid_days,
+                  delay_days: sku.product.card_type.delay_days
+              )
+              #创建会员卡日志
+              membership_card.logs.create(
+                  action: 'buy',
+                  service_id: service.id,
+                  change_amount: sku.product.card_type.value*order_item.amount + giveaway.to_i,
+                  pay_amount: total,
+                  pay_type: 'mx',
+                  seller: coach.present? ? coach.profile.name : service.profile.name,
+                  operator: '美型',
+                  remark: '美型APP购买'
+              )
             end
           end
         when STATUS[:cancel]
