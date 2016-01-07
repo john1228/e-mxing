@@ -112,7 +112,7 @@ class Sku < ActiveRecord::Base
                 type: course_type,
                 image: product.image.map { |image| image.url },
                 description: product.description,
-                special: product.specail,
+                special: product.special,
                 value: product.card_type.value,
                 valid_days: product.card_type.valid_days,
                 delay_days: product.card_type.delay_days
@@ -126,12 +126,9 @@ class Sku < ActiveRecord::Base
                 tags: seller_user.profile.tags
             },
             address: [{
-                          name: address,
                           agency: service.profile.name,
-                          coordinate: {
-                              lng: coordinate.x,
-                              lat: coordinate.y
-                          }
+                          city: service.profile.city,
+                          addrss: (service.profile.area||"") + (service.profile.address||"")
                       }],
             buyers: {
                 count: orders_count,
@@ -173,7 +170,7 @@ class Sku < ActiveRecord::Base
                               }
                           }],
                 intro: product.description,
-                specail: product.special,
+                special: product.special,
                 service: service.profile.service,
                 buyers: {
                     count: orders_count,

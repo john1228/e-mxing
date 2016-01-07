@@ -3,9 +3,9 @@ module Mine
     class HomeController < BaseController
       def index
         if params[:type].eql?('expired')
-          cards = @me.cards.order(id: :desc).find_all { |card| card.valid_end.eql?('已过期') }
+          cards = @me.cards.where.not(card_type: 'course').order(id: :desc).find_all { |card| card.valid_end.eql?('已过期') }
         else
-          cards = @me.cards.order(id: :desc)
+          cards = @me.cards.not(card_type: 'course').order(id: :desc)
         end
 
         render json: Success.new(
@@ -34,7 +34,7 @@ module Mine
 
       def service_card
         service = Service.find_by_mxid(params[:mxid])
-        cards = @me.cards.where(service: service)
+        cards = @me.cards.not(card_type: 'course').where(service: service)
         render json: Success.new(
                    cards: cards.order(id: :desc).map { |card|
                      {
