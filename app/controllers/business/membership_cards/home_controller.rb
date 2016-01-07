@@ -35,6 +35,7 @@ module Business
                        intro: course.product.description,
                        special: course.product.special,
                        venue: course.service.profile.name,
+                       avatar: course.service.profile.avatar.url,
                        address: course.address,
                        service: course.service.profile.service,
                        store: course.store,

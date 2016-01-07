@@ -1,6 +1,6 @@
 namespace :move_course_to_card do
   task :move => :environment do
-    Sku.course.where('updated_at < ?', Sku.find('SC-000332-000056').updated_at).order(updated_at: :desc).map { |sku_course|
+    Sku.course.where('updated_at < ?', Sku.find('SC-000326-000288').updated_at).order(updated_at: :desc).map { |sku_course|
       puts sku_course.sku
       #创建会员卡类型
       Sku.transaction do
@@ -43,15 +43,14 @@ namespace :move_course_to_card do
           Lesson.where(sku: sku_course.sku).map { |lesson|
             user = lesson.user
             member = Member.find_by(user_id: user.id, service_id: sku_course.service_id)
-            if member.blank?
-              member = Member.create(
-                  client_id: sku_course.service.client_id,
-                  service_id: sku_course.service.id,
-                  user_id: user.id,
-                  name: lesson.contact_name,
-                  mobile: lesson.contact_phone
-              )
-            end
+            member = Member.create(
+                client_id: sku_course.service.client_id,
+                service_id: sku_course.service.id,
+                user_id: user.id,
+                name: lesson.contact_name,
+                mobile: lesson.contact_phone
+            ) if member.blank?
+
             membership_card = MembershipCard.course.new(
                 client_id: sku_course.service.client_id,
                 service_id: sku_course.service.id,

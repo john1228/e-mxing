@@ -59,7 +59,7 @@ module Api
       end
 
       def show
-        sku = Sku.find_by(sku: params[:sku])
+        sku = Sku.find(params[:sku])
         if sku.recommend.blank?&&sku.status.eql?(0)
           render json: Failure.new('您查看到商品已下架')
         else
@@ -79,9 +79,22 @@ module Api
               end
             end
           end
-          render json: Success.new(
-                     course: sku.detail.merge(conerned: concerned||0, limit: limit||sku_limit)
-                 )
+          if sku.course
+            render json: Success.new(
+                       course: sku.detail.merge(conerned: concerned||0, limit: limit||sku_limit)
+                   )
+          else
+            if sku.stored? || sku.measured? || sku.clocked?
+              render json: Success.new(
+                         card: sku.detail.merge(conerned: concerned||0, limit: limit||sku_limit)
+                     )
+            else
+              render json: Success.new(
+                         course: sku.detail.merge(conerned: concerned||0, limit: limit||sku_limit)
+                     )
+            end
+          end
+
         end
       end
 
