@@ -1,6 +1,6 @@
 namespace :move_course_to_card do
   task :move => :environment do
-    Sku.course.where('updated_at < ?', Sku.find('SC-000326-000288').updated_at).order(updated_at: :desc).map { |sku_course|
+    Sku.course.where('updated_at < ?', Sku.find('SC-000517-000023').updated_at).order(updated_at: :desc).map { |sku_course|
       puts sku_course.sku
       #创建会员卡类型
       Sku.transaction do
