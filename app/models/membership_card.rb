@@ -3,6 +3,7 @@ class MembershipCard < ActiveRecord::Base
   enum status: [:to_be_activated, :normal, :disable]
   belongs_to :member
   belongs_to :service
+  belongs_to :order
   has_many :logs, class: MembershipCardLog, dependent: :destroy
 
   class << self

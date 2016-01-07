@@ -16,6 +16,27 @@ module Business
       end
 
       def student
+        orders = Order.Or
+        # {
+        #     student: {
+        #         mxid: profile.mxid,
+        #         name: profile.name,
+        #         avatar: profile.avatar.url
+        #     },
+        #     course: {
+        #         count: lessons.size,
+        #         item: lessons.map { |lesson|
+        #           {
+        #               id: lesson.course.id,
+        #               name: lesson.course.course_name,
+        #               cover: lesson.course.course_cover,
+        #               during: lesson.course.course_during,
+        #               available: lesson.available,
+        #               used: lesson.used
+        #           }
+        #         }
+        #     }
+        # }
         render json: Success.new(
                    course: Lesson.classification_of_student(@coach)
                )
