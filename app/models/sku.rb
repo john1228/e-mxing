@@ -52,7 +52,7 @@ class Sku < ActiveRecord::Base
     if course?
       json_hash = {
           sku: sku,
-          name: course.name,
+          name: course_name,
           cover: course_cover,
           images: course.image.map { |item| {url: item.url} },
           guarantee: course.guarantee,
@@ -108,8 +108,8 @@ class Sku < ActiveRecord::Base
             store: store||-1,
             limit: limit||-1,
             score: score,
-            type: couse_type,
             card_info: {
+                type: course_type,
                 image: product.image.map { |image| image.url },
                 description: product.description,
                 special: product.specail,
