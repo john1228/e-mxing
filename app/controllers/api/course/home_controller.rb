@@ -58,7 +58,78 @@ module Api
         render json: Success.new(course: courses)
       end
 
+
       def show
+        sku = Sku.find(params[:sku])
+        if sku.status.eql?(0)
+          render json: Failure.new('您查看到商品已下架')
+        else
+          user = Rails.cache.fetch(request.headers[:token])
+          concerned = nil
+          limit = nil
+          sku_limit = nil
+          if user.present?
+            concerned = Concerned.find_by(sku: params[:sku], user: user).present? ? 1 : 0
+            sku_limit = sku.limit || -1
+            if sku_limit >0
+              purchased = sku.limit_detect(user.id)
+              if purchased >= sku_limit
+                limit = 0
+              else
+                limit = (sku_limit - purchased)
+              end
+            end
+          end
+          render json: Success.new(product: {
+                                       sku: sku.id,
+                                       name: sku.course_name,
+                                       cover: sku.course_cover,
+                                       market_price: sku.market_price.floor,
+                                       selling_price: sku.selling_price.floor,
+                                       store: sku.store||-1,
+                                       score: sku.score,
+                                       card_info: {
+                                           type: sku.course_type,
+                                           image: sku.product.image.map { |image| image.url },
+                                           description: sku.product.description,
+                                           special: sku.product.special,
+                                           value: sku.product.card_type.value,
+                                           valid_days: sku.product.card_type.valid_days,
+                                           delay_days: sku.product.card_type.delay_days,
+                                           prop: ({
+                                               during: sku.product.prop.during,
+                                               style: sku.product.prop.style,
+                                               proposal: sku.product.prop.proposal
+                                           } rescue {})
+                                       },
+                                       seller: {
+                                           mxid: sku.seller_user.profile.mxid,
+                                           name: sku.seller_user.profile.name,
+                                           avatar: sku.seller_user.profile.avatar.url,
+                                           mobile: sku.seller_user.profile.identity.eql?(1) ? seller_user.mobile : service.profile.mobile,
+                                           identity: sku.seller_user.profile.identity_value,
+                                           tags: sku.seller_user.profile.tags
+                                       },
+                                       address: [{
+                                                     agency: sku.service.profile.name,
+                                                     city: sku.service.profile.city,
+                                                     addrss: (sku.service.profile.area||"") + (sku.service.profile.address||"")
+                                                 }],
+                                       buyers: {
+                                           count: sku.orders_count,
+                                           items: sku.buyers
+                                       },
+                                       comment: {
+                                           count: sku.comments.count,
+                                           items: sku.image_comments.take(5)
+                                       },
+                                       conerned: (concerned||0),
+                                       limit: limit||sku_limit
+                                   })
+        end
+      end
+
+      def show_old
         sku = Sku.find(params[:sku])
         if sku.recommend.blank?&&sku.status.eql?(0)
           render json: Failure.new('您查看到商品已下架')
@@ -79,22 +150,9 @@ module Api
               end
             end
           end
-          if sku.course
-            render json: Success.new(
-                       course: sku.detail.merge(conerned: concerned||0, limit: limit||sku_limit)
-                   )
-          else
-            if sku.stored? || sku.measured? || sku.clocked?
-              render json: Success.new(
-                         card: sku.detail.merge(conerned: concerned||0, limit: limit||sku_limit)
-                     )
-            else
-              render json: Success.new(
-                         course: sku.detail.merge(conerned: concerned||0, limit: limit||sku_limit)
-                     )
-            end
-          end
-
+          render json: Success.new(
+                     course: sku.detail.merge(conerned: concerned||0, limit: limit||sku_limit)
+                 )
         end
       end
 

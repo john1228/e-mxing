@@ -359,7 +359,8 @@ Rails.application.routes.draw do
     end
     namespace :course do
       get '/' => 'home#index'
-      get 'show' => 'home#show'
+      get '/:sku' => 'home#show'
+      get 'show' => 'home#show_old'
       get 'search' => 'home#search'
       post 'coupons' => 'home#coupons'
       put 'coupons' => 'home#confirm_order'
