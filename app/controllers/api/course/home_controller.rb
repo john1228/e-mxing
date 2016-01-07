@@ -106,7 +106,7 @@ module Api
                                            mxid: sku.seller_user.profile.mxid,
                                            name: sku.seller_user.profile.name,
                                            avatar: sku.seller_user.profile.avatar.url,
-                                           mobile: sku.seller_user.profile.identity.eql?(1) ? seller_user.mobile : service.profile.mobile,
+                                           mobile: sku.seller_user.profile.identity.eql?(1) ? sku.seller_user.mobile : sku.service.profile.mobile,
                                            identity: sku.seller_user.profile.identity_value,
                                            tags: sku.seller_user.profile.tags
                                        },
