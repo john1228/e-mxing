@@ -32,6 +32,18 @@ module Business
                          }
                        }
                    )
+          when 'general'
+            render json: Success.new(
+                       course: Sku.course.online.where(seller_id: @coach.service_id).order(id: :desc).page(params[:page]||1).map { |sku|
+                         {
+                             id: sku.id,
+                             name: sku.course_name,
+                             cover: sku.course_cover,
+                             during: sku.course_during,
+                             price: sku.selling_price.to_i
+                         }
+                       }
+                   )
           else
             render json: Failure.new('无效的请求')
         end
