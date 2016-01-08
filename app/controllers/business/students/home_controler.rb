@@ -15,9 +15,12 @@ module Business
                        }
                    )
           when 'mxing'
+            members = MembershipCard.joins(:order)
+                          .where(orders: {coach_id: @coach.id, status: Order::STATUS[:pay]})
+                          .where('supply_value > 0').pluck(:member_id)
             render json: Success.new(
-                       student: @coach.lessons.includes(:user).select('DISTINCT(user_id) user_id').where('available > used').map { |lesson|
-                         user_profile = Profile.find_by(user_id: lesson.user_id)
+                       student: Member.where(id: members).order(id: :desc).map { |member|
+                         user_profile = member.user.profile
                          {
                              mxid: user_profile.mxid,
                              name: HarmoniousDictionary.clean(user_profile.name||''),
@@ -28,14 +31,13 @@ module Business
                              signature: HarmoniousDictionary.clean(user_profile.signature),
                              identity: Profile.identities[user_profile.identity],
                              tags: user_profile.tags,
-                             contact: Lesson.where('available > used and user_id=? and coach_id=?', lesson.user_id, @coach.id).map { |user_lesson|
+                             contact: member.cards.where('supply_value > 0').map { |card|
                                {
-                                   name: user_lesson.order.contact_name,
-                                   mobile: user_lesson.order.contact_phone,
-                                   course_name: user_lesson.course.name
+                                   name: card.order.contact_name,
+                                   mobile: card.order.contact_phone,
+                                   course_name: card.order.order_item.name
                                }
                              }
-
                          }
                        }
                    )

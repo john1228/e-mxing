@@ -1,6 +1,19 @@
 module Business
   class LessonsController < BaseController
     def index
+
+        sku_course = Sku.find_by(sku: sku)
+        {
+            id: created_at.strftime('%Y%m%d')+'%05d' % id,
+            course: sku_course.course_name,
+            student: user.profile.name,
+            seller: sku_course.seller,
+            amount: amount,
+            status: status,
+            created: created_at.localtime.strftime('%Y-%m-%d %H:%M')
+        }
+
+
       render json: Success.new(
                  lessons: @coach.appointments.order(created_at: :desc).page(params[:page]||1)
              )
