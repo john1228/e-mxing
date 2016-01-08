@@ -35,7 +35,7 @@ module Mine
 
       def service_card
         service = Service.find_by_mxid(params[:mxid])
-        cards = @me.cards.where.not(card_type: 'course').where(service: service)
+        cards = @me.cards.where(service: service)
         render json: Success.new(
                    cards: cards.order(id: :desc).map { |card|
                      {
