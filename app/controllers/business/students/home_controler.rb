@@ -35,7 +35,7 @@ module Business
                                {
                                    name: card.order.contact_name,
                                    mobile: card.order.contact_phone,
-                                   course_name: card.order.order_item.name
+                                   course_name: card.name
                                }
                              }
                          }
