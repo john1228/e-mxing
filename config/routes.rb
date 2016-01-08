@@ -207,10 +207,10 @@ Rails.application.routes.draw do
     put '/' => 'home#update'
     #地址管理
     get 'addresses' => 'addresses#index'
-    # get 'lessons' => 'lessons#index'
-    # get 'lessons/records' => 'lessons#records'
-    # get 'lessons/show' => 'lessons#show'
-    # post 'lessons' => 'lessons#update'
+    get 'lessons' => 'lessons#index'
+    get 'lessons/records' => 'lessons#records'
+    get 'lessons/show' => 'lessons#show'
+    post 'lessons' => 'lessons#update'
     #预约
     get 'appointments' => 'appointments#index'
     get 'appointments/show' => 'appointments#show'
