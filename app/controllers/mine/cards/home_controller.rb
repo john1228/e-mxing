@@ -3,9 +3,9 @@ module Mine
     class HomeController < BaseController
       def index
         if params[:type].eql?('expired')
-          cards = @me.cards.where.not(card_type: 'course').order(id: :desc).find_all { |card| card.valid_end.eql?('已过期') }
+          cards = @me.cards.where.not(card_type: MembershipCard.card_types['course']).order(id: :desc).find_all { |card| card.valid_end.eql?('已过期') }
         else
-          cards = @me.cards.where.not(card_type: 'course').order(id: :desc)
+          cards = @me.cards.where.not(card_type: MembershipCard.card_types['course']).order(id: :desc)
         end
 
         render json: Success.new(
