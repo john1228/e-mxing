@@ -29,16 +29,19 @@ module Business
                              name: mx_user_profile.name,
                              avatar: mx_user_profile.avatar.url,
                          },
-                         course: group_items.map { |item|
-                           {
-                               id: item.id,
-                               name: item.name,
-                               type: item.value,
-                               cover: item.order.order_item.cover,
-                               during: item.order.order_item.during,
-                               available: item.value,
-                               used: 0
-                           }
+                         course: {
+                             count: group_items.size,
+                             item: group_items.map { |item|
+                               {
+                                   id: item.id,
+                                   name: item.name,
+                                   type: item.value,
+                                   cover: item.order.order_item.cover,
+                                   during: item.order.order_item.during,
+                                   available: item.value,
+                                   used: 0
+                               }
+                             }
                          }
                      }
                    }
