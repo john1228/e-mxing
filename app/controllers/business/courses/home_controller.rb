@@ -2,8 +2,13 @@ module Business
   module Courses
     class HomeController < BaseController
       def index
+        if params[:type].eql?('general')
+          sku_list = Sku.course.online.where(seller_id: @coach.service_id).order(id: :desc).page(params[:page]||1)
+        else
+          sku_list = Sku.course.online.where(seller_id: @coach.id).order(id: :desc).page(params[:page]||1)
+        end
         render json: Success.new(
-                   course: Sku.course.online.where(seller_id: @coach.id).order(id: :desc).page(params[:page]||1).map { |sku|
+                   course: sku_list.map { |sku|
                      {
                          id: sku.id,
                          name: sku.course_name,
@@ -17,7 +22,7 @@ module Business
       end
 
       def show
-        course = Sku.course.online.find(params[:id])
+        course = Sku.online.find(params[:id])
         render json: Success.new(
                    course: {
                        id: course.id,

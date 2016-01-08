@@ -150,6 +150,7 @@ Rails.application.routes.draw do
 
     namespace :courses do
       get '/' => 'home#index'
+      get 'list/:type' => 'home#index'
       get '/:id' => 'home#show'
       post '/' => 'home#create'
       put '/' => 'home#update'
