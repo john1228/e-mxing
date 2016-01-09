@@ -4,12 +4,12 @@ module Api
       city = URI.decode(request.headers[:city]) rescue '上海'
       render json: Success.new(
                  tag: Category.order(updated_at: :desc).all.map { |category|
-                   online_courses = Sku.online.course.where(course_type: category.item).where('address LIKE ?', '%'+ city + '%').order(selling_price: :asc)
+                   online_courses = category.products
                    {
                        tag: category.name,
                        bg: category.background.url,
                        amount: online_courses.count,
-                       lowest: (online_courses.first.selling_price rescue 0)
+                       lowest: online_courses.present? ? online_courses.first.selling_price.floor : 0
                    }
                  }
              )
