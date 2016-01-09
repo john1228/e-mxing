@@ -1,13 +1,8 @@
 module Business
   class HomeController < BaseController
     def index
-      render json: Success.new(
-                 balance: @coach.wallet.balance.to_f.round(2),
-                 order: @coach.orders.pay.count,
-                 appoint: Appointment.where(coach_id: @coach.id).count,
-                 comment: Comment.where(sku: (Sku.where(seller_id: @coach.id).pluck(:sku)).uniq).count,
-                 tool: TOOL
-             )
+      #签到记录
+      render json: Success.new(home_info)
     end
 
     def password
@@ -46,13 +41,25 @@ module Business
                                      clock: @coach.clocks.count
                                  })
       else
-        render json: Failure.new('修改失败:'+profile.errors.messages.values.join(';'))
+        render json: Failure.new('修改失败:'+ profile.errors.messages.values.join(';'))
       end
     end
 
     private
     def update_params
       params.permit(:name, :avatar, :gender, :birthday, :signature, :business)
+    end
+
+    def base_info
+      coach_orders = @coach.orders.pay
+      selling_sku = Sku.where(seller_id: @coach.id).pluck(:sku).uniq
+      {
+          balance: @coach.wallet.balance.to_f.round(2),
+          order: coach_orders.count,
+          appoint: MembershipCardLog.joins(:membership_card).checkin.confirm.where(membership_cards: {order_id: coach_orders.pluck(:id)}),
+          comment: Comment.where(sku: selling_sku).count,
+          tool: TOOL
+      }
     end
   end
 end

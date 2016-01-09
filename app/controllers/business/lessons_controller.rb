@@ -23,6 +23,7 @@ module Business
     end
 
     def update
+
       begin
         lesson = Lesson.where('? = ANY (code)', params[:code].upcase).take
         if lesson.present?

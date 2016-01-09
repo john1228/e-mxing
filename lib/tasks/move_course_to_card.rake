@@ -74,6 +74,8 @@ namespace :move_course_to_card do
                     change_amount: appointment.amount,
                     operator: (appointment.coach.profile.name rescue ''),
                     remark: "消课码-#{appointment.code}",
+                    action: MembershipCardLog.actions['checkin'],
+                    status: MembershipCardLog.statuses['confirm']
                 )
               }
             end
