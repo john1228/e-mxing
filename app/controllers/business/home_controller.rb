@@ -1,7 +1,6 @@
 module Business
   class HomeController < BaseController
     def index
-      #签到记录
       render json: Success.new(home_info)
     end
 

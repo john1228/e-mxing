@@ -4,7 +4,7 @@ module Business
       render json: Success.new(
                  lessons: MembershipCardLog.checkin.confirm.order(updated_at: :desc).page(params[:page]||1).map { |log|
                    {
-                       id: log.created_at.localtime.strftime('%Y%m%d')+'%05d' % id,
+                       id: log.created_at.localtime.strftime('%Y%m%d')+'%05d' % log.id,
                        course: log.membership_card.name,
                        student: log.membership_card.member.name,
                        seller: @coach.profile.name,
