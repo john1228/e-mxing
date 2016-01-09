@@ -50,29 +50,45 @@ module Api
         city = URI.decode(request.headers[:city]) rescue '上海'
         category = Category.find_by(name: params[:cat])
         keyword = params[:keyword]
-        courses = Sku.online.course.select("skus.*, st_distance(skus.coordinate, 'POINT(#{params[:lng]||0} #{params[:lat]||0})') as distance").
-            where('address LIKE ?', '%'+ city + '%').
-            where(course_type: category.item).
-            where('address LIKE ? or course_name LIKE ?', "%#{keyword}%", "%#{keyword}%")
+        products = Product.includes(:sku, :card_type).select("*, st_distance(skus.coordinate, 'POINT(#{params[:lng]||0} #{params[:lat]||0})') as distance")
+                       .where(skus: {status: 1}, membership_card_types: {card_type: 3, value: category.item})
+                       .where('sku.address Like ?', '%'+ city + '%')
+                       .where('sku.address LIKE ? or course_name LIKE ?', "%#{keyword}%", "%#{keyword}%")
         case params[:sort]
           when 'smart'
-            courses = courses.order(id: :desc).page(params[:page]||1)
+            courses = products.order(id: :desc).page(params[:page]||1)
           when 'fresh-asc'
-            courses = courses.order(updated_at: :desc).order(id: :desc).page(params[:page]||1)
+            courses = products.order(updated_at: :desc).order(id: :desc).page(params[:page]||1)
           when 'distance-asc'
-            courses = courses.order('distance asc').order(id: :desc).page(params[:page]||1)
+            courses = products.order('distance asc').order(id: :desc).page(params[:page]||1)
           when 'sale-desc'
-            courses = courses.order(orders_count: :desc).order(id: :desc).page(params[:page]||1)
+            courses = products.order(orders_count: :desc).order(id: :desc).page(params[:page]||1)
           when 'evaluate-asc'
-            courses = courses.order(orders_count: :desc).order(id: :desc).page(params[:page]||1)
+            courses = products.order(orders_count: :desc).order(id: :desc).page(params[:page]||1)
           when 'price-asc'
-            courses = courses.order(selling_price: :asc).order(id: :desc).page(params[:page]||1)
+            courses = products.order(selling_price: :asc).order(id: :desc).page(params[:page]||1)
           when 'price-desc'
-            courses = courses.order(selling_price: :desc).order(id: :desc).page(params[:page]||1)
+            courses = products.order(selling_price: :desc).order(id: :desc).page(params[:page]||1)
           else
             courses = []
         end
-        render json: Success.new(course: courses)
+        render json: Success.new(course: courses.map { |course|
+                                   {
+                                       sku: course.sku.id,
+                                       name: course.name,
+                                       seller: course.sku.seller,
+                                       cover: course.sku.cover,
+                                       selling: course.sku.selling_price.floor,
+                                       guarantee: 0,
+                                       address: course.sku.address,
+                                       store: course.sku.store||-1,
+                                       distance: course.attributes['distance']||0,
+                                       coordinate: {
+                                           lng: course.sku.coordinate.x,
+                                           lat: course.sku.coordinate.y
+                                       }
+                                   }
+                                 })
       end
 
 
