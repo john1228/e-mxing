@@ -16,7 +16,7 @@ module Mine
                  }
         when 'complete'
           render json: Success.new(classes: MembershipCardLog.checkin.confirm.includes(:membership_card)
-                                                .where(membership_cards: {member: @me.members})
+                                                .where(membership_cards: {member_id: @me.members.pluck(:id)})
                                                 .order(updated_at: :desc).page(params[:page]||1).map { |log|
                                      seller_user = User.find_by(id: log.membership_card.order.seller_id)
                                      {
