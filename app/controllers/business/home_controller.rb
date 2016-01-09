@@ -50,7 +50,7 @@ module Business
       params.permit(:name, :avatar, :gender, :birthday, :signature, :business)
     end
 
-    def base_info
+    def home_info
       coach_orders = @coach.orders.pay
       selling_sku = Sku.where(seller_id: @coach.id).pluck(:sku).uniq
       {
