@@ -9,7 +9,7 @@ class Order < ActiveRecord::Base
   belongs_to :coach
   has_one :order_item, dependent: :destroy
   has_one :lesson, dependent: :destroy
-  belongs_to :seller, class: user
+  belongs_to :seller, class: User
   attr_accessor :custom_pay_amount
 
   STATUS = {delete: -1, cancel: 0, unpaid: 1, pay: 2, complete: 4}
