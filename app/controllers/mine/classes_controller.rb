@@ -38,7 +38,50 @@ module Mine
     def show
       case params[:type]
         when 'incomplete'
-          render json: Success.new(class: @me.lessons.find_by(id: params[:id]).detail)
+          def detail
+            sku_info = Sku.find_by(sku: sku)
+
+            json_hash = {
+                id: id,
+                course: sku_info.course.name,
+                seller: sku_info.seller,
+                seller_type: sku_info.seller_user.profile.identity,
+                available: available,
+                used: appointments.pluck(:code),
+                during: sku_info.course_during,
+                exp: exp,
+                class_time: '',
+                address: sku_info.related_sellers,
+                qr_code: code
+            }
+            if sku_info.course.has_attribute?(:limit_start)&&sku_info.course.limit_start.present?
+              json_hash = json_hash.merge(
+                  class_time:
+                      {
+                          start: sku_info.course.limit_start.strftime('%Y-%m-%d %H:%M'),
+                          end: sku_info.course.limit_end.strftime('%Y-%m-%d %H:%M')
+                      }
+              )
+            else
+              json_hash = json_hash.merge(class_time: {start: '', end: ''})
+            end
+            json_hash
+          end
+
+          membership_card = MembershipCard.find_by(id: params[:id])
+          render json: Success.new(class: {
+                                       id: membership_card.id,
+                                       course: membership_card.name,
+                                       seller: membership_card.order.seller,
+                                       seller_type: sku_info.seller_user.profile.identity,
+                                       available: available,
+                                       used: appointments.pluck(:code),
+                                       during: sku_info.course_during,
+                                       exp: exp,
+                                       class_time: '',
+                                       address: sku_info.related_sellers,
+                                       qr_code: code
+                                   })
         else
           render json: Failure.new('无效到请求')
       end
