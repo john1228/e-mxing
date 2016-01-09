@@ -3,7 +3,7 @@ module Mine
     def index
       case params[:type]
         when 'incomplete'
-          render json: MembershipCard.course.where(member: Member.where(user: @me)).where('supply_value > 0').order(id: :desc).params(params[:page]||1).map { |membership_card|
+          render json: MembershipCard.course.where(member: Member.where(user: @me)).where('supply_value > 0').order(id: :desc).page(params[:page]||1).map { |membership_card|
                    seller_user = User.find_by(id: membership_card.order.seller_id)
                    {
                        id: membership_card.id,
