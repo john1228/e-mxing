@@ -2,7 +2,7 @@ module Business
   class LessonsController < BaseController
     def index
       render json: Success.new(
-                 lessons: MembershipCardLog.checkin.confirm.order(updated_at: :desc).page(params[:page]||1).map { |log|
+                 lessons: MembershipCardLog.joins(:membership_card).checkin.confirm.where(membership_cards: {order_id: coach_orders.pluck(:id)}).order(updated_at: :desc).page(params[:page]||1).map { |log|
                    {
                        id: log.created_at.localtime.strftime('%Y%m%d')+'%05d' % log.id,
                        course: log.membership_card.name,
