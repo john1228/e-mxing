@@ -52,8 +52,8 @@ module Api
         keyword = params[:keyword]
         products = Product.includes(:sku, :card_type).select("*, st_distance(skus.coordinate, 'POINT(#{params[:lng]||0} #{params[:lat]||0})') as distance")
                        .where(skus: {status: 1}, membership_card_types: {card_type: 3, value: category.item})
-                       .where('sku.address Like ?', '%'+ city + '%')
-                       .where('sku.address LIKE ? or course_name LIKE ?', "%#{keyword}%", "%#{keyword}%")
+                       .where('skus.address Like ?', '%'+ city + '%')
+                       .where('skus.address LIKE ? or course_name LIKE ?', "%#{keyword}%", "%#{keyword}%")
         case params[:sort]
           when 'smart'
             courses = products.order(id: :desc).page(params[:page]||1)
