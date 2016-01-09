@@ -9,7 +9,7 @@ module Api
                        tag: category.name,
                        bg: category.background.url,
                        amount: online_courses.count,
-                       lowest: online_courses.present? ? online_courses.first.selling_price.floor : 0
+                       lowest: online_courses.present? ? online_courses.first.sku.selling_price.floor : 0
                    }
                  }
              )
