@@ -7,7 +7,9 @@ module Business
           render json: Failure.new('您查看到用户不存在')
         else
           render json: Success.new(
-                     courses: MembershipCard.includes(:order).where(orders: {coach_id: @coach.id}).where('supply_value > 0').map { |membership_card|
+                     courses: MembershipCard.includes(:order)
+                                  .where(orders: {coach_id: @coach.id}, member_id: user.members.pluck(:id))
+                                  .where('supply_value > 0').map { |membership_card|
                        {
                            id: membership_card.id,
                            course: membership_card.name,
