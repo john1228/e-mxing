@@ -3,7 +3,7 @@ module Mine
     def index
       case params[:type]
         when 'incomplete'
-          render json: MembershipCard.course.where(member: Member.where(user: @me)).where('supply_value > 0').order(id: :desc).page(params[:page]||1).map { |membership_card|
+          render json: MembershipCard.course.where(member: @me.members).where('supply_value > 0').order(id: :desc).page(params[:page]||1).map { |membership_card|
                    seller_user = User.find_by(id: membership_card.order.seller_id)
                    {
                        id: membership_card.id,
@@ -11,11 +11,25 @@ module Mine
                        student: @me.profile.name,
                        seller: seller_user.profile.name,
                        available: membership_card.supply_value,
-                       used: membership_card.logs.checkin.pluck(:option_code)
+                       used: []
                    }
                  }
         when 'complete'
-          render json: Success.new(classes: @me.appointments.page(params[:page]||1))
+          render json: Success.new(classes: MembershipCardLog.checkin.confirm.includes(:membership_card)
+                                                .where(membership_cards: {member: @me.members})
+                                                .order(updated_at: :desc).page(params[:page]||1).map { |log|
+                                     seller_user = User.find_by(id: log.membership_card.order.seller_id)
+                                     {
+                                         id: log.created_at.strftime('%Y%m%d')+'%05d' % log.id,
+                                         course: log.membership_card.name,
+                                         seller: seller_user.profile.name,
+                                         amount: log.change_amount,
+                                         status: 1,
+                                         created: log.updated_at.localtime.strftime('%Y-%m-%d %H:%M')
+                                     }
+
+                                   }
+                 )
         else
           render Success.new(classes: [])
       end
