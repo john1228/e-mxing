@@ -38,49 +38,28 @@ module Mine
     def show
       case params[:type]
         when 'incomplete'
-          def detail
-            sku_info = Sku.find_by(sku: sku)
-
-            json_hash = {
-                id: id,
-                course: sku_info.course.name,
-                seller: sku_info.seller,
-                seller_type: sku_info.seller_user.profile.identity,
-                available: available,
-                used: appointments.pluck(:code),
-                during: sku_info.course_during,
-                exp: exp,
-                class_time: '',
-                address: sku_info.related_sellers,
-                qr_code: code
-            }
-            if sku_info.course.has_attribute?(:limit_start)&&sku_info.course.limit_start.present?
-              json_hash = json_hash.merge(
-                  class_time:
-                      {
-                          start: sku_info.course.limit_start.strftime('%Y-%m-%d %H:%M'),
-                          end: sku_info.course.limit_end.strftime('%Y-%m-%d %H:%M')
-                      }
-              )
-            else
-              json_hash = json_hash.merge(class_time: {start: '', end: ''})
-            end
-            json_hash
-          end
-
           membership_card = MembershipCard.find_by(id: params[:id])
+          seller = membership_card.order.seller
           render json: Success.new(class: {
                                        id: membership_card.id,
                                        course: membership_card.name,
-                                       seller: membership_card.order.seller,
-                                       seller_type: sku_info.seller_user.profile.identity,
-                                       available: available,
-                                       used: appointments.pluck(:code),
-                                       during: sku_info.course_during,
-                                       exp: exp,
+                                       seller: seller.profile.name,
+                                       seller_type: seller.profile.identity,
+                                       available: membership_card.supply_value,
+                                       used: [],
+                                       during: membership_card.order.order_item.during,
+                                       exp: delay_days,
                                        class_time: '',
-                                       address: sku_info.related_sellers,
-                                       qr_code: code
+                                       address: [{
+                                                     seller: seller.profile.name,
+                                                     address: membership_card.order.order_item.course.address,
+                                                     tel: membership_card.order.order_item.course.service.profile.mobile,
+                                                     coordinate: {
+                                                         lng: membership_card.order.order_item.course.coordinate.x,
+                                                         lat: membership_card.order.order_item.course.coordinate.y
+                                                     }
+                                                 }],
+                                       qr_code: ["#{Time.now.to_i} + #{'%05d'% +membership_card.id} + #{%w'0 1 2 3 4 5 6 7 8 9'.sample(2).join}"]
                                    })
         else
           render json: Failure.new('无效到请求')
