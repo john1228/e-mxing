@@ -48,7 +48,7 @@ module Mine
                                        available: membership_card.supply_value,
                                        used: [],
                                        during: membership_card.order.order_item.during,
-                                       exp: delay_days,
+                                       exp: membership_card.delay_days,
                                        class_time: '',
                                        address: [{
                                                      seller: seller.profile.name,
