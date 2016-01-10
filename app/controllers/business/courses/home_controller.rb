@@ -33,7 +33,7 @@ module Business
                        score: course.score,
                        type: course.product.card_type.value,
                        style: course.product.prop.style,
-                       exp: course.product.card_type.delay_days,
+                       exp: course.product.card_type.valid_days,
                        during: course.product.prop.during,
                        proposal: course.product.prop.proposal,
                        intro: course.product.description,
