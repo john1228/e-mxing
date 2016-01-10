@@ -3,17 +3,17 @@ module Mine
     def index
       case params[:type]
         when 'incomplete'
-          render json: MembershipCard.course.where(member: @me.members).where('supply_value > 0').order(id: :desc).page(params[:page]||1).map { |membership_card|
-                   seller_user = User.find_by(id: membership_card.order.seller_id)
-                   {
-                       id: membership_card.id,
-                       course: membership_card.order.order_item.name,
-                       student: @me.profile.name,
-                       seller: seller_user.profile.name,
-                       available: membership_card.supply_value,
-                       used: []
-                   }
-                 }
+          render json: Success.new(classes: MembershipCard.course.where(member: @me.members).where('supply_value > 0').order(id: :desc).page(params[:page]||1).map { |membership_card|
+                                     seller_user = User.find_by(id: membership_card.order.seller_id)
+                                     {
+                                         id: membership_card.id,
+                                         course: membership_card.order.order_item.name,
+                                         student: @me.profile.name,
+                                         seller: seller_user.profile.name,
+                                         available: membership_card.supply_value,
+                                         used: []
+                                     }
+                                   })
         when 'complete'
           render json: Success.new(classes: MembershipCardLog.checkin.confirm.includes(:membership_card)
                                                 .where(membership_cards: {member_id: @me.members.pluck(:id)})
