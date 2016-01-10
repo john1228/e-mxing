@@ -14,14 +14,11 @@ class MembershipCard < ActiveRecord::Base
     end
 
     def general_class_code(membership_card)
-      class_code_string = "#{Time.now.to_i}#{'%05d'% +membership_card.id}#{%w'0 1 2 3 4 5 6 7 8 9'.sample(2).join}"
-      deflate_code = class_code_string.to_i >> 16
-      ["#{deflate_code}"]
+      "L#{'%05d'% +membership_card.id}#{%w'0 1 2 3 4 5 6 7 8 9'.sample(3).join}"
     end
 
     def find_by_class_code(code)
-      class_code = (code.to_i << 16).to_s
-      membership_card_id = class_code[Time.now.to_i.to_s.length, class_code.length-2-Time.now.to_i.to_s.length]
+      membership_card_id = code[1, class_code.length-4]
       MembershipCard.find_by(id: membership_card_id)
     end
 
