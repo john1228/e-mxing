@@ -49,7 +49,7 @@ module Mine
                                        used: [],
                                        during: membership_card.order.order_item.during,
                                        exp: membership_card.delay_days,
-                                       class_time: '',
+                                       class_time: {},
                                        address: [{
                                                      seller: seller.profile.name,
                                                      address: membership_card.order.order_item.course.address,
