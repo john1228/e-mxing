@@ -14,7 +14,7 @@ class MembershipCard < ActiveRecord::Base
     end
 
     def general_class_code(membership_card)
-      "L#{'%05d'% +membership_card.id}#{%w'0 1 2 3 4 5 6 7 8 9'.sample(3).join}"
+      ["L#{'%05d'% +membership_card.id}#{%w'0 1 2 3 4 5 6 7 8 9'.sample(3).join}"]
     end
 
     def find_by_class_code(code)
