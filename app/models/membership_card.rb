@@ -54,7 +54,7 @@ class MembershipCard < ActiveRecord::Base
       #最晚开卡日
       last_delay_date = created_date.next_day(delay_days)
       #最晚的有效期
-      last_valid_date = last_delay_date.next_date(valid_days) rescue nil
+      last_valid_date = last_delay_date.next_day(valid_days) rescue nil
       if last_delay_date >= Date.today
         update(open: Date.today, status: 'normal')
         logs.checkin.new.save

@@ -34,14 +34,14 @@ module Business
       if membership_card.blank?
         render json: Failure.new('无效的消课码')
       else
-        checkin_log = membership_card.logs.checkin.confirm.new(
+        checkin_log = membership_card.logs.checkin.pending.create(
             membership_card_id: membership_card.id,
             change_amount: 1,
             service_id: @coach.service.id,
             remark: '私教消课-消课码-'+ params[:code],
             operator: @coach.profile.name
         )
-        if checkin_log.save
+        if checkin_log.confirm!
           render json: Success.new
         else
           render json: Failure.new('签到失败:' + checkin_log.errors.messages.values.join(';'))
