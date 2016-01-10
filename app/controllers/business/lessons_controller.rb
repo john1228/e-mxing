@@ -18,49 +18,34 @@ module Business
 
 
     def show
-      lesson = Lesson.where('? = ANY (code)', params[:code]).take
-      render json: Success.new(lesson: lesson)
+      membership_card = MembershipCard.find_by_class_code(params[:code])
+      render json: Success.new(lesson: {
+                                   id: membership_card.id,
+                                   course: membership_card.name,
+                                   student: membership_card.member.user.profile.name,
+                                   seller: @coach.profile.name,
+                                   available: membership_card.supply_value,
+                                   used: []
+                               })
     end
 
     def update
-      begin
-        membership_card_id = params[:code].index(Time.now.to_i.to_s.length, params[:code].length-2-Time.now.to_i.to_s.length)
-        lesson = Lesson.where('? = ANY (code)', params[:code].upcase).take
-        if lesson.present?
-          sku = Sku.find_by(sku: lesson.sku)
-          if sku.seller_id.eql?(@coach.id)
-            appointment = @coach.appointments.new(
-                lesson_id: lesson.id, user_id: lesson.user_id,
-                sku: lesson.sku, code: params[:code], amount: 1,
-                status: Appointment::STATUS[:confirm]
-            )
-            if appointment.save
-              render json: Success.new
-            else
-              render json: Failure.new('消课失败')
-            end
-          else
-            service = Service.find_by(id: sku.seller_id)
-            if service.present? && service.coaches.include?(@coach)
-              appointment = @coach.appointments.new(
-                  lesson_id: lesson.id, user_id: lesson.user_id,
-                  sku: lesson.sku, code: params[:code], amount: 1,
-                  status: Appointment::STATUS[:confirm]
-              )
-              if appointment.save
-                render json: Success.new
-              else
-                render json: Failure.new('消课失败')
-              end
-            else
-              render json: Failure.new('您没有权限消除该课时')
-            end
-          end
+      membership_card = MembershipCard.find_by_class_code(params[:code])
+      if membership_card.blank?
+        render json: Failure.new('无效的消课码')
+      else
+        checkin_log = membership_card.logs.checkin.confirm.new(
+            membership_card_id: membership_card.id,
+            change_amount: 1,
+            service_id: @coach.service.id,
+            remark: '私教消课-消课码-'+ params[:code],
+            operator: @coach.profile.name
+        )
+        if checkin_log.save
+          render json: Success.new
         else
-          render json: Failure.new('无效到课程码')
+          render json: Failure.new('签到失败:' + checkin_log.errors.messages.values.join(';'))
         end
-      rescue Exception => exp
-        render json: Failure.new('消课失败')
       end
     end
   end
