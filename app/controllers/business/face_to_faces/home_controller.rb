@@ -19,7 +19,7 @@ module Business
           when 'membership_cards'
             render json: Success.new(
                        card: Sku.online.where(seller_id: @coach.service.id)
-                                 .where.not(card_type: Sku.course_types['course'])
+                                 .where.not(course_type: Sku.course_types['course'])
                                  .order(id: :desc).page(params[:page]||1).map { |sku|
                          {
                              id: sku.id,
