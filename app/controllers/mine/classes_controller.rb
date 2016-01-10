@@ -59,7 +59,7 @@ module Mine
                                                          lat: membership_card.order.order_item.course.coordinate.y
                                                      }
                                                  }],
-                                       qr_code: ["#{Time.now.to_i} + #{'%05d'% +membership_card.id} + #{%w'0 1 2 3 4 5 6 7 8 9'.sample(2).join}"]
+                                       qr_code: ["#{Time.now.to_i}#{'%05d'% +membership_card.id}#{%w'0 1 2 3 4 5 6 7 8 9'.sample(2).join}"]
                                    })
         else
           render json: Failure.new('无效到请求')
