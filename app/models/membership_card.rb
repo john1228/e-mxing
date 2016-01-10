@@ -20,7 +20,7 @@ class MembershipCard < ActiveRecord::Base
     end
 
     def find_by_class_code(code)
-      class_code = (code << 32).to_s
+      class_code = (code.to_i << 32).to_s
       membership_card_id = class_code.index(Time.now.to_i.to_s.length, class_code.length-2-Time.now.to_i.to_s.length)
       find_by(id: membership_card_id)
     end
