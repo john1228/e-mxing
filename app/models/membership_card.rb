@@ -18,7 +18,7 @@ class MembershipCard < ActiveRecord::Base
     end
 
     def find_by_class_code(code)
-      membership_card_id = code[1, class_code.length-4]
+      membership_card_id = code[1, code.length-4]
       MembershipCard.find_by(id: membership_card_id)
     end
 
