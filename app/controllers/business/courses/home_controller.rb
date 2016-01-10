@@ -27,22 +27,22 @@ module Business
                    course: {
                        id: course.id,
                        name: course.course_name,
-                       image: course.course.image.map { |image| image.url },
-                       price: course.selling_price.to_i,
-                       guarantee: course.course_guarantee,
+                       image: course.product.image.map { |image| image.url },
+                       price: course.selling_price.floor,
+                       guarantee: 0,
                        score: course.score,
-                       type: course.course_type,
-                       style: course.course.style,
-                       exp: course.course.exp,
-                       during: course.course_during,
-                       proposal: course.course.proposal,
-                       intro: course.course.intro,
-                       special: course.course.special,
-                       venue: course.service.profile.name,
+                       type: course.product.card_type.value,
+                       style: course.product.prop.style,
+                       exp: course.product.card_type.delay_days,
+                       during: course.product.prop.during,
+                       proposal: course.product.prop.proposal,
+                       intro: course.product.description,
+                       special: course.product.special,
+                       venue: @coach.service.profile.name,
                        purchased: course.orders_count,
                        concerns: course.concerns_count,
                        address: course.address,
-                       service: course.service.profile.service
+                       service: @coach.service.profile.service
                    }
                )
       end

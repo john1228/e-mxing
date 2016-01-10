@@ -23,8 +23,8 @@ module Business
     end
 
     def update
-
       begin
+        membership_card_id = params[:code].index(Time.now.to_i.to_s.length, params[:code].length-2-Time.now.to_i.to_s.length)
         lesson = Lesson.where('? = ANY (code)', params[:code].upcase).take
         if lesson.present?
           sku = Sku.find_by(sku: lesson.sku)
