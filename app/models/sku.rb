@@ -12,8 +12,6 @@ class Sku < ActiveRecord::Base
   belongs_to :product, class: Product, foreign_key: :course_id
   enum course_type: [:stored, :measured, :clocked, :course]
   enum status: [:offline, :online]
-
-  before_save :offline
   before_create :injection
 
   def name
@@ -98,6 +96,7 @@ class Sku < ActiveRecord::Base
     Sku.where('sku LIKE ? and course_id=?', sku[0, 2] + '%', course_id).map { |sku|
       seller_user = sku.seller_user
       phone = /^((\d{11})|^((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$)$/
+      tel = ''
       if phone.match(seller_user.mobile).blank?
         tel = sku.service.profile.mobile if phone.match(sku.service.profile.mobile).present?
       else
