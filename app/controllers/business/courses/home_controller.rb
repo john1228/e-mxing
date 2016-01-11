@@ -56,6 +56,7 @@ module Business
             product = membership_card_type.products.build(product_params)
             product.build_prop(prop_params)
             product.save
+            product.sku.online!
             render json: Success.new
           end
         rescue Exception => exp
