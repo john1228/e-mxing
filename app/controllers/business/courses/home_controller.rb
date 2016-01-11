@@ -105,7 +105,7 @@ module Business
         {
             name: params[:name],
             image: upload_images,
-            descritpion: params[:intro],
+            description: params[:intro],
             special: params[:special]
         }
       end
