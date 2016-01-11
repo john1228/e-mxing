@@ -33,7 +33,7 @@ module Business
                              count: group_items.size,
                              item: group_items.map { |item|
                                {
-                                   id: item.id,
+                                   id: item.order.order_item.sku,
                                    name: item.name,
                                    type: item.value,
                                    cover: item.order.order_item.cover,
