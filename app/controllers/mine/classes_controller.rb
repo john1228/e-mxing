@@ -48,7 +48,7 @@ module Mine
                                        available: membership_card.supply_value,
                                        used: [],
                                        during: membership_card.order.order_item.during,
-                                       exp: (open.next_day(membership_card.valid_days) rescue Date.today.next_day(membership_card.valid_days)),
+                                       exp: (membership_card.open.next_day(membership_card.valid_days) rescue Date.today.next_day(membership_card.valid_days)),
                                        class_time: {},
                                        address: [{
                                                      seller: seller.profile.name,
@@ -82,10 +82,6 @@ module Mine
     private
     def comment_params
       params.permit(:content, :score)
-    end
-
-    def build_code
-
     end
   end
 end
