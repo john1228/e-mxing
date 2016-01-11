@@ -25,7 +25,7 @@ class Sku < ActiveRecord::Base
   end
 
   def during
-    course_during
+    product.prop.during
   end
 
   def as_json

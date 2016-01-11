@@ -49,6 +49,8 @@ module Business
 
 
       def create
+        membersh
+
         image = []
         (0..8).each { |index| image << params[index.to_s.to_sym] if params[index.to_s.to_sym].present? }
         course = ServiceCourse.new(new_params.merge(agency: @coach.service.id, coach: @coach.id, status: Course::STATUS[:online], image: image))
