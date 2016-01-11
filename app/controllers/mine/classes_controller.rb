@@ -18,11 +18,11 @@ module Mine
           render json: Success.new(classes: MembershipCardLog.checkin.confirm.includes(:membership_card)
                                                 .where(membership_cards: {member_id: @me.members.pluck(:id)})
                                                 .order(updated_at: :desc).page(params[:page]||1).map { |log|
-                                     seller_user = User.find_by(id: log.membership_card.order.seller_id)
+                                     seller_user = (User.find_by(id: log.membership_card.order.seller_id) rescue nil)
                                      {
                                          id: log.created_at.strftime('%Y%m%d')+'%05d' % log.id,
                                          course: log.membership_card.name,
-                                         seller: (seller_user.profile.name rescue log.membership_card.service.profile.name),
+                                         seller: seller_user.present? ? seller_user.profile.name : log.membership_card.service.profile.name,
                                          amount: log.change_amount,
                                          status: 1,
                                          created: log.updated_at.localtime.strftime('%Y-%m-%d %H:%M')
