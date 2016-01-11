@@ -22,7 +22,7 @@ module Mine
                                      {
                                          id: log.created_at.strftime('%Y%m%d')+'%05d' % log.id,
                                          course: log.membership_card.name,
-                                         seller: seller_user.profile.name,
+                                         seller: (seller_user.profile.name rescue log.membership_card.service.profile.name),
                                          amount: log.change_amount,
                                          status: 1,
                                          created: log.updated_at.localtime.strftime('%Y-%m-%d %H:%M')
@@ -39,7 +39,7 @@ module Mine
       case params[:type]
         when 'incomplete'
           membership_card = MembershipCard.find_by(id: params[:id])
-          seller = membership_card.order.seller
+          seller = membership_card.order.seller rescue membership_card.service.profile.name
           render json: Success.new(class: {
                                        id: membership_card.id,
                                        course: membership_card.name,
