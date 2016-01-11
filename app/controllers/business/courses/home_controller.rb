@@ -49,17 +49,17 @@ module Business
 
 
       def create
-        membership_card_type = MembershipCardType.course.new(card_type_params)
-        if membership_card_type.save
-          product = membership_card_type.products.build(product_params)
-          product.build_prop(prop_params)
-          if product.save
+        begin
+          Product.transaction do
+            membership_card_type = MembershipCardType.course.new(card_type_params)
+            membership_card_type.save
+            product = membership_card_type.products.build(product_params)
+            product.build_prop(prop_params)
+            product.save
             render json: Success.new
-          else
-            render json: Failure.new('创建课程失败:'+product.errors.messages.values.join(';'))
           end
-        else
-          render json: Failure.new('创建卡类型失败'+membership_card_type.messages.values.join(';'))
+        rescue Exception => exp
+          render json: Failure.new('创建卡类型失败'+ exp.message)
         end
       end
 
