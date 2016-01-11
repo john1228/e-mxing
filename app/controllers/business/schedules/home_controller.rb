@@ -79,7 +79,7 @@ module Business
         permit_params.merge(
             sku_id: params[:sku],
             coach_id: @coach.id,
-            end: (Time.parse(params[:start], Date.parse(params[:date]) + sku.course_during)).strftime('%H:%M'),
+            end: (Time.parse(params[:start], Date.parse(params[:date]) + sku.product.prop.during)).strftime('%H:%M'),
             user_id: member.id,
             user_name: member.name
         )
