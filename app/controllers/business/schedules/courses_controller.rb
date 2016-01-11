@@ -38,7 +38,7 @@ module Business
                                    type: item.value,
                                    cover: item.order.order_item.cover,
                                    during: item.order.order_item.during,
-                                   available: item.value,
+                                   available: item.supply_value,
                                    used: 0
                                }
                              }
