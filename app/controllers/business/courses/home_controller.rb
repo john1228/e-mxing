@@ -100,7 +100,7 @@ module Business
       end
 
       def product_params
-        upload_images = (0..8).each { |index| image << params[index.to_s.to_sym] }
+        upload_images = (0..8).map { |index| params[index.to_s.to_sym] }
         upload_images.compact!
         {
             name: params[:name],
