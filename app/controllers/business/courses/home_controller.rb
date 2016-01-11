@@ -66,8 +66,8 @@ module Business
             product.save
           end
           render json: Success.new
-        rescue
-          render json: Failure.new('创建课程失败')
+        rescue Exception >> exp
+          render json: Failure.new('创建课程失败:' + exp.message)
         end
       end
 
