@@ -1,6 +1,5 @@
 class Sku < ActiveRecord::Base
   self.primary_key = :sku
-  scope :online, -> { where(status: 1) }
   scope :coach_courses, -> { where('sku LIKE ?', 'CC%') }
   scope :service_courses, -> { where('sku LIKE ?', 'SC%') }
   scope :recommended, -> { joins(:recommend).order('recommends.id desc') }
@@ -12,6 +11,7 @@ class Sku < ActiveRecord::Base
 
   belongs_to :product, class: Product, foreign_key: :course_id
   enum course_type: [:stored, :measured, :clocked, :course]
+  enum status: [:offline, :online]
 
   before_save :offline
   before_create :injection
@@ -153,10 +153,6 @@ class Sku < ActiveRecord::Base
   end
 
   protected
-  def offline
-    # self.status = 0 if store.eql?(0)
-  end
-
   def injection
     self.orders_count = rand(100)
   end
