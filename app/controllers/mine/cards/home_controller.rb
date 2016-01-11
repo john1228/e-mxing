@@ -35,7 +35,7 @@ module Mine
 
       def service_card
         service = Service.find_by_mxid(params[:mxid])
-        cards = @me.cards.where(service: service)
+        cards = @me.cards.where(service: service).find_all { |card| !card.valid_end.eql?('已过期') }
         render json: Success.new(
                    cards: cards.order(id: :desc).map { |card|
                      {
