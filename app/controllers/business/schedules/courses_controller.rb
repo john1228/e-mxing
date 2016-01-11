@@ -3,7 +3,7 @@ module Business
     class CoursesController < BaseController
       def mine
         render json: Success.new(
-                   course: Sku.online.where(seller_id: @coach.id).order(id: :desc).map { |sku|
+                   course: Sku.course.online.where(seller_id: @coach.id).order(id: :desc).map { |sku|
                      {
                          id: sku.id,
                          name: sku.course_name,
