@@ -15,12 +15,13 @@ class Product < ActiveRecord::Base
   protected
   def build_default_sku
     service = Service.find(service_id)
+    seller = Service.find_by(seller_id)
     create_sku(
         sku: 'SM'+'-' + '%06d' % id + '-' + '%06d' % (service.id),
         course_type: card_type.card_type,
         course_name: name,
         course_cover: (image.first.url rescue ''),
-        seller: service.profile.name,
+        seller: seller.present? ? seller.profile.name : service.profile.name,
         seller_id: seller_id||service_id,
         service_id: service_id,
         market_price: market_price,
