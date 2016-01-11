@@ -49,26 +49,23 @@ module Business
 
 
       def create
-        begin
-          Sku.transaction do
-            membership_card_type = MembershipCardType.course.new(card_type_params)
-            membership_card_type.save
-            product = Product.new(product_params.merge(
-                                      card_type_id: membership_card_type.id,
-                                      selling_price: params[:price],
-                                      market_price: params[:price],
-                                      service_id: @coach.service.id,
-                                      seller_id: @coach.id,
-                                      store: -1,
-                                      limit: -1
-                                  ))
-            product.build_prop(prop_params)
-            product.save
-          end
+        product = Product.new(product_params.merge(
+                                  selling_price: params[:price],
+                                  market_price: params[:price],
+                                  service_id: @coach.service.id,
+                                  seller_id: @coach.id,
+                                  store: -1,
+                                  limit: -1
+                              ))
+        product.build_prop(prop_params)
+        product.build_card_type(card_type_params)
+        product.save
+        if product.save
           render json: Success.new
-        rescue Exception => exp
-          render json: Failure.new('创建课程失败:' + exp.message)
+        else
+          render json: Failure.new('发布课程失败:'+ product.errors.messages.values.join(':'))
         end
+
       end
 
       def update
@@ -94,6 +91,7 @@ module Business
         {
             service_id: @coach.service.id,
             name: params[:name],
+            card_type: 'course',
             value: params[:type],
             valid_days: params[:exp],
             price: params[:price],
