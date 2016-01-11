@@ -104,7 +104,8 @@ module Business
                 price: sku.selling_price,
                 sku: sku.id
             },
-            giveaway: params[:giveaway]
+            giveaway: params[:giveaway],
+            seller_id: @coach.id,
         )
         if @order.save
           #美型支付

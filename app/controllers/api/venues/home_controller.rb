@@ -5,7 +5,8 @@ module Api
         venues = Service.joins(:place).select("users.*,st_distance(places.lonlat, 'POINT(#{params[:lng]||0} #{params[:lat]||0})') as distance")
         venues = venues.where('? = ANY (profiles.hobby)', params[:cat].to_i) if params[:cat].present?
         venues = venues.where(profiles: {auth: params[:auth]}) if params[:auth].present?
-        venues = venues.where('profiles.name LIKE ? or profiles.address LIKE ?', "%#{params[:keyword]||''}%", "%#{params[:keyword]||''}%") if params[:keyword].present?
+        venues = venues.where('profiles.name LIKE ? OR profiles.address LIKE ? OR profiles.city LIKE ? OR profiles.province LIKE ? OR profiles.area LIKE ?',
+                              "%#{params[:keyword]||''}%", "%#{params[:keyword]||''}%", "%#{params[:keyword]||''}%", "%#{params[:keyword]||''}%", "%#{params[:keyword]||''}%") if params[:keyword].present?
         render json: Success.new(venues: venues.order('distance asc').order(id: :desc).page(params[:page]||1).map { |venue|
                                    {
                                        mxid: venue.profile.mxid,
