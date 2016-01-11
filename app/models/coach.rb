@@ -71,6 +71,9 @@ class Coach<User
     }
   end
 
+
+
+
   def addresses
     if service.blank?
       []

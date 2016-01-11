@@ -49,15 +49,25 @@ module Business
 
 
       def create
-        membersh
-
-        image = []
-        (0..8).each { |index| image << params[index.to_s.to_sym] if params[index.to_s.to_sym].present? }
-        course = ServiceCourse.new(new_params.merge(agency: @coach.service.id, coach: @coach.id, status: Course::STATUS[:online], image: image))
-        if course.save
+        begin
+          Sku.transaction do
+            membership_card_type = MembershipCardType.course.new(card_type_params)
+            membership_card_type.save
+            product = Product.new(product_params.merge(
+                                      card_type_id: membership_card_type.id,
+                                      selling_price: params[:price],
+                                      market_price: params[:price],
+                                      service_id: @coach.service.id,
+                                      seller_id: @coach.id,
+                                      store: -1,
+                                      limit: -1
+                                  ))
+            product.build_prop(prop_params)
+            product.save
+          end
           render json: Success.new
-        else
-          render json: Failure.new("课程添加失败:#{course.errors.messages.values.join('')}")
+        rescue
+          render json: Failure.new('创建课程失败')
         end
       end
 
@@ -80,15 +90,36 @@ module Business
       end
 
       private
-      def new_params
-        permit_params = params.permit(:name, :type, :style, :during, :exp, :proposal, :intro, :guarantee)
-        permit_params.merge(selling_price: params[:price], market_price: params[:price])
+      def card_type_params
+        {
+            service_id: @coach.service.id,
+            name: params[:name],
+            value: params[:type],
+            valid_days: params[:exp],
+            price: params[:price],
+            remark: '私教端添加用户'
+        }
       end
 
-      def update_params
-        permit_params = params.permit(:price, :exp, :proposal, :intro)
-        permit_params.merge(address: params[:address].split(',').map { |item| item.to_i })
+      def product_params
+        upload_images = (0..8).each { |index| image << params[index.to_s.to_sym] }
+        upload_images.compact!
+        {
+            name: params[:name],
+            image: upload_images,
+            descritpion: params[:intro],
+            special: params[:special]
+        }
       end
+
+      def prop_params
+        {
+            during: params[:during],
+            proposal: params[:proposal],
+            style: params[:style]
+        }
+      end
+
     end
   end
 end

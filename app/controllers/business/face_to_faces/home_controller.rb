@@ -11,7 +11,7 @@ module Business
                              id: sku.id,
                              name: sku.course_name,
                              cover: sku.course_cover,
-                             during: sku.course_during,
+                             during: sku.product.prop.during,
                              price: sku.selling_price.to_i
                          }
                        }

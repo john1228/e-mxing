@@ -84,10 +84,10 @@ module Shop
       sku = Sku.find(params[:sku])
       params[:order_item_attributes] = {
           name: sku.course_name,
-          type: sku.course_type,
+          type: MembershipCard.card_types[sku.product.card_type.card_type],
           cover: sku.course_cover,
           amount: params[:amount],
-          during: sku.course_during,
+          during: (sku.product.prop.during rescue ''),
           price: sku.selling_price,
           sku: sku.id
       }

@@ -7,7 +7,13 @@ module Mine
         else
           cards = @me.cards.where.not(card_type: MembershipCard.card_types['course']).order(id: :desc).find_all { |card| !card.valid_end.eql?('已过期') }
         end
-
+        cards = cards.find_all { |card|
+          if card.course?
+            card.supply_value > 0
+          else
+            card.value > 0
+          end
+        }
         render json: Success.new(
                    cards: cards.map { |card|
                      {

@@ -91,7 +91,8 @@ module Api
     protected
     def search_venues(keyword, page)
       Service.joins(:place).select("users.*,st_distance(places.lonlat, 'POINT(#{params[:lng]||0} #{params[:lat]||0})') as distance").
-          where('profiles.name LIKE ? or profiles.address LIKE ?', "%#{keyword}%", "%#{keyword}%").order('distance asc').order(id: :desc).page(page)
+          where('profiles.name LIKE ? OR profiles.address LIKE ? OR profiles.city LIKE ? OR profiles.province LIKE ? OR profiles.area LIKE ?',
+                "%#{keyword}%", "%#{keyword}%", "%#{keyword}%", "%#{keyword}%", "%#{keyword}%").order('distance asc').order(id: :desc).page(page)
     end
 
     def search_course(keyword, page)
