@@ -49,18 +49,10 @@ module Business
 
 
       def create
-        product = Product.new(product_params.merge(
-                                  selling_price: params[:price],
-                                  market_price: params[:price],
-                                  service_id: @coach.service.id,
-                                  seller_id: @coach.id,
-                                  store: -1,
-                                  limit: -1
-                              ))
+        membership_card_type = MembershipCardType.course.new(card_type_params)
+        product = membership_card_type.products.build(product_params)
         product.build_prop(prop_params)
-        product.build_card_type(card_type_params)
-        product.save
-        if product.save
+        if membership_card_type.save
           render json: Success.new
         else
           render json: Failure.new('发布课程失败:'+ product.errors.messages.values.join(':'))
@@ -91,7 +83,6 @@ module Business
         {
             service_id: @coach.service.id,
             name: params[:name],
-            card_type: 'course',
             value: params[:type],
             valid_days: params[:exp],
             price: params[:price],
@@ -106,7 +97,13 @@ module Business
             name: params[:name],
             image: upload_images,
             description: params[:intro],
-            special: params[:special]
+            special: params[:special],
+            selling_price: params[:price],
+            market_price: params[:price],
+            service_id: @coach.service.id,
+            seller_id: @coach.id,
+            store: -1,
+            limit: -1
         }
       end
 
