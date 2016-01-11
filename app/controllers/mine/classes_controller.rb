@@ -39,7 +39,7 @@ module Mine
       case params[:type]
         when 'incomplete'
           membership_card = MembershipCard.find_by(id: params[:id])
-          seller = membership_card.order.seller rescue membership_card.service.profile.name
+          seller = (membership_card.order.seller rescue membership_card.service)
           render json: Success.new(class: {
                                        id: membership_card.id,
                                        course: membership_card.name,
@@ -48,7 +48,7 @@ module Mine
                                        available: membership_card.supply_value,
                                        used: [],
                                        during: membership_card.order.order_item.during,
-                                       exp: (membership_card.open.next_day(membership_card.valid_days) rescue Date.today.next_day(membership_card.valid_days)),
+                                       exp: (membership_card.open.next_day(membership_card.valid_days||0) rescue Date.today.next_day(membership_card.valid_days||0)),
                                        class_time: {},
                                        address: [{
                                                      seller: seller.profile.name,
