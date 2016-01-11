@@ -100,7 +100,7 @@ module Business
                 type: sku.course_type,
                 cover: sku.course_cover,
                 amount: params[:amount],
-                during: sku.course_during,
+                during: (sku.product.prop.during rescue ''),
                 price: sku.selling_price,
                 sku: sku.id
             },
