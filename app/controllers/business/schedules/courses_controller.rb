@@ -19,7 +19,7 @@ module Business
         cards = MembershipCard.course.joins(:order)
                     .where(orders: {coach_id: @coach.id, status: Order::STATUS[:pay]})
                     .where('supply_value > 0')
-        group_cards =cards.group_by { |card| card.member_id }
+        group_cards = cards.group_by { |card| card.member_id }
         render json: Success.new(
                    course: group_cards.map { |member_id, group_items|
                      mx_user_profile = Profile.find_by(user_id: Member.find(member_id).user_id)

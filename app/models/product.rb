@@ -27,7 +27,7 @@ class Product < ActiveRecord::Base
         selling_price: selling_price,
         store: store,
         limit: limit,
-        address: service.profile_address,
+        address: (service.profile.province||'') + (service.profile.city||'') + (service.profile.area||'') + (service.profile.address|''),
         coordinate: (service.place.lonlat rescue 'POINT(0 0)'),
         status: 'online',
         sku_type: 'card'

@@ -22,7 +22,7 @@ module Business
       render json: Success.new(lesson: {
                                    id: membership_card.id,
                                    course: membership_card.name,
-                                   student: membership_card.member.user.profile.name,
+                                   student: membership_card.member.name,
                                    seller: @coach.profile.name,
                                    available: membership_card.supply_value,
                                    used: []
