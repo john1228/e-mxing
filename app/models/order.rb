@@ -142,23 +142,39 @@ class Order < ActiveRecord::Base
             Sku.where(course_id: sku.course_id).update_all("orders_count =  orders_count + #{order_item.amount}")
           end
 
-
           Order.transaction do
             member = Member.find_by(user_id: user_id, service_id: sku.service_id)
             if member.present?
               #创建会员卡
-              membership_card = MembershipCard.create(
-                  client_id: service.client_id,
-                  service_id: service_id,
-                  order_id: id,
-                  member_id: member.id,
-                  card_type: sku.product.card_type.card_type,
-                  name: sku.product.name,
-                  value: sku.product.card_type.value*order_item.amount + giveaway.to_i,
-                  open: Date.today,
-                  valid_days: sku.product.card_type.valid_days,
-                  delay_days: sku.product.card_type.delay_days
-              )
+              if sku.course?
+                membership_card = MembershipCard.create(
+                    client_id: service.client_id,
+                    service_id: service_id,
+                    order_id: id,
+                    member_id: member.id,
+                    card_type: sku.product.card_type.card_type,
+                    name: sku.product.name,
+                    value: sku.product.card_type.value,
+                    supply_value: order_item.amount + giveaway.to_i,
+                    open: Date.today,
+                    valid_days: sku.product.card_type.valid_days,
+                    delay_days: sku.product.card_type.delay_days
+                )
+              else
+                membership_card = MembershipCard.create(
+                    client_id: service.client_id,
+                    service_id: service_id,
+                    order_id: id,
+                    member_id: member.id,
+                    card_type: sku.product.card_type.card_type,
+                    name: sku.product.name,
+                    value: sku.product.card_type.value*order_item.amount + giveaway.to_i,
+                    open: Date.today,
+                    valid_days: sku.product.card_type.valid_days,
+                    delay_days: sku.product.card_type.delay_days
+                )
+              end
+
               #创建会员卡日志
               membership_card.logs.create(
                   action: 'buy',
@@ -180,18 +196,34 @@ class Order < ActiveRecord::Base
                   mobile: contact_phone
               )
               #创建会员卡
-              membership_card = MembershipCard.create(
-                  client_id: service.client_id,
-                  service_id: service_id,
-                  order_id: id,
-                  member_id: member.id,
-                  card_type: sku.product.card_type.card_type,
-                  name: sku.product.name,
-                  value: sku.product.card_type.value*order_item.amount + giveaway.to_i,
-                  open: Date.today,
-                  valid_days: sku.product.card_type.valid_days,
-                  delay_days: sku.product.card_type.delay_days
-              )
+              if sku.course?
+                membership_card = MembershipCard.create(
+                    client_id: service.client_id,
+                    service_id: service_id,
+                    order_id: id,
+                    member_id: member.id,
+                    card_type: sku.product.card_type.card_type,
+                    name: sku.product.name,
+                    value: sku.product.card_type.value,
+                    supply_value: order_item.amount + giveaway.to_i,
+                    open: Date.today,
+                    valid_days: sku.product.card_type.valid_days,
+                    delay_days: sku.product.card_type.delay_days
+                )
+              else
+                membership_card = MembershipCard.create(
+                    client_id: service.client_id,
+                    service_id: service_id,
+                    order_id: id,
+                    member_id: member.id,
+                    card_type: sku.product.card_type.card_type,
+                    name: sku.product.name,
+                    value: sku.product.card_type.value*order_item.amount + giveaway.to_i,
+                    open: Date.today,
+                    valid_days: sku.product.card_type.valid_days,
+                    delay_days: sku.product.card_type.delay_days
+                )
+              end
               #创建会员卡日志
               membership_card.logs.create(
                   action: 'buy',
