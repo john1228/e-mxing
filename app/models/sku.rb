@@ -58,7 +58,7 @@ class Sku < ActiveRecord::Base
         type: product.card_type.value,
         style: product.prop.style,
         during: product.prop.during,
-        exp: Date.today.next_day(product.prop.exp).strftime('%Y-%m-%d'),
+        exp: Date.today.next_day(product.card_type.valid_days).strftime('%Y-%m-%d'),
         proposal: product.prop.proposal,
         seller: {
             mxid: seller_user.profile.mxid,
