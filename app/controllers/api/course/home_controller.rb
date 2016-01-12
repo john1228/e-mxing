@@ -13,17 +13,17 @@ module Api
           when 'smart'
             courses = products.order(id: :desc).page(params[:page]||1)
           when 'fresh-asc'
-            courses = products.order('sku.updated_at desc').order(id: :desc).page(params[:page]||1)
+            courses = products.order('skus.updated_at desc').order(id: :desc).page(params[:page]||1)
           when 'distance-asc'
             courses = products.order('distance asc').order(id: :desc).page(params[:page]||1)
           when 'sale-desc'
-            courses = products.order("sku.orders_count desc").order(id: :desc).page(params[:page]||1)
+            courses = products.order("skus.orders_count desc").order(id: :desc).page(params[:page]||1)
           when 'evaluate-asc'
-            courses = products.order("sku.orders_count desc").order(id: :desc).page(params[:page]||1)
+            courses = products.order("skus.orders_count desc").order(id: :desc).page(params[:page]||1)
           when 'price-asc'
-            courses = products.order("sku.selling_price asc").order(id: :desc).page(params[:page]||1)
+            courses = products.order("skus.selling_price asc").order(id: :desc).page(params[:page]||1)
           when 'price-desc'
-            courses = products.order("sku.selling_price desc").order(id: :desc).page(params[:page]||1)
+            courses = products.order("skus.selling_price desc").order(id: :desc).page(params[:page]||1)
           else
             courses = []
         end
