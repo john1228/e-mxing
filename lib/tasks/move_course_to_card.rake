@@ -6,57 +6,32 @@ namespace :move_course_to_card do
         Order.transaction do
           user = order.user
           member = Member.find_by(user_id: user.id, service_id: order.service_id)
-          if member.present?
-            membership_card = MembershipCard.course.new(
-                client_id: sku_course.service.client_id,
-                service_id: sku_course.service.id,
-                order_id: lesson.order_id,
-                member_id: member.id,
-                name: lesson.order.order_item.name,
-                value: sku_course.course.type,
-                supply_value: lesson.available,
-                open: (lesson.appointments.last.created_at rescue ''),
-                valid_days: lesson.order.order_item,
-                status: 'normal'
-            )
-            if membership_card.save
-              #创建充值日志
-              membership_card.logs.mx.buy.create(
-                  service_id: membership_card.service_id,
-                  change_amount: appointment.amount,
-                  operator: (appointment.coach.profile.name rescue ''),
-                  remark: "购买课程",
-                  action: MembershipCardLog.actions['buy'],
-                  status: MembershipCardLog.statuses['confirm']
-              )
-            end
-          else
+          if member.blank?
             member = Member.new(user_id: user.id, name: order.contact_name, mobile: order.contact_phone)
-            if member.save
-              membership_card = MembershipCard.course.new(
-                  client_id: sku_course.service.client_id,
-                  service_id: sku_course.service.id,
-                  order_id: lesson.order_id,
-                  member_id: member.id,
-                  name: lesson.order.order_item.name,
-                  value: sku_course.course.type,
-                  supply_value: lesson.available,
-                  open: (lesson.appointments.last.created_at rescue ''),
-                  valid_days: lesson.order.order_item,
-                  status: 'normal'
-              )
-              if membership_card.save
-                #创建充值日志
-                membership_card.logs.mx.buy.create(
-                    service_id: membership_card.service_id,
-                    change_amount: appointment.amount,
-                    operator: (appointment.coach.profile.name rescue ''),
-                    remark: "购买课程",
-                    action: MembershipCardLog.actions['buy'],
-                    status: MembershipCardLog.statuses['confirm']
-                )
-              end
-            end
+          end
+          sku_course = order.order_item.course
+          membership_card = MembershipCard.course.new(
+              client_id: sku_course.service.client_id,
+              service_id: sku_course.service.id,
+              order_id: order.id,
+              member_id: member.id,
+              name: order.order_item.name,
+              value: sku_course.course.type,
+              supply_value: order.order_item.amount,
+              open: order.updated_at,
+              valid_days: sku_course.product.card_type.valid_days,
+              status: 'normal'
+          )
+          if membership_card.save
+            #创建充值日志
+            membership_card.logs.mx.buy.create(
+                service_id: membership_card.service_id,
+                change_amount: membership_card.supply_value,
+                operator: order.coach.profile.name,
+                remark: "购买课程",
+                action: MembershipCardLog.actions['buy'],
+                status: MembershipCardLog.statuses['confirm']
+            )
           end
         end
       end
