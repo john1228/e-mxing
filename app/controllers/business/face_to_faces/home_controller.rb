@@ -125,7 +125,7 @@ module Business
           end
           #支付宝
         else
-          render json: Failure.new('下单失败:' + order.errors.messages.values.join(';'))
+          render json: Failure.new('下单失败:' + @order.errors.messages.values.join(';'))
         end
       end
 
