@@ -111,10 +111,14 @@ class MembershipCard < ActiveRecord::Base
       else
         last_valid_date = open.next_day(valid_days||0)
       end
-      if last_valid_date >= Date.today
-        last_valid_date
+      if last_valid_date.present?
+        if last_valid_date >= Date.today
+          last_valid_date
+        else
+          '已过期'
+        end
       else
-        '已过期'
+        '永久'
       end
     else
       #期限卡以卡值计算
