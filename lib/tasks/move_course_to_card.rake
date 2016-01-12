@@ -5,7 +5,7 @@ namespace :move_course_to_card do
       member = Member.find_by(user_id: order.user_id, service_id: order.service_id)
       MembershipCard.transaction do
         if member.blank?
-          member = Member.new(user_id: order.user_id, name: order.contact_name, mobile: order.contact_phone)
+          member = Member.full.new(user_id: order.user_id, name: order.contact_name, mobile: order.contact_phone, service_id: order.service_id)
           if member.save
           else
             puts member.errors.messages
