@@ -1,39 +1,14 @@
 namespace :move_course_to_card do
   task :move_order => :environment do
-    Order.pay.each { |order|
-      membership_card = MembershipCard.find_by(order_id: order.id)
-      if membership_card.blank?
-        Order.transaction do
-          user = order.user
-          member = Member.find_by(user_id: user.id, service_id: order.service_id)
-          if member.blank?
-            member = Member.new(user_id: user.id, name: order.contact_name, mobile: order.contact_phone)
-          end
-          sku_course = order.order_item.course
-          membership_card = MembershipCard.course.new(
-              client_id: sku_course.service.client_id,
-              service_id: sku_course.service.id,
-              order_id: order.id,
-              member_id: member.id,
-              name: order.order_item.name,
-              value: sku_course.course.type,
-              supply_value: order.order_item.amount,
-              open: order.updated_at,
-              valid_days: sku_course.product.card_type.valid_days,
-              status: 'normal'
-          )
-          if membership_card.save
-            #创建充值日志
-            membership_card.logs.mx.buy.create(
-                service_id: membership_card.service_id,
-                change_amount: membership_card.supply_value,
-                operator: (order.coach.profile.name rescue order.service.profile.name),
-                remark: "购买课程",
-                action: MembershipCardLog.actions['buy'],
-                status: MembershipCardLog.statuses['confirm']
-            )
-          end
+    MembershipCard.where(member_id: nil).each { |membership_card|
+      order = Order.find_by(id: membership_card.order_id)
+      member = Member.find_by(user_id: order.user_id, service_id: order.service_id)
+      MembershipCard.transaction do
+        if member.blank?
+          member = Member.new(user_id: order.user_id, name: order.contact_name, mobile: order.contact_phone)
+          member.save
         end
+        membership_card.update(member_id: member.id)
       end
     }
   end
