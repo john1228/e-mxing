@@ -34,22 +34,26 @@ module Business
       if membership_card.blank?
         render json: Failure.new('无效的消课码')
       else
-        if membership_card.order.coach.eql?(@coach)
-          checkin_log = membership_card.logs.checkin.pending.create(
-              membership_card_id: membership_card.id,
-              change_amount: 1,
-              service_id: @coach.service.id,
-              remark: '私教消课-消课码-'+ params[:code],
-              operator: @coach.profile.name
-          )
-          if checkin_log.may_confirm?
-            checkin_log.confirm!
-            render json: Success.new
-          else
-            render json: Failure.new('消课失败:课程节数不足')
-          end
+        if membership_card.disable
+          render json: Failure.new('该卡已停用')
         else
-          render json: Failure.new('您无权消课')
+          if membership_card.order.coach.eql?(@coach)
+            checkin_log = membership_card.logs.checkin.pending.create(
+                membership_card_id: membership_card.id,
+                change_amount: 1,
+                service_id: @coach.service.id,
+                remark: '私教消课-消课码-'+ params[:code],
+                operator: @coach.profile.name
+            )
+            if checkin_log.may_confirm?
+              checkin_log.confirm!
+              render json: Success.new
+            else
+              render json: Failure.new('消课失败:课程节数不足')
+            end
+          else
+            render json: Failure.new('您无权消课')
+          end
         end
       end
     end
