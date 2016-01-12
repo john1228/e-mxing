@@ -50,7 +50,7 @@ class Sku < ActiveRecord::Base
         sku: sku,
         name: course_name,
         cover: course_cover,
-        images: product.images.map { |item| {url: item.url} },
+        images: product.image.map { |item| {url: item.url} },
         market: market_price,
         selling: selling_price,
         store: store||-1,

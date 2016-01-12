@@ -21,29 +21,33 @@ module Mine
       def create
         card = @me.cards.find(params[:id])
         if card.present?
-          if card.checkin
-            render json: Success.new(
-                       card: {
-                           id: card.id,
-                           name: card.name,
-                           card_type: card.card_type,
-                           value: card.value,
-                           valid_end: card.valid_end,
-                           member: {
-                               name: card.member.name,
-                               avatar: card.member.avatar.url
-                           },
-                           service: {
-                               mxid: card.service.profile.mxid,
-                               name: card.service.profile.name,
-                               avatar: card.service.profile.avatar.url,
-                               address: card.service.profile.detail_address,
-                               mobile: card.service.profile.mobile
-                           }
-                       }
-                   )
+          if card.disable?
+            render json: Failure.new('该会员卡已停用')
           else
-            render json: Failure.new('签到失败:' +card.errors.messages.values.join(';'))
+            if card.checkin
+              render json: Success.new(
+                         card: {
+                             id: card.id,
+                             name: card.name,
+                             card_type: card.card_type,
+                             value: card.value,
+                             valid_end: card.valid_end,
+                             member: {
+                                 name: card.member.name,
+                                 avatar: card.member.avatar.url
+                             },
+                             service: {
+                                 mxid: card.service.profile.mxid,
+                                 name: card.service.profile.name,
+                                 avatar: card.service.profile.avatar.url,
+                                 address: card.service.profile.detail_address,
+                                 mobile: card.service.profile.mobile
+                             }
+                         }
+                     )
+            else
+              render json: Failure.new('签到失败:' +card.errors.messages.values.join(';'))
+            end
           end
         else
           render json: Failure.new('无效的会员卡号')
