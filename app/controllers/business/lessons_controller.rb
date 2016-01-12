@@ -41,9 +41,8 @@ module Business
             remark: '私教消课-消课码-'+ params[:code],
             operator: @coach.profile.name
         )
-        if checkin_log.may_confirm
+        if checkin_log.may_confirm?
           checkin_log.confirm!
-
           render json: Success.new
         else
           ender json: Failure.new('消课失败:课程节数不足')
