@@ -3,7 +3,7 @@ class Service<User
   scope :authorized, -> { where(profiles: {auth: 1}) }
   scope :unauthorized, -> { where(profiles: {auth: 0}) }
 
-  after_save :location
+  before_save :location
   has_many :service_members, dependent: :destroy
   has_many :service_photos, foreign_key: :user_id, dependent: :destroy
   has_many :service_dynamics, foreign_key: :user_id, dependent: :destroy
