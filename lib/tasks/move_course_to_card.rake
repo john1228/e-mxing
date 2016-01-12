@@ -31,7 +31,7 @@ namespace :move_course_to_card do
               )
             end
           else
-            member = Member.new(user_id: user.id, name: order.contact_name, mobile: order.contact.phone)
+            member = Member.new(user_id: user.id, name: order.contact_name, mobile: order.contact_phone)
             if member.save
               membership_card = MembershipCard.course.new(
                   client_id: sku_course.service.client_id,
