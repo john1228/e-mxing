@@ -93,6 +93,7 @@ module Business
         @order = @coach.orders.face_to_face.new(
             contact_name: params[:name],
             contact_phone: params[:mobile],
+            contact_avatar: params[:avatar],
             pay_type: 1,
             custom_pay_amount: params[:pay_amount],
             order_item_attributes: {

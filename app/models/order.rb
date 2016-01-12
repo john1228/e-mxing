@@ -23,6 +23,8 @@ class Order < ActiveRecord::Base
   validate :validate_amount, on: :create
   validate :validate_user, on: :update
 
+  mount_uploader :contact_avatar, ProfileUploader
+
 
   protected
   #检验验证码
@@ -190,7 +192,8 @@ class Order < ActiveRecord::Base
                   service_id: service.id,
                   user_id: user_id,
                   name: contact_name,
-                  mobile: contact_phone
+                  mobile: contact_phone,
+                  avatar: contact_avatar||user.profile.avatar
               )
               #创建会员卡
               if sku.course?
