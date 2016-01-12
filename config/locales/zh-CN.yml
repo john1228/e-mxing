@@ -75,8 +75,8 @@
         week: '星期'
       physical_card:
         service_id: '机构'
-        virtual_number: '虚拟卡号'
-        entity_number: '实体卡号'
+        virtual_number: '印刷卡号'
+        entity_number: '內置卡号'
   enums:
     tag:
       tag:
