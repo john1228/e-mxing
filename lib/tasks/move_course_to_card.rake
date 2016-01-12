@@ -27,7 +27,7 @@ namespace :move_course_to_card do
             membership_card.logs.mx.buy.create(
                 service_id: membership_card.service_id,
                 change_amount: membership_card.supply_value,
-                operator: order.coach.profile.name,
+                operator: (order.coach.profile.name rescue order.service.profile.name),
                 remark: "购买课程",
                 action: MembershipCardLog.actions['buy'],
                 status: MembershipCardLog.statuses['confirm']
