@@ -140,9 +140,6 @@ class Order < ActiveRecord::Base
             wallet = Wallet.find_or_create_by(user_id: sku.service_id)
             wallet.update(action: WalletLog::ACTIONS['卖课收入'], balance: wallet.balance + total)
             Sku.where(course_id: sku.course_id).update_all("orders_count =  orders_count + #{order_item.amount}")
-          end
-
-          Order.transaction do
             member = Member.find_by(user_id: user_id, service_id: sku.service_id)
             if member.present?
               #创建会员卡

@@ -1,4 +1,68 @@
 namespace :move_course_to_card do
+  task :move_order => :environment do
+    Order.pay.each { |order|
+      membership_card = MembershipCard.find_by(order_id: order.id)
+      if membership_card.blank?
+        Order.transaction do
+          user = order.user
+          member = Member.find_by(user_id: user.id, service_id: order.service_id)
+          if member.present?
+            membership_card = MembershipCard.course.new(
+                client_id: sku_course.service.client_id,
+                service_id: sku_course.service.id,
+                order_id: lesson.order_id,
+                member_id: member.id,
+                name: lesson.order.order_item.name,
+                value: sku_course.course.type,
+                supply_value: lesson.available,
+                open: (lesson.appointments.last.created_at rescue ''),
+                valid_days: lesson.order.order_item,
+                status: 'normal'
+            )
+            if membership_card.save
+              #创建充值日志
+              membership_card.logs.mx.buy.create(
+                  service_id: membership_card.service_id,
+                  change_amount: appointment.amount,
+                  operator: (appointment.coach.profile.name rescue ''),
+                  remark: "购买课程",
+                  action: MembershipCardLog.actions['buy'],
+                  status: MembershipCardLog.statuses['confirm']
+              )
+            end
+          else
+            member = Member.new(user_id: user.id, name: order.contact_name, mobile: order.contact.phone)
+            if member.save
+              membership_card = MembershipCard.course.new(
+                  client_id: sku_course.service.client_id,
+                  service_id: sku_course.service.id,
+                  order_id: lesson.order_id,
+                  member_id: member.id,
+                  name: lesson.order.order_item.name,
+                  value: sku_course.course.type,
+                  supply_value: lesson.available,
+                  open: (lesson.appointments.last.created_at rescue ''),
+                  valid_days: lesson.order.order_item,
+                  status: 'normal'
+              )
+              if membership_card.save
+                #创建充值日志
+                membership_card.logs.mx.buy.create(
+                    service_id: membership_card.service_id,
+                    change_amount: appointment.amount,
+                    operator: (appointment.coach.profile.name rescue ''),
+                    remark: "购买课程",
+                    action: MembershipCardLog.actions['buy'],
+                    status: MembershipCardLog.statuses['confirm']
+                )
+              end
+            end
+          end
+        end
+      end
+    }
+  end
+
   task :move => :environment do
     Sku.where('sku like ?', 'SC%').where('updated_at < ?', Sku.find('SC-000517-000023').updated_at).order(updated_at: :desc).map { |sku_course|
       puts sku_course.sku
