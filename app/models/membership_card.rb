@@ -57,7 +57,7 @@ class MembershipCard < ActiveRecord::Base
       last_valid_date = last_delay_date.next_day(valid_days) rescue nil
       if last_delay_date >= Date.today
         update(open: Date.today, status: 'normal')
-        logs.checkin.new.save
+        logs.checkin.new(service_id: service_id, remark: '美型APP签到').save
         return true
       else
         if last_valid_date.present?
