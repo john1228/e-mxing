@@ -6,7 +6,10 @@ namespace :move_course_to_card do
       MembershipCard.transaction do
         if member.blank?
           member = Member.new(user_id: order.user_id, name: order.contact_name, mobile: order.contact_phone)
-          member.save
+          if member.save
+          else
+            puts member.errors.messages
+          end
         end
         membership_card.update(member_id: member.id)
       end
