@@ -1,5 +1,5 @@
 namespace :migration do
-  desc '课程转移'
+  desc '学员'
   task :crawl_data => :environment do
     csv_text = File.read("#{Rails.root}/" + 'crawl-data-2015-11-30-1.csv')
     csv = CSV.parse(csv_text, :headers => true)
@@ -25,6 +25,14 @@ namespace :migration do
           city: data_hash['City'],
           area: data_hash['Area']
       )
+    end
+  end
+
+  task :member => :environment do
+    csv_text = File.read("#{Rails.root}/" + 'member.csv')
+    csv = CSV.parse(csv_text, :headers => true)
+    csv.each do |row|
+      PhysicalCard.create(entity_number: row[0], virtual_number: row[1])
     end
   end
 end
