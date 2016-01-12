@@ -9,11 +9,10 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(admin_user)
-    case admin_user.role
-      when AdminUser::ROLE[:service]
-        admin_service_path(Service.find_by(id: admin_user.service_id))
-      else
-        admin_dashboard_path
+    if admin_user.store_manager?
+      admin_service_path(Service.find_by(id: admin_user.service_id))
+    else
+      admin_dashboard_path
     end
   end
 end

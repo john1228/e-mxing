@@ -1,6 +1,14 @@
 ﻿<%= form_for([:admin, @admin_user], html: {class: 'form-horizontal'}) do |f| %>
     <fieldset class="inputs">
       <legend><span>添加管理员</span></legend>
+      <% if f.object.errors.present? %>
+          <div class="alert alert-danger alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <% f.object.errors.each { |k, v| %>
+                <%= v %><br/>
+            <% } %>
+          </div>
+      <% end %>
       <div class="form-group form-group-sm">
         <label class="col-sm-2 control-label" for="service_name">用户名</label>
 
@@ -43,7 +51,7 @@
         <label class="col-sm-2 control-label" for="service_name">性别</label>
 
         <div class="col-sm-10">
-          <%= f.select :gender, [['男', 0], ['女', 1]] %>
+          <%= f.select :gender, [['男', 'male'], ['女', 'female']] %>
         </div>
       </div>
 
@@ -81,6 +89,7 @@
       <% if current_admin_user.super? %>
           <div class="form-group form-group-sm">
             <label class="col-sm-2 control-label" for="service_name">服务号</label>
+
             <div class="col-sm-10">
               <%= f.select(:service_id, Service.includes(:profile).pluck('profiles.name', :id), {include_blank: '请选择要管理的门店'}) %>
             </div>

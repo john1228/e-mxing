@@ -6,12 +6,13 @@ class AdminUser < ActiveRecord::Base
 
   enum gender: [:male, :female]
   enum role: [:super, :admin, :cms, :market, :operator, :superadmin, :sales, :front_desk, :finance, :store_manager, :store_admin]
+
   mount_uploader :avatar, ProfileUploader
 
   class << self
     def role_for_select
       roles.map do |key, value|
-        [I18n.t("enums.admin_user.role.#{key}"), value]
+        [I18n.t("enums.admin_user.role.#{key}"), key]
       end
     end
   end

@@ -22,27 +22,10 @@ ActiveAdmin.register AdminUser do
     attributes_table do
       row('用户名') { |admin_user| admin_user.email }
       row('角色') { |admin_user|
-        case admin_user.role
-          when AdminUser::ROLE[:super]
-            '超级管理员'
-          when AdminUser::ROLE[:service]
-            '服务号管理员'
-          when AdminUser::ROLE[:cms]
-            '内容管理员'
-          when AdminUser::ROLE[:market]
-            '市场管理员'
-          when AdminUser::ROLE[:operator]
-            '运营管理员'
-          else
-        end
+        admin_user.role
       }
       row('服务号') { |admin_user|
-        case admin_user.role
-          when AdminUser::ROLE[:service]
-            Service.find_by(id: admin_user.service_id).profile.name
-          else
-            ''
-        end
+        Service.find_by(id: admin_user.service_id).profile.name if admin_user.store_manager?
       }
     end
   end
