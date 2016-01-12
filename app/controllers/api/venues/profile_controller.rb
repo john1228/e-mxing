@@ -12,8 +12,8 @@ module Api
                                        views: venue.views,
                                        address: venue.profile.province.to_s + venue.profile.city.to_s + venue.profile.area.to_s + venue.profile.address.to_s,
                                        coordinate: {
-                                           lng: venue.place.lonlat.x,
-                                           lat: venue.place.lonlat.y
+                                           lng: (venue.place.lonlat.x rescue 0),
+                                           lat: (venue.place.lonlat.y rescue 0)
                                        },
                                        identity: venue.profile.identity_value,
                                        tags: venue.profile.tags,
