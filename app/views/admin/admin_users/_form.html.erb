@@ -23,21 +23,66 @@
           <%= f.text_field :password_confirmation, class: 'form-control', placeholder: '请再输入一次密码' %>
         </div>
       </div>
-      <% unless current_admin_user.role.eql?(AdminUser::ROLE[:service]) %>
+
+      <div class="form-group form-group-sm">
+        <label class="col-sm-2 control-label" for="service_name">名字</label>
+
+        <div class="col-sm-10">
+          <%= f.text_field :name, class: 'form-control', placeholder: '请输入管理员的真实姓名' %>
+        </div>
+      </div>
+      <div class="form-group form-group-sm">
+        <label class="col-sm-2 control-label" for="service_name">头像</label>
+
+        <div class="col-sm-10">
+          <%= f.file_field :avatar %>
+        </div>
+      </div>
+
+      <div class="form-group form-group-sm">
+        <label class="col-sm-2 control-label" for="service_name">性别</label>
+
+        <div class="col-sm-10">
+          <%= f.select :gender, [['男', 0], ['女', 1]] %>
+        </div>
+      </div>
+
+      <div class="form-group form-group-sm">
+        <label class="col-sm-2 control-label" for="service_name">生日</label>
+
+        <div class="col-sm-10">
+          <%= f.text_field :birthday, id: 'datepicker1', class: 'form-control' %>
+        </div>
+      </div>
+      <div class="form-group form-group-sm">
+        <label class="col-sm-2 control-label" for="service_name">联系电话</label>
+
+        <div class="col-sm-10">
+          <%= f.text_field :mobile, class: 'form-control', placeholder: '请输入联系电话' %>
+        </div>
+      </div>
+      <div class="form-group form-group-sm">
+        <label class="col-sm-2 control-label" for="service_name">备注</label>
+
+        <div class="col-sm-10">
+          <%= f.text_field :remark, class: 'form-control', placeholder: '备注' %>
+        </div>
+      </div>
+      <% if current_admin_user.super? %>
           <div class="form-group form-group-sm">
             <label class="col-sm-2 control-label" for="service_name">角色</label>
 
             <div class="col-sm-10">
-              <%= f.select(:role, current_admin_user.role.eql?(AdminUser::ROLE[:market]) ? [['服务号管理员', 1]] : [['超级管理员', 0], ['服务号管理员', 1], ['内容管理员', 2], ['市场管理员', 3], ['运营管理员', 4], ['合伙人', 5]], {selected: f.object.role, include_blank: false}) %>
+              <%= f.select(:role, current_admin_user.market? ? [['服务号管理员', 1]] : AdminUser.role_for_select, {include_blank: '请选择角色'}) %>
             </div>
           </div>
       <% end %>
-      <% unless current_admin_user.role.eql?(AdminUser::ROLE[:service]) %>
+
+      <% if current_admin_user.super? %>
           <div class="form-group form-group-sm">
             <label class="col-sm-2 control-label" for="service_name">服务号</label>
-
             <div class="col-sm-10">
-              <%= f.select(:service_id, Service.includes(:profile).pluck('profiles.name', :id), {selected: f.object.service_id, include_blank: false}) %>
+              <%= f.select(:service_id, Service.includes(:profile).pluck('profiles.name', :id), {include_blank: '请选择要管理的门店'}) %>
             </div>
           </div>
       <% end %>

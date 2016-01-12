@@ -77,17 +77,6 @@
         service_id: '机构'
         virtual_number: '虚拟卡号'
         entity_number: '实体卡号'
-#      crawl_datum:
-#        name: '工作室名称'
-#        avatar: '头像'
-#        province: '身份'
-#        city: '城市'
-#        area: '区/县'
-#        address: '详细地址'
-#        business: '营业时间'
-#        service_replace: '提供服务'
-#        photo_replace: '照片墙'
-#        intro: '官方介绍'
   enums:
     tag:
       tag:
@@ -103,6 +92,19 @@
     profile:
       identity:
         enthusiast: '健身爱好者'
+    admin_user:
+      role:
+        super: '超级管理员'
+        admin: '管理员'
+        cms: '内容管理员'
+        market: '市场管理员'
+        operator: '操作员'
+        superadmin: '门店超级管理员'
+        sales: '销售管理员'
+        front_desk: '前台'
+        finance: '财务'
+        store_manager: '门店管理员'
+        store_admin: '门店主管'
   active_admin:
     batch_actions:
       labels:

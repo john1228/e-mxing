@@ -1,7 +1,9 @@
 ActiveAdmin.register AdminUser do
-  menu label: '管理员', parent: '运营', if: proc { !current_admin_user.role.eql?(AdminUser::ROLE[:service]) }
+  menu label: '管理员', parent: '运营'
   config.per_page = 10
-  permit_params :email, :password, :password_confirmation, :role, :service_id
+  permit_params :email, :password, :password_confirmation,
+                :role, :service_id, :name, :avatar, :birthday,
+                :gender, :mobile, :remark
 
   index do
     selectable_column
