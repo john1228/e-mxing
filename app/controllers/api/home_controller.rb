@@ -4,7 +4,7 @@ module Api
       city = URI.decode(request.headers[:city]) rescue '上海'
       render json: Success.new(
                  tag: Category.order(updated_at: :desc).all.map { |category|
-                   online_courses = category.products
+                   online_courses = category.products(city)
                    {
                        tag: category.name,
                        bg: category.background.url,
