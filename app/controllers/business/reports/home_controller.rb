@@ -1,10 +1,10 @@
 module Business
   module Reports
-    class HomeController < ApplicationController
+    class HomeController < ActionController::Base
       before_action :verify_token
-      layout 'report'
 
       def index
+        layout 'report'
       end
 
       def report
@@ -70,8 +70,8 @@ module Business
 
       protected
       def verify_token
-        @coach = Rails.cache.fetch("gyms-#{params[:token]}")
-        render text: '您还未登录私教端,不能查看统计信息' if @coach.blank?
+        @coach = Rails.cache.fetch("gyms-#{request.headers[:token]}")
+        render json: {code: -1, message: '您还为登录'} if @coach.blank?
       end
     end
   end
