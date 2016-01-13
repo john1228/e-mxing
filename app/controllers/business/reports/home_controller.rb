@@ -1,6 +1,6 @@
 module Business
   module Reports
-    class HomeController < ActionController::Base
+    class HomeController < ApplicationController
       before_action :verify_token
       layout 'report'
 
