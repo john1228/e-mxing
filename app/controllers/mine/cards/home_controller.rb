@@ -20,7 +20,7 @@ module Mine
                          id: card.id,
                          name: card.name,
                          card_type: card.card_type,
-                         value: card.value,
+                         value: card.clocker? ? (card.valid_end - Date.today).floor : card.value,
                          valid_end: card.valid_end,
                          member: {
                              name: card.member.name,
@@ -31,7 +31,7 @@ module Mine
                              name: card.service.profile.name,
                              avatar: card.service.profile.avatar.url,
                              city: card.service.profile.city,
-                             address: (card.service.profile.area||"") + (card.service.profile.address||""),
+                             address: (card.service.profile.area||'') + (card.service.profile.address||''),
                              mobile: card.service.profile.mobile
                          }
                      }
