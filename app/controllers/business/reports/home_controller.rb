@@ -8,11 +8,9 @@ module Business
       end
 
       def weekly
-
       end
 
       def monthly
-
       end
     end
   end

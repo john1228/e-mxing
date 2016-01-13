@@ -9,6 +9,9 @@ class ProfileUploader < CarrierWave::Uploader::Base
     "images/#{model.class.to_s.underscore}"
   end
 
+  def default_url
+    ''
+  end
 
   def extension_white_list
     %w(jpg jpeg gif png)
