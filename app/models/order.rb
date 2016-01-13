@@ -193,7 +193,7 @@ class Order < ActiveRecord::Base
                   user_id: user_id,
                   name: contact_name,
                   mobile: contact_phone,
-                  avatar: contact_avatar||user.profile.avatar
+                  avatar: contact_avatar.blank? ? user.profile.avatar : contact_avatar
               )
               #创建会员卡
               if sku.course?
