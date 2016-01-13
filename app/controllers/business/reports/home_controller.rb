@@ -1,6 +1,6 @@
 module Business
   module Reports
-    class HomeController < ApplicationController
+    class HomeController < BaseController
       layout :report
 
       def daily
