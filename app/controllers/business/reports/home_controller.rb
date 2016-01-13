@@ -30,7 +30,7 @@ module Business
           when 'monthly'
             orders = @coach.orders.where(updated_at: today.at_beginning_of_month..today.tomorrow)
             title = '本月銷售情況'
-            categories = (0..today.cweek).map { |item| "第#{item}周" }
+            categories = (0..today.cweek).map { |item| "第#{item+1}周" }
             data = (0..today.cweek).map { |item|
               date = today.weeks_ago(item)
               if date.month.eql?(today.month)
