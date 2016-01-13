@@ -34,7 +34,7 @@ module Business
       if membership_card.blank?
         render json: Failure.new('无效的消课码')
       else
-        if membership_card.disable
+        if membership_card.disable?
           render json: Failure.new('该卡已停用')
         else
           if membership_card.order.coach.eql?(@coach)
