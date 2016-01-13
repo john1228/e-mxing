@@ -116,7 +116,7 @@ class Order < ActiveRecord::Base
         if user.present?
           self.user_id = user.id
         else
-          user = User.new(mobile: contact_phone, password: '12345678', profile_attributes: {name: contact_name})
+          user = User.new(mobile: contact_phone, password: '12345678', profile_attributes: {name: contact_name, avatar: contact_avatar})
           if user.save
             self.user_id = user.id
           else
