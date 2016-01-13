@@ -16,7 +16,7 @@ module Business
                                        age: coach.profile.age,
                                        birthday: coach.profile.birthday,
                                        signature: coach.profile.signature,
-                                       business: coach.profile.business,
+                                       business: coach.profile.business||"8:30-20:30",
                                        clock: coach.clocks.count
                                    })
         else
@@ -40,7 +40,7 @@ module Business
                                      age: coach.profile.age,
                                      birthday: coach.profile.birthday,
                                      signature: coach.profile.signature,
-                                     business: coach.profile.business,
+                                     business: coach.profile.business||"8:30-20:30",
                                      clock: coach.clocks.count
                                  })
       else
