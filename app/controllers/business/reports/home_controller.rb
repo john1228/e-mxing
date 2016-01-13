@@ -2,6 +2,7 @@ module Business
   module Reports
     class HomeController < BaseController
       def index
+        @token = params[:token]
         render layout: 'report'
       end
 

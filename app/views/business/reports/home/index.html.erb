@@ -1,9 +1,9 @@
 <div class="header">
   <nav class="tabs">
     <ul>
-      <li class="active" data-url="<%= business_reports_type_path("daily") %>">今日</li>
-      <li class="normal" data-url="<%= business_reports_type_path("weekly") %>">本周</li>
-      <li class="normal" data-url="<%= business_reports_type_path("monthly") %>">本月</li>
+      <li class="active" data-url="<%= business_reports_type_path("daily") + '?token=' + @token %>">今日</li>
+      <li class="normal" data-url="<%= business_reports_type_path("weekly") + '?token=' + @token %>">本周</li>
+      <li class="normal" data-url="<%= business_reports_type_path("monthly") + '?token=' + @token %>">本月</li>
     </ul>
   </nav>
   <div class="summary">
