@@ -20,7 +20,7 @@ module Mine
                          id: card.id,
                          name: card.name,
                          card_type: card.card_type,
-                         value: card.clocker? ? (card.valid_end - Date.today).floor : card.value,
+                         value: card.clocked? ? (card.valid_end - Date.today).floor : card.value,
                          valid_end: card.valid_end,
                          member: {
                              name: card.member.name,
