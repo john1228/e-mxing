@@ -175,7 +175,8 @@ Rails.application.routes.draw do
       get 'detail' => 'home#detail'
     end
     namespace :reports do
-      get '/' => 'report#daily'
+      get '/' => 'home#index'
+      get ':type' => 'home#report', as: :type
     end
     namespace :schedules do
       get '/' => 'home#index'

@@ -1,0 +1,57 @@
+<div class="header">
+  <nav class="tabs">
+    <ul>
+      <li class="active" data-url="<%= business_reports_type_path("daily") %>">今日</li>
+      <li class="normal" data-url="<%= business_reports_type_path("weekly") %>">本周</li>
+      <li class="normal" data-url="<%= business_reports_type_path("monthly") %>">本月</li>
+    </ul>
+  </nav>
+  <div class="summary">
+    <div class="summary-panel">
+      <ul>
+        <li class="border-right summary-total">
+          <span>营业额(元)</span>
+
+          <p id="sale"><%= @sales %></p>
+        </li>
+        <li class="platform">
+          <ul>
+            <li>
+              <span>美型平台(元)</span>
+
+              <p id="platform"><%= @platform %></p>
+            </li>
+            <li>
+              <span>当面付(元)</span>
+
+              <p>
+
+              <p id="face_to_face"><%= @face_to_face %></p></p>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="list">
+  <ul>
+    <a href="#" class="border-bottom"><span class="single">单</span>销售单数
+      <div class="fr"><span id="order">13</span><span class="triangle">
+        <%= image_tag('triangle.png', size: '6x6') %>
+      </span>
+      </div>
+    </a>
+    <a href="#"><span class="approximately">约</span>预约课程
+      <div class="fr"><span id="appointment">13</span><span class="triangle">
+        <%= image_tag('triangle.png', size: '6x6') %>
+      </span>
+      </div>
+    </a>
+  </ul>
+</div>
+<div class="trend-table">
+  <h3 id="title">7日销量趋势</h3>
+
+  <div id="container"></div>
+</div>

@@ -10,107 +10,10 @@
   <%= stylesheet_link_tag 'report/base', 'report/style' %>
 </head>
 <body>
-<div id="header">
-  <nav class="TabTitle">
-    <ul id="myTab">
-      <li class="active" onclick="nTabs(this,0);">今日</li>
-      <li class="normal" onclick="nTabs(this,1);">本周</li>
-      <li class="normal" onclick="nTabs(this,2);">本月</li>
-    </ul>
-  </nav>
-  <div class="TabContent">
-    <div id="myTab_Content0" class="Turnover">
-      <ul>
-        <li class="border-right summary-a">
-          <span>营业额(元)</span>
-
-          <p>2605</p>
-        </li>
-        <div class="platform">
-          <ul>
-            <li>
-              <span>美型平台(元)</span>
-
-              <p>1967.5</p>
-            </li>
-            <li>
-              <span>当面付(元)</span>
-
-              <p>637.5</p>
-            </li>
-          </ul>
-        </div>
-      </ul>
-
-    </div>
-    <div id="myTab_Content1" class="none Turnover">
-      <ul>
-        <li class="border-right summary-a">
-          <span>营业额(元)</span>
-
-          <p>2601</p>
-        </li>
-        <div class="platform">
-          <ul>
-            <li>
-              <span>美型平台(元)</span>
-
-              <p>1967.5</p>
-            </li>
-            <li>
-              <span>当面付(元)</span>
-
-              <p>637.5</p>
-            </li>
-          </ul>
-        </div>
-      </ul>
-    </div>
-    <div id="myTab_Content2" class="none Turnover">
-      <ul>
-        <li class="border-right summary-a">
-          <span>营业额(元)</span>
-
-          <p>2602</p>
-        </li>
-        <div class="platform">
-          <ul>
-            <li>
-              <span>美型平台(元)</span>
-
-              <p>1967.5</p>
-            </li>
-            <li>
-              <span>当面付(元)</span>
-
-              <p>637.5</p>
-            </li>
-          </ul>
-        </div>
-      </ul>
-    </div>
-  </div>
-</div>
-<div class="menu_list">
-  <ul>
-    <a href="sales-singular.html" class="border-bottom"><span class="single">单</span>销售单数
-      <div class="fr"><span>13</span><span class="triangle"><img src="img/triangle.png" width="6" height="6px"></span>
-      </div>
-    </a>
-    <a href="reservation-course.html"><span class="approximately">约</span>预约课程
-      <div class="fr"><span>13</span><span class="triangle"><img src="img/triangle.png" width="6" height="6px"></span>
-      </div>
-    </a>
-  </ul>
-</div>
-<div class="trend-table">
-  <h3>7日销量趋势</h3>
-
-  <div id="container"></div>
-</div>
+<%= yield %>
+</body>
 <%= javascript_include_tag 'report/jquery.min',
                            'report/base',
                            'report/highcharts' %>
 
-</body>
 </html>
