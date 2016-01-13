@@ -10,7 +10,7 @@ class ProfileUploader < CarrierWave::Uploader::Base
   end
 
   def default_url
-    ''
+    'http://7xnvtv.com2.z0.glb.qiniucdn.com/default.png'
   end
 
   def extension_white_list
