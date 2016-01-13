@@ -2,7 +2,7 @@ module Business
   module Reports
     class HomeController < BaseController
       def index
-        layout 'report'
+        render layout 'report'
       end
 
       def report
