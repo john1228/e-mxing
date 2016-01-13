@@ -38,8 +38,8 @@ module Business
                        avatar: course.service.profile.avatar.url,
                        address: course.address,
                        service: course.service.profile.service,
-                       store: course.store,
-                       limit: course.limit
+                       store: course.store||-1,
+                       limit: course.limit||-1
                    }
                )
       end
