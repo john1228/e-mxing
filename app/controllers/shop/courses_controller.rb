@@ -4,6 +4,7 @@ module Shop
 
     def index
       city = URI.decode(request.headers[:city]) rescue '上海'
+      filters = nil
       filters = {course_type: params[:cat]} if params[:cat].present?
       case params[:sort]
         when 'smart'
