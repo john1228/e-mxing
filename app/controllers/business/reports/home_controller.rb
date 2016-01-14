@@ -50,7 +50,6 @@ module Business
                 start_date = today.at_beginning_of_month
                 end_date = date.at_end_of_week.tomorrow
               end
-              logger.info "#{start_date}--#{end_date}"
               coach_orders.where(updated_at: start_date..end_date).sum(:total).floor
             }.reverse
           else
