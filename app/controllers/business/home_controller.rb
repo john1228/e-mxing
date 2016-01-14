@@ -55,7 +55,7 @@ module Business
       {
           balance: @coach.wallet.balance.to_f.round(2),
           order: coach_orders.count,
-          appoint: MembershipCardLog.joins(:membership_card).checkin.confirm.where(membership_cards: {order_id: coach_orders.pluck(:id)}).count,
+          appoint: MembershipCardLog.joins(:membership_card).checkin.confirm.where(membership_cards: {order_id: coach_orders.pluck(:id), card_type: 3}).count,
           comment: Comment.where(sku: selling_sku).count,
           tool: TOOL
       }
