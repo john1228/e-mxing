@@ -4,12 +4,17 @@ module Mine
       case params[:type]
         when 'incomplete'
           render json: Success.new(classes: MembershipCard.course.where(member: @me.members).where('supply_value > 0').order(id: :desc).page(params[:page]||1).map { |membership_card|
-                                     seller_user = User.find_by(id: membership_card.order.seller_id)
+                                     if membership_card.order.present?
+                                       seller = membership_card.order.seller
+                                     else
+                                       seller = membership_card.service
+                                     end
+
                                      {
                                          id: membership_card.id,
                                          course: membership_card.order.order_item.name,
                                          student: @me.profile.name,
-                                         seller: seller_user.profile.name,
+                                         seller: seller.profile.name,
                                          available: membership_card.supply_value,
                                          used: []
                                      }
@@ -39,7 +44,11 @@ module Mine
       case params[:type]
         when 'incomplete'
           membership_card = MembershipCard.find_by(id: params[:id])
-          seller = membership_card.order.seller
+          if membership_card.order.present?
+            seller = membership_card.order.seller
+          else
+            seller = membership_card.service
+          end
           service = membership_card.service
           render json: Success.new(class: {
                                        id: membership_card.id,
