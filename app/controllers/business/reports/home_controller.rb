@@ -12,6 +12,9 @@ module Business
         case params[:type]
           when 'daily'
             orders = coach_orders.where(updated_at: today..today.tomorrow)
+            appointments = MembershipCardLog.confirm.joins(:membership_card)
+                               .where(membership_cards: {order_id: coach_orders.pluck(:id)})
+                               .where(updated_at: today..today.tomorrow)
             title = '七日销售情况'
             categories = (0..6).map { |index|
               today.prev_day(index)
@@ -21,6 +24,9 @@ module Business
             }
           when 'weekly'
             orders = coach_orders.where(updated_at: today.prev_week..today.tomorrow)
+            appointments = MembershipCardLog.confirm.joins(:membership_card)
+                               .where(membership_cards: {order_id: coach_orders.pluck(:id)})
+                               .where(updated_at: today.prev_week..today.tomorrow)
             title = '本周销售情况'
             categories =(today.at_beginning_of_week..today).map { |item|
               item
@@ -30,6 +36,9 @@ module Business
             }
           when 'monthly'
             orders = coach_orders.where(updated_at: today.at_beginning_of_month..today.tomorrow)
+            appointments = MembershipCardLog.confirm.joins(:membership_card)
+                               .where(membership_cards: {order_id: coach_orders.pluck(:id)})
+                               .where(updated_at: today.at_beginning_of_month..today.tomorrow)
             title = '本月銷售情況'
             categories = (0..today.cweek).map { |item| "第#{item+1}周" }
             data = (0..today.cweek).map { |item|
@@ -46,6 +55,9 @@ module Business
             }.reverse
           else
             orders = coach_orders.where(updated_at: today..today.tomorrow)
+            appointments = MembershipCardLog.confirm.joins(:membership_card)
+                               .where(membership_cards: {order_id: coach_orders.pluck(:id)})
+                               .where(updated_at: today..today.tomorrow)
             title = '七日销售情况'
             categories = (0..6).map { |index|
               today.prev_day(index)
