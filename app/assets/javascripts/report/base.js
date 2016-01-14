@@ -1,6 +1,6 @@
 //-----图表-----
 $(function () {
-    $.getJSON('reports/daily', function (data) {
+    $.getJSON($('.tabs').find('li:first').data('url'), function (data) {
         $('#sale').html(data.sale);
         $('#platform').html(data.platform);
         $('#face_to_face').html(data.face_to_face);
