@@ -41,7 +41,7 @@ module Business
                 end_date = date.at_end_of_week.tomorrow
               end
               @coach.orders.pay.where(updated_at: start_date..end_date).sum(:total).floor
-            }
+            }.reverse
           else
             orders = @coach.orders.where(updated_at: today..today.tomorrow)
             title = '七日销售情况'

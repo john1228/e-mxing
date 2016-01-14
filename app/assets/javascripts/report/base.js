@@ -11,6 +11,7 @@ $(function () {
         $.each(data.report.categories, function (index, value) {
             categories.push(value);
         });
+
         $('#container').highcharts({
             title: {
                 text: ''
@@ -32,7 +33,7 @@ $(function () {
                 data: data.report.data
             }]
         });
-    });
+    })
     $('.tabs li').on('click', function () {
         $(this).parent().find("li").removeClass('active');
         $(this).parent().find("li").addClass('normal');
