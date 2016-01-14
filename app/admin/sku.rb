@@ -1,5 +1,5 @@
 ActiveAdmin.register Sku do
-  menu label: '全部课程', parent: '商品管理'
+  menu label: '商品'
   actions :index, :show, :recommend, :cancel_recommend
   filter :course_type
   filter :course_name
@@ -9,13 +9,15 @@ ActiveAdmin.register Sku do
   filter :status, as: :select, collection: [['库存中', 0], ['已上架', 1]]
   filter :address
 
-  scope('0-私教课程', :coach_courses)
-  scope('1-机构课程', :service_courses)
+  scope('0-储值卡', :stored) { |scope| scope.stored }
+  scope('1-次卡', :measured) { |scope| scope.measured }
+  scope('2-时效卡', :clocked) { |scope| scope.clocked }
+  scope('3-课程', :course) { |scope| scope.course }
 
   index do
     selectable_column
     column(:course_name)
-    column('课程封面') { |sku| image_tag(sku.course_cover, width: 50, height: 50) }
+    column('课程封面') { |sku| image_tag(sku.course_cover, width: 75, height: 75) }
     column(:market_price)
     column(:selling_price)
     column('库存') { |sku|
@@ -39,15 +41,6 @@ ActiveAdmin.register Sku do
     column('状态') { |sku|
       sku.status.eql?(1) ? status_tag('已上架', :ok) : status_tag('库存中', :error)
     }
-    actions do |sku|
-      if sku.status.eql?(1)
-        if sku.recommend
-          link_to('取消爆款', cancel_recommend_course_path(sku), method: :delete)
-        else
-          link_to('设为爆款', recommend_course_path(sku), method: :post)
-        end
-      end
-    end
   end
 
   batch_action :offline do |ids|
@@ -64,25 +57,9 @@ ActiveAdmin.register Sku do
       row('封面') { image_tag(sku.course_cover, width: 100) }
       row(:market_price)
       row(:selling_price)
-      row('课程类型') { sku.course.type_name }
-      row('建议课时') { sku.course.proposal }
-      row('有效期') { "#{sku.course.exp}天" }
       row(:seller)
       row('服务号') { sku.seller_user.is_a?(Coach) ? sku.seller_user.service.profile.name : sku.seller_user.profile.name }
       row(:address)
     end
   end
-
-  controller do
-    def recommend
-      Recommend.create(type: Recommend::TYPE[:course], recommended_id: params[:id])
-      redirect_to collection_path, alert: '添加爆款成功'
-    end
-
-    def cancel_recommend
-      Recommend.destroy_all(type: Recommend::TYPE[:course], recommended_id: params[:id])
-      redirect_to collection_path, alert: '取消爆款成功'
-    end
-  end
-
 end

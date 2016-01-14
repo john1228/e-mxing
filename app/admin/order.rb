@@ -1,5 +1,5 @@
 ActiveAdmin.register Order do
-  menu label: '订单', parent: '商品管理'
+  menu label: '订单'
   config.batch_actions = false
 
   filter :no, label: '订单号'
