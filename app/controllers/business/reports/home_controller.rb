@@ -60,7 +60,7 @@ module Business
                    platform: orders.platform.sum(:total).floor,
                    face_to_face: orders.face_to_face.sum(:total).floor,
                    order: orders.count,
-                   appointment: MembershipCardLog.confirm.joins(:membership_card).where(membership_cards: {order_id: coach_orders.pluck(:id)}).count,
+                   appointment: appointments.count,
                    report: {
                        categories: categories,
                        title: title,
