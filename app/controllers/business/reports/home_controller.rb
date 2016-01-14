@@ -8,7 +8,7 @@ module Business
 
       def report
         today = Date.today
-        coach_orders = Order.where(seller_id: @coach.id)
+        coach_orders = Order.pay.where(seller_id: @coach.id)
         case params[:type]
           when 'daily'
             orders = coach_orders.where(updated_at: today..today.tomorrow)
@@ -17,7 +17,7 @@ module Business
               today.prev_day(index)
             }.reverse
             data = categories.map { |item|
-              coach_orders.pay.where(updated_at: item..item.tomorrow).sum(:total).floor
+              coach_orders.where(updated_at: item..item.tomorrow).sum(:total).floor
             }
           when 'weekly'
             orders = coach_orders.where(updated_at: today.prev_week..today.tomorrow)
@@ -26,7 +26,7 @@ module Business
               item
             }
             data = categories.map { |item|
-              coach_orders.pay.where(updated_at: item..item.tomorrow).sum(:total).floor
+              coach_orders.where(updated_at: item..item.tomorrow).sum(:total).floor
             }
           when 'monthly'
             orders = coach_orders.where(updated_at: today.at_beginning_of_month..today.tomorrow)
@@ -42,7 +42,7 @@ module Business
                 end_date = date.at_end_of_week.tomorrow
               end
               logger.info "#{start_date}--#{end_date}"
-              coach_orders.pay.where(updated_at: start_date..end_date).sum(:total).floor
+              coach_orders.where(updated_at: start_date..end_date).sum(:total).floor
             }.reverse
           else
             orders = coach_orders.where(updated_at: today..today.tomorrow)
@@ -51,7 +51,7 @@ module Business
               today.prev_day(index)
             }.reverse
             data = categories.map { |item|
-              coach_orders.pay.where(updated_at: item..item.tomorrow)
+              coach_orders.where(updated_at: item..item.tomorrow)
             }
         end
 
