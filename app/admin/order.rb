@@ -11,7 +11,7 @@ ActiveAdmin.register Order do
 
   csv do
     column('服务号') { |order| order.service.profile.name }
-    column('销售') { |order| User.find_by(seller_id: order.seller_id).profile.name }
+    column('销售') { |order| User.find_by(id: order.seller_id).profile.name rescue '' }
     column('订单编号') { |order| order.no }
     column('买家') { |order| order.user.profile.name }
     column('联系人') { |order| order.contact_name }
