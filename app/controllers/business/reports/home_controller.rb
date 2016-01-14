@@ -8,27 +8,28 @@ module Business
 
       def report
         today = Date.today
+        coach_orders = Order.where(seller_id: @coach.id)
         case params[:type]
           when 'daily'
-            orders = @coach.orders.where(updated_at: today..today.tomorrow)
+            orders = coach_orders.where(updated_at: today..today.tomorrow)
             title = '七日销售情况'
             categories = (0..6).map { |index|
               today.prev_day(index)
             }.reverse
             data = categories.map { |item|
-              @coach.orders.pay.where(updated_at: item..item.tomorrow).sum(:total).floor
+              coach_orders.pay.where(updated_at: item..item.tomorrow).sum(:total).floor
             }
           when 'weekly'
-            orders = @coach.orders.where(updated_at: today.prev_week..today.tomorrow)
+            orders = coach_orders.where(updated_at: today.prev_week..today.tomorrow)
             title = '本周销售情况'
             categories =(today.at_beginning_of_week..today).map { |item|
               item
             }
             data = categories.map { |item|
-              @coach.orders.pay.where(updated_at: item..item.tomorrow).sum(:total).floor
+              coach_orders.pay.where(updated_at: item..item.tomorrow).sum(:total).floor
             }
           when 'monthly'
-            orders = @coach.orders.where(updated_at: today.at_beginning_of_month..today.tomorrow)
+            orders = coach_orders.where(updated_at: today.at_beginning_of_month..today.tomorrow)
             title = '本月銷售情況'
             categories = (0..today.cweek).map { |item| "第#{item+1}周" }
             data = (0..today.cweek).map { |item|
@@ -40,16 +41,16 @@ module Business
                 start_date = today.at_beginning_of_month
                 end_date = date.at_end_of_week.tomorrow
               end
-              @coach.orders.pay.where(updated_at: start_date..end_date).sum(:total).floor
+              coach_orders.pay.where(updated_at: start_date..end_date).sum(:total).floor
             }.reverse
           else
-            orders = @coach.orders.where(updated_at: today..today.tomorrow)
+            orders = coach_orders.where(updated_at: today..today.tomorrow)
             title = '七日销售情况'
             categories = (0..6).map { |index|
               today.prev_day(index)
             }.reverse
             data = categories.map { |item|
-              @coach.orders.pay.where(updated_at: item..item.tomorrow)
+              coach_orders.pay.where(updated_at: item..item.tomorrow)
             }
         end
 
