@@ -84,7 +84,7 @@ class Sku < ActiveRecord::Base
             count: orders_count,
             items: buyers
         },
-        status: status,
+        status: 1,
         comments: [
             count: comments.count,
             items: image_comments.take(5)
