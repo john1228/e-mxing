@@ -45,14 +45,13 @@ class Sku < ActiveRecord::Base
   end
 
   def detail
-
     {
         sku: sku,
         name: course_name,
         cover: course_cover,
         images: product.image.map { |item| {url: item.url} },
-        market: market_price,
-        selling: selling_price,
+        market: market_price.floor,
+        selling: selling_price.floor,
         store: store||-1,
         limit: limit||-1,
         type: product.card_type.value,
