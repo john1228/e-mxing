@@ -57,42 +57,23 @@ class MembershipCard < ActiveRecord::Base
       last_valid_date = last_delay_date.next_day(valid_days) rescue nil
       if last_delay_date >= Date.today
         update(open: Date.today, status: 'normal')
-        logs.checkin.new(service_id: service_id, remark: '美型APP签到').save
+        logs.checkin.new.save
         return true
       else
         if last_valid_date.present?
           if last_valid_date >= Date.today
             update(open: last_delay_date, status: 'normal')
-            log = logs.checkin.new(service_id: service_id, remark: '美型APP签到')
-            if log.save
-              log.confirm! if clocked?
-              return true
-            else
-              return false
-            end
-          else
-            errors.add(expired: '该卡已过期')
-            return false
-          end
-        else
-          update(open: last_delay_date, status: 'normal')
-          log = logs.checkin.new(service_id: service_id, remark: '美型APP签到')
-          if log.save
-            log.confirm! if clocked?
+            logs.checkin.new.save
             return true
           else
+            errors.add(expired: '该卡已过期')
             return false
           end
         end
       end
     elsif normal?
-      log = logs.checkin.new(service_id: service_id, remark: '美型APP签到')
-      if log.save
-        log.confirm! if clocked?
-        return true
-      else
-        return false
-      end
+      logs.checkin.new.save
+      return true
     elsif disable?
       errors.add(expired: '该卡已过期')
       return false
@@ -100,37 +81,29 @@ class MembershipCard < ActiveRecord::Base
   end
 
   def valid_end
-    if valid_days.present?
+    if clocked?
       if to_be_activated?
         #开卡日期
         created_date = Date.new(created_at.year, created_at.month, created_at.day)
         #最晚开卡日
         last_delay_date = created_date.next_day(delay_days||0)
-        #最晚的有效期
-        last_valid_date = last_delay_date.next_day(valid_days) rescue nil
+        last_valid_date = last_delay_date.next_day(value)
       else
-        last_valid_date = open.next_day(valid_days||0)
+        last_valid_date = open.next_day(value)
       end
-      if last_valid_date.present?
-        if last_valid_date >= Date.today
-          last_valid_date
-        else
-          '已过期'
-        end
+      if last_valid_date > Date.today
+        last_valid_date
       else
-        '永久'
+        '已过期'
       end
     else
-      #期限卡以卡值计算
-      if clocked?
+      if valid_days.present?
         if to_be_activated?
-          #开卡日期
           created_date = Date.new(created_at.year, created_at.month, created_at.day)
-          #最晚开卡日
-          last_delay_date = created_date.next_day(delay_days)
-          last_valid_date = last_delay_date.next_day(value)
+          last_delay_date = created_date.next_day(delay_days||0)
+          last_valid_date = last_delay_date.next_day(valid_days)
         else
-          last_valid_date = open.next_day(value)
+          last_valid_date = open.next_day(valid_days)
         end
         if last_valid_date > Date.today
           last_valid_date
