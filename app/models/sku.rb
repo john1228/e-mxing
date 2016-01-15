@@ -66,28 +66,29 @@ class Sku < ActiveRecord::Base
             avatar: seller_user.profile.avatar.url,
             mobile: seller_user.profile.identity.eql?(1) ? seller_user.mobile : service.profile.mobile,
             identity: seller_user.profile.identity_value,
-            tags: seller_user.profile.tags,
-            address: [{
-                          name: address,
-                          agency: service.profile.name,
-                          coordinate: {
-                              lng: coordinate.x,
-                              lat: coordinate.y
-                          }
-                      }],
-            intro: product.description,
-            special: product.special,
-            service: service.profile.service,
-            buyers: {
-                count: orders_count,
-                items: buyers
-            },
-            status: status,
-            comments: [
-                count: comments.count,
-                items: image_comments.take(5)
-            ]
+            tags: seller_user.profile.tags
+
         },
+        address: [{
+                      name: address,
+                      agency: service.profile.name,
+                      coordinate: {
+                          lng: coordinate.x,
+                          lat: coordinate.y
+                      }
+                  }],
+        intro: product.description,
+        special: product.special,
+        service: service.profile.service,
+        buyers: {
+            count: orders_count,
+            items: buyers
+        },
+        status: status,
+        comments: [
+            count: comments.count,
+            items: image_comments.take(5)
+        ]
     }
   end
 
