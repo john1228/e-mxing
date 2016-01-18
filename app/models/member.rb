@@ -4,9 +4,10 @@ class Member < ActiveRecord::Base
   enum member_type: [:associate, :full, :coach]
 
   belongs_to :coach
+  belongs_to :service
   validates_uniqueness_of :mobile, scope: :coach_id, message: '您已经添加该手机号为会员', if: Proc.new { |member| member.coach? }
   mount_uploader :avatar, ProfileUploader
 
-  has_many :cards, class: MembershipCard
+  has_many :cards, class: MembershipCard, dependent: :destroy
   belongs_to :user
 end
