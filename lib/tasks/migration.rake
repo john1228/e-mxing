@@ -46,7 +46,7 @@ namespace :migration do
       name = row[2]
       order_no = row[7]
       #会员信息
-      member = Members.find_by(service: service, name: name, mobile: mobile)
+      member = Member.find_by(service: service, name: name, mobile: mobile)
       if member.blank?
         puts '未查找到该会员'
       else
