@@ -50,10 +50,10 @@ namespace :migration do
       if member.blank?
         puts '未查找到该会员'
       else
-        member.update(remark: '合同编号-'+order_no+'|'+'原卡号-'+card_no)
+        member.update(remark: '合同编号-'+order_no.to_s+'|'+'原卡号-'+card_no.to_s)
         #会员卡信息
         membership_card = member.cards.find_by(service: service)
-        membership_card.update(remark: '合同编号-'+order_no+'|'+'原卡号-'+card_no)
+        membership_card.update(remark: '合同编号-'+order_no.to_s+'|'+'原卡号-'+card_no.to_s)
       end
 
     end
