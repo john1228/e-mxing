@@ -37,42 +37,25 @@ namespace :migration do
   end
 
   task :member_yoyo => :environment do
-    service = Service.first
+    service = Service.find_by_mxid(56031)
     csv_text = File.read("#{Rails.root}/" + 'member.csv')
     csv = CSV.parse(csv_text, :headers => true)
     csv.each do |row|
+      card_no = row[0]
       mobile = row[4]
       name = row[2]
-      card_name = row[1]
-      end_date = Date.parse(row[10])
-      open_date = Date.parse(row[9])
-      value = (end_date-open_date).floor
-      seller = row[5]
-      pay_amount = row[6]
       order_no = row[7]
-      create_date = row[8]
-      physical_card = row[12]
-      #美型用户
-      user = User.find_by(mobile: mobile)
-      if user.blank?
-        user = User.new(mobile: mobile)
-        user.save
-      end
       #会员信息
-      member = user.members.find_by(service: service, name: name, mobile: mobile)
+      member = Members.find_by(service: service, name: name, mobile: mobile)
       if member.blank?
-        member = user.members.new(service: service, name: name, mobile: mobile)
-        member.save
+        puts '未查找到该会员'
+      else
+        member.update(remark: '合同编号-'+order_no+'|'+'原卡号-'+card_no)
+        #会员卡信息
+        membership_card = member.cards.find_by(service: service)
+        membership_card.update(remark: '合同编号-'+order_no+'|'+'原卡号-'+card_no)
       end
-      #会员卡信息
-      membership_card = member.cards.new(service: service,
-                                         card_type: 'clocked', name: card_name,
-                                         open: open_date,
-                                         value: value, status: 'normal', physical_card: physical_card, created_at: create_date, updated_at: create_date)
-      if membership_card.save
-        log = membership_card.logs.buy.new(change_amount: value, pay_amount: pay_amount, pay_type: 'other', seller: seller, remark: '合同编号-'+ order_no.to_s, created_at: create_date, updated_at: create_date)
-        log.save
-      end
+
     end
   end
 end
