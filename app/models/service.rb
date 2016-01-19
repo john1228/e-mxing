@@ -3,7 +3,6 @@ class Service<User
   scope :authorized, -> { where(profiles: {auth: 1}) }
   scope :unauthorized, -> { where(profiles: {auth: 0}) }
 
-  before_save :location
   has_many :service_members, dependent: :destroy
   has_many :service_photos, foreign_key: :user_id, dependent: :destroy
   has_many :service_dynamics, foreign_key: :user_id, dependent: :destroy
@@ -19,6 +18,7 @@ class Service<User
   alias_attribute :service_id, :id
 
   has_many :orders
+  before_save :location
 
   def as_json
     in_the_sale = Sku.online.where(service_id: id)
@@ -94,8 +94,8 @@ class Service<User
       json_string = JSON.parse(result.body)
       bd_lng = json_string['result']['location']['lng']
       bd_lat = json_string['result']['location']['lat']
-      if place.nil?
-        create_place(lonlat: "POINT(#{bd_lng} #{bd_lat})")
+      if new_record?
+        build_place(lonlat: "POINT(#{bd_lng} #{bd_lat})")
       else
         place.update(lonlat: "POINT(#{bd_lng} #{bd_lat})")
       end
