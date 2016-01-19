@@ -37,7 +37,14 @@ module Business
         if membership_card.disable?
           render json: Failure.new('该卡已停用')
         else
-          if membership_card.order.coach.eql?(@coach)
+          #权限判定
+          coach = membership_card.order.coach
+          if coach.present?
+            right = coach.eql?(@coach)
+          else
+            right = @coach.service.eql?(membership_card.service)
+          end
+          if right
             if membership_card.valid_end.eql?('已过期')
               render json: Failure.new('该会员卡已过期')
             else
