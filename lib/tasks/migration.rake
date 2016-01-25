@@ -41,6 +41,7 @@ namespace :migration do
     csv_text = File.read("#{Rails.root}/" + 'member.csv')
     csv = CSV.parse(csv_text, :headers => true)
     csv.each do |row|
+      card_no = row[0]
       mobile = row[4]
       name = row[2]
       card_name = row[1]
