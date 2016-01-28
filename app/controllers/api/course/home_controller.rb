@@ -7,7 +7,7 @@ module Api
         city = URI.decode(request.headers[:city]) rescue '上海'
         category = Category.find_by(name: params[:cat])
         sku_courses = Sku.course.online.joins(:product).select("*, st_distance(skus.coordinate, 'POINT(#{params[:lng]||0} #{params[:lat]||0})') as distance")
-                          .where(products: {card_type_id: MembershipCardType.course.where(vallue: category.item).pluck(:id)})
+                          .where(products: {card_type_id: MembershipCardType.course.where(value: category.item).pluck(:id)})
                           .where('skus.address Like ?', '%'+ city + '%')
         case params[:sort]
           when 'smart'
