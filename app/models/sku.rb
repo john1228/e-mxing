@@ -10,6 +10,7 @@ class Sku < ActiveRecord::Base
   has_many :lessons, dependent: :destroy, foreign_key: :sku
 
   belongs_to :product, class: Product, foreign_key: :course_id
+
   enum course_type: [:stored, :measured, :clocked, :course]
   enum status: [:offline, :online]
   before_create :injection

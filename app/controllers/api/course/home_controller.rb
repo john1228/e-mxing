@@ -6,41 +6,41 @@ module Api
       def index
         city = URI.decode(request.headers[:city]) rescue '上海'
         category = Category.find_by(name: params[:cat])
-        products = Product.includes(:sku, :card_type).select("*, st_distance(skus.coordinate, 'POINT(#{params[:lng]||0} #{params[:lat]||0})') as distance")
-                       .where(skus: {status: 1}, membership_card_types: {card_type: 3, value: category.item})
-                       .where('address Like ?', '%'+ city + '%')
+        sku_courses = Sku.course.online.joins(:product).select("*, st_distance(skus.coordinate, 'POINT(#{params[:lng]||0} #{params[:lat]||0})') as distance")
+                          .where(products: {card_type_id: MembershipCardType.course.where(vallue: category.item).pluck(:id)})
+                          .where('skus.address Like ?', '%'+ city + '%')
         case params[:sort]
           when 'smart'
-            courses = products.order(id: :desc).page(params[:page]||1)
+            courses = sku_courses.order(id: :desc).page(params[:page]||1)
           when 'fresh-asc'
-            courses = products.order('skus.updated_at desc').order(id: :desc).page(params[:page]||1)
+            courses = sku_courses.order('skus.updated_at desc').order(id: :desc).page(params[:page]||1)
           when 'distance-asc'
-            courses = products.order('distance asc').order(id: :desc).page(params[:page]||1)
+            courses = sku_courses.order('distance asc').order(id: :desc).page(params[:page]||1)
           when 'sale-desc'
-            courses = products.order("skus.orders_count desc").order(id: :desc).page(params[:page]||1)
+            courses = sku_courses.order("skus.orders_count desc").order(id: :desc).page(params[:page]||1)
           when 'evaluate-asc'
-            courses = products.order("skus.orders_count desc").order(id: :desc).page(params[:page]||1)
+            courses = sku_courses.order("skus.orders_count desc").order(id: :desc).page(params[:page]||1)
           when 'price-asc'
-            courses = products.order("skus.selling_price asc").order(id: :desc).page(params[:page]||1)
+            courses = sku_courses.order("skus.selling_price asc").order(id: :desc).page(params[:page]||1)
           when 'price-desc'
-            courses = products.order("skus.selling_price desc").order(id: :desc).page(params[:page]||1)
+            courses = sku_courses.order("skus.selling_price desc").order(id: :desc).page(params[:page]||1)
           else
             courses = []
         end
         render json: Success.new(course: courses.map { |course|
                                    {
-                                       sku: course.sku.id,
-                                       name: course.name,
-                                       seller: course.sku.seller,
-                                       cover: course.sku.cover,
-                                       selling: course.sku.selling_price.floor,
+                                       sku: course.id,
+                                       name: course.course_name,
+                                       seller: course.seller,
+                                       cover: course.cover,
+                                       selling: course.selling_price.floor,
                                        guarantee: 0,
-                                       address: course.sku.address,
-                                       store: course.sku.store||-1,
-                                       distance: course.attributes['distance']||0,
+                                       address: course.address,
+                                       store: course.store||-1,
+                                       distance: course.distance,
                                        coordinate: {
-                                           lng: course.sku.coordinate.x,
-                                           lat: course.sku.coordinate.y
+                                           lng: course.coordinate.x,
+                                           lat: course.coordinate.y
                                        }
                                    }
                                  })
